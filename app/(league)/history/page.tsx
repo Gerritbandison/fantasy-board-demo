@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Medal, Trophy } from "lucide-react";
+import { HallOfFameAndShame } from "@/components/league/h2h";
 import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
 import { CHAMPIONS, formatRecord, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
@@ -8,7 +9,8 @@ import { championSeedSummary, SEASONS_WITH_HISTORY, titleBoard } from "@/lib/sta
 
 export const metadata: Metadata = {
   title: "History",
-  description: "Chicken league history 2020–2025: every champion and runner-up, the champion-seed pattern, the trophy case, and each franchise's finishes.",
+  description:
+    "Chicken league history: every champion and runner-up, the champion-seed pattern, the trophy case, each franchise's finishes, and the all-time Hall of Fame, Hall of Shame, and rivalry heatmap.",
 };
 
 export default function HistoryPage() {
@@ -202,6 +204,8 @@ export default function HistoryPage() {
           <span>Numbers are final rank.</span>
         </div>
       </Card>
+
+      <HallOfFameAndShame />
 
       <p className="text-xs leading-relaxed text-slate-500">
         Franchises are tracked by ESPN team slot across seasons, so a franchise&apos;s owner may have changed over the years. Season names are shown as they were that year. Open any team for its full season-by-season record.

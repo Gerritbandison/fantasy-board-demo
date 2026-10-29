@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeftRight, Medal, ShieldAlert, Trophy } from "lucide-react";
 import { BenchList, PlayerCell } from "@/components/league/MatchupBoard";
 import { SlotChip } from "@/components/league/bits";
+import { TeamHeadToHead } from "@/components/league/h2h";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, Stat, TeamAvatar } from "@/components/league/ui";
 import { ScoreTrail, TrailLegend, WeekStrip } from "@/components/league/trail";
 import { cn } from "@/lib/utils";
@@ -29,7 +30,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/teams/[id]">): Promise<Metadata> {
   const t = getTeam(Number((await params).id));
   if (!t) return {};
-  return { title: t.name, description: `${t.name}: ${formatRecord(t)}, ${ordinal(t.rank)} in Chicken. Schedule, roster, moves, and franchise history.` };
+  return { title: t.name, description: `${t.name}: ${formatRecord(t)}, ${ordinal(t.rank)} in Chicken. Schedule, roster, moves, head-to-head records, and franchise history.` };
 }
 
 export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
@@ -270,6 +271,8 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
           <BenchList players={[...t.roster.bench, ...t.roster.ir]} />
         </Card>
       </div>
+
+      <TeamHeadToHead teamId={t.id} />
 
       <SectionHeading title="Franchise history" action={`${h.seasons[0]?.season}–${h.seasons[h.seasons.length - 1]?.season}`} />
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">

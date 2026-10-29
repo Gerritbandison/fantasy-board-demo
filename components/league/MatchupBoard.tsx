@@ -5,6 +5,7 @@ import { formatRecord, isFlagged, LEAGUE, ordinal, team, teamPath, type Matchup,
 import { buildPreview, type Edge } from "@/lib/preview";
 import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, luck, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
 import { SlotChip, StatusChip } from "./bits";
+import { MatchupSeries } from "./h2h";
 import { Card, LuckBadge, PageHeader, Pill, Stat, TeamAvatar } from "./ui";
 import { MiniTrail, ScoreTrail, TrailLegend, WeekStrip } from "./trail";
 import { TvModeButton } from "./TvModeButton";
@@ -59,6 +60,7 @@ export function MatchupBoard({ matchup, featured }: { matchup: Matchup; featured
               ))}
             </div>
           </Card>
+          <MatchupSeries leftId={L.id} rightId={R.id} />
           <TaleOfTheTape L={L} R={R} matchup={matchup} />
         </div>
         <div className="grid content-start gap-5">
