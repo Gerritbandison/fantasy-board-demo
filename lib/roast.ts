@@ -300,15 +300,7 @@ function backfireTag(t: Trade, teamId: number) {
 
 export function tradeLine(t: Trade) {
   const [a, b] = t.sides;
-  if (t.ungraded) {
-    const picks = t.sides.flatMap((s) => s.got).filter((x) => x.kind === "pick");
-    const rounds = new Set(picks.map((p) => (p.kind === "pick" ? p.round : 0)));
-    if (t.released.length)
-      return `Draft picks changed hands in the offseason and ${list(t.released.map((p) => p.name))} got released in the shuffle. Being the packing peanuts in somebody else's deal is a rough way to learn your value.`;
-    if (rounds.size === 1 && picks.length === 2)
-      return `${n(a.teamId)} and ${n(b.teamId)} swapped round-${[...rounds][0]} slots and ESPN barely took notes. Verdict: not graded. Vibes: suspicious.`;
-    return `${n(a.teamId)} and ${n(b.teamId)} shuffled draft picks before the season. Both sides get to claim they won until somebody checks.`;
-  }
+  if (t.ungraded) return `${n(a.teamId)} and ${n(b.teamId)} made a deal nobody can grade yet. Both sides get to claim they won until somebody checks.`;
   const v = verdictWinner(t);
   if (!v) return `Even on both counts so far. Both sides are still pretending they read the injury report.`;
   const { win, lose } = v;
@@ -329,7 +321,7 @@ export function tradeLine(t: Trade) {
 }
 
 export function mostActiveLine(id: number, k: number, total: number) {
-  return `${n(id)} was in ${k} of the ${total} accepted trades. That's not a fantasy team, that's a pawn shop with a waiver wire.`;
+  return `${n(id)} was in ${k} of the ${total} player trades. That's not a fantasy team, that's a pawn shop with a waiver wire.`;
 }
 
 export function offersSentLine(id: number, k: number) {

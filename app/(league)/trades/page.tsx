@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { ArrowLeftRight } from "lucide-react";
-import { TradeCard, TradeSuperlatives, ValuesCredit, VerdictKey } from "@/components/league/trades";
+import { TradeSeasons, TradeSuperlatives, ValuesCredit, VerdictKey } from "@/components/league/trades";
 import { PageHeader, SectionHeading } from "@/components/league/ui";
 import { LEAGUE } from "@/lib/league";
 import { COUNTS, TRADE_SEASON, TRADES, TRADES_LABEL, UNKNOWN_SEASONS } from "@/lib/trades";
 
 export const metadata: Metadata = {
   title: "Trades",
-  description: `Chicken league ${TRADE_SEASON} season trades: every accepted deal judged on long-term value, plus the league's trade superlatives.`,
+  description: `Chicken league ${TRADE_SEASON} season trades: every player trade judged on long-term value, plus the league's trade superlatives.`,
 };
 
 export default function TradesPage() {
@@ -20,10 +20,9 @@ export default function TradesPage() {
     <>
       <PageHeader eyebrow={TRADES_LABEL} title="Trade desk">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
-          Every accepted trade from the {TRADE_SEASON} preseason through week {LEAGUE.week}, judged on long-term value: is each side paying off, even or backfiring, and is
+          Every player trade from the {TRADE_SEASON} preseason through week {LEAGUE.week}, judged on long-term value: is each side paying off, even or backfiring, and is
           its rest-of-season value up or down since the deal. Points count every point the new players scored for their new teams, started or benched.
-          {UNKNOWN_SEASONS.length > 0 &&
-            ` ESPN only serves the current season's transactions, so trades from ${firstUnknown}–${lastUnknown} aren't on record here. That's missing data, not a quiet league.`}
+          {UNKNOWN_SEASONS.length > 0 && ` Trades from ${firstUnknown}–${lastUnknown} aren't on record: ESPN only serves the current season's transactions.`}
         </p>
         <ValuesCredit className="mt-2" />
       </PageHeader>
@@ -34,7 +33,7 @@ export default function TradesPage() {
         </p>
         <dl className="mt-2 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-4">
           {[
-            { k: "Accepted trades", v: COUNTS.accepted },
+            { k: "Player trades", v: TRADES.length, sub: COUNTS.pickSwaps ? `+ ${COUNTS.pickSwaps} draft-pick-only swaps, not listed` : undefined },
             { k: "Players moved", v: players, sub: picks ? `+ ${picks} draft picks` : undefined },
             { k: "Offers sent", v: COUNTS.offers },
             { k: "Veto votes logged", v: COUNTS.vetoVotes },
@@ -56,12 +55,8 @@ export default function TradesPage() {
       <SectionHeading title="Superlatives" />
       <TradeSuperlatives />
 
-      <SectionHeading title="Accepted trades" action="Newest first" />
-      <ul className="grid gap-4 lg:grid-cols-2">
-        {TRADES.map((t) => (
-          <TradeCard key={t.id} t={t} />
-        ))}
-      </ul>
+      <SectionHeading title="Player trades" action="By season" />
+      <TradeSeasons trades={TRADES} />
 
       <VerdictKey />
     </>

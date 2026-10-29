@@ -4,8 +4,10 @@ import { cn } from "@/lib/utils";
 import { team, teamPath } from "@/lib/league";
 import {
   assetLabel,
+  bySeason,
   COUNTS,
   longDate,
+  pickSwapsFor,
   shortDate,
   SUPERLATIVES,
   teamTrades,
@@ -14,6 +16,7 @@ import {
   TRADES,
   TRADES_LABEL,
   tv,
+  UNKNOWN_SEASONS,
   VALUES_FETCHED,
   verdictWinner,
   type Asset,
@@ -26,13 +29,15 @@ import {
 } from "@/lib/trades";
 import * as roast from "@/lib/roast";
 import { Eyebrow, Roast, RoastCard } from "./h2h";
-import { Card, Pill, SectionHeading, Stat, TeamAvatar } from "./ui";
+import { Card, Pill, Stat, TeamAvatar } from "./ui";
 
 const sign = (v: number) => (v > 0 ? "+" : v < 0 ? "−" : "");
 const signed = (v: number) => `${sign(v)}${tp(Math.abs(v))}`;
 const signedValue = (v: number) => `${sign(v)}${tv(v)}`;
 const signedPct = (v: number) => `${sign(v)}${Math.abs(v)}%`;
 const tone = (v: number) => (v > 0 ? "text-turf" : v < 0 ? "text-loss" : "text-slate-700");
+/** A team page opened on its Trades tab. */
+const tradesPath = (id: number) => `${teamPath(id)}#trades`;
 const names = (ids: number[]) => ids.map((id) => team(id).name).join(" & ");
 const weeksText = (span: [number, number]) => (span[0] === span[1] ? `week ${span[0]}` : `weeks ${span[0]}–${span[1]}`);
 const capitalize = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
@@ -189,7 +194,7 @@ function SideBlock({ s, mine }: { s: TradeSide; mine?: boolean }) {
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex min-w-0 items-center gap-2">
           <TeamAvatar teamId={t.id} size="sm" />
-          <Link href={teamPath(t.id)} className="min-w-0 text-sm leading-tight font-semibold break-words text-navy hover:underline">
+          <Link href={tradesPath(t.id)} className="min-w-0 text-sm leading-tight font-semibold break-words text-navy hover:underline">
             {t.name}
           </Link>
         </div>
@@ -297,7 +302,7 @@ function Chain({ path }: { path: number[] }) {
       {path.map((id, i) => (
         <span key={`${id}-${i}`} className="inline-flex min-w-0 items-center gap-1">
           {i > 0 && <span className="text-slate-400">→</span>}
-          <Link href={teamPath(id)} className="font-semibold text-slate-700 hover:underline">
+          <Link href={tradesPath(id)} className="font-semibold text-slate-700 hover:underline">
             {team(id).name}
           </Link>
         </span>
@@ -312,7 +317,7 @@ function Ranked({ rows, unit }: { rows: { id: number; n: number }[]; unit: strin
       {rows.map((r) => (
         <li key={r.id} className="flex items-center gap-2 text-sm">
           <TeamAvatar teamId={r.id} size="sm" className="size-5 text-[7px]" />
-          <Link href={teamPath(r.id)} className="min-w-0 flex-1 truncate text-slate-700 hover:underline">
+          <Link href={tradesPath(r.id)} className="min-w-0 flex-1 truncate text-slate-700 hover:underline">
             {team(r.id).name}
           </Link>
           <span className="shrink-0 font-semibold text-navy tabular-nums">
@@ -335,9 +340,9 @@ export function TradeSuperlatives() {
   const report = S.report[0]?.backfiring ? S.report[0] : null;
   return (
     <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <RoastCard icon={Handshake} label="Most active trader" tone="gold" accent={team(active.id).color} value={`${active.n} of ${COUNTS.accepted}`} line={roast.mostActiveLine(active.id, active.n, COUNTS.accepted)}>
+      <RoastCard icon={Handshake} label="Most active trader" tone="gold" accent={team(active.id).color} value={`${active.n} of ${TRADES.length}`} line={roast.mostActiveLine(active.id, active.n, TRADES.length)}>
         <p className="text-sm font-semibold text-navy">{team(active.id).name}</p>
-        <p className="text-xs text-slate-500">accepted trades this season</p>
+        <p className="text-xs text-slate-500">player trades this season</p>
       </RoastCard>
 
       <RoastCard icon={Megaphone} label="Most offers sent" accent={team(sent[0].id).color} value={sent[0].n} line={roast.offersSentLine(sent[0].id, sent[0].n)}>
@@ -416,7 +421,7 @@ export function TradeSuperlatives() {
             {S.report.map((r) => (
               <li key={r.id} className="flex flex-wrap items-center gap-x-2 text-sm">
                 <TeamAvatar teamId={r.id} size="sm" className="size-5 text-[7px]" />
-                <Link href={teamPath(r.id)} className="min-w-0 flex-1 truncate text-slate-700 hover:underline">
+                <Link href={tradesPath(r.id)} className="min-w-0 flex-1 truncate text-slate-700 hover:underline">
                   {team(r.id).name}
                 </Link>
                 <span className="shrink-0 text-xs tabular-nums">
@@ -428,13 +433,13 @@ export function TradeSuperlatives() {
               </li>
             ))}
           </ul>
-          <p className="mt-1.5 text-xs text-slate-500">Verdicts per side; draft-pick-only deals aren&apos;t graded.</p>
+          <p className="mt-1.5 text-xs text-slate-500">Verdicts per side, player trades only.</p>
         </RoastCard>
       )}
 
-      <RoastCard icon={Ban} label="Repeat customers" value={`${S.distinctPairs} pairs`} line={roast.noRepeatLine(COUNTS.accepted, S.distinctPairs)}>
+      <RoastCard icon={Ban} label="Repeat customers" value={`${S.distinctPairs} pairs`} line={roast.noRepeatLine(TRADES.length, S.distinctPairs)}>
         <p className="text-sm text-slate-700">
-          {COUNTS.accepted} accepted trades, {S.distinctPairs} different pairs of teams. {COUNTS.accepted === S.distinctPairs ? "No pair has traded twice." : null}
+          {TRADES.length} player trades, {S.distinctPairs} different pairs of teams. {TRADES.length === S.distinctPairs ? "No pair has traded twice." : null}
         </p>
       </RoastCard>
     </ul>
@@ -466,7 +471,7 @@ export function VerdictKey() {
         labelled and left out.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
-        Confidence follows the weeks of data since the deal ({confidenceScale().join(" · ")}). Draft-pick-only deals aren&apos;t graded.
+        Confidence follows the weeks of data since the deal ({confidenceScale().join(" · ")}). Only player trades are listed; draft-pick-only swaps are counted but left out.
       </p>
       <ValuesCredit className="mt-3" />
     </Card>
@@ -478,15 +483,58 @@ function verdictsText(v: { [k in Verdict]: number }) {
   return v["paying-off"] + v.even + v.backfiring ? parts.join(" · ") : null;
 }
 
+function UnknownSeasons() {
+  if (!UNKNOWN_SEASONS.length) return null;
+  const first = UNKNOWN_SEASONS[0];
+  const last = UNKNOWN_SEASONS[UNKNOWN_SEASONS.length - 1];
+  return (
+    <p className="rounded-xl bg-white px-3 py-2 text-xs leading-snug text-slate-500 ring-1 ring-line">
+      <span className="font-semibold text-slate-700">
+        {first}–{last}:
+      </span>{" "}
+      not on record. ESPN only serves the current season&apos;s transactions, so earlier trades are missing data, not a quiet league.
+    </p>
+  );
+}
+
+/** Player trades grouped by season, newest first, then the seasons ESPN doesn't serve. */
+export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?: number; empty?: string }) {
+  const groups = bySeason(trades);
+  return (
+    <div className="grid gap-4">
+      {groups.length ? (
+        groups.map((g) => (
+          <section key={g.season} className="grid gap-3" aria-label={`${g.season} season`}>
+            <h3 className="flex items-baseline justify-between gap-3 border-b border-line pb-1.5">
+              <span className="font-display text-lg font-bold text-navy">{g.season} season</span>
+              <span className="text-xs text-slate-500">
+                {g.trades.length} player {g.trades.length === 1 ? "trade" : "trades"} · newest first
+              </span>
+            </h3>
+            <ul className="grid gap-4 lg:grid-cols-2">
+              {g.trades.map((t) => (
+                <TradeCard key={t.id} t={t} focus={focus} />
+              ))}
+            </ul>
+          </section>
+        ))
+      ) : (
+        <p className="text-sm text-slate-500">{empty}</p>
+      )}
+      <UnknownSeasons />
+    </div>
+  );
+}
+
 export function TeamTradesSection({ teamId }: { teamId: number }) {
   const s = teamTrades(teamId);
   const fav = s.favorite;
+  const swaps = pickSwapsFor(teamId);
   return (
     <>
-      <SectionHeading title="Trades" action={TRADES_LABEL} />
-      <Card className="-mt-2">
+      <Card>
         <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">
-          <Stat label="Accepted trades" value={s.trades.length} sub={verdictsText(s.verdicts) ?? `of ${TRADES.length} in the league`} />
+          <Stat label="Player trades" value={s.trades.length} sub={verdictsText(s.verdicts) ?? `of ${TRADES.length} in the league`} />
           <Stat label="Offers sent" value={s.offersSent} />
           <Stat label="Offers received" value={s.offersReceived} />
           <Stat
@@ -516,7 +564,7 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
                   {fav.teamIds.map((id, i) => (
                     <span key={id}>
                       {i > 0 && <span className="font-medium text-slate-500"> & </span>}
-                      <Link href={teamPath(id)} className="hover:underline">
+                      <Link href={tradesPath(id)} className="hover:underline">
                         {team(id).name}
                       </Link>
                     </span>
@@ -524,7 +572,7 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
                   {fav.teamIds.length > 1 && <span className="font-medium text-slate-500"> (tied)</span>}
                 </p>
                 <p className="text-xs text-slate-500">
-                  {fav.basis === "trades" ? `${fav.trades} ${fav.trades === 1 ? "trade" : "trades"} · ` : "No accepted trades yet · "}
+                  {fav.basis === "trades" ? `${fav.trades} ${fav.trades === 1 ? "trade" : "trades"} · ` : "No player trades yet · "}
                   {fav.offers} {fav.offers === 1 ? "offer" : "offers"} exchanged
                 </p>
               </div>
@@ -534,19 +582,16 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
           )}
         </div>
         <p className="mt-3 text-xs text-slate-500">Offer counts only; the contents of pending or declined offers stay private.</p>
+        {swaps > 0 && (
+          <p className="mt-1 text-xs text-slate-500">
+            Plus {swaps === 1 ? "one draft-pick-only swap" : `${swaps} draft-pick-only swaps`}, not listed here.
+          </p>
+        )}
         {s.netValue != null && <ValuesCredit className="mt-1" />}
       </Card>
 
-      {s.trades.length ? (
-        <ul className="grid gap-4 lg:grid-cols-2">
-          {s.trades.map((t) => (
-            <TradeCard key={t.id} t={t} focus={teamId} />
-          ))}
-        </ul>
-      ) : (
-        <p className="-mt-1 text-sm text-slate-500">No accepted trades for {team(teamId).name} this season.</p>
-      )}
-      <Link href="/trades" className="-mt-2 text-sm font-semibold text-turf hover:underline">
+      <TradeSeasons trades={s.trades} focus={teamId} empty={`No player trades for ${team(teamId).name} on record.`} />
+      <Link href="/trades" className="text-sm font-semibold text-turf hover:underline">
         All {TRADES_LABEL} →
       </Link>
     </>

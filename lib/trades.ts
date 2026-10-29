@@ -102,6 +102,7 @@ export const UNKNOWN_SEASONS = Object.entries(file.tradesPerSeason)
   .sort((a, b) => a - b);
 export const COUNTS = {
   accepted: file.trades.length,
+  pickSwaps: file.trades.filter((t) => t.playersMoved === 0).length,
   offers: file.meta.counts.uniqueProposals,
   declines: file.meta.counts.declines,
   vetoVotes: file.vetoVotes.length,
@@ -172,6 +173,7 @@ export interface TradeSide {
 export interface Trade {
   id: string;
   num: number;
+  season: number;
   week: number;
   weekLabel: string;
   acceptedAt: Date;
@@ -263,7 +265,7 @@ const VALUES_FETCHED_AT = file.trades
   .find((p) => p.value.fetchedAt)?.value.fetchedAt;
 export const VALUES_FETCHED = VALUES_FETCHED_AT ? new Date(VALUES_FETCHED_AT) : null;
 
-export const TRADES: Trade[] = file.trades
+const ALL_TRADES: Trade[] = file.trades
   .map((t) => {
     const w = t.whoWonIt;
     const lt = t.longTermGrade;
@@ -280,6 +282,7 @@ export const TRADES: Trade[] = file.trades
     return {
       id: t.id,
       num: Number(t.id.split("-T")[1]),
+      season: t.season,
       week: t.week,
       weekLabel: t.weekLabel.replace(/^w/, "W").replace(/^p/, "P"),
       acceptedAt: new Date(t.acceptedAt),
@@ -296,6 +299,20 @@ export const TRADES: Trade[] = file.trades
     } satisfies Trade;
   })
   .sort((x, y) => y.acceptedAt.getTime() - x.acceptedAt.getTime());
+
+/** Only deals that moved players; draft-pick-only swaps are counted but not listed. */
+export const TRADES = ALL_TRADES.filter((t) => t.playersMoved > 0);
+const PICK_SWAPS = ALL_TRADES.filter((t) => t.playersMoved === 0);
+
+export function pickSwapsFor(teamId: number) {
+  return PICK_SWAPS.filter((t) => t.sides.some((s) => s.teamId === teamId)).length;
+}
+
+/** Seasons with player trades (newest first), each with its trades. */
+export function bySeason(trades: Trade[]) {
+  const seasons = [...new Set(trades.map((t) => t.season))].sort((a, b) => b - a);
+  return seasons.map((season) => ({ season, trades: trades.filter((t) => t.season === season) }));
+}
 
 /** The side the verdicts favour: paying off over even over backfiring. Null when both read the same. */
 export function verdictWinner(t: Trade) {
