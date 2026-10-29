@@ -1,0 +1,7834 @@
+{
+ "scope": "2026 season only (preseason through week 8). ESPN does not serve transaction data for 2020-2025 through Flaim.",
+ "meta": {
+  "generatedAt": "2026-10-29T01:14:44-04:00",
+  "leagueId": "12115010",
+  "leagueName": "Chicken",
+  "timezone": "America/New_York",
+  "source": "Flaim Fantasy (ESPN): get_transactions (trade, trade_proposal, trade_decline, trade_veto, trade_uphold), get_roster week snapshots, get_draft 2026, get_matchups player detail weeks 4-7",
+  "coverage": {
+   "2026": "weeks 0-8, every trade lifecycle type; truncated=false on every call",
+   "2020-2025": "unavailable: get_transactions returns ESPN_SEASON_NOT_SUPPORTED (current season only)"
+  },
+  "method": [
+   "ESPN's structured feed leaves out player sides on accepted trade rows (structured_details_incomplete). Sides were rebuilt by diffing weekly roster snapshots and cross-checked against current rosters where acquisitionType is TRADE. All 14 TRADE-tagged players are accounted for.",
+   "Duplicate proposal rows (the same offer logged twice within days) are deduped; rawProposalRows keeps the original count.",
+   "trade_veto rows give one team id per row. ESPN does not say whether that is the voter, so these are labelled veto votes logged. Every trade that drew veto rows still went through, except possibly the unmatched accept rows.",
+   "Display names follow league-h2h-history.json (teamIndex and seasonNames aliases). Raw ESPN names appear only in espnName."
+  ],
+  "counts": {
+   "acceptedTrades": 7,
+   "uniqueProposals": 90,
+   "rawProposalRows": 120,
+   "declines": 60,
+   "vetoVoteRows": 13,
+   "unmatchedAcceptRows": 1
+  }
+ },
+ "tradesPerSeason": {
+  "2020": null,
+  "2021": null,
+  "2022": null,
+  "2023": null,
+  "2024": null,
+  "2025": null,
+  "2026": 7
+ },
+ "trades": [
+  {
+   "id": "2026-T1",
+   "season": 2026,
+   "week": 0,
+   "weekLabel": "preseason",
+   "acceptedAt": "2026-06-07T19:13-04:00",
+   "processedAt": "2026-06-08T19:13-04:00",
+   "date": "2026-06-07",
+   "status": "accepted",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "received": [],
+     "sent": [],
+     "receivedPicks": [
+      "7's 2026 round-4 pick (#36 overall)",
+      "7's 2026 round-6 pick (#56)"
+     ],
+     "sentPicks": [
+      "3's 2026 round-6 pick (#59)"
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "received": [],
+     "sent": [],
+     "receivedPicks": [
+      "3's 2026 round-6 pick (#59)"
+     ],
+     "sentPicks": [
+      "7's 2026 round-4 pick (#36 overall)",
+      "7's 2026 round-6 pick (#56)"
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    7
+   ],
+   "playersMoved": 0,
+   "picksMoved": 3,
+   "releasedInDeal": [
+    {
+     "name": "Isiah Pacheco",
+     "position": "RB",
+     "nflTeam": "DET"
+    }
+   ],
+   "confidence": "partial",
+   "espnTransactionIds": [
+    "76b4de21-7c5b-4536-bc0e-ae3bb79447d3",
+    "99fd7d56-cdf3-4426-915a-6fccff3255ca"
+   ],
+   "note": "Pre-draft deal. ESPN returned no player sides; pick changes are inferred from the 2026 draft board (Chewy's made two round-4 picks and moved up in round 6; Maye made 15 picks). Isiah Pacheco is attached to the trade and was released when it processed (he was later drafted by Sandusky's in round 14).",
+   "whoWonIt": null
+  },
+  {
+   "id": "2026-T2",
+   "season": 2026,
+   "week": 0,
+   "weekLabel": "preseason",
+   "acceptedAt": "2026-08-22T15:52-04:00",
+   "processedAt": "2026-08-22T22:09-04:00",
+   "date": "2026-08-22",
+   "status": "accepted",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "received": [],
+     "sent": [],
+     "receivedPicks": [
+      "11's 2026 round-3 pick (#30)"
+     ],
+     "sentPicks": [
+      "4's 2026 round-3 pick (#23)"
+     ]
+    },
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "seasonName": "Kabul FC",
+     "abbrev": "KAB",
+     "espnName": "Kabul Cocknballs",
+     "received": [],
+     "sent": [],
+     "receivedPicks": [
+      "4's 2026 round-3 pick (#23)"
+     ],
+     "sentPicks": [
+      "11's 2026 round-3 pick (#30)"
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    11
+   ],
+   "playersMoved": 0,
+   "picksMoved": 2,
+   "releasedInDeal": [],
+   "confidence": "inferred",
+   "espnTransactionIds": [
+    "4dab9937-d700-4621-a08d-fb088d1bb90b",
+    "a15ed97a-03f3-467f-9381-d8d43d45dc64"
+   ],
+   "note": "Pre-draft deal. ESPN only names All Heart. The partner and contents are inferred from the draft board, where All Heart and Kabul swapped round-3 slots (#23 and #30). Any player or keeper part is unknown.",
+   "whoWonIt": null
+  },
+  {
+   "id": "2026-T3",
+   "season": 2026,
+   "week": 3,
+   "weekLabel": "week 3",
+   "acceptedAt": "2026-09-28T17:46-04:00",
+   "processedAt": "2026-09-29T16:10-04:00",
+   "date": "2026-09-28",
+   "status": "accepted",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "received": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "sent": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": null
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "received": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": null
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "sent": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    }
+   ],
+   "teamIds": [
+    3,
+    4
+   ],
+   "playersMoved": 3,
+   "picksMoved": 0,
+   "releasedInDeal": [
+    {
+     "name": "Dalton Schultz",
+     "position": "TE",
+     "nflTeam": "HOU"
+    }
+   ],
+   "confidence": "verified-by-rosters",
+   "espnTransactionIds": [
+    "b21e5d1a-38af-4402-8352-eab624d8b45b",
+    "e67096f4-eeb6-4021-af8a-5c7b18a162c5"
+   ],
+   "note": "Accepted Sep 28 and processed by Sep 29. All Heart cut Dalton Schultz to make room.",
+   "whoWonIt": {
+    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "weeksCounted": [
+     4,
+     7
+    ],
+    "bySide": {
+     "3": {
+      "totalPointsForNewTeam": 78.9,
+      "startedPointsForNewTeam": 78.9,
+      "weeks": [
+       {
+        "player": "Jaylen Warren",
+        "week": 4,
+        "points": 15.6,
+        "started": true
+       },
+       {
+        "player": "Jaylen Warren",
+        "week": 5,
+        "points": 36.8,
+        "started": true
+       },
+       {
+        "player": "Jaylen Warren",
+        "week": 6,
+        "points": 9.8,
+        "started": true
+       },
+       {
+        "player": "Jaylen Warren",
+        "week": 7,
+        "points": 16.7,
+        "started": true
+       }
+      ]
+     },
+     "4": {
+      "totalPointsForNewTeam": 63.7,
+      "startedPointsForNewTeam": 44.8,
+      "weeks": [
+       {
+        "player": "DJ Moore",
+        "week": 4,
+        "points": 2.7,
+        "started": false
+       },
+       {
+        "player": "DJ Moore",
+        "week": 5,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "Jameson Williams",
+        "week": 4,
+        "points": 16.2,
+        "started": false
+       },
+       {
+        "player": "Jameson Williams",
+        "week": 5,
+        "points": 18.7,
+        "started": true
+       },
+       {
+        "player": "Jameson Williams",
+        "week": 6,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "Jameson Williams",
+        "week": 7,
+        "points": 26.1,
+        "started": true
+       }
+      ]
+     }
+    },
+    "edgeTeamId": 3,
+    "edgeStartedPoints": 34.1,
+    "verdict": "leaning"
+   }
+  },
+  {
+   "id": "2026-T4",
+   "season": 2026,
+   "week": 3,
+   "weekLabel": "week 3",
+   "acceptedAt": "2026-09-28T22:27-04:00",
+   "processedAt": "2026-09-28T22:27-04:00",
+   "date": "2026-09-28",
+   "status": "accepted",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "received": [
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": null
+      },
+      {
+       "name": "Christian Watson",
+       "position": "WR",
+       "nflTeam": null
+      }
+     ],
+     "sent": [
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": null
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    },
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "seasonName": "Smert Fellas",
+     "abbrev": "SMF",
+     "espnName": "Smert Fellas",
+     "received": [
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": null
+      }
+     ],
+     "sent": [
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": null
+      },
+      {
+       "name": "Christian Watson",
+       "position": "WR",
+       "nflTeam": null
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    }
+   ],
+   "teamIds": [
+    4,
+    6
+   ],
+   "playersMoved": 3,
+   "picksMoved": 0,
+   "releasedInDeal": [],
+   "confidence": "verified-by-rosters",
+   "espnTransactionIds": [
+    "2295683a-6fa0-4b7a-90b9-8285c6bbe4e8"
+   ],
+   "note": "Players moved between the week 3 and week 4 roster snapshots. The ESPN accept row maps to this trade by elimination.",
+   "whoWonIt": {
+    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "weeksCounted": [
+     4,
+     7
+    ],
+    "bySide": {
+     "4": {
+      "totalPointsForNewTeam": 63.2,
+      "startedPointsForNewTeam": 60.1,
+      "weeks": [
+       {
+        "player": "Blake Corum",
+        "week": 4,
+        "points": 3.1,
+        "started": false
+       },
+       {
+        "player": "Christian Watson",
+        "week": 4,
+        "points": 7.7,
+        "started": true
+       },
+       {
+        "player": "Christian Watson",
+        "week": 5,
+        "points": 32.3,
+        "started": true
+       },
+       {
+        "player": "Christian Watson",
+        "week": 6,
+        "points": 9.4,
+        "started": true
+       },
+       {
+        "player": "Christian Watson",
+        "week": 7,
+        "points": 10.7,
+        "started": true
+       }
+      ]
+     },
+     "6": {
+      "totalPointsForNewTeam": 98.9,
+      "startedPointsForNewTeam": 46.6,
+      "weeks": [
+       {
+        "player": "Malik Nabers",
+        "week": 4,
+        "points": 23.2,
+        "started": false
+       },
+       {
+        "player": "Malik Nabers",
+        "week": 5,
+        "points": 29.1,
+        "started": false
+       },
+       {
+        "player": "Malik Nabers",
+        "week": 6,
+        "points": 28.5,
+        "started": true
+       },
+       {
+        "player": "Malik Nabers",
+        "week": 7,
+        "points": 18.1,
+        "started": true
+       }
+      ]
+     }
+    },
+    "edgeTeamId": 4,
+    "edgeStartedPoints": 13.5,
+    "verdict": "leaning"
+   }
+  },
+  {
+   "id": "2026-T5",
+   "season": 2026,
+   "week": 5,
+   "weekLabel": "week 5",
+   "acceptedAt": "2026-10-07T11:52-04:00",
+   "processedAt": "2026-10-07T11:52-04:00",
+   "date": "2026-10-07",
+   "status": "accepted",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "received": [
+      {
+       "name": "Joe Mixon",
+       "position": "RB",
+       "nflTeam": null
+      }
+     ],
+     "sent": [
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": null
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "received": [
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": null
+      }
+     ],
+     "sent": [
+      {
+       "name": "Joe Mixon",
+       "position": "RB",
+       "nflTeam": null
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    }
+   ],
+   "teamIds": [
+    4,
+    8
+   ],
+   "playersMoved": 2,
+   "picksMoved": 0,
+   "releasedInDeal": [],
+   "confidence": "verified-by-rosters",
+   "espnTransactionIds": [
+    "b4566b5d-403a-4297-8f1e-3268fbe8f49c"
+   ],
+   "note": "All Heart dropped Joe Mixon on Oct 9, two days after the trade (add/drop log), so he never played a week for them.",
+   "whoWonIt": {
+    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "weeksCounted": [
+     5,
+     7
+    ],
+    "bySide": {
+     "4": {
+      "totalPointsForNewTeam": 0.0,
+      "startedPointsForNewTeam": 0.0,
+      "weeks": []
+     },
+     "8": {
+      "totalPointsForNewTeam": 47.3,
+      "startedPointsForNewTeam": 14.0,
+      "weeks": [
+       {
+        "player": "Blake Corum",
+        "week": 5,
+        "points": 16.2,
+        "started": false
+       },
+       {
+        "player": "Blake Corum",
+        "week": 6,
+        "points": 14,
+        "started": true
+       },
+       {
+        "player": "Blake Corum",
+        "week": 7,
+        "points": 17.1,
+        "started": false
+       }
+      ]
+     }
+    },
+    "edgeTeamId": 8,
+    "edgeStartedPoints": 14.0,
+    "verdict": "leaning"
+   }
+  },
+  {
+   "id": "2026-T6",
+   "season": 2026,
+   "week": 6,
+   "weekLabel": "week 6",
+   "acceptedAt": "2026-10-14T06:05-04:00",
+   "processedAt": "2026-10-15T06:05-04:00",
+   "date": "2026-10-14",
+   "status": "accepted",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "received": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": null
+      },
+      {
+       "name": "KC Concepcion",
+       "position": "WR",
+       "nflTeam": "CLE"
+      }
+     ],
+     "sent": [
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": null
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "received": [
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": null
+      }
+     ],
+     "sent": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": null
+      },
+      {
+       "name": "KC Concepcion",
+       "position": "WR",
+       "nflTeam": "CLE"
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ],
+   "playersMoved": 6,
+   "picksMoved": 0,
+   "releasedInDeal": [
+    {
+     "name": "KC Concepcion",
+     "position": "WR",
+     "nflTeam": "CLE"
+    }
+   ],
+   "confidence": "verified-by-rosters",
+   "espnTransactionIds": [
+    "6e0791fb-2259-4c81-821b-bc5f2965ba74",
+    "965363c9-3fc0-46fd-b465-d96d9232aaac"
+   ],
+   "note": "Gerrit accepted on Oct 14 and it processed Oct 15. All Heart released KC Concepcion right away (Smert Fellas later claimed him). Chewy's logged a veto vote on Oct 14.",
+   "whoWonIt": {
+    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "weeksCounted": [
+     6,
+     7
+    ],
+    "bySide": {
+     "7": {
+      "totalPointsForNewTeam": 39.2,
+      "startedPointsForNewTeam": 20.1,
+      "weeks": [
+       {
+        "player": "Josh Jacobs",
+        "week": 6,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "Josh Jacobs",
+        "week": 7,
+        "points": 20.1,
+        "started": true
+       },
+       {
+        "player": "Cam Skattebo",
+        "week": 6,
+        "points": 0,
+        "started": true
+       },
+       {
+        "player": "Cam Skattebo",
+        "week": 7,
+        "points": 19.1,
+        "started": false
+       },
+       {
+        "player": "DJ Moore",
+        "week": 6,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "DJ Moore",
+        "week": 7,
+        "points": 0,
+        "started": false
+       }
+      ]
+     },
+     "4": {
+      "totalPointsForNewTeam": 37.7,
+      "startedPointsForNewTeam": 30.1,
+      "weeks": [
+       {
+        "player": "DK Metcalf",
+        "week": 6,
+        "points": 20.3,
+        "started": true
+       },
+       {
+        "player": "DK Metcalf",
+        "week": 7,
+        "points": 7.6,
+        "started": false
+       },
+       {
+        "player": "Chase Brown",
+        "week": 6,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "Chase Brown",
+        "week": 7,
+        "points": 9.8,
+        "started": true
+       }
+      ]
+     }
+    },
+    "edgeTeamId": 4,
+    "edgeStartedPoints": 10.0,
+    "verdict": "leaning"
+   }
+  },
+  {
+   "id": "2026-T7",
+   "season": 2026,
+   "week": 6,
+   "weekLabel": "week 6",
+   "acceptedAt": "2026-10-19T17:44-04:00",
+   "processedAt": "2026-10-19T17:44-04:00",
+   "date": "2026-10-19",
+   "status": "accepted",
+   "teams": [
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "seasonName": "Smert Fellas",
+     "abbrev": "SMF",
+     "espnName": "Smert Fellas",
+     "received": [
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": null
+      }
+     ],
+     "sent": [
+      {
+       "name": "George Pickens",
+       "position": "WR",
+       "nflTeam": "DAL"
+      },
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "received": [
+      {
+       "name": "George Pickens",
+       "position": "WR",
+       "nflTeam": "DAL"
+      },
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      }
+     ],
+     "sent": [
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": null
+      }
+     ],
+     "receivedPicks": [],
+     "sentPicks": []
+    }
+   ],
+   "teamIds": [
+    6,
+    8
+   ],
+   "playersMoved": 4,
+   "picksMoved": 0,
+   "releasedInDeal": [],
+   "confidence": "verified-by-rosters",
+   "espnTransactionIds": [
+    "e7579d89-b318-42b0-901c-eab32aa5e956"
+   ],
+   "note": "Accepted Oct 19. This is a counter version of Smert Fellas' Aaron Jones and DeVonta Smith offer. Chewy's logged a veto vote that day.",
+   "whoWonIt": {
+    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "weeksCounted": [
+     7,
+     7
+    ],
+    "bySide": {
+     "6": {
+      "totalPointsForNewTeam": 23.4,
+      "startedPointsForNewTeam": 23.4,
+      "weeks": [
+       {
+        "player": "DeVonta Smith",
+        "week": 7,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "Quinshon Judkins",
+        "week": 7,
+        "points": 23.4,
+        "started": true
+       }
+      ]
+     },
+     "8": {
+      "totalPointsForNewTeam": 20.3,
+      "startedPointsForNewTeam": 20.3,
+      "weeks": [
+       {
+        "player": "George Pickens",
+        "week": 7,
+        "points": 15.7,
+        "started": true
+       },
+       {
+        "player": "Garrett Wilson",
+        "week": 7,
+        "points": 4.6,
+        "started": true
+       }
+      ]
+     }
+    },
+    "edgeTeamId": 6,
+    "edgeStartedPoints": 3.1,
+    "verdict": "too early"
+   }
+  }
+ ],
+ "proposals": [
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-01",
+   "proposedAt": "2026-06-01T16:30-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "15da3039-42a3-4ef5-8ebc-314fa35eabed",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-01",
+   "proposedAt": "2026-06-01T17:21-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "c2256347-4bfa-4db3-933e-019f15c3cf4a",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-01",
+   "proposedAt": "2026-06-01T17:21-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "ab09e479-e3dc-4578-843a-14ff71fa7e22",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-07",
+   "proposedAt": "2026-06-07T19:05-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "82902892-4bcb-4949-a8e6-582286e621ef",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b"
+    }
+   ],
+   "teamIds": [
+    7
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-07",
+   "proposedAt": "2026-06-07T19:07-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "c423064b-d62d-4031-9c9a-f2fb9122aded",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-07",
+   "proposedAt": "2026-06-07T19:08-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "39047d07-a39f-47aa-95f2-74a1a8dbeb66",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-07",
+   "proposedAt": "2026-06-07T19:13-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "95094341-f9ae-40ad-b6a7-8b9402f0d070",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b"
+    }
+   ],
+   "teamIds": [
+    7
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-08",
+   "proposedAt": "2026-06-08T20:17-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "fbe55915-6b2d-42bf-9e2e-1e4dec12ea07",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-09",
+   "proposedAt": "2026-06-09T03:07-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "101b0a88-f146-442c-99b2-5f202bc4d960",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-09",
+   "proposedAt": "2026-06-09T14:46-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "cab1a4fb-102f-4906-8c15-884812b7cd91",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-06-09",
+   "proposedAt": "2026-06-09T15:24-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "63711595-7584-43ee-a8d9-563c753a4aa5",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-07-15",
+   "proposedAt": "2026-07-15T15:49-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "bb07f618-c591-4bbd-97b5-756406182e53",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-07-16",
+   "proposedAt": "2026-07-16T16:04-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "ea771393-2fed-4986-b2e0-09b4b024e2b8",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-07-16",
+   "proposedAt": "2026-07-16T16:05-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "bdb27f45-43ff-4daf-9ca3-833746800783",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-08-22",
+   "proposedAt": "2026-08-22T15:52-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "4dab9937-d700-4621-a08d-fb088d1bb90b",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart"
+    }
+   ],
+   "teamIds": [
+    4
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-08-29",
+   "proposedAt": "2026-08-29T23:41-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 6,
+   "espnTransactionId": "52aaeb4e-24a4-4147-a447-e1526defd4c6",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "De'Zhaun Stribling",
+       "position": "WR",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Dak Prescott",
+       "position": "QB",
+       "nflTeam": "DAL"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Lamar Jackson",
+       "position": "QB",
+       "nflTeam": "BAL"
+      }
+     ]
+    },
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "seasonName": "Smert Fellas",
+     "abbrev": "SMF",
+     "espnName": "Smert Fellas",
+     "wouldReceive": [
+      {
+       "name": "Lamar Jackson",
+       "position": "QB",
+       "nflTeam": "BAL"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "De'Zhaun Stribling",
+       "position": "WR",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Dak Prescott",
+       "position": "QB",
+       "nflTeam": "DAL"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    6
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-08-30",
+   "proposedAt": "2026-08-30T17:15-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "db824788-7098-4e24-8786-9950500c9450",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Tony Pollard",
+       "position": "RB",
+       "nflTeam": "TEN"
+      },
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Tony Pollard",
+       "position": "RB",
+       "nflTeam": "TEN"
+      },
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-08-31",
+   "proposedAt": "2026-08-31T01:18-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "dd4550b4-18a9-42e0-ae11-0faab799ba1c",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Ashton Jeanty",
+       "position": "RB",
+       "nflTeam": "LV"
+      },
+      {
+       "name": "Jeremiyah Love",
+       "position": "RB",
+       "nflTeam": "ARI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      }
+     ]
+    },
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "seasonName": "Kabul FC",
+     "abbrev": "KAB",
+     "espnName": "Kabul Cocknballs",
+     "wouldReceive": [
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Ashton Jeanty",
+       "position": "RB",
+       "nflTeam": "LV"
+      },
+      {
+       "name": "Jeremiyah Love",
+       "position": "RB",
+       "nflTeam": "ARI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    11
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-04",
+   "proposedAt": "2026-09-04T01:48-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "cf8a7bcb-a056-4117-b448-562637ab5308",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Jordan Addison",
+       "position": "WR",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kyle Monangai",
+       "position": "RB",
+       "nflTeam": "CHI"
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Kyle Monangai",
+       "position": "RB",
+       "nflTeam": "CHI"
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jordan Addison",
+       "position": "WR",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    4
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-04",
+   "proposedAt": "2026-09-04T02:01-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "ff6f7af2-b283-40af-a748-0adfe15d5187",
+   "teams": [
+    {
+     "teamId": 2,
+     "displayName": "Jahmyr I Go Again",
+     "seasonName": "Jahmyr I Go Again",
+     "abbrev": "JAH",
+     "espnName": "Jahmyr I Go Again",
+     "wouldReceive": [
+      {
+       "name": "Jonathon Brooks",
+       "position": "RB",
+       "nflTeam": "CAR"
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jonathon Brooks",
+       "position": "RB",
+       "nflTeam": "CAR"
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    2,
+    3
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-11",
+   "proposedAt": "2026-09-11T23:52-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "8598b5f5-c044-4c06-a615-18a1ccdedd06",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Isaiah Likely",
+       "position": "TE",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      },
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Woody Marks",
+       "position": "RB",
+       "nflTeam": "HOU"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Woody Marks",
+       "position": "RB",
+       "nflTeam": "HOU"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Isaiah Likely",
+       "position": "TE",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      },
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-11",
+   "proposedAt": "2026-09-11T23:53-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "07c6c875-49b2-4df4-971b-0df2815f41f9",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jordan Addison",
+       "position": "WR",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jordan Addison",
+       "position": "WR",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-16",
+   "proposedAt": "2026-09-16T16:59-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 8,
+   "espnTransactionId": "63f8d8f0-5c09-496d-92ac-d19d0e3e71b4",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Deebo Samuel Sr.",
+       "position": "WR",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Zay Flowers",
+       "position": "WR",
+       "nflTeam": "BAL"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Deebo Samuel Sr.",
+       "position": "WR",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Zay Flowers",
+       "position": "WR",
+       "nflTeam": "BAL"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    7,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-18",
+   "proposedAt": "2026-09-18T15:20-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "f8288c48-5061-4db6-8e77-5a1f2c0b0b12",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Breece Hall",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "Zay Flowers",
+       "position": "WR",
+       "nflTeam": "BAL"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Breece Hall",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "Zay Flowers",
+       "position": "WR",
+       "nflTeam": "BAL"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-21",
+   "proposedAt": "2026-09-21T23:15-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "d66c257b-f220-41c1-a173-d99e26711d06",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Michael Wilson",
+       "position": "WR",
+       "nflTeam": "ARI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ]
+    },
+    {
+     "teamId": 10,
+     "displayName": "Sandusky's Soldiers",
+     "seasonName": "Sandusky's Soldiers",
+     "abbrev": "SND",
+     "espnName": "Sandusky's Soldiers ",
+     "wouldReceive": [
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Michael Wilson",
+       "position": "WR",
+       "nflTeam": "ARI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    10
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-23",
+   "proposedAt": "2026-09-23T01:24-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "a3ec2e37-c888-46b2-b458-00c040234e40",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Bhayshul Tuten",
+       "position": "RB",
+       "nflTeam": "JAX"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    },
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "seasonName": "Kabul FC",
+     "abbrev": "KAB",
+     "espnName": "Kabul Cocknballs",
+     "wouldReceive": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bhayshul Tuten",
+       "position": "RB",
+       "nflTeam": "JAX"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    11
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-23",
+   "proposedAt": "2026-09-23T01:24-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "74e4fde0-3966-4705-b88d-156b5ef09f62",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Aaron Jones Sr.",
+       "position": "RB",
+       "nflTeam": "MIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Aaron Jones Sr.",
+       "position": "RB",
+       "nflTeam": "MIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-23",
+   "proposedAt": "2026-09-23T01:24-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": null,
+   "espnTransactionId": "c4908cf5-5d1f-4ee7-a381-5620678d5cc0",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors"
+    }
+   ],
+   "teamIds": [
+    3
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-23",
+   "proposedAt": "2026-09-23T20:12-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "ada59ea9-cb18-40be-9a4b-2fa22ead48c6",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Kyle Pitts Sr.",
+       "position": "TE",
+       "nflTeam": "ATL"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Dallas Goedert",
+       "position": "TE",
+       "nflTeam": "PHI"
+      }
+     ]
+    },
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "seasonName": "Smert Fellas",
+     "abbrev": "SMF",
+     "espnName": "Smert Fellas",
+     "wouldReceive": [
+      {
+       "name": "Dallas Goedert",
+       "position": "TE",
+       "nflTeam": "PHI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kyle Pitts Sr.",
+       "position": "TE",
+       "nflTeam": "ATL"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    6
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-24",
+   "proposedAt": "2026-09-24T19:54-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "438cb46c-43cf-4e3d-85e6-4c3a7470e440",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-24",
+   "proposedAt": "2026-09-24T22:51-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "c18fcfa9-6f67-4553-9696-f1f8bf5d69c1",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      },
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      },
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-27",
+   "proposedAt": "2026-09-27T20:30-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "9ca659d3-c840-42be-96e7-892687278695",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "Tony Pollard",
+       "position": "RB",
+       "nflTeam": "TEN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "Tony Pollard",
+       "position": "RB",
+       "nflTeam": "TEN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-27",
+   "proposedAt": "2026-09-27T20:35-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "b91dc415-ace7-4f67-93d9-ff73c836915e",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Tony Pollard",
+       "position": "RB",
+       "nflTeam": "TEN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Tony Pollard",
+       "position": "RB",
+       "nflTeam": "TEN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-27",
+   "proposedAt": "2026-09-27T23:16-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "9d65b5df-78cd-4d47-ba72-7351664f1eb2",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Tetairoa McMillan",
+       "position": "WR",
+       "nflTeam": "CAR"
+      }
+     ]
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Tetairoa McMillan",
+       "position": "WR",
+       "nflTeam": "CAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    4
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-27",
+   "proposedAt": "2026-09-27T23:16-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "05e5dbcd-e999-4dd6-aa11-c6ea999c141c",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Bucky Irving",
+       "position": "RB",
+       "nflTeam": "TB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bucky Irving",
+       "position": "RB",
+       "nflTeam": "TB"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-27",
+   "proposedAt": "2026-09-27T23:16-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "ed3ff483-8af7-458b-b872-d5fbbbbec4c7",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Bhayshul Tuten",
+       "position": "RB",
+       "nflTeam": "JAX"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ]
+    },
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "seasonName": "Kabul FC",
+     "abbrev": "KAB",
+     "espnName": "Kabul Cocknballs",
+     "wouldReceive": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bhayshul Tuten",
+       "position": "RB",
+       "nflTeam": "JAX"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    11
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-27",
+   "proposedAt": "2026-09-27T23:16-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "075f371a-29b2-4b77-9067-5f3c1271b1f8",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": "CLE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "proposedAt": "2026-09-28T01:19-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "adc2e442-b6ff-4033-9cd6-e95989f6ef1d",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Tetairoa McMillan",
+       "position": "WR",
+       "nflTeam": "CAR"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Tetairoa McMillan",
+       "position": "WR",
+       "nflTeam": "CAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "proposedAt": "2026-09-28T12:33-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "0b013283-ef2b-4331-bf39-8e43f52ff3df",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Rico Dowdle",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    },
+    {
+     "teamId": 10,
+     "displayName": "Sandusky's Soldiers",
+     "seasonName": "Sandusky's Soldiers",
+     "abbrev": "SND",
+     "espnName": "Sandusky's Soldiers ",
+     "wouldReceive": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Rico Dowdle",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    10
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "proposedAt": "2026-09-28T14:17-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "5234d7d8-e531-4479-8523-8c83af714f77",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Patrick Mahomes",
+       "position": "QB",
+       "nflTeam": "KC"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "proposedAt": "2026-09-28T20:01-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "74d687dc-3854-45a4-93db-de0fee212508",
+   "teams": [
+    {
+     "teamId": 2,
+     "displayName": "Jahmyr I Go Again",
+     "seasonName": "Jahmyr I Go Again",
+     "abbrev": "JAH",
+     "espnName": "Jahmyr I Go Again",
+     "wouldReceive": [
+      {
+       "name": "Tetairoa McMillan",
+       "position": "WR",
+       "nflTeam": "CAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Tetairoa McMillan",
+       "position": "WR",
+       "nflTeam": "CAR"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    2,
+    3
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "proposedAt": "2026-09-28T21:40-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "1f630c10-2876-4204-885c-68f29cf774c3",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "proposedAt": "2026-09-28T21:55-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "c981a665-8dab-41e7-a222-944064ffb5f0",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      },
+      {
+       "name": "Josh Downs",
+       "position": "WR",
+       "nflTeam": "IND"
+      }
+     ]
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      },
+      {
+       "name": "Josh Downs",
+       "position": "WR",
+       "nflTeam": "IND"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    4
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "proposedAt": "2026-09-28T23:55-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "b48c2d89-eae7-4d69-8df5-1d1f0e659d11",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "George Pickens",
+       "position": "WR",
+       "nflTeam": "DAL"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ]
+    },
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "seasonName": "Smert Fellas",
+     "abbrev": "SMF",
+     "espnName": "Smert Fellas",
+     "wouldReceive": [
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "George Pickens",
+       "position": "WR",
+       "nflTeam": "DAL"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    6
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-29",
+   "proposedAt": "2026-09-29T00:07-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "40316b82-6ced-43c2-90bd-5cc229862978",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "David Montgomery",
+       "position": "RB",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jordan Addison",
+       "position": "WR",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ]
+    },
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "seasonName": "Smert Fellas",
+     "abbrev": "SMF",
+     "espnName": "Smert Fellas",
+     "wouldReceive": [
+      {
+       "name": "Jordan Addison",
+       "position": "WR",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "Malik Nabers",
+       "position": "WR",
+       "nflTeam": "NYG"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "David Montgomery",
+       "position": "RB",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    6
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-09-29",
+   "proposedAt": "2026-09-29T11:01-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "ba7fdc44-c80b-4122-9271-8ebba6e6af91",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Bhayshul Tuten",
+       "position": "RB",
+       "nflTeam": "JAX"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Josh Downs",
+       "position": "WR",
+       "nflTeam": "IND"
+      }
+     ]
+    },
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "seasonName": "Kabul FC",
+     "abbrev": "KAB",
+     "espnName": "Kabul Cocknballs",
+     "wouldReceive": [
+      {
+       "name": "Josh Downs",
+       "position": "WR",
+       "nflTeam": "IND"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bhayshul Tuten",
+       "position": "RB",
+       "nflTeam": "JAX"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    11
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-09-30",
+   "proposedAt": "2026-09-30T07:52-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "0553d68b-d436-4535-a1fb-d6ed5034bcc7",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-01",
+   "proposedAt": "2026-10-01T23:57-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "18bff43f-6c2d-46b1-a67c-9a4e877792e2",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jalen Hurts",
+       "position": "QB",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jalen Hurts",
+       "position": "QB",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-02",
+   "proposedAt": "2026-10-02T00:10-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "afcefd74-810c-40e4-aaf8-cab312d31d33",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Breece Hall",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Breece Hall",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-02",
+   "proposedAt": "2026-10-02T01:05-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "abc85f3c-db68-42c0-9e6a-d0ad96cd6294",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-04",
+   "proposedAt": "2026-10-04T07:56-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "6aaece12-bab8-4ed3-88e4-13e4e03e4b79",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Jadarian Price",
+       "position": "RB",
+       "nflTeam": "SEA"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      },
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "Chris Olave",
+       "position": "WR",
+       "nflTeam": "NO"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      },
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "Chris Olave",
+       "position": "WR",
+       "nflTeam": "NO"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Jadarian Price",
+       "position": "RB",
+       "nflTeam": "SEA"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-04",
+   "proposedAt": "2026-10-04T14:32-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "d167fde8-6773-4d95-af9e-d84a8823bea2",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Saquon Barkley",
+       "position": "RB",
+       "nflTeam": "PHI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Blake Corum",
+       "position": "RB",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Saquon Barkley",
+       "position": "RB",
+       "nflTeam": "PHI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-05",
+   "proposedAt": "2026-10-05T14:29-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "b7a06283-26a1-4199-b945-bafc910e64e8",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Jadarian Price",
+       "position": "RB",
+       "nflTeam": "SEA"
+      },
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jadarian Price",
+       "position": "RB",
+       "nflTeam": "SEA"
+      },
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-05",
+   "proposedAt": "2026-10-05T19:04-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "1c22b563-6382-4bbe-969b-56f3861c5b9d",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Bo Nix",
+       "position": "QB",
+       "nflTeam": "DEN"
+      },
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bo Nix",
+       "position": "QB",
+       "nflTeam": "DEN"
+      },
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": "CLE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-05",
+   "proposedAt": "2026-10-05T19:04-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "040ad11b-4ff1-4968-aee6-76d45ab352ba",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Javonte Williams",
+       "position": "RB",
+       "nflTeam": "DAL"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 5,
+     "displayName": "Easy Peasy Lemon Squeezy",
+     "seasonName": "Easy Peasy Lemon Squeezy",
+     "abbrev": "EPZ",
+     "espnName": "Easy Peasy Lemon Squeezy",
+     "wouldReceive": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Javonte Williams",
+       "position": "RB",
+       "nflTeam": "DAL"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    5
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-05",
+   "proposedAt": "2026-10-05T22:03-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "7d8c5675-612f-40f9-b400-30770c92d924",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Bhayshul Tuten",
+       "position": "RB",
+       "nflTeam": "JAX"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      }
+     ]
+    },
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "seasonName": "Kabul FC",
+     "abbrev": "KAB",
+     "espnName": "Kabul Cocknballs",
+     "wouldReceive": [
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bhayshul Tuten",
+       "position": "RB",
+       "nflTeam": "JAX"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    7,
+    11
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-06",
+   "proposedAt": "2026-10-06T12:50-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "a92acdc5-28c9-4c35-af19-f46c6538c6d2",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Braelon Allen",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Braelon Allen",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Quinshon Judkins",
+       "position": "RB",
+       "nflTeam": "CLE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-06",
+   "proposedAt": "2026-10-06T12:50-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "92fc6f51-613d-4af8-951a-37d6fb430e12",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Saquon Barkley",
+       "position": "RB",
+       "nflTeam": "PHI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "De'Von Achane",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Saquon Barkley",
+       "position": "RB",
+       "nflTeam": "PHI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-06",
+   "proposedAt": "2026-10-06T13:11-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "a381b120-f6aa-423d-adfa-eaa6180fe88b",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Bo Nix",
+       "position": "QB",
+       "nflTeam": "DEN"
+      },
+      {
+       "name": "Breece Hall",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Tetairoa McMillan",
+       "position": "WR",
+       "nflTeam": "CAR"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Tetairoa McMillan",
+       "position": "WR",
+       "nflTeam": "CAR"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bo Nix",
+       "position": "QB",
+       "nflTeam": "DEN"
+      },
+      {
+       "name": "Breece Hall",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-06",
+   "proposedAt": "2026-10-06T14:39-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "ef55f6b0-a30e-4eb3-aaf9-fbd919718110",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Jalen Hurts",
+       "position": "QB",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Chris Olave",
+       "position": "WR",
+       "nflTeam": "NO"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaxon Smith-Njigba",
+       "position": "WR",
+       "nflTeam": "SEA"
+      },
+      {
+       "name": "Vikings D/ST",
+       "position": "D/ST",
+       "nflTeam": "MIN"
+      }
+     ]
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Jaxon Smith-Njigba",
+       "position": "WR",
+       "nflTeam": "SEA"
+      },
+      {
+       "name": "Vikings D/ST",
+       "position": "D/ST",
+       "nflTeam": "MIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jalen Hurts",
+       "position": "QB",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "Chris Olave",
+       "position": "WR",
+       "nflTeam": "NO"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    4
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-06",
+   "proposedAt": "2026-10-06T14:45-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "11c06656-a885-4814-938d-35d599f96f37",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-07",
+   "proposedAt": "2026-10-07T02:02-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "df9d498d-ccfa-4168-85df-9e12bf450938",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Kyler Murray",
+       "position": "QB",
+       "nflTeam": "MIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Broncos D/ST",
+       "position": "D/ST",
+       "nflTeam": "DEN"
+      }
+     ]
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Broncos D/ST",
+       "position": "D/ST",
+       "nflTeam": "DEN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kyler Murray",
+       "position": "QB",
+       "nflTeam": "MIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    4
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-07",
+   "proposedAt": "2026-10-07T11:59-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 2,
+   "espnTransactionId": "92ee47b9-c8d5-4ea3-8ac8-0440449c7320",
+   "teams": [
+    {
+     "teamId": 2,
+     "displayName": "Jahmyr I Go Again",
+     "seasonName": "Jahmyr I Go Again",
+     "abbrev": "JAH",
+     "espnName": "Jahmyr I Go Again",
+     "wouldReceive": [
+      {
+       "name": "Jacory Croskey-Merritt",
+       "position": "RB",
+       "nflTeam": "WSH"
+      },
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Ladd McConkey",
+       "position": "WR",
+       "nflTeam": "LAC"
+      },
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Ladd McConkey",
+       "position": "WR",
+       "nflTeam": "LAC"
+      },
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jacory Croskey-Merritt",
+       "position": "RB",
+       "nflTeam": "WSH"
+      },
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    2,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-12",
+   "proposedAt": "2026-10-12T18:22-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "67449fcb-acf6-4448-ab66-5e73d2b624fb",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Christian Watson",
+       "position": "WR",
+       "nflTeam": "GB"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Marvin Harrison Jr.",
+       "position": "WR",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Christian Watson",
+       "position": "WR",
+       "nflTeam": "GB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-12",
+   "proposedAt": "2026-10-12T18:48-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "eced5824-6ab6-4c92-95d4-7388966ead8d",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "James Cook III",
+       "position": "RB",
+       "nflTeam": "BUF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      },
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      }
+     ]
+    },
+    {
+     "teamId": 10,
+     "displayName": "Sandusky's Soldiers",
+     "seasonName": "Sandusky's Soldiers",
+     "abbrev": "SND",
+     "espnName": "Sandusky's Soldiers ",
+     "wouldReceive": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      },
+      {
+       "name": "Harold Fannin Jr.",
+       "position": "TE",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "James Cook III",
+       "position": "RB",
+       "nflTeam": "BUF"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    7,
+    10
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-12",
+   "proposedAt": "2026-10-12T18:49-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "22bc904c-b2ad-437c-9edb-a7d8123e0d12",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Bucky Irving",
+       "position": "RB",
+       "nflTeam": "TB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bucky Irving",
+       "position": "RB",
+       "nflTeam": "TB"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    7,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-12",
+   "proposedAt": "2026-10-12T21:58-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "4dbcab0b-6699-421c-9895-8632bc89f0be",
+   "teams": [
+    {
+     "teamId": 2,
+     "displayName": "Jahmyr I Go Again",
+     "seasonName": "Jahmyr I Go Again",
+     "abbrev": "JAH",
+     "espnName": "Jahmyr I Go Again",
+     "wouldReceive": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      },
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      },
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    2,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-13",
+   "proposedAt": "2026-10-13T00:11-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "65536e27-c77f-4c40-acd6-7530d0c97e0b",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Chuba Hubbard",
+       "position": "RB",
+       "nflTeam": "CAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Jacory Croskey-Merritt",
+       "position": "RB",
+       "nflTeam": "WSH"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    },
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "seasonName": "Kabul FC",
+     "abbrev": "KAB",
+     "espnName": "Kabul Cocknballs",
+     "wouldReceive": [
+      {
+       "name": "Denzel Boston",
+       "position": "WR",
+       "nflTeam": "CLE"
+      },
+      {
+       "name": "Jacory Croskey-Merritt",
+       "position": "RB",
+       "nflTeam": "WSH"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Chuba Hubbard",
+       "position": "RB",
+       "nflTeam": "CAR"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    7,
+    11
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-13",
+   "proposedAt": "2026-10-13T11:49-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "10783653-2763-44f9-8695-9c120d6fc064",
+   "teams": [
+    {
+     "teamId": 5,
+     "displayName": "Easy Peasy Lemon Squeezy",
+     "seasonName": "Easy Peasy Lemon Squeezy",
+     "abbrev": "EPZ",
+     "espnName": "Easy Peasy Lemon Squeezy",
+     "wouldReceive": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Rhamondre Stevenson",
+       "position": "RB",
+       "nflTeam": "NE"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Rhamondre Stevenson",
+       "position": "RB",
+       "nflTeam": "NE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    5,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-13",
+   "proposedAt": "2026-10-13T21:53-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "9a5f33c1-cfdb-4d24-849b-66e3190f1fab",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-14",
+   "proposedAt": "2026-10-14T15:21-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "ced2b27f-ae5c-4e84-b27a-09848f5a4856",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "Isaiah Likely",
+       "position": "TE",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Matthew Golden",
+       "position": "WR",
+       "nflTeam": "GB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Chris Olave",
+       "position": "WR",
+       "nflTeam": "NO"
+      },
+      {
+       "name": "Christian Watson",
+       "position": "WR",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "Travis Kelce",
+       "position": "TE",
+       "nflTeam": "KC"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Chris Olave",
+       "position": "WR",
+       "nflTeam": "NO"
+      },
+      {
+       "name": "Christian Watson",
+       "position": "WR",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "Travis Kelce",
+       "position": "TE",
+       "nflTeam": "KC"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "Isaiah Likely",
+       "position": "TE",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Matthew Golden",
+       "position": "WR",
+       "nflTeam": "GB"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-16",
+   "proposedAt": "2026-10-16T15:52-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "6f4df8a8-f4d1-4a6a-a087-f50c0f4d97d9",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Chase Brown",
+       "position": "RB",
+       "nflTeam": "CIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DJ Moore",
+       "position": "WR",
+       "nflTeam": "BUF"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-17",
+   "proposedAt": "2026-10-17T23:51-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "9e48fefa-47a9-4a37-ab94-3e39021bcdef",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      },
+      {
+       "name": "Chris Olave",
+       "position": "WR",
+       "nflTeam": "NO"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      },
+      {
+       "name": "Chris Olave",
+       "position": "WR",
+       "nflTeam": "NO"
+      },
+      {
+       "name": "Christian McCaffrey",
+       "position": "RB",
+       "nflTeam": "SF"
+      },
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Puka Nacua",
+       "position": "WR",
+       "nflTeam": "LAR"
+      },
+      {
+       "name": "A.J. Brown",
+       "position": "WR",
+       "nflTeam": "NE"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-19",
+   "proposedAt": "2026-10-19T13:21-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 6,
+   "espnTransactionId": "e70a3e2f-54fc-4e39-8622-add7634bdbb6",
+   "teams": [
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "seasonName": "Smert Fellas",
+     "abbrev": "SMF",
+     "espnName": "Smert Fellas",
+     "wouldReceive": [
+      {
+       "name": "Aaron Jones Sr.",
+       "position": "RB",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "George Pickens",
+       "position": "WR",
+       "nflTeam": "DAL"
+      },
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "George Pickens",
+       "position": "WR",
+       "nflTeam": "DAL"
+      },
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Aaron Jones Sr.",
+       "position": "RB",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    6,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-19",
+   "proposedAt": "2026-10-19T15:08-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 6,
+   "espnTransactionId": "cd8e8d93-a231-4137-ba95-3da33713af7e",
+   "teams": [
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "seasonName": "Smert Fellas",
+     "abbrev": "SMF",
+     "espnName": "Smert Fellas",
+     "wouldReceive": [
+      {
+       "name": "Saquon Barkley",
+       "position": "RB",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "David Montgomery",
+       "position": "RB",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Omarion Hampton",
+       "position": "RB",
+       "nflTeam": "LAC"
+      },
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "George Pickens",
+       "position": "WR",
+       "nflTeam": "DAL"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "David Montgomery",
+       "position": "RB",
+       "nflTeam": "HOU"
+      },
+      {
+       "name": "Omarion Hampton",
+       "position": "RB",
+       "nflTeam": "LAC"
+      },
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "George Pickens",
+       "position": "WR",
+       "nflTeam": "DAL"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Saquon Barkley",
+       "position": "RB",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "DeVonta Smith",
+       "position": "WR",
+       "nflTeam": "PHI"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    6,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-21",
+   "proposedAt": "2026-10-21T13:59-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "c4a0aab6-1ba2-4c10-9b56-be7797b053b6",
+   "teams": [
+    {
+     "teamId": 5,
+     "displayName": "Easy Peasy Lemon Squeezy",
+     "seasonName": "Easy Peasy Lemon Squeezy",
+     "abbrev": "EPZ",
+     "espnName": "Easy Peasy Lemon Squeezy",
+     "wouldReceive": [
+      {
+       "name": "Germie Bernard",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Rhamondre Stevenson",
+       "position": "RB",
+       "nflTeam": "NE"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Rhamondre Stevenson",
+       "position": "RB",
+       "nflTeam": "NE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Germie Bernard",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    5,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-21",
+   "proposedAt": "2026-10-21T15:13-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "f1103316-fbb3-4b6c-81d3-ca7c808b2beb",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jordan Mason",
+       "position": "RB",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Jordan Mason",
+       "position": "RB",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-21",
+   "proposedAt": "2026-10-21T18:12-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "20fd2086-4c99-4b59-a352-e88744971045",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Broncos D/ST",
+       "position": "D/ST",
+       "nflTeam": "DEN"
+      },
+      {
+       "name": "Jordyn Tyson",
+       "position": "WR",
+       "nflTeam": "NO"
+      }
+     ]
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Broncos D/ST",
+       "position": "D/ST",
+       "nflTeam": "DEN"
+      },
+      {
+       "name": "Jordyn Tyson",
+       "position": "WR",
+       "nflTeam": "NO"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    4
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-21",
+   "proposedAt": "2026-10-21T20:39-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "386bd04d-8ee9-4d19-9083-118e128587a3",
+   "teams": [
+    {
+     "teamId": 2,
+     "displayName": "Jahmyr I Go Again",
+     "seasonName": "Jahmyr I Go Again",
+     "abbrev": "JAH",
+     "espnName": "Jahmyr I Go Again",
+     "wouldReceive": [
+      {
+       "name": "Dallas Goedert",
+       "position": "TE",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Dallas Goedert",
+       "position": "TE",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    2,
+    3
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-21",
+   "proposedAt": "2026-10-21T22:02-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "5d0be247-df43-4c11-82d8-3be73ed6f789",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "James Cook III",
+       "position": "RB",
+       "nflTeam": "BUF"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 10,
+     "displayName": "Sandusky's Soldiers",
+     "seasonName": "Sandusky's Soldiers",
+     "abbrev": "SND",
+     "espnName": "Sandusky's Soldiers ",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "James Cook III",
+       "position": "RB",
+       "nflTeam": "BUF"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    10
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "proposedAt": "2026-10-22T10:00-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 7,
+   "espnTransactionId": "c504635c-d377-44e6-a765-a909b44b7706",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Rico Dowdle",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ]
+    },
+    {
+     "teamId": 10,
+     "displayName": "Sandusky's Soldiers",
+     "seasonName": "Sandusky's Soldiers",
+     "abbrev": "SND",
+     "espnName": "Sandusky's Soldiers ",
+     "wouldReceive": [
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Rico Dowdle",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    7,
+    10
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "proposedAt": "2026-10-22T13:50-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "8a93c45b-a6d9-4ee6-b3a7-25d3a696b931",
+   "teams": [
+    {
+     "teamId": 2,
+     "displayName": "Jahmyr I Go Again",
+     "seasonName": "Jahmyr I Go Again",
+     "abbrev": "JAH",
+     "espnName": "Jahmyr I Go Again",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Dallas Goedert",
+       "position": "TE",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Broncos D/ST",
+       "position": "D/ST",
+       "nflTeam": "DEN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Dallas Goedert",
+       "position": "TE",
+       "nflTeam": "PHI"
+      },
+      {
+       "name": "Broncos D/ST",
+       "position": "D/ST",
+       "nflTeam": "DEN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    2,
+    3
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "proposedAt": "2026-10-22T13:59-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "141e7e5d-e2bd-4f72-b806-6f92d856efbe",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Ashton Jeanty",
+       "position": "RB",
+       "nflTeam": "LV"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    },
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "seasonName": "Kabul FC",
+     "abbrev": "KAB",
+     "espnName": "Kabul Cocknballs",
+     "wouldReceive": [
+      {
+       "name": "Jaylen Warren",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Ashton Jeanty",
+       "position": "RB",
+       "nflTeam": "LV"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    11
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "proposedAt": "2026-10-22T14:29-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "55803d6b-780d-4ce7-947f-55b73ff92a1c",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Bryce Young",
+       "position": "QB",
+       "nflTeam": "CAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Kirk Cousins",
+       "position": "QB",
+       "nflTeam": "LV"
+      },
+      {
+       "name": "Braelon Allen",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Kirk Cousins",
+       "position": "QB",
+       "nflTeam": "LV"
+      },
+      {
+       "name": "Braelon Allen",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Bryce Young",
+       "position": "QB",
+       "nflTeam": "CAR"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "proposedAt": "2026-10-22T15:47-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "af668cbe-47dd-46e7-9c0f-a25a92f08d11",
+   "teams": [
+    {
+     "teamId": 2,
+     "displayName": "Jahmyr I Go Again",
+     "seasonName": "Jahmyr I Go Again",
+     "abbrev": "JAH",
+     "espnName": "Jahmyr I Go Again",
+     "wouldReceive": [
+      {
+       "name": "Christian Watson",
+       "position": "WR",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "T.J. Hockenson",
+       "position": "TE",
+       "nflTeam": "MIN"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Tyler Warren",
+       "position": "TE",
+       "nflTeam": "IND"
+      },
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ]
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Tyler Warren",
+       "position": "TE",
+       "nflTeam": "IND"
+      },
+      {
+       "name": "Kyren Williams",
+       "position": "RB",
+       "nflTeam": "LAR"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Christian Watson",
+       "position": "WR",
+       "nflTeam": "GB"
+      },
+      {
+       "name": "T.J. Hockenson",
+       "position": "TE",
+       "nflTeam": "MIN"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    2,
+    4
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-26",
+   "proposedAt": "2026-10-26T00:46-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 1,
+   "espnTransactionId": "c6ad364a-0ddd-4a25-8ed4-63f9af951f94",
+   "teams": [
+    {
+     "teamId": 1,
+     "displayName": "Bibi's Boys",
+     "seasonName": "Bibi's Boys",
+     "abbrev": "BIB",
+     "espnName": "Bibi's Boys X KASE Capital",
+     "wouldReceive": [
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Brian Thomas Jr.",
+       "position": "WR",
+       "nflTeam": "JAX"
+      },
+      {
+       "name": "TreVeyon Henderson",
+       "position": "RB",
+       "nflTeam": "NE"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Brian Thomas Jr.",
+       "position": "WR",
+       "nflTeam": "JAX"
+      },
+      {
+       "name": "TreVeyon Henderson",
+       "position": "RB",
+       "nflTeam": "NE"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    1,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-26",
+   "proposedAt": "2026-10-26T21:16-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 10,
+   "espnTransactionId": "4c834d10-49de-4244-a792-5391c49c41d1",
+   "teams": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Rico Dowdle",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ]
+    },
+    {
+     "teamId": 10,
+     "displayName": "Sandusky's Soldiers",
+     "seasonName": "Sandusky's Soldiers",
+     "abbrev": "SND",
+     "espnName": "Sandusky's Soldiers ",
+     "wouldReceive": [
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Rico Dowdle",
+       "position": "RB",
+       "nflTeam": "PIT"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    7,
+    10
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-26",
+   "proposedAt": "2026-10-26T23:18-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 4,
+   "espnTransactionId": "0a44cb71-ae41-4b48-bd95-fdd3fe737a24",
+   "teams": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "seasonName": "All Heart",
+     "abbrev": "AH",
+     "espnName": "All Heart",
+     "wouldReceive": [
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Jordan Mason",
+       "position": "RB",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "DK Metcalf",
+       "position": "WR",
+       "nflTeam": "PIT"
+      },
+      {
+       "name": "Jordan Mason",
+       "position": "RB",
+       "nflTeam": "MIN"
+      },
+      {
+       "name": "Jameson Williams",
+       "position": "WR",
+       "nflTeam": "DET"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Cam Skattebo",
+       "position": "RB",
+       "nflTeam": "NYG"
+      },
+      {
+       "name": "Josh Jacobs",
+       "position": "RB",
+       "nflTeam": "GB"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    4,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 8,
+   "date": "2026-10-27",
+   "proposedAt": "2026-10-27T08:24-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 1,
+   "espnTransactionId": "e55ca9c5-b51d-487e-ae5c-c802250eae35",
+   "teams": [
+    {
+     "teamId": 1,
+     "displayName": "Bibi's Boys",
+     "seasonName": "Bibi's Boys",
+     "abbrev": "BIB",
+     "espnName": "Bibi's Boys X KASE Capital",
+     "wouldReceive": [
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Brian Thomas Jr.",
+       "position": "WR",
+       "nflTeam": "JAX"
+      },
+      {
+       "name": "Travis Etienne Jr.",
+       "position": "RB",
+       "nflTeam": "NO"
+      }
+     ]
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "seasonName": "Maye i give you a blowj0b",
+     "abbrev": "MAYE",
+     "espnName": "Maye i give you a blowj0b",
+     "wouldReceive": [
+      {
+       "name": "Brian Thomas Jr.",
+       "position": "WR",
+       "nflTeam": "JAX"
+      },
+      {
+       "name": "Travis Etienne Jr.",
+       "position": "RB",
+       "nflTeam": "NO"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Ollie Gordon II",
+       "position": "RB",
+       "nflTeam": "MIA"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    1,
+    7
+   ]
+  },
+  {
+   "season": 2026,
+   "week": 8,
+   "date": "2026-10-28",
+   "proposedAt": "2026-10-28T15:01-04:00",
+   "status": "proposed (not accepted)",
+   "proposedByTeamId": 3,
+   "espnTransactionId": "dde03d96-8b46-4f66-b09f-929dd0e19392",
+   "teams": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "seasonName": "Chewy's Warriors",
+     "abbrev": "CHW",
+     "espnName": "Chewy's Warriors",
+     "wouldReceive": [
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Braelon Allen",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "Emeka Egbuka",
+       "position": "WR",
+       "nflTeam": "TB"
+      }
+     ]
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "seasonName": "Dimes McSorley",
+     "abbrev": "DIM",
+     "espnName": "Dimes McSorley",
+     "wouldReceive": [
+      {
+       "name": "Braelon Allen",
+       "position": "RB",
+       "nflTeam": "NYJ"
+      },
+      {
+       "name": "Emeka Egbuka",
+       "position": "WR",
+       "nflTeam": "TB"
+      }
+     ],
+     "wouldSend": [
+      {
+       "name": "Garrett Wilson",
+       "position": "WR",
+       "nflTeam": "NYJ"
+      }
+     ]
+    }
+   ],
+   "teamIds": [
+    3,
+    8
+   ]
+  }
+ ],
+ "declines": [
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-05-20",
+   "at": "2026-05-20T15:24-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "3935094c-c257-425a-86cf-dfe9613446a2"
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-05-30",
+   "at": "2026-05-30T14:20-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "4864882c-fc43-435c-a13a-973e570206d3"
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-05-31",
+   "at": "2026-05-31T15:18-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "08c38f58-09e2-4a80-a0e7-501c4326a5b6"
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-07-07",
+   "at": "2026-07-07T17:39-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "e6944ca6-58c3-49a5-8026-35088dab4152"
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-07-16",
+   "at": "2026-07-16T15:50-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "0b1c1306-f3f3-4eda-a243-363f5769e9d5"
+  },
+  {
+   "season": 2026,
+   "week": 0,
+   "date": "2026-07-19",
+   "at": "2026-07-19T23:13-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "9a9920c0-5596-4b50-8113-315db13bfef3"
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-08-30",
+   "at": "2026-08-30T13:15-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "08013be9-d7b6-4b9f-9f21-bd9e8e40da2d"
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-01",
+   "at": "2026-09-01T16:48-04:00",
+   "status": "declined",
+   "teamIdReported": 2,
+   "espnTransactionId": "95b7d2af-0c43-4c4a-bb29-11a3789af539"
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-04",
+   "at": "2026-09-04T00:51-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "b7b77e55-6792-48dd-ac47-45e1a3f4d33e"
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-06",
+   "at": "2026-09-06T09:56-04:00",
+   "status": "declined",
+   "teamIdReported": 5,
+   "espnTransactionId": "bcbdb428-bd45-4b8e-99ee-1d422fcbc401"
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-07",
+   "at": "2026-09-07T01:22-04:00",
+   "status": "declined",
+   "teamIdReported": 5,
+   "espnTransactionId": "d5e7ecdd-6ddc-4c9e-b22b-524e55751970"
+  },
+  {
+   "season": 2026,
+   "week": 1,
+   "date": "2026-09-09",
+   "at": "2026-09-09T09:06-04:00",
+   "status": "declined",
+   "teamIdReported": 5,
+   "espnTransactionId": "c67e054e-0c38-4c5f-b02a-dc298b48792c"
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-16",
+   "at": "2026-09-16T17:00-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "fa20e5e4-adbe-4d37-8884-3b792a2d677b"
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-17",
+   "at": "2026-09-17T12:31-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "5e718bb0-4aec-4006-8f13-352e279c1b12"
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-17",
+   "at": "2026-09-17T13:12-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "7b489408-b35e-428f-a2f8-586fa3c47f73"
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-17",
+   "at": "2026-09-17T13:17-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "b0293562-e8e9-4502-bc37-59982087e43c"
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-18",
+   "at": "2026-09-18T15:21-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "ea466d90-088b-459a-b086-94b18da6d49d"
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-18",
+   "at": "2026-09-18T16:28-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "9b09027f-74d8-4929-abad-8c4d2745ee11"
+  },
+  {
+   "season": 2026,
+   "week": 2,
+   "date": "2026-09-20",
+   "at": "2026-09-20T19:04-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "0cfb054f-5162-4225-82c4-34562972bf06"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-22",
+   "at": "2026-09-22T19:54-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "c450f0c4-7128-46b0-9523-6d49a13e48e6"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-22",
+   "at": "2026-09-22T21:47-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "14237b16-40fc-4ee7-91d6-1bd3c2f38c79"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-24",
+   "at": "2026-09-24T23:48-04:00",
+   "status": "declined",
+   "teamIdReported": 6,
+   "espnTransactionId": "96a3206f-8958-48c6-8dd9-ac5f619103d9"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-27",
+   "at": "2026-09-27T20:09-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "b1b78320-c2cb-467a-bb4f-bec2cc37ef05"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T15:38-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "e3b974c9-8196-40c5-8ac3-39523f4139a0"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T19:44-04:00",
+   "status": "declined",
+   "teamIdReported": 10,
+   "espnTransactionId": "70b8cb21-4f3d-42e7-8ac3-d18f0be99789"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T20:05-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "32ee2b77-26d4-486e-862d-f643921f05aa"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T21:19-04:00",
+   "status": "declined",
+   "teamIdReported": 11,
+   "espnTransactionId": "a01524ab-6b77-4942-990a-47ebd8fcca72"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T22:19-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "c400f439-68a6-4cd3-b37c-d25767d46387"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T22:24-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "60cbe81c-0b8e-4ac0-bf0f-75d507de2aa5"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-09-29",
+   "at": "2026-09-29T15:40-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "c7123778-db8f-4342-8635-fa524dd7a47b"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-09-30",
+   "at": "2026-09-30T12:14-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "1c7bdf0a-0e3c-4c64-b595-7b380e275f4b"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-09-30",
+   "at": "2026-09-30T21:20-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "ad4cedb8-c53c-4168-9545-2bc2f82ac623"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-01",
+   "at": "2026-10-01T23:55-04:00",
+   "status": "declined",
+   "teamIdReported": 6,
+   "espnTransactionId": "203f7266-29b5-4fdc-8b31-3d6855ccba39"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-02",
+   "at": "2026-10-02T09:10-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "76b0fb3a-b92d-4078-8835-3c133fd83f4e"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-02",
+   "at": "2026-10-02T21:38-04:00",
+   "status": "declined",
+   "teamIdReported": 5,
+   "espnTransactionId": "e2090221-7372-4f27-9a42-a339c673a386"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-03",
+   "at": "2026-10-03T19:19-04:00",
+   "status": "declined",
+   "teamIdReported": 2,
+   "espnTransactionId": "e2660341-ff16-4c6c-96f7-a64fbccc6be5"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-04",
+   "at": "2026-10-04T06:21-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "f98c89c2-1961-44c9-acc0-d3e1aecce304"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-04",
+   "at": "2026-10-04T09:35-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "acc2b812-8506-410d-9f07-89f7ce215cb9"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-04",
+   "at": "2026-10-04T16:47-04:00",
+   "status": "declined",
+   "teamIdReported": 6,
+   "espnTransactionId": "4222b7cd-9dbf-47ec-8b20-293f09d6ed50"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-05",
+   "at": "2026-10-05T17:17-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "cf05b11e-d608-48a1-a7d3-696b7c739878"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-05",
+   "at": "2026-10-05T17:39-04:00",
+   "status": "declined",
+   "teamIdReported": 6,
+   "espnTransactionId": "41b90d15-f61d-4167-9016-b476505b76e2"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-10-05",
+   "at": "2026-10-05T17:44-04:00",
+   "status": "declined",
+   "teamIdReported": 11,
+   "espnTransactionId": "156b7f31-36dd-4583-8a68-1121e28f4fe0"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-06",
+   "at": "2026-10-06T14:31-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "8b2c3981-00a6-4520-9170-b6463ce3fcb9"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-06",
+   "at": "2026-10-06T19:57-04:00",
+   "status": "declined",
+   "teamIdReported": 4,
+   "espnTransactionId": "5c6aecfb-da5f-4849-89f1-5b0ea702f428"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-06",
+   "at": "2026-10-06T23:28-04:00",
+   "status": "declined",
+   "teamIdReported": 6,
+   "espnTransactionId": "26250177-dd3d-445f-b405-9ebf00c50e99"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-07",
+   "at": "2026-10-07T14:18-04:00",
+   "status": "declined",
+   "teamIdReported": 1,
+   "espnTransactionId": "1516f8c1-d0d9-4e52-94d1-361e369603e0"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-07",
+   "at": "2026-10-07T19:30-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "d32e91a8-92d6-46ba-8d41-93afc3f1a638"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-07",
+   "at": "2026-10-07T19:30-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "076424d7-f8ff-47c3-881a-b390b07f97a4"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-12",
+   "at": "2026-10-12T14:19-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "0986e19e-12ee-4b25-b98f-c4d27415716f"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-12",
+   "at": "2026-10-12T14:19-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "e172ce3c-e5c9-4a26-94e5-f301b49b7fdd"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-12",
+   "at": "2026-10-12T18:50-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "f555a23f-9620-4402-8858-ad6e105acdd8"
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-13",
+   "at": "2026-10-13T10:16-04:00",
+   "status": "declined",
+   "teamIdReported": 5,
+   "espnTransactionId": "f8198a34-501b-4356-b217-9146f0a48040"
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-13",
+   "at": "2026-10-13T12:14-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "52081865-8c1d-4e6c-b032-889e3a8ce0c1"
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-14",
+   "at": "2026-10-14T20:18-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "91e6776a-9677-42f4-ab86-f028222fabd2"
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-18",
+   "at": "2026-10-18T11:27-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "c874628d-2459-4089-b4d0-e7e6f9b35c73"
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-19",
+   "at": "2026-10-19T10:02-04:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "dd56387d-fcf2-4cfb-b4bd-13e0ae067b3d"
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "at": "2026-10-22T08:01-04:00",
+   "status": "declined",
+   "teamIdReported": 5,
+   "espnTransactionId": "2c89d876-def8-4dc7-b40a-b15cb0fc0d8b"
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "at": "2026-10-22T10:01-04:00",
+   "status": "declined",
+   "teamIdReported": 7,
+   "espnTransactionId": "570a4c14-1b32-4418-b169-8b9d73162766"
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-22",
+   "at": "2026-10-22T23:05-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "6c12f177-1010-4ed3-aa9f-3997fbb1fe33"
+  },
+  {
+   "season": 2026,
+   "week": 7,
+   "date": "2026-10-23",
+   "at": "2026-10-23T15:47-04:00",
+   "status": "declined",
+   "teamIdReported": 3,
+   "espnTransactionId": "a5560f85-c900-47e1-9f76-87fc63c39b69"
+  }
+ ],
+ "vetoVotes": [
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-22",
+   "at": "2026-09-22T15:46-04:00",
+   "status": "veto vote",
+   "teamIdReported": 3,
+   "espnTransactionId": "43453136-2108-4651-b047-fb8448e40999"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-22",
+   "at": "2026-09-22T15:54-04:00",
+   "status": "veto vote",
+   "teamIdReported": 2,
+   "espnTransactionId": "137562ef-d842-472c-b1e3-311f4097b0c9"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-22",
+   "at": "2026-09-22T17:39-04:00",
+   "status": "veto vote",
+   "teamIdReported": 1,
+   "espnTransactionId": "de0f2753-bba5-4149-9a74-5c0a37654b2f"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T17:48-04:00",
+   "status": "veto vote",
+   "teamIdReported": 1,
+   "espnTransactionId": "0d01ee2d-b7c8-49bf-a70f-4bf444073333"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T17:58-04:00",
+   "status": "veto vote",
+   "teamIdReported": 11,
+   "espnTransactionId": "c9e99464-7e25-4e6d-b070-4a5d24b895f7"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T17:59-04:00",
+   "status": "veto vote",
+   "teamIdReported": 2,
+   "espnTransactionId": "0484bdab-bf9f-4081-8ea0-32550ba29fc0"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T18:13-04:00",
+   "status": "veto vote",
+   "teamIdReported": 4,
+   "espnTransactionId": "f028d4b1-c01e-488e-95e5-5bfeef960895"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T19:36-04:00",
+   "status": "veto vote",
+   "teamIdReported": 6,
+   "espnTransactionId": "37dd6726-b9c0-4dd2-bb96-3402b35fd969"
+  },
+  {
+   "season": 2026,
+   "week": 3,
+   "date": "2026-09-28",
+   "at": "2026-09-28T19:44-04:00",
+   "status": "veto vote",
+   "teamIdReported": 10,
+   "espnTransactionId": "a7e9e2b9-2ebc-46c8-ac64-c9ae447663a0"
+  },
+  {
+   "season": 2026,
+   "week": 4,
+   "date": "2026-09-30",
+   "at": "2026-09-30T12:03-04:00",
+   "status": "veto vote",
+   "teamIdReported": 3,
+   "espnTransactionId": "4f0b93ae-1630-4f6d-b955-23cc2d5adaf5"
+  },
+  {
+   "season": 2026,
+   "week": 5,
+   "date": "2026-10-07",
+   "at": "2026-10-07T12:52-04:00",
+   "status": "veto vote",
+   "teamIdReported": 3,
+   "espnTransactionId": "2868b13b-2215-4166-a2d9-2ba95397cd66"
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-14",
+   "at": "2026-10-14T12:25-04:00",
+   "status": "veto vote",
+   "teamIdReported": 3,
+   "espnTransactionId": "bc35c4ee-47d9-4c43-a122-abd200d77e31"
+  },
+  {
+   "season": 2026,
+   "week": 6,
+   "date": "2026-10-19",
+   "at": "2026-10-19T18:54-04:00",
+   "status": "veto vote",
+   "teamIdReported": 3,
+   "espnTransactionId": "7662ef0e-1a44-437f-8c2f-881f59e1082d"
+  }
+ ],
+ "unprocessedAccepts": [
+  {
+   "date": "2026-09-22",
+   "at": "2026-09-22T11:17-04:00",
+   "week": 3,
+   "teamIdReported": 1,
+   "espnStatus": "unknown",
+   "espnTransactionId": "29c59450-ceaa-4291-8875-d9676817f05b",
+   "interpretation": "ESPN accept row with no matching roster movement, so the deal likely never processed. Three veto rows were logged the same day (teams 1, 2 and 3), so it was probably vetoed. Partner and players are unknown."
+  }
+ ],
+ "teamSummaries": {
+  "1": {
+   "teamId": 1,
+   "displayName": "Bibi's Boys",
+   "seasonName": "Bibi's Boys",
+   "abbrev": "BIB",
+   "espnName": "Bibi's Boys X KASE Capital",
+   "tradeCount": 0,
+   "tradesBySeason": {},
+   "partners": [],
+   "mostFrequentPartner": null,
+   "playersReceived": [],
+   "playersSent": [],
+   "tradeIds": [],
+   "proposalsSent2026": 2,
+   "proposalsReceived2026": 0,
+   "declinesLogged2026": 1,
+   "vetoVotesLogged2026": 2,
+   "netStartedPointsFromTrades2026": 0
+  },
+  "2": {
+   "teamId": 2,
+   "displayName": "Jahmyr I Go Again",
+   "seasonName": "Jahmyr I Go Again",
+   "abbrev": "JAH",
+   "espnName": "Jahmyr I Go Again",
+   "tradeCount": 0,
+   "tradesBySeason": {},
+   "partners": [],
+   "mostFrequentPartner": null,
+   "playersReceived": [],
+   "playersSent": [],
+   "tradeIds": [],
+   "proposalsSent2026": 1,
+   "proposalsReceived2026": 6,
+   "declinesLogged2026": 2,
+   "vetoVotesLogged2026": 2,
+   "netStartedPointsFromTrades2026": 0
+  },
+  "3": {
+   "teamId": 3,
+   "displayName": "Chewy's Warriors",
+   "seasonName": "Chewy's Warriors",
+   "abbrev": "CHW",
+   "espnName": "Chewy's Warriors",
+   "tradeCount": 2,
+   "tradesBySeason": {
+    "2026": 2
+   },
+   "partners": [
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "trades": 1
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "trades": 1
+    }
+   ],
+   "mostFrequentPartner": {
+    "teamId": 7,
+    "displayName": "Maye i give you a blowj0b",
+    "trades": 1,
+    "tiedWith": [
+     "All Heart"
+    ]
+   },
+   "playersReceived": [
+    "Jaylen Warren"
+   ],
+   "playersSent": [
+    "DJ Moore",
+    "Jameson Williams"
+   ],
+   "tradeIds": [
+    "2026-T1",
+    "2026-T3"
+   ],
+   "proposalsSent2026": 31,
+   "proposalsReceived2026": 3,
+   "declinesLogged2026": 9,
+   "vetoVotesLogged2026": 5,
+   "netStartedPointsFromTrades2026": 34.1
+  },
+  "4": {
+   "teamId": 4,
+   "displayName": "All Heart",
+   "seasonName": "All Heart",
+   "abbrev": "AH",
+   "espnName": "All Heart",
+   "tradeCount": 5,
+   "tradesBySeason": {
+    "2026": 5
+   },
+   "partners": [
+    {
+     "teamId": 11,
+     "displayName": "Kabul FC",
+     "trades": 1
+    },
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "trades": 1
+    },
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "trades": 1
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "trades": 1
+    },
+    {
+     "teamId": 7,
+     "displayName": "Maye i give you a blowj0b",
+     "trades": 1
+    }
+   ],
+   "mostFrequentPartner": {
+    "teamId": 11,
+    "displayName": "Kabul FC",
+    "trades": 1,
+    "tiedWith": [
+     "Chewy's Warriors",
+     "Smert Fellas",
+     "Dimes McSorley",
+     "Maye i give you a blowj0b"
+    ]
+   },
+   "playersReceived": [
+    "DJ Moore",
+    "Jameson Williams",
+    "Blake Corum",
+    "Christian Watson",
+    "Joe Mixon",
+    "DK Metcalf",
+    "Chase Brown",
+    "KC Concepcion"
+   ],
+   "playersSent": [
+    "Jaylen Warren",
+    "Malik Nabers",
+    "Blake Corum",
+    "Josh Jacobs",
+    "Cam Skattebo",
+    "DJ Moore"
+   ],
+   "tradeIds": [
+    "2026-T2",
+    "2026-T3",
+    "2026-T4",
+    "2026-T5",
+    "2026-T6"
+   ],
+   "proposalsSent2026": 26,
+   "proposalsReceived2026": 7,
+   "declinesLogged2026": 13,
+   "vetoVotesLogged2026": 1,
+   "netStartedPointsFromTrades2026": -24.6
+  },
+  "5": {
+   "teamId": 5,
+   "displayName": "Easy Peasy Lemon Squeezy",
+   "seasonName": "Easy Peasy Lemon Squeezy",
+   "abbrev": "EPZ",
+   "espnName": "Easy Peasy Lemon Squeezy",
+   "tradeCount": 0,
+   "tradesBySeason": {},
+   "partners": [],
+   "mostFrequentPartner": null,
+   "playersReceived": [],
+   "playersSent": [],
+   "tradeIds": [],
+   "proposalsSent2026": 0,
+   "proposalsReceived2026": 3,
+   "declinesLogged2026": 6,
+   "vetoVotesLogged2026": 0,
+   "netStartedPointsFromTrades2026": 0
+  },
+  "6": {
+   "teamId": 6,
+   "displayName": "Smert Fellas",
+   "seasonName": "Smert Fellas",
+   "abbrev": "SMF",
+   "espnName": "Smert Fellas",
+   "tradeCount": 2,
+   "tradesBySeason": {
+    "2026": 2
+   },
+   "partners": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "trades": 1
+    },
+    {
+     "teamId": 8,
+     "displayName": "Dimes McSorley",
+     "trades": 1
+    }
+   ],
+   "mostFrequentPartner": {
+    "teamId": 4,
+    "displayName": "All Heart",
+    "trades": 1,
+    "tiedWith": [
+     "Dimes McSorley"
+    ]
+   },
+   "playersReceived": [
+    "Malik Nabers",
+    "DeVonta Smith",
+    "Quinshon Judkins"
+   ],
+   "playersSent": [
+    "Blake Corum",
+    "Christian Watson",
+    "George Pickens",
+    "Garrett Wilson"
+   ],
+   "tradeIds": [
+    "2026-T4",
+    "2026-T7"
+   ],
+   "proposalsSent2026": 3,
+   "proposalsReceived2026": 3,
+   "declinesLogged2026": 5,
+   "vetoVotesLogged2026": 1,
+   "netStartedPointsFromTrades2026": -10.4
+  },
+  "7": {
+   "teamId": 7,
+   "displayName": "Maye i give you a blowj0b",
+   "seasonName": "Maye i give you a blowj0b",
+   "abbrev": "MAYE",
+   "espnName": "Maye i give you a blowj0b",
+   "tradeCount": 2,
+   "tradesBySeason": {
+    "2026": 2
+   },
+   "partners": [
+    {
+     "teamId": 3,
+     "displayName": "Chewy's Warriors",
+     "trades": 1
+    },
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "trades": 1
+    }
+   ],
+   "mostFrequentPartner": {
+    "teamId": 3,
+    "displayName": "Chewy's Warriors",
+    "trades": 1,
+    "tiedWith": [
+     "All Heart"
+    ]
+   },
+   "playersReceived": [
+    "Josh Jacobs",
+    "Cam Skattebo",
+    "DJ Moore"
+   ],
+   "playersSent": [
+    "DK Metcalf",
+    "Chase Brown",
+    "KC Concepcion"
+   ],
+   "tradeIds": [
+    "2026-T1",
+    "2026-T6"
+   ],
+   "proposalsSent2026": 11,
+   "proposalsReceived2026": 25,
+   "declinesLogged2026": 9,
+   "vetoVotesLogged2026": 0,
+   "netStartedPointsFromTrades2026": -10.0
+  },
+  "8": {
+   "teamId": 8,
+   "displayName": "Dimes McSorley",
+   "seasonName": "Dimes McSorley",
+   "abbrev": "DIM",
+   "espnName": "Dimes McSorley",
+   "tradeCount": 2,
+   "tradesBySeason": {
+    "2026": 2
+   },
+   "partners": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "trades": 1
+    },
+    {
+     "teamId": 6,
+     "displayName": "Smert Fellas",
+     "trades": 1
+    }
+   ],
+   "mostFrequentPartner": {
+    "teamId": 4,
+    "displayName": "All Heart",
+    "trades": 1,
+    "tiedWith": [
+     "Smert Fellas"
+    ]
+   },
+   "playersReceived": [
+    "Blake Corum",
+    "George Pickens",
+    "Garrett Wilson"
+   ],
+   "playersSent": [
+    "Joe Mixon",
+    "DeVonta Smith",
+    "Quinshon Judkins"
+   ],
+   "tradeIds": [
+    "2026-T5",
+    "2026-T7"
+   ],
+   "proposalsSent2026": 1,
+   "proposalsReceived2026": 17,
+   "declinesLogged2026": 12,
+   "vetoVotesLogged2026": 0,
+   "netStartedPointsFromTrades2026": 10.9
+  },
+  "10": {
+   "teamId": 10,
+   "displayName": "Sandusky's Soldiers",
+   "seasonName": "Sandusky's Soldiers",
+   "abbrev": "SND",
+   "espnName": "Sandusky's Soldiers ",
+   "tradeCount": 0,
+   "tradesBySeason": {},
+   "partners": [],
+   "mostFrequentPartner": null,
+   "playersReceived": [],
+   "playersSent": [],
+   "tradeIds": [],
+   "proposalsSent2026": 1,
+   "proposalsReceived2026": 5,
+   "declinesLogged2026": 1,
+   "vetoVotesLogged2026": 1,
+   "netStartedPointsFromTrades2026": 0
+  },
+  "11": {
+   "teamId": 11,
+   "displayName": "Kabul FC",
+   "seasonName": "Kabul FC",
+   "abbrev": "KAB",
+   "espnName": "Kabul Cocknballs",
+   "tradeCount": 1,
+   "tradesBySeason": {
+    "2026": 1
+   },
+   "partners": [
+    {
+     "teamId": 4,
+     "displayName": "All Heart",
+     "trades": 1
+    }
+   ],
+   "mostFrequentPartner": {
+    "teamId": 4,
+    "displayName": "All Heart",
+    "trades": 1,
+    "tiedWith": []
+   },
+   "playersReceived": [],
+   "playersSent": [],
+   "tradeIds": [
+    "2026-T2"
+   ],
+   "proposalsSent2026": 0,
+   "proposalsReceived2026": 7,
+   "declinesLogged2026": 2,
+   "vetoVotesLogged2026": 1,
+   "netStartedPointsFromTrades2026": 0
+  }
+ },
+ "leagueNotes": {
+  "mostActiveTrader": {
+   "teamId": 4,
+   "displayName": "All Heart",
+   "trades": 5
+  },
+  "mostCommonPairNote": "No pair has traded twice. The 7 accepted trades involve 7 different pairs.",
+  "mostCommonPair": [
+   {
+    "teamIds": [
+     3,
+     7
+    ],
+    "names": [
+     "Chewy's Warriors",
+     "Maye i give you a blowj0b"
+    ],
+    "trades": 1
+   },
+   {
+    "teamIds": [
+     4,
+     11
+    ],
+    "names": [
+     "All Heart",
+     "Kabul FC"
+    ],
+    "trades": 1
+   },
+   {
+    "teamIds": [
+     3,
+     4
+    ],
+    "names": [
+     "Chewy's Warriors",
+     "All Heart"
+    ],
+    "trades": 1
+   },
+   {
+    "teamIds": [
+     4,
+     6
+    ],
+    "names": [
+     "All Heart",
+     "Smert Fellas"
+    ],
+    "trades": 1
+   },
+   {
+    "teamIds": [
+     4,
+     8
+    ],
+    "names": [
+     "All Heart",
+     "Dimes McSorley"
+    ],
+    "trades": 1
+   },
+   {
+    "teamIds": [
+     4,
+     7
+    ],
+    "names": [
+     "All Heart",
+     "Maye i give you a blowj0b"
+    ],
+    "trades": 1
+   },
+   {
+    "teamIds": [
+     6,
+     8
+    ],
+    "names": [
+     "Smert Fellas",
+     "Dimes McSorley"
+    ],
+    "trades": 1
+   }
+  ],
+  "biggestTradeByPlayersMoved": {
+   "id": "2026-T6",
+   "date": "2026-10-14",
+   "teams": [
+    "All Heart",
+    "Maye i give you a blowj0b"
+   ],
+   "playersMoved": 6
+  },
+  "mostOffersSent2026": [
+   {
+    "teamId": 3,
+    "displayName": "Chewy's Warriors",
+    "offers": 31
+   },
+   {
+    "teamId": 4,
+    "displayName": "All Heart",
+    "offers": 26
+   },
+   {
+    "teamId": 7,
+    "displayName": "Maye i give you a blowj0b",
+    "offers": 11
+   }
+  ],
+  "mostNegotiatedPair2026": [
+   {
+    "names": [
+     "All Heart",
+     "Maye i give you a blowj0b"
+    ],
+    "offers": 20
+   },
+   {
+    "names": [
+     "Chewy's Warriors",
+     "Dimes McSorley"
+    ],
+    "offers": 12
+   },
+   {
+    "names": [
+     "Chewy's Warriors",
+     "All Heart"
+    ],
+    "offers": 6
+   }
+  ],
+  "vetoVotes2026": [
+   {
+    "teamId": 3,
+    "displayName": "Chewy's Warriors",
+    "votes": 5
+   },
+   {
+    "teamId": 2,
+    "displayName": "Jahmyr I Go Again",
+    "votes": 2
+   },
+   {
+    "teamId": 1,
+    "displayName": "Bibi's Boys",
+    "votes": 2
+   },
+   {
+    "teamId": 11,
+    "displayName": "Kabul FC",
+    "votes": 1
+   },
+   {
+    "teamId": 4,
+    "displayName": "All Heart",
+    "votes": 1
+   },
+   {
+    "teamId": 6,
+    "displayName": "Smert Fellas",
+    "votes": 1
+   },
+   {
+    "teamId": 10,
+    "displayName": "Sandusky's Soldiers",
+    "votes": 1
+   }
+  ],
+  "tradesThatAllHeartWasIn": 5,
+  "boomerangPlayers": [
+   "Blake Corum: Smert Fellas to All Heart (Sep 28) to Dimes (Oct 7)",
+   "DJ Moore: Chewy's to All Heart (Sep 28) to Maye (Oct 14)"
+  ],
+  "quickestCut": "All Heart traded Blake Corum for Joe Mixon on Oct 7 and cut Mixon two days later.",
+  "biggestEdgeSoFar": {
+   "id": "2026-T3",
+   "winner": "Chewy's Warriors",
+   "byStartedPoints": 34.1
+  },
+  "seasonsWithZeroTrades": [],
+  "seasonsWithUnknownTrades": [
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ]
+ }
+}

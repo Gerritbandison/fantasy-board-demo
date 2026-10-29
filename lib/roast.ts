@@ -16,6 +16,7 @@ import {
   type TitleGame,
   type WeekScore,
 } from "@/lib/h2h";
+import { possessive, tp, type Trade, type TradeSide } from "@/lib/trades";
 
 /*
  * PG-13 trash talk, generated from the numbers. Thresholds only choose the joke;
@@ -280,4 +281,76 @@ export function titleGameLine(g: TitleGame) {
   if (g.margin >= 30) return "Comfortable. Smug, even.";
   if (g.margin >= 15) return "Closer than the champ admits.";
   return "Down to the wire.";
+}
+
+/* ---------- Trades (2026 trade file) ---------- */
+
+const list = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+const playersGot = (s: TradeSide) => s.got.flatMap((a) => (a.kind === "player" ? [a.name] : []));
+
+export function tradeLine(t: Trade) {
+  const [a, b] = t.sides;
+  if (!t.playersMoved) {
+    const picks = t.sides.flatMap((s) => s.got).filter((x) => x.kind === "pick");
+    const rounds = new Set(picks.map((p) => (p.kind === "pick" ? p.round : 0)));
+    if (t.released.length)
+      return `Draft picks changed hands in the offseason and ${list(t.released.map((p) => p.name))} got released in the shuffle. Being the packing peanuts in somebody else's deal is a rough way to learn your value.`;
+    if (rounds.size === 1 && picks.length === 2)
+      return `${n(a.teamId)} and ${n(b.teamId)} swapped round-${[...rounds][0]} slots and ESPN barely took notes. Grade: incomplete. Vibes: suspicious.`;
+    return `${n(a.teamId)} and ${n(b.teamId)} shuffled draft picks before the season. Both sides get to claim they won until somebody checks.`;
+  }
+  if (!t.edge) return `Too soon to call. Both sides are still pretending they read the injury report.`;
+  const win = t.sides.find((s) => s.teamId === t.edge!.teamId)!;
+  const lose = t.sides.find((s) => s.teamId !== t.edge!.teamId)!;
+  const edge = tp(t.edge.points);
+  if (lose.started === 0 && lose.total === 0 && playersGot(lose).length)
+    return `${n(lose.teamId)} traded for ${list(playersGot(lose))} and let him go before he logged a single week for them. ${n(win.teamId)} has ${tp(win.started ?? 0)} starters' points from the deal. Buyer's remorse, speedrun edition.`;
+  if (t.early)
+    return t.edge.points < 5
+      ? `${t.weeksCounted === 1 ? "One week" : `${t.weeksCounted} weeks`} of data and a ${edge}-point gap. Grading this now is like grading a draft in August. Check back in a month.`
+      : `Only ${t.weeksCounted === 1 ? "one week" : `${t.weeksCounted} weeks`} in and ${n(win.teamId)} is up ${edge} starters' points. Early, sure, but ${n(lose.teamId)} has definitely refreshed the box score.`;
+  const benched = (lose.total ?? 0) - (lose.started ?? 0);
+  if (benched >= 30)
+    return `${possessive(n(lose.teamId))} side scored ${tp(lose.total ?? 0)}, but ${tp(benched)} of it sat on the bench. The trade was fine. The lineup decisions were not.`;
+  if (t.edge.points / t.weeksCounted >= 8 && playersGot(win).length < playersGot(lose).length)
+    return `${n(win.teamId)} turned ${list(playersGot(lose))} into ${list(playersGot(win))} and is up ${edge} starters' points since. ${n(lose.teamId)} got quantity. ${n(win.teamId)} got the points.`;
+  return `${n(win.teamId)} leads by ${edge} starters' points over ${t.weeksCounted} weeks. Not a fleece, but ${n(lose.teamId)} is hoping nobody brings it up.`;
+}
+
+export function mostActiveLine(id: number, k: number, total: number) {
+  return `${n(id)} was in ${k} of the ${total} accepted trades. That's not a fantasy team, that's a pawn shop with a waiver wire.`;
+}
+
+export function offersSentLine(id: number, k: number) {
+  return `${n(id)} sent ${k} trade offers. That's not negotiating, that's a newsletter.`;
+}
+
+export function negotiatedLine(a: number, b: number, offers: number, trades: number) {
+  return trades
+    ? `${n(a)} and ${n(b)} went back and forth ${offers} times to land ${trades === 1 ? "one deal" : `${trades} deals`}. Hostage negotiations move faster.`
+    : `${n(a)} and ${n(b)} went back and forth ${offers} times and still haven't closed. Somebody call a mediator.`;
+}
+
+export function hotPotatoLine(name: string, days: number, stops: number) {
+  return `${name} was on ${stops} rosters in ${days} days. Somebody get the man a forwarding address.`;
+}
+
+export function vetoLine(id: number, k: number) {
+  return `${k} veto rows are logged under ${n(id)}. ESPN won't say who actually pressed the button, so let's just call the paperwork suspicious.`;
+}
+
+export function tradeAndCutLine() {
+  return `Zero starts, zero points, one roster spot freed up. Retail therapy, but in reverse.`;
+}
+
+export function fleeceLine(t: Trade) {
+  const win = t.sides.find((s) => s.teamId === t.edge!.teamId)!;
+  const lose = t.sides.find((s) => s.teamId !== t.edge!.teamId)!;
+  return `${n(win.teamId)} is up ${tp(t.edge!.points)} starters' points on ${n(lose.teamId)} over ${t.weeksCounted} weeks. The receipts are getting framed.`;
+}
+
+export function noRepeatLine(trades: number, pairs: number) {
+  return trades === pairs
+    ? `${trades} trades, ${pairs} different pairs. Nobody has come back for seconds, which says something.`
+    : `${trades} trades across ${pairs} pairs. Some people never learn.`;
 }
