@@ -37,7 +37,7 @@
       "year": 2023,
       "champion": "Sandusky's Soldiers",
       "runnerUp": "All Heart",
-      "note": "Golden Goose (then Lebron Oniell) was #1 seed at 10-4 but exited early (final 3rd)."
+      "note": "Maye i give you a blowj0b (then Lebron Oniell) was #1 seed at 10-4 but exited early (final 3rd)."
     },
     {
       "year": 2022,
@@ -78,7 +78,7 @@
       "note": "Most PF without a ring"
     },
     {
-      "team": "Golden Goose",
+      "team": "Maye i give you a blowj0b",
       "titles": 0,
       "years": "\u2014",
       "note": "Best regular-season peak: 2023 #1 seed"
@@ -87,7 +87,7 @@
   "franchises": [
     {
       "teamId": 7,
-      "name": "Golden Goose",
+      "name": "Maye i give you a blowj0b",
       "ownerLabel": "Gerrit",
       "arc": "Same franchise since at least 2020. Peak: 2023 #1 seed (10-4). 2025 made playoffs as seed 5. 2026 is the rebuild trough \u2014 2-5 with a ceiling week (168.96 in W5).",
       "titles": 0,
@@ -178,7 +178,7 @@
           "week": 4,
           "pf": 132.38,
           "pa": 128.76,
-          "opp": "Golden Goose",
+          "opp": "Maye i give you a blowj0b",
           "result": "W"
         },
         {
@@ -203,7 +203,7 @@
           "result": "W"
         }
       ],
-      "signature": "Consistency machine \u2014 never scored under 117 after week 1; beat Golden Goose 132\u2013129 in week 4."
+      "signature": "Consistency machine \u2014 never scored under 117 after week 1; beat Maye i give you a blowj0b 132\u2013129 in week 4."
     },
     {
       "teamId": 3,
@@ -252,7 +252,7 @@
           "week": 6,
           "pf": 142.72,
           "pa": 121.4,
-          "opp": "Golden Goose",
+          "opp": "Maye i give you a blowj0b",
           "result": "W"
         },
         {
@@ -323,7 +323,7 @@
           "result": "W"
         }
       ],
-      "signature": "Faces Golden Goose in week 8 with a 123.5 projected edge to Goose's 131.3."
+      "signature": "Faces Maye i give you a blowj0b in week 8: 123.5 projected against their 131.3."
     }
   ],
   "luckIndex": [
@@ -378,7 +378,7 @@
       "label": "fair"
     },
     {
-      "team": "Golden Goose",
+      "team": "Maye i give you a blowj0b",
       "teamId": 7,
       "record": "2-5",
       "pf": 771.16,
@@ -431,21 +431,21 @@
   "matchupBriefs": [
     {
       "slug": "golden-goose",
-      "title": "Golden Goose vs Dimes McSorley",
+      "title": "Maye i give you a blowj0b vs Dimes McSorley",
       "week": 8,
-      "story": "Goose needs this. After a 0-3 start and a 65-point floor in week 2, the offense woke up (169 in W5, 129 in W7). Dimes is 5-2 and allowing the fewest points in the league \u2014 but Goose projects 131.3 to 123.5.",
+      "story": "Maye i give you a blowj0b needs this. After a 0-3 start and a 65-point floor in week 2, the offense woke up (169 in W5, 129 in W7). Dimes is 5-2 and allowing the fewest points in the league \u2014 but Maye i give you a blowj0b projects 131.3 to 123.5.",
       "edges": [
         {
-          "side": "Golden Goose",
+          "side": "Maye i give you a blowj0b",
           "edge": "Higher projected total; Maye + Puka + Jacobs ceiling if Q flags clear"
         },
         {
           "side": "Dimes McSorley",
-          "edge": "Record and PA; Hall/Irving RB stack vs a Goose team still 10th in PF"
+          "edge": "Record and PA; Hall/Irving RB stack vs a Maye i give you a blowj0b team still 10th in PF"
         }
       ],
-      "historyNote": "No prior H2H in 2026. Goose's median week is ~122 after week 3; Dimes' median is ~113.",
-      "mustWin": "Golden Goose \u2014 two games back of the playoff cut with seven weeks left in the regular season window."
+      "historyNote": "No prior H2H in 2026. Maye i give you a blowj0b's median week is ~122 after week 3; Dimes' median is ~113.",
+      "mustWin": "Maye i give you a blowj0b \u2014 two games back of the playoff cut with seven weeks left in the regular season window."
     },
     {
       "slug": "bibis",
@@ -459,7 +459,7 @@
         },
         {
           "side": "Chewy's Warriors",
-          "edge": "Season PF lead; already beat Goose and Jahmyr in statement weeks"
+          "edge": "Season PF lead; already beat Maye i give you a blowj0b and Jahmyr in statement weeks"
         }
       ],
       "historyNote": "Chewy was runner-up to Bibi's Boys in 2024. This is the rematch energy of the decade for Chicken.",
@@ -479,13 +479,13 @@
     },
     {
       "tone": "alert",
-      "title": "Goose is volatile, not dead",
+      "title": "Maye i give you a blowj0b is volatile, not dead",
       "body": "2-5 and 10th in PF, but week 5's 169 is a top-3 weekly score league-wide. The median after week 3 is playoff-caliber."
     },
     {
       "tone": "signal",
       "title": "Bibi's revenge arc",
-      "body": "2024 champ \u2192 2025 dead last in finals \u2192 2026 6-1. Beat Goose head-to-head in week 4 by 3.6."
+      "body": "2024 champ \u2192 2025 dead last in finals \u2192 2026 6-1. Beat Maye i give you a blowj0b head-to-head in week 4 by 3.6."
     },
     {
       "tone": "alert",
@@ -495,7 +495,7 @@
   ],
   "week8Projections": {
     "golden-goose": {
-      "home": "Golden Goose",
+      "home": "Maye i give you a blowj0b",
       "away": "Dimes McSorley",
       "homeProj": 131.27,
       "awayProj": 123.49

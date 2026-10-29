@@ -6,7 +6,7 @@
     "week": 8,
     "platform": "espn"
   },
-  "displayNote": "Public display names sanitized for vulgar/offensive ESPN team names.",
+  "displayNote": "Display names are sanitized for other teams' ESPN names; team 7 shows its real ESPN name at the owner's request.",
   "standings": [
     {
       "teamId": 1,
@@ -118,7 +118,7 @@
     },
     {
       "teamId": 7,
-      "teamName": "Golden Goose",
+      "teamName": "Maye i give you a blowj0b",
       "wins": 2,
       "losses": 5,
       "ties": 0,
@@ -135,7 +135,7 @@
       "slug": "golden-goose",
       "home": {
         "teamId": 7,
-        "teamName": "Golden Goose",
+        "teamName": "Maye i give you a blowj0b",
         "projected": 131.27,
         "starters": [
           {
@@ -464,7 +464,7 @@
     "bullets": [
       "Bibi's Boys sit 6-1 and #1 seed after a monster start.",
       "Chewy's Warriors lead the league in points for (992.7) despite 4-3.",
-      "Golden Goose is 2-5 but projects 131.3 this week vs Dimes (123.5).",
+      "Maye i give you a blowj0b is 2-5 but projects 131.3 this week vs Dimes (123.5).",
       "Top projected scoreboard this week: Easy Peasy 138.4 vs Kabul FC 82.6.",
       "Playoff cut currently runs through seed 8; seeds 9\u201310 need a surge."
     ],
@@ -482,7 +482,7 @@
         "why": "5-2 with Barkley/Hall/Irving depth"
       },
       {
-        "team": "Golden Goose",
+        "team": "Maye i give you a blowj0b",
         "why": "Maye + Puka + Jacobs ceiling if injuries clear"
       }
     ]
