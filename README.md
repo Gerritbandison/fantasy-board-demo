@@ -1,37 +1,52 @@
-# Chicken League · Week 8 board
+# Chicken Command · Week 08 Ops
 
-**Live:** [https://fantasy-board-demo.vercel.app](https://fantasy-board-demo.vercel.app) — share that link. Public, no login, works on iPhone.
+**Live:** [https://fantasy-board-demo.vercel.app](https://fantasy-board-demo.vercel.app). Share that link. It's public, needs no login, and works on iPhone.
 
-A phone-first, friend-shareable fantasy football app for the ESPN **Chicken** league (2026, week 8), built with Next.js (App Router). It reads a committed league snapshot, so it deploys to Vercel with **zero secrets**. The dark TV-board look is kept, and a full-screen TV mode is available on large screens.
+**Chicken Command** is the ops board for the private ESPN **Chicken** league (2026, week 8). It's a command-station console, not a scoreboard clone. Each matchup page leads with a brief. Score trails, a luck index, and a champions archive come from the league's own history. Everything is prerendered from committed JSON, so it deploys to Vercel with **zero secrets**.
 
-| Golden Goose (`/`) | Bibi's Boys (`/bibis`) | Standings | Insights |
+| Goose op (`/`) | Insights | History | Standings |
 | --- | --- | --- | --- |
-| ![Golden Goose board on iPhone](docs/mobile-home.png) | ![Bibi's Boys board on iPhone](docs/mobile-bibis.png) | ![Standings on iPhone](docs/mobile-standings.png) | ![Insights on iPhone](docs/mobile-insights.png) |
+| ![Golden Goose op board on iPhone](docs/mobile-home.png) | ![Insights on iPhone](docs/mobile-insights.png) | ![History on iPhone](docs/mobile-history.png) | ![Standings on iPhone](docs/mobile-standings.png) |
 
-![Golden Goose board on desktop](docs/desktop-home.png)
+![Golden Goose op board on desktop](docs/desktop-home.png)
 
 ## Pages
 
 | Route | What it shows |
 | --- | --- |
-| `/` | Gerrit's **Golden Goose** vs Dimes McSorley: projected scoreboard, injury-report callout, head-to-head starters, bench and IR. |
-| `/bibis` | Kyle's (KASE) **Bibi's Boys** vs Chewy's Warriors, same layout. |
-| `/standings` | Full league table: rank, record, PF/PA, point differential, playoff seed, and the playoff cut line after seed 8. |
-| `/insights` | Storylines from the snapshot, power rankings, scoring leaders, and point-differential bars. |
-| `/matchups` | Scoreboard cards for the featured week-8 matchups, linking to each board. |
+| `/` | Gerrit's **Golden Goose** vs Dimes McSorley. It opens with the **matchup brief** (story, must-win, edges, archive note). Below that are a projection readout with a margin gauge and a comparison to each team's season average, a **score trail** (weekly PF for weeks 1–7 plus a dashed week 8 projection, with the opponent overlaid), franchise dossiers, then head-to-head starters, bench and IR. |
+| `/bibis` | Kyle's (KASE) **Bibi's Boys** vs Chewy's Warriors, same op layout. |
+| `/standings` | League table with record, PF/PA, differential, **PF rank vs win rank**, and a **luck chip** (HOT, EVEN, or DUE). A labelled playoff cut sits after seed 8. |
+| `/insights` | Week 8 dispatches from the matchup briefs, **league pulse** signals and alerts, the **luck index** bars, a ceiling board (top single weeks), a threat board, and franchise signatures with mini trails. |
+| `/history` | Seasons on record (2020–2026), the **champions archive** for 2022–2025 as a phone timeline, an all-time **rings & finals** board, and **franchise arcs** for Goose, Bibi, Chewy and Dimes. Each arc has a season-by-season strip (champion, final, or file mention). |
+| `/matchups` | "Slate": the featured ops with projections and a one-line brief. It's in the desktop nav only. |
 | `/live` | The original polling board, which can read a public ESPN league (optional, not in the nav). |
 
-On phones, navigation is a bottom tab bar that respects the iPhone safe areas. From the `md` breakpoint up it moves into the sticky top bar. Every page is statically prerendered, and layouts were checked for horizontal overflow at 320, 390, and 1440 px widths. On `lg` screens and up, the boards show a **TV mode** button that goes full screen and hides the navigation.
+On phones the nav is a five-tab bottom bar (Goose · Bibi · Standings · Insights · History) that respects iPhone safe areas. From `md` up it moves into the top bar. A FEED ticker under the header cycles league facts and pulse headlines. On `lg` screens the op boards offer **Wall mode**, which goes full screen for a TV. Layouts are checked for horizontal overflow at 320, 390, and 1440 px.
+
+## Design system
+
+- **Palette:** graphite (`ink` and `panel`), amber phosphor `phos` for the focus team and alerts, cyan `sig` for the opponent and signals, and `hot` only for must-win and the playoff cut. The tokens are in `app/globals.css`.
+- **Type:** Chakra Petch for display, IBM Plex Mono for every label and readout, IBM Plex Sans for narrative text.
+- **Chrome:** corner-bracket frames (`hud-corners`), a plotting-grid background (`bg-console`), scanlines, and a radar mark. Every team has a three-letter call sign (GGS, BIB, CHW, DIM…).
+- **Primitives:** `components/league/hud.tsx` holds `Frame`, `PageHead`, `Tag`, `Readout`, `LuckChip`, `Radar`, and `Rule`. `components/league/trail.tsx` holds `ScoreTrail`, `WeekStrip`, and `MiniTrail`. Every trail shares one y-scale, so they compare directly.
+- **Motion:** the radar sweep, ticker, and blink all stop under `prefers-reduced-motion`.
 
 ## Data
 
-The single source of truth is [`data/league-snapshot.json`](data/league-snapshot.json): standings, the two featured matchups with starters and bench, and the insights. Team display names in it are already sanitized; keep them as they are. To update the board for a new week, replace that file and redeploy.
+Two committed files, both with sanitized display names (keep them that way):
 
-- `lib/league.ts` types the snapshot and maps each board to its focus team (`BOARDS`).
-- `GET /api/league` returns the full snapshot.
-- `GET /api/matchup/golden-goose` and `GET /api/matchup/bibis` return one matchup, with `focus` and `opponent` sides. Unknown slugs return `404`.
+- [`data/league-snapshot.json`](data/league-snapshot.json) holds the current week's standings, the two featured matchups with starters and bench, and the power list.
+- [`data/league-intel.json`](data/league-intel.json) holds champions, the all-time list, franchise arcs with `weekly2026` score trails, the luck index, matchup briefs, league pulse, and week 8 projections.
 
-The pages and the route handlers import the same loader, so pages are prerendered at build time instead of fetching their own API.
+How the code uses them:
+
+- `lib/league.ts` types the snapshot and maps each op board to its focus team (`BOARDS`).
+- `lib/intel.ts` types the intel and derives the rest: call signs, trail stats (median, ceiling, floor), the title board (titles and finals from the champions list), champion seeds, and per-franchise archive hits. Intel's short names, like "Easy Peasy", resolve to snapshot team ids.
+- `GET /api/league` returns the snapshot plus `intel`.
+- `GET /api/matchup/golden-goose` and `GET /api/matchup/bibis` return one matchup with its `focus` and `opponent` sides. Unknown slugs return `404`.
+
+To roll to a new week, replace both JSON files and redeploy.
 
 ### Optional ESPN live path
 
@@ -57,18 +72,21 @@ From the CLI (linked account): `npx vercel --prod`.
 ```
 app/
   layout.tsx                 fonts, metadata, viewport (safe-area aware)
-  (league)/layout.tsx        sticky top bar + bottom tab bar
+  (league)/layout.tsx        console chrome: top bar, FEED ticker, bottom tab bar
   (league)/page.tsx          / — Golden Goose board
   (league)/bibis/            /bibis — Bibi's Boys board
   (league)/standings/        /standings
   (league)/insights/         /insights
-  (league)/matchups/         /matchups
+  (league)/history/          /history
+  (league)/matchups/         /matchups (Slate)
   live/                      optional ESPN polling board
   api/league/                GET /api/league
   api/matchup/[slug]/        GET /api/matchup/:slug
   api/fantasy/               optional ESPN/mock feed for /live
-components/league/           nav, matchup board, chips, TV mode button
-data/league-snapshot.json    week snapshot (primary data source)
+components/league/           nav, HUD primitives, score trails, op board, wall mode
+data/league-snapshot.json    week snapshot (lineups, standings)
+data/league-intel.json       league intel (history, trails, luck, briefs, pulse)
 lib/league.ts                snapshot types + helpers
+lib/intel.ts                 intel types + derived stats
 lib/espn.ts                  optional public ESPN adapter
 ```
