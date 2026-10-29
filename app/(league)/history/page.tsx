@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Medal, Trophy } from "lucide-react";
+import { ArrowLeftRight, ChevronRight, Medal, Trophy } from "lucide-react";
 import { HallOfFameAndShame } from "@/components/league/h2h";
 import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
 import { CHAMPIONS, formatRecord, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
 import { championSeedSummary, SEASONS_WITH_HISTORY, titleBoard } from "@/lib/stats";
+import { COUNTS, TRADES_LABEL } from "@/lib/trades";
 
 export const metadata: Metadata = {
   title: "History",
@@ -30,6 +31,22 @@ export default function HistoryPage() {
           {multi.length ? `. ${multi.map((r) => `${r.team.name} (${r.titleYears.join(", ")})`).join(" and ")} ${multi.length === 1 ? "is the only franchise" : "are the only franchises"} with more than one title.` : "."}
         </p>
       </PageHeader>
+
+      <Link
+        href="/trades"
+        className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line transition-colors hover:bg-slate-50 sm:px-5"
+      >
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold-light text-amber-700">
+          <ArrowLeftRight className="size-5" />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">Trade desk</span>
+          <span className="block text-sm leading-snug text-slate-600">
+            {TRADES_LABEL}: {COUNTS.accepted} accepted deals, graded and roasted
+          </span>
+        </span>
+        <ChevronRight className="size-5 shrink-0 text-slate-400" />
+      </Link>
 
       <section className="overflow-hidden rounded-2xl bg-navy yard-lines p-4 text-white shadow-lg shadow-navy/15 sm:p-5">
         <p className="flex items-center gap-1.5 text-xs font-bold tracking-wider text-gold uppercase">

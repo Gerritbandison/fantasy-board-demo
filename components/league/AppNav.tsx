@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChartColumn, ListOrdered, Swords, Trophy, Users, type LucideIcon } from "lucide-react";
+import { ArrowLeftRight, ChartColumn, ListOrdered, Swords, Trophy, Users, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/** `also`: extra paths that light up the item; `phoneAlso` only applies in the bottom bar, where Standings has no tab of its own. */
+/** `also`: extra paths that light up the item; `phoneAlso` only applies in the bottom bar, where Standings and Trades have no tab of their own. */
 const NAV: { href: string; label: string; icon: LucideIcon; phone: boolean; also?: string[]; phoneAlso?: string[] }[] = [
   { href: "/", label: "Teams", icon: Users, phone: true, also: ["/teams/"], phoneAlso: ["/standings"] },
   { href: "/standings", label: "Standings", icon: ListOrdered, phone: false },
   { href: "/matchups", label: "Scores", icon: Swords, phone: true },
   { href: "/insights", label: "Insights", icon: ChartColumn, phone: true },
-  { href: "/history", label: "History", icon: Trophy, phone: true },
+  { href: "/trades", label: "Trades", icon: ArrowLeftRight, phone: false },
+  { href: "/history", label: "History", icon: Trophy, phone: true, phoneAlso: ["/trades"] },
 ];
 
 function Football({ className }: { className?: string }) {
@@ -44,7 +45,7 @@ export function TopBar({ week, season }: { week: number; season: number }) {
           </span>
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-0.5 md:flex lg:gap-1">
           {NAV.map((item) => {
             const active = [item.href, ...(item.also ?? [])].some((h) => isActive(pathname, h));
             return (
@@ -53,11 +54,11 @@ export function TopBar({ week, season }: { week: number; season: number }) {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex h-9 items-center gap-1.5 rounded-full px-3.5 text-sm font-semibold transition-colors",
+                  "flex h-9 items-center gap-1.5 rounded-full px-2.5 text-sm font-semibold transition-colors lg:px-3.5",
                   active ? "bg-white text-navy" : "text-white/75 hover:bg-white/10 hover:text-white",
                 )}
               >
-                <item.icon className="size-4" />
+                <item.icon className="size-4 max-lg:hidden" />
                 {item.label}
               </Link>
             );

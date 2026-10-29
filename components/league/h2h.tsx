@@ -38,7 +38,7 @@ export function Roast({ children, className = "mt-3" }: { children: React.ReactN
   );
 }
 
-function Eyebrow({ icon: Icon, children, tone = "slate" }: { icon: LucideIcon; children: React.ReactNode; tone?: "slate" | "turf" | "loss" | "gold" }) {
+export function Eyebrow({ icon: Icon, children, tone = "slate" }: { icon: LucideIcon; children: React.ReactNode; tone?: "slate" | "turf" | "loss" | "gold" }) {
   return (
     <p
       className={cn(
@@ -103,7 +103,7 @@ function Versus({ id, season, score, suffix }: { id: number; season: number; sco
 
 /* ---------- Team page ---------- */
 
-function RoastCard({
+export function RoastCard({
   icon,
   label,
   tone,
