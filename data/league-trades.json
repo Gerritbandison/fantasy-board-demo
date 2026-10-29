@@ -1,7 +1,7 @@
 {
  "scope": "2026 season only (preseason through week 8). ESPN does not serve transaction data for 2020-2025 through Flaim.",
  "meta": {
-  "generatedAt": "2026-10-29T01:14:44-04:00",
+  "generatedAt": "2026-10-29T02:18:23-04:00",
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "timezone": "America/New_York",
@@ -23,7 +23,8 @@
    "declines": 60,
    "vetoVoteRows": 13,
    "unmatchedAcceptRows": 1
-  }
+  },
+  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 7 (the last completed week). We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (±10% band) and the points gained (±10 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data."
  },
  "tradesPerSeason": {
   "2020": null,
@@ -97,7 +98,11 @@
     "99fd7d56-cdf3-4426-915a-6fccff3255ca"
    ],
    "note": "Pre-draft deal. ESPN returned no player sides; pick changes are inferred from the 2026 draft board (Chewy's made two round-4 picks and moved up in round 6; Maye made 15 picks). Isiah Pacheco is attached to the trade and was released when it processed (he was later drafted by Sandusky's in round 14).",
-   "whoWonIt": null
+   "whoWonIt": null,
+   "longTermGrade": {
+    "grade": "INC",
+    "reason": "Draft-pick-only deal with no player sides, so there is nothing to grade on points or player value."
+   }
   },
   {
    "id": "2026-T2",
@@ -153,7 +158,11 @@
     "a15ed97a-03f3-467f-9381-d8d43d45dc64"
    ],
    "note": "Pre-draft deal. ESPN only names All Heart. The partner and contents are inferred from the draft board, where All Heart and Kabul swapped round-3 slots (#23 and #30). Any player or keeper part is unknown.",
-   "whoWonIt": null
+   "whoWonIt": null,
+   "longTermGrade": {
+    "grade": "INC",
+    "reason": "Draft-pick-only deal with no player sides, so there is nothing to grade on points or player value."
+   }
   },
   {
    "id": "2026-T3",
@@ -242,7 +251,7 @@
    ],
    "note": "Accepted Sep 28 and processed by Sep 29. All Heart cut Dalton Schultz to make room.",
    "whoWonIt": {
-    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      4,
      7
@@ -322,8 +331,593 @@
      }
     },
     "edgeTeamId": 3,
-    "edgeStartedPoints": 34.1,
+    "edgePoints": 15.2,
     "verdict": "leaning"
+   },
+   "longTermGrade": {
+    "asOf": "2026-10-29T02:14-04:00",
+    "lastFinalWeek": 7,
+    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "weeksAfterTrade": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "sides": {
+     "3": {
+      "teamId": 3,
+      "displayName": "Chewy's Warriors",
+      "receivedValueNow": 3606,
+      "receivedValueNowKept": 3606,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 3865,
+      "valueEdgeNow": -259,
+      "valueChangeSinceTrade": {
+       "received": 1444,
+       "sent": 20,
+       "net": 1424,
+       "note": null
+      },
+      "pointsReceived": 78.9,
+      "pointsSentAway": 63.7,
+      "pointsGained": 15.2,
+      "ppgTrendReceived": 6.19,
+      "ppgTrendSent": 4.26,
+      "received": [
+       {
+        "name": "Jaylen Warren",
+        "position": "RB",
+        "nflTeam": "PIT",
+        "pointsForNewTeam": 78.9,
+        "startedPointsForNewTeam_reference": 78.9,
+        "ppgBefore": 13.53,
+        "gamesBefore": 3,
+        "ppgAfter": 19.72,
+        "gamesAfter": 4,
+        "ppgTrend": 6.19,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 10.3,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 2,
+          "points": 9.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 3,
+          "points": 20.6,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 15.6,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 5,
+          "points": 36.8,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 6,
+          "points": 9.8,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 7,
+          "points": 16.7,
+          "status": "played",
+          "fantasyTeamId": 3
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 3606,
+         "overallRank": 36,
+         "positionRank": 17,
+         "trend30Day": 1444,
+         "value30DaysAgo": 2162,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 2162,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 1444
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "DJ Moore",
+        "position": "WR",
+        "nflTeam": "BUF",
+        "pointsForNewTeam": 2.7,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 11.2,
+        "gamesBefore": 3,
+        "ppgAfter": 2.7,
+        "gamesAfter": 1,
+        "ppgTrend": -8.5,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 21,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 2,
+          "points": -0.1,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 3,
+          "points": 12.7,
+          "status": "played",
+          "fantasyTeamId": 3
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 2.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 0,
+          "status": "bye",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 6,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 7,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 5,
+          "why": "bye",
+          "points": 0
+         },
+         {
+          "week": 6,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 0
+         },
+         {
+          "week": 7,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": false,
+        "disposition": "flipped in 2026-T6",
+        "value": {
+         "valueNow": 2043,
+         "overallRank": 55,
+         "positionRank": 23,
+         "trend30Day": -500,
+         "value30DaysAgo": 2543,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 2543,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": -500
+        },
+        "note": null
+       },
+       {
+        "name": "Jameson Williams",
+        "position": "WR",
+        "nflTeam": "DET",
+        "pointsForNewTeam": 61.0,
+        "startedPointsForNewTeam_reference": 44.8,
+        "ppgBefore": 7.57,
+        "gamesBefore": 3,
+        "ppgAfter": 20.33,
+        "gamesAfter": 3,
+        "ppgTrend": 12.76,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 8.5,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 2,
+          "points": 5.3,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 3,
+          "points": 8.9,
+          "status": "played",
+          "fantasyTeamId": 3
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 16.2,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 18.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 6,
+          "points": 0,
+          "status": "bye",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 7,
+          "points": 26.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "bye",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 1822,
+         "overallRank": 63,
+         "positionRank": 26,
+         "trend30Day": 520,
+         "value30DaysAgo": 1302,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 1302,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 520
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "paying off",
+       "mixedSignals": false,
+       "confidence": "medium-high",
+       "weeksOfData": 4,
+       "valueSignal": {
+        "edgePct": -6.7,
+        "signal": 0
+       },
+       "pointsSignal": {
+        "pointsGained": 15.2,
+        "signal": 1
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     },
+     "4": {
+      "teamId": 4,
+      "displayName": "All Heart",
+      "receivedValueNow": 3865,
+      "receivedValueNowKept": 3865,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 3606,
+      "valueEdgeNow": 259,
+      "valueChangeSinceTrade": {
+       "received": 20,
+       "sent": 1444,
+       "net": -1424,
+       "note": null
+      },
+      "pointsReceived": 63.7,
+      "pointsSentAway": 78.9,
+      "pointsGained": -15.2,
+      "ppgTrendReceived": 4.26,
+      "ppgTrendSent": 6.19,
+      "received": [
+       {
+        "name": "DJ Moore",
+        "position": "WR",
+        "nflTeam": "BUF",
+        "pointsForNewTeam": 2.7,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 11.2,
+        "gamesBefore": 3,
+        "ppgAfter": 2.7,
+        "gamesAfter": 1,
+        "ppgTrend": -8.5,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 21,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 2,
+          "points": -0.1,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 3,
+          "points": 12.7,
+          "status": "played",
+          "fantasyTeamId": 3
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 2.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 0,
+          "status": "bye",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 6,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 7,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 5,
+          "why": "bye",
+          "points": 0
+         },
+         {
+          "week": 6,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 0
+         },
+         {
+          "week": 7,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": false,
+        "disposition": "flipped in 2026-T6",
+        "value": {
+         "valueNow": 2043,
+         "overallRank": 55,
+         "positionRank": 23,
+         "trend30Day": -500,
+         "value30DaysAgo": 2543,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 2543,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": -500
+        },
+        "note": null
+       },
+       {
+        "name": "Jameson Williams",
+        "position": "WR",
+        "nflTeam": "DET",
+        "pointsForNewTeam": 61.0,
+        "startedPointsForNewTeam_reference": 44.8,
+        "ppgBefore": 7.57,
+        "gamesBefore": 3,
+        "ppgAfter": 20.33,
+        "gamesAfter": 3,
+        "ppgTrend": 12.76,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 8.5,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 2,
+          "points": 5.3,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 3,
+          "points": 8.9,
+          "status": "played",
+          "fantasyTeamId": 3
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 16.2,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 18.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 6,
+          "points": 0,
+          "status": "bye",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 7,
+          "points": 26.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "bye",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 1822,
+         "overallRank": 63,
+         "positionRank": 26,
+         "trend30Day": 520,
+         "value30DaysAgo": 1302,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 1302,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 520
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "Jaylen Warren",
+        "position": "RB",
+        "nflTeam": "PIT",
+        "pointsForNewTeam": 78.9,
+        "startedPointsForNewTeam_reference": 78.9,
+        "ppgBefore": 13.53,
+        "gamesBefore": 3,
+        "ppgAfter": 19.72,
+        "gamesAfter": 4,
+        "ppgTrend": 6.19,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 10.3,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 2,
+          "points": 9.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 3,
+          "points": 20.6,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 15.6,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 5,
+          "points": 36.8,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 6,
+          "points": 9.8,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 7,
+          "points": 16.7,
+          "status": "played",
+          "fantasyTeamId": 3
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 3606,
+         "overallRank": 36,
+         "positionRank": 17,
+         "trend30Day": 1444,
+         "value30DaysAgo": 2162,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 2162,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 1444
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "backfiring",
+       "mixedSignals": false,
+       "confidence": "medium-high",
+       "weeksOfData": 4,
+       "valueSignal": {
+        "edgePct": 6.7,
+        "signal": 0
+       },
+       "pointsSignal": {
+        "pointsGained": -15.2,
+        "signal": -1
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     }
+    },
+    "sources": {
+     "points": "Flaim get_matchups detail=players (league scoring, all roster slots incl. bench)",
+     "gamesPlayed": "ESPN public athlete gamelog API site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{id}/gamelog?season=2026, fetched 2026-10-29T02:15-04:00",
+     "byes": "ESPN public team schedule API site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{abbr}/schedule?season=2026",
+     "values": "https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1 (fetched 2026-10-29T02:14-04:00; league scoring confirmed full PPR from a Jacobs week-7 line: 5 rec, 91 yds, 1 TD = 20.1)"
+    }
    }
   },
   {
@@ -406,7 +1000,7 @@
    ],
    "note": "Players moved between the week 3 and week 4 roster snapshots. The ESPN accept row maps to this trade by elimination.",
    "whoWonIt": {
-    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      4,
      7
@@ -479,9 +1073,582 @@
       ]
      }
     },
-    "edgeTeamId": 4,
-    "edgeStartedPoints": 13.5,
+    "edgeTeamId": 6,
+    "edgePoints": 35.7,
     "verdict": "leaning"
+   },
+   "longTermGrade": {
+    "asOf": "2026-10-29T02:14-04:00",
+    "lastFinalWeek": 7,
+    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "weeksAfterTrade": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "sides": {
+     "4": {
+      "teamId": 4,
+      "displayName": "All Heart",
+      "receivedValueNow": 5667,
+      "receivedValueNowKept": 5667,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 6208,
+      "valueEdgeNow": -541,
+      "valueChangeSinceTrade": {
+       "received": 867,
+       "sent": 3040,
+       "net": -2173,
+       "note": null
+      },
+      "pointsReceived": 63.2,
+      "pointsSentAway": 98.9,
+      "pointsGained": -35.7,
+      "ppgTrendReceived": -1.88,
+      "ppgTrendSent": 17.53,
+      "received": [
+       {
+        "name": "Blake Corum",
+        "position": "RB",
+        "nflTeam": "LAR",
+        "pointsForNewTeam": 3.1,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 6.37,
+        "gamesBefore": 3,
+        "ppgAfter": 12.6,
+        "gamesAfter": 4,
+        "ppgTrend": 6.23,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 5.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 10.2,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 3.5,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 3.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 16.2,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 6,
+          "points": 14,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 7,
+          "points": 17.1,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 5,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 16.2
+         },
+         {
+          "week": 6,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 14
+         },
+         {
+          "week": 7,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 17.1
+         }
+        ],
+        "stillOnNewTeam": false,
+        "disposition": "flipped in 2026-T5",
+        "value": {
+         "valueNow": 1290,
+         "overallRank": 78,
+         "positionRank": 29,
+         "trend30Day": 262,
+         "value30DaysAgo": 1028,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 1028,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 262
+        },
+        "note": null
+       },
+       {
+        "name": "Christian Watson",
+        "position": "WR",
+        "nflTeam": "GB",
+        "pointsForNewTeam": 60.1,
+        "startedPointsForNewTeam_reference": 60.1,
+        "ppgBefore": 23.13,
+        "gamesBefore": 3,
+        "ppgAfter": 15.02,
+        "gamesAfter": 4,
+        "ppgTrend": -8.11,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 32.7,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 14.1,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 22.6,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 7.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 32.3,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 6,
+          "points": 9.4,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 7,
+          "points": 10.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 4377,
+         "overallRank": 27,
+         "positionRank": 11,
+         "trend30Day": 605,
+         "value30DaysAgo": 3772,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 3772,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 605
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "Malik Nabers",
+        "position": "WR",
+        "nflTeam": "NYG",
+        "pointsForNewTeam": 98.9,
+        "startedPointsForNewTeam_reference": 46.6,
+        "ppgBefore": 7.2,
+        "gamesBefore": 3,
+        "ppgAfter": 24.73,
+        "gamesAfter": 4,
+        "ppgTrend": 17.53,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 12.9,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 2,
+          "points": 1.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 3,
+          "points": 7.6,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 23.2,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 5,
+          "points": 29.1,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 6,
+          "points": 28.5,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 7,
+          "points": 18.1,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 6208,
+         "overallRank": 16,
+         "positionRank": 7,
+         "trend30Day": 3040,
+         "value30DaysAgo": 3168,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 3168,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 3040
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "backfiring",
+       "mixedSignals": false,
+       "confidence": "medium-high",
+       "weeksOfData": 4,
+       "valueSignal": {
+        "edgePct": -8.7,
+        "signal": 0
+       },
+       "pointsSignal": {
+        "pointsGained": -35.7,
+        "signal": -1
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     },
+     "6": {
+      "teamId": 6,
+      "displayName": "Smert Fellas",
+      "receivedValueNow": 6208,
+      "receivedValueNowKept": 6208,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 5667,
+      "valueEdgeNow": 541,
+      "valueChangeSinceTrade": {
+       "received": 3040,
+       "sent": 867,
+       "net": 2173,
+       "note": null
+      },
+      "pointsReceived": 98.9,
+      "pointsSentAway": 63.2,
+      "pointsGained": 35.7,
+      "ppgTrendReceived": 17.53,
+      "ppgTrendSent": -1.88,
+      "received": [
+       {
+        "name": "Malik Nabers",
+        "position": "WR",
+        "nflTeam": "NYG",
+        "pointsForNewTeam": 98.9,
+        "startedPointsForNewTeam_reference": 46.6,
+        "ppgBefore": 7.2,
+        "gamesBefore": 3,
+        "ppgAfter": 24.73,
+        "gamesAfter": 4,
+        "ppgTrend": 17.53,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 12.9,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 2,
+          "points": 1.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 3,
+          "points": 7.6,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 23.2,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 5,
+          "points": 29.1,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 6,
+          "points": 28.5,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 7,
+          "points": 18.1,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 6208,
+         "overallRank": 16,
+         "positionRank": 7,
+         "trend30Day": 3040,
+         "value30DaysAgo": 3168,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 3168,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 3040
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "Blake Corum",
+        "position": "RB",
+        "nflTeam": "LAR",
+        "pointsForNewTeam": 3.1,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 6.37,
+        "gamesBefore": 3,
+        "ppgAfter": 12.6,
+        "gamesAfter": 4,
+        "ppgTrend": 6.23,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 5.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 10.2,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 3.5,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 3.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 16.2,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 6,
+          "points": 14,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 7,
+          "points": 17.1,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 5,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 16.2
+         },
+         {
+          "week": 6,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 14
+         },
+         {
+          "week": 7,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": 17.1
+         }
+        ],
+        "stillOnNewTeam": false,
+        "disposition": "flipped in 2026-T5",
+        "value": {
+         "valueNow": 1290,
+         "overallRank": 78,
+         "positionRank": 29,
+         "trend30Day": 262,
+         "value30DaysAgo": 1028,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 1028,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 262
+        },
+        "note": null
+       },
+       {
+        "name": "Christian Watson",
+        "position": "WR",
+        "nflTeam": "GB",
+        "pointsForNewTeam": 60.1,
+        "startedPointsForNewTeam_reference": 60.1,
+        "ppgBefore": 23.13,
+        "gamesBefore": 3,
+        "ppgAfter": 15.02,
+        "gamesAfter": 4,
+        "ppgTrend": -8.11,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 32.7,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 14.1,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 22.6,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 4,
+          "points": 7.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 32.3,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 6,
+          "points": 9.4,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 7,
+          "points": 10.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 4377,
+         "overallRank": 27,
+         "positionRank": 11,
+         "trend30Day": 605,
+         "value30DaysAgo": 3772,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": 3772,
+         "valueAtTradeBasis": "approx: valueNow - trend30Day = value on ~2026-09-29, 1 day after the 2026-09-28 trade",
+         "changeSinceTrade": 605
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "paying off",
+       "mixedSignals": false,
+       "confidence": "medium-high",
+       "weeksOfData": 4,
+       "valueSignal": {
+        "edgePct": 8.7,
+        "signal": 0
+       },
+       "pointsSignal": {
+        "pointsGained": 35.7,
+        "signal": 1
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     }
+    },
+    "sources": {
+     "points": "Flaim get_matchups detail=players (league scoring, all roster slots incl. bench)",
+     "gamesPlayed": "ESPN public athlete gamelog API site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{id}/gamelog?season=2026, fetched 2026-10-29T02:15-04:00",
+     "byes": "ESPN public team schedule API site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{abbr}/schedule?season=2026",
+     "values": "https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1 (fetched 2026-10-29T02:14-04:00; league scoring confirmed full PPR from a Jacobs week-7 line: 5 rec, 91 yds, 1 TD = 20.1)"
+    }
    }
   },
   {
@@ -554,7 +1721,7 @@
    ],
    "note": "All Heart dropped Joe Mixon on Oct 9, two days after the trade (add/drop log), so he never played a week for them.",
    "whoWonIt": {
-    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      5,
      7
@@ -591,8 +1758,420 @@
      }
     },
     "edgeTeamId": 8,
-    "edgeStartedPoints": 14.0,
+    "edgePoints": 47.3,
     "verdict": "leaning"
+   },
+   "longTermGrade": {
+    "asOf": "2026-10-29T02:14-04:00",
+    "lastFinalWeek": 7,
+    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "weeksAfterTrade": [
+     5,
+     6,
+     7
+    ],
+    "sides": {
+     "4": {
+      "teamId": 4,
+      "displayName": "All Heart",
+      "receivedValueNow": 0,
+      "receivedValueNowKept": 0,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 1290,
+      "valueEdgeNow": -1290,
+      "valueChangeSinceTrade": {
+       "received": null,
+       "sent": null,
+       "net": null,
+       "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
+      },
+      "pointsReceived": 0,
+      "pointsSentAway": 47.3,
+      "pointsGained": -47.3,
+      "ppgTrendReceived": 0,
+      "ppgTrendSent": 10.22,
+      "received": [
+       {
+        "name": "Joe Mixon",
+        "position": "RB",
+        "nflTeam": null,
+        "pointsForNewTeam": 0,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": null,
+        "gamesBefore": 0,
+        "ppgAfter": null,
+        "gamesAfter": 0,
+        "ppgTrend": null,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 2,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 3,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 4,
+          "points": 0,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": 8
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 5,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 6,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 7,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 5,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         },
+         {
+          "week": 6,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         },
+         {
+          "week": 7,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         }
+        ],
+        "stillOnNewTeam": false,
+        "disposition": "released",
+        "value": {
+         "valueNow": null,
+         "reason": "Not in the FantasyCalc redraft list (197 players). He is an NFL free agent with no 2026 games, so he counts as 0 in totals.",
+         "source": "https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1",
+         "fetchedAt": "2026-10-29T02:14-04:00"
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "Blake Corum",
+        "position": "RB",
+        "nflTeam": "LAR",
+        "pointsForNewTeam": 47.3,
+        "startedPointsForNewTeam_reference": 14,
+        "ppgBefore": 5.55,
+        "gamesBefore": 4,
+        "ppgAfter": 15.77,
+        "gamesAfter": 3,
+        "ppgTrend": 10.22,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 5.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 10.2,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 3.5,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 4,
+          "points": 3.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 5,
+          "points": 16.2,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 6,
+          "points": 14,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 7,
+          "points": 17.1,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 1290,
+         "overallRank": 78,
+         "positionRank": 29,
+         "trend30Day": 262,
+         "value30DaysAgo": 1028,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-07 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "backfiring",
+       "mixedSignals": false,
+       "confidence": "medium",
+       "weeksOfData": 3,
+       "valueSignal": {
+        "edgePct": -100.0,
+        "signal": -1
+       },
+       "pointsSignal": {
+        "pointsGained": -47.3,
+        "signal": -1
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     },
+     "8": {
+      "teamId": 8,
+      "displayName": "Dimes McSorley",
+      "receivedValueNow": 1290,
+      "receivedValueNowKept": 1290,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 0,
+      "valueEdgeNow": 1290,
+      "valueChangeSinceTrade": {
+       "received": null,
+       "sent": null,
+       "net": null,
+       "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
+      },
+      "pointsReceived": 47.3,
+      "pointsSentAway": 0,
+      "pointsGained": 47.3,
+      "ppgTrendReceived": 10.22,
+      "ppgTrendSent": 0,
+      "received": [
+       {
+        "name": "Blake Corum",
+        "position": "RB",
+        "nflTeam": "LAR",
+        "pointsForNewTeam": 47.3,
+        "startedPointsForNewTeam_reference": 14,
+        "ppgBefore": 5.55,
+        "gamesBefore": 4,
+        "ppgAfter": 15.77,
+        "gamesAfter": 3,
+        "ppgTrend": 10.22,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 5.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 10.2,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 3.5,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 4,
+          "points": 3.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 5,
+          "points": 16.2,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 6,
+          "points": 14,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 7,
+          "points": 17.1,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 1290,
+         "overallRank": 78,
+         "positionRank": 29,
+         "trend30Day": 262,
+         "value30DaysAgo": 1028,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-07 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "Joe Mixon",
+        "position": "RB",
+        "nflTeam": null,
+        "pointsForNewTeam": 0,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": null,
+        "gamesBefore": 0,
+        "ppgAfter": null,
+        "gamesAfter": 0,
+        "ppgTrend": null,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 2,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 3,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 4,
+          "points": 0,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": 8
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 5,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 6,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 7,
+          "points": null,
+          "status": "out (no NFL games in 2026)",
+          "fantasyTeamId": null
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 5,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         },
+         {
+          "week": 6,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         },
+         {
+          "week": 7,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         }
+        ],
+        "stillOnNewTeam": false,
+        "disposition": "released",
+        "value": {
+         "valueNow": null,
+         "reason": "Not in the FantasyCalc redraft list (197 players). He is an NFL free agent with no 2026 games, so he counts as 0 in totals.",
+         "source": "https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1",
+         "fetchedAt": "2026-10-29T02:14-04:00"
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "paying off",
+       "mixedSignals": false,
+       "confidence": "medium",
+       "weeksOfData": 3,
+       "valueSignal": {
+        "edgePct": 100.0,
+        "signal": 1
+       },
+       "pointsSignal": {
+        "pointsGained": 47.3,
+        "signal": 1
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     }
+    },
+    "sources": {
+     "points": "Flaim get_matchups detail=players (league scoring, all roster slots incl. bench)",
+     "gamesPlayed": "ESPN public athlete gamelog API site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{id}/gamelog?season=2026, fetched 2026-10-29T02:15-04:00",
+     "byes": "ESPN public team schedule API site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{abbr}/schedule?season=2026",
+     "values": "https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1 (fetched 2026-10-29T02:14-04:00; league scoring confirmed full PPR from a Jacobs week-7 line: 5 rec, 91 yds, 1 TD = 20.1)"
+    }
    }
   },
   {
@@ -712,7 +2291,7 @@
    ],
    "note": "Gerrit accepted on Oct 14 and it processed Oct 15. All Heart released KC Concepcion right away (Smert Fellas later claimed him). Chewy's logged a veto vote on Oct 14.",
    "whoWonIt": {
-    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      6,
      7
@@ -791,9 +2370,1072 @@
       ]
      }
     },
-    "edgeTeamId": 4,
-    "edgeStartedPoints": 10.0,
+    "edgeTeamId": 7,
+    "edgePoints": 1.5,
     "verdict": "leaning"
+   },
+   "longTermGrade": {
+    "asOf": "2026-10-29T02:14-04:00",
+    "lastFinalWeek": 7,
+    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "weeksAfterTrade": [
+     6,
+     7
+    ],
+    "sides": {
+     "4": {
+      "teamId": 4,
+      "displayName": "All Heart",
+      "receivedValueNow": 6033,
+      "receivedValueNowKept": 5205,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 8450,
+      "valueEdgeNow": -3245,
+      "valueChangeSinceTrade": {
+       "received": null,
+       "sent": null,
+       "net": null,
+       "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
+      },
+      "pointsReceived": 37.7,
+      "pointsSentAway": 39.2,
+      "pointsGained": -1.5,
+      "ppgTrendReceived": 10.22,
+      "ppgTrendSent": 8.84,
+      "received": [
+       {
+        "name": "DK Metcalf",
+        "position": "WR",
+        "nflTeam": "PIT",
+        "pointsForNewTeam": 27.9,
+        "startedPointsForNewTeam_reference": 20.3,
+        "ppgBefore": 9.72,
+        "gamesBefore": 5,
+        "ppgAfter": 13.95,
+        "gamesAfter": 2,
+        "ppgTrend": 4.23,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 8,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 2,
+          "points": 6.7,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 3,
+          "points": 12.1,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 4,
+          "points": 16.5,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 5,
+          "points": 5.3,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 20.3,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 7,
+          "points": 7.6,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 1145,
+         "overallRank": 83,
+         "positionRank": 34,
+         "trend30Day": 153,
+         "value30DaysAgo": 992,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "Chase Brown",
+        "position": "RB",
+        "nflTeam": "CIN",
+        "pointsForNewTeam": 9.8,
+        "startedPointsForNewTeam_reference": 9.8,
+        "ppgBefore": 13.0,
+        "gamesBefore": 5,
+        "ppgAfter": 9.8,
+        "gamesAfter": 1,
+        "ppgTrend": -3.2,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 18.8,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 2,
+          "points": 11.2,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 3,
+          "points": 8.9,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 4,
+          "points": 19.1,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 5,
+          "points": 7,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 0,
+          "status": "bye",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 7,
+          "points": 9.8,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "bye",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 4060,
+         "overallRank": 30,
+         "positionRank": 15,
+         "trend30Day": -1383,
+         "value30DaysAgo": 5443,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "KC Concepcion",
+        "position": "WR",
+        "nflTeam": "CLE",
+        "pointsForNewTeam": 0,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 6.36,
+        "gamesBefore": 5,
+        "ppgAfter": 15.55,
+        "gamesAfter": 2,
+        "ppgTrend": 9.19,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 7.8,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 2,
+          "points": 8.2,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 3,
+          "points": 2.9,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 4,
+          "points": 11.4,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 5,
+          "points": 1.5,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": null,
+          "status": "played",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 7,
+          "points": null,
+          "status": "played",
+          "fantasyTeamId": null
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         },
+         {
+          "week": 7,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         }
+        ],
+        "stillOnNewTeam": false,
+        "disposition": "released",
+        "value": {
+         "valueNow": 828,
+         "overallRank": 96,
+         "positionRank": 38,
+         "trend30Day": 319,
+         "value30DaysAgo": 509,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": "Released by the receiving team on 2026-10-15. ppgAfter = (league-scoring season total 62.9 - pre-trade 31.8) / 2 games, using Flaim get_players (league scoring), fetched 2026-10-29."
+       }
+      ],
+      "sent": [
+       {
+        "name": "Josh Jacobs",
+        "position": "RB",
+        "nflTeam": "GB",
+        "pointsForNewTeam": 20.1,
+        "startedPointsForNewTeam_reference": 20.1,
+        "ppgBefore": null,
+        "gamesBefore": 0,
+        "ppgAfter": 20.1,
+        "gamesAfter": 1,
+        "ppgTrend": null,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 2,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 3,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 4,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 7,
+          "points": 20.1,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "out (no game-log entry: injured or inactive)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 4424,
+         "overallRank": 26,
+         "positionRank": 13,
+         "trend30Day": 2634,
+         "value30DaysAgo": 1790,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "Cam Skattebo",
+        "position": "RB",
+        "nflTeam": "NYG",
+        "pointsForNewTeam": 19.1,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 10.26,
+        "gamesBefore": 5,
+        "ppgAfter": 19.1,
+        "gamesAfter": 1,
+        "ppgTrend": 8.84,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 14.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 2,
+          "points": 9.5,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 3,
+          "points": 13,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 4,
+          "points": 7.6,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 7.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 0,
+          "status": "game-log entry with all-zero stats (likely left early or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 7,
+          "points": 19.1,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "game-log entry with all-zero stats (likely left early or inactive)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 1983,
+         "overallRank": 60,
+         "positionRank": 22,
+         "trend30Day": -861,
+         "value30DaysAgo": 2844,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "DJ Moore",
+        "position": "WR",
+        "nflTeam": "BUF",
+        "pointsForNewTeam": 0,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 9.07,
+        "gamesBefore": 4,
+        "ppgAfter": null,
+        "gamesAfter": 0,
+        "ppgTrend": null,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 21,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 2,
+          "points": -0.1,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 3,
+          "points": 12.7,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 4,
+          "points": 2.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 0,
+          "status": "bye",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 7,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "out (no game-log entry: injured or inactive)",
+          "points": 0
+         },
+         {
+          "week": 7,
+          "why": "out (no game-log entry: injured or inactive)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 2043,
+         "overallRank": 55,
+         "positionRank": 23,
+         "trend30Day": -500,
+         "value30DaysAgo": 2543,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "backfiring",
+       "mixedSignals": false,
+       "confidence": "low",
+       "weeksOfData": 2,
+       "valueSignal": {
+        "edgePct": -38.4,
+        "signal": -1
+       },
+       "pointsSignal": {
+        "pointsGained": -1.5,
+        "signal": 0
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     },
+     "7": {
+      "teamId": 7,
+      "displayName": "Maye i give you a blowj0b",
+      "receivedValueNow": 8450,
+      "receivedValueNowKept": 8450,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 6033,
+      "valueEdgeNow": 2417,
+      "valueChangeSinceTrade": {
+       "received": null,
+       "sent": null,
+       "net": null,
+       "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
+      },
+      "pointsReceived": 39.2,
+      "pointsSentAway": 37.7,
+      "pointsGained": 1.5,
+      "ppgTrendReceived": 8.84,
+      "ppgTrendSent": 10.22,
+      "received": [
+       {
+        "name": "Josh Jacobs",
+        "position": "RB",
+        "nflTeam": "GB",
+        "pointsForNewTeam": 20.1,
+        "startedPointsForNewTeam_reference": 20.1,
+        "ppgBefore": null,
+        "gamesBefore": 0,
+        "ppgAfter": 20.1,
+        "gamesAfter": 1,
+        "ppgTrend": null,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 2,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 3,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 4,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 7,
+          "points": 20.1,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "out (no game-log entry: injured or inactive)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 4424,
+         "overallRank": 26,
+         "positionRank": 13,
+         "trend30Day": 2634,
+         "value30DaysAgo": 1790,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "Cam Skattebo",
+        "position": "RB",
+        "nflTeam": "NYG",
+        "pointsForNewTeam": 19.1,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 10.26,
+        "gamesBefore": 5,
+        "ppgAfter": 19.1,
+        "gamesAfter": 1,
+        "ppgTrend": 8.84,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 14.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 2,
+          "points": 9.5,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 3,
+          "points": 13,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 4,
+          "points": 7.6,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 7.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 0,
+          "status": "game-log entry with all-zero stats (likely left early or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 7,
+          "points": 19.1,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "game-log entry with all-zero stats (likely left early or inactive)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 1983,
+         "overallRank": 60,
+         "positionRank": 22,
+         "trend30Day": -861,
+         "value30DaysAgo": 2844,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "DJ Moore",
+        "position": "WR",
+        "nflTeam": "BUF",
+        "pointsForNewTeam": 0,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 9.07,
+        "gamesBefore": 4,
+        "ppgAfter": null,
+        "gamesAfter": 0,
+        "ppgTrend": null,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 21,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 2,
+          "points": -0.1,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 3,
+          "points": 12.7,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 4,
+          "points": 2.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 5,
+          "points": 0,
+          "status": "bye",
+          "fantasyTeamId": 4
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 7,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "out (no game-log entry: injured or inactive)",
+          "points": 0
+         },
+         {
+          "week": 7,
+          "why": "out (no game-log entry: injured or inactive)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 2043,
+         "overallRank": 55,
+         "positionRank": 23,
+         "trend30Day": -500,
+         "value30DaysAgo": 2543,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "DK Metcalf",
+        "position": "WR",
+        "nflTeam": "PIT",
+        "pointsForNewTeam": 27.9,
+        "startedPointsForNewTeam_reference": 20.3,
+        "ppgBefore": 9.72,
+        "gamesBefore": 5,
+        "ppgAfter": 13.95,
+        "gamesAfter": 2,
+        "ppgTrend": 4.23,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 8,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 2,
+          "points": 6.7,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 3,
+          "points": 12.1,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 4,
+          "points": 16.5,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 5,
+          "points": 5.3,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 20.3,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 7,
+          "points": 7.6,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 1145,
+         "overallRank": 83,
+         "positionRank": 34,
+         "trend30Day": 153,
+         "value30DaysAgo": 992,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "Chase Brown",
+        "position": "RB",
+        "nflTeam": "CIN",
+        "pointsForNewTeam": 9.8,
+        "startedPointsForNewTeam_reference": 9.8,
+        "ppgBefore": 13.0,
+        "gamesBefore": 5,
+        "ppgAfter": 9.8,
+        "gamesAfter": 1,
+        "ppgTrend": -3.2,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 18.8,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 2,
+          "points": 11.2,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 3,
+          "points": 8.9,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 4,
+          "points": 19.1,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 5,
+          "points": 7,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": 0,
+          "status": "bye",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 7,
+          "points": 9.8,
+          "status": "played",
+          "fantasyTeamId": 4
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "bye",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 4060,
+         "overallRank": 30,
+         "positionRank": 15,
+         "trend30Day": -1383,
+         "value30DaysAgo": 5443,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "KC Concepcion",
+        "position": "WR",
+        "nflTeam": "CLE",
+        "pointsForNewTeam": 0,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 6.36,
+        "gamesBefore": 5,
+        "ppgAfter": 15.55,
+        "gamesAfter": 2,
+        "ppgTrend": 9.19,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 7.8,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 2,
+          "points": 8.2,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 3,
+          "points": 2.9,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 4,
+          "points": 11.4,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 5,
+          "points": 1.5,
+          "status": "played",
+          "fantasyTeamId": 7
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 6,
+          "points": null,
+          "status": "played",
+          "fantasyTeamId": null
+         },
+         {
+          "week": 7,
+          "points": null,
+          "status": "played",
+          "fantasyTeamId": null
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 6,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         },
+         {
+          "week": 7,
+          "why": "not on this fantasy team that week (released or traded on)",
+          "points": null
+         }
+        ],
+        "stillOnNewTeam": false,
+        "disposition": "released",
+        "value": {
+         "valueNow": 828,
+         "overallRank": 96,
+         "positionRank": 38,
+         "trend30Day": 319,
+         "value30DaysAgo": 509,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": "Released by the receiving team on 2026-10-15. ppgAfter = (league-scoring season total 62.9 - pre-trade 31.8) / 2 games, using Flaim get_players (league scoring), fetched 2026-10-29."
+       }
+      ],
+      "verdict": {
+       "call": "paying off",
+       "mixedSignals": false,
+       "confidence": "low",
+       "weeksOfData": 2,
+       "valueSignal": {
+        "edgePct": 28.6,
+        "signal": 1
+       },
+       "pointsSignal": {
+        "pointsGained": 1.5,
+        "signal": 0
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     }
+    },
+    "sources": {
+     "points": "Flaim get_matchups detail=players (league scoring, all roster slots incl. bench)",
+     "gamesPlayed": "ESPN public athlete gamelog API site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{id}/gamelog?season=2026, fetched 2026-10-29T02:15-04:00",
+     "byes": "ESPN public team schedule API site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{abbr}/schedule?season=2026",
+     "values": "https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1 (fetched 2026-10-29T02:14-04:00; league scoring confirmed full PPR from a Jacobs week-7 line: 5 rec, 91 yds, 1 TD = 20.1)"
+    }
    }
   },
   {
@@ -886,7 +3528,7 @@
    ],
    "note": "Accepted Oct 19. This is a counter version of Smert Fellas' Aaron Jones and DeVonta Smith offer. Chewy's logged a veto vote that day.",
    "whoWonIt": {
-    "basis": "Fantasy points that received players scored in starting lineups for the new team, from the first week after the trade through week 7 (week 8 in progress, excluded). Weeks after a player left the new team are not counted.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      7,
      7
@@ -930,8 +3572,706 @@
      }
     },
     "edgeTeamId": 6,
-    "edgeStartedPoints": 3.1,
+    "edgePoints": 3.1,
     "verdict": "too early"
+   },
+   "longTermGrade": {
+    "asOf": "2026-10-29T02:14-04:00",
+    "lastFinalWeek": 7,
+    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "weeksAfterTrade": [
+     7
+    ],
+    "sides": {
+     "6": {
+      "teamId": 6,
+      "displayName": "Smert Fellas",
+      "receivedValueNow": 4269,
+      "receivedValueNowKept": 4269,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 7081,
+      "valueEdgeNow": -2812,
+      "valueChangeSinceTrade": {
+       "received": null,
+       "sent": null,
+       "net": null,
+       "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
+      },
+      "pointsReceived": 23.4,
+      "pointsSentAway": 20.3,
+      "pointsGained": 3.1,
+      "ppgTrendReceived": 12.14,
+      "ppgTrendSent": -9.13,
+      "received": [
+       {
+        "name": "DeVonta Smith",
+        "position": "WR",
+        "nflTeam": "PHI",
+        "pointsForNewTeam": 0,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 17.25,
+        "gamesBefore": 4,
+        "ppgAfter": null,
+        "gamesAfter": 0,
+        "ppgTrend": null,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 8.3,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 2,
+          "points": 27.7,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 3,
+          "points": 12.5,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 4,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 5,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 6,
+          "points": 20.5,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 7,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 6
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 7,
+          "why": "out (no game-log entry: injured or inactive)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 2217,
+         "overallRank": 50,
+         "positionRank": 22,
+         "trend30Day": -2369,
+         "value30DaysAgo": 4586,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-19 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "Quinshon Judkins",
+        "position": "RB",
+        "nflTeam": "CLE",
+        "pointsForNewTeam": 23.4,
+        "startedPointsForNewTeam_reference": 23.4,
+        "ppgBefore": 11.26,
+        "gamesBefore": 5,
+        "ppgAfter": 23.4,
+        "gamesAfter": 1,
+        "ppgTrend": 12.14,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 7.0,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 2,
+          "points": 9.8,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 3,
+          "points": 9.9,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 4,
+          "points": 21.6,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 5,
+          "points": 8,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 6,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 8
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 7,
+          "points": 23.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 2052,
+         "overallRank": 54,
+         "positionRank": 21,
+         "trend30Day": 317,
+         "value30DaysAgo": 1735,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-19 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "George Pickens",
+        "position": "WR",
+        "nflTeam": "DAL",
+        "pointsForNewTeam": 15.7,
+        "startedPointsForNewTeam_reference": 15.7,
+        "ppgBefore": 13.63,
+        "gamesBefore": 6,
+        "ppgAfter": 15.7,
+        "gamesAfter": 1,
+        "ppgTrend": 2.07,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 5.8,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 10,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 15.2,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 4,
+          "points": 9.5,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 5,
+          "points": 28,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 6,
+          "points": 13.3,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 7,
+          "points": 15.7,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 3395,
+         "overallRank": 38,
+         "positionRank": 17,
+         "trend30Day": -654,
+         "value30DaysAgo": 4049,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-19 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "Garrett Wilson",
+        "position": "WR",
+        "nflTeam": "NYJ",
+        "pointsForNewTeam": 4.6,
+        "startedPointsForNewTeam_reference": 4.6,
+        "ppgBefore": 15.8,
+        "gamesBefore": 6,
+        "ppgAfter": 4.6,
+        "gamesAfter": 1,
+        "ppgTrend": -11.2,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 13.9,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 16.7,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 26.7,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 4,
+          "points": 5.7,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 5,
+          "points": 23.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 6,
+          "points": 8.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 7,
+          "points": 4.6,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 3686,
+         "overallRank": 34,
+         "positionRank": 15,
+         "trend30Day": -523,
+         "value30DaysAgo": 4209,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-19 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "backfiring",
+       "mixedSignals": false,
+       "confidence": "low",
+       "weeksOfData": 1,
+       "valueSignal": {
+        "edgePct": -39.7,
+        "signal": -1
+       },
+       "pointsSignal": {
+        "pointsGained": 3.1,
+        "signal": 0
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     },
+     "8": {
+      "teamId": 8,
+      "displayName": "Dimes McSorley",
+      "receivedValueNow": 7081,
+      "receivedValueNowKept": 7081,
+      "receivedValueNowKeptNote": "Counts players still on the team or later flipped in another trade (value used as currency). Released players count 0.",
+      "sentValueNow": 4269,
+      "valueEdgeNow": 2812,
+      "valueChangeSinceTrade": {
+       "received": null,
+       "sent": null,
+       "net": null,
+       "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
+      },
+      "pointsReceived": 20.3,
+      "pointsSentAway": 23.4,
+      "pointsGained": -3.1,
+      "ppgTrendReceived": -9.13,
+      "ppgTrendSent": 12.14,
+      "received": [
+       {
+        "name": "George Pickens",
+        "position": "WR",
+        "nflTeam": "DAL",
+        "pointsForNewTeam": 15.7,
+        "startedPointsForNewTeam_reference": 15.7,
+        "ppgBefore": 13.63,
+        "gamesBefore": 6,
+        "ppgAfter": 15.7,
+        "gamesAfter": 1,
+        "ppgTrend": 2.07,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 5.8,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 10,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 15.2,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 4,
+          "points": 9.5,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 5,
+          "points": 28,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 6,
+          "points": 13.3,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 7,
+          "points": 15.7,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 3395,
+         "overallRank": 38,
+         "positionRank": 17,
+         "trend30Day": -654,
+         "value30DaysAgo": 4049,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-19 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "Garrett Wilson",
+        "position": "WR",
+        "nflTeam": "NYJ",
+        "pointsForNewTeam": 4.6,
+        "startedPointsForNewTeam_reference": 4.6,
+        "ppgBefore": 15.8,
+        "gamesBefore": 6,
+        "ppgAfter": 4.6,
+        "gamesAfter": 1,
+        "ppgTrend": -11.2,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 13.9,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 2,
+          "points": 16.7,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 3,
+          "points": 26.7,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 4,
+          "points": 5.7,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 5,
+          "points": 23.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 6,
+          "points": 8.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 7,
+          "points": 4.6,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 3686,
+         "overallRank": 34,
+         "positionRank": 15,
+         "trend30Day": -523,
+         "value30DaysAgo": 4209,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-19 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       }
+      ],
+      "sent": [
+       {
+        "name": "DeVonta Smith",
+        "position": "WR",
+        "nflTeam": "PHI",
+        "pointsForNewTeam": 0,
+        "startedPointsForNewTeam_reference": 0,
+        "ppgBefore": 17.25,
+        "gamesBefore": 4,
+        "ppgAfter": null,
+        "gamesAfter": 0,
+        "ppgTrend": null,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 8.3,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 2,
+          "points": 27.7,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 3,
+          "points": 12.5,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 4,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 5,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 6,
+          "points": 20.5,
+          "status": "played",
+          "fantasyTeamId": 8
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 7,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 6
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [
+         {
+          "week": 7,
+          "why": "out (no game-log entry: injured or inactive)",
+          "points": 0
+         }
+        ],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 2217,
+         "overallRank": 50,
+         "positionRank": 22,
+         "trend30Day": -2369,
+         "value30DaysAgo": 4586,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-19 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       },
+       {
+        "name": "Quinshon Judkins",
+        "position": "RB",
+        "nflTeam": "CLE",
+        "pointsForNewTeam": 23.4,
+        "startedPointsForNewTeam_reference": 23.4,
+        "ppgBefore": 11.26,
+        "gamesBefore": 5,
+        "ppgAfter": 23.4,
+        "gamesAfter": 1,
+        "ppgTrend": 12.14,
+        "weeksBefore": [
+         {
+          "week": 1,
+          "points": 7.0,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 2,
+          "points": 9.8,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 3,
+          "points": 9.9,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 4,
+          "points": 21.6,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 5,
+          "points": 8,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 6,
+          "points": 0,
+          "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 8
+         }
+        ],
+        "weeksAfter": [
+         {
+          "week": 7,
+          "points": 23.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         }
+        ],
+        "zeroOrMissingWeeksAfter": [],
+        "stillOnNewTeam": true,
+        "disposition": "still on team",
+        "value": {
+         "valueNow": 2052,
+         "overallRank": 54,
+         "positionRank": 21,
+         "trend30Day": 317,
+         "value30DaysAgo": 1735,
+         "source": "FantasyCalc redraft, 10-team 1QB full PPR (https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1)",
+         "fetchedAt": "2026-10-29T02:14-04:00",
+         "valueAtTrade": null,
+         "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-19 trade, so it is context only.",
+         "changeSinceTrade": null
+        },
+        "note": null
+       }
+      ],
+      "verdict": {
+       "call": "paying off",
+       "mixedSignals": false,
+       "confidence": "low",
+       "weeksOfData": 1,
+       "valueSignal": {
+        "edgePct": 39.7,
+        "signal": 1
+       },
+       "pointsSignal": {
+        "pointsGained": -3.1,
+        "signal": 0
+       },
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+      }
+     }
+    },
+    "sources": {
+     "points": "Flaim get_matchups detail=players (league scoring, all roster slots incl. bench)",
+     "gamesPlayed": "ESPN public athlete gamelog API site.web.api.espn.com/apis/common/v3/sports/football/nfl/athletes/{id}/gamelog?season=2026, fetched 2026-10-29T02:15-04:00",
+     "byes": "ESPN public team schedule API site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{abbr}/schedule?season=2026",
+     "values": "https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1 (fetched 2026-10-29T02:14-04:00; league scoring confirmed full PPR from a Jacobs week-7 line: 5 rec, 91 yds, 1 TD = 20.1)"
+    }
    }
   }
  ],
@@ -7267,7 +10607,7 @@
    "proposalsReceived2026": 0,
    "declinesLogged2026": 1,
    "vetoVotesLogged2026": 2,
-   "netStartedPointsFromTrades2026": 0
+   "netPointsFromTrades2026": 0
   },
   "2": {
    "teamId": 2,
@@ -7286,7 +10626,7 @@
    "proposalsReceived2026": 6,
    "declinesLogged2026": 2,
    "vetoVotesLogged2026": 2,
-   "netStartedPointsFromTrades2026": 0
+   "netPointsFromTrades2026": 0
   },
   "3": {
    "teamId": 3,
@@ -7333,7 +10673,7 @@
    "proposalsReceived2026": 3,
    "declinesLogged2026": 9,
    "vetoVotesLogged2026": 5,
-   "netStartedPointsFromTrades2026": 34.1
+   "netPointsFromTrades2026": 15.2
   },
   "4": {
    "teamId": 4,
@@ -7412,7 +10752,7 @@
    "proposalsReceived2026": 7,
    "declinesLogged2026": 13,
    "vetoVotesLogged2026": 1,
-   "netStartedPointsFromTrades2026": -24.6
+   "netPointsFromTrades2026": -99.7
   },
   "5": {
    "teamId": 5,
@@ -7431,7 +10771,7 @@
    "proposalsReceived2026": 3,
    "declinesLogged2026": 6,
    "vetoVotesLogged2026": 0,
-   "netStartedPointsFromTrades2026": 0
+   "netPointsFromTrades2026": 0
   },
   "6": {
    "teamId": 6,
@@ -7482,7 +10822,7 @@
    "proposalsReceived2026": 3,
    "declinesLogged2026": 5,
    "vetoVotesLogged2026": 1,
-   "netStartedPointsFromTrades2026": -10.4
+   "netPointsFromTrades2026": 38.8
   },
   "7": {
    "teamId": 7,
@@ -7532,7 +10872,7 @@
    "proposalsReceived2026": 25,
    "declinesLogged2026": 9,
    "vetoVotesLogged2026": 0,
-   "netStartedPointsFromTrades2026": -10.0
+   "netPointsFromTrades2026": 1.5
   },
   "8": {
    "teamId": 8,
@@ -7582,7 +10922,7 @@
    "proposalsReceived2026": 17,
    "declinesLogged2026": 12,
    "vetoVotesLogged2026": 0,
-   "netStartedPointsFromTrades2026": 10.9
+   "netPointsFromTrades2026": 44.2
   },
   "10": {
    "teamId": 10,
@@ -7601,7 +10941,7 @@
    "proposalsReceived2026": 5,
    "declinesLogged2026": 1,
    "vetoVotesLogged2026": 1,
-   "netStartedPointsFromTrades2026": 0
+   "netPointsFromTrades2026": 0
   },
   "11": {
    "teamId": 11,
@@ -7635,7 +10975,7 @@
    "proposalsReceived2026": 7,
    "declinesLogged2026": 2,
    "vetoVotesLogged2026": 1,
-   "netStartedPointsFromTrades2026": 0
+   "netPointsFromTrades2026": 0
   }
  },
  "leagueNotes": {
@@ -7817,9 +11157,10 @@
   ],
   "quickestCut": "All Heart traded Blake Corum for Joe Mixon on Oct 7 and cut Mixon two days later.",
   "biggestEdgeSoFar": {
-   "id": "2026-T3",
-   "winner": "Chewy's Warriors",
-   "byStartedPoints": 34.1
+   "id": "2026-T5",
+   "winner": "Dimes McSorley",
+   "byPoints": 47.3,
+   "basis": "all points for new team"
   },
   "seasonsWithZeroTrades": [],
   "seasonsWithUnknownTrades": [
