@@ -24,10 +24,7 @@ interface RawSide {
 
 interface RawWhoWon {
   weeksCounted: [number, number];
-  bySide: { [teamId: string]: { totalPointsForNewTeam: number; startedPointsForNewTeam: number; weeks: { player: string; week: number; points: number; started: boolean }[] } };
-  edgeTeamId: number;
-  edgeStartedPoints: number;
-  verdict: string;
+  bySide: { [teamId: string]: { totalPointsForNewTeam: number } };
 }
 
 interface RawTrade {
@@ -50,7 +47,6 @@ interface RawTeamSummary {
   teamId: number;
   proposalsSent2026: number;
   proposalsReceived2026: number;
-  netStartedPointsFromTrades2026: number;
 }
 
 interface RawFile {
@@ -91,9 +87,8 @@ export type Grade = "A" | "A-" | "B+" | "B" | "C+" | "C" | "D" | "F" | "INC";
 export interface TradeSide {
   teamId: number;
   got: Asset[];
-  /** Starters' points the received players scored for this team, or null when there is no data yet. */
-  started: number | null;
-  total: number | null;
+  /** All points the received players scored for this team, started or benched; null when there is no data yet. */
+  points: number | null;
   grade: Grade;
 }
 
@@ -109,7 +104,7 @@ export interface Trade {
   released: { name: string; position: string }[];
   playersMoved: number;
   picksMoved: number;
-  /** First and last week counted in the starters'-points hint. */
+  /** First and last week counted in the points hint. */
   span: [number, number] | null;
   weeksCounted: number;
   edge: { teamId: number; points: number } | null;
@@ -127,7 +122,7 @@ function pick(s: string): Asset {
 const player = (p: RawPlayer): Asset => ({ kind: "player", name: p.name, position: p.position, nflTeam: p.nflTeam ?? undefined });
 
 /**
- * Grades compare starters' points per counted week between the two sides.
+ * Grades compare all points (started or benched) per counted week between the two sides.
  * Thresholds are the app's rubric; the points themselves come from the file.
  */
 export const GRADE_STEPS: { min: number; grade: Grade }[] = [
@@ -152,13 +147,14 @@ export const TRADES: Trade[] = file.trades
     const weeksCounted = w ? w.weeksCounted[1] - w.weeksCounted[0] + 1 : 0;
     const [a, b] = t.teams.map((s) => {
       const mine = w?.bySide[String(s.teamId)];
-      return { teamId: s.teamId, got: [...s.received.map(player), ...s.receivedPicks.map(pick)], started: mine?.startedPointsForNewTeam ?? null, total: mine?.totalPointsForNewTeam ?? null };
+      return { teamId: s.teamId, got: [...s.received.map(player), ...s.receivedPicks.map(pick)], points: mine?.totalPointsForNewTeam ?? null };
     });
     const sides = [a, b].map((s, i, all) => {
       const other = all[1 - i];
-      const g: Grade = s.started != null && other.started != null && weeksCounted ? grade(s.started, other.started, weeksCounted) : "INC";
+      const g: Grade = s.points != null && other.points != null && weeksCounted ? grade(s.points, other.points, weeksCounted) : "INC";
       return { ...s, grade: g };
     }) as [TradeSide, TradeSide];
+    const gap = a.points != null && b.points != null ? Math.round((a.points - b.points) * 10) / 10 : null;
     return {
       id: t.id,
       num: Number(t.id.split("-T")[1]),
@@ -172,7 +168,7 @@ export const TRADES: Trade[] = file.trades
       picksMoved: t.picksMoved,
       span: w ? w.weeksCounted : null,
       weeksCounted,
-      edge: w && w.edgeStartedPoints > 0 ? { teamId: w.edgeTeamId, points: w.edgeStartedPoints } : null,
+      edge: gap ? { teamId: gap > 0 ? a.teamId : b.teamId, points: Math.abs(gap) } : null,
       early: !!w && weeksCounted <= EARLY_WEEKS,
     } satisfies Trade;
   })
@@ -234,7 +230,8 @@ export interface TeamTrades {
   trades: Trade[];
   offersSent: number;
   offersReceived: number;
-  netStarted: number;
+  /** All points from players traded for, minus all points the partners got, summed over this team's trades. */
+  net: number;
   /** Most accepted trades with, then most offers exchanged; `basis: "offers"` when no trades yet. */
   favorite: { teamIds: number[]; trades: number; offers: number; basis: "trades" | "offers" } | null;
 }
@@ -256,7 +253,7 @@ export function teamTrades(teamId: number): TeamTrades {
     trades,
     offersSent: s?.proposalsSent2026 ?? 0,
     offersReceived: s?.proposalsReceived2026 ?? 0,
-    netStarted: s?.netStartedPointsFromTrades2026 ?? 0,
+    net: Math.round(trades.reduce((sum, t) => sum + (sideOf(t, teamId).points ?? 0) - (partnerOf(t, teamId).points ?? 0), 0) * 10) / 10,
     favorite: top
       ? {
           teamIds: rank.filter((r) => r.trades === top.trades && r.offers === top.offers).map((r) => r.id),
@@ -309,7 +306,7 @@ function negotiatedPairs() {
 const graded = TRADES.filter((t) => t.edge && !t.early);
 const fleece = graded.sort((a, b) => b.edge!.points / b.weeksCounted - a.edge!.points / a.weeksCounted)[0];
 const pairs = new Set(TRADES.map((t) => pairKey(t.sides[0].teamId, t.sides[1].teamId)));
-const cut = TRADES.find((t) => t.sides.some((s) => s.got.some((a) => a.kind === "player") && s.started === 0 && s.total === 0));
+const cut = TRADES.find((t) => t.sides.some((s) => s.got.some((a) => a.kind === "player") && s.points === 0));
 
 export const SUPERLATIVES = {
   mostActive: countBy(
@@ -321,7 +318,7 @@ export const SUPERLATIVES = {
   negotiated: negotiatedPairs()[0],
   vetoVotes: countBy(file.vetoVotes, (v) => v.teamIdReported),
   hotPotatoes: hotPotatoes(),
-  tradeAndCut: cut ? { trade: cut, side: cut.sides.find((s) => s.started === 0 && s.total === 0)!, note: file.leagueNotes.quickestCut } : null,
+  tradeAndCut: cut ? { trade: cut, side: cut.sides.find((s) => s.points === 0)!, note: file.leagueNotes.quickestCut } : null,
   distinctPairs: pairs.size,
   biggest: [...TRADES].sort((a, b) => b.playersMoved - a.playersMoved)[0],
   fleece,

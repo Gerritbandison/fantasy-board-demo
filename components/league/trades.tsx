@@ -88,9 +88,9 @@ function SideBlock({ s, early, mine }: { s: TradeSide; early: boolean; mine?: bo
       ) : (
         <p className="mt-0.5 text-sm text-slate-500">Nothing ESPN recorded</p>
       )}
-      {s.started != null && (
+      {s.points != null && (
         <p className="mt-2 text-xs text-slate-500">
-          Starters&apos; points since: <span className="font-semibold text-slate-700 tabular-nums">{tp(s.started)}</span>
+          Points for them since: <span className="font-semibold text-slate-700 tabular-nums">{tp(s.points)}</span>
         </p>
       )}
     </div>
@@ -140,7 +140,7 @@ export function TradeCard({ t, focus }: { t: Trade; focus?: number }) {
         </p>
         {t.span && winner ? (
           <p className="mt-0.5">
-            <span className="font-semibold text-navy">{winner.name}</span>, by <span className="font-semibold tabular-nums">{tp(t.edge!.points)}</span> starters&apos; points ({weeksText(t.span)}).
+            <span className="font-semibold text-navy">{winner.name}</span>, by <span className="font-semibold tabular-nums">{tp(t.edge!.points)}</span> points ({weeksText(t.span)}).
           </p>
         ) : t.span ? (
           <p className="mt-0.5">Dead even so far ({weeksText(t.span)}).</p>
@@ -245,7 +245,7 @@ export function TradeSuperlatives() {
       {S.tradeAndCut && (
         <RoastCard icon={Scissors} label="Trade-and-cut" tone="loss" accent={team(S.tradeAndCut.side.teamId).color} value={tp(0)} line={roast.tradeAndCutLine()}>
           <p className="text-sm leading-snug text-slate-700">{S.tradeAndCut.note}</p>
-          <p className="mt-1 text-xs text-slate-500">Starters&apos; points the trade got {team(S.tradeAndCut.side.teamId).name}</p>
+          <p className="mt-1 text-xs text-slate-500">Points the trade got {team(S.tradeAndCut.side.teamId).name}</p>
         </RoastCard>
       )}
 
@@ -253,7 +253,7 @@ export function TradeSuperlatives() {
         <RoastCard icon={Trophy} label="Biggest win so far" tone="turf" accent={team(S.fleece.edge!.teamId).color} value={`+${tp(S.fleece.edge!.points)}`} valueClassName="text-turf" line={roast.fleeceLine(S.fleece)}>
           <p className="text-sm font-semibold text-navy">{team(S.fleece.edge!.teamId).name}</p>
           <p className="text-xs text-slate-500">
-            Trade {S.fleece.num}, accepted {shortDate(S.fleece.acceptedAt)} · starters&apos; points edge
+            Trade {S.fleece.num}, accepted {shortDate(S.fleece.acceptedAt)} · points edge
           </p>
         </RoastCard>
       )}
@@ -275,11 +275,11 @@ export function GradeKey() {
   return (
     <Card title="How the grades work">
       <p className="text-sm leading-relaxed text-slate-600">
-        Each side gets the fantasy points its new players scored <em>in its starting lineup</em>, from the first week after the trade through the last completed week, minus what
-        the other side got the same way, divided by the weeks counted. Weeks after a player left are not counted.
+        Each side gets every fantasy point its new players scored for it, started or benched, from the first week after the trade through the last completed week, minus
+        what the other side got the same way, divided by the weeks counted. Weeks after a player left are not counted.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
-        Per-week edge: {steps.join(" · ")} · D below that. F means the side never started anything it got while the other side did. INC: draft picks only, no points
+        Per-week edge: {steps.join(" · ")} · D below that. F means the side got zero points from its new players while the other side scored. INC: draft picks only, no points
         to compare. Grades covering {EARLY_WEEKS} weeks or fewer are tagged early.
       </p>
     </Card>
@@ -298,9 +298,9 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
           <Stat label="Offers sent" value={s.offersSent} />
           <Stat label="Offers received" value={s.offersReceived} />
           <Stat
-            label="Net starters' pts"
-            value={s.trades.length ? signed(s.netStarted) : "—"}
-            valueClassName={s.netStarted > 0 ? "text-turf" : s.netStarted < 0 ? "text-loss" : undefined}
+            label="Net points"
+            value={s.trades.length ? signed(s.net) : "—"}
+            valueClassName={s.net > 0 ? "text-turf" : s.net < 0 ? "text-loss" : undefined}
             sub={s.trades.length ? "from players traded for" : undefined}
           />
         </div>

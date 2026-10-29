@@ -20,7 +20,7 @@ export default function TradesPage() {
     <>
       <PageHeader eyebrow={TRADES_LABEL} title="Trade desk">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
-          Every accepted trade from the {TRADE_SEASON} preseason through week {LEAGUE.week}, graded on what the new players have scored in starting lineups so far.
+          Every accepted trade from the {TRADE_SEASON} preseason through week {LEAGUE.week}, graded on every point the new players have scored for their new teams so far, started or benched.
           {UNKNOWN_SEASONS.length > 0 &&
             ` ESPN only serves the current season's transactions, so trades from ${firstUnknown}–${lastUnknown} aren't on record here. That's missing data, not a quiet league.`}
         </p>

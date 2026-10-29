@@ -16,7 +16,7 @@ import {
   type TitleGame,
   type WeekScore,
 } from "@/lib/h2h";
-import { possessive, tp, type Trade, type TradeSide } from "@/lib/trades";
+import { tp, type Trade, type TradeSide } from "@/lib/trades";
 
 /*
  * PG-13 trash talk, generated from the numbers. Thresholds only choose the joke;
@@ -303,18 +303,15 @@ export function tradeLine(t: Trade) {
   const win = t.sides.find((s) => s.teamId === t.edge!.teamId)!;
   const lose = t.sides.find((s) => s.teamId !== t.edge!.teamId)!;
   const edge = tp(t.edge.points);
-  if (lose.started === 0 && lose.total === 0 && playersGot(lose).length)
-    return `${n(lose.teamId)} traded for ${list(playersGot(lose))} and let him go before he logged a single week for them. ${n(win.teamId)} has ${tp(win.started ?? 0)} starters' points from the deal. Buyer's remorse, speedrun edition.`;
+  if (lose.points === 0 && playersGot(lose).length)
+    return `${n(lose.teamId)} traded for ${list(playersGot(lose))} and let him go before he logged a single week for them. ${n(win.teamId)} has ${tp(win.points ?? 0)} points from the deal. Buyer's remorse, speedrun edition.`;
   if (t.early)
     return t.edge.points < 5
       ? `${t.weeksCounted === 1 ? "One week" : `${t.weeksCounted} weeks`} of data and a ${edge}-point gap. Grading this now is like grading a draft in August. Check back in a month.`
-      : `Only ${t.weeksCounted === 1 ? "one week" : `${t.weeksCounted} weeks`} in and ${n(win.teamId)} is up ${edge} starters' points. Early, sure, but ${n(lose.teamId)} has definitely refreshed the box score.`;
-  const benched = (lose.total ?? 0) - (lose.started ?? 0);
-  if (benched >= 30)
-    return `${possessive(n(lose.teamId))} side scored ${tp(lose.total ?? 0)}, but ${tp(benched)} of it sat on the bench. The trade was fine. The lineup decisions were not.`;
+      : `Only ${t.weeksCounted === 1 ? "one week" : `${t.weeksCounted} weeks`} in and ${n(win.teamId)} is up ${edge} points. Early, sure, but ${n(lose.teamId)} has definitely refreshed the box score.`;
   if (t.edge.points / t.weeksCounted >= 8 && playersGot(win).length < playersGot(lose).length)
-    return `${n(win.teamId)} turned ${list(playersGot(lose))} into ${list(playersGot(win))} and is up ${edge} starters' points since. ${n(lose.teamId)} got quantity. ${n(win.teamId)} got the points.`;
-  return `${n(win.teamId)} leads by ${edge} starters' points over ${t.weeksCounted} weeks. Not a fleece, but ${n(lose.teamId)} is hoping nobody brings it up.`;
+    return `${n(win.teamId)} turned ${list(playersGot(lose))} into ${list(playersGot(win))} and is up ${edge} points since. ${n(lose.teamId)} got quantity. ${n(win.teamId)} got the points.`;
+  return `${n(win.teamId)} leads by ${edge} points over ${t.weeksCounted} weeks. Not a fleece, but ${n(lose.teamId)} is hoping nobody brings it up.`;
 }
 
 export function mostActiveLine(id: number, k: number, total: number) {
@@ -346,7 +343,7 @@ export function tradeAndCutLine() {
 export function fleeceLine(t: Trade) {
   const win = t.sides.find((s) => s.teamId === t.edge!.teamId)!;
   const lose = t.sides.find((s) => s.teamId !== t.edge!.teamId)!;
-  return `${n(win.teamId)} is up ${tp(t.edge!.points)} starters' points on ${n(lose.teamId)} over ${t.weeksCounted} weeks. The receipts are getting framed.`;
+  return `${n(win.teamId)} is up ${tp(t.edge!.points)} points on ${n(lose.teamId)} over ${t.weeksCounted} weeks. The receipts are getting framed.`;
 }
 
 export function noRepeatLine(trades: number, pairs: number) {
