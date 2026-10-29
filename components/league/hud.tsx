@@ -53,6 +53,19 @@ export function Frame({
   );
 }
 
+/** Chakra Petch's 0 reads as O, so digits inside display-face names switch to the mono face. */
+export function DisplayName({ text }: { text: string }) {
+  return text.split(/(\d+)/).map((part, i) =>
+    /\d/.test(part) ? (
+      <span key={i} className="font-mono font-semibold">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
 export function PageHead({
   code,
   title,
@@ -71,7 +84,7 @@ export function PageHead({
         {code}
       </p>
       <h1 className="mt-2 font-display text-[2.1rem] leading-[0.95] font-bold tracking-tight break-words text-zinc-50 uppercase sm:text-5xl lg:text-6xl">
-        {title}
+        {typeof title === "string" ? <DisplayName text={title} /> : title}
       </h1>
       {kicker && <p className="mt-2 max-w-2xl text-[15px] leading-snug text-zinc-400">{kicker}</p>}
       {children}

@@ -142,6 +142,10 @@
   html {
     @apply font-sans;
   }
+  /* Team names mix 0 and O; slashed zeros keep them unambiguous in every readout. */
+  .font-mono {
+    font-feature-settings: "zero" 1;
+  }
 }
 
 /* Faint plotting grid + vignette behind every console page. */

@@ -155,7 +155,7 @@ function ProjectionReadout({
                 {code}
               </Tag>
               <span className="min-w-0">
-                <span className="block truncate text-sm font-medium text-zinc-200">{side.teamName}</span>
+                <span className="line-clamp-2 block text-sm leading-tight font-medium break-words text-zinc-200">{side.teamName}</span>
                 <span className="block font-mono text-[10px] tracking-wider text-faint uppercase">
                   {side.record} · {ordinal(side.rank)}
                   {lead && <span className={tone === "phos" ? "text-phos" : "text-sig"}> · ▲ fav</span>}

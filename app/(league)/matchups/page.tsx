@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Frame, PageHead } from "@/components/league/hud";
+import { DisplayName, Frame, PageHead } from "@/components/league/hud";
 import { cn } from "@/lib/utils";
 import { callsign, getBrief, weekCode } from "@/lib/intel";
 import { boardForMatchup, ordinal, snapshot, type MatchupSide } from "@/lib/league";
@@ -54,7 +54,7 @@ function ScoreLine({ side, leading }: { side: MatchupSide; leading: boolean }) {
     <div className="flex items-center justify-between gap-3">
       <div className="min-w-0">
         <p className={cn("font-display text-xl leading-tight font-semibold tracking-wide break-words uppercase", leading ? "text-zinc-50" : "text-zinc-400")}>
-          {side.teamName}
+          <DisplayName text={side.teamName} />
         </p>
         <p className="font-mono text-[10px] tracking-wider text-faint uppercase">
           {callsign(side.teamId)} · {side.record} · {ordinal(side.rank)}

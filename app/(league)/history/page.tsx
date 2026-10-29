@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Frame, PageHead, Rule, Tag } from "@/components/league/hud";
+import { DisplayName, Frame, PageHead, Rule, Tag } from "@/components/league/hud";
 import { MiniTrail } from "@/components/league/trail";
 import { cn } from "@/lib/utils";
 import {
@@ -93,7 +93,7 @@ export default function HistoryPage() {
                   <div className="min-w-0">
                     <p className="font-mono text-[10px] tracking-[0.2em] text-phos uppercase">Champion</p>
                     <p className="font-display text-2xl leading-tight font-bold tracking-wide break-words text-zinc-50 uppercase sm:text-3xl">
-                      {c.champion}
+                      <DisplayName text={c.champion} />
                     </p>
                     <p className="mt-2 font-mono text-[10px] tracking-[0.2em] text-dim uppercase">Runner-up</p>
                     <p className="text-[15px] leading-tight text-zinc-300">{c.runnerUp}</p>
@@ -123,8 +123,8 @@ export default function HistoryPage() {
             >
               <span className="pt-0.5 font-mono text-[11px] text-faint">{String(i + 1).padStart(2, "0")}</span>
               <span className="min-w-0">
-                <span className={cn("block truncate font-display text-lg leading-tight font-semibold tracking-wide uppercase", r.titles ? "text-zinc-50" : "text-zinc-400")}>
-                  {r.team}
+                <span className={cn("block font-display text-lg leading-tight font-semibold tracking-wide break-words uppercase", r.titles ? "text-zinc-50" : "text-zinc-400")}>
+                  <DisplayName text={r.team} />
                 </span>
                 <span className="block font-mono text-[10px] tracking-wider text-faint uppercase">
                   {r.titleYears.length ? `Won ${r.titleYears.join(", ")}` : "No title on file"}
