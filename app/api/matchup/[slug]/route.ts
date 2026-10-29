@@ -1,25 +1,22 @@
-import { BOARDS, getBoard, snapshot } from "@/lib/league";
+import { getMatchup, LEAGUE, MATCHUPS, team } from "@/lib/league";
+import { buildPreview } from "@/lib/preview";
 
 export async function generateStaticParams() {
-  return BOARDS.map((b) => ({ slug: b.slug }));
+  return [...MATCHUPS.map((m) => ({ slug: m.slug })), { slug: "golden-goose" }, { slug: "bibis" }];
 }
 
-/** GET /api/matchup/golden-goose | /api/matchup/bibis */
+/** GET /api/matchup/:slug for any week 8 game (e.g. maye-dim); golden-goose and bibis still resolve. */
 export async function GET(_req: Request, ctx: RouteContext<"/api/matchup/[slug]">) {
   const { slug } = await ctx.params;
-  const board = getBoard(slug);
-  if (!board) {
-    return Response.json(
-      { error: `Unknown matchup "${slug}"`, available: BOARDS.map((b) => b.slug) },
-      { status: 404 },
-    );
+  const m = getMatchup(slug);
+  if (!m) {
+    return Response.json({ error: `Unknown matchup "${slug}"`, available: MATCHUPS.map((x) => x.slug) }, { status: 404 });
   }
   return Response.json({
-    source: "snapshot",
-    league: snapshot.league,
-    manager: board.config.manager,
-    matchup: board.matchup,
-    focus: board.focus,
-    opponent: board.opponent,
+    league: { season: LEAGUE.season, week: LEAGUE.week },
+    matchup: m,
+    left: team(m.left.teamId),
+    right: team(m.right.teamId),
+    preview: buildPreview(m),
   });
 }

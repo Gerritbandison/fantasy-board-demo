@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChartColumn, Crown, ListOrdered, Star, Swords, Trophy, type LucideIcon } from "lucide-react";
+import { ChartColumn, ListOrdered, Star, Swords, Trophy, Users, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const NAV: { href: string; label: string; icon: LucideIcon; phone: boolean }[] = [
+const NAV: { href: string; label: string; icon: LucideIcon; phone: boolean; also?: string[] }[] = [
   { href: "/", label: "Maye", icon: Star, phone: true },
-  { href: "/bibis", label: "Bibi", icon: Crown, phone: true },
-  { href: "/matchups", label: "Scores", icon: Swords, phone: false },
-  { href: "/standings", label: "Standings", icon: ListOrdered, phone: true },
+  { href: "/matchups", label: "Scores", icon: Swords, phone: true },
+  { href: "/teams", label: "Teams", icon: Users, phone: true, also: ["/standings"] },
+  { href: "/standings", label: "Standings", icon: ListOrdered, phone: false },
   { href: "/insights", label: "Insights", icon: ChartColumn, phone: true },
   { href: "/history", label: "History", icon: Trophy, phone: true },
 ];
@@ -80,7 +80,7 @@ export function BottomNav({ homeTitle }: { homeTitle: string }) {
     >
       <ul className="mx-auto grid max-w-lg grid-cols-5 pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)]">
         {NAV.filter((n) => n.phone).map((item) => {
-          const active = isActive(pathname, item.href);
+          const active = isActive(pathname, item.href) || (item.also ?? []).some((h) => isActive(pathname, h));
           return (
             <li key={item.href}>
               <Link

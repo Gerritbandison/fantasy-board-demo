@@ -1,11 +1,13 @@
 import { cn } from "@/lib/utils";
-import { abbrev, median, teamColor, TRAIL_RANGE, type Franchise, type WeekResult } from "@/lib/intel";
+import { getTeam, LEAGUE, type Team, type TeamWeek } from "@/lib/league";
+import { LEAGUE_AVG_BY_WEEK, median, TRAIL_RANGE } from "@/lib/stats";
 import { ResultChip } from "./ui";
 
 const W = 340;
 const H = 160;
 const PAD = { l: 26, r: 30, t: 12, b: 22 };
-const WEEKS = 8;
+const WEEKS = LEAGUE.week;
+const AVG_COLOR = "#94a3b8";
 
 function x(week: number) {
   return PAD.l + ((week - 1) * (W - PAD.l - PAD.r)) / (WEEKS - 1);
@@ -16,37 +18,42 @@ function y(v: number) {
   return PAD.t + ((max - v) / (max - min)) * (H - PAD.t - PAD.b);
 }
 
-function path(weeks: WeekResult[]) {
-  return weeks.map((w, i) => `${i === 0 ? "M" : "L"}${x(w.week).toFixed(1)},${y(w.pf).toFixed(1)}`).join(" ");
+function path(points: { week: number; v: number }[]) {
+  return points.map((p, i) => `${i === 0 ? "M" : "L"}${x(p.week).toFixed(1)},${y(p.v).toFixed(1)}`).join(" ");
 }
 
+const LEAGUE_SERIES = [...LEAGUE_AVG_BY_WEEK.entries()].map(([week, v]) => ({ week, v }));
+
 /**
- * Week-by-week points for the focus team with an optional opponent overlay.
- * Week 8 is drawn as a dashed line to the projected score.
+ * Week-by-week points for one team, compared against an opponent or the weekly
+ * league average. The current week is drawn as a dashed line to the projection.
  */
 export function ScoreTrail({
   focus,
-  opponent,
+  compare = "league",
   focusProj,
-  opponentProj,
+  compareProj,
   className,
 }: {
-  focus: Franchise;
-  opponent?: Franchise;
+  focus: Team;
+  compare?: Team | "league";
   focusProj?: number;
-  opponentProj?: number;
+  compareProj?: number;
   className?: string;
 }) {
-  const fw = focus.weekly2026;
+  const fw = focus.weekly;
   const last = fw[fw.length - 1];
   const med = median(fw.map((w) => w.pf));
-  const fColor = teamColor(focus.teamId);
-  const oColor = opponent ? teamColor(opponent.teamId) : "#94a3b8";
+  const fColor = focus.color;
+  const isLeague = compare === "league";
+  const cColor = isLeague ? AVG_COLOR : compare.color;
+  const cSeries = isLeague ? LEAGUE_SERIES : compare.weekly.map((w) => ({ week: w.week, v: w.pf }));
+  const cLast = cSeries[cSeries.length - 1];
+  const fSeries = fw.map((w) => ({ week: w.week, v: w.pf }));
   const grid = [];
   for (let v = Math.ceil(TRAIL_RANGE.min / 20) * 20; v <= TRAIL_RANGE.max; v += 20) grid.push(v);
-  const areaPath = `${path(fw)} L${x(last.week)},${y(TRAIL_RANGE.min)} L${x(fw[0].week)},${y(TRAIL_RANGE.min)} Z`;
-  const oLast = opponent?.weekly2026[opponent.weekly2026.length - 1];
-  const gradId = `trail-fill-${focus.teamId}`;
+  const areaPath = `${path(fSeries)} L${x(last.week)},${y(TRAIL_RANGE.min)} L${x(fw[0].week)},${y(TRAIL_RANGE.min)} Z`;
+  const gradId = `trail-fill-${focus.id}`;
   const summary = fw.map((w) => `Week ${w.week} ${w.result} ${w.pf.toFixed(1)}`).join(", ");
 
   return (
@@ -54,7 +61,7 @@ export function ScoreTrail({
       viewBox={`0 0 ${W} ${H}`}
       className={cn("block h-auto w-full font-sans", className)}
       role="img"
-      aria-label={`${focus.name} points by week: ${summary}${focusProj ? `. Week 8 projected ${focusProj.toFixed(1)}` : ""}`}
+      aria-label={`${focus.name} points by week: ${summary}${focusProj ? `. Week ${WEEKS} projected ${focusProj.toFixed(1)}` : ""}`}
     >
       <defs>
         <linearGradient id={gradId} x1="0" x2="0" y1="0" y2="1">
@@ -82,7 +89,7 @@ export function ScoreTrail({
           fontWeight={wk === WEEKS ? 700 : 500}
           fill={wk === WEEKS ? "#0f1e36" : "#64748b"}
         >
-          {wk === WEEKS ? "Wk 8" : `W${wk}`}
+          {wk === WEEKS ? `Wk ${WEEKS}` : `W${wk}`}
         </text>
       ))}
 
@@ -91,26 +98,22 @@ export function ScoreTrail({
         median {med.toFixed(0)}
       </text>
 
-      {opponent && (
-        <g>
-          <path d={path(opponent.weekly2026)} fill="none" stroke={oColor} strokeOpacity="0.55" strokeWidth="1.5" />
-          {opponent.weekly2026.map((w) => (
-            <circle key={w.week} cx={x(w.week)} cy={y(w.pf)} r="2" fill={oColor} fillOpacity="0.6" />
-          ))}
-          {opponentProj != null && oLast && (
-            <>
-              <line x1={x(oLast.week)} y1={y(oLast.pf)} x2={x(WEEKS)} y2={y(opponentProj)} stroke={oColor} strokeOpacity="0.55" strokeDasharray="3 3" />
-              <circle cx={x(WEEKS)} cy={y(opponentProj)} r="3.5" fill="white" stroke={oColor} strokeWidth="1.5" />
-              <text x={x(WEEKS) + 7} y={y(opponentProj) + 3} fontSize="8.5" fontWeight="600" fill={oColor}>
-                {opponentProj.toFixed(0)}
-              </text>
-            </>
-          )}
-        </g>
-      )}
+      <g>
+        <path d={path(cSeries)} fill="none" stroke={cColor} strokeOpacity={isLeague ? 0.9 : 0.55} strokeWidth="1.5" strokeDasharray={isLeague ? "4 3" : undefined} />
+        {!isLeague && cSeries.map((p) => <circle key={p.week} cx={x(p.week)} cy={y(p.v)} r="2" fill={cColor} fillOpacity="0.6" />)}
+        {compareProj != null && cLast && (
+          <>
+            <line x1={x(cLast.week)} y1={y(cLast.v)} x2={x(WEEKS)} y2={y(compareProj)} stroke={cColor} strokeOpacity="0.55" strokeDasharray="3 3" />
+            <circle cx={x(WEEKS)} cy={y(compareProj)} r="3.5" fill="white" stroke={cColor} strokeWidth="1.5" />
+            <text x={x(WEEKS) + 7} y={y(compareProj) + 3} fontSize="8.5" fontWeight="600" fill={cColor}>
+              {compareProj.toFixed(0)}
+            </text>
+          </>
+        )}
+      </g>
 
       <path d={areaPath} fill={`url(#${gradId})`} />
-      <path d={path(fw)} fill="none" stroke={fColor} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+      <path d={path(fSeries)} fill="none" stroke={fColor} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
       {fw.map((w) => (
         <circle
           key={w.week}
@@ -136,45 +139,68 @@ export function ScoreTrail({
   );
 }
 
+export function TrailLegend({ focus, compare = "league" }: { focus: Team; compare?: Team | "league" }) {
+  return (
+    <div className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-medium text-slate-600">
+      <span className="flex items-center gap-1.5">
+        <span className="h-[3px] w-4 rounded-full" style={{ background: focus.color }} />
+        {focus.name}
+      </span>
+      <span className="flex items-center gap-1.5">
+        <span
+          className="h-0 w-4 border-t-2"
+          style={{ borderColor: compare === "league" ? AVG_COLOR : compare.color, borderStyle: compare === "league" ? "dashed" : "solid" }}
+        />
+        {compare === "league" ? "League average" : compare.name}
+      </span>
+      <span className="text-slate-400">Wk {WEEKS} = projection</span>
+    </div>
+  );
+}
+
 /** Week-by-week results row: W/L, score, and opponent. */
-export function WeekStrip({ weeks, className }: { weeks: WeekResult[]; className?: string }) {
+export function WeekStrip({ weeks, className }: { weeks: TeamWeek[]; className?: string }) {
   return (
     <ol className={cn("grid grid-cols-7 gap-1", className)}>
-      {weeks.map((w) => (
-        <li
-          key={w.week}
-          className="flex flex-col items-center gap-0.5 rounded-lg bg-slate-50 px-0.5 py-1.5 ring-1 ring-slate-100"
-          title={`Week ${w.week} vs ${w.opp}: ${w.result} ${w.pf}–${w.pa}`}
-        >
-          <span className="text-[10px] font-semibold text-slate-400">W{w.week}</span>
-          <ResultChip result={w.result} />
-          <span className="font-display text-sm leading-none font-bold text-navy tabular-nums">{w.pf.toFixed(0)}</span>
-        </li>
-      ))}
+      {weeks.map((w) => {
+        const opp = getTeam(w.opponentId);
+        return (
+          <li
+            key={w.week}
+            className="flex min-w-0 flex-col items-center gap-0.5 rounded-lg bg-slate-50 px-0.5 py-1.5 ring-1 ring-slate-100"
+            title={`Week ${w.week} vs ${opp?.name}: ${w.result} ${w.pf}–${w.pa}`}
+          >
+            <span className="text-[10px] font-semibold text-slate-400">W{w.week}</span>
+            <ResultChip result={w.result} />
+            <span className="font-display text-sm leading-none font-bold text-navy tabular-nums">{w.pf.toFixed(0)}</span>
+            <span className="max-w-full truncate text-[9px] font-semibold text-slate-400">{opp?.abbrev}</span>
+          </li>
+        );
+      })}
     </ol>
   );
 }
 
 /** Compact sparkline for lists; same y-scale as ScoreTrail. */
-export function MiniTrail({ franchise, className }: { franchise: Franchise; className?: string }) {
+export function MiniTrail({ team, className }: { team: Team; className?: string }) {
   const w = 120;
   const h = 36;
-  const n = franchise.weekly2026.length;
-  const color = teamColor(franchise.teamId);
+  const n = team.weekly.length;
   const px = (i: number) => 4 + (i * (w - 8)) / Math.max(1, n - 1);
   const py = (v: number) => 4 + ((TRAIL_RANGE.max - v) / (TRAIL_RANGE.max - TRAIL_RANGE.min)) * (h - 8);
-  const d = franchise.weekly2026.map((wk, i) => `${i ? "L" : "M"}${px(i).toFixed(1)},${py(wk.pf).toFixed(1)}`).join(" ");
+  const d = team.weekly.map((wk, i) => `${i ? "L" : "M"}${px(i).toFixed(1)},${py(wk.pf).toFixed(1)}`).join(" ");
+  const avg = LEAGUE_SERIES.map((p, i) => `${i ? "L" : "M"}${px(i).toFixed(1)},${py(p.v).toFixed(1)}`).join(" ");
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} className={cn("block h-9 w-28 shrink-0", className)} role="img" aria-label={`${abbrev(franchise.teamId)} weekly points trend`}>
-      <line x1="0" x2={w} y1={py(120)} y2={py(120)} stroke="#e2e8f0" strokeDasharray="2 3" />
-      <path d={d} fill="none" stroke={color} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
-      {franchise.weekly2026.map((wk, i) => (
+    <svg viewBox={`0 0 ${w} ${h}`} className={cn("block h-9 w-28 shrink-0", className)} role="img" aria-label={`${team.abbrev} weekly points trend`}>
+      <path d={avg} fill="none" stroke="#cbd5e1" strokeWidth="1.25" strokeDasharray="2 2" />
+      <path d={d} fill="none" stroke={team.color} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+      {team.weekly.map((wk, i) => (
         <circle
           key={wk.week}
           cx={px(i)}
           cy={py(wk.pf)}
           r="2.4"
-          fill={wk.result === "W" ? color : "white"}
+          fill={wk.result === "W" ? team.color : "white"}
           stroke={wk.result === "W" ? "white" : "#dc2626"}
           strokeWidth="1.2"
         />

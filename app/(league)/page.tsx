@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MatchupBoard } from "@/components/league/MatchupBoard";
-import { getBoard } from "@/lib/league";
+import { LEAGUE, matchupFor, team, USER_TEAM } from "@/lib/league";
 
-const board = getBoard("golden-goose");
+const matchup = matchupFor(USER_TEAM.id);
 
-export const metadata: Metadata = board
+export const metadata: Metadata = matchup
   ? {
-      title: board.focus.teamName,
-      description: `Week 8: ${board.focus.teamName} vs ${board.opponent.teamName}. Matchup preview, tale of the tape, weekly scoring, and lineups.`,
+      title: USER_TEAM.name,
+      description: `Week ${LEAGUE.week}: ${team(matchup.left.teamId).name} vs ${team(matchup.right.teamId).name}. Matchup preview, tale of the tape, weekly scoring, and lineups.`,
     }
   : {};
 
 export default function HomePage() {
-  if (!board) notFound();
-  return <MatchupBoard board={board} />;
+  if (!matchup) notFound();
+  return <MatchupBoard matchup={matchup} featured />;
 }

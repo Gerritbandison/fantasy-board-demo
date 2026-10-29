@@ -1,7 +1,6 @@
-import { intel } from "@/lib/intel";
-import { snapshot } from "@/lib/league";
+import { publicLeague } from "@/lib/league";
 
-/** GET /api/league — the committed week snapshot plus the league intel archive. */
+/** GET /api/league — teams, games, week 8 matchups, and champions (display names only). */
 export async function GET() {
-  return Response.json({ source: "snapshot", ...snapshot, intel });
+  return Response.json(publicLeague());
 }

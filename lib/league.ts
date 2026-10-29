@@ -1,130 +1,417 @@
-import raw from "@/data/league-snapshot.json";
+import raw from "@/data/league-all-teams.json";
 
-export interface SnapshotPlayer {
+/*
+ * The committed Flaim/ESPN pull is the single source of truth. Raw ESPN names and
+ * abbreviations are dropped while mapping into the public types below, so nothing
+ * downstream can render them; only `displayName` / the app abbreviation survive.
+ */
+
+interface RawPlayer {
   name: string;
-  slot: string;
-  team?: string;
-  status?: string;
+  position: string;
+  nflTeam: string | null;
+  lineupSlot: string;
+  injuryStatus: string | null;
 }
 
-export interface MatchupSide {
-  teamId: number;
-  teamName: string;
-  projected: number;
-  starters: SnapshotPlayer[];
-  bench?: SnapshotPlayer[];
-  record: string;
-  rank: number;
+interface RawWeek {
+  week: number;
+  opponentTeamId: number;
+  homeAway: string;
   pointsFor: number;
+  pointsAgainst: number;
+  result: string;
+  projected: number | null;
 }
 
-export interface SnapshotMatchup {
-  id: string;
-  slug: string;
-  home: MatchupSide;
-  away: MatchupSide;
-}
-
-export interface Standing {
-  teamId: number;
-  teamName: string;
+interface RawSeason {
+  season: number;
+  displayName: string;
   wins: number;
   losses: number;
   ties: number;
-  winPercentage: number;
+  pointsFor: number | null;
+  pointsAgainst: number | null;
+  regularSeasonSeed: number | null;
+  finalRank: number | null;
+  championshipWon: boolean | null;
+  playoffOutcome: string | null;
+}
+
+interface RawTeam {
+  teamId: number;
+  displayName: string;
+  displayAbbrev: string;
+  ownerLabelFromApp: string | null;
+  isUserTeam: boolean;
+  record: { wins: number; losses: number; ties: number; winPercentage: number };
   pointsFor: number;
   pointsAgainst: number;
   rank: number;
   playoffSeed: number;
-}
-
-export interface LeagueSnapshot {
-  league: { id: string; name: string; season: number; week: number; platform: string };
-  displayNote: string;
-  standings: Standing[];
-  matchups: SnapshotMatchup[];
-  insights: {
-    headline: string;
-    bullets: string[];
-    power: { team: string; why: string }[];
+  currentProjectedRank: number | null;
+  draftDayProjectedRank: number | null;
+  weekly: RawWeek[];
+  week8: { opponentTeamId: number; homeAway: string; projected: number | null; opponentProjected: number | null } | null;
+  roster: { starters: RawPlayer[]; bench: RawPlayer[]; ir: RawPlayer[] };
+  recentTransactions: { date: string | null; week: number | null; type: string; added: string[]; dropped: string[]; faabBid: number | null }[];
+  history: {
+    seasons: RawSeason[];
+    titles: number;
+    titleYears: number[];
+    finalsAppearances: number;
+    finalsYears: number[];
+    bestFinish: number | null;
+    number1Seeds: number[];
+    allTimeRegularSeason: { wins: number; losses: number; ties: number } | null;
   };
 }
 
-export const snapshot = raw as LeagueSnapshot;
+interface RawGame {
+  week: number;
+  homeTeamId: number;
+  awayTeamId: number;
+  homeScore: number;
+  awayScore: number;
+  homeProjected: number | null;
+  awayProjected: number | null;
+  winnerTeamId: number | null;
+  margin: number;
+}
 
-/** Matches the snapshot insight: "Playoff cut currently runs through seed 8". */
-export const PLAYOFF_SEEDS = 8;
+interface RawWeek8Game {
+  homeTeamId: number;
+  awayTeamId: number;
+  homeProjected: number | null;
+  awayProjected: number | null;
+}
 
-export interface BoardConfig {
+interface RawChampion {
+  season: number;
+  championTeamId: number;
+  championSeed: number | null;
+  runnerUpTeamId: number | null;
+  runnerUpSeed: number | null;
+}
+
+interface RawFile {
+  meta: { generatedAt: string; source: string; leagueId: string; season: number; currentWeek: number };
+  league: { name: string; size: number; previousSeasons: number[] };
+  schedule: { weeks1to7: RawGame[]; week8: RawWeek8Game[] };
+  champions: RawChampion[];
+  teams: RawTeam[];
+}
+
+const file = raw as unknown as RawFile;
+
+export interface Player {
+  name: string;
+  position: string;
+  nflTeam?: string;
+  slot: string;
+  status?: string;
+}
+
+export interface TeamWeek {
+  week: number;
+  opponentId: number;
+  home: boolean;
+  pf: number;
+  pa: number;
+  result: "W" | "L" | "T";
+  projected?: number;
+}
+
+export interface Season {
+  season: number;
+  name: string;
+  wins: number;
+  losses: number;
+  ties: number;
+  pointsFor?: number;
+  pointsAgainst?: number;
+  seed?: number;
+  finish?: number;
+  champion: boolean;
+  outcome?: string;
+}
+
+export interface Move {
+  date?: string;
+  week?: number;
+  type: string;
+  added: string[];
+  dropped: string[];
+  faabBid?: number;
+}
+
+export interface Team {
+  id: number;
+  name: string;
+  abbrev: string;
+  color: string;
+  /** App nickname for the owner; only present for a few teams. Owner names are not in the data. */
+  owner?: string;
+  isUser: boolean;
+  wins: number;
+  losses: number;
+  ties: number;
+  pointsFor: number;
+  pointsAgainst: number;
+  rank: number;
+  seed: number;
+  projectedRank?: number;
+  draftRank?: number;
+  weekly: TeamWeek[];
+  week8?: { opponentId: number; projected?: number; opponentProjected?: number };
+  roster: { starters: Player[]; bench: Player[]; ir: Player[] };
+  moves: Move[];
+  history: {
+    seasons: Season[];
+    titles: number;
+    titleYears: number[];
+    finalsYears: number[];
+    bestFinish?: number;
+    number1Seeds: number[];
+    allTime?: { wins: number; losses: number; ties: number };
+  };
+}
+
+const COLORS: { [id: number]: string } = {
+  1: "#2563eb",
+  2: "#0f766e",
+  3: "#c2410c",
+  4: "#be185d",
+  5: "#a16207",
+  6: "#6d28d9",
+  7: "#15803d",
+  8: "#0e7490",
+  10: "#4d7c0f",
+  11: "#b91c1c",
+};
+
+const nn = <T>(v: T | null | undefined): T | undefined => (v == null ? undefined : v);
+
+function player(p: RawPlayer): Player {
+  return { name: p.name, position: p.position, nflTeam: nn(p.nflTeam), slot: p.lineupSlot, status: nn(p.injuryStatus) };
+}
+
+export const TEAMS: Team[] = file.teams.map((t) => ({
+  id: t.teamId,
+  name: t.displayName.trim(),
+  abbrev: t.displayAbbrev,
+  color: COLORS[t.teamId] ?? "#64748b",
+  owner: nn(t.ownerLabelFromApp),
+  isUser: t.isUserTeam,
+  wins: t.record.wins,
+  losses: t.record.losses,
+  ties: t.record.ties,
+  pointsFor: t.pointsFor,
+  pointsAgainst: t.pointsAgainst,
+  rank: t.rank,
+  seed: t.playoffSeed,
+  projectedRank: nn(t.currentProjectedRank),
+  draftRank: nn(t.draftDayProjectedRank),
+  weekly: t.weekly.map((w) => ({
+    week: w.week,
+    opponentId: w.opponentTeamId,
+    home: w.homeAway === "home",
+    pf: w.pointsFor,
+    pa: w.pointsAgainst,
+    result: w.result as TeamWeek["result"],
+    projected: nn(w.projected),
+  })),
+  week8: t.week8
+    ? { opponentId: t.week8.opponentTeamId, projected: nn(t.week8.projected), opponentProjected: nn(t.week8.opponentProjected) }
+    : undefined,
+  roster: { starters: t.roster.starters.map(player), bench: t.roster.bench.map(player), ir: t.roster.ir.map(player) },
+  moves: t.recentTransactions.map((m) => ({
+    date: nn(m.date),
+    week: nn(m.week),
+    type: m.type,
+    added: m.added,
+    dropped: m.dropped,
+    faabBid: m.faabBid ? m.faabBid : undefined,
+  })),
+  history: {
+    seasons: t.history.seasons.map((s) => ({
+      season: s.season,
+      name: s.displayName.replace(/\s+/g, " ").trim(),
+      wins: s.wins,
+      losses: s.losses,
+      ties: s.ties,
+      pointsFor: nn(s.pointsFor),
+      pointsAgainst: nn(s.pointsAgainst),
+      seed: nn(s.regularSeasonSeed),
+      finish: nn(s.finalRank),
+      champion: s.championshipWon === true,
+      outcome: nn(s.playoffOutcome),
+    })),
+    titles: t.history.titles,
+    titleYears: t.history.titleYears,
+    finalsYears: t.history.finalsYears,
+    bestFinish: nn(t.history.bestFinish),
+    number1Seeds: t.history.number1Seeds,
+    allTime: nn(t.history.allTimeRegularSeason),
+  },
+}));
+
+const BY_ID = new Map(TEAMS.map((t) => [t.id, t]));
+
+export function getTeam(id: number) {
+  return BY_ID.get(id);
+}
+
+export function team(id: number): Team {
+  const t = BY_ID.get(id);
+  if (!t) throw new Error(`Unknown team ${id}`);
+  return t;
+}
+
+export const USER_TEAM = TEAMS.find((t) => t.isUser) ?? team(7);
+
+export const LEAGUE = {
+  id: file.meta.leagueId,
+  name: file.league.name,
+  size: file.league.size,
+  season: file.meta.season,
+  week: file.meta.currentWeek,
+  generatedAt: file.meta.generatedAt,
+  source: file.meta.source,
+  seasonsOnRecord: [...file.league.previousSeasons, file.meta.season].sort((a, b) => a - b),
+};
+
+export const STANDINGS = [...TEAMS].sort((a, b) => a.rank - b.rank);
+
+export interface GameSide {
+  teamId: number;
+  score: number;
+  projected?: number;
+}
+
+export interface Game {
+  week: number;
+  home: GameSide;
+  away: GameSide;
+  winnerId?: number;
+  margin: number;
+}
+
+export const GAMES: Game[] = file.schedule.weeks1to7.map((g) => ({
+  week: g.week,
+  home: { teamId: g.homeTeamId, score: g.homeScore, projected: nn(g.homeProjected) },
+  away: { teamId: g.awayTeamId, score: g.awayScore, projected: nn(g.awayProjected) },
+  winnerId: nn(g.winnerTeamId),
+  margin: g.margin,
+}));
+
+export const WEEKS_PLAYED = [...new Set(GAMES.map((g) => g.week))].sort((a, b) => a - b);
+
+export function winnerSide(g: Game) {
+  return g.winnerId === g.home.teamId ? g.home : g.away;
+}
+
+export function loserSide(g: Game) {
+  return g.winnerId === g.home.teamId ? g.away : g.home;
+}
+
+export interface Matchup {
   slug: string;
-  path: string;
-  focusTeamId: number;
-  manager: string;
+  week: number;
+  homeId: number;
+  awayId: number;
+  /** Display order: the user's team first, otherwise away then home. */
+  left: { teamId: number; projected?: number };
+  right: { teamId: number; projected?: number };
 }
 
-export const BOARDS: BoardConfig[] = [
-  { slug: "golden-goose", path: "/", focusTeamId: 7, manager: "Gerrit" },
-  { slug: "bibis", path: "/bibis", focusTeamId: 1, manager: "Kyle · KASE" },
-];
+export const MATCHUPS: Matchup[] = file.schedule.week8
+  .map((g) => {
+    const away = { teamId: g.awayTeamId, projected: nn(g.awayProjected) };
+    const home = { teamId: g.homeTeamId, projected: nn(g.homeProjected) };
+    const [left, right] = home.teamId === USER_TEAM.id ? [home, away] : [away, home];
+    return {
+      slug: `${team(left.teamId).abbrev}-${team(right.teamId).abbrev}`.toLowerCase(),
+      week: LEAGUE.week,
+      homeId: home.teamId,
+      awayId: away.teamId,
+      left,
+      right,
+    };
+  })
+  .sort((a, b) => Number(b.left.teamId === USER_TEAM.id) - Number(a.left.teamId === USER_TEAM.id));
 
-export interface Board {
-  config: BoardConfig;
-  matchup: SnapshotMatchup;
-  focus: MatchupSide;
-  opponent: MatchupSide;
-  focusStanding: Standing | undefined;
-  opponentStanding: Standing | undefined;
+/** Older URL ids kept working for shared links. */
+const SLUG_ALIASES: { [slug: string]: number } = { "golden-goose": 7, bibis: 1 };
+
+export function getMatchup(slug: string) {
+  const aliased = SLUG_ALIASES[slug];
+  return aliased ? matchupFor(aliased) : MATCHUPS.find((m) => m.slug === slug);
 }
 
-export function getBoard(slug: string): Board | null {
-  const config = BOARDS.find((b) => b.slug === slug);
-  const matchup = snapshot.matchups.find((m) => m.slug === slug);
-  if (!config || !matchup) return null;
-  const focusIsHome = matchup.home.teamId === config.focusTeamId;
-  const focus = focusIsHome ? matchup.home : matchup.away;
-  const opponent = focusIsHome ? matchup.away : matchup.home;
-  return {
-    config,
-    matchup,
-    focus,
-    opponent,
-    focusStanding: getStanding(focus.teamId),
-    opponentStanding: getStanding(opponent.teamId),
-  };
+export function matchupFor(teamId: number) {
+  return MATCHUPS.find((m) => m.homeId === teamId || m.awayId === teamId);
 }
 
-export function getStanding(teamId: number) {
-  return snapshot.standings.find((s) => s.teamId === teamId);
+export function matchupPath(m: Matchup) {
+  return m.left.teamId === USER_TEAM.id ? "/" : `/matchups/${m.slug}`;
 }
 
-export function getStandingByName(name: string) {
-  return snapshot.standings.find((s) => s.teamName === name);
+export function teamPath(id: number) {
+  return `/teams/${id}`;
 }
 
-export function boardForTeam(teamId: number) {
-  return BOARDS.find((b) => b.focusTeamId === teamId);
+export interface Champion {
+  season: number;
+  championId: number;
+  /** The franchise's display name that season. */
+  championName: string;
+  championSeed?: number;
+  runnerUpId?: number;
+  runnerUpName?: string;
+  runnerUpSeed?: number;
 }
 
-/** The op board whose featured matchup includes this team (focus or opponent). */
-export function boardInvolving(teamId: number) {
-  const m = snapshot.matchups.find((x) => x.home.teamId === teamId || x.away.teamId === teamId);
-  return m ? boardForMatchup(m) : undefined;
+function seasonName(teamId: number, season: number) {
+  const t = getTeam(teamId);
+  return t?.history.seasons.find((s) => s.season === season)?.name ?? t?.name ?? "";
 }
 
-export function boardForMatchup(m: SnapshotMatchup) {
-  return BOARDS.find((b) => b.slug === m.slug);
-}
+export const CHAMPIONS: Champion[] = file.champions
+  .map((c) => ({
+    season: c.season,
+    championId: c.championTeamId,
+    championName: seasonName(c.championTeamId, c.season),
+    championSeed: nn(c.championSeed),
+    runnerUpId: nn(c.runnerUpTeamId),
+    runnerUpName: c.runnerUpTeamId != null ? seasonName(c.runnerUpTeamId, c.season) : undefined,
+    runnerUpSeed: nn(c.runnerUpSeed),
+  }))
+  .sort((a, b) => b.season - a.season);
 
-export function formatRecord(s: Pick<Standing, "wins" | "losses" | "ties">) {
-  return s.ties ? `${s.wins}-${s.losses}-${s.ties}` : `${s.wins}-${s.losses}`;
+export function formatRecord(t: { wins: number; losses: number; ties: number }) {
+  return t.ties ? `${t.wins}-${t.losses}-${t.ties}` : `${t.wins}-${t.losses}`;
 }
 
 export function ordinal(n: number) {
-  const suffixes = ["th", "st", "nd", "rd"];
+  const s = ["th", "st", "nd", "rd"];
   const v = n % 100;
-  return n + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
-export function isFlagged(p: SnapshotPlayer) {
+export function isFlagged(p: Player) {
   return p.status != null && p.status !== "Active";
+}
+
+/** Everything the public API returns: display names only. */
+export function publicLeague() {
+  return {
+    source: LEAGUE.source,
+    generatedAt: LEAGUE.generatedAt,
+    league: { id: LEAGUE.id, name: LEAGUE.name, season: LEAGUE.season, week: LEAGUE.week },
+    teams: TEAMS,
+    games: GAMES,
+    week8: MATCHUPS,
+    champions: CHAMPIONS,
+  };
 }

@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   cacheComponents: true,
   partialPrefetching: true,
+  async redirects() {
+    return [{ source: "/bibis", destination: "/matchups/bib-chw", permanent: false }];
+  },
   turbopack: {
     rules: {
       "*.css": {

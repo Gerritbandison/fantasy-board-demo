@@ -1,289 +1,266 @@
 import Link from "next/link";
-import { History, ShieldAlert } from "lucide-react";
+import { ShieldAlert, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getStanding, isFlagged, ordinal, snapshot, type Board, type MatchupSide, type SnapshotPlayer } from "@/lib/league";
-import {
-  closeGameRecord,
-  CLOSE_GAME_MARGIN,
-  getBrief,
-  getFranchise,
-  getLuck,
-  splitMustWin,
-  teamColor,
-  teamIdByName,
-  trailStats,
-  type Franchise,
-} from "@/lib/intel";
+import { formatRecord, isFlagged, LEAGUE, ordinal, team, teamPath, type Matchup, type Player, type Team } from "@/lib/league";
+import { buildPreview, type Edge } from "@/lib/preview";
+import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, luck, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
 import { SlotChip, StatusChip } from "./bits";
 import { Card, LuckBadge, PageHeader, Pill, Stat, TeamAvatar } from "./ui";
-import { MiniTrail, ScoreTrail, WeekStrip } from "./trail";
+import { MiniTrail, ScoreTrail, TrailLegend, WeekStrip } from "./trail";
 import { TvModeButton } from "./TvModeButton";
 
-export function MatchupBoard({ board }: { board: Board }) {
-  const { focus, opponent, config } = board;
-  const brief = getBrief(config.slug);
-  const focusF = getFranchise(focus.teamId);
-  const oppF = getFranchise(opponent.teamId);
-  const luck = getLuck(focus.teamId);
+export function MatchupBoard({ matchup, featured }: { matchup: Matchup; featured?: boolean }) {
+  const L = team(matchup.left.teamId);
+  const R = team(matchup.right.teamId);
+  const preview = buildPreview(matchup);
 
   return (
     <>
       <div className="flex items-end justify-between gap-3">
-        <PageHeader eyebrow={`${focusF?.ownerLabel ?? config.manager}'s team · Week ${snapshot.league.week}`} title={focus.teamName}>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            <Pill tone="navy">{focus.record}</Pill>
-            {board.focusStanding && <Pill>{ordinal(board.focusStanding.playoffSeed)} seed</Pill>}
-            <Pill>{focus.pointsFor.toFixed(1)} PF</Pill>
-            {luck && <LuckBadge row={luck} withRanks />}
-          </div>
-        </PageHeader>
+        {featured ? (
+          <PageHeader eyebrow={`${L.owner ? `${L.owner}'s team` : "Featured team"} · Week ${LEAGUE.week}`} title={L.name}>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              <Pill tone="navy">{formatRecord(L)}</Pill>
+              <Pill>{ordinal(L.seed)} seed</Pill>
+              <Pill>{L.pointsFor.toFixed(1)} PF</Pill>
+              <LuckBadge row={luck(L.id)} withRanks />
+            </div>
+            <Link href={teamPath(L.id)} className="mt-3 inline-block text-sm font-semibold text-turf hover:underline">
+              Full team page →
+            </Link>
+          </PageHeader>
+        ) : (
+          <PageHeader eyebrow={`Week ${LEAGUE.week} matchup`} title={<span className="text-[1.75rem] sm:text-4xl">{L.name} <span className="text-slate-400">vs</span> {R.name}</span>} />
+        )}
         <TvModeButton />
       </div>
 
-      <Scorecard focus={focus} opponent={opponent} />
+      <Scorecard matchup={matchup} L={L} R={R} />
 
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div className="grid content-start gap-5">
-          {brief && <PreviewCard brief={brief} focus={focus} opponent={opponent} />}
-          {focusF && oppF && <TaleOfTheTape focus={focus} opponent={opponent} focusF={focusF} oppF={oppF} />}
+          <Card title="Matchup preview" accent={L.color}>
+            <div className="grid gap-2 text-[16px] leading-relaxed text-slate-700">
+              {preview.story.map((s) => (
+                <p key={s}>{s}</p>
+              ))}
+            </div>
+            <h3 className="mt-5 text-xs font-bold tracking-wider text-slate-500 uppercase">Edges</h3>
+            <div className="mt-2 grid gap-4 sm:grid-cols-2">
+              <EdgeList t={L} edges={preview.edges.left} />
+              <EdgeList t={R} edges={preview.edges.right} />
+            </div>
+            <div className="mt-5 rounded-xl border-l-4 border-gold bg-gold-light px-3.5 py-3">
+              <p className="text-sm font-bold text-amber-800">What&apos;s at stake</p>
+              {preview.stakes.map((s) => (
+                <p key={s} className="mt-0.5 text-sm leading-snug text-slate-700">
+                  {s}
+                </p>
+              ))}
+            </div>
+          </Card>
+          <TaleOfTheTape L={L} R={R} matchup={matchup} />
         </div>
         <div className="grid content-start gap-5">
-          {focusF && <ScoringCard focus={focusF} opponent={oppF} focusSide={focus} opponentSide={opponent} />}
-          {focusF && <StoryCard franchise={focusF} title="Team story" />}
-          {oppF && <StoryCard franchise={oppF} title="Scouting report" />}
+          <Card title="Weekly scoring" action={String(LEAGUE.season)}>
+            <TrailLegend focus={L} compare={R} />
+            <ScoreTrail focus={L} compare={R} focusProj={matchup.left.projected} compareProj={matchup.right.projected} />
+            {[L, R].map((t) => (
+              <div key={t.id} className="mt-3">
+                <p className="mb-1 flex items-center gap-2 text-xs font-semibold text-slate-500">
+                  <TeamAvatar teamId={t.id} size="sm" className="size-5 text-[8px]" /> {t.name}
+                </p>
+                <WeekStrip weeks={t.weekly} />
+              </div>
+            ))}
+          </Card>
+          <TeamCard t={L} />
+          <TeamCard t={R} />
         </div>
       </div>
 
-      <InjuryReport focus={focus} opponent={opponent} />
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-        <Card title="Starting lineups" action={`${focus.starters.length} starters`} bodyClassName="px-0 pb-1 sm:px-0">
-          <Lineups focus={focus} opponent={opponent} />
-        </Card>
-        <Card title="Bench & IR" action={`${focus.bench?.length ?? 0} players`}>
-          <BenchList players={focus.bench ?? []} />
-        </Card>
+      <InjuryReport L={L} R={R} />
+      <Card title="Starting lineups" action={`${L.roster.starters.length} starters`} bodyClassName="px-0 pb-1 sm:px-0">
+        <Lineups L={L} R={R} />
+      </Card>
+      <div className="grid gap-5 md:grid-cols-2">
+        {[L, R].map((t) => (
+          <Card key={t.id} title={<span className="normal-case">Bench & IR</span>} action={t.abbrev} accent={t.color}>
+            <p className="-mt-1 mb-2 truncate text-sm font-semibold text-slate-600">{t.name}</p>
+            <BenchList players={[...t.roster.bench, ...t.roster.ir]} />
+          </Card>
+        ))}
       </div>
     </>
   );
 }
 
-function Scorecard({ focus, opponent }: { focus: MatchupSide; opponent: MatchupSide }) {
-  const margin = focus.projected - opponent.projected;
-  const share = (focus.projected / (focus.projected + opponent.projected)) * 100;
-  const fav = margin >= 0 ? focus : opponent;
+function Scorecard({ matchup, L, R }: { matchup: Matchup; L: Team; R: Team }) {
+  const lp = matchup.left.projected;
+  const rp = matchup.right.projected;
+  const hasProj = lp != null && rp != null;
+  const margin = hasProj ? lp - rp : 0;
+  const share = hasProj ? (lp / (lp + rp)) * 100 : 50;
+  const fav = margin >= 0 ? L : R;
   return (
     <section className="overflow-hidden rounded-2xl bg-navy yard-lines text-white shadow-lg shadow-navy/15">
       <div className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-2.5 text-xs font-semibold text-white/70 sm:px-5">
-        <span className="tracking-wider uppercase">Week {snapshot.league.week} matchup</span>
-        <span className="rounded-full bg-white/10 px-2 py-0.5 tracking-wide uppercase">Projected</span>
+        <span className="tracking-wider uppercase">Week {matchup.week} matchup</span>
+        {hasProj && <span className="rounded-full bg-white/10 px-2 py-0.5 tracking-wide uppercase">Projected</span>}
       </div>
       <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-3 px-4 pt-4 sm:px-5">
-        <ScoreSide side={focus} leading={margin >= 0} />
+        <ScoreSide t={L} projected={lp} leading={margin >= 0} home={matchup.homeId === L.id} />
         <span className="pt-16 font-display text-sm font-bold text-white/40 uppercase">vs</span>
-        <ScoreSide side={opponent} leading={margin < 0} align="right" />
+        <ScoreSide t={R} projected={rp} leading={margin < 0} home={matchup.homeId === R.id} align="right" />
       </div>
-      <div className="px-4 pt-4 pb-4 sm:px-5">
-        <div className="flex h-2.5 overflow-hidden rounded-full bg-white/10" role="img" aria-label={`Projected share: ${share.toFixed(0)}% to ${(100 - share).toFixed(0)}%`}>
-          <span style={{ width: `${share}%`, background: teamColor(focus.teamId) }} />
-          <span className="w-0.5 bg-navy" />
-          <span className="flex-1" style={{ background: teamColor(opponent.teamId) }} />
+      {hasProj && (
+        <div className="px-4 pt-4 pb-4 sm:px-5">
+          <div className="flex h-2.5 overflow-hidden rounded-full bg-white/10" role="img" aria-label={`Projected share: ${share.toFixed(0)}% to ${(100 - share).toFixed(0)}%`}>
+            <span style={{ width: `${share}%`, background: L.color }} />
+            <span className="w-0.5 bg-navy" />
+            <span className="flex-1" style={{ background: R.color }} />
+          </div>
+          <p className="mt-2 text-center text-sm text-white/80">
+            <span className="font-semibold text-white">{fav.name}</span> projected to win by{" "}
+            <span className="font-display text-base font-bold text-gold tabular-nums">{Math.abs(margin).toFixed(1)}</span>
+          </p>
         </div>
-        <p className="mt-2 text-center text-sm text-white/80">
-          <span className="font-semibold text-white">{fav.teamName}</span> projected to win by{" "}
-          <span className="font-display text-base font-bold text-gold tabular-nums">{Math.abs(margin).toFixed(1)}</span>
-        </p>
-      </div>
+      )}
     </section>
   );
 }
 
-function ScoreSide({ side, leading, align = "left" }: { side: MatchupSide; leading: boolean; align?: "left" | "right" }) {
+function ScoreSide({ t, projected, leading, home, align = "left" }: { t: Team; projected?: number; leading: boolean; home: boolean; align?: "left" | "right" }) {
   return (
     <div className={cn("flex min-w-0 flex-col gap-2", align === "right" ? "items-end text-right" : "items-start")}>
-      <TeamAvatar teamId={side.teamId} size="lg" className="ring-2 ring-white/20" />
+      <TeamAvatar teamId={t.id} size="lg" className="ring-2 ring-white/20" />
       <div className="min-w-0">
-        <p className="text-[15px] leading-tight font-semibold break-words">{side.teamName}</p>
+        <Link href={teamPath(t.id)} className="text-[15px] leading-tight font-semibold break-words hover:underline">
+          {t.name}
+        </Link>
         <p className="text-xs text-white/60">
-          {side.record} · {ordinal(side.rank)}
+          {formatRecord(t)} · {ordinal(t.rank)} · {home ? "Home" : "Away"}
         </p>
       </div>
       <p className={cn("font-display text-5xl leading-none font-extrabold tabular-nums sm:text-6xl", leading ? "text-white" : "text-white/55")}>
-        {side.projected.toFixed(1)}
+        {projected != null ? projected.toFixed(1) : "—"}
       </p>
     </div>
   );
 }
 
-function PreviewCard({ brief, focus, opponent }: { brief: NonNullable<ReturnType<typeof getBrief>>; focus: MatchupSide; opponent: MatchupSide }) {
-  const must = splitMustWin(brief.mustWin);
-  const mustId = teamIdByName(must.subject);
-  const mustIsFocus = mustId === focus.teamId;
+function EdgeList({ t, edges }: { t: Team; edges: Edge[] }) {
   return (
-    <Card title="Matchup preview" accent={teamColor(focus.teamId)}>
-      <p className="text-[16px] leading-relaxed text-slate-700">{brief.story}</p>
-
-      <div className={cn("mt-4 rounded-xl border-l-4 px-3.5 py-3", mustIsFocus ? "border-loss bg-red-50" : "border-gold bg-gold-light")}>
-        <p className={cn("text-sm font-bold", mustIsFocus ? "text-red-700" : "text-amber-800")}>
-          Must-win for {mustId ? (mustIsFocus ? focus.teamName : opponent.teamName) : must.subject}
-        </p>
-        <p className="mt-0.5 text-sm leading-snug text-slate-700">{must.detail || brief.mustWin}</p>
-      </div>
-
-      <h3 className="mt-5 text-xs font-bold tracking-wider text-slate-500 uppercase">Key edges</h3>
-      <ul className="mt-2 grid gap-3">
-        {brief.edges.map((e) => {
-          const id = teamIdByName(e.side);
-          return (
-            <li key={e.side} className="flex items-start gap-3">
-              <TeamAvatar teamId={id} size="sm" />
-              <p className="min-w-0 text-sm leading-snug text-slate-700">
-                <span className="font-semibold text-navy">{id === focus.teamId ? focus.teamName : id === opponent.teamId ? opponent.teamName : e.side}: </span>
-                {e.edge}
-              </p>
-            </li>
-          );
-        })}
-      </ul>
-
-      <p className="mt-5 flex items-start gap-2 border-t border-line pt-4 text-sm leading-snug text-slate-600">
-        <History className="mt-0.5 size-4 shrink-0 text-slate-400" />
-        {brief.historyNote}
+    <div className="min-w-0">
+      <p className="flex items-center gap-2 text-sm font-semibold text-navy">
+        <TeamAvatar teamId={t.id} size="sm" />
+        <span className="min-w-0 break-words">{t.name}</span>
       </p>
-    </Card>
+      {edges.length ? (
+        <ul className="mt-2 grid gap-1.5">
+          {edges.map((e) => (
+            <li key={e.label} className="text-sm leading-snug text-slate-700">
+              <span className="font-semibold text-turf-dark">{e.label}: </span>
+              {e.detail}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="mt-2 text-sm text-slate-500">No statistical edge this week.</p>
+      )}
+    </div>
   );
 }
 
-function TaleOfTheTape({ focus, opponent, focusF, oppF }: { focus: MatchupSide; opponent: MatchupSide; focusF: Franchise; oppF: Franchise }) {
-  const fs = trailStats(focusF);
-  const os = trailStats(oppF);
-  const fl = getLuck(focus.teamId);
-  const ol = getLuck(opponent.teamId);
-  const fc = closeGameRecord(focusF);
-  const oc = closeGameRecord(oppF);
-  const last3 = (f: Franchise) => {
-    const w = f.weekly2026.slice(-3);
-    return w.reduce((a, b) => a + b.pf, 0) / w.length;
-  };
-  type Row = { label: string; f: number | string; o: number | string; fmt?: (v: number) => string; better?: "high" | "low" };
+function TaleOfTheTape({ L, R, matchup }: { L: Team; R: Team; matchup: Matchup }) {
+  const ls = teamStats(L);
+  const rs = teamStats(R);
+  const la = allPlay(L.id);
+  const ra = allPlay(R.id);
+  const lc = closeGameRecord(L.id);
+  const rc = closeGameRecord(R.id);
+  type Row = { label: string; l: number | string; r: number | string; fmt?: (v: number) => string; better?: "high" | "low" };
+  const rank = (v: number) => `#${v}`;
   const rows: Row[] = [
-    { label: "Week 8 projection", f: focus.projected, o: opponent.projected, better: "high" },
-    { label: "Points for", f: focus.pointsFor, o: opponent.pointsFor, better: "high" },
-    { label: "Points-for rank", f: fl?.pfRank ?? "—", o: ol?.pfRank ?? "—", fmt: (v) => `#${v}`, better: "low" },
-    { label: "Avg per week", f: fs.avg, o: os.avg, better: "high" },
-    { label: "Last 3 weeks avg", f: last3(focusF), o: last3(oppF), better: "high" },
-    { label: "Best week", f: fs.high.pf, o: os.high.pf, better: "high" },
-    { label: "Worst week", f: fs.low.pf, o: os.low.pf, better: "high" },
-    { label: "Weekly swing (±)", f: fs.stdDev, o: os.stdDev },
-    { label: "Points against", f: getStanding(focus.teamId)?.pointsAgainst ?? 0, o: getStanding(opponent.teamId)?.pointsAgainst ?? 0 },
-    { label: `Games decided by <${CLOSE_GAME_MARGIN}`, f: `${fc.wins}-${fc.losses}`, o: `${oc.wins}-${oc.losses}` },
+    ...(matchup.left.projected != null && matchup.right.projected != null
+      ? [{ label: `Week ${matchup.week} projection`, l: matchup.left.projected, r: matchup.right.projected, better: "high" as const }]
+      : []),
+    { label: "Record", l: formatRecord(L), r: formatRecord(R) },
+    { label: "Points for", l: L.pointsFor, r: R.pointsFor, better: "high" },
+    { label: "Points-for rank", l: pfRank(L.id), r: pfRank(R.id), fmt: rank, better: "low" },
+    { label: "Power rank", l: powerRank(L.id), r: powerRank(R.id), fmt: rank, better: "low" },
+    { label: "All-play record", l: `${la.wins}-${la.losses}`, r: `${ra.wins}-${ra.losses}` },
+    { label: "Avg per week", l: ls.avg, r: rs.avg, better: "high" },
+    { label: "Last 3 weeks avg", l: ls.last3, r: rs.last3, better: "high" },
+    { label: "Best week", l: ls.high.pf, r: rs.high.pf, better: "high" },
+    { label: "Worst week", l: ls.low.pf, r: rs.low.pf, better: "high" },
+    { label: "Weekly swing (±)", l: ls.stdDev, r: rs.stdDev },
+    { label: "Points against", l: L.pointsAgainst, r: R.pointsAgainst },
+    { label: "Opponents' avg", l: schedule(L.id).oppAvg, r: schedule(R.id).oppAvg },
+    { label: `Games decided by <${CLOSE_GAME_MARGIN}`, l: `${lc.wins}-${lc.losses}`, r: `${rc.wins}-${rc.losses}` },
+    { label: "Titles (2020–25)", l: L.history.titles, r: R.history.titles, fmt: String },
   ];
   const show = (r: Row, v: number | string) => (typeof v === "number" ? (r.fmt ? r.fmt(v) : v.toFixed(1)) : v);
   const winner = (r: Row) => {
-    if (!r.better || typeof r.f !== "number" || typeof r.o !== "number" || r.f === r.o) return null;
-    return (r.better === "high") === r.f > r.o ? "f" : "o";
+    if (!r.better || typeof r.l !== "number" || typeof r.r !== "number" || r.l === r.r) return null;
+    return (r.better === "high") === r.l > r.r ? "l" : "r";
   };
   return (
-    <Card title="Tale of the tape" action="Weeks 1–7">
-      <div className="mb-2 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2">
-        <span className="flex min-w-0 items-center gap-2">
-          <TeamAvatar teamId={focus.teamId} size="sm" />
-          <span className="truncate text-xs font-semibold text-slate-500">{focusF.ownerLabel}</span>
-        </span>
-        <span />
-        <span className="flex min-w-0 items-center justify-end gap-2">
-          <span className="truncate text-xs font-semibold text-slate-500">{oppF.ownerLabel}</span>
-          <TeamAvatar teamId={opponent.teamId} size="sm" />
-        </span>
+    <Card title="Tale of the tape" action={`Weeks 1–${LEAGUE.week - 1}`}>
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <TeamAvatar teamId={L.id} size="sm" />
+        <TeamAvatar teamId={R.id} size="sm" />
       </div>
       <dl className="divide-y divide-line">
         {rows.map((r) => {
           const w = winner(r);
           return (
             <div key={r.label} className="grid grid-cols-[4.5rem_minmax(0,1fr)_4.5rem] items-center gap-2 py-2">
-              <dd className={cn("font-display text-lg font-bold tabular-nums", w === "f" ? "text-turf" : "text-navy", w === "o" && "text-slate-400")}>
-                {show(r, r.f)}
-              </dd>
+              <dd className={cn("font-display text-lg font-bold tabular-nums", w === "l" ? "text-turf" : "text-navy", w === "r" && "text-slate-400")}>{show(r, r.l)}</dd>
               <dt className="text-center text-xs font-medium text-slate-500">{r.label}</dt>
-              <dd className={cn("text-right font-display text-lg font-bold tabular-nums", w === "o" ? "text-turf" : "text-navy", w === "f" && "text-slate-400")}>
-                {show(r, r.o)}
+              <dd className={cn("text-right font-display text-lg font-bold tabular-nums", w === "r" ? "text-turf" : "text-navy", w === "l" && "text-slate-400")}>
+                {show(r, r.r)}
               </dd>
             </div>
           );
         })}
       </dl>
-      <p className="mt-2 text-xs text-slate-500">Green marks the better side where higher or lower is clearly better.</p>
+      <p className="mt-2 text-xs text-slate-500">Green marks the better side where higher or lower is clearly better. All-play: record if you played every team every week.</p>
     </Card>
   );
 }
 
-function ScoringCard({
-  focus,
-  opponent,
-  focusSide,
-  opponentSide,
-}: {
-  focus: Franchise;
-  opponent?: Franchise;
-  focusSide: MatchupSide;
-  opponentSide: MatchupSide;
-}) {
-  const s = trailStats(focus);
+function TeamCard({ t }: { t: Team }) {
+  const h = t.history;
   return (
-    <Card title="Weekly scoring" action="2026">
-      <div className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs font-medium text-slate-600">
-        <span className="flex items-center gap-1.5">
-          <span className="h-[3px] w-4 rounded-full" style={{ background: teamColor(focus.teamId) }} />
-          {focusSide.teamName}
-        </span>
-        {opponent && (
-          <span className="flex items-center gap-1.5">
-            <span className="h-[2px] w-4 rounded-full opacity-60" style={{ background: teamColor(opponent.teamId) }} />
-            {opponentSide.teamName}
-          </span>
-        )}
-        <span className="text-slate-400">Wk 8 = projection</span>
-      </div>
-      <ScoreTrail focus={focus} opponent={opponent} focusProj={focusSide.projected} opponentProj={opponentSide.projected} />
-      <WeekStrip weeks={focus.weekly2026} className="mt-3" />
-      <div className="mt-4 grid grid-cols-3 gap-3 border-t border-line pt-3">
-        <Stat label="Average" value={s.avg.toFixed(1)} sub={`Proj ${focusSide.projected - s.avg >= 0 ? "+" : "−"}${Math.abs(focusSide.projected - s.avg).toFixed(1)} vs avg`} />
-        <Stat label="Best" value={s.high.pf.toFixed(1)} sub={`Wk ${s.high.week} vs ${s.high.opp}`} valueClassName="text-turf" />
-        <Stat label="Worst" value={s.low.pf.toFixed(1)} sub={`Wk ${s.low.week} vs ${s.low.opp}`} valueClassName="text-loss" />
-      </div>
-    </Card>
-  );
-}
-
-function StoryCard({ franchise, title }: { franchise: Franchise; title: string }) {
-  return (
-    <Card title={title} action={franchise.ownerLabel} accent={teamColor(franchise.teamId)}>
+    <Card accent={t.color}>
       <div className="flex items-start gap-3">
-        <TeamAvatar teamId={franchise.teamId} />
-        <div className="min-w-0">
-          <p className="font-semibold text-navy">{franchise.name}</p>
+        <TeamAvatar teamId={t.id} />
+        <div className="min-w-0 flex-1">
+          <Link href={teamPath(t.id)} className="font-semibold break-words text-navy hover:underline">
+            {t.name}
+          </Link>
           <p className="text-xs text-slate-500">
-            {franchise.titles} title{franchise.titles === 1 ? "" : "s"} · Playoffs {franchise.playoffAppearancesRecent}
+            {[t.owner, `${formatRecord(t)} · ${ordinal(t.rank)}`].filter(Boolean).join(" · ")}
           </p>
         </div>
-        <MiniTrail franchise={franchise} className="ml-auto hidden min-[380px]:block" />
+        <MiniTrail team={t} className="hidden min-[380px]:block" />
       </div>
-      <p className="mt-3 text-sm leading-relaxed text-slate-700">{franchise.arc}</p>
-      <p className="mt-3 rounded-lg bg-slate-50 px-3 py-2 text-sm leading-snug text-slate-700 ring-1 ring-slate-100">
-        <span className="font-semibold text-navy">Signature: </span>
-        {franchise.signature}
-      </p>
-      <Link href="/history" className="mt-3 inline-block text-sm font-semibold text-turf hover:underline">
-        League history →
+      <div className="mt-3 grid grid-cols-3 gap-3">
+        <Stat label="Titles" value={h.titles} sub={h.titleYears.join(", ") || "—"} valueClassName={h.titles ? "text-gold" : undefined} />
+        <Stat label="Finals" value={h.finalsYears.length} sub={h.finalsYears.join(", ") || "—"} />
+        {h.allTime && <Stat label="2020–25" value={formatRecord(h.allTime)} sub="Regular season" />}
+      </div>
+      <Link href={teamPath(t.id)} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-turf hover:underline">
+        {h.titles > 0 && <Trophy className="size-3.5 text-gold" />}
+        Team page, roster & history →
       </Link>
     </Card>
   );
 }
 
-function InjuryReport({ focus, opponent }: { focus: MatchupSide; opponent: MatchupSide }) {
-  const list = [
-    ...focus.starters.filter(isFlagged).map((p) => ({ p, team: focus })),
-    ...opponent.starters.filter(isFlagged).map((p) => ({ p, team: opponent })),
-  ];
+function InjuryReport({ L, R }: { L: Team; R: Team }) {
+  const list = [L, R].flatMap((t) => t.roster.starters.filter(isFlagged).map((p) => ({ p, t })));
   if (list.length === 0) return null;
   return (
     <div className="flex items-start gap-3 rounded-2xl bg-red-50 px-4 py-3 ring-1 ring-red-100">
@@ -291,11 +268,11 @@ function InjuryReport({ focus, opponent }: { focus: MatchupSide; opponent: Match
       <div className="min-w-0 text-sm leading-snug">
         <p className="font-bold text-red-800">Injury report · starters</p>
         <p className="mt-0.5 text-slate-700">
-          {list.map(({ p, team }, i) => (
-            <span key={p.name}>
+          {list.map(({ p, t }, i) => (
+            <span key={`${t.id}-${p.name}`}>
               {i > 0 && " · "}
-              {p.name} <span className="font-semibold text-loss">({p.status === "Questionable" ? "Q" : p.status})</span>
-              {team.teamId === opponent.teamId && <span className="text-slate-500"> (opp)</span>}
+              {p.name} <span className="font-semibold text-loss">({p.status === "Questionable" ? "Q" : p.status})</span>{" "}
+              <span className="text-slate-500">{t.abbrev}</span>
             </span>
           ))}
         </p>
@@ -304,24 +281,24 @@ function InjuryReport({ focus, opponent }: { focus: MatchupSide; opponent: Match
   );
 }
 
-function Lineups({ focus, opponent }: { focus: MatchupSide; opponent: MatchupSide }) {
-  const rows = Math.max(focus.starters.length, opponent.starters.length);
+function Lineups({ L, R }: { L: Team; R: Team }) {
+  const rows = Math.max(L.roster.starters.length, R.roster.starters.length);
   return (
     <div>
       <div className="grid grid-cols-[minmax(0,1fr)_2.75rem_minmax(0,1fr)] gap-2 border-b border-line bg-slate-50 px-4 py-2 text-xs font-bold text-slate-500 sm:px-5">
-        <span className="truncate">{focus.teamName}</span>
+        <span className="truncate">{L.name}</span>
         <span className="text-center">Pos</span>
-        <span className="truncate text-right">{opponent.teamName}</span>
+        <span className="truncate text-right">{R.name}</span>
       </div>
       <ol>
         {Array.from({ length: rows }, (_, i) => {
-          const mine = focus.starters[i];
-          const theirs = opponent.starters[i];
+          const mine = L.roster.starters[i];
+          const theirs = R.roster.starters[i];
           return (
             <li key={i} className="grid min-h-14 grid-cols-[minmax(0,1fr)_2.75rem_minmax(0,1fr)] items-center gap-2 border-b border-line px-4 py-2 last:border-0 sm:px-5">
               <PlayerCell player={mine} />
               <SlotChip slot={mine?.slot ?? theirs?.slot ?? "—"} className="justify-self-center" />
-              <PlayerCell player={theirs} align="right" muted />
+              <PlayerCell player={theirs} align="right" />
             </li>
           );
         })}
@@ -330,14 +307,19 @@ function Lineups({ focus, opponent }: { focus: MatchupSide; opponent: MatchupSid
   );
 }
 
-function PlayerCell({ player, align = "left", muted }: { player?: SnapshotPlayer; align?: "left" | "right"; muted?: boolean }) {
+export function PlayerCell({ player, align = "left" }: { player?: Player; align?: "left" | "right" }) {
   if (!player) return <span className="text-slate-300">—</span>;
   return (
     <div className={cn("min-w-0", align === "right" && "text-right")}>
-      <p className={cn("text-[15px] leading-tight font-semibold break-words", muted ? "text-slate-600" : "text-navy")}>{player.name}</p>
-      {(player.team || isFlagged(player)) && (
+      <p className="text-[15px] leading-tight font-semibold break-words text-navy">{player.name}</p>
+      {(player.nflTeam || isFlagged(player)) && (
         <p className={cn("mt-0.5 flex items-center gap-1.5 text-xs text-slate-500", align === "right" && "justify-end")}>
-          {player.team && <span>{player.team}</span>}
+          {player.nflTeam && (
+            <span>
+              {player.slot === "FLEX" ? `${player.position} · ` : ""}
+              {player.nflTeam}
+            </span>
+          )}
           <StatusChip status={player.status} />
         </p>
       )}
@@ -345,15 +327,15 @@ function PlayerCell({ player, align = "left", muted }: { player?: SnapshotPlayer
   );
 }
 
-function BenchList({ players }: { players: SnapshotPlayer[] }) {
-  if (players.length === 0) return <p className="py-3 text-center text-sm text-slate-500">No bench in this snapshot.</p>;
+export function BenchList({ players }: { players: Player[] }) {
+  if (players.length === 0) return <p className="py-3 text-center text-sm text-slate-500">Nobody on the bench.</p>;
   return (
     <ul className="divide-y divide-line">
       {players.map((p) => (
         <li key={p.name} className="flex min-h-12 items-center gap-3 py-2">
-          <SlotChip slot={p.slot} />
+          <SlotChip slot={p.slot === "Bench" ? p.position : p.slot} className={p.slot === "Bench" ? "opacity-80" : undefined} />
           <span className="min-w-0 flex-1 text-[15px] leading-tight font-medium break-words text-slate-700">{p.name}</span>
-          {p.team && <span className="text-xs text-slate-500">{p.team}</span>}
+          {p.nflTeam && <span className="text-xs text-slate-500">{p.nflTeam}</span>}
           <StatusChip status={p.status} />
         </li>
       ))}

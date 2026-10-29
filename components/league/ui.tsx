@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import { abbrev, LUCK_LABEL, teamColor, type LuckRow } from "@/lib/intel";
+import { getTeam } from "@/lib/league";
+import { LUCK_LABEL, TRAIL_RANGE, type Luck } from "@/lib/stats";
 
 export function Card({
   title,
@@ -56,7 +57,7 @@ export function SectionHeading({ title, action }: { title: string; action?: Reac
 }
 
 export function TeamAvatar({ teamId, size = "md", className }: { teamId?: number; size?: "sm" | "md" | "lg"; className?: string }) {
-  const code = teamId ? abbrev(teamId) : "?";
+  const t = teamId != null ? getTeam(teamId) : undefined;
   return (
     <span
       className={cn(
@@ -66,10 +67,10 @@ export function TeamAvatar({ teamId, size = "md", className }: { teamId?: number
         size === "lg" && "size-14 text-base",
         className,
       )}
-      style={{ background: teamId ? teamColor(teamId) : "#94a3b8" }}
+      style={{ background: t?.color ?? "#94a3b8" }}
       aria-hidden
     >
-      {code}
+      {t?.abbrev ?? "?"}
     </span>
   );
 }
@@ -122,16 +123,16 @@ export function Stat({
 }
 
 /** `compact` drops the word label below `sm` (the delta and color carry it) for narrow table cells. */
-export function LuckBadge({ row, withRanks, compact }: { row: LuckRow; withRanks?: boolean; compact?: boolean }) {
+export function LuckBadge({ row, withRanks, compact }: { row: Luck; withRanks?: boolean; compact?: boolean }) {
   const l = LUCK_LABEL[row.label];
-  const delta = row.luckDelta > 0 ? `+${row.luckDelta}` : row.luckDelta === 0 ? "0" : `−${Math.abs(row.luckDelta)}`;
+  const delta = row.delta > 0 ? `+${row.delta}` : `−${Math.abs(row.delta)}`;
   return (
     <span
-      title={`Points-for rank ${row.pfRank}, record rank ${row.winRank}`}
+      title={`Points-for rank ${row.pfRank}, standings rank ${row.recordRank}`}
       className={cn("inline-flex h-6 items-center gap-1 rounded-full px-2 text-xs font-semibold whitespace-nowrap ring-1 ring-inset", l.tone)}
     >
-      <span className={cn(compact && row.luckDelta !== 0 && "max-sm:hidden")}>{l.text}</span>
-      {row.luckDelta !== 0 && <span className="tabular-nums">{delta}</span>}
+      <span className={cn(compact && row.delta !== 0 && "max-sm:hidden")}>{l.text}</span>
+      {row.delta !== 0 && <span className="tabular-nums">{delta}</span>}
       {withRanks && (
         <span className="font-normal opacity-75">
           · PF #{row.pfRank}
@@ -152,5 +153,17 @@ export function ResultChip({ result, className }: { result: string; className?: 
     >
       {result}
     </span>
+  );
+}
+
+/** Low–high band with a median tick, on the shared score scale. */
+export function RangeBar({ low, median, high, color }: { low: number; median: number; high: number; color: string }) {
+  const { min, max } = TRAIL_RANGE;
+  const pos = (v: number) => `${((v - min) / (max - min)) * 100}%`;
+  return (
+    <div className="relative h-3 rounded-full bg-slate-100" role="img" aria-label={`Low ${low.toFixed(1)}, median ${median.toFixed(1)}, high ${high.toFixed(1)}`}>
+      <span className="absolute inset-y-0 rounded-full opacity-30" style={{ left: pos(low), right: `calc(100% - ${pos(high)})`, background: color }} />
+      <span className="absolute -inset-y-0.5 w-1 -translate-x-1/2 rounded-full" style={{ left: pos(median), background: color }} />
+    </div>
   );
 }
