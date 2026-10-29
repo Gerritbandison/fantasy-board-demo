@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeftRight, Ban, Gavel, Handshake, Megaphone, Recycle, Repeat, Scissors, Trophy } from "lucide-react";
+import { ArrowDownRight, ArrowLeftRight, ArrowRight, ArrowUpRight, Ban, Gavel, Handshake, Megaphone, Minus, Recycle, Repeat, Scissors, TrendingDown, TrendingUp, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { team, teamPath } from "@/lib/league";
 import {
@@ -16,6 +16,7 @@ import {
   TRADES_LABEL,
   type Asset,
   type Grade,
+  type Outlook,
   type Trade,
   type TradeSide,
 } from "@/lib/trades";
@@ -65,6 +66,68 @@ function AssetItem({ a }: { a: Asset }) {
   );
 }
 
+const VERDICT = {
+  "paying-off": { label: "Paying off", icon: TrendingUp, tone: "turf" },
+  even: { label: "Even", icon: Minus, tone: "slate" },
+  backfiring: { label: "Backfiring", icon: TrendingDown, tone: "loss" },
+} as const;
+
+export function VerdictPill({ verdict }: { verdict: Outlook["verdict"] }) {
+  const v = VERDICT[verdict];
+  return (
+    <Pill tone={v.tone}>
+      <v.icon className="size-3.5" aria-hidden />
+      {v.label}
+    </Pill>
+  );
+}
+
+export function ValueChange({ change }: { change: number }) {
+  const Icon = change > 0 ? ArrowUpRight : change < 0 ? ArrowDownRight : ArrowRight;
+  return (
+    <span className={cn("inline-flex items-center gap-0.5 text-xs font-semibold tabular-nums", change > 0 ? "text-turf" : change < 0 ? "text-loss" : "text-slate-500")}>
+      <Icon className="size-3.5" aria-hidden />
+      <span>
+        {signed(change)}
+        <span className="sr-only">{change > 0 ? " value up" : change < 0 ? " value down" : " value unchanged"}</span>
+      </span>
+    </span>
+  );
+}
+
+function OutlookRow({ o }: { o: Outlook }) {
+  return (
+    <div className="mt-2 border-t border-line pt-2">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <VerdictPill verdict={o.verdict} />
+        {o.valueChange != null && (
+          <span className="inline-flex items-center gap-1 text-xs text-slate-500">
+            Value since the deal <ValueChange change={o.valueChange} />
+          </span>
+        )}
+      </div>
+      {(o.ppgBefore != null || o.ppgAfter != null || o.restOfSeason != null) && (
+        <dl className="mt-1.5 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-slate-500">
+          {o.ppgBefore != null && o.ppgAfter != null && (
+            <div className="flex gap-1">
+              <dt>PPG</dt>
+              <dd className="font-semibold text-slate-700 tabular-nums">
+                {tp(o.ppgBefore)} → {tp(o.ppgAfter)}
+              </dd>
+            </div>
+          )}
+          {o.restOfSeason != null && (
+            <div className="flex gap-1">
+              <dt>Rest of season</dt>
+              <dd className="font-semibold text-slate-700 tabular-nums">{tp(o.restOfSeason)}</dd>
+            </div>
+          )}
+        </dl>
+      )}
+    </div>
+  );
+}
+
 function SideBlock({ s, early, mine }: { s: TradeSide; early: boolean; mine?: boolean }) {
   const t = team(s.teamId);
   return (
@@ -93,6 +156,7 @@ function SideBlock({ s, early, mine }: { s: TradeSide; early: boolean; mine?: bo
           Points for them since: <span className="font-semibold text-slate-700 tabular-nums">{tp(s.points)}</span>
         </p>
       )}
+      {s.outlook && <OutlookRow o={s.outlook} />}
     </div>
   );
 }

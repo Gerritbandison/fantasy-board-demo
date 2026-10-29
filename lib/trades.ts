@@ -14,8 +14,17 @@ interface RawPlayer {
   nflTeam: string | null;
 }
 
+interface RawOutlook {
+  verdict: Verdict;
+  valueChange?: number | null;
+  ppgBefore?: number | null;
+  ppgAfter?: number | null;
+  restOfSeason?: number | null;
+}
+
 interface RawSide {
   teamId: number;
+  outlook?: RawOutlook | null;
   received: RawPlayer[];
   sent: RawPlayer[];
   receivedPicks: string[];
@@ -84,12 +93,30 @@ export type Asset =
 
 export type Grade = "A" | "A-" | "B+" | "B" | "C+" | "C" | "D" | "F" | "INC";
 
+export type Verdict = "paying-off" | "even" | "backfiring";
+
+/** Long-term read on one side of a deal. Every field is optional except the verdict. */
+export interface Outlook {
+  verdict: Verdict;
+  /** Change in this side's value since the deal: positive is up, negative is down. */
+  valueChange: number | null;
+  ppgBefore: number | null;
+  ppgAfter: number | null;
+  restOfSeason: number | null;
+}
+
+function outlook(o: RawOutlook | null | undefined): Outlook | null {
+  if (!o?.verdict) return null;
+  return { verdict: o.verdict, valueChange: o.valueChange ?? null, ppgBefore: o.ppgBefore ?? null, ppgAfter: o.ppgAfter ?? null, restOfSeason: o.restOfSeason ?? null };
+}
+
 export interface TradeSide {
   teamId: number;
   got: Asset[];
   /** All points the received players scored for this team, started or benched; null when there is no data yet. */
   points: number | null;
   grade: Grade;
+  outlook: Outlook | null;
 }
 
 export interface Trade {
@@ -147,7 +174,7 @@ export const TRADES: Trade[] = file.trades
     const weeksCounted = w ? w.weeksCounted[1] - w.weeksCounted[0] + 1 : 0;
     const [a, b] = t.teams.map((s) => {
       const mine = w?.bySide[String(s.teamId)];
-      return { teamId: s.teamId, got: [...s.received.map(player), ...s.receivedPicks.map(pick)], points: mine?.totalPointsForNewTeam ?? null };
+      return { teamId: s.teamId, got: [...s.received.map(player), ...s.receivedPicks.map(pick)], points: mine?.totalPointsForNewTeam ?? null, outlook: outlook(s.outlook) };
     });
     const sides = [a, b].map((s, i, all) => {
       const other = all[1 - i];
