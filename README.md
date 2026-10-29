@@ -1,5 +1,7 @@
 # Chicken League · Week 8 board
 
+**Live:** [https://fantasy-board-demo.vercel.app](https://fantasy-board-demo.vercel.app) — share that link. Public, no login, works on iPhone.
+
 A phone-first, friend-shareable fantasy football app for the ESPN **Chicken** league (2026, week 8), built with Next.js (App Router). It reads a committed league snapshot, so it deploys to Vercel with **zero secrets**. The dark TV-board look is kept, and a full-screen TV mode is available on large screens.
 
 | Golden Goose (`/`) | Bibi's Boys (`/bibis`) | Standings | Insights |
@@ -44,13 +46,11 @@ npm run build && npm start
 
 ## Deploy to Vercel
 
-No environment variables are needed.
+**Production URL:** [https://fantasy-board-demo.vercel.app](https://fantasy-board-demo.vercel.app)
 
-1. In Vercel, choose **Add New → Project** and import `Gerritbandison/fantasy-board-demo` from GitHub. You can also use [this one-click link](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FGerritbandison%2Ffantasy-board-demo).
-2. Keep the detected **Next.js** preset and the default build settings, then click **Deploy**.
-3. Share the production URL. Pushes to `main` redeploy automatically.
+No environment variables are needed. The app is already deployed on Vercel under project `fantasy-board-demo` (Hobby team). Redeploy by uploading/pushing a new build, or after connecting the GitHub repo in Vercel (grant the Vercel GitHub app access to `fantasy-board-demo`, then import / link so pushes to `main` redeploy automatically).
 
-From the CLI: `npx vercel link`, then `npx vercel --prod`.
+From the CLI (linked account): `npx vercel --prod`.
 
 ## Project structure
 

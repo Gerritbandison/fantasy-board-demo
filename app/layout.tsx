@@ -19,11 +19,19 @@ const display = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fantasy-board-demo.vercel.app"),
   title: {
     default: "Chicken League · Week 8",
     template: "%s · Chicken League",
   },
   description: "Week 8 matchup boards, standings, and insights for the Chicken fantasy football league.",
+  openGraph: {
+    title: "Chicken League · Week 8",
+    description: "Golden Goose, Bibi's Boys, standings, and insights — phone-friendly.",
+    url: "https://fantasy-board-demo.vercel.app",
+    siteName: "Chicken League Board",
+    type: "website",
+  },
   appleWebApp: { capable: true, title: "Chicken", statusBarStyle: "black-translucent" },
 };
 
