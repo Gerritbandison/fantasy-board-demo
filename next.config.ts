@@ -6,7 +6,10 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   async redirects() {
-    return [{ source: "/bibis", destination: "/matchups/bib-chw", permanent: false }];
+    return [
+      { source: "/bibis", destination: "/matchups/bib-chw", permanent: false },
+      { source: "/teams", destination: "/", permanent: false },
+    ];
   },
   turbopack: {
     rules: {

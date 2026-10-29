@@ -354,7 +354,7 @@ export function matchupFor(teamId: number) {
 }
 
 export function matchupPath(m: Matchup) {
-  return m.left.teamId === USER_TEAM.id ? "/" : `/matchups/${m.slug}`;
+  return `/matchups/${m.slug}`;
 }
 
 export function teamPath(id: number) {

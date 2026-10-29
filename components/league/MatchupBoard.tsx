@@ -3,14 +3,14 @@ import { ShieldAlert, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatRecord, isFlagged, LEAGUE, ordinal, team, teamPath, type Matchup, type Player, type Team } from "@/lib/league";
 import { buildPreview, type Edge } from "@/lib/preview";
-import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, luck, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
+import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
 import { SlotChip, StatusChip } from "./bits";
 import { MatchupSeries } from "./h2h";
-import { Card, LuckBadge, PageHeader, Pill, Stat, TeamAvatar } from "./ui";
+import { Card, PageHeader, Stat, TeamAvatar } from "./ui";
 import { MiniTrail, ScoreTrail, TrailLegend, WeekStrip } from "./trail";
 import { TvModeButton } from "./TvModeButton";
 
-export function MatchupBoard({ matchup, featured }: { matchup: Matchup; featured?: boolean }) {
+export function MatchupBoard({ matchup }: { matchup: Matchup }) {
   const L = team(matchup.left.teamId);
   const R = team(matchup.right.teamId);
   const preview = buildPreview(matchup);
@@ -18,21 +18,7 @@ export function MatchupBoard({ matchup, featured }: { matchup: Matchup; featured
   return (
     <>
       <div className="flex items-end justify-between gap-3">
-        {featured ? (
-          <PageHeader eyebrow={`${L.owner ? `${L.owner}'s team` : "Featured team"} · Week ${LEAGUE.week}`} title={L.name}>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              <Pill tone="navy">{formatRecord(L)}</Pill>
-              <Pill>{ordinal(L.seed)} seed</Pill>
-              <Pill>{L.pointsFor.toFixed(1)} PF</Pill>
-              <LuckBadge row={luck(L.id)} withRanks />
-            </div>
-            <Link href={teamPath(L.id)} className="mt-3 inline-block text-sm font-semibold text-turf hover:underline">
-              Full team page →
-            </Link>
-          </PageHeader>
-        ) : (
-          <PageHeader eyebrow={`Week ${LEAGUE.week} matchup`} title={<span className="text-[1.75rem] sm:text-4xl">{L.name} <span className="text-slate-400">vs</span> {R.name}</span>} />
-        )}
+        <PageHeader eyebrow={`Week ${LEAGUE.week} matchup`} title={<span className="text-[1.75rem] sm:text-4xl">{L.name} <span className="text-slate-400">vs</span> {R.name}</span>} />
         <TvModeButton />
       </div>
 

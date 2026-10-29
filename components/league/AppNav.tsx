@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChartColumn, ListOrdered, Star, Swords, Trophy, Users, type LucideIcon } from "lucide-react";
+import { ChartColumn, ListOrdered, Swords, Trophy, Users, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-const NAV: { href: string; label: string; icon: LucideIcon; phone: boolean; also?: string[] }[] = [
-  { href: "/", label: "Maye", icon: Star, phone: true },
-  { href: "/matchups", label: "Scores", icon: Swords, phone: true },
-  { href: "/teams", label: "Teams", icon: Users, phone: true, also: ["/standings"] },
+/** `also`: extra paths that light up the item; `phoneAlso` only applies in the bottom bar, where Standings has no tab of its own. */
+const NAV: { href: string; label: string; icon: LucideIcon; phone: boolean; also?: string[]; phoneAlso?: string[] }[] = [
+  { href: "/", label: "Teams", icon: Users, phone: true, also: ["/teams/"], phoneAlso: ["/standings"] },
   { href: "/standings", label: "Standings", icon: ListOrdered, phone: false },
+  { href: "/matchups", label: "Scores", icon: Swords, phone: true },
   { href: "/insights", label: "Insights", icon: ChartColumn, phone: true },
   { href: "/history", label: "History", icon: Trophy, phone: true },
 ];
@@ -27,7 +27,7 @@ function Football({ className }: { className?: string }) {
   );
 }
 
-export function TopBar({ week, season, homeTitle }: { week: number; season: number; homeTitle: string }) {
+export function TopBar({ week, season }: { week: number; season: number }) {
   const pathname = usePathname();
   return (
     <header className="app-chrome sticky top-0 z-30 bg-navy yard-lines pt-[env(safe-area-inset-top)] text-white shadow-[0_2px_10px_rgba(15,30,54,0.25)]">
@@ -46,13 +46,12 @@ export function TopBar({ week, season, homeTitle }: { week: number; season: numb
 
         <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
           {NAV.map((item) => {
-            const active = isActive(pathname, item.href);
+            const active = [item.href, ...(item.also ?? [])].some((h) => isActive(pathname, h));
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                title={item.href === "/" ? homeTitle : undefined}
                 className={cn(
                   "flex h-9 items-center gap-1.5 rounded-full px-3.5 text-sm font-semibold transition-colors",
                   active ? "bg-white text-navy" : "text-white/75 hover:bg-white/10 hover:text-white",
@@ -71,30 +70,28 @@ export function TopBar({ week, season, homeTitle }: { week: number; season: numb
   );
 }
 
-export function BottomNav({ homeTitle }: { homeTitle: string }) {
+export function BottomNav() {
   const pathname = usePathname();
   return (
     <nav
       aria-label="Primary"
       className="app-chrome fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-2px_12px_rgba(15,30,54,0.06)] backdrop-blur-md md:hidden"
     >
-      <ul className="mx-auto grid max-w-lg grid-cols-5 pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)]">
+      <ul className="mx-auto grid max-w-lg grid-cols-4 pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)]">
         {NAV.filter((n) => n.phone).map((item) => {
-          const active = isActive(pathname, item.href) || (item.also ?? []).some((h) => isActive(pathname, h));
+          const active = [item.href, ...(item.also ?? []), ...(item.phoneAlso ?? [])].some((h) => isActive(pathname, h));
           return (
             <li key={item.href}>
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                aria-label={item.href === "/" ? `${item.label}: ${homeTitle}` : undefined}
-                title={item.href === "/" ? homeTitle : undefined}
                 className={cn(
                   "relative flex h-16 flex-col items-center justify-center gap-1 text-[11px] font-semibold transition-colors",
                   active ? "text-turf" : "text-slate-500 active:text-navy",
                 )}
               >
                 {active && <span className="absolute inset-x-5 top-0 h-[3px] rounded-b-full bg-turf" />}
-                <item.icon className="size-[22px]" strokeWidth={active ? 2.25 : 1.75} fill={active && item.icon === Star ? "currentColor" : "none"} />
+                <item.icon className="size-[22px]" strokeWidth={active ? 2.25 : 1.75} />
                 {item.label}
               </Link>
             </li>
