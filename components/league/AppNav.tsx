@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Archive, Bird, Crown, ListOrdered, Radar as RadarIcon, Swords, type LucideIcon } from "lucide-react";
+import { Archive, Crosshair, Crown, ListOrdered, Radar as RadarIcon, Swords, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Radar } from "./hud";
 
 const NAV: { href: string; label: string; code: string; icon: LucideIcon; phone: boolean }[] = [
-  { href: "/", label: "Goose", code: "01", icon: Bird, phone: true },
+  { href: "/", label: "MIG", code: "01", icon: Crosshair, phone: true },
   { href: "/bibis", label: "Bibi", code: "02", icon: Crown, phone: true },
   { href: "/standings", label: "Standings", code: "03", icon: ListOrdered, phone: true },
   { href: "/insights", label: "Insights", code: "04", icon: RadarIcon, phone: true },
@@ -15,7 +15,7 @@ const NAV: { href: string; label: string; code: string; icon: LucideIcon; phone:
   { href: "/matchups", label: "Slate", code: "06", icon: Swords, phone: false },
 ];
 
-export function TopBar({ week }: { week: number }) {
+export function TopBar({ week, homeTitle }: { week: number; homeTitle: string }) {
   const pathname = usePathname();
   const wk = String(week).padStart(2, "0");
   return (
@@ -41,6 +41,8 @@ export function TopBar({ week }: { week: number }) {
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
+                aria-label={item.href === "/" ? `${item.label}: ${homeTitle}` : undefined}
+                title={item.href === "/" ? homeTitle : undefined}
                 className={cn(
                   "relative flex h-14 items-center gap-1.5 px-3 font-mono text-[11px] tracking-[0.16em] uppercase transition-colors",
                   active ? "text-phos" : "text-dim hover:text-zinc-100",
@@ -63,7 +65,7 @@ export function TopBar({ week }: { week: number }) {
   );
 }
 
-export function BottomNav() {
+export function BottomNav({ homeTitle }: { homeTitle: string }) {
   const pathname = usePathname();
   return (
     <nav
@@ -78,6 +80,8 @@ export function BottomNav() {
               <Link
                 href={item.href}
                 aria-current={active ? "page" : undefined}
+                aria-label={item.href === "/" ? `${item.label}: ${homeTitle}` : undefined}
+                title={item.href === "/" ? homeTitle : undefined}
                 className={cn(
                   "relative flex h-16 flex-col items-center justify-center gap-1 font-mono text-[10px] tracking-[0.06em] uppercase transition-colors",
                   active ? "bg-phos/[0.06] text-phos" : "text-dim active:text-zinc-200",

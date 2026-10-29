@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Frame, LuckChip, PageHead, Rule, Tag } from "@/components/league/hud";
+import { DisplayName, Frame, LuckChip, PageHead, Rule, Tag } from "@/components/league/hud";
 import { MiniTrail } from "@/components/league/trail";
 import { cn } from "@/lib/utils";
 import { callsign, getLuck, intel, teamIdByName, trailStats, weekCode } from "@/lib/intel";
@@ -44,7 +44,9 @@ export default function InsightsPage() {
               meta={board ? `${board.manager}` : undefined}
               tone="phos"
             >
-              <h3 className="mb-3 font-display text-xl leading-tight font-semibold tracking-wide text-zinc-50 uppercase">{b.title}</h3>
+              <h3 className="mb-3 font-display text-xl leading-tight font-semibold tracking-wide text-zinc-50 uppercase">
+                <DisplayName text={b.title} />
+              </h3>
               {proj && homeId && awayId && (
                 <div className="mb-3 flex items-center justify-between gap-2 border-b border-dashed border-white/10 pb-3 font-mono tabular-nums">
                   <span className="flex items-baseline gap-2">
@@ -90,7 +92,9 @@ export default function InsightsPage() {
             label={p.tone === "alert" ? "Alert" : "Signal"}
             code={`P-${String(i + 1).padStart(2, "0")}`}
           >
-            <p className="font-display text-xl leading-tight font-semibold tracking-wide text-zinc-50 uppercase">{p.title}</p>
+            <p className="font-display text-xl leading-tight font-semibold tracking-wide text-zinc-50 uppercase">
+              <DisplayName text={p.title} />
+            </p>
             <p className="mt-2 text-sm leading-relaxed text-zinc-400">{p.body}</p>
           </Frame>
         ))}
@@ -155,7 +159,7 @@ export default function InsightsPage() {
               ))}
             </ol>
             <p className="mt-3 font-mono text-[10.5px] tracking-wide text-faint">
-              Across Goose, Bibi, Chewy, and Dimes weekly trails, weeks 1–{intel.league.week - 1}.
+              Across the {intel.franchises.map((f) => callsign(f.teamId)).join(", ")} weekly trails, weeks 1–{intel.league.week - 1}.
             </p>
           </Frame>
 
@@ -175,10 +179,10 @@ export default function InsightsPage() {
                       <p className="font-display text-lg leading-tight font-semibold tracking-wide text-zinc-50 uppercase">
                         {board ? (
                           <Link href={board.path} className="underline decoration-sig/50 underline-offset-4">
-                            {p.team}
+                            <DisplayName text={p.team} />
                           </Link>
                         ) : (
-                          p.team
+                          <DisplayName text={p.team} />
                         )}
                       </p>
                       <p className="mt-0.5 text-sm leading-snug text-zinc-400">{p.why}</p>

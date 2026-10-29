@@ -78,7 +78,7 @@ const CALLSIGNS: { [teamId: number]: string } = {
   4: "AHT",
   5: "EPZ",
   6: "SMF",
-  7: "GGS",
+  7: "MIG",
   8: "DIM",
   10: "SND",
   11: "KAB",
@@ -135,7 +135,7 @@ export const TRAIL_RANGE = (() => {
   return { min: Math.floor((Math.min(...all) - 5) / 10) * 10, max: Math.ceil((Math.max(...all) + 5) / 10) * 10 };
 })();
 
-/** "Golden Goose — two games back…" → { subject, detail } */
+/** "Chewy — a loss puts them…" → { subject, detail } */
 export function splitMustWin(text: string) {
   const [subject, ...rest] = text.split(" — ");
   return { subject: subject.trim(), detail: rest.join(" — ").trim() };
@@ -188,12 +188,16 @@ export function championSeeds() {
 
 export type ArchiveRole = "champion" | "runner-up" | "mentioned";
 
+/** Nicknames the archive notes use instead of the full team name. */
+const NOTE_NICKNAMES: { [teamId: number]: string } = { 1: "Bibi", 3: "Chewy", 8: "Dimes" };
+
 /** Every champions-archive season that involves this franchise, newest first. */
 export function archiveHits(f: Franchise) {
-  const key = f.name.split(" ")[0].replace(/'s$/, "");
+  const nick = NOTE_NICKNAMES[f.teamId];
+  const mentioned = (note: string) => note.includes(f.name) || (nick != null && note.includes(nick));
   return intel.champions.flatMap((c) => {
     const role: ArchiveRole | null =
-      c.champion === f.name ? "champion" : c.runnerUp === f.name ? "runner-up" : c.note.includes(key) ? "mentioned" : null;
+      c.champion === f.name ? "champion" : c.runnerUp === f.name ? "runner-up" : mentioned(c.note) ? "mentioned" : null;
     return role ? [{ ...c, role }] : [];
   });
 }
