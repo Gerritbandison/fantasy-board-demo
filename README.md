@@ -1,98 +1,112 @@
-# Fantasy Board
+# Chicken League · Week 8
 
-A room-display fantasy football board built with Next.js (App Router), designed to run full-screen on a TV. It shows your team, record, standing, the live matchup score with win probability, your starting lineup and bench, and fantasy headlines.
+**Live:** [https://fantasy-board-demo.vercel.app](https://fantasy-board-demo.vercel.app). Share that link. It's public, needs no login, and works on iPhone.
 
-It runs on **mock data by default**, so you don't need any secrets, accounts, or a backend.
+**Chicken League** is the fantasy football hub for the private ESPN **Chicken** league (2026, week 8). Every one of the 10 teams gets a page, all 5 week 8 games get a preview, and the insights and history cover the whole league. Everything is prerendered from two committed JSON files, so it deploys to Vercel with **zero secrets**.
 
-![Fantasy board at 1920×1080 with mock data](docs/board.png)
+| Teams (`/`) | Team page | Matchup | Insights |
+| --- | --- | --- | --- |
+| ![Teams directory on iPhone](docs/mobile-home.png) | ![Team page on iPhone](docs/mobile-team.png) | ![Matchup page on iPhone](docs/mobile-matchup.png) | ![Insights on iPhone](docs/mobile-insights.png) |
 
-| Disconnected ("Connect Flaim") | Mobile |
+![Teams directory on desktop](docs/desktop-home.png)
+
+## Pages
+
+| Route | What it shows |
 | --- | --- |
-| ![Connect Flaim empty state](docs/board-disconnected.png) | ![Mobile layout](docs/board-mobile.png) |
+| `/` | **Teams**, the home page: all 10 teams in standings order with record, PF and rank, power rank, luck, week 8 opponent, and recent form. A switch moves between it and `/standings`. `/teams` redirects here. |
+| `/matchups` | **Scores:** all 5 week 8 games with projections and a one-line preview, each linking to its matchup page, plus last week's final scores. |
+| `/matchups/[slug]` | One page per week 8 game: `maye-dim`, `bib-chw`, `epz-kab`, `smf-snd`, `jah-ah`. Each page has: <ul><li>A projected scorecard and a data-generated preview: story, edges for each side, and what's at stake.</li><li>A tale of the tape (projection, points for and rank, power rank, all-play, averages, best and worst week, swing, points against, opponents' average, close games, titles).</li><li>The two teams' **all-time head-to-head series** (record, points, last meeting, each side's biggest win, streaks) with a roast line.</li><li>Both teams' weekly scoring, team cards with history, the starters' injury report, head-to-head lineups, and both benches and IR.</li></ul> |
+| `/teams/[id]` | One page per team. The header and record pills sit above a sticky tab bar (**Overview · Roster · Trades · H2H · History**) so each section is one tap away instead of one long scroll. The open tab is kept in the URL hash (`/teams/7#trades`), so tabs can be linked and survive a reload. The tabs hold: <ul><li>Record, seed, power rank, luck, PF/PA with ranks, all-play record, close-game record, and ESPN's projected finish.</li><li>The week 8 matchup and a weekly score chart against the **league average**.</li><li>A results table with each week's margin over or under the league average.</li><li>Boom or bust, luck and strength of schedule, the injury report, and recent moves.</li><li>The full roster (starters, bench, IR).</li><li>An **all-time head-to-head** section: easiest opponent ("Personal ATM" / "Favorite snack"), nemesis ("Kryptonite" / "Who's your daddy"), biggest win, most embarrassing loss, best and worst week, closest win and loss, streaks, playoff résumé, and a record table against every opponent. Each card has a roast line generated from its numbers.</li><li>**Trades**: an all-time card (player trades, the 2020–2025 won-lost-even record on points, net points from trades in total and per season, and the all-time favorite trading partner), a 2026 card (verdict tally, offers sent and received as counts only, net rest-of-season value and net points), then the team's player trades in one dropdown per season, newest first and closed by default.</li><li>A trophy case and a 2020–2025 season-by-season table.</li></ul> |
+| `/standings` | Table with record, PF/PA, differential, PF rank, and a luck badge. Every team links to its page. |
+| `/insights` | League-wide insights over all 10 teams and all 35 games: <ul><li>At-a-glance leaders and the week 8 slate.</li><li>**Power rankings** (by all-play), the **luck meter** (PF rank vs standings, plus wins vs all-play), points for, and **strength of schedule** (opponents' average).</li><li>A record book: **high scores**, **closest games**, **bad beats**, biggest blowouts, the **weekly top scorer**, and close-game records.</li><li>**Consistency** (boom or bust) and a **head-to-head grid**.</li></ul> |
+| `/history` | Champions and runners-up for **2020–2025** (each under its name that season, with the current franchise name), the champion-seed pattern, the trophy case for all 10 franchises, and a finishes-by-season grid. Below that, the all-time **Hall of Fame / Hall of Shame** (highest and lowest score, biggest blowout, closest game, longest win and losing streaks, fewest points in a win, most points in a loss), two-week playoff records kept separate, the most-played and most lopsided rivalries, a **rivalry heatmap**, and every title-game score. |
+| `/trades` | **Trade desk**, 2020–2026: <ul><li>A banner with all-time player trades, players moved and a per-season bar chart (2026 offers and veto votes as counts).</li><li>All-time cards: most active trader, sharks vs suckers (net points from trades, with the 2020–2025 record), most-traded player (with a gap marker where he left a roster some other way) and the biggest heist on points.</li><li>Only player trades are listed, in one dropdown per season, newest first and closed by default; draft-pick-only swaps are counted in the banner but not listed.</li><li>2020–2025 cards show the date window and "after week N", each team's name that season, the points each side's players scored for their new team through the end of that regular season, and a points-only call: won, lost, even, lopsided ("won big" / "lost big") or too little data. One footnote explains they were rebuilt from weekly rosters, so offseason and player-for-pick deals are missing.</li><li>A 2026 card per player trade with the accepted date and time in ET and a "who won it so far" summary: each side's verdict from the file (paying off, even or backfiring), the confidence (from the weeks of data), the value edge and %, and the points gained.</li><li>Each side shows what it got, with each player's points for the new team, PPG before → after, current value, and bye, out, zero-stat, released and flipped labels. Below that: points for the new team (all points, started or benched), rest-of-season value received vs sent, the value edge, and the value change since the trade, or "value at trade date unavailable" with the PPG trend.</li><li>A roast line per trade that follows the verdicts.</li><li>2026 superlatives: most active trader, most offers sent, most negotiated pair, veto votes logged (not proof of who voted), player hot potato, the trade-and-cut, the best value so far, buyer's remorse (verdicts per team), and repeat customers.</li><li>How the verdicts work, with the FantasyCalc credit.</li></ul>Linked from History and the desktop nav. |
+| `/bibis` | Redirects to `/matchups/bib-chw` so old links keep working. |
+| `/live` | The original polling board, which can read a public ESPN league (optional, not in the nav). |
+
+On phones the nav is a four-tab bottom bar (Teams · Scores · Insights · History) that respects iPhone safe areas. Standings sits behind Teams, and Trades behind History. From `md` up the nav moves into the navy top bar (Teams · Standings · Scores · Insights · Trades · History). On `lg` screens matchup pages offer **TV mode**. Layouts are checked for horizontal overflow at 320, 390, and 1440 px on every route.
+
+## Data
+
+Three committed files are the source of truth:
+
+- [`data/league-all-teams.json`](data/league-all-teams.json) is a Flaim/ESPN pull with all 10 teams, all 35 games from weeks 1–7, week 8 pairings with projections, rosters with injury status, recent transactions, and per-franchise history for 2020–2025.
+- [`data/league-h2h-history.json`](data/league-h2h-history.json) is the all-time head-to-head pull: every game (`games`), each franchise's all-time record, series and single-game records (`franchises`), and league records (`leagueRecords`). Its `meta.scopeLabel` labels every head-to-head section, and `meta.minGamesForEasiestOrNemesis` sets the minimum games for an easiest opponent or nemesis.
+- [`data/league-trades.json`](data/league-trades.json) is the 2026 trade pull: accepted trades with each side's players and picks, all points for the new team (`whoWonIt`) and the long-term grade (`longTermGrade`: per-side verdict, confidence, FantasyCalc redraft values received and sent, value change since the trade where available, and per-player PPG before and after with bye, out and zero-stat weeks), plus offers, declines and veto rows. `startedPointsForNewTeam` is reference only and never rendered. 2020–2025 entries have no ESPN transaction log (Flaim returns `ESPN_SEASON_NOT_SUPPORTED`), so those player-for-player trades were rebuilt from weekly roster snapshots: `acceptedAt` is null, `dateWindow` gives the days, `confidence` is `inferred`, and `whoWonIt.verdict` is a points-only call (`meta.pastSeasons` holds the method and the 10 / 75 point thresholds). Team summaries add `pastSeasonTradeRecord`, `netPointsFromTradesBySeason` and `partnersAllTime`; `leagueNotes.allTime` has trades per season and the most active traders. Raw ESPN team names (`espnName`) are stripped from the committed file.
+
+Name handling:
+
+- `lib/league.ts` maps the raw file into public types that **drop every `espnName` and `espnAbbrev`**, so pages and the API can only render `displayName` and the app abbreviation.
+- Gerrit's team 7 shows its real ESPN name, `Maye i give you a blowj0b`, at his request. Other teams use their `displayName`, which applies the clean aliases (for example, team 11 is `Kabul FC` / `KAB`).
+- Past-season names use each season's `displayName` (`seasonNames[].displayName` in the head-to-head file), never `espnName`.
+- Owner names aren't in the data. The app shows the existing nickname (`ownerLabelFromApp`) only for the four teams that have one.
+- Null fields are hidden rather than filled in.
+- Trades: offers, declines and veto rows are private negotiations, so only their counts are rendered. Pending and declined offers are never listed. Veto rows are labelled "veto votes logged" because ESPN doesn't say who cast them.
+
+How the code uses the data:
+
+- `lib/league.ts`: teams, standings, games, week 8 matchups (with slugs), champions, and `publicLeague()` for the API.
+- `lib/stats.ts`: derived stats. These include weekly league averages, all-play records, power rankings, luck (PF rank vs standings, and wins vs all-play), close-game records, high scores, closest games, bad beats, blowouts, weekly leaders, strength of schedule, consistency, the head-to-head map, the title board, and the champion-seed pattern.
+- `lib/preview.ts`: builds each matchup preview from those numbers.
+- `lib/h2h.ts`: loads the head-to-head file into name-safe types (series, franchise records, league records, title games) and formats weeks and streak ranges from each game's own scoring periods.
+- `lib/roast.ts`: the PG-13 roast lines. Thresholds only pick the joke; every number in a line comes from the head-to-head file. Two-week playoff games stay out of the single-game margin records, as in the file, and a single week of a two-week game is captioned that way.
+- `lib/trades.ts`: loads the trade file into name-safe types (no `espnName`, no offer contents), keeps 2026 (long-term value) and 2020–2025 (points only) trades apart where grading differs, computes the all-time superlatives, reads each side's verdict, confidence and value figures straight from the file (value wins over points; no letter grades), and computes the superlatives and per-team trade summaries (net value is the sum of each graded side's value edge; net points comes from the file). Draft picks are labelled with team names.
+- History follows the ESPN team slot across seasons. Owners may have changed, and the pages say so. The file doesn't include the playoff team count, so standings draw no cut line.
+- `GET /api/league` returns teams, games, week 8 matchups and champions, with display names only.
+- `GET /api/matchup/:slug` returns one week 8 matchup with its preview. The old `golden-goose` and `bibis` ids still resolve.
+
+To roll to a new week, replace the data files and redeploy. Head-to-head and trade labels, verdicts and captions follow the new numbers automatically.
+
+### Optional ESPN live path
+
+`/live` and `GET /api/fantasy` keep the original ESPN adapter (`lib/espn.ts`). It defaults to built-in demo data. Set `MOCK_FANTASY=0` with `ESPN_LEAGUE_ID` and `ESPN_TEAM_ID` to read a league that is **viewable to public**. Private leagues need ESPN cookies, which this app never asks for. See `.env.example`. None of this affects the snapshot pages.
+
+## Design system
+
+- **Palette:** light field background (`field`), white cards, a navy app bar and scorecard (`navy`), turf green as the primary (`turf`), gold for leaders and champions (`gold`), and red for losses and injuries (`loss`). Each team has its own avatar color (`lib/league.ts`).
+- **Type:** Barlow Condensed for scores, headings, and numbers. Barlow for text. Team names are never upper-cased, so the `0` in `blowj0b` stays distinct from an `O`.
+- **Primitives:** `components/league/ui.tsx` holds `Card`, `PageHeader`, `SectionHeading`, `TeamAvatar`, `Pill`, `Stat`, `LuckBadge`, `ResultChip`, and `RangeBar`. `components/league/trail.tsx` holds `ScoreTrail` (against an opponent or the league average), `WeekStrip`, and `MiniTrail`. All charts share one y-scale.
 
 ## Run locally
 
 ```bash
-npm i && npm run dev
+npm i && npm run dev     # http://localhost:43123
+npm run build && npm start
 ```
-
-Open <http://localhost:43123>. The page polls `/api/fantasy` every 30 seconds. In mock mode, live game scores move a little over time so the board doesn't look frozen.
-
-- `http://localhost:43123/?state=disconnected` previews the "Connect Flaim" empty state.
-- `http://localhost:43123/api/fantasy` returns the JSON the board consumes.
-- The button in the top-right corner switches the board to full screen. For a kiosk, run Chrome with `--kiosk http://<host>:43123`.
-
-To customise the board, copy the env example and edit it:
-
-```bash
-cp .env.example .env.local
-```
-
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `FANTASY_TEAM_NAME` | `Demo Team` | The team name shown in the hero. |
-| `MOCK_FANTASY` | `1` | `1` serves built-in mock data. `0` tries live ESPN. |
-| `MOCK_FANTASY_STATE` | _(empty)_ | Set to `disconnected` to always show the empty state in mock mode. |
-| `ESPN_LEAGUE_ID` | _(empty)_ | Live mode only. The ID of a public ESPN league. |
-| `ESPN_TEAM_ID` | _(empty)_ | Live mode only. Your team's ID within that league. |
-| `ESPN_SEASON` | current year | Live mode only. The season start year. |
 
 ## Deploy to Vercel
 
-1. Push this repo to a Git host that Vercel can import (GitHub, GitLab, or Bitbucket).
-2. In Vercel, choose **Add New → Project** and import the repo. The framework preset is detected as **Next.js**, so leave the build settings at their defaults.
-3. Click **Deploy**. Mock mode doesn't need any environment variables.
-4. Optional: under **Settings → Environment Variables**, set `FANTASY_TEAM_NAME`, or set `MOCK_FANTASY=0` together with the `ESPN_*` variables, then redeploy.
+**Production URL:** [https://fantasy-board-demo.vercel.app](https://fantasy-board-demo.vercel.app)
 
-You can also deploy from the CLI with `npx vercel` and then `npx vercel --prod`.
-
-## What's mocked and what's live
-
-| Data | Mock mode (default) | Live mode (`MOCK_FANTASY=0`) |
-| --- | --- | --- |
-| League, team, record, standing | Fictional league in `lib/mock-fantasy.ts` | ESPN public league API |
-| Matchup score and projections | Mock data, with scores that drift over time | ESPN `mMatchupScore` view |
-| Win probability | Estimated from the projection gap | Not shown (ESPN doesn't expose it) |
-| Roster and lineup slots | 14 fictional players | ESPN `mRoster` view |
-| Headlines | Mock "Flaim Wire" items | ESPN public NFL news feed |
-| Flaim | **Always mocked** | **Always mocked** |
-
-**ESPN live mode** reads only public endpoints with no keys:
-
-- League: `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/{season}/segments/0/leagues/{leagueId}?view=mTeam&view=mRoster&view=mMatchupScore&view=mSettings`
-- News: `https://site.api.espn.com/apis/site/v2/sports/football/nfl/news`
-
-The league endpoint only works when the league is set to **viewable to public** in the ESPN league settings. Private leagues return 401 because they need `espn_s2` and `SWID` browser cookies, and this app deliberately never reads or stores those. If ESPN fails for any reason, the API falls back to mock data and the board shows a notice explaining why. In live mode, per-player game clocks and opponents aren't available from these endpoints, so each player row shows whether that player is "Scoring" or "Projected".
-
-**Flaim** has no public API that this demo can call, so it stays mocked. The disconnected state links to [flaim.app/leagues](https://flaim.app/leagues), where you connect leagues. No Flaim tokens are invented or required.
-
-## API
-
-`GET /api/fantasy` returns `200` with a `FantasyPayload` (see `lib/types.ts`). The response has one of two shapes:
-
-- `status: "connected"`, with `league`, `team`, `matchup`, `roster`, `headlines`, `source` (`mock` or `espn`), and an optional `notice`.
-- `status: "disconnected"`, with `teamName` and `reason`.
-
-The query parameters `?state=disconnected` and `?mock=1` (which forces mock data) are passed through from the page URL.
+No environment variables are needed. The Vercel project `fantasy-board-demo` isn't connected to this GitHub repo, so pushes don't redeploy it. Redeploy by uploading a new build (`npx vercel --prod` from a linked checkout). Alternatively, grant the Vercel GitHub app access to the repo and link it so pushes to `main` redeploy automatically.
 
 ## Project structure
 
 ```
 app/
-  page.tsx                 renders the board
-  layout.tsx               fonts and dark theme
-  api/fantasy/route.ts     route handler: mock, ESPN, or disconnected
-components/
-  FantasyBoard.tsx         client board: polling, loading, error, disconnected states
-  ui/                      shadcn/ui primitives
-lib/
-  types.ts                 payload types shared by the API and UI
-  mock-fantasy.ts          fictional Flaim/ESPN-shaped demo data
-  espn.ts                  optional public ESPN adapter
-  config.ts                env parsing
-docs/                      README screenshots
+  layout.tsx                 fonts, metadata, viewport (safe-area aware)
+  (league)/layout.tsx        app chrome: navy top bar, bottom tab bar
+  (league)/page.tsx          / — Teams directory (home)
+  (league)/matchups/         /matchups (Scores) and /matchups/[slug]
+  (league)/teams/[id]/       /teams/[id]
+  (league)/standings/        /standings
+  (league)/insights/         /insights
+  (league)/history/          /history
+  (league)/trades/           /trades
+  live/                      optional ESPN polling board
+  api/league/                GET /api/league
+  api/matchup/[slug]/        GET /api/matchup/:slug
+  api/fantasy/               optional ESPN/mock feed for /live
+components/league/           nav, UI primitives, score charts, matchup page, team tabs, head-to-head, trades, TV mode
+data/league-all-teams.json   the league data (source of truth)
+data/league-h2h-history.json all-time head-to-head data
+data/league-trades.json      trade data, 2020–2026
+lib/league.ts                data types, name-safe mapping, lookups
+lib/stats.ts                 derived league stats
+lib/preview.ts               data-generated matchup previews
+lib/h2h.ts                   head-to-head loader and formatting
+lib/trades.ts                trade loader, verdicts, superlatives
+lib/roast.ts                 data-driven roast captions
+lib/espn.ts                  optional public ESPN adapter
 ```
-
-## Privacy
-
-All names in the mock data are fictional. The repo contains no real team names, emails, tokens, or LAN addresses, and the only env file in the tree is `.env.example`.
