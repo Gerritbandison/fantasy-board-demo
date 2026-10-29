@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { ArrowDownRight, ArrowLeftRight, ArrowRight, ArrowUpRight, Ban, Gavel, Handshake, Megaphone, Minus, Recycle, Repeat, Scissors, TrendingDown, TrendingUp, Trophy } from "lucide-react";
+import { ArrowDownRight, ArrowLeftRight, ArrowRight, ArrowUpRight, Ban, Flame, Gavel, Handshake, Megaphone, Minus, Recycle, Repeat, Scissors, TrendingDown, TrendingUp, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { team, teamPath } from "@/lib/league";
 import {
   assetLabel,
   COUNTS,
-  EARLY_WEEKS,
-  GRADE_STEPS,
+  longDate,
   shortDate,
   SUPERLATIVES,
   teamTrades,
@@ -14,36 +13,98 @@ import {
   tradeDate,
   TRADES,
   TRADES_LABEL,
+  tv,
+  VALUES_FETCHED,
+  verdictWinner,
   type Asset,
-  type Grade,
-  type Outlook,
+  type PlayerTrend,
+  type QuietWeek,
+  type SideGrade,
   type Trade,
   type TradeSide,
+  type Verdict,
 } from "@/lib/trades";
 import * as roast from "@/lib/roast";
 import { Eyebrow, Roast, RoastCard } from "./h2h";
 import { Card, Pill, SectionHeading, Stat, TeamAvatar } from "./ui";
 
-const signed = (v: number) => `${v > 0 ? "+" : v < 0 ? "−" : ""}${tp(Math.abs(v))}`;
+const sign = (v: number) => (v > 0 ? "+" : v < 0 ? "−" : "");
+const signed = (v: number) => `${sign(v)}${tp(Math.abs(v))}`;
+const signedValue = (v: number) => `${sign(v)}${tv(v)}`;
+const signedPct = (v: number) => `${sign(v)}${Math.abs(v)}%`;
+const tone = (v: number) => (v > 0 ? "text-turf" : v < 0 ? "text-loss" : "text-slate-700");
 const names = (ids: number[]) => ids.map((id) => team(id).name).join(" & ");
+const weeksText = (span: [number, number]) => (span[0] === span[1] ? `week ${span[0]}` : `weeks ${span[0]}–${span[1]}`);
+const capitalize = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
 
-function gradeTone(g: Grade) {
-  if (g.startsWith("A")) return "bg-turf text-white";
-  if (g.startsWith("B")) return "bg-sky-600 text-white";
-  if (g.startsWith("C")) return "bg-amber-500 text-white";
-  if (g === "INC") return "bg-slate-200 text-slate-600";
-  return "bg-loss text-white";
+const VERDICT = {
+  "paying-off": { label: "Paying off", icon: TrendingUp, tone: "turf" },
+  even: { label: "Even", icon: Minus, tone: "slate" },
+  backfiring: { label: "Backfiring", icon: TrendingDown, tone: "loss" },
+} as const;
+
+export function VerdictPill({ verdict }: { verdict: Verdict }) {
+  const v = VERDICT[verdict];
+  return (
+    <Pill tone={v.tone}>
+      <v.icon className="size-3.5" aria-hidden />
+      {v.label}
+    </Pill>
+  );
 }
 
-export function GradeBadge({ grade, early, className }: { grade: Grade; early?: boolean; className?: string }) {
+export function ConfidencePill({ confidence, weeks }: { confidence: string; weeks: number }) {
   return (
-    <span
-      className={cn("relative inline-flex size-10 shrink-0 items-center justify-center rounded-xl font-display font-extrabold", grade === "INC" ? "text-xs" : "text-xl", gradeTone(grade), className)}
-      aria-label={grade === "INC" ? "Grade: incomplete" : `Grade: ${grade}${early ? ", early" : ""}`}
-      title={early ? "Early grade" : undefined}
-    >
-      {grade}
-      {early && <span className="absolute -top-1.5 -right-1.5 rounded-full bg-navy px-1 text-[8px] leading-3.5 font-bold tracking-wide text-white uppercase">early</span>}
+    <Pill tone={confidence === "low" ? "sky" : confidence === "medium" ? "gold" : "turf"} className="h-5 px-2 text-[10px] tracking-normal normal-case">
+      {capitalize(confidence)} confidence · {weeks === 1 ? "1 week" : `${weeks} weeks`} of data
+    </Pill>
+  );
+}
+
+export function ValueChange({ change, className }: { change: number; className?: string }) {
+  const Icon = change > 0 ? ArrowUpRight : change < 0 ? ArrowDownRight : ArrowRight;
+  return (
+    <span className={cn("inline-flex items-center gap-0.5 font-semibold tabular-nums", tone(change), className)}>
+      <Icon className="size-3.5" aria-hidden />
+      <span>
+        {signedValue(change)}
+        <span className="sr-only">{change > 0 ? " value up" : change < 0 ? " value down" : " value unchanged"}</span>
+      </span>
+    </span>
+  );
+}
+
+const QUIET: { [k in QuietWeek["kind"]]: string } = { bye: "Bye", out: "Out", "zero-stat": "Zero-stat game" };
+
+function quietLabels(quiet: QuietWeek[]) {
+  return (Object.keys(QUIET) as QuietWeek["kind"][]).flatMap((kind) => {
+    const weeks = quiet.filter((q) => q.kind === kind).map((q) => q.week);
+    return weeks.length ? [`${QUIET[kind]} wk${weeks.length > 1 ? "s" : ""} ${weeks.join(", ")}`] : [];
+  });
+}
+
+function TrendLine({ tr }: { tr: PlayerTrend }) {
+  const labels = quietLabels(tr.quiet);
+  return (
+    <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-500">
+      <span>
+        <span className="font-semibold text-slate-700 tabular-nums">{tp(tr.points)}</span> pts for them
+      </span>
+      {(tr.ppgBefore != null || tr.ppgAfter != null) && (
+        <span className="tabular-nums">
+          PPG {tr.ppgBefore != null ? tp(tr.ppgBefore) : "—"} → {tr.ppgAfter != null ? tp(tr.ppgAfter) : "—"}
+        </span>
+      )}
+      {tr.valueNow != null && <span className="tabular-nums">Value {tv(tr.valueNow)}</span>}
+      {labels.map((l) => (
+        <span key={l} className="rounded bg-slate-200/70 px-1.5 text-[11px] leading-4.5 font-semibold text-slate-600">
+          {l}
+        </span>
+      ))}
+      {tr.status.kind === "released" && <span className="rounded bg-red-50 px-1.5 text-[11px] leading-4.5 font-semibold text-red-700">Released</span>}
+      {tr.status.kind === "flipped" && (
+        <span className="rounded bg-amber-50 px-1.5 text-[11px] leading-4.5 font-semibold text-amber-800">Flipped in Trade {tr.status.tradeNum}</span>
+      )}
     </span>
   );
 }
@@ -62,88 +123,81 @@ function AssetItem({ a }: { a: Asset }) {
         {a.position}
         {a.nflTeam && ` · ${a.nflTeam}`}
       </span>
+      {a.trend && <TrendLine tr={a.trend} />}
     </li>
   );
 }
 
-const VERDICT = {
-  "paying-off": { label: "Paying off", icon: TrendingUp, tone: "turf" },
-  even: { label: "Even", icon: Minus, tone: "slate" },
-  backfiring: { label: "Backfiring", icon: TrendingDown, tone: "loss" },
-} as const;
-
-export function VerdictPill({ verdict }: { verdict: Outlook["verdict"] }) {
-  const v = VERDICT[verdict];
+function Figure({ label, children, sub }: { label: string; children: React.ReactNode; sub?: React.ReactNode }) {
   return (
-    <Pill tone={v.tone}>
-      <v.icon className="size-3.5" aria-hidden />
-      {v.label}
-    </Pill>
-  );
-}
-
-export function ValueChange({ change }: { change: number }) {
-  const Icon = change > 0 ? ArrowUpRight : change < 0 ? ArrowDownRight : ArrowRight;
-  return (
-    <span className={cn("inline-flex items-center gap-0.5 text-xs font-semibold tabular-nums", change > 0 ? "text-turf" : change < 0 ? "text-loss" : "text-slate-500")}>
-      <Icon className="size-3.5" aria-hidden />
-      <span>
-        {signed(change)}
-        <span className="sr-only">{change > 0 ? " value up" : change < 0 ? " value down" : " value unchanged"}</span>
-      </span>
-    </span>
-  );
-}
-
-function OutlookRow({ o }: { o: Outlook }) {
-  return (
-    <div className="mt-2 border-t border-line pt-2">
-      <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-        <VerdictPill verdict={o.verdict} />
-        {o.valueChange != null && (
-          <span className="inline-flex items-center gap-1 text-xs text-slate-500">
-            Value since the deal <ValueChange change={o.valueChange} />
-          </span>
-        )}
-      </div>
-      {(o.ppgBefore != null || o.ppgAfter != null || o.restOfSeason != null) && (
-        <dl className="mt-1.5 flex flex-wrap gap-x-3 gap-y-0.5 text-xs text-slate-500">
-          {o.ppgBefore != null && o.ppgAfter != null && (
-            <div className="flex gap-1">
-              <dt>PPG</dt>
-              <dd className="font-semibold text-slate-700 tabular-nums">
-                {tp(o.ppgBefore)} → {tp(o.ppgAfter)}
-              </dd>
-            </div>
-          )}
-          {o.restOfSeason != null && (
-            <div className="flex gap-1">
-              <dt>Rest of season</dt>
-              <dd className="font-semibold text-slate-700 tabular-nums">{tp(o.restOfSeason)}</dd>
-            </div>
-          )}
-        </dl>
-      )}
+    <div className="min-w-0">
+      <dt className="text-[10px] font-bold tracking-wider text-slate-500 uppercase">{label}</dt>
+      <dd className="text-sm leading-snug font-semibold text-slate-700 tabular-nums">{children}</dd>
+      {sub && <dd className="text-[11px] leading-snug text-slate-500">{sub}</dd>}
     </div>
   );
 }
 
-function SideBlock({ s, early, mine }: { s: TradeSide; early: boolean; mine?: boolean }) {
+function SideFigures({ g, points }: { g: SideGrade; points: number | null }) {
+  return (
+    <dl className="mt-2 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-line pt-2">
+      <Figure label="Points for them" sub={<span className={tone(g.pointsGained)}>{signed(g.pointsGained)} vs what they sent</span>}>
+        {points != null ? tp(points) : "—"}
+      </Figure>
+      <Figure label="Value got vs sent" sub={g.valueReceivedAll !== g.valueReceived ? `${tv(g.valueReceivedAll)} counting released players` : "rest of season"}>
+        {tv(g.valueReceived)} vs {tv(g.valueSent)}
+      </Figure>
+      <Figure label="Value edge">
+        <span className={tone(g.valueEdge)}>
+          {signedValue(g.valueEdge)} ({signedPct(g.valueEdgePct)})
+        </span>
+      </Figure>
+      <Figure
+        label="Value since trade"
+        sub={g.valueChange ? `got ${signedValue(g.valueChange.received)}, sent ${signedValue(g.valueChange.sent)} (approx.)` : null}
+      >
+        {g.valueChange ? (
+          <ValueChange change={g.valueChange.net} />
+        ) : (
+          <span className="text-xs leading-snug font-medium text-slate-500">Value at trade date unavailable</span>
+        )}
+      </Figure>
+      {!g.valueChange && (g.ppgTrendReceived != null || g.ppgTrendSent != null) && (
+        <div className="col-span-2 text-[11px] leading-snug text-slate-500">
+          PPG trend since the deal (after minus before, summed):{" "}
+          {g.ppgTrendReceived != null && (
+            <>
+              got <span className={cn("font-semibold tabular-nums", tone(g.ppgTrendReceived))}>{signed(g.ppgTrendReceived)}</span>
+            </>
+          )}
+          {g.ppgTrendReceived != null && g.ppgTrendSent != null && ", "}
+          {g.ppgTrendSent != null && (
+            <>
+              sent <span className={cn("font-semibold tabular-nums", tone(g.ppgTrendSent))}>{signed(g.ppgTrendSent)}</span>
+            </>
+          )}
+        </div>
+      )}
+    </dl>
+  );
+}
+
+function SideBlock({ s, mine }: { s: TradeSide; mine?: boolean }) {
   const t = team(s.teamId);
   return (
     <div className={cn("min-w-0 rounded-xl p-3 ring-1", mine ? "bg-turf-light/40 ring-green-100" : "bg-slate-50 ring-line")}>
-      <div className="flex items-start justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex min-w-0 items-center gap-2">
           <TeamAvatar teamId={t.id} size="sm" />
           <Link href={teamPath(t.id)} className="min-w-0 text-sm leading-tight font-semibold break-words text-navy hover:underline">
             {t.name}
           </Link>
         </div>
-        <GradeBadge grade={s.grade} early={early && s.grade !== "INC"} />
+        {s.grade && <VerdictPill verdict={s.grade.verdict} />}
       </div>
       <p className="mt-2 text-[11px] font-bold tracking-wider text-slate-500 uppercase">Got</p>
       {s.got.length ? (
-        <ul className="mt-0.5 grid gap-0.5">
+        <ul className="mt-0.5 grid gap-1.5">
           {s.got.map((a) => (
             <AssetItem key={assetLabel(a)} a={a} />
           ))}
@@ -151,18 +205,9 @@ function SideBlock({ s, early, mine }: { s: TradeSide; early: boolean; mine?: bo
       ) : (
         <p className="mt-0.5 text-sm text-slate-500">Nothing ESPN recorded</p>
       )}
-      {s.points != null && (
-        <p className="mt-2 text-xs text-slate-500">
-          Points for them since: <span className="font-semibold text-slate-700 tabular-nums">{tp(s.points)}</span>
-        </p>
-      )}
-      {s.outlook && <OutlookRow o={s.outlook} />}
+      {s.grade && <SideFigures g={s.grade} points={s.points} />}
     </div>
   );
-}
-
-function weeksText(span: [number, number]) {
-  return span[0] === span[1] ? `week ${span[0]}` : `weeks ${span[0]}–${span[1]}`;
 }
 
 function partlyKnown(t: Trade) {
@@ -171,9 +216,31 @@ function partlyKnown(t: Trade) {
   return `Partly known: ESPN only logged ${team(a.teamId).name}. ${team(b.teamId).name} as the partner and the pick swap are inferred from the 2026 draft board.`;
 }
 
+function Verdicts({ t }: { t: Trade }) {
+  if (t.ungraded) return <p className="mt-0.5">Not graded. {t.ungraded}</p>;
+  const v = verdictWinner(t);
+  if (!v) return <p className="mt-0.5">Even for both sides so far{t.span ? ` (${weeksText(t.span)})` : ""}.</p>;
+  const g = v.win.grade!;
+  return (
+    <>
+      <p className="mt-0.5">
+        {VERDICT[g.verdict].label} for <span className="font-semibold text-navy">{team(v.win.teamId).name}</span>, {VERDICT[v.lose.grade!.verdict].label.toLowerCase()} for{" "}
+        <span className="font-semibold text-navy">{team(v.lose.teamId).name}</span>.
+      </p>
+      <p className="mt-0.5 text-xs text-slate-500">
+        <span className={cn("font-semibold tabular-nums", tone(g.valueEdge))}>
+          {signedValue(g.valueEdge)} value ({signedPct(g.valueEdgePct)})
+        </span>
+        ;{" "}
+        <span className={cn("font-semibold tabular-nums", tone(g.pointsGained))}>{signed(g.pointsGained)} points</span>
+        {t.span && ` (${weeksText(t.span)})`}.{g.mixedSignals && " Value and points disagree; value decides."}
+      </p>
+    </>
+  );
+}
+
 export function TradeCard({ t, focus }: { t: Trade; focus?: number }) {
   const sides = focus != null && t.sides[1].teamId === focus ? [t.sides[1], t.sides[0]] : t.sides;
-  const winner = t.edge ? team(t.edge.teamId) : null;
   return (
     <Card as="li" accent={team(sides[0].teamId).color} bodyClassName="flex h-full flex-col">
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
@@ -184,9 +251,17 @@ export function TradeCard({ t, focus }: { t: Trade; focus?: number }) {
       </div>
       <p className="mt-1 text-xs text-slate-500">Accepted {tradeDate(t.acceptedAt)}</p>
 
+      <div className="mt-3 rounded-xl bg-navy/[0.04] px-3 py-2 text-sm leading-snug text-slate-700 ring-1 ring-navy/10">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
+          Who won it so far
+          {t.confidence && <ConfidencePill confidence={t.confidence} weeks={t.weeksOfData} />}
+        </p>
+        <Verdicts t={t} />
+      </div>
+
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
         {sides.map((s) => (
-          <SideBlock key={s.teamId} s={s} early={t.early} mine={focus === s.teamId} />
+          <SideBlock key={s.teamId} s={s} mine={focus === s.teamId} />
         ))}
       </div>
 
@@ -197,26 +272,22 @@ export function TradeCard({ t, focus }: { t: Trade; focus?: number }) {
         </p>
       )}
 
-      <div className="mt-3 rounded-xl bg-navy/[0.04] px-3 py-2 text-sm leading-snug text-slate-700 ring-1 ring-navy/10">
-        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
-          Who won it so far
-          {t.early && <Pill tone="sky" className="h-5 px-2 text-[10px] tracking-normal normal-case">Early: {t.weeksCounted === 1 ? "1 week" : `${t.weeksCounted} weeks`} of data</Pill>}
-        </p>
-        {t.span && winner ? (
-          <p className="mt-0.5">
-            <span className="font-semibold text-navy">{winner.name}</span>, by <span className="font-semibold tabular-nums">{tp(t.edge!.points)}</span> points ({weeksText(t.span)}).
-          </p>
-        ) : t.span ? (
-          <p className="mt-0.5">Dead even so far ({weeksText(t.span)}).</p>
-        ) : (
-          <p className="mt-0.5">No points to compare: draft picks only.</p>
-        )}
-      </div>
-
       <div className="mt-auto pt-3">
         <Roast className="">{roast.tradeLine(t)}</Roast>
       </div>
     </Card>
+  );
+}
+
+/** FantasyCalc credit and the one-line method note. */
+export function ValuesCredit({ className }: { className?: string }) {
+  return (
+    <p className={cn("text-xs leading-snug text-slate-500", className)}>
+      <a href="https://www.fantasycalc.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-turf hover:underline">
+        Values: FantasyCalc redraft{VALUES_FETCHED && `, fetched ${longDate(VALUES_FETCHED)}`}
+      </a>
+      . Value matters more than points, and early trades are low confidence.
+    </p>
   );
 }
 
@@ -261,6 +332,7 @@ export function TradeSuperlatives() {
   const neg = S.negotiated;
   const veto = S.vetoVotes;
   const fastest = S.hotPotatoes[0];
+  const report = S.report[0]?.backfiring ? S.report[0] : null;
   return (
     <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <RoastCard icon={Handshake} label="Most active trader" tone="gold" accent={team(active.id).color} value={`${active.n} of ${COUNTS.accepted}`} line={roast.mostActiveLine(active.id, active.n, COUNTS.accepted)}>
@@ -313,12 +385,50 @@ export function TradeSuperlatives() {
         </RoastCard>
       )}
 
-      {S.fleece && (
-        <RoastCard icon={Trophy} label="Biggest win so far" tone="turf" accent={team(S.fleece.edge!.teamId).color} value={`+${tp(S.fleece.edge!.points)}`} valueClassName="text-turf" line={roast.fleeceLine(S.fleece)}>
-          <p className="text-sm font-semibold text-navy">{team(S.fleece.edge!.teamId).name}</p>
+      {S.bestValue && (
+        <RoastCard
+          icon={Trophy}
+          label="Best value so far"
+          tone="turf"
+          accent={team(S.bestValue.side.teamId).color}
+          value={signedValue(S.bestValue.grade.valueEdge)}
+          valueClassName="text-turf"
+          line={roast.bestValueLine(S.bestValue.trade, S.bestValue.side)}
+        >
+          <p className="text-sm font-semibold break-words text-navy">{team(S.bestValue.side.teamId).name}</p>
           <p className="text-xs text-slate-500">
-            Trade {S.fleece.num}, accepted {shortDate(S.fleece.acceptedAt)} · points edge
+            Trade {S.bestValue.trade.num}, accepted {shortDate(S.bestValue.trade.acceptedAt)} · value edge {signedPct(S.bestValue.grade.valueEdgePct)} ·{" "}
+            {S.bestValue.grade.confidence} confidence
           </p>
+        </RoastCard>
+      )}
+
+      {report && (
+        <RoastCard
+          icon={Flame}
+          label="Buyer's remorse"
+          tone="loss"
+          accent={team(report.id).color}
+          value={`${report.backfiring} of ${report.trades}`}
+          line={roast.reportLine(report.id, report.trades, report.backfiring, report.payingOff)}
+        >
+          <ul className="grid gap-1">
+            {S.report.map((r) => (
+              <li key={r.id} className="flex flex-wrap items-center gap-x-2 text-sm">
+                <TeamAvatar teamId={r.id} size="sm" className="size-5 text-[7px]" />
+                <Link href={teamPath(r.id)} className="min-w-0 flex-1 truncate text-slate-700 hover:underline">
+                  {team(r.id).name}
+                </Link>
+                <span className="shrink-0 text-xs tabular-nums">
+                  <span className="font-semibold text-turf">{r.payingOff} paying off</span>
+                  {r.even > 0 && <span className="text-slate-500"> · {r.even} even</span>}
+                  <span className="text-slate-400"> · </span>
+                  <span className="font-semibold text-loss">{r.backfiring} backfiring</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-1.5 text-xs text-slate-500">Verdicts per side; draft-pick-only deals aren&apos;t graded.</p>
         </RoastCard>
       )}
 
@@ -331,23 +441,41 @@ export function TradeSuperlatives() {
   );
 }
 
-export function GradeKey() {
-  const steps = GRADE_STEPS.map((s, i) => {
-    const prev = GRADE_STEPS[i - 1];
-    return `${s.grade} ${prev ? `${signed(s.min)} to ${signed(prev.min)}` : `${signed(s.min)} or more`}`;
-  });
+/** Confidence labels with the weeks of data each one covers, as the file assigns them. */
+function confidenceScale() {
+  const m = new Map<string, Set<number>>();
+  for (const t of TRADES) if (t.confidence) m.set(t.confidence, (m.get(t.confidence) ?? new Set()).add(t.weeksOfData));
+  return [...m.entries()]
+    .map(([c, w]) => ({ c, weeks: [...w].sort((x, y) => x - y) }))
+    .sort((x, y) => x.weeks[0] - y.weeks[0])
+    .map(({ c, weeks }) => `${weeks.join(" or ")} ${weeks.length === 1 && weeks[0] === 1 ? "week" : "weeks"}: ${c}`);
+}
+
+export function VerdictKey() {
   return (
-    <Card title="How the grades work">
+    <Card title="How the verdicts work">
       <p className="text-sm leading-relaxed text-slate-600">
-        Each side gets every fantasy point its new players scored for it, started or benched, from the first week after the trade through the last completed week, minus
-        what the other side got the same way, divided by the weeks counted. Weeks after a player left are not counted.
+        Each side is paying off, even or backfiring, judged on two things. <strong className="font-semibold text-slate-700">Value edge</strong>: the FantasyCalc
+        rest-of-season value of the players it got that are still on the team (or were flipped in a later trade), minus the value of the players it sent. Released players
+        count 0, and within ±10% is even. <strong className="font-semibold text-slate-700">Points</strong>: every point the new players scored for it, started or benched,
+        minus what the players it sent scored for the partner over the same weeks. Within ±10 is even. When the two disagree, value wins.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
-        Per-week edge: {steps.join(" · ")} · D below that. F means the side got zero points from its new players while the other side scored. INC: draft picks only, no points
-        to compare. Grades covering {EARLY_WEEKS} weeks or fewer are tagged early.
+        FantasyCalc only publishes current values, so value since the trade is approximated from its 30-day trend for the Sep 28 trades. The later trades show &quot;value at
+        trade date unavailable&quot; and the points-per-game trend instead. Per-game rates only count games actually played, so byes, games missed and zero-stat games are
+        labelled and left out.
       </p>
+      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+        Confidence follows the weeks of data since the deal ({confidenceScale().join(" · ")}). Draft-pick-only deals aren&apos;t graded.
+      </p>
+      <ValuesCredit className="mt-3" />
     </Card>
   );
+}
+
+function verdictsText(v: { [k in Verdict]: number }) {
+  const parts = [`${v["paying-off"]} paying off`, ...(v.even ? [`${v.even} even`] : []), `${v.backfiring} backfiring`];
+  return v["paying-off"] + v.even + v.backfiring ? parts.join(" · ") : null;
 }
 
 export function TeamTradesSection({ teamId }: { teamId: number }) {
@@ -357,15 +485,21 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
     <>
       <SectionHeading title="Trades" action={TRADES_LABEL} />
       <Card className="-mt-2">
-        <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-4">
-          <Stat label="Accepted trades" value={s.trades.length} sub={`of ${TRADES.length} in the league`} />
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">
+          <Stat label="Accepted trades" value={s.trades.length} sub={verdictsText(s.verdicts) ?? `of ${TRADES.length} in the league`} />
           <Stat label="Offers sent" value={s.offersSent} />
           <Stat label="Offers received" value={s.offersReceived} />
           <Stat
+            label="Net value"
+            value={s.netValue != null ? signedValue(s.netValue) : "—"}
+            valueClassName={s.netValue ? tone(s.netValue) : undefined}
+            sub={s.netValue != null ? "rest-of-season value from trades" : undefined}
+          />
+          <Stat
             label="Net points"
-            value={s.trades.length ? signed(s.net) : "—"}
-            valueClassName={s.net > 0 ? "text-turf" : s.net < 0 ? "text-loss" : undefined}
-            sub={s.trades.length ? "from players traded for" : undefined}
+            value={s.trades.length ? signed(s.netPoints) : "—"}
+            valueClassName={s.netPoints ? tone(s.netPoints) : undefined}
+            sub={s.trades.length ? "all points, from trades" : undefined}
           />
         </div>
         <div className="mt-4 border-t border-line pt-3">
@@ -400,6 +534,7 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
           )}
         </div>
         <p className="mt-3 text-xs text-slate-500">Offer counts only; the contents of pending or declined offers stay private.</p>
+        {s.netValue != null && <ValuesCredit className="mt-1" />}
       </Card>
 
       {s.trades.length ? (

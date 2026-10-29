@@ -16,7 +16,7 @@ import {
   type TitleGame,
   type WeekScore,
 } from "@/lib/h2h";
-import { tp, type Trade, type TradeSide } from "@/lib/trades";
+import { backfireNumber, tp, tv, verdictWinner, type SideGrade, type Trade, type TradeSide } from "@/lib/trades";
 
 /*
  * PG-13 trash talk, generated from the numbers. Thresholds only choose the joke;
@@ -288,30 +288,44 @@ export function titleGameLine(g: TitleGame) {
 const list = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 const playersGot = (s: TradeSide) => s.got.flatMap((a) => (a.kind === "player" ? [a.name] : []));
 
+const ordinal = (k: number) => `${k}${k % 10 === 1 && k % 100 !== 11 ? "st" : k % 10 === 2 && k % 100 !== 12 ? "nd" : k % 10 === 3 && k % 100 !== 13 ? "rd" : "th"}`;
+const pctText = (g: SideGrade) => `${g.valueEdgePct > 0 ? "+" : "−"}${Math.abs(g.valueEdgePct)}%`;
+const lowConfidence = (t: Trade) => t.confidence === "low";
+
+/** Appended to a backfiring side's line once it has become a habit. */
+function backfireTag(t: Trade, teamId: number) {
+  const k = backfireNumber(t, teamId);
+  return k >= 2 ? ` That's the ${ordinal(k)} backfire for ${n(teamId)}.` : "";
+}
+
 export function tradeLine(t: Trade) {
   const [a, b] = t.sides;
-  if (!t.playersMoved) {
+  if (t.ungraded) {
     const picks = t.sides.flatMap((s) => s.got).filter((x) => x.kind === "pick");
     const rounds = new Set(picks.map((p) => (p.kind === "pick" ? p.round : 0)));
     if (t.released.length)
       return `Draft picks changed hands in the offseason and ${list(t.released.map((p) => p.name))} got released in the shuffle. Being the packing peanuts in somebody else's deal is a rough way to learn your value.`;
     if (rounds.size === 1 && picks.length === 2)
-      return `${n(a.teamId)} and ${n(b.teamId)} swapped round-${[...rounds][0]} slots and ESPN barely took notes. Grade: incomplete. Vibes: suspicious.`;
+      return `${n(a.teamId)} and ${n(b.teamId)} swapped round-${[...rounds][0]} slots and ESPN barely took notes. Verdict: not graded. Vibes: suspicious.`;
     return `${n(a.teamId)} and ${n(b.teamId)} shuffled draft picks before the season. Both sides get to claim they won until somebody checks.`;
   }
-  if (!t.edge) return `Too soon to call. Both sides are still pretending they read the injury report.`;
-  const win = t.sides.find((s) => s.teamId === t.edge!.teamId)!;
-  const lose = t.sides.find((s) => s.teamId !== t.edge!.teamId)!;
-  const edge = tp(t.edge.points);
+  const v = verdictWinner(t);
+  if (!v) return `Even on both counts so far. Both sides are still pretending they read the injury report.`;
+  const { win, lose } = v;
+  const wg = win.grade!;
+  const lg = lose.grade!;
+  const tag = backfireTag(t, lose.teamId);
   if (lose.points === 0 && playersGot(lose).length)
-    return `${n(lose.teamId)} traded for ${list(playersGot(lose))} and let him go before he logged a single week for them. ${n(win.teamId)} has ${tp(win.points ?? 0)} points from the deal. Buyer's remorse, speedrun edition.`;
-  if (t.early)
-    return t.edge.points < 5
-      ? `${t.weeksCounted === 1 ? "One week" : `${t.weeksCounted} weeks`} of data and a ${edge}-point gap. Grading this now is like grading a draft in August. Check back in a month.`
-      : `Only ${t.weeksCounted === 1 ? "one week" : `${t.weeksCounted} weeks`} in and ${n(win.teamId)} is up ${edge} points. Early, sure, but ${n(lose.teamId)} has definitely refreshed the box score.`;
-  if (t.edge.points / t.weeksCounted >= 8 && playersGot(win).length < playersGot(lose).length)
-    return `${n(win.teamId)} turned ${list(playersGot(lose))} into ${list(playersGot(win))} and is up ${edge} points since. ${n(lose.teamId)} got quantity. ${n(win.teamId)} got the points.`;
-  return `${n(win.teamId)} leads by ${edge} points over ${t.weeksCounted} weeks. Not a fleece, but ${n(lose.teamId)} is hoping nobody brings it up.`;
+    return `${n(lose.teamId)} traded for ${list(playersGot(lose))} and let him go before he logged a single week for them. ${n(win.teamId)} has ${tp(win.points ?? 0)} points from the deal. Buyer's remorse, speedrun edition.${tag}`;
+  if (lg.pointsGained > 0)
+    return `${n(lose.teamId)} is up ${tp(lg.pointsGained)} points and still losing the deal by ${tv(lg.valueEdge)} in rest-of-season value. Winning the week, renting out the future.${tag}`;
+  if (lowConfidence(t))
+    return `${n(win.teamId)} is up ${tv(wg.valueEdge)} in value (${pctText(wg)}) and ${tp(wg.pointsGained)} points after ${t.weeksOfData === 1 ? "one week" : `${t.weeksOfData} weeks`}. That's a weather forecast, not a verdict, but ${n(lose.teamId)} should bring an umbrella.${tag}`;
+  if (wg.valueChange && wg.valueEdge > 0 && playersGot(win).length < playersGot(lose).length)
+    return `${n(win.teamId)} turned ${list(playersGot(lose))} into ${list(playersGot(win))}: up ${tp(wg.pointsGained)} points and ${tv(wg.valueChange.net)} in value since the deal. ${n(lose.teamId)} got quantity. ${n(win.teamId)} got the player.${tag}`;
+  if (wg.valueChange)
+    return `${n(win.teamId)} is up ${tp(wg.pointsGained)} points and ${tv(wg.valueChange.net)} in value since the deal. Not a fleece, but ${n(lose.teamId)} is hoping nobody brings it up.${tag}`;
+  return `${n(win.teamId)} is up ${tp(wg.pointsGained)} points and ${tv(wg.valueEdge)} in rest-of-season value. ${n(lose.teamId)} has definitely refreshed the box score.${tag}`;
 }
 
 export function mostActiveLine(id: number, k: number, total: number) {
@@ -340,10 +354,17 @@ export function tradeAndCutLine() {
   return `Zero starts, zero points, one roster spot freed up. Retail therapy, but in reverse.`;
 }
 
-export function fleeceLine(t: Trade) {
-  const win = t.sides.find((s) => s.teamId === t.edge!.teamId)!;
-  const lose = t.sides.find((s) => s.teamId !== t.edge!.teamId)!;
-  return `${n(win.teamId)} is up ${tp(t.edge!.points)} points on ${n(lose.teamId)} over ${t.weeksCounted} weeks. The receipts are getting framed.`;
+export function bestValueLine(t: Trade, side: TradeSide) {
+  const g = side.grade!;
+  const other = t.sides.find((s) => s.teamId !== side.teamId)!;
+  return `${n(side.teamId)} got ${tv(g.valueReceived)} of rest-of-season value for ${tv(g.valueSent)}. ${n(other.teamId)} accepted that on purpose.${t.confidence === "low" ? " Low confidence, high audacity." : ""}`;
+}
+
+export function reportLine(id: number, trades: number, backfiring: number, payingOff: number) {
+  if (backfiring >= 3 && payingOff === 0)
+    return `${n(id)}: ${trades} trades, ${backfiring} backfiring, ${payingOff} paying off. At this point the trade button should require a co-signer.`;
+  if (backfiring > payingOff) return `${n(id)} has more backfires than wins on the trade market. The other managers have noticed.`;
+  return `${n(id)} hasn't been burned yet. Give it time.`;
 }
 
 export function noRepeatLine(trades: number, pairs: number) {

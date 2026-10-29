@@ -42,7 +42,7 @@ export default function HistoryPage() {
         <span className="min-w-0 flex-1">
           <span className="block font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">Trade desk</span>
           <span className="block text-sm leading-snug text-slate-600">
-            {TRADES_LABEL}: {COUNTS.accepted} accepted deals, graded and roasted
+            {TRADES_LABEL}: {COUNTS.accepted} accepted deals, judged on long-term value and roasted
           </span>
         </span>
         <ChevronRight className="size-5 shrink-0 text-slate-400" />

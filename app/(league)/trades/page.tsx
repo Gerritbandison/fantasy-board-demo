@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { ArrowLeftRight } from "lucide-react";
-import { GradeKey, TradeCard, TradeSuperlatives } from "@/components/league/trades";
+import { TradeCard, TradeSuperlatives, ValuesCredit, VerdictKey } from "@/components/league/trades";
 import { PageHeader, SectionHeading } from "@/components/league/ui";
 import { LEAGUE } from "@/lib/league";
 import { COUNTS, TRADE_SEASON, TRADES, TRADES_LABEL, UNKNOWN_SEASONS } from "@/lib/trades";
 
 export const metadata: Metadata = {
   title: "Trades",
-  description: `Chicken league ${TRADE_SEASON} season trades: every accepted deal, graded, plus the league's trade superlatives.`,
+  description: `Chicken league ${TRADE_SEASON} season trades: every accepted deal judged on long-term value, plus the league's trade superlatives.`,
 };
 
 export default function TradesPage() {
@@ -20,10 +20,12 @@ export default function TradesPage() {
     <>
       <PageHeader eyebrow={TRADES_LABEL} title="Trade desk">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
-          Every accepted trade from the {TRADE_SEASON} preseason through week {LEAGUE.week}, graded on every point the new players have scored for their new teams so far, started or benched.
+          Every accepted trade from the {TRADE_SEASON} preseason through week {LEAGUE.week}, judged on long-term value: is each side paying off, even or backfiring, and is
+          its rest-of-season value up or down since the deal. Points count every point the new players scored for their new teams, started or benched.
           {UNKNOWN_SEASONS.length > 0 &&
             ` ESPN only serves the current season's transactions, so trades from ${firstUnknown}–${lastUnknown} aren't on record here. That's missing data, not a quiet league.`}
         </p>
+        <ValuesCredit className="mt-2" />
       </PageHeader>
 
       <section className="overflow-hidden rounded-2xl bg-navy yard-lines p-4 text-white shadow-lg shadow-navy/15 sm:p-5">
@@ -61,7 +63,7 @@ export default function TradesPage() {
         ))}
       </ul>
 
-      <GradeKey />
+      <VerdictKey />
     </>
   );
 }
