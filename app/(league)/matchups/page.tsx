@@ -1,58 +1,47 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-import { PageHeading } from "@/components/league/bits";
+import { Frame, PageHead } from "@/components/league/hud";
 import { cn } from "@/lib/utils";
+import { callsign, getBrief, weekCode } from "@/lib/intel";
 import { boardForMatchup, ordinal, snapshot, type MatchupSide } from "@/lib/league";
 
 export const metadata: Metadata = {
-  title: "Matchups",
-  description: "Week 8 featured matchups in the Chicken league with projected scores.",
+  title: "Slate",
+  description: "Week 8 featured ops in the Chicken league: projections and the one-line brief for each.",
 };
 
 export default function MatchupsPage() {
+  const wk = weekCode(snapshot.league.week);
   return (
     <>
-      <PageHeading eyebrow={`Week ${snapshot.league.week} slate`} title="Matchups">
-        <p className="mt-2 text-sm text-zinc-400 tv:text-2xl">
-          Featured games with full lineups in this snapshot. Tap one to open its board.
-        </p>
-      </PageHeading>
+      <PageHead
+        code={`SLATE // Week ${wk}`}
+        title="Featured ops"
+        kicker="The games with full lineups on file this week. Open one for the brief, score trail, and head-to-head."
+      />
 
-      <ul className="grid gap-3 lg:grid-cols-2 tv:gap-6">
+      <ul className="grid gap-4 lg:grid-cols-2 lg:gap-5">
         {snapshot.matchups.map((m) => {
           const board = boardForMatchup(m);
-          const sides = [m.away, m.home];
+          const brief = getBrief(m.slug);
           const leader = m.home.projected >= m.away.projected ? m.home.teamId : m.away.teamId;
-          const content = (
-            <>
-              <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.25em] text-zinc-500 tv:text-lg">
-                <span>Projected</span>
-                {board && (
-                  <span className="flex items-center gap-1 text-emerald-300">
-                    {board.manager}&apos;s board <ChevronRight className="size-3.5" />
-                  </span>
-                )}
-              </div>
-              <div className="mt-3 grid gap-2 tv:gap-4">
-                {sides.map((s) => (
+          return (
+            <Frame key={m.id} as="li" label={`${callsign(m.away.teamId)} @ ${callsign(m.home.teamId)}`} code={`OP-${wk}`} meta="Projected">
+              <div className="grid gap-2">
+                {[m.away, m.home].map((s) => (
                   <ScoreLine key={s.teamId} side={s} leading={s.teamId === leader} />
                 ))}
               </div>
-            </>
-          );
-          const className =
-            "block rounded-2xl bg-zinc-900/60 p-4 ring-1 ring-white/10 transition-colors hover:bg-zinc-900/90 hover:ring-emerald-400/30 tv:p-8";
-          return (
-            <li key={m.id}>
-              {board ? (
-                <Link href={board.path} className={className}>
-                  {content}
+              {brief && <p className="mt-3 border-t border-dashed border-white/10 pt-3 text-sm leading-relaxed text-zinc-400">{brief.story}</p>}
+              {board && (
+                <Link
+                  href={board.path}
+                  className="mt-3 inline-flex h-9 items-center px-3 font-mono text-[11px] tracking-[0.18em] text-phos uppercase ring-1 ring-phos/40 ring-inset hover:bg-phos/10"
+                >
+                  {board.manager}&apos;s op board ▸
                 </Link>
-              ) : (
-                <div className={className}>{content}</div>
               )}
-            </li>
+            </Frame>
           );
         })}
       </ul>
@@ -64,16 +53,14 @@ function ScoreLine({ side, leading }: { side: MatchupSide; leading: boolean }) {
   return (
     <div className="flex items-center justify-between gap-3">
       <div className="min-w-0">
-        <p className={cn("font-display text-xl leading-tight font-bold uppercase tracking-wide break-words tv:text-4xl", leading ? "text-white" : "text-zinc-400")}>
+        <p className={cn("font-display text-xl leading-tight font-semibold tracking-wide break-words uppercase", leading ? "text-zinc-50" : "text-zinc-400")}>
           {side.teamName}
         </p>
-        <p className="text-xs text-zinc-500 tv:text-xl">
-          {side.record} · {ordinal(side.rank)}
+        <p className="font-mono text-[10px] tracking-wider text-faint uppercase">
+          {callsign(side.teamId)} · {side.record} · {ordinal(side.rank)}
         </p>
       </div>
-      <span className={cn("font-display text-4xl font-extrabold tabular-nums tv:text-7xl", leading ? "text-emerald-300" : "text-zinc-500")}>
-        {side.projected.toFixed(1)}
-      </span>
+      <span className={cn("font-mono text-3xl tabular-nums", leading ? "text-phos glow-phos" : "text-zinc-500")}>{side.projected.toFixed(2)}</span>
     </div>
   );
 }
