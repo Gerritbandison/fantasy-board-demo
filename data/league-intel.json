@@ -1,0 +1,510 @@
+{
+  "brand": {
+    "name": "Chicken Command",
+    "tagline": "Ops board for league 12115010 \u2014 not an ESPN mirror",
+    "mode": "week-8 intelligence"
+  },
+  "league": {
+    "name": "Chicken",
+    "id": "12115010",
+    "season": 2026,
+    "week": 8,
+    "format": "10-team \u00b7 H2H points \u00b7 snake \u00b7 3 keepers",
+    "seasonsOnRecord": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ]
+  },
+  "champions": [
+    {
+      "year": 2025,
+      "champion": "Jahmyr I Go Again",
+      "runnerUp": "Chewy's Warriors",
+      "note": "Seed 4 won it all; Bibi's Boys (then Maye 4 MVP) finished 10th after making playoffs."
+    },
+    {
+      "year": 2024,
+      "champion": "Bibi's Boys",
+      "runnerUp": "Chewy's Warriors",
+      "note": "Kyle/KASE stack \u2014 then \u201cMar\u2019s x CMAC farewell tour\u201d \u2014 took the chip; Chewy runner-up again."
+    },
+    {
+      "year": 2023,
+      "champion": "Sandusky's Soldiers",
+      "runnerUp": "All Heart",
+      "note": "Golden Goose (then Lebron Oniell) was #1 seed at 10-4 but exited early (final 3rd)."
+    },
+    {
+      "year": 2022,
+      "champion": "Smert Fellas",
+      "runnerUp": "All Heart",
+      "note": "Chewy led regular-season PF again without the ring."
+    }
+  ],
+  "allTime": [
+    {
+      "team": "Bibi's Boys",
+      "titles": 1,
+      "years": "2024",
+      "note": "Only current title among featured franchises"
+    },
+    {
+      "team": "Sandusky's Soldiers",
+      "titles": 1,
+      "years": "2023",
+      "note": "Won as a 4-seed"
+    },
+    {
+      "team": "Smert Fellas",
+      "titles": 1,
+      "years": "2022",
+      "note": "Won as a 3-seed"
+    },
+    {
+      "team": "Jahmyr I Go Again",
+      "titles": 1,
+      "years": "2025",
+      "note": "Won as a 4-seed \u2014 Chicken crowns mid-seeds"
+    },
+    {
+      "team": "Chewy's Warriors",
+      "titles": 0,
+      "years": "runner-up 2024\u201325",
+      "note": "Most PF without a ring"
+    },
+    {
+      "team": "Golden Goose",
+      "titles": 0,
+      "years": "\u2014",
+      "note": "Best regular-season peak: 2023 #1 seed"
+    }
+  ],
+  "franchises": [
+    {
+      "teamId": 7,
+      "name": "Golden Goose",
+      "ownerLabel": "Gerrit",
+      "arc": "Same franchise since at least 2020. Peak: 2023 #1 seed (10-4). 2025 made playoffs as seed 5. 2026 is the rebuild trough \u2014 2-5 with a ceiling week (168.96 in W5).",
+      "titles": 0,
+      "playoffAppearancesRecent": "2023\u20132025",
+      "weekly2026": [
+        {
+          "week": 1,
+          "pf": 87.82,
+          "pa": 121.52,
+          "opp": "All Heart",
+          "result": "L"
+        },
+        {
+          "week": 2,
+          "pf": 65.12,
+          "pa": 128.28,
+          "opp": "Jahmyr I Go Again",
+          "result": "L"
+        },
+        {
+          "week": 3,
+          "pf": 70.36,
+          "pa": 106.98,
+          "opp": "Sandusky's Soldiers",
+          "result": "L"
+        },
+        {
+          "week": 4,
+          "pf": 128.76,
+          "pa": 132.38,
+          "opp": "Bibi's Boys",
+          "result": "L"
+        },
+        {
+          "week": 5,
+          "pf": 168.96,
+          "pa": 160.1,
+          "opp": "Easy Peasy",
+          "result": "W"
+        },
+        {
+          "week": 6,
+          "pf": 121.4,
+          "pa": 142.72,
+          "opp": "Chewy's Warriors",
+          "result": "L"
+        },
+        {
+          "week": 7,
+          "pf": 128.74,
+          "pa": 98.42,
+          "opp": "Kabul FC",
+          "result": "W"
+        }
+      ],
+      "signature": "Boom/bust scoring \u2014 league-low PF but already posted the 3rd-highest single week this year."
+    },
+    {
+      "teamId": 1,
+      "name": "Bibi's Boys",
+      "ownerLabel": "Kyle / KASE",
+      "arc": "2024 champion. 2025 crash to final rank 10 after a playoff berth. 2026 revenge tour: 6-1, #1 seed, six straight wins after a W1 squeaker.",
+      "titles": 1,
+      "playoffAppearancesRecent": "2022\u20132025",
+      "weekly2026": [
+        {
+          "week": 1,
+          "pf": 122.2,
+          "pa": 118.7,
+          "opp": "Kabul FC",
+          "result": "W"
+        },
+        {
+          "week": 2,
+          "pf": 126.64,
+          "pa": 135.72,
+          "opp": "Sandusky's Soldiers",
+          "result": "L"
+        },
+        {
+          "week": 3,
+          "pf": 123.88,
+          "pa": 100.04,
+          "opp": "Dimes McSorley",
+          "result": "W"
+        },
+        {
+          "week": 4,
+          "pf": 132.38,
+          "pa": 128.76,
+          "opp": "Golden Goose",
+          "result": "W"
+        },
+        {
+          "week": 5,
+          "pf": 117.06,
+          "pa": 114.24,
+          "opp": "Smert Fellas",
+          "result": "W"
+        },
+        {
+          "week": 6,
+          "pf": 119.04,
+          "pa": 88.3,
+          "opp": "Easy Peasy",
+          "result": "W"
+        },
+        {
+          "week": 7,
+          "pf": 135.72,
+          "pa": 119.5,
+          "opp": "All Heart",
+          "result": "W"
+        }
+      ],
+      "signature": "Consistency machine \u2014 never scored under 117 after week 1; beat Golden Goose 132\u2013129 in week 4."
+    },
+    {
+      "teamId": 3,
+      "name": "Chewy's Warriors",
+      "ownerLabel": "Chewy",
+      "arc": "Perennial PF monster. Runner-up 2024 and 2025. Leads 2026 PF (992.7) at 4-3 \u2014 classic Chewy: scoreboard king, record lagging.",
+      "titles": 0,
+      "playoffAppearancesRecent": "every recent year",
+      "weekly2026": [
+        {
+          "week": 1,
+          "pf": 141.46,
+          "pa": 99.74,
+          "opp": "Dimes McSorley",
+          "result": "W"
+        },
+        {
+          "week": 2,
+          "pf": 130.8,
+          "pa": 141.06,
+          "opp": "Smert Fellas",
+          "result": "L"
+        },
+        {
+          "week": 3,
+          "pf": 105.1,
+          "pa": 115.12,
+          "opp": "All Heart",
+          "result": "L"
+        },
+        {
+          "week": 4,
+          "pf": 176.18,
+          "pa": 154.74,
+          "opp": "Jahmyr I Go Again",
+          "result": "W"
+        },
+        {
+          "week": 5,
+          "pf": 180.28,
+          "pa": 146.68,
+          "opp": "Sandusky's Soldiers",
+          "result": "W"
+        },
+        {
+          "week": 6,
+          "pf": 142.72,
+          "pa": 121.4,
+          "opp": "Golden Goose",
+          "result": "W"
+        },
+        {
+          "week": 7,
+          "pf": 116.2,
+          "pa": 138.58,
+          "opp": "Easy Peasy",
+          "result": "L"
+        }
+      ],
+      "signature": "Dropped 176 and 180 in weeks 4\u20135; still only 4-3 because of early losses."
+    },
+    {
+      "teamId": 8,
+      "name": "Dimes McSorley",
+      "ownerLabel": "Dimes",
+      "arc": "Steady mid-pack franchise. 5-2 in 2026 with the 2nd-best record and lowest PA among contenders \u2014 defense via matchup luck.",
+      "titles": 0,
+      "playoffAppearancesRecent": "regular",
+      "weekly2026": [
+        {
+          "week": 1,
+          "pf": 99.74,
+          "pa": 141.46,
+          "opp": "Chewy's Warriors",
+          "result": "L"
+        },
+        {
+          "week": 2,
+          "pf": 112.52,
+          "pa": 77.8,
+          "opp": "Kabul FC",
+          "result": "W"
+        },
+        {
+          "week": 3,
+          "pf": 100.04,
+          "pa": 123.88,
+          "opp": "Bibi's Boys",
+          "result": "L"
+        },
+        {
+          "week": 4,
+          "pf": 130.16,
+          "pa": 122,
+          "opp": "Smert Fellas",
+          "result": "W"
+        },
+        {
+          "week": 5,
+          "pf": 141.64,
+          "pa": 112.7,
+          "opp": "All Heart",
+          "result": "W"
+        },
+        {
+          "week": 6,
+          "pf": 99.84,
+          "pa": 75.88,
+          "opp": "Jahmyr I Go Again",
+          "result": "W"
+        },
+        {
+          "week": 7,
+          "pf": 127.92,
+          "pa": 92.98,
+          "opp": "Sandusky's Soldiers",
+          "result": "W"
+        }
+      ],
+      "signature": "Faces Golden Goose in week 8 with a 123.5 projected edge to Goose's 131.3."
+    }
+  ],
+  "luckIndex": [
+    {
+      "team": "Dimes McSorley",
+      "teamId": 8,
+      "record": "5-2",
+      "pf": 811.86,
+      "pfRank": 8,
+      "winRank": 2,
+      "luckDelta": 6,
+      "label": "running hot"
+    },
+    {
+      "team": "Bibi's Boys",
+      "teamId": 1,
+      "record": "6-1",
+      "pf": 876.92,
+      "pfRank": 4,
+      "winRank": 1,
+      "luckDelta": 3,
+      "label": "running hot"
+    },
+    {
+      "team": "Kabul FC",
+      "teamId": 11,
+      "record": "3-4",
+      "pf": 776.74,
+      "pfRank": 9,
+      "winRank": 8,
+      "luckDelta": 1,
+      "label": "fair"
+    },
+    {
+      "team": "Sandusky's Soldiers",
+      "teamId": 10,
+      "record": "3-4",
+      "pf": 823.14,
+      "pfRank": 6,
+      "winRank": 6,
+      "luckDelta": 0,
+      "label": "fair"
+    },
+    {
+      "team": "All Heart",
+      "teamId": 4,
+      "record": "3-4",
+      "pf": 814.98,
+      "pfRank": 7,
+      "winRank": 7,
+      "luckDelta": 0,
+      "label": "fair"
+    },
+    {
+      "team": "Golden Goose",
+      "teamId": 7,
+      "record": "2-5",
+      "pf": 771.16,
+      "pfRank": 10,
+      "winRank": 10,
+      "luckDelta": 0,
+      "label": "fair"
+    },
+    {
+      "team": "Chewy's Warriors",
+      "teamId": 3,
+      "record": "4-3",
+      "pf": 992.74,
+      "pfRank": 1,
+      "winRank": 3,
+      "luckDelta": -2,
+      "label": "unlucky"
+    },
+    {
+      "team": "Jahmyr I Go Again",
+      "teamId": 2,
+      "record": "4-3",
+      "pf": 929.12,
+      "pfRank": 2,
+      "winRank": 4,
+      "luckDelta": -2,
+      "label": "unlucky"
+    },
+    {
+      "team": "Easy Peasy",
+      "teamId": 5,
+      "record": "3-4",
+      "pf": 911.74,
+      "pfRank": 3,
+      "winRank": 5,
+      "luckDelta": -2,
+      "label": "unlucky"
+    },
+    {
+      "team": "Smert Fellas",
+      "teamId": 6,
+      "record": "2-5",
+      "pf": 827.84,
+      "pfRank": 5,
+      "winRank": 9,
+      "luckDelta": -4,
+      "label": "unlucky"
+    }
+  ],
+  "matchupBriefs": [
+    {
+      "slug": "golden-goose",
+      "title": "Golden Goose vs Dimes McSorley",
+      "week": 8,
+      "story": "Goose needs this. After a 0-3 start and a 65-point floor in week 2, the offense woke up (169 in W5, 129 in W7). Dimes is 5-2 and allowing the fewest points in the league \u2014 but Goose projects 131.3 to 123.5.",
+      "edges": [
+        {
+          "side": "Golden Goose",
+          "edge": "Higher projected total; Maye + Puka + Jacobs ceiling if Q flags clear"
+        },
+        {
+          "side": "Dimes McSorley",
+          "edge": "Record and PA; Hall/Irving RB stack vs a Goose team still 10th in PF"
+        }
+      ],
+      "historyNote": "No prior H2H in 2026. Goose's median week is ~122 after week 3; Dimes' median is ~113.",
+      "mustWin": "Golden Goose \u2014 two games back of the playoff cut with seven weeks left in the regular season window."
+    },
+    {
+      "slug": "bibis",
+      "title": "Bibi's Boys vs Chewy's Warriors",
+      "week": 8,
+      "story": "League narrative game. Reigning-era champ (2024) vs the two-time runner-up who leads the league in points. Bibi is 6-1; Chewy is 4-3 with 992 PF. Projections: Chewy 133.3, Bibi 129.2.",
+      "edges": [
+        {
+          "side": "Bibi's Boys",
+          "edge": "Best record in Chicken; Chase/ARSB/Bowers core even with Q tags"
+        },
+        {
+          "side": "Chewy's Warriors",
+          "edge": "Season PF lead; already beat Goose and Jahmyr in statement weeks"
+        }
+      ],
+      "historyNote": "Chewy was runner-up to Bibi's Boys in 2024. This is the rematch energy of the decade for Chicken.",
+      "mustWin": "Chewy \u2014 a loss puts them in a messy 4-4 logjam; Bibi can absorb one L and stay #1."
+    }
+  ],
+  "leaguePulse": [
+    {
+      "tone": "signal",
+      "title": "Chicken crowns mid-seeds",
+      "body": "Last four champions: 2022 Smert (3), 2023 Soldiers (4), 2024 Bibi (4), 2025 Jahmyr (4). Regular-season #1 has not won since before this stretch."
+    },
+    {
+      "tone": "signal",
+      "title": "Chewy's PF curse continues",
+      "body": "Back-to-back runner-ups, then 2026 PF lead at 4-3. Highest ceiling in the league, still hunting the first chip."
+    },
+    {
+      "tone": "alert",
+      "title": "Goose is volatile, not dead",
+      "body": "2-5 and 10th in PF, but week 5's 169 is a top-3 weekly score league-wide. The median after week 3 is playoff-caliber."
+    },
+    {
+      "tone": "signal",
+      "title": "Bibi's revenge arc",
+      "body": "2024 champ \u2192 2025 dead last in finals \u2192 2026 6-1. Beat Goose head-to-head in week 4 by 3.6."
+    },
+    {
+      "tone": "alert",
+      "title": "Luck board",
+      "body": "Bibi and Dimes are running hotter than their PF rank; Chewy and Easy Peasy are due if variance regresses."
+    }
+  ],
+  "week8Projections": {
+    "golden-goose": {
+      "home": "Golden Goose",
+      "away": "Dimes McSorley",
+      "homeProj": 131.27,
+      "awayProj": 123.49
+    },
+    "bibis": {
+      "home": "Chewy's Warriors",
+      "away": "Bibi's Boys",
+      "homeProj": 133.28,
+      "awayProj": 129.22
+    }
+  }
+}
