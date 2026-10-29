@@ -105,6 +105,12 @@ export function boardForTeam(teamId: number) {
   return BOARDS.find((b) => b.focusTeamId === teamId);
 }
 
+/** The op board whose featured matchup includes this team (focus or opponent). */
+export function boardInvolving(teamId: number) {
+  const m = snapshot.matchups.find((x) => x.home.teamId === teamId || x.away.teamId === teamId);
+  return m ? boardForMatchup(m) : undefined;
+}
+
 export function boardForMatchup(m: SnapshotMatchup) {
   return BOARDS.find((b) => b.slug === m.slug);
 }
