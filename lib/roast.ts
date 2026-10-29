@@ -6,6 +6,7 @@ import {
   RECORDS,
   record,
   spanLabel,
+  teamThenLabel,
   type Franchise,
   type RecordGame,
   type RecordScore,
@@ -112,7 +113,7 @@ export function bestWeekLine(s: WeekScore) {
   const rank = highScoreRank(s);
   const owned = topRanks(s.teamId, RECORDS.highestScores);
   const lines: string[] = [];
-  if (rank === 1 && owned.includes(2)) lines.push(`The highest score in league history, and #2 belongs to them too. Leave some points for everybody else.`);
+  if (rank === 1 && owned.includes(2)) lines.push(`The highest score in league history, and ${n(s.teamId)} owns #2 as well. Leave some points for everybody else.`);
   else if (rank === 1) lines.push(`The highest single-week score in league history. Frame it.`);
   else if (rank != null) lines.push(`#${rank} on the league's all-time single-week list.`);
   else lines.push(pick([`A personal best. The league's all-time list remains unbothered.`, `A career week. Still not on the league leaderboard, but mom is proud.`], s.teamId));
@@ -217,19 +218,19 @@ export function seriesLine(s: Series) {
 
 /* ---------- Hall of Fame / Shame ---------- */
 
-const who = (id: number, seasonName: string) => (seasonName === n(id) ? n(id) : `${n(id)} (as ${seasonName})`);
+const who = teamThenLabel;
 
 export function highScoreLine(top: RecordScore[]) {
   const [first, second] = top;
   if (!first) return "";
-  const lines = [`${who(first.teamId, first.seasonName)} dropped ${pts(first.score)}.`];
+  const lines = [`${who(first.teamId, first.when.season)} dropped ${pts(first.score)}.`];
   if (second?.teamId === first.teamId) lines.push(`Also holds #2 (${pts(second.score)}). Leave some points for the rest of the league.`);
   else if (first.opponentScore != null) lines.push(`${n(first.opponentId)} scored ${pts(first.opponentScore)} that week and was never in it.`);
   return lines.join(" ");
 }
 
 export function lowScoreLine(s: RecordScore) {
-  const lines = [`${who(s.teamId, s.seasonName)} put up ${pts(s.score)} in a single week.`];
+  const lines = [`${who(s.teamId, s.when.season)} put up ${pts(s.score)} in a single week.`];
   if (s.leg && s.game) {
     lines.push(
       `${s.when.kind === "consolation" ? "It was one week of a two-week consolation game" : "It was one week of a two-week playoff game"}, and they lost the two-week total ${pts(s.game.pf)}-${pts(s.game.pa)}.`,
@@ -240,19 +241,19 @@ export function lowScoreLine(s: RecordScore) {
 }
 
 export function blowoutLine(g: RecordGame) {
-  return `${who(g.winnerId, g.winnerSeasonName)} beat ${who(g.loserId, g.loserSeasonName)} ${pts(g.winnerScore)}-${pts(g.loserScore)}. ${n(g.loserId)} has asked that this card be removed. Request denied.`;
+  return `${who(g.winnerId, g.when.season)} beat ${who(g.loserId, g.when.season)} ${pts(g.winnerScore)}-${pts(g.loserScore)}. ${n(g.loserId)} has asked that this card be removed. Request denied.`;
 }
 
 export function closestLine(g: RecordGame) {
-  return `${who(g.winnerId, g.winnerSeasonName)} over ${who(g.loserId, g.loserSeasonName)}, ${pts(g.winnerScore)}-${pts(g.loserScore)}. Basically a coin flip with paperwork.`;
+  return `${who(g.winnerId, g.when.season)} over ${who(g.loserId, g.when.season)}, ${pts(g.winnerScore)}-${pts(g.loserScore)}. Basically a coin flip with paperwork.`;
 }
 
 export function uglyWinLine(g: RecordGame) {
-  return `${who(g.winnerId, g.winnerSeasonName)} won with ${pts(g.winnerScore)}, because ${who(g.loserId, g.loserSeasonName)} managed ${pts(g.loserScore)}. Ugly wins still count. Barely.`;
+  return `${who(g.winnerId, g.when.season)} won with ${pts(g.winnerScore)}, because ${who(g.loserId, g.when.season)} managed ${pts(g.loserScore)}. Ugly wins still count. Barely.`;
 }
 
 export function robbedLine(g: RecordGame) {
-  return `${who(g.loserId, g.loserSeasonName)} scored ${pts(g.loserScore)} and still lost, because ${who(g.winnerId, g.winnerSeasonName)} dropped ${pts(g.winnerScore)}. Wrong week to have a great week.`;
+  return `${who(g.loserId, g.when.season)} scored ${pts(g.loserScore)} and still lost, because ${who(g.winnerId, g.when.season)} dropped ${pts(g.winnerScore)}. Wrong week to have a great week.`;
 }
 
 export function winStreakLine(s: { teamId: number; length: number } & Parameters<typeof spanLabel>[0]) {

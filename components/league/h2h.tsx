@@ -13,10 +13,10 @@ import {
   RECORDS_NOTE,
   record,
   SCOPE_LABEL,
-  seasonName,
   seriesBetween,
   spanLabel,
   STREAK_NOTE,
+  teamThen,
   TOTAL_GAMES,
   whenLabel,
   type RecordGame,
@@ -51,25 +51,53 @@ function Eyebrow({ icon: Icon, children, tone = "slate" }: { icon: LucideIcon; c
   );
 }
 
-function TeamLine({ id, season, sub }: { id: number; season?: number; sub?: React.ReactNode }) {
-  const t = team(id);
-  const then = season != null ? seasonName(id, season) : undefined;
+/** The team a stat belongs to: current name, qualified by that season's name (or year, if retired). */
+function TeamLine({ id, season, sub, prefix }: { id: number; season?: number; sub?: React.ReactNode; prefix?: string }) {
+  const t = season != null ? teamThen(id, season) : { name: team(id).name, alias: null, year: null };
   return (
     <div className="flex min-w-0 items-center gap-2.5">
       <TeamAvatar teamId={id} size="sm" />
       <div className="min-w-0">
-        <Link href={teamPath(id)} className="block text-sm leading-tight font-semibold break-words text-navy hover:underline">
-          {t.name}
-        </Link>
-        {(sub || (then && then !== t.name)) && (
+        <p className="text-sm leading-tight font-semibold break-words text-navy">
+          {prefix && <span className="font-medium text-slate-500">{prefix} </span>}
+          <Link href={teamPath(id)} className="hover:underline">
+            {t.name}
+          </Link>
+          {t.year != null && <span className="font-medium text-slate-500"> ({t.year})</span>}
+        </p>
+        {(sub || t.alias) && (
           <p className="text-xs leading-snug text-slate-500">
-            {then && then !== t.name && <span>as {then}</span>}
-            {then && then !== t.name && sub ? " · " : null}
+            {t.alias && <span>as {t.alias}</span>}
+            {t.alias && sub ? " · " : null}
             {sub}
           </p>
         )}
       </div>
     </div>
+  );
+}
+
+/** Secondary opponent line on a team's own stat: "vs <Opponent> (as <season name>) · <score>". */
+function Versus({ id, season, score, suffix }: { id: number; season: number; score?: number | null; suffix?: string }) {
+  const t = teamThen(id, season);
+  return (
+    <p className="mt-2 flex items-start gap-1.5 text-xs leading-snug text-slate-500">
+      <TeamAvatar teamId={id} size="sm" className="size-4 text-[6px]" />
+      <span className="min-w-0">
+        vs{" "}
+        <Link href={teamPath(id)} className="font-semibold text-slate-700 hover:underline">
+          {t.name}
+        </Link>
+        {t.alias ? ` (as ${t.alias})` : t.year != null ? ` (${t.year})` : ""}
+        {score != null && (
+          <>
+            {" · "}
+            <span className="font-semibold text-slate-700 tabular-nums">{pts(score)}</span>
+            {suffix}
+          </>
+        )}
+      </span>
+    </p>
   );
 }
 
@@ -110,8 +138,9 @@ function RoastCard({
 
 function GameCard({ g, icon, label, tone, line }: { g: TeamGame; icon: LucideIcon; label: string; tone: "turf" | "loss"; line: string }) {
   return (
-    <RoastCard icon={icon} label={label} tone={tone} accent={team(g.opponentId).color} value={signed(g.margin)} valueClassName={tone === "turf" ? "text-turf" : "text-loss"} line={line}>
-      <TeamLine id={g.opponentId} season={g.when.season} sub={`${pts(g.pf)}-${pts(g.pa)}`} />
+    <RoastCard icon={icon} label={label} tone={tone} accent={team(g.teamId).color} value={signed(g.margin)} valueClassName={tone === "turf" ? "text-turf" : "text-loss"} line={line}>
+      <TeamLine id={g.teamId} season={g.when.season} sub={<span className="tabular-nums">scored {pts(g.pf)}</span>} />
+      <Versus id={g.opponentId} season={g.when.season} score={g.pa} />
       <p className="mt-1.5 text-xs text-slate-500">{whenLabel(g.when)}</p>
     </RoastCard>
   );
@@ -119,8 +148,9 @@ function GameCard({ g, icon, label, tone, line }: { g: TeamGame; icon: LucideIco
 
 function WeekCard({ s, icon, label, tone, line }: { s: WeekScore; icon: LucideIcon; label: string; tone: "turf" | "loss"; line: string }) {
   return (
-    <RoastCard icon={icon} label={label} tone={tone} value={pts(s.score)} valueClassName={tone === "turf" ? "text-turf" : "text-loss"} line={line}>
-      <TeamLine id={s.opponentId} season={s.when.season} sub={s.opponentScore != null ? `vs ${pts(s.opponentScore)} that week` : undefined} />
+    <RoastCard icon={icon} label={label} tone={tone} accent={team(s.teamId).color} value={pts(s.score)} valueClassName={tone === "turf" ? "text-turf" : "text-loss"} line={line}>
+      <TeamLine id={s.teamId} season={s.when.season} />
+      <Versus id={s.opponentId} season={s.when.season} score={s.opponentScore} suffix=" that week" />
       <p className="mt-1.5 text-xs text-slate-500">
         {whenLabel(s.when, s.week)}
         {s.leg && " · one week of a two-week game"}
@@ -138,12 +168,12 @@ function SeriesCard({ me, s, kind }: { me: number; s: Series; kind: "snack" | "n
       icon={icon}
       label={`${snack ? "Easiest opponent" : "Nemesis"} · ${title}`}
       tone={snack ? "turf" : "loss"}
-      accent={team(s.opponentId).color}
+      accent={team(me).color}
       value={record(s)}
       valueClassName={snack ? "text-turf" : "text-loss"}
       line={snack ? roast.snackLine(me, s) : roast.nemesisLine(me, s)}
     >
-      <TeamLine id={s.opponentId} sub={`${s.games} games · ${signed(s.avgMargin)} avg margin`} />
+      <TeamLine id={s.opponentId} prefix="vs" sub={`${team(me).abbrev} record over ${s.games} games · ${signed(s.avgMargin)} avg margin`} />
     </RoastCard>
   );
 }

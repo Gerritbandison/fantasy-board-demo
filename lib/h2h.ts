@@ -1,5 +1,5 @@
 import raw from "@/data/league-h2h-history.json";
-import { team } from "@/lib/league";
+import { isRetiredSeasonName, publicSeasonName, team } from "@/lib/league";
 
 /*
  * All-time head-to-head pull (Flaim/ESPN). Like lib/league.ts, every ESPN name field
@@ -226,13 +226,34 @@ const SEASON_NAMES = new Map(
   Object.values(file.franchises).map((f) => [f.teamId, new Map(f.seasonNames.map((s) => [s.season, s.displayName.replace(/\s+/g, " ").trim()]))]),
 );
 
-/** The franchise's cleaned display name for a given season (falls back to its current name). */
+/** The franchise's display name for a season, safe to render on its own. */
 export function seasonName(teamId: number, season: number) {
-  return SEASON_NAMES.get(teamId)?.get(season) ?? team(teamId).name;
+  const raw = SEASON_NAMES.get(teamId)?.get(season);
+  return raw ? publicSeasonName(team(teamId).name, season, raw) : team(teamId).name;
+}
+
+/**
+ * Current name plus how to qualify it for a past season: `alias` when the franchise went by
+ * another name that year, or `year` when that year's name is retired from display.
+ */
+export function teamThen(teamId: number, season: number): { name: string; alias: string | null; year: number | null } {
+  const name = team(teamId).name;
+  const raw = SEASON_NAMES.get(teamId)?.get(season);
+  if (!raw || raw === name) return { name, alias: null, year: null };
+  if (isRetiredSeasonName(raw)) return { name, alias: null, year: season };
+  return { name, alias: raw, year: null };
+}
+
+/** e.g. "Maye i give you a blowj0b (as Mixon Impossible)" or "Jahmyr I Go Again (2020)". */
+export function teamThenLabel(teamId: number, season: number) {
+  const t = teamThen(teamId, season);
+  return t.alias ? `${t.name} (as ${t.alias})` : t.year ? `${t.name} (${t.year})` : t.name;
 }
 
 export interface TeamGame {
   when: When;
+  /** The team the stat belongs to. */
+  teamId: number;
   opponentId: number;
   pf: number;
   pa: number;
@@ -244,6 +265,7 @@ export interface WeekScore {
   week: number;
   /** One leg of a two-week playoff matchup, not a whole game. */
   leg: boolean;
+  /** The team that scored `score`. */
   teamId: number;
   score: number;
   opponentId: number;
@@ -317,16 +339,16 @@ function span(length: number, r: RawRange | null): StreakSpan {
   return { length, from: r ? at(r.fromGameId) : undefined, to: r ? at(r.toGameId) : undefined };
 }
 
-function teamGame(g: RawTeamGame | null): TeamGame | null {
+function teamGame(teamId: number, g: RawTeamGame | null): TeamGame | null {
   if (!g) return null;
-  return { when: when(g.gameId, g.season, g.playoffTier), opponentId: g.opponentTeamId, pf: g.pointsFor, pa: g.pointsAgainst, margin: g.margin };
+  return { when: when(g.gameId, g.season, g.playoffTier), teamId, opponentId: g.opponentTeamId, pf: g.pointsFor, pa: g.pointsAgainst, margin: g.margin };
 }
 
-function seriesGame(g: RawSeriesGame | null, opponentId: number): TeamGame | null {
+function seriesGame(teamId: number, g: RawSeriesGame | null, opponentId: number): TeamGame | null {
   if (!g) return null;
   const game = GAME_BY_ID.get(g.gameId);
   if (!game) return null;
-  return { when: when(g.gameId, game.season, game.playoffTier), opponentId, pf: g.pointsFor, pa: g.pointsAgainst, margin: g.margin };
+  return { when: when(g.gameId, game.season, game.playoffTier), teamId, opponentId, pf: g.pointsFor, pa: g.pointsAgainst, margin: g.margin };
 }
 
 function weekScore(teamId: number, s: RawWeekScore | null): WeekScore | null {
@@ -364,8 +386,8 @@ function series(teamId: number, s: RawSeries): Series {
     last: s.lastMeeting
       ? { when: when(s.lastMeeting.gameId, s.lastMeeting.season, s.lastMeeting.playoffTier), result: s.lastMeeting.result, pf: s.lastMeeting.pointsFor, pa: s.lastMeeting.pointsAgainst }
       : null,
-    biggestWin: seriesGame(s.biggestWin, s.opponentTeamId),
-    worstLoss: seriesGame(s.worstLoss, s.opponentTeamId),
+    biggestWin: seriesGame(teamId, s.biggestWin, s.opponentTeamId),
+    worstLoss: seriesGame(teamId, s.worstLoss, s.opponentTeamId),
   };
 }
 
@@ -400,10 +422,10 @@ const FRANCHISES = new Map<number, Franchise>(
         },
         easiest: find(f.easiestOpponent),
         nemesis: find(f.nemesis),
-        biggestWin: teamGame(f.biggestWin),
-        worstLoss: teamGame(f.worstLoss),
-        closestWin: teamGame(f.closestWin),
-        closestLoss: teamGame(f.closestLoss),
+        biggestWin: teamGame(f.teamId, f.biggestWin),
+        worstLoss: teamGame(f.teamId, f.worstLoss),
+        closestWin: teamGame(f.teamId, f.closestWin),
+        closestLoss: teamGame(f.teamId, f.closestLoss),
         best: weekScore(f.teamId, f.highestScore),
         worst: weekScore(f.teamId, f.lowestScore),
         vs,
