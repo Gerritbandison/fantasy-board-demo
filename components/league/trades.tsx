@@ -1,25 +1,54 @@
 import Link from "next/link";
-import { ArrowDownRight, ArrowLeftRight, ArrowRight, ArrowUpRight, Ban, Flame, Gavel, Handshake, Megaphone, Minus, Recycle, Repeat, Scissors, TrendingDown, TrendingUp, Trophy } from "lucide-react";
+import {
+  ArrowDownRight,
+  ArrowLeftRight,
+  ArrowRight,
+  ArrowUpRight,
+  Ban,
+  ChevronDown,
+  Fish,
+  Flame,
+  Gavel,
+  Handshake,
+  Megaphone,
+  Minus,
+  Recycle,
+  Repeat,
+  Scissors,
+  Siren,
+  TrendingDown,
+  TrendingUp,
+  Trophy,
+  Users,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { team, teamPath } from "@/lib/league";
+import { teamThen } from "@/lib/h2h";
 import {
+  ALL_TIME,
   assetLabel,
   bySeason,
   COUNTS,
+  CURRENT,
   longDate,
+  PAST_GRADING,
+  pastOutcome,
   pickSwapsFor,
+  SEASONS_LABEL,
   shortDate,
   SUPERLATIVES,
   teamTrades,
   tp,
   tradeDate,
+  TRADE_SEASON,
   TRADES,
-  TRADES_LABEL,
   tv,
   UNKNOWN_SEASONS,
   VALUES_FETCHED,
   verdictWinner,
+  windowLabel,
   type Asset,
+  type PastOutcome,
   type PlayerTrend,
   type QuietWeek,
   type SideGrade,
@@ -54,6 +83,24 @@ export function VerdictPill({ verdict }: { verdict: Verdict }) {
     <Pill tone={v.tone}>
       <v.icon className="size-3.5" aria-hidden />
       {v.label}
+    </Pill>
+  );
+}
+
+const OUTCOME = {
+  won: { label: "Won", icon: TrendingUp, tone: "turf" },
+  lost: { label: "Lost", icon: TrendingDown, tone: "loss" },
+  even: { label: "Even", icon: Minus, tone: "slate" },
+  "too-little-data": { label: "Too little data", icon: Minus, tone: "slate" },
+} as const;
+
+/** A past-season side's points-only result; `lopsided` marks a win or loss by the lopsided margin. */
+export function OutcomePill({ outcome, lopsided }: { outcome: PastOutcome; lopsided?: boolean }) {
+  const o = OUTCOME[outcome];
+  return (
+    <Pill tone={o.tone}>
+      <o.icon className="size-3.5" aria-hidden />
+      {lopsided && (outcome === "won" || outcome === "lost") ? `${o.label} big` : o.label}
     </Pill>
   );
 }
@@ -187,18 +234,24 @@ function SideFigures({ g, points }: { g: SideGrade; points: number | null }) {
   );
 }
 
-function SideBlock({ s, mine }: { s: TradeSide; mine?: boolean }) {
-  const t = team(s.teamId);
+function SideBlock({ trade, s, mine }: { trade: Trade; s: TradeSide; mine?: boolean }) {
+  const t = trade.past ? teamThen(s.teamId, trade.season) : { name: team(s.teamId).name, alias: null, year: null };
+  const outcome = pastOutcome(trade, s.teamId);
   return (
     <div className={cn("min-w-0 rounded-xl p-3 ring-1", mine ? "bg-turf-light/40 ring-green-100" : "bg-slate-50 ring-line")}>
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex min-w-0 items-center gap-2">
-          <TeamAvatar teamId={t.id} size="sm" />
-          <Link href={tradesPath(t.id)} className="min-w-0 text-sm leading-tight font-semibold break-words text-navy hover:underline">
-            {t.name}
-          </Link>
+          <TeamAvatar teamId={s.teamId} size="sm" />
+          <div className="min-w-0 text-sm leading-tight">
+            <Link href={tradesPath(s.teamId)} className="font-semibold break-words text-navy hover:underline">
+              {t.name}
+            </Link>
+            {t.year != null && <span className="text-slate-500"> ({t.year})</span>}
+            {t.alias && <p className="text-xs leading-snug text-slate-500">as {t.alias}</p>}
+          </div>
         </div>
         {s.grade && <VerdictPill verdict={s.grade.verdict} />}
+        {outcome && <OutcomePill outcome={outcome} lopsided={trade.call === "lopsided"} />}
       </div>
       <p className="mt-2 text-[11px] font-bold tracking-wider text-slate-500 uppercase">Got</p>
       {s.got.length ? (
@@ -211,7 +264,29 @@ function SideBlock({ s, mine }: { s: TradeSide; mine?: boolean }) {
         <p className="mt-0.5 text-sm text-slate-500">Nothing ESPN recorded</p>
       )}
       {s.grade && <SideFigures g={s.grade} points={s.points} />}
+      {trade.past && (
+        <dl className="mt-2 border-t border-line pt-2">
+          <Figure label="Points for them" sub={trade.span ? `${weeksText(trade.span)}, all points` : undefined}>
+            {s.points != null ? tp(s.points) : "—"}
+          </Figure>
+        </dl>
+      )}
     </div>
+  );
+}
+
+/** Past seasons: who won on points, from the file's call. */
+function PastVerdict({ t }: { t: Trade }) {
+  const span = t.span ? ` (${weeksText(t.span)})` : "";
+  if (t.call === "too-little-data") return <p className="mt-0.5">Too little data: the deal had one week left to count{span}.</p>;
+  if (t.call === "even" || !t.edge) return <p className="mt-0.5">Even: within {tp(t.edge?.points ?? 0)} points{span}.</p>;
+  return (
+    <p className="mt-0.5">
+      {t.call === "lopsided" ? "Lopsided: " : ""}
+      <span className="font-semibold text-navy">{team(t.edge.teamId).name}</span> won it by{" "}
+      <span className="font-semibold text-turf tabular-nums">{tp(t.edge.points)} points</span>
+      {span}.
+    </p>
   );
 }
 
@@ -252,25 +327,27 @@ export function TradeCard({ t, focus }: { t: Trade; focus?: number }) {
         <Eyebrow icon={ArrowLeftRight}>
           Trade {t.num} · {t.weekLabel}
         </Eyebrow>
-        {t.known !== "full" && <Pill tone="gold">Partly known</Pill>}
+        {(t.known === "partial" || t.known === "inferred") && <Pill tone="gold">Partly known</Pill>}
       </div>
-      <p className="mt-1 text-xs text-slate-500">Accepted {tradeDate(t.acceptedAt)}</p>
+      <p className="mt-1 text-xs text-slate-500">
+        {t.acceptedAt ? `Accepted ${tradeDate(t.acceptedAt)}` : t.window ? `Went through ${windowLabel(t.window)}` : `${t.season} season`}
+      </p>
 
       <div className="mt-3 rounded-xl bg-navy/[0.04] px-3 py-2 text-sm leading-snug text-slate-700 ring-1 ring-navy/10">
         <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
-          Who won it so far
+          {t.past ? "Who won it" : "Who won it so far"}
           {t.confidence && <ConfidencePill confidence={t.confidence} weeks={t.weeksOfData} />}
         </p>
-        <Verdicts t={t} />
+        {t.past ? <PastVerdict t={t} /> : <Verdicts t={t} />}
       </div>
 
       <div className="mt-3 grid gap-2 sm:grid-cols-2">
         {sides.map((s) => (
-          <SideBlock key={s.teamId} s={s} mine={focus === s.teamId} />
+          <SideBlock key={s.teamId} trade={t} s={s} mine={focus === s.teamId} />
         ))}
       </div>
 
-      {t.known !== "full" && <p className="mt-2 text-xs leading-snug text-slate-500">{partlyKnown(t)}</p>}
+      {(t.known === "partial" || t.known === "inferred") && <p className="mt-2 text-xs leading-snug text-slate-500">{partlyKnown(t)}</p>}
       {t.released.length > 0 && (
         <p className="mt-2 text-xs leading-snug text-slate-500">
           Released in the deal: {t.released.map((p) => `${p.name} (${p.position})`).join(", ")}
@@ -296,19 +373,36 @@ export function ValuesCredit({ className }: { className?: string }) {
   );
 }
 
-function Chain({ path }: { path: number[] }) {
+/** Teams in trade order; `null` marks a gap where the player left by some other route (dropped, kept, drafted). */
+function Chain({ path }: { path: (number | null)[] }) {
   return (
     <p className="flex flex-wrap items-center gap-x-1 gap-y-1 text-xs leading-snug text-slate-600">
-      {path.map((id, i) => (
-        <span key={`${id}-${i}`} className="inline-flex min-w-0 items-center gap-1">
-          {i > 0 && <span className="text-slate-400">→</span>}
-          <Link href={tradesPath(id)} className="font-semibold text-slate-700 hover:underline">
-            {team(id).name}
-          </Link>
-        </span>
-      ))}
+      {path.map((id, i) =>
+        id == null ? (
+          <span key={`gap-${i}`} className="text-slate-400" title="Left by another route before the next trade">
+            · · ·
+          </span>
+        ) : (
+          <span key={`${id}-${i}`} className="inline-flex min-w-0 items-center gap-1">
+            {i > 0 && path[i - 1] != null && <span className="text-slate-400">→</span>}
+            <Link href={tradesPath(id)} className="font-semibold text-slate-700 hover:underline">
+              {team(id).name}
+            </Link>
+          </span>
+        ),
+      )}
     </p>
   );
+}
+
+/** A player's trades as a chain, with a gap wherever one deal's receiver isn't the next deal's sender. */
+function movePath(moves: { from: number; to: number }[]) {
+  const path: (number | null)[] = [moves[0].from];
+  for (const m of moves) {
+    if (path[path.length - 1] !== m.from) path.push(null, m.from);
+    path.push(m.to);
+  }
+  return path;
 }
 
 function Ranked({ rows, unit }: { rows: { id: number; n: number }[]; unit: string }) {
@@ -340,7 +434,7 @@ export function TradeSuperlatives() {
   const report = S.report[0]?.backfiring ? S.report[0] : null;
   return (
     <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <RoastCard icon={Handshake} label="Most active trader" tone="gold" accent={team(active.id).color} value={`${active.n} of ${TRADES.length}`} line={roast.mostActiveLine(active.id, active.n, TRADES.length)}>
+      <RoastCard icon={Handshake} label="Most active trader" tone="gold" accent={team(active.id).color} value={`${active.n} of ${CURRENT.length}`} line={roast.mostActiveLine(active.id, active.n, CURRENT.length)}>
         <p className="text-sm font-semibold text-navy">{team(active.id).name}</p>
         <p className="text-xs text-slate-500">player trades this season</p>
       </RoastCard>
@@ -402,7 +496,7 @@ export function TradeSuperlatives() {
         >
           <p className="text-sm font-semibold break-words text-navy">{team(S.bestValue.side.teamId).name}</p>
           <p className="text-xs text-slate-500">
-            Trade {S.bestValue.trade.num}, accepted {shortDate(S.bestValue.trade.acceptedAt)} · value edge {signedPct(S.bestValue.grade.valueEdgePct)} ·{" "}
+            Trade {S.bestValue.trade.num}, accepted {shortDate(S.bestValue.trade.acceptedAt!)} · value edge {signedPct(S.bestValue.grade.valueEdgePct)} ·{" "}
             {S.bestValue.grade.confidence} confidence
           </p>
         </RoastCard>
@@ -437,11 +531,123 @@ export function TradeSuperlatives() {
         </RoastCard>
       )}
 
-      <RoastCard icon={Ban} label="Repeat customers" value={`${S.distinctPairs} pairs`} line={roast.noRepeatLine(TRADES.length, S.distinctPairs)}>
+      <RoastCard icon={Ban} label="Repeat customers" value={`${S.distinctPairs} pairs`} line={roast.noRepeatLine(CURRENT.length, S.distinctPairs)}>
         <p className="text-sm text-slate-700">
-          {TRADES.length} player trades, {S.distinctPairs} different pairs of teams. {TRADES.length === S.distinctPairs ? "No pair has traded twice." : null}
+          {CURRENT.length} player trades, {S.distinctPairs} different pairs of teams. {CURRENT.length === S.distinctPairs ? "No pair has traded twice." : null}
         </p>
       </RoastCard>
+    </ul>
+  );
+}
+
+function recordText(r: { won: number; lost: number; even: number }) {
+  return `${r.won}-${r.lost}${r.even ? `-${r.even}` : ""}`;
+}
+
+function NetRows({ rows }: { rows: { id: number; net: number; record: { won: number; lost: number; even: number } }[] }) {
+  return (
+    <ol className="grid gap-1">
+      {rows.map((r) => (
+        <li key={r.id} className="flex items-center gap-2 text-sm">
+          <TeamAvatar teamId={r.id} size="sm" className="size-5 text-[7px]" />
+          <Link href={tradesPath(r.id)} className="min-w-0 flex-1 truncate text-slate-700 hover:underline">
+            {team(r.id).name}
+          </Link>
+          <span className="shrink-0 text-xs text-slate-500 tabular-nums">{recordText(r.record)}</span>
+          <span className={cn("w-16 shrink-0 text-right font-semibold tabular-nums", tone(r.net))}>{signed(r.net)}</span>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+/** The all-time cards: most active, sharks vs suckers, most-traded player, biggest heist. */
+export function AllTimeTradeSuperlatives() {
+  const A = ALL_TIME;
+  const active = A.mostActive[0];
+  const shark = A.sharks[0];
+  const sucker = A.suckers[0];
+  const traded = A.mostTraded[0];
+  const heist = A.heist;
+  return (
+    <ul className="grid gap-4 sm:grid-cols-2">
+      {active && (
+        <RoastCard
+          icon={Handshake}
+          label="Most active trader, all-time"
+          tone="gold"
+          accent={team(active.id).color}
+          value={active.n}
+          line={roast.allTimeActiveLine(active.id, active.n, TRADES.length)}
+        >
+          <Ranked rows={A.mostActive} unit="player trades" />
+          <p className="mt-1.5 text-xs text-slate-500">
+            Player trades, {SEASONS_LABEL}. {TRADES.length} in the league.
+          </p>
+        </RoastCard>
+      )}
+
+      {shark && (
+        <RoastCard icon={Fish} label="Sharks vs suckers" tone="turf" accent={team(shark.id).color} line={roast.sharksLine(shark.id, shark.net, sucker?.id ?? null, sucker?.net ?? null)}>
+          <p className="text-[11px] font-semibold tracking-wider text-turf uppercase">Sharks</p>
+          <NetRows rows={A.sharks} />
+          {A.suckers.length > 0 && (
+            <>
+              <p className="mt-2 text-[11px] font-semibold tracking-wider text-loss uppercase">Suckers</p>
+              <NetRows rows={A.suckers} />
+            </>
+          )}
+          <p className="mt-1.5 text-xs leading-snug text-slate-500">Net points from trades, {SEASONS_LABEL}, with the 2020–2025 won-lost(-even) record on points.</p>
+        </RoastCard>
+      )}
+
+      {traded && (
+        <RoastCard
+          icon={Users}
+          label="Most-traded player"
+          tone="gold"
+          value={traded.moves.length}
+          line={roast.mostTradedLine(traded.name, traded.moves.length, new Set(traded.moves.flatMap((m) => [m.from, m.to])).size)}
+        >
+          <ul className="grid gap-2">
+            {A.mostTraded
+              .filter((p) => p.moves.length === traded.moves.length)
+              .map((p) => (
+                <li key={p.name}>
+                  <p className="text-sm font-semibold text-navy">
+                    {p.name}{" "}
+                    <span className="text-xs font-medium text-slate-500">
+                      · {p.moves.length} trades, {[...new Set(p.moves.map((m) => m.trade.season))].join(", ")}
+                    </span>
+                  </p>
+                  <Chain path={movePath(p.moves)} />
+                </li>
+              ))}
+          </ul>
+        </RoastCard>
+      )}
+
+      {heist && heist.trade.edge && (
+        <RoastCard
+          icon={Siren}
+          label="Biggest heist"
+          tone="loss"
+          accent={team(heist.winner.teamId).color}
+          value={`+${tp(heist.trade.edge.points)}`}
+          valueClassName="text-turf"
+          line={roast.heistLine(heist.trade, heist.winner.teamId, heist.loser.teamId)}
+        >
+          <p className="text-sm leading-snug text-slate-700">
+            <span className="font-semibold text-navy">{team(heist.winner.teamId).name}</span> got{" "}
+            {heist.winner.got.map((a) => (a.kind === "player" ? a.name : assetLabel(a))).join(", ")} for{" "}
+            {heist.loser.got.map((a) => (a.kind === "player" ? a.name : assetLabel(a))).join(", ")}.
+          </p>
+          <p className="mt-1 text-xs text-slate-500 tabular-nums">
+            {heist.trade.season}, {heist.trade.weekLabel.toLowerCase()} · {tp(heist.winner.points ?? 0)} vs {tp(heist.loser.points ?? 0)} points for the new teams
+            {heist.trade.span ? `, ${weeksText(heist.trade.span)}` : ""}
+          </p>
+        </RoastCard>
+      )}
     </ul>
   );
 }
@@ -449,7 +655,7 @@ export function TradeSuperlatives() {
 /** Confidence labels with the weeks of data each one covers, as the file assigns them. */
 function confidenceScale() {
   const m = new Map<string, Set<number>>();
-  for (const t of TRADES) if (t.confidence) m.set(t.confidence, (m.get(t.confidence) ?? new Set()).add(t.weeksOfData));
+  for (const t of CURRENT) if (t.confidence) m.set(t.confidence, (m.get(t.confidence) ?? new Set()).add(t.weeksOfData));
   return [...m.entries()]
     .map(([c, w]) => ({ c, weeks: [...w].sort((x, y) => x - y) }))
     .sort((x, y) => x.weeks[0] - y.weeks[0])
@@ -473,6 +679,16 @@ export function VerdictKey() {
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
         Confidence follows the weeks of data since the deal ({confidenceScale().join(" · ")}). Only player trades are listed; draft-pick-only swaps are counted but left out.
       </p>
+      {PAST && (
+        <p className="mt-2 text-sm leading-relaxed text-slate-600">
+          <strong className="font-semibold text-slate-700">
+            {PAST.first}–{PAST.last}
+          </strong>{" "}
+          deals are called on points only, with no long-term value: every point the new players scored for their new team, started or benched, from the week after the
+          deal through the end of that regular season. Under {PAST_GRADING.evenUnder} points apart is even, {PAST_GRADING.lopsidedFrom} or more is lopsided, and a deal with
+          one week left is too little data.
+        </p>
+      )}
       <ValuesCredit className="mt-3" />
     </Card>
   );
@@ -497,44 +713,144 @@ function UnknownSeasons() {
   );
 }
 
-/** Player trades grouped by season, newest first, then the seasons ESPN doesn't serve. */
+const PAST_SEASONS = [...new Set(TRADES.filter((t) => t.past).map((t) => t.season))].sort((x, y) => x - y);
+/** The rebuilt seasons, when there are any. */
+const PAST = PAST_SEASONS.length ? { first: PAST_SEASONS[0], last: PAST_SEASONS[PAST_SEASONS.length - 1] } : null;
+
+/** The one footnote for rebuilt trades, shown once per list. */
+function RebuiltNote() {
+  if (!PAST) return null;
+  return (
+    <p className="text-xs leading-snug text-slate-500">
+      {PAST.first}–{PAST.last} trades are rebuilt from weekly rosters: ESPN kept no trade log for those seasons, so dates are windows and the calls are on points only.
+      Offseason and player-for-pick deals never show up in weekly rosters, so some trades are missing.
+    </p>
+  );
+}
+
+/** Player trades grouped by season, newest first, each season a dropdown that starts closed. */
 export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?: number; empty?: string }) {
   const groups = bySeason(trades);
+  const net = focus != null ? new Map(teamTrades(focus).allTime.bySeason.map((r) => [r.season, r.netPoints])) : null;
   return (
-    <div className="grid gap-4">
+    <div className="grid gap-2.5">
       {groups.length ? (
-        groups.map((g) => (
-          <section key={g.season} className="grid gap-3" aria-label={`${g.season} season`}>
-            <h3 className="flex items-baseline justify-between gap-3 border-b border-line pb-1.5">
-              <span className="font-display text-lg font-bold text-navy">{g.season} season</span>
-              <span className="text-xs text-slate-500">
-                {g.trades.length} player {g.trades.length === 1 ? "trade" : "trades"} · newest first
-              </span>
-            </h3>
-            <ul className="grid gap-4 lg:grid-cols-2">
-              {g.trades.map((t) => (
-                <TradeCard key={t.id} t={t} focus={focus} />
-              ))}
-            </ul>
-          </section>
-        ))
+        groups.map((g) => {
+          const n = net?.get(g.season) ?? null;
+          return (
+            <details key={g.season} className="group">
+              <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-white px-4 py-2.5 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line hover:ring-slate-300 [&::-webkit-details-marker]:hidden">
+                <span className="font-display text-lg leading-tight font-bold text-navy">{g.season} season</span>
+                <span className="flex min-w-0 items-center gap-2 text-xs text-slate-500">
+                  <span className="text-right tabular-nums">
+                    {g.trades.length} player {g.trades.length === 1 ? "trade" : "trades"}
+                    {n != null && (
+                      <>
+                        {" · "}
+                        <span className={cn("font-semibold", tone(n))}>{signed(n)} pts</span>
+                      </>
+                    )}
+                  </span>
+                  <ChevronDown className="size-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" aria-hidden />
+                </span>
+              </summary>
+              <ul className="mt-3 mb-2 grid gap-4 lg:grid-cols-2">
+                {g.trades.map((t) => (
+                  <TradeCard key={t.id} t={t} focus={focus} />
+                ))}
+              </ul>
+            </details>
+          );
+        })
       ) : (
         <p className="text-sm text-slate-500">{empty}</p>
       )}
       <UnknownSeasons />
+      {trades.some((t) => t.past) && <RebuiltNote />}
+    </div>
+  );
+}
+
+function Partner({ fav }: { fav: NonNullable<ReturnType<typeof teamTrades>["favorite"]> | null }) {
+  return (
+    <div className="mt-4 border-t border-line pt-3">
+      <p className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase">{fav?.basis === "offers" ? "Most offers exchanged with" : "Favorite trading partner"}</p>
+      {fav ? (
+        <div className="mt-1 flex min-w-0 items-center gap-2">
+          <span className="flex shrink-0 -space-x-1.5">
+            {fav.teamIds.map((id) => (
+              <TeamAvatar key={id} teamId={id} size="sm" className="ring-2 ring-white" />
+            ))}
+          </span>
+          <div className="min-w-0 text-sm leading-tight">
+            <p className="font-semibold break-words text-navy">
+              {fav.teamIds.map((id, i) => (
+                <span key={id}>
+                  {i > 0 && <span className="font-medium text-slate-500"> & </span>}
+                  <Link href={tradesPath(id)} className="hover:underline">
+                    {team(id).name}
+                  </Link>
+                </span>
+              ))}
+              {fav.teamIds.length > 1 && <span className="font-medium text-slate-500"> (tied)</span>}
+            </p>
+            <p className="text-xs text-slate-500">
+              {fav.basis === "trades" ? `${fav.trades} player ${fav.trades === 1 ? "trade" : "trades"} all-time · ` : "No player trades yet · "}
+              {fav.offers} {fav.offers === 1 ? "offer" : "offers"} exchanged in {TRADE_SEASON}
+            </p>
+          </div>
+        </div>
+      ) : (
+        <p className="mt-1 text-sm text-slate-500">Nobody yet. Not a single offer either way.</p>
+      )}
     </div>
   );
 }
 
 export function TeamTradesSection({ teamId }: { teamId: number }) {
   const s = teamTrades(teamId);
-  const fav = s.favorite;
   const swaps = pickSwapsFor(teamId);
+  const r = s.allTime.record;
+  const called = r.won + r.lost + r.even;
   return (
     <>
-      <Card>
+      <Card title="All-time" action={SEASONS_LABEL}>
         <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">
-          <Stat label="Player trades" value={s.trades.length} sub={verdictsText(s.verdicts) ?? `of ${TRADES.length} in the league`} />
+          <Stat label="Player trades" value={s.trades.length} sub={`of ${TRADES.length} in the league`} />
+          <Stat
+            label="Record"
+            value={called ? recordText(r) : "—"}
+            sub={
+              PAST && (called || r.tooLittleData)
+                ? `${r.even ? "won-lost-even" : "won-lost"} on points, ${PAST.first}–${PAST.last}${r.tooLittleData ? ` · ${r.tooLittleData} too little data` : ""}`
+                : undefined
+            }
+          />
+          <Stat
+            label="Net points"
+            value={s.trades.length ? signed(s.allTime.netPoints) : "—"}
+            valueClassName={s.allTime.netPoints ? tone(s.allTime.netPoints) : undefined}
+            sub={s.trades.length ? "all points, from trades" : undefined}
+          />
+        </div>
+        {s.trades.length > 0 && (
+          <dl className="mt-3 grid grid-cols-4 gap-1.5 sm:grid-cols-7">
+            {s.allTime.bySeason.map((x) => (
+              <div key={x.season} className="min-w-0 rounded-lg bg-slate-50 px-2 py-1.5 text-center ring-1 ring-line">
+                <dt className="text-[10px] font-semibold text-slate-500 tabular-nums">{x.season}</dt>
+                <dd className={cn("text-xs font-semibold tabular-nums", x.netPoints != null ? tone(x.netPoints) : "text-slate-400")}>
+                  {x.netPoints != null ? signed(x.netPoints) : "—"}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        <Partner fav={s.favorite} />
+      </Card>
+
+      <Card title={`${TRADE_SEASON} season`} action="long-term value">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">
+          <Stat label="Player trades" value={s.current.length} sub={verdictsText(s.verdicts) ?? `of ${CURRENT.length} in the league`} />
           <Stat label="Offers sent" value={s.offersSent} />
           <Stat label="Offers received" value={s.offersReceived} />
           <Stat
@@ -545,41 +861,10 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
           />
           <Stat
             label="Net points"
-            value={s.trades.length ? signed(s.netPoints) : "—"}
+            value={s.current.length ? signed(s.netPoints) : "—"}
             valueClassName={s.netPoints ? tone(s.netPoints) : undefined}
-            sub={s.trades.length ? "all points, from trades" : undefined}
+            sub={s.current.length ? "all points, from trades" : undefined}
           />
-        </div>
-        <div className="mt-4 border-t border-line pt-3">
-          <p className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase">{fav?.basis === "offers" ? "Most offers exchanged with" : "Favorite trading partner"}</p>
-          {fav ? (
-            <div className="mt-1 flex min-w-0 items-center gap-2">
-              <span className="flex shrink-0 -space-x-1.5">
-                {fav.teamIds.map((id) => (
-                  <TeamAvatar key={id} teamId={id} size="sm" className="ring-2 ring-white" />
-                ))}
-              </span>
-              <div className="min-w-0 text-sm leading-tight">
-                <p className="font-semibold break-words text-navy">
-                  {fav.teamIds.map((id, i) => (
-                    <span key={id}>
-                      {i > 0 && <span className="font-medium text-slate-500"> & </span>}
-                      <Link href={tradesPath(id)} className="hover:underline">
-                        {team(id).name}
-                      </Link>
-                    </span>
-                  ))}
-                  {fav.teamIds.length > 1 && <span className="font-medium text-slate-500"> (tied)</span>}
-                </p>
-                <p className="text-xs text-slate-500">
-                  {fav.basis === "trades" ? `${fav.trades} ${fav.trades === 1 ? "trade" : "trades"} · ` : "No player trades yet · "}
-                  {fav.offers} {fav.offers === 1 ? "offer" : "offers"} exchanged
-                </p>
-              </div>
-            </div>
-          ) : (
-            <p className="mt-1 text-sm text-slate-500">Nobody yet. Not a single offer either way.</p>
-          )}
         </div>
         <p className="mt-3 text-xs text-slate-500">Offer counts only; the contents of pending or declined offers stay private.</p>
         {swaps > 0 && (
@@ -592,7 +877,7 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
 
       <TradeSeasons trades={s.trades} focus={teamId} empty={`No player trades for ${team(teamId).name} on record.`} />
       <Link href="/trades" className="text-sm font-semibold text-turf hover:underline">
-        All {TRADES_LABEL} →
+        All trades, {SEASONS_LABEL} →
       </Link>
     </>
   );

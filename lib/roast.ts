@@ -16,7 +16,7 @@ import {
   type TitleGame,
   type WeekScore,
 } from "@/lib/h2h";
-import { backfireNumber, tp, tv, verdictWinner, type SideGrade, type Trade, type TradeSide } from "@/lib/trades";
+import { backfireNumber, partnerOf, tp, tv, verdictWinner, type SideGrade, type Trade, type TradeSide } from "@/lib/trades";
 
 /*
  * PG-13 trash talk, generated from the numbers. Thresholds only choose the joke;
@@ -298,7 +298,51 @@ function backfireTag(t: Trade, teamId: number) {
   return k >= 2 ? ` That's the ${ordinal(k)} backfire for ${n(teamId)}.` : "";
 }
 
+/** Past seasons: called on points alone. */
+function pastTradeLine(t: Trade) {
+  const seed = t.season * 100 + t.num;
+  const [a, b] = t.sides;
+  if (t.call === "too-little-data")
+    return pick(
+      [
+        `Made with one week left to count. Nobody will ever know who won, which is exactly how ${n(a.teamId)} and ${n(b.teamId)} like it.`,
+        `A deadline deal with no runway. Both sides get to say it worked out.`,
+      ],
+      seed,
+    );
+  if (t.call === "even" || !t.edge)
+    return pick(
+      [
+        `Within ${tp(t.edge?.points ?? 0)} points either way. A handshake deal that actually stayed a handshake.`,
+        `Dead even, give or take ${tp(t.edge?.points ?? 0)} points. Both sides wasted a week of group-chat arguing for nothing.`,
+        `${n(a.teamId)} and ${n(b.teamId)} basically swapped lunches. Nobody got the better sandwich.`,
+      ],
+      seed,
+    );
+  const win = t.edge.teamId;
+  const lose = partnerOf(t, win).teamId;
+  const by = tp(t.edge.points);
+  if (t.call === "lopsided")
+    return pick(
+      [
+        `${n(win)} won this one by ${by} points. ${n(lose)} would like to file an appeal. The window closed in ${t.season}.`,
+        `${by} points. ${n(lose)} didn't get traded with, ${n(lose)} got pickpocketed.`,
+        `${n(win)} by ${by}. Somewhere ${n(lose)} is still explaining that it "made sense at the time."`,
+      ],
+      seed,
+    );
+  return pick(
+    [
+      `${n(win)} came out ${by} points ahead. Not a robbery, just a quiet pickpocket.`,
+      `${n(win)} by ${by} points. ${n(lose)} won the press conference, though.`,
+      `${by} points to ${n(win)}. Close enough for ${n(lose)} to pretend, far enough for everyone else to remember.`,
+    ],
+    seed,
+  );
+}
+
 export function tradeLine(t: Trade) {
+  if (t.past) return pastTradeLine(t);
   const [a, b] = t.sides;
   if (t.ungraded) return `${n(a.teamId)} and ${n(b.teamId)} made a deal nobody can grade yet. Both sides get to claim they won until somebody checks.`;
   const v = verdictWinner(t);
@@ -357,6 +401,24 @@ export function reportLine(id: number, trades: number, backfiring: number, payin
     return `${n(id)}: ${trades} trades, ${backfiring} backfiring, ${payingOff} paying off. At this point the trade button should require a co-signer.`;
   if (backfiring > payingOff) return `${n(id)} has more backfires than wins on the trade market. The other managers have noticed.`;
   return `${n(id)} hasn't been burned yet. Give it time.`;
+}
+
+export function allTimeActiveLine(id: number, k: number, total: number) {
+  return `${n(id)} has been in ${k} of the league's ${total} player trades. Nobody else has to call a trade partner; they just wait for the phone to ring.`;
+}
+
+export function sharksLine(shark: number, net: number, sucker: number | null, loss: number | null) {
+  return sucker != null && loss != null
+    ? `${n(shark)} is up ${tp(net)} points all-time from trades. ${n(sucker)} is down ${tp(Math.abs(loss))}. One of them is the reason the other one keeps getting offers.`
+    : `${n(shark)} is up ${tp(net)} points all-time from trades. Answer the phone at your own risk.`;
+}
+
+export function mostTradedLine(name: string, trades: number, teams: number) {
+  return `${name} has been traded ${trades} times across ${teams} rosters. At this point he should be getting a cut of every deal.`;
+}
+
+export function heistLine(t: Trade, win: number, lose: number) {
+  return `${n(win)} won Trade ${t.num} of ${t.season} by ${tp(t.edge!.points)} points. ${n(lose)} hit accept voluntarily, which somehow makes it worse.`;
 }
 
 export function noRepeatLine(trades: number, pairs: number) {

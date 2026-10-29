@@ -6,7 +6,7 @@ import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components
 import { cn } from "@/lib/utils";
 import { CHAMPIONS, formatRecord, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
 import { championSeedSummary, SEASONS_WITH_HISTORY, titleBoard } from "@/lib/stats";
-import { TRADES, TRADES_LABEL } from "@/lib/trades";
+import { SEASONS_LABEL, TRADES } from "@/lib/trades";
 
 export const metadata: Metadata = {
   title: "History",
@@ -42,7 +42,7 @@ export default function HistoryPage() {
         <span className="min-w-0 flex-1">
           <span className="block font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">Trade desk</span>
           <span className="block text-sm leading-snug text-slate-600">
-            {TRADES_LABEL}: {TRADES.length} player trades, judged on long-term value and roasted
+            {TRADES.length} player trades, {SEASONS_LABEL}, by season, with all-time sharks, suckers and heists
           </span>
         </span>
         <ChevronRight className="size-5 shrink-0 text-slate-400" />
