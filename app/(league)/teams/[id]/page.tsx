@@ -5,6 +5,7 @@ import { ArrowLeftRight, Medal, ShieldAlert, Trophy } from "lucide-react";
 import { BenchList, PlayerCell } from "@/components/league/MatchupBoard";
 import { SlotChip } from "@/components/league/bits";
 import { TeamHeadToHead } from "@/components/league/h2h";
+import { TeamTabs } from "@/components/league/TeamTabs";
 import { TeamTradesSection } from "@/components/league/trades";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, Stat, TeamAvatar } from "@/components/league/ui";
 import { ScoreTrail, TrailLegend, WeekStrip } from "@/components/league/trail";
@@ -54,28 +55,8 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
   const next = STANDINGS[(idx + 1) % STANDINGS.length];
   const h = t.history;
 
-  return (
+  const overview = (
     <>
-      <Link href="/" className="-mb-2 text-sm font-semibold text-turf hover:underline">
-        ← All teams
-      </Link>
-      <div className="flex items-start gap-4">
-        <TeamAvatar teamId={t.id} size="lg" className="mt-5 hidden sm:inline-flex" />
-        <PageHeader eyebrow={[`${ordinal(t.rank)} place`, t.owner].filter(Boolean).join(" · ")} title={t.name}>
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            <Pill tone="navy">{formatRecord(t)}</Pill>
-            <Pill>{ordinal(t.seed)} seed</Pill>
-            <Pill tone="sky">Power #{powerRank(t.id)}</Pill>
-            <LuckBadge row={lk} withRanks />
-            {h.titles > 0 && (
-              <Pill tone="gold">
-                <Trophy className="size-3" /> {h.titleYears.join(", ")}
-              </Pill>
-            )}
-          </div>
-        </PageHeader>
-      </div>
-
       <Card bodyClassName="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-6">
         <Stat label="Points for" value={t.pointsFor.toFixed(1)} sub={`${ordinal(pfRank(t.id))} in the league`} />
         <Stat label="Points against" value={t.pointsAgainst.toFixed(1)} sub={`${ordinal(paRank(t.id))} most faced`} />
@@ -255,8 +236,11 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
           </Card>
         </div>
       </div>
+    </>
+  );
 
-      <SectionHeading title="Roster" />
+  const roster = (
+    <>
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
         <Card title="Starters" action={`${t.roster.starters.length}`}>
           <ul className="divide-y divide-line">
@@ -272,11 +256,11 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
           <BenchList players={[...t.roster.bench, ...t.roster.ir]} />
         </Card>
       </div>
+    </>
+  );
 
-      <TeamTradesSection teamId={t.id} />
-
-      <TeamHeadToHead teamId={t.id} />
-
+  const history = (
+    <>
       <SectionHeading title="Franchise history" action={`${h.seasons[0]?.season}–${h.seasons[h.seasons.length - 1]?.season}`} />
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
         <Card title="Trophy case">
@@ -349,6 +333,40 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
           </p>
         </Card>
       </div>
+    </>
+  );
+
+  return (
+    <>
+      <Link href="/" className="-mb-2 text-sm font-semibold text-turf hover:underline">
+        ← All teams
+      </Link>
+      <div className="flex items-start gap-4">
+        <TeamAvatar teamId={t.id} size="lg" className="mt-5 hidden sm:inline-flex" />
+        <PageHeader eyebrow={[`${ordinal(t.rank)} place`, t.owner].filter(Boolean).join(" · ")} title={t.name}>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            <Pill tone="navy">{formatRecord(t)}</Pill>
+            <Pill>{ordinal(t.seed)} seed</Pill>
+            <Pill tone="sky">Power #{powerRank(t.id)}</Pill>
+            <LuckBadge row={lk} withRanks />
+            {h.titles > 0 && (
+              <Pill tone="gold">
+                <Trophy className="size-3" /> {h.titleYears.join(", ")}
+              </Pill>
+            )}
+          </div>
+        </PageHeader>
+      </div>
+
+      <TeamTabs
+        tabs={[
+          { id: "overview", label: "Overview", content: overview },
+          { id: "roster", label: "Roster", content: roster },
+          { id: "trades", label: "Trades", content: <TeamTradesSection teamId={t.id} /> },
+          { id: "h2h", label: "H2H", title: "Head-to-head", content: <TeamHeadToHead teamId={t.id} /> },
+          { id: "history", label: "History", content: history },
+        ]}
+      />
 
       <nav aria-label="More teams" className="grid grid-cols-2 gap-3">
         {[prev, next].map((x, i) => (
