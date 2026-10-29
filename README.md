@@ -1,98 +1,74 @@
-# Fantasy Board
+# Chicken League · Week 8 board
 
-A room-display fantasy football board built with Next.js (App Router), designed to run full-screen on a TV. It shows your team, record, standing, the live matchup score with win probability, your starting lineup and bench, and fantasy headlines.
+A phone-first, friend-shareable fantasy football app for the ESPN **Chicken** league (2026, week 8), built with Next.js (App Router). It reads a committed league snapshot, so it deploys to Vercel with **zero secrets**. The dark TV-board look is kept, and a full-screen TV mode is available on large screens.
 
-It runs on **mock data by default**, so you don't need any secrets, accounts, or a backend.
+| Golden Goose (`/`) | Bibi's Boys (`/bibis`) | Standings | Insights |
+| --- | --- | --- | --- |
+| ![Golden Goose board on iPhone](docs/mobile-home.png) | ![Bibi's Boys board on iPhone](docs/mobile-bibis.png) | ![Standings on iPhone](docs/mobile-standings.png) | ![Insights on iPhone](docs/mobile-insights.png) |
 
-![Fantasy board at 1920×1080 with mock data](docs/board.png)
+![Golden Goose board on desktop](docs/desktop-home.png)
 
-| Disconnected ("Connect Flaim") | Mobile |
+## Pages
+
+| Route | What it shows |
 | --- | --- |
-| ![Connect Flaim empty state](docs/board-disconnected.png) | ![Mobile layout](docs/board-mobile.png) |
+| `/` | Gerrit's **Golden Goose** vs Dimes McSorley: projected scoreboard, injury-report callout, head-to-head starters, bench and IR. |
+| `/bibis` | Kyle's (KASE) **Bibi's Boys** vs Chewy's Warriors, same layout. |
+| `/standings` | Full league table: rank, record, PF/PA, point differential, playoff seed, and the playoff cut line after seed 8. |
+| `/insights` | Storylines from the snapshot, power rankings, scoring leaders, and point-differential bars. |
+| `/matchups` | Scoreboard cards for the featured week-8 matchups, linking to each board. |
+| `/live` | The original polling board, which can read a public ESPN league (optional, not in the nav). |
+
+On phones, navigation is a bottom tab bar that respects the iPhone safe areas. From the `md` breakpoint up it moves into the sticky top bar. Every page is statically prerendered, and layouts were checked for horizontal overflow at 320, 390, and 1440 px widths. On `lg` screens and up, the boards show a **TV mode** button that goes full screen and hides the navigation.
+
+## Data
+
+The single source of truth is [`data/league-snapshot.json`](data/league-snapshot.json): standings, the two featured matchups with starters and bench, and the insights. Team display names in it are already sanitized; keep them as they are. To update the board for a new week, replace that file and redeploy.
+
+- `lib/league.ts` types the snapshot and maps each board to its focus team (`BOARDS`).
+- `GET /api/league` returns the full snapshot.
+- `GET /api/matchup/golden-goose` and `GET /api/matchup/bibis` return one matchup, with `focus` and `opponent` sides. Unknown slugs return `404`.
+
+The pages and the route handlers import the same loader, so pages are prerendered at build time instead of fetching their own API.
+
+### Optional ESPN live path
+
+`/live` and `GET /api/fantasy` keep the original ESPN adapter (`lib/espn.ts`). It defaults to built-in demo data. Set `MOCK_FANTASY=0` with `ESPN_LEAGUE_ID` and `ESPN_TEAM_ID` to read a league that is **viewable to public**. Private leagues need ESPN cookies, which this app never asks for. See `.env.example`. None of this affects the snapshot pages.
 
 ## Run locally
 
 ```bash
-npm i && npm run dev
+npm i && npm run dev     # http://localhost:43123
+npm run build && npm start
 ```
-
-Open <http://localhost:43123>. The page polls `/api/fantasy` every 30 seconds. In mock mode, live game scores move a little over time so the board doesn't look frozen.
-
-- `http://localhost:43123/?state=disconnected` previews the "Connect Flaim" empty state.
-- `http://localhost:43123/api/fantasy` returns the JSON the board consumes.
-- The button in the top-right corner switches the board to full screen. For a kiosk, run Chrome with `--kiosk http://<host>:43123`.
-
-To customise the board, copy the env example and edit it:
-
-```bash
-cp .env.example .env.local
-```
-
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `FANTASY_TEAM_NAME` | `Demo Team` | The team name shown in the hero. |
-| `MOCK_FANTASY` | `1` | `1` serves built-in mock data. `0` tries live ESPN. |
-| `MOCK_FANTASY_STATE` | _(empty)_ | Set to `disconnected` to always show the empty state in mock mode. |
-| `ESPN_LEAGUE_ID` | _(empty)_ | Live mode only. The ID of a public ESPN league. |
-| `ESPN_TEAM_ID` | _(empty)_ | Live mode only. Your team's ID within that league. |
-| `ESPN_SEASON` | current year | Live mode only. The season start year. |
 
 ## Deploy to Vercel
 
-1. Push this repo to a Git host that Vercel can import (GitHub, GitLab, or Bitbucket).
-2. In Vercel, choose **Add New → Project** and import the repo. The framework preset is detected as **Next.js**, so leave the build settings at their defaults.
-3. Click **Deploy**. Mock mode doesn't need any environment variables.
-4. Optional: under **Settings → Environment Variables**, set `FANTASY_TEAM_NAME`, or set `MOCK_FANTASY=0` together with the `ESPN_*` variables, then redeploy.
+No environment variables are needed.
 
-You can also deploy from the CLI with `npx vercel` and then `npx vercel --prod`.
+1. In Vercel, choose **Add New → Project** and import `Gerritbandison/fantasy-board-demo` from GitHub. You can also use [this one-click link](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FGerritbandison%2Ffantasy-board-demo).
+2. Keep the detected **Next.js** preset and the default build settings, then click **Deploy**.
+3. Share the production URL. Pushes to `main` redeploy automatically.
 
-## What's mocked and what's live
-
-| Data | Mock mode (default) | Live mode (`MOCK_FANTASY=0`) |
-| --- | --- | --- |
-| League, team, record, standing | Fictional league in `lib/mock-fantasy.ts` | ESPN public league API |
-| Matchup score and projections | Mock data, with scores that drift over time | ESPN `mMatchupScore` view |
-| Win probability | Estimated from the projection gap | Not shown (ESPN doesn't expose it) |
-| Roster and lineup slots | 14 fictional players | ESPN `mRoster` view |
-| Headlines | Mock "Flaim Wire" items | ESPN public NFL news feed |
-| Flaim | **Always mocked** | **Always mocked** |
-
-**ESPN live mode** reads only public endpoints with no keys:
-
-- League: `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/{season}/segments/0/leagues/{leagueId}?view=mTeam&view=mRoster&view=mMatchupScore&view=mSettings`
-- News: `https://site.api.espn.com/apis/site/v2/sports/football/nfl/news`
-
-The league endpoint only works when the league is set to **viewable to public** in the ESPN league settings. Private leagues return 401 because they need `espn_s2` and `SWID` browser cookies, and this app deliberately never reads or stores those. If ESPN fails for any reason, the API falls back to mock data and the board shows a notice explaining why. In live mode, per-player game clocks and opponents aren't available from these endpoints, so each player row shows whether that player is "Scoring" or "Projected".
-
-**Flaim** has no public API that this demo can call, so it stays mocked. The disconnected state links to [flaim.app/leagues](https://flaim.app/leagues), where you connect leagues. No Flaim tokens are invented or required.
-
-## API
-
-`GET /api/fantasy` returns `200` with a `FantasyPayload` (see `lib/types.ts`). The response has one of two shapes:
-
-- `status: "connected"`, with `league`, `team`, `matchup`, `roster`, `headlines`, `source` (`mock` or `espn`), and an optional `notice`.
-- `status: "disconnected"`, with `teamName` and `reason`.
-
-The query parameters `?state=disconnected` and `?mock=1` (which forces mock data) are passed through from the page URL.
+From the CLI: `npx vercel link`, then `npx vercel --prod`.
 
 ## Project structure
 
 ```
 app/
-  page.tsx                 renders the board
-  layout.tsx               fonts and dark theme
-  api/fantasy/route.ts     route handler: mock, ESPN, or disconnected
-components/
-  FantasyBoard.tsx         client board: polling, loading, error, disconnected states
-  ui/                      shadcn/ui primitives
-lib/
-  types.ts                 payload types shared by the API and UI
-  mock-fantasy.ts          fictional Flaim/ESPN-shaped demo data
-  espn.ts                  optional public ESPN adapter
-  config.ts                env parsing
-docs/                      README screenshots
+  layout.tsx                 fonts, metadata, viewport (safe-area aware)
+  (league)/layout.tsx        sticky top bar + bottom tab bar
+  (league)/page.tsx          / — Golden Goose board
+  (league)/bibis/            /bibis — Bibi's Boys board
+  (league)/standings/        /standings
+  (league)/insights/         /insights
+  (league)/matchups/         /matchups
+  live/                      optional ESPN polling board
+  api/league/                GET /api/league
+  api/matchup/[slug]/        GET /api/matchup/:slug
+  api/fantasy/               optional ESPN/mock feed for /live
+components/league/           nav, matchup board, chips, TV mode button
+data/league-snapshot.json    week snapshot (primary data source)
+lib/league.ts                snapshot types + helpers
+lib/espn.ts                  optional public ESPN adapter
 ```
-
-## Privacy
-
-All names in the mock data are fictional. The repo contains no real team names, emails, tokens, or LAN addresses, and the only env file in the tree is `.env.example`.

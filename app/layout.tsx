@@ -19,12 +19,18 @@ const display = Barlow_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "Fantasy Board",
-  description: "Room-display fantasy football board: score, matchup, lineup, and headlines.",
+  title: {
+    default: "Chicken League · Week 8",
+    template: "%s · Chicken League",
+  },
+  description: "Week 8 matchup boards, standings, and insights for the Chicken fantasy football league.",
+  appleWebApp: { capable: true, title: "Chicken", statusBarStyle: "black-translucent" },
 };
 
 export const viewport: Viewport = {
   themeColor: "#07090d",
+  viewportFit: "cover",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -146,6 +146,10 @@
   animation: ticker 60s linear infinite;
 }
 
+html[data-tv] .app-chrome {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-ticker {
     animation: none;
