@@ -6,14 +6,24 @@
 
 @theme {
   --breakpoint-tv: 160rem;
+
+  /* Chicken Command console palette */
+  --color-ink: #08090a;
+  --color-panel: #0e1110;
+  --color-panel-2: #131716;
+  --color-phos: #ffb238;
+  --color-sig: #3fe0cf;
+  --color-hot: #ff5a36;
+  --color-dim: #7f8984;
+  --color-faint: #4a524e;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-display: var(--font-barlow);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plex-sans);
+  --font-display: var(--font-chakra);
+  --font-mono: var(--font-plex-mono);
   --font-heading: var(--font-display);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -77,7 +87,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.25rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -89,37 +99,37 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #08090a;
+  --foreground: oklch(0.94 0.01 160);
+  --card: #0e1110;
+  --card-foreground: oklch(0.94 0.01 160);
+  --popover: #0e1110;
+  --popover-foreground: oklch(0.94 0.01 160);
+  --primary: #ffb238;
+  --primary-foreground: #08090a;
+  --secondary: oklch(0.24 0.005 160);
+  --secondary-foreground: oklch(0.94 0.01 160);
+  --muted: oklch(0.24 0.005 160);
+  --muted-foreground: #7f8984;
+  --accent: oklch(0.24 0.005 160);
+  --accent-foreground: oklch(0.94 0.01 160);
+  --destructive: #ff5a36;
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: #ffb238;
+  --chart-1: #ffb238;
+  --chart-2: #3fe0cf;
+  --chart-3: #ff5a36;
+  --chart-4: #7f8984;
+  --chart-5: #4a524e;
+  --sidebar: #0e1110;
+  --sidebar-foreground: oklch(0.94 0.01 160);
+  --sidebar-primary: #ffb238;
+  --sidebar-primary-foreground: #08090a;
+  --sidebar-accent: oklch(0.24 0.005 160);
+  --sidebar-accent-foreground: oklch(0.94 0.01 160);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: #ffb238;
 }
 
 @layer base {
@@ -133,6 +143,110 @@
     @apply font-sans;
   }
 }
+
+/* Faint plotting grid + vignette behind every console page. */
+@utility bg-console {
+  background-color: var(--color-ink);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, color-mix(in oklab, var(--color-phos) 9%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, color-mix(in oklab, var(--color-sig) 6%, transparent), transparent 70%),
+    linear-gradient(color-mix(in oklab, white 3.5%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, white 3.5%, transparent) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    28px 28px,
+    28px 28px;
+  background-attachment: fixed;
+}
+
+/* CRT scanlines, layered above content but never interactive. */
+@utility scanlines {
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    color-mix(in oklab, black 22%, transparent) 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Corner brackets. Set --hud-c (color) and --hud-l (arm length) to tune. */
+@utility hud-corners {
+  --hud-c: color-mix(in oklab, var(--color-phos) 55%, transparent);
+  --hud-l: 10px;
+  background-image:
+    linear-gradient(var(--hud-c), var(--hud-c)), linear-gradient(var(--hud-c), var(--hud-c)),
+    linear-gradient(var(--hud-c), var(--hud-c)), linear-gradient(var(--hud-c), var(--hud-c)),
+    linear-gradient(var(--hud-c), var(--hud-c)), linear-gradient(var(--hud-c), var(--hud-c)),
+    linear-gradient(var(--hud-c), var(--hud-c)), linear-gradient(var(--hud-c), var(--hud-c));
+  background-repeat: no-repeat;
+  background-size:
+    var(--hud-l) 1px, 1px var(--hud-l),
+    var(--hud-l) 1px, 1px var(--hud-l),
+    var(--hud-l) 1px, 1px var(--hud-l),
+    var(--hud-l) 1px, 1px var(--hud-l);
+  background-position:
+    top left, top left,
+    top right, top right,
+    bottom left, bottom left,
+    bottom right, bottom right;
+}
+
+@utility hud-corners-sig {
+  --hud-c: color-mix(in oklab, var(--color-sig) 55%, transparent);
+}
+
+@utility hud-corners-dim {
+  --hud-c: color-mix(in oklab, white 22%, transparent);
+}
+
+@utility glow-phos {
+  text-shadow:
+    0 0 12px color-mix(in oklab, var(--color-phos) 45%, transparent),
+    0 0 2px color-mix(in oklab, var(--color-phos) 60%, transparent);
+}
+
+@utility glow-sig {
+  text-shadow:
+    0 0 12px color-mix(in oklab, var(--color-sig) 40%, transparent),
+    0 0 2px color-mix(in oklab, var(--color-sig) 55%, transparent);
+}
+
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklab, white 6%, transparent) 0 1px,
+    transparent 1px 6px
+  );
+}
+
+@keyframes radar-sweep {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@utility animate-radar {
+  animation: radar-sweep 4.5s linear infinite;
+}
+
+@keyframes blink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0.15;
+  }
+}
+
+@utility animate-blink {
+  animation: blink 1.6s steps(1, end) infinite;
+}
+
 @keyframes ticker {
   from {
     transform: translateX(0);
@@ -151,7 +265,9 @@ html[data-tv] .app-chrome {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-ticker {
+  .animate-ticker,
+  .animate-radar,
+  .animate-blink {
     animation: none;
   }
 }

@@ -1,127 +1,288 @@
-import { Activity, ShieldAlert } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { isFlagged, ordinal, snapshot, type Board, type MatchupSide, type SnapshotPlayer } from "@/lib/league";
-import { Chip, Panel, SlotChip, StatusChip } from "./bits";
+import {
+  callsign,
+  getBrief,
+  getFranchise,
+  getLuck,
+  splitMustWin,
+  teamIdByName,
+  trailStats,
+  weekCode,
+  type Franchise,
+} from "@/lib/intel";
+import { SlotChip, StatusChip } from "./bits";
+import { Frame, LuckChip, PageHead, Readout, Rule, Tag } from "./hud";
+import { ScoreTrail, WeekStrip } from "./trail";
 import { TvModeButton } from "./TvModeButton";
 
 export function MatchupBoard({ board }: { board: Board }) {
   const { focus, opponent, config } = board;
-  const flagged = focus.starters.filter(isFlagged);
-  const bench = focus.bench ?? [];
+  const brief = getBrief(config.slug);
+  const focusF = getFranchise(focus.teamId);
+  const oppF = getFranchise(opponent.teamId);
+  const luck = getLuck(focus.teamId);
+  const fc = callsign(focus.teamId);
+  const oc = callsign(opponent.teamId);
+  const wk = weekCode(snapshot.league.week);
 
   return (
     <>
       <div className="flex items-end justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-emerald-400/90 tv:text-base">
-            {config.manager}&apos;s board · Week {snapshot.league.week}
-          </p>
-          <h1 className="mt-1 font-display text-4xl leading-[0.95] font-extrabold uppercase tracking-tight break-words text-white sm:text-5xl lg:text-6xl tv:text-9xl">
-            {focus.teamName}
-          </h1>
-          {board.focusStanding && (
-            <div className="mt-3 flex flex-wrap gap-2">
-              <Chip className="text-emerald-300 ring-emerald-400/30">{focus.record}</Chip>
-              <Chip>Seed {board.focusStanding.playoffSeed}</Chip>
-              <Chip>PA {board.focusStanding.pointsAgainst.toFixed(1)}</Chip>
-            </div>
-          )}
-        </div>
+        <PageHead code={`OP-${wk} // ${fc} v ${oc} · ${focusF?.ownerLabel ?? config.manager}`} title={focus.teamName}>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            <Tag tone="phos">{focus.record}</Tag>
+            {board.focusStanding && <Tag>Seed {board.focusStanding.playoffSeed}</Tag>}
+            <Tag>PF {focus.pointsFor.toFixed(1)}</Tag>
+            {luck && <LuckChip row={luck} withRanks />}
+          </div>
+        </PageHead>
         <TvModeButton />
       </div>
 
-      <Scoreboard focus={focus} opponent={opponent} />
-
-      {flagged.length > 0 && (
-        <div className="flex flex-wrap items-center gap-2 rounded-xl bg-amber-500/10 px-3 py-2.5 text-sm text-amber-100 ring-1 ring-amber-400/20 tv:text-2xl">
-          <ShieldAlert className="size-4 shrink-0 text-amber-300 tv:size-7" />
-          <span className="font-semibold">
-            {flagged.length} starter{flagged.length === 1 ? "" : "s"} on the injury report:
-          </span>
-          <span className="text-amber-200/80">{flagged.map((p) => p.name).join(", ")}</span>
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-5">
+        <div className="grid content-start gap-4 lg:gap-5">
+          {brief && <BriefFrame brief={brief} focus={focus} fc={fc} oc={oc} />}
+          {(focusF || oppF) && <Dossier focus={focusF} opponent={oppF} className="hidden lg:grid" />}
         </div>
-      )}
+        <div className="grid content-start gap-4 lg:gap-5">
+          <ProjectionReadout focus={focus} opponent={opponent} focusF={focusF} oppF={oppF} fc={fc} oc={oc} />
+          {focusF && <TrailFrame focus={focusF} opponent={oppF} focusSide={focus} opponentSide={opponent} />}
+        </div>
+      </div>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-5 tv:gap-8">
-        <Panel title="Starters" meta="Head to head" icon={<Activity className="size-4 text-emerald-400 tv:size-7" />}>
+      {(focusF || oppF) && <Dossier focus={focusF} opponent={oppF} className="lg:hidden" />}
+
+      <Rule label="Lineup // head to head" right={`${focus.starters.length} slots`} />
+      <FlagStrip focus={focus} opponent={opponent} />
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] lg:gap-5">
+        <Frame label="Starters" code="LNP" meta={`${fc} · ${oc}`} tone="dim" bodyClassName="p-0 sm:p-0">
           <HeadToHead focus={focus} opponent={opponent} />
-        </Panel>
-
-        <Panel title="Bench" meta={`${bench.length} players`}>
-          {bench.length === 0 ? (
-            <p className="py-4 text-center text-sm text-zinc-500">No bench in this snapshot.</p>
-          ) : (
-            <ul className="grid gap-1.5 tv:gap-3">
-              {bench.map((p) => (
-                <BenchRow key={p.name} player={p} />
-              ))}
-            </ul>
-          )}
-        </Panel>
+        </Frame>
+        <Frame label="Bench / IR" code="BNC" meta={`${focus.bench?.length ?? 0} on file`} tone="dim">
+          <BenchList players={focus.bench ?? []} />
+        </Frame>
       </div>
     </>
   );
 }
 
-function Scoreboard({ focus, opponent }: { focus: MatchupSide; opponent: MatchupSide }) {
-  const total = focus.projected + opponent.projected;
-  const share = total > 0 ? (focus.projected / total) * 100 : 50;
-  const edge = focus.projected - opponent.projected;
-  const favored = edge >= 0 ? focus : opponent;
-
+function BriefFrame({
+  brief,
+  focus,
+  fc,
+  oc,
+}: {
+  brief: NonNullable<ReturnType<typeof getBrief>>;
+  focus: MatchupSide;
+  fc: string;
+  oc: string;
+}) {
+  const must = splitMustWin(brief.mustWin);
+  const mustId = teamIdByName(must.subject);
+  const mustIsFocus = mustId === focus.teamId || focus.teamName.startsWith(must.subject);
   return (
-    <section className="overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-500/15 via-zinc-900/70 to-zinc-900/40 p-4 ring-1 ring-white/10 sm:p-6 tv:p-12">
-      <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] font-semibold uppercase tracking-[0.25em] tv:text-xl">
-        <span className="text-zinc-400">Projected · Week {snapshot.league.week}</span>
-        <span className={edge >= 0 ? "text-emerald-300" : "text-rose-300"}>
-          {favored.teamName} by {Math.abs(edge).toFixed(1)}
-        </span>
+    <Frame label="Matchup brief" code={`BRF-${weekCode(brief.week)}`} meta={`${fc} v ${oc}`}>
+      <p className="text-[15.5px] leading-relaxed text-zinc-200">{brief.story}</p>
+
+      <div className={cn("mt-4 border-l-2 py-2 pr-2 pl-3", mustIsFocus ? "border-hot bg-hot/[0.06]" : "border-phos bg-phos/[0.05]")}>
+        <p className={cn("font-mono text-[10.5px] tracking-[0.2em] uppercase", mustIsFocus ? "text-hot" : "text-phos")}>
+          Must-win ▸ {mustIsFocus ? `${fc} (you)` : must.subject}
+        </p>
+        <p className="mt-1 text-sm leading-snug text-zinc-200">{capitalize(must.detail) || brief.mustWin}</p>
       </div>
 
-      <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-2 sm:gap-6 tv:mt-8">
-        <ScoreSide side={focus} leading={edge >= 0} />
-        <span className="pt-8 font-display text-lg font-semibold text-zinc-600 sm:pt-10 sm:text-2xl tv:pt-20 tv:text-5xl">vs</span>
-        <ScoreSide side={opponent} leading={edge < 0} align="right" />
-      </div>
+      <ul className="mt-4 grid gap-2">
+        {brief.edges.map((e) => {
+          const id = teamIdByName(e.side);
+          const mine = id === focus.teamId;
+          return (
+            <li key={e.side} className="grid grid-cols-[3.25rem_minmax(0,1fr)] items-start gap-2.5">
+              <Tag tone={mine ? "phos" : "sig"} className="justify-center">
+                {id ? callsign(id) : mine ? fc : oc}
+              </Tag>
+              <p className="pt-0.5 text-sm leading-snug text-zinc-300">
+                <span className="font-mono text-[10px] tracking-[0.16em] text-dim uppercase">Edge · </span>
+                {e.edge}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
 
-      <div className="mt-5 tv:mt-10">
-        <div
-          className="flex h-3 overflow-hidden rounded-full bg-zinc-800 tv:h-5"
-          role="img"
-          aria-label={`Projection share: ${focus.teamName} ${share.toFixed(0)}%, ${opponent.teamName} ${(100 - share).toFixed(0)}%`}
-        >
-          <div className="h-full bg-gradient-to-r from-emerald-500 to-lime-400" style={{ width: `${share}%` }} />
-          <div className="h-full flex-1 bg-gradient-to-r from-sky-600/70 to-sky-400/70" />
-        </div>
-        <div className="mt-1.5 flex justify-between text-[11px] font-semibold uppercase tracking-widest tv:text-lg">
-          <span className="text-emerald-300">{share.toFixed(0)}% of proj.</span>
-          <span className="text-sky-300">{(100 - share).toFixed(0)}%</span>
-        </div>
+      <div className="mt-4 border-t border-dashed border-white/10 pt-3">
+        <p className="font-mono text-[10px] tracking-[0.2em] text-sig uppercase">Archive note</p>
+        <p className="mt-1 text-sm leading-snug text-zinc-400">{brief.historyNote}</p>
       </div>
-    </section>
+    </Frame>
   );
 }
 
-function ScoreSide({ side, leading, align = "left" }: { side: MatchupSide; leading: boolean; align?: "left" | "right" }) {
+const GAUGE_SPAN = 30;
+
+function ProjectionReadout({
+  focus,
+  opponent,
+  focusF,
+  oppF,
+  fc,
+  oc,
+}: {
+  focus: MatchupSide;
+  opponent: MatchupSide;
+  focusF?: Franchise;
+  oppF?: Franchise;
+  fc: string;
+  oc: string;
+}) {
+  const margin = focus.projected - opponent.projected;
+  const pct = Math.min(1, Math.abs(margin) / GAUGE_SPAN) * 50;
+  const fAvg = focusF ? trailStats(focusF).avg : undefined;
+  const oAvg = oppF ? trailStats(oppF).avg : undefined;
+  const signed = (v: number) => `${v >= 0 ? "+" : "−"}${Math.abs(v).toFixed(1)}`;
+
   return (
-    <div className={cn("min-w-0", align === "right" && "text-right")}>
-      <p className="font-display text-lg leading-tight font-bold uppercase tracking-wide break-words text-zinc-200 sm:text-2xl tv:text-5xl">
-        {side.teamName}
-      </p>
-      <p className="mt-0.5 text-xs text-zinc-400 tv:text-xl">
-        {side.record} · {ordinal(side.rank)}
-      </p>
-      <p
-        className={cn(
-          "mt-2 font-display text-5xl leading-none font-extrabold tabular-nums sm:text-7xl tv:text-[10rem]",
-          leading ? "text-white" : "text-zinc-500",
+    <Frame label="Projection" code="PRJ" meta={`Wk ${weekCode(snapshot.league.week)} · pre-lock`}>
+      <dl className="grid gap-2">
+        {[
+          { side: focus, code: fc, tone: "phos" as const, lead: margin >= 0 },
+          { side: opponent, code: oc, tone: "sig" as const, lead: margin < 0 },
+        ].map(({ side, code, tone, lead }) => (
+          <div key={side.teamId} className="grid grid-cols-[2.75rem_minmax(0,1fr)_auto] items-center gap-2.5">
+            <dt className="contents">
+              <Tag tone={tone} className="justify-center">
+                {code}
+              </Tag>
+              <span className="min-w-0">
+                <span className="block truncate text-sm font-medium text-zinc-200">{side.teamName}</span>
+                <span className="block font-mono text-[10px] tracking-wider text-faint uppercase">
+                  {side.record} · {ordinal(side.rank)}
+                  {lead && <span className={tone === "phos" ? "text-phos" : "text-sig"}> · ▲ fav</span>}
+                </span>
+              </span>
+            </dt>
+            <dd
+              className={cn(
+                "font-mono text-[2rem] leading-none font-medium tabular-nums",
+                tone === "phos" ? "text-phos glow-phos" : "text-sig glow-sig",
+                !lead && "opacity-70",
+              )}
+            >
+              {side.projected.toFixed(2)}
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <div className="mt-4" role="img" aria-label={`Projected margin ${signed(margin)} for ${focus.teamName}`}>
+        <div className="flex justify-between font-mono text-[9.5px] tracking-[0.18em] text-faint uppercase">
+          <span className="text-phos/80">◀ {fc}</span>
+          <span>margin ±{GAUGE_SPAN}</span>
+          <span className="text-sig/80">{oc} ▶</span>
+        </div>
+        <div className="relative mt-1 h-5 border border-white/10 bg-ink">
+          {Array.from({ length: 13 }, (_, i) => (
+            <span
+              key={i}
+              className={cn("absolute top-0 w-px bg-white/15", i === 6 ? "h-full bg-white/40" : i % 2 ? "h-1.5" : "h-2.5")}
+              style={{ left: `${(i / 12) * 100}%` }}
+            />
+          ))}
+          <span
+            className={cn("absolute inset-y-1", margin >= 0 ? "bg-phos/80 shadow-[0_0_10px_var(--color-phos)]" : "bg-sig/80 shadow-[0_0_10px_var(--color-sig)]")}
+            style={margin >= 0 ? { right: "50%", width: `${pct}%` } : { left: "50%", width: `${pct}%` }}
+          />
+        </div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-3 gap-3 border-t border-white/[0.06] pt-3">
+        <Readout label="Margin" value={signed(margin)} sub={margin >= 0 ? `${fc} fav` : `${oc} fav`} tone={margin >= 0 ? "phos" : "sig"} />
+        {fAvg != null && <Readout label={`${fc} vs avg`} value={signed(focus.projected - fAvg)} sub={`avg ${fAvg.toFixed(1)}`} />}
+        {oAvg != null && <Readout label={`${oc} vs avg`} value={signed(opponent.projected - oAvg)} sub={`avg ${oAvg.toFixed(1)}`} />}
+      </div>
+    </Frame>
+  );
+}
+
+function TrailFrame({
+  focus,
+  opponent,
+  focusSide,
+  opponentSide,
+}: {
+  focus: Franchise;
+  opponent?: Franchise;
+  focusSide: MatchupSide;
+  opponentSide: MatchupSide;
+}) {
+  const s = trailStats(focus);
+  return (
+    <Frame label="Score trail" code="TRL" meta="2026 · PF / week">
+      <div className="mb-2 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] tracking-wider text-dim uppercase">
+        <span className="flex items-center gap-1.5">
+          <span className="h-0.5 w-4 bg-phos" /> {callsign(focus.teamId)}
+        </span>
+        {opponent && (
+          <span className="flex items-center gap-1.5">
+            <span className="h-px w-4 bg-sig" /> {callsign(opponent.teamId)}
+          </span>
         )}
-      >
-        {side.projected.toFixed(1)}
-      </p>
-      <p className="mt-1 text-[11px] tabular-nums uppercase tracking-widest text-zinc-500 tv:text-lg">
-        Season PF {side.pointsFor.toFixed(1)}
-      </p>
+        <span>■ W □ L ◇ proj</span>
+      </div>
+      <ScoreTrail focus={focus} opponent={opponent} focusProj={focusSide.projected} opponentProj={opponentSide.projected} />
+      <WeekStrip weeks={focus.weekly2026} className="mt-2" />
+      <div className="mt-3 grid grid-cols-3 gap-3">
+        <Readout label="Median" value={s.median.toFixed(1)} />
+        <Readout label="Ceiling" value={s.high.pf.toFixed(1)} sub={`W${s.high.week} v ${s.high.opp}`} tone="phos" />
+        <Readout label="Floor" value={s.low.pf.toFixed(1)} sub={`W${s.low.week} v ${s.low.opp}`} />
+      </div>
+    </Frame>
+  );
+}
+
+function Dossier({ focus, opponent, className }: { focus?: Franchise; opponent?: Franchise; className?: string }) {
+  const list = [focus, opponent].filter((f): f is Franchise => Boolean(f));
+  return (
+    <div className={cn("grid gap-4 sm:grid-cols-2 lg:grid-cols-1 lg:gap-5", className)}>
+      {list.map((f, i) => (
+        <Frame
+          key={f.teamId}
+          label={i === 0 ? "Franchise dossier" : "Opposition file"}
+          code={callsign(f.teamId)}
+          meta={f.ownerLabel}
+          tone={i === 0 ? "phos" : "sig"}
+        >
+          <p className="text-sm leading-relaxed text-zinc-300">{f.arc}</p>
+          <p className={cn("mt-3 border-l-2 pl-3 text-sm leading-snug text-zinc-200", i === 0 ? "border-phos/60" : "border-sig/60")}>
+            {f.signature}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            <Tag tone={f.titles ? "phos" : "dim"}>
+              {f.titles} title{f.titles === 1 ? "" : "s"}
+            </Tag>
+            <Tag>Playoffs {f.playoffAppearancesRecent}</Tag>
+            <Link href="/history" className="inline-flex h-6 items-center font-mono text-[10.5px] tracking-[0.12em] text-sig uppercase underline-offset-4 hover:underline">
+              Archive ▸
+            </Link>
+          </div>
+        </Frame>
+      ))}
+    </div>
+  );
+}
+
+function FlagStrip({ focus, opponent }: { focus: MatchupSide; opponent: MatchupSide }) {
+  const mine = focus.starters.filter(isFlagged);
+  const theirs = opponent.starters.filter(isFlagged);
+  if (mine.length + theirs.length === 0) return null;
+  return (
+    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1 border border-phos/25 bg-phos/[0.05] px-3 py-2 font-mono text-[11px] tracking-wide text-phos uppercase">
+      <span className="animate-blink">▲</span>
+      <span>Status flags</span>
+      <span className="normal-case tracking-normal text-zinc-300">
+        {[...mine.map((p) => `${p.name} (${p.status})`), ...theirs.map((p) => `${p.name} (${p.status}, opp)`)].join(" · ")}
+      </span>
     </div>
   );
 }
@@ -129,43 +290,33 @@ function ScoreSide({ side, leading, align = "left" }: { side: MatchupSide; leadi
 function HeadToHead({ focus, opponent }: { focus: MatchupSide; opponent: MatchupSide }) {
   const rows = Math.max(focus.starters.length, opponent.starters.length);
   return (
-    <div>
-      <div className="mb-2 grid grid-cols-[minmax(0,1fr)_3rem_minmax(0,1fr)] gap-2 px-1 text-[10px] font-semibold uppercase tracking-[0.12em] tv:grid-cols-[minmax(0,1fr)_6rem_minmax(0,1fr)] tv:text-base">
-        <span className="truncate text-emerald-300">{focus.teamName}</span>
-        <span />
-        <span className="truncate text-right text-sky-300">{opponent.teamName}</span>
-      </div>
-      <ol className="grid gap-1.5 tv:gap-3">
-        {Array.from({ length: rows }, (_, i) => {
-          const mine = focus.starters[i];
-          const theirs = opponent.starters[i];
-          return (
-            <li
-              key={i}
-              className="grid min-h-14 grid-cols-[minmax(0,1fr)_3rem_minmax(0,1fr)] items-center gap-2 rounded-xl bg-white/[0.03] px-2.5 py-2 ring-1 ring-white/5 tv:min-h-24 tv:grid-cols-[minmax(0,1fr)_6rem_minmax(0,1fr)] tv:px-6"
-            >
-              <PlayerCell player={mine} />
-              <SlotChip slot={mine?.slot ?? theirs?.slot ?? "—"} className="justify-self-center" />
-              <PlayerCell player={theirs} align="right" muted />
-            </li>
-          );
-        })}
-      </ol>
-    </div>
+    <ol>
+      {Array.from({ length: rows }, (_, i) => {
+        const mine = focus.starters[i];
+        const theirs = opponent.starters[i];
+        return (
+          <li
+            key={i}
+            className="grid min-h-13 grid-cols-[minmax(0,1fr)_2.75rem_minmax(0,1fr)] items-center gap-2 border-b border-white/[0.05] px-3 py-2 last:border-0 odd:bg-white/[0.015] sm:px-4"
+          >
+            <PlayerCell player={mine} />
+            <SlotChip slot={mine?.slot ?? theirs?.slot ?? "—"} className="justify-self-center" />
+            <PlayerCell player={theirs} align="right" muted />
+          </li>
+        );
+      })}
+    </ol>
   );
 }
 
 function PlayerCell({ player, align = "left", muted }: { player?: SnapshotPlayer; align?: "left" | "right"; muted?: boolean }) {
-  if (!player) return <span className="text-zinc-600">—</span>;
-  const meta = [player.team].filter(Boolean).join(" · ");
+  if (!player) return <span className="font-mono text-faint">—</span>;
   return (
     <div className={cn("min-w-0", align === "right" && "text-right")}>
-      <p className={cn("text-[15px] leading-tight font-semibold break-words sm:text-base tv:text-3xl", muted ? "text-zinc-300" : "text-zinc-50")}>
-        {player.name}
-      </p>
-      {(meta || isFlagged(player)) && (
-        <p className={cn("mt-0.5 flex items-center gap-1.5 text-xs text-zinc-500 tv:text-lg", align === "right" && "justify-end")}>
-          {meta && <span>{meta}</span>}
+      <p className={cn("text-[14.5px] leading-tight font-medium break-words", muted ? "text-zinc-400" : "text-zinc-50")}>{player.name}</p>
+      {(player.team || isFlagged(player)) && (
+        <p className={cn("mt-0.5 flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-faint", align === "right" && "justify-end")}>
+          {player.team && <span>{player.team}</span>}
           <StatusChip status={player.status} />
         </p>
       )}
@@ -173,15 +324,22 @@ function PlayerCell({ player, align = "left", muted }: { player?: SnapshotPlayer
   );
 }
 
-function BenchRow({ player }: { player: SnapshotPlayer }) {
+function BenchList({ players }: { players: SnapshotPlayer[] }) {
+  if (players.length === 0) return <p className="py-3 text-center font-mono text-xs text-faint uppercase">No bench on file</p>;
   return (
-    <li className="flex min-h-12 items-center gap-3 rounded-xl bg-white/[0.02] px-2.5 py-2 ring-1 ring-white/5 tv:min-h-20 tv:px-5">
-      <SlotChip slot={player.slot} />
-      <span className="min-w-0 flex-1">
-        <span className="block text-[15px] leading-tight font-medium break-words text-zinc-200 tv:text-3xl">{player.name}</span>
-        {player.team && <span className="text-xs text-zinc-500 tv:text-lg">{player.team}</span>}
-      </span>
-      <StatusChip status={player.status} />
-    </li>
+    <ul className="grid gap-px bg-white/[0.05]">
+      {players.map((p) => (
+        <li key={p.name} className="flex min-h-11 items-center gap-3 bg-panel px-1 py-1.5">
+          <SlotChip slot={p.slot} />
+          <span className="min-w-0 flex-1 text-sm leading-tight break-words text-zinc-300">{p.name}</span>
+          {p.team && <span className="font-mono text-[10px] text-faint">{p.team}</span>}
+          <StatusChip status={p.status} />
+        </li>
+      ))}
+    </ul>
   );
+}
+
+function capitalize(text: string) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
 }
