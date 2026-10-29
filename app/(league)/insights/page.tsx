@@ -1,236 +1,400 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DisplayName, Frame, LuckChip, PageHead, Rule, Tag } from "@/components/league/hud";
+import { Flame, TrendingUp } from "lucide-react";
+import { Card, LuckBadge, PageHeader, Pill, ResultChip, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { MiniTrail } from "@/components/league/trail";
 import { cn } from "@/lib/utils";
-import { callsign, getLuck, intel, teamIdByName, trailStats, weekCode } from "@/lib/intel";
-import { BOARDS, boardForTeam, boardInvolving, formatRecord, getStanding, snapshot } from "@/lib/league";
+import {
+  closeGameRecord,
+  CLOSE_GAME_MARGIN,
+  getLuck,
+  highScores,
+  intel,
+  leagueGamesPlayed,
+  splitMustWin,
+  teamColor,
+  teamIdByName,
+  trackedGames,
+  TRAIL_RANGE,
+  trailStats,
+} from "@/lib/intel";
+import { BOARDS, boardForTeam, boardInvolving, formatRecord, getStanding, ordinal, snapshot } from "@/lib/league";
 
 export const metadata: Metadata = {
   title: "Insights",
-  description: "Week 8 intel for the Chicken league: matchup dispatches, league pulse, luck index, and franchise signatures.",
+  description:
+    "Chicken league hub: week 8 previews, storylines, power rankings, luck, high scores, closest games, bad beats, and team trends.",
 };
 
 const LUCK_SPAN = 6;
 
 export default function InsightsPage() {
-  const wk = weekCode(intel.league.week);
-  const ceilings = intel.franchises
-    .flatMap((f) => f.weekly2026.map((w) => ({ ...w, teamId: f.teamId, team: f.name })))
-    .sort((a, b) => b.pf - a.pf)
-    .slice(0, 5);
+  const week = intel.league.week;
+  const games = trackedGames();
+  const scores = highScores(games);
+  const closest = [...games].sort((a, b) => a.margin - b.margin).slice(0, 4);
+  const badBeats = [...games].sort((a, b) => b.loser.score - a.loser.score).slice(0, 3);
+  const tracked = intel.franchises.map((f) => getStanding(f.teamId)?.teamName ?? f.name);
+  const coverage = `${games.length} of ${leagueGamesPlayed()} league games so far: every game involving ${tracked.slice(0, -1).join(", ")} or ${tracked[tracked.length - 1]}.`;
+  const byPf = [...snapshot.standings].sort((a, b) => b.pointsFor - a.pointsFor);
+  const byPa = [...snapshot.standings].sort((a, b) => b.pointsAgainst - a.pointsAgainst);
+  const pfMin = Math.min(...byPf.map((s) => s.pointsFor)) - 40;
+  const pfMax = byPf[0].pointsFor;
+  const paMin = Math.min(...byPa.map((s) => s.pointsAgainst)) - 40;
+  const paMax = byPa[0].pointsAgainst;
+  const swings = intel.franchises.map((f) => ({ f, s: trailStats(f) })).sort((a, b) => b.s.stdDev - a.s.stdDev);
 
   return (
     <>
-      <PageHead
-        code={`INTEL-${wk} // League pulse`}
-        title={`Week ${wk} intel`}
-        kicker={`Read off the Chicken archive: ${intel.champions.length} champions on file, ${intel.franchises.length} tracked franchise trails, and the luck index after week ${intel.league.week - 1}.`}
-      />
+      <PageHeader eyebrow={`League hub · Week ${week}`} title="League insights">
+        <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
+          Week {week} previews, storylines, and the numbers behind the standings, all from the league&apos;s own results through week {week - 1}.
+        </p>
+      </PageHeader>
 
-      <Rule label="Dispatch // this week's ops" right={`${intel.matchupBriefs.length} ops`} />
-      <div className="grid gap-4 lg:grid-cols-2 lg:gap-5">
+      <SectionHeading title={`Week ${week} previews`} />
+      <div className="grid gap-5 lg:grid-cols-2">
         {intel.matchupBriefs.map((b) => {
           const proj = intel.week8Projections[b.slug];
           const board = BOARDS.find((x) => x.slug === b.slug);
-          const homeId = proj ? teamIdByName(proj.home) : undefined;
-          const awayId = proj ? teamIdByName(proj.away) : undefined;
+          const sides = proj
+            ? [
+                { id: teamIdByName(proj.away), score: proj.awayProj },
+                { id: teamIdByName(proj.home), score: proj.homeProj },
+              ]
+            : [];
+          const top = Math.max(...sides.map((s) => s.score));
+          const must = splitMustWin(b.mustWin);
+          const mustId = teamIdByName(must.subject);
           return (
-            <Frame
-              key={b.slug}
-              as="article"
-              label={homeId && awayId ? `${callsign(awayId)} @ ${callsign(homeId)}` : "Dispatch"}
-              code={`OP-${weekCode(b.week)}`}
-              meta={board ? `${board.manager}` : undefined}
-              tone="phos"
-            >
-              <h3 className="mb-3 font-display text-xl leading-tight font-semibold tracking-wide text-zinc-50 uppercase">
-                <DisplayName text={b.title} />
-              </h3>
-              {proj && homeId && awayId && (
-                <div className="mb-3 flex items-center justify-between gap-2 border-b border-dashed border-white/10 pb-3 font-mono tabular-nums">
-                  <span className="flex items-baseline gap-2">
-                    <span className="text-[11px] tracking-wider text-dim">{callsign(homeId)}</span>
-                    <span className={cn("text-2xl", proj.homeProj >= proj.awayProj ? "text-phos glow-phos" : "text-zinc-400")}>
-                      {proj.homeProj.toFixed(1)}
-                    </span>
-                  </span>
-                  <span className="text-[10px] tracking-[0.2em] text-faint">PROJ</span>
-                  <span className="flex items-baseline gap-2">
-                    <span className={cn("text-2xl", proj.awayProj > proj.homeProj ? "text-phos glow-phos" : "text-zinc-400")}>
-                      {proj.awayProj.toFixed(1)}
-                    </span>
-                    <span className="text-[11px] tracking-wider text-dim">{callsign(awayId)}</span>
-                  </span>
-                </div>
-              )}
-              <p className="text-[15px] leading-relaxed text-zinc-200">{b.story}</p>
-              <p className="mt-3 text-sm leading-snug text-zinc-400">
-                <span className="font-mono text-[10px] tracking-[0.18em] text-hot uppercase">Must-win · </span>
-                {b.mustWin}
+            <Card key={b.slug} as="article" title={board ? `${board.manager}'s matchup` : "Featured matchup"} action="Projected">
+              <div className="grid gap-2 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
+                {sides.map((s) => {
+                  const st = s.id ? getStanding(s.id) : undefined;
+                  return (
+                    <div key={s.id} className="flex items-center gap-3">
+                      <TeamAvatar teamId={s.id} size="sm" />
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm leading-tight font-semibold break-words text-navy">{st?.teamName}</span>
+                        <span className="text-xs text-slate-500">{st && `${formatRecord(st)} · ${ordinal(st.rank)}`}</span>
+                      </span>
+                      <span className={cn("font-display text-2xl font-bold tabular-nums", s.score === top ? "text-turf" : "text-slate-400")}>
+                        {s.score.toFixed(1)}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-700">{b.story}</p>
+              <p className="mt-3 text-sm leading-snug text-slate-600">
+                <Pill tone="loss" className="mr-1.5">
+                  Must-win
+                </Pill>
+                <span className="font-semibold text-navy">{mustId ? getStanding(mustId)?.teamName : must.subject}</span>: {must.detail}
               </p>
               {board && (
-                <Link
-                  href={board.path}
-                  className="mt-4 inline-flex h-9 items-center gap-2 px-3 font-mono text-[11px] tracking-[0.18em] text-phos uppercase ring-1 ring-phos/40 ring-inset transition-colors hover:bg-phos/10"
-                >
-                  Open op board ▸
+                <Link href={board.path} className="mt-4 inline-flex h-10 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
+                  Full preview & lineups →
                 </Link>
               )}
-            </Frame>
+            </Card>
           );
         })}
       </div>
 
-      <Rule label="Pulse // league signals" right={`${intel.leaguePulse.length} items`} />
-      <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {intel.leaguePulse.map((p, i) => (
-          <Frame
-            key={p.title}
-            as="li"
-            tone={p.tone === "alert" ? "phos" : "sig"}
-            label={p.tone === "alert" ? "Alert" : "Signal"}
-            code={`P-${String(i + 1).padStart(2, "0")}`}
-          >
-            <p className="font-display text-xl leading-tight font-semibold tracking-wide text-zinc-50 uppercase">
-              <DisplayName text={p.title} />
+      <SectionHeading title="Storylines" />
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {intel.leaguePulse.map((p) => (
+          <Card key={p.title} as="li" accent={p.tone === "alert" ? "#d99a06" : "#15803d"}>
+            <p className={cn("flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase", p.tone === "alert" ? "text-amber-700" : "text-turf")}>
+              {p.tone === "alert" ? <Flame className="size-3.5" /> : <TrendingUp className="size-3.5" />}
+              {p.tone === "alert" ? "Hot take" : "Trend"}
             </p>
-            <p className="mt-2 text-sm leading-relaxed text-zinc-400">{p.body}</p>
-          </Frame>
+            <p className="mt-1.5 font-display text-xl leading-tight font-bold text-navy">{p.title}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{p.body}</p>
+          </Card>
         ))}
-      </ol>
+      </ul>
 
-      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] lg:gap-5">
-        <Frame label="Luck index" code="LCK" meta="PF rank − win rank">
-          <ol className="grid gap-3">
-            {intel.luckIndex.map((l) => {
-              const pct = (Math.min(LUCK_SPAN, Math.abs(l.luckDelta)) / LUCK_SPAN) * 50;
-              const tone = l.luckDelta > 0 ? "phos" : l.luckDelta < 0 ? "sig" : "dim";
-              const name = getStanding(l.teamId)?.teamName ?? l.team;
+      <SectionHeading title="Power & luck" />
+      <div className="grid gap-5 lg:grid-cols-2">
+        <Card title="Power rankings" action="Top 4">
+          <ol className="divide-y divide-line">
+            {snapshot.insights.power.map((p, i) => {
+              const id = teamIdByName(p.team);
+              const s = id ? getStanding(id) : undefined;
+              const luck = id ? getLuck(id) : undefined;
+              const board = id ? boardForTeam(id) : undefined;
               return (
-                <li key={l.teamId}>
-                  <div className="flex items-baseline justify-between gap-2">
-                    <span className="flex min-w-0 items-baseline gap-2">
-                      <span className="w-8 shrink-0 font-mono text-[10.5px] tracking-wider text-faint">{callsign(l.teamId)}</span>
-                      <span className="truncate text-sm text-zinc-200">{name}</span>
-                    </span>
-                    <span className="shrink-0 font-mono text-[10.5px] tracking-wider text-dim tabular-nums">
-                      {l.record} · PF{l.pfRank} W{l.winRank}
-                    </span>
-                  </div>
-                  <div className="mt-1 grid grid-cols-[minmax(0,1fr)_3.25rem] items-center gap-2">
-                    <div className="relative h-3 border border-white/[0.07] bg-ink" aria-hidden>
-                      <span className="absolute inset-y-0 left-1/2 w-px bg-white/30" />
-                      {l.luckDelta !== 0 && (
-                        <span
-                          className={cn("absolute inset-y-0.5", tone === "phos" ? "left-1/2 bg-phos" : "right-1/2 bg-sig")}
-                          style={{ width: `${pct}%` }}
-                        />
+                <li key={p.team} className="flex gap-3 py-3 first:pt-0 last:pb-0">
+                  <span className={cn("w-7 shrink-0 font-display text-3xl leading-none font-extrabold", i === 0 ? "text-gold" : "text-slate-300")}>{i + 1}</span>
+                  <TeamAvatar teamId={id} />
+                  <div className="min-w-0 flex-1">
+                    <p className="leading-tight font-semibold break-words text-navy">
+                      {board ? (
+                        <Link href={board.path} className="underline decoration-turf/40 underline-offset-4">
+                          {s?.teamName ?? p.team}
+                        </Link>
+                      ) : (
+                        (s?.teamName ?? p.team)
                       )}
+                    </p>
+                    <p className="mt-0.5 text-sm leading-snug text-slate-600">{p.why}</p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {s && <Pill tone="navy">{formatRecord(s)}</Pill>}
+                      {s && <Pill>{s.pointsFor.toFixed(1)} PF</Pill>}
+                      {luck && <LuckBadge row={luck} />}
                     </div>
-                    <LuckChip row={l} />
                   </div>
                 </li>
               );
             })}
           </ol>
-          <p className="mt-4 border-t border-white/[0.06] pt-3 font-mono text-[10.5px] leading-relaxed tracking-wide text-dim">
-            <span className="text-phos">HOT</span> record is outrunning scoring. <span className="text-sig">DUE</span> scoring better than
-            the record shows; first in line if variance evens out.
-          </p>
-        </Frame>
+        </Card>
 
-        <div className="grid content-start gap-4 lg:gap-5">
-          <Frame label="Ceiling board" code="CEIL" meta="Top 5 weeks">
-            <ol className="grid gap-px bg-white/[0.05]">
-              {ceilings.map((c, i) => (
-                <li key={`${c.teamId}-${c.week}`} className="grid grid-cols-[1.5rem_2.5rem_minmax(0,1fr)_auto] items-center gap-2 bg-panel py-2">
-                  <span className="font-mono text-[11px] text-faint">{String(i + 1).padStart(2, "0")}</span>
-                  <Tag tone={i === 0 ? "phos" : "dim"} className="justify-center px-1">
-                    {callsign(c.teamId)}
-                  </Tag>
-                  <span className="min-w-0 truncate font-mono text-[11px] tracking-wide text-dim uppercase">
-                    W{c.week} v {c.opp} · {c.result}
+        <Card title="Luck meter" action="Points rank vs record">
+          <ol className="grid gap-2.5">
+            {intel.luckIndex.map((l) => {
+              const pct = (Math.min(LUCK_SPAN, Math.abs(l.luckDelta)) / LUCK_SPAN) * 50;
+              const s = getStanding(l.teamId);
+              return (
+                <li key={l.teamId} className="grid grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)_2rem] items-center gap-2">
+                  <span className="min-w-0">
+                    <span className="block truncate text-sm font-semibold text-navy">{s?.teamName ?? l.team}</span>
+                    <span className="block text-[11px] text-slate-500">
+                      {l.record} · PF #{l.pfRank} · record #{l.winRank}
+                    </span>
                   </span>
-                  <span className={cn("font-mono text-lg tabular-nums", i === 0 ? "text-phos glow-phos" : "text-zinc-100")}>
-                    {c.pf.toFixed(2)}
+                  <span className="relative h-3 rounded-full bg-slate-100" aria-hidden>
+                    <span className="absolute inset-y-0 left-1/2 w-px bg-slate-300" />
+                    {l.luckDelta !== 0 && (
+                      <span
+                        className={cn("absolute inset-y-0 rounded-full", l.luckDelta > 0 ? "left-1/2 bg-gold" : "right-1/2 bg-sky-500")}
+                        style={{ width: `${pct}%` }}
+                      />
+                    )}
                   </span>
+                  <span
+                    className={cn(
+                      "text-right font-display text-lg font-bold tabular-nums",
+                      l.luckDelta > 0 ? "text-amber-700" : l.luckDelta < 0 ? "text-sky-700" : "text-slate-400",
+                    )}
+                  >
+                    {l.luckDelta > 0 ? `+${l.luckDelta}` : l.luckDelta < 0 ? `−${-l.luckDelta}` : "0"}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+          <p className="mt-4 border-t border-line pt-3 text-xs leading-relaxed text-slate-500">
+            Points-for rank minus record rank. <span className="font-semibold text-amber-700">Gold</span>: record is ahead of the scoring.{" "}
+            <span className="font-semibold text-sky-700">Blue</span>: scoring is ahead of the record, so they&apos;re due if luck evens out.
+          </p>
+        </Card>
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-2">
+        <Card title="Points for" action="Season total">
+          <BarList rows={byPf.map((s) => ({ id: s.teamId, name: s.teamName, value: s.pointsFor }))} min={pfMin} max={pfMax} />
+        </Card>
+        <Card title="Toughest schedules" action="Points against">
+          <BarList rows={byPa.map((s) => ({ id: s.teamId, name: s.teamName, value: s.pointsAgainst }))} min={paMin} max={paMax} muted />
+          <p className="mt-3 text-xs leading-relaxed text-slate-500">
+            Points scored against each team. {byPa[0].teamName} has faced the most ({byPa[0].pointsAgainst.toFixed(1)}),{" "}
+            {byPa[byPa.length - 1].teamName} the fewest ({byPa[byPa.length - 1].pointsAgainst.toFixed(1)}).
+          </p>
+        </Card>
+      </div>
+
+      <SectionHeading title="Record book" action={`Weeks 1–${week - 1}`} />
+      <p className="-mt-3 text-xs leading-relaxed text-slate-500">Covers {coverage}</p>
+      <div className="grid gap-5 lg:grid-cols-3">
+        <Card title="High scores">
+          <ol className="divide-y divide-line">
+            {scores.slice(0, 6).map((s, i) => (
+              <li key={`${s.week}-${s.name}`} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
+                <span className={cn("w-5 font-display text-lg font-bold", i === 0 ? "text-gold" : "text-slate-300")}>{i + 1}</span>
+                <TeamAvatar teamId={s.teamId} size="sm" />
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold text-navy">{s.name}</span>
+                  <span className="flex items-center gap-1.5 text-xs text-slate-500">
+                    <ResultChip result={s.won ? "W" : "L"} className="size-4 text-[10px]" /> Wk {s.week} vs {s.vs.name}
+                  </span>
+                </span>
+                <span className="font-display text-xl font-bold text-navy tabular-nums">{s.score.toFixed(2)}</span>
+              </li>
+            ))}
+          </ol>
+        </Card>
+
+        <Card title="Closest games">
+          <ol className="divide-y divide-line">
+            {closest.map((g) => (
+              <li key={`${g.week}-${g.winner.name}`} className="py-2.5 first:pt-0 last:pb-0">
+                <p className="flex items-center justify-between text-xs font-semibold text-slate-500">
+                  <span>Week {g.week}</span>
+                  <Pill tone="gold">by {g.margin.toFixed(2)}</Pill>
+                </p>
+                <GameLine side={g.winner} won />
+                <GameLine side={g.loser} />
+              </li>
+            ))}
+          </ol>
+        </Card>
+
+        <div className="grid content-start gap-5">
+          <Card title="Bad beats" action="Most points in a loss">
+            <ol className="divide-y divide-line">
+              {badBeats.map((g) => (
+                <li key={`${g.week}-${g.loser.name}`} className="py-2.5 text-sm leading-snug text-slate-700 first:pt-0 last:pb-0">
+                  <span className="font-semibold text-navy">{g.loser.name}</span> scored{" "}
+                  <span className="font-display text-base font-bold text-loss tabular-nums">{g.loser.score.toFixed(2)}</span> in week {g.week} and still lost to{" "}
+                  {g.winner.name} ({g.winner.score.toFixed(2)}).
                 </li>
               ))}
             </ol>
-            <p className="mt-3 font-mono text-[10.5px] tracking-wide text-faint">
-              Across the {intel.franchises.map((f) => callsign(f.teamId)).join(", ")} weekly trails, weeks 1–{intel.league.week - 1}.
-            </p>
-          </Frame>
-
-          <Frame label="Threat board" code="THR" meta="Power order" tone="sig">
-            <ol className="grid gap-3">
-              {snapshot.insights.power.map((p, i) => {
-                const id = teamIdByName(p.team);
-                const s = id ? getStanding(id) : undefined;
-                const luck = id ? getLuck(id) : undefined;
-                const board = id ? boardForTeam(id) : undefined;
+          </Card>
+          <Card title="Close-game records" action={`Decided by <${CLOSE_GAME_MARGIN}`}>
+            <ul className="grid gap-2">
+              {intel.franchises.map((f) => {
+                const r = closeGameRecord(f);
                 return (
-                  <li key={p.team} className="grid grid-cols-[2rem_minmax(0,1fr)] gap-2.5">
-                    <span className={cn("font-display text-3xl leading-none font-bold", i === 0 ? "text-sig glow-sig" : "text-faint")}>
-                      {i + 1}
+                  <li key={f.teamId} className="flex items-center gap-2.5 text-sm">
+                    <TeamAvatar teamId={f.teamId} size="sm" />
+                    <span className="min-w-0 flex-1 truncate font-medium text-navy">{getStanding(f.teamId)?.teamName ?? f.name}</span>
+                    <span className="font-display text-lg font-bold text-navy tabular-nums">
+                      {r.wins}-{r.losses}
                     </span>
-                    <div className="min-w-0">
-                      <p className="font-display text-lg leading-tight font-semibold tracking-wide text-zinc-50 uppercase">
-                        {board ? (
-                          <Link href={board.path} className="underline decoration-sig/50 underline-offset-4">
-                            <DisplayName text={p.team} />
-                          </Link>
-                        ) : (
-                          <DisplayName text={p.team} />
-                        )}
-                      </p>
-                      <p className="mt-0.5 text-sm leading-snug text-zinc-400">{p.why}</p>
-                      <div className="mt-1.5 flex flex-wrap gap-1.5">
-                        {s && <Tag>{formatRecord(s)}</Tag>}
-                        {s && <Tag>Seed {s.playoffSeed}</Tag>}
-                        {luck && <LuckChip row={luck} />}
-                      </div>
-                    </div>
                   </li>
                 );
               })}
-            </ol>
-          </Frame>
+            </ul>
+          </Card>
         </div>
       </div>
 
-      <Rule label="Signatures // tracked franchises" right="2026 trail" />
-      <ul className="grid gap-3 sm:grid-cols-2">
-        {intel.franchises.map((f, i) => {
+      <SectionHeading title="Team trends" />
+      <Card title="Boom or bust" action="Weekly low → high">
+        <ul className="grid gap-4">
+          {swings.map(({ f, s }, i) => {
+            const { min: lo, max: hi } = TRAIL_RANGE;
+            const pos = (v: number) => `${((v - lo) / (hi - lo)) * 100}%`;
+            return (
+              <li key={f.teamId}>
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="flex min-w-0 items-center gap-2">
+                    <TeamAvatar teamId={f.teamId} size="sm" />
+                    <span className="truncate text-sm font-semibold text-navy">{getStanding(f.teamId)?.teamName ?? f.name}</span>
+                  </span>
+                  <span className="shrink-0 text-xs text-slate-500">
+                    {i === 0 ? (
+                      <Pill tone="gold">Most volatile</Pill>
+                    ) : i === swings.length - 1 ? (
+                      <Pill tone="turf">Steadiest</Pill>
+                    ) : (
+                      `±${s.stdDev.toFixed(1)}`
+                    )}
+                  </span>
+                </div>
+                <div className="relative mt-2 h-3 rounded-full bg-slate-100" role="img" aria-label={`Low ${s.low.pf.toFixed(1)}, median ${s.median.toFixed(1)}, high ${s.high.pf.toFixed(1)}`}>
+                  <span
+                    className="absolute inset-y-0 rounded-full opacity-30"
+                    style={{ left: pos(s.low.pf), right: `calc(100% - ${pos(s.high.pf)})`, background: teamColor(f.teamId) }}
+                  />
+                  <span className="absolute -inset-y-0.5 w-1 -translate-x-1/2 rounded-full" style={{ left: pos(s.median), background: teamColor(f.teamId) }} />
+                </div>
+                <div className="mt-1 flex justify-between text-[11px] text-slate-500 tabular-nums">
+                  <span>Low {s.low.pf.toFixed(1)}</span>
+                  <span>Median {s.median.toFixed(1)}</span>
+                  <span>High {s.high.pf.toFixed(1)}</span>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </Card>
+
+      <ul className="grid gap-5 sm:grid-cols-2">
+        {intel.franchises.map((f) => {
           const st = trailStats(f);
+          const last3 = f.weekly2026.slice(-3);
+          const last3Avg = last3.reduce((a, b) => a + b.pf, 0) / last3.length;
           const board = boardInvolving(f.teamId);
-          const tone = i % 2 ? "sig" : "phos";
+          const name = getStanding(f.teamId)?.teamName ?? f.name;
           return (
-            <Frame key={f.teamId} as="li" label={f.name} code={callsign(f.teamId)} meta={f.ownerLabel} tone={tone}>
-              <div className="flex items-center justify-between gap-3">
-                <MiniTrail franchise={f} tone={tone} className="h-10 w-36" />
-                <dl className="grid grid-cols-2 gap-x-4 gap-y-0.5 font-mono text-[10.5px] tracking-wider uppercase">
-                  <dt className="text-faint">Rec</dt>
-                  <dd className="text-right text-zinc-200 tabular-nums">{st.record}</dd>
-                  <dt className="text-faint">Med</dt>
-                  <dd className="text-right text-zinc-200 tabular-nums">{st.median.toFixed(1)}</dd>
-                  <dt className="text-faint">High</dt>
-                  <dd className={cn("text-right tabular-nums", tone === "phos" ? "text-phos" : "text-sig")}>{st.high.pf.toFixed(1)}</dd>
-                </dl>
+            <Card key={f.teamId} as="li" accent={teamColor(f.teamId)}>
+              <div className="flex items-start gap-3">
+                <TeamAvatar teamId={f.teamId} />
+                <div className="min-w-0 flex-1">
+                  <p className="leading-tight font-semibold break-words text-navy">{name}</p>
+                  <p className="text-xs text-slate-500">
+                    {f.ownerLabel} · {st.record}
+                  </p>
+                </div>
+                <MiniTrail franchise={f} />
               </div>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-300">{f.signature}</p>
+              <div className="mt-3 grid grid-cols-3 gap-2 rounded-xl bg-slate-50 p-2.5 text-center ring-1 ring-slate-100">
+                <MiniStat label="Avg" value={st.avg.toFixed(1)} />
+                <MiniStat label="Last 3" value={last3Avg.toFixed(1)} tone={last3Avg > st.avg ? "up" : "down"} />
+                <MiniStat label="Best" value={st.high.pf.toFixed(1)} />
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-slate-700">{f.signature}</p>
               {board && (
-                <Link href={board.path} className="mt-2 inline-block font-mono text-[10.5px] tracking-[0.16em] text-dim uppercase hover:text-zinc-100">
-                  Op board ▸
+                <Link href={board.path} className="mt-2 inline-block text-sm font-semibold text-turf hover:underline">
+                  Week {week} matchup →
                 </Link>
               )}
-            </Frame>
+            </Card>
           );
         })}
       </ul>
 
-      <p className="font-mono text-[10px] tracking-wider text-faint uppercase">{snapshot.displayNote}</p>
+      <p className="text-xs text-slate-500">{snapshot.displayNote}</p>
     </>
+  );
+}
+
+function BarList({ rows, min, max, muted }: { rows: { id: number; name: string; value: number }[]; min: number; max: number; muted?: boolean }) {
+  return (
+    <ol className="grid gap-2">
+      {rows.map((r, i) => (
+        <li key={r.id}>
+          <div className="flex items-baseline justify-between gap-2 text-sm">
+            <span className="min-w-0 truncate text-slate-700">
+              <span className="mr-2 font-display font-bold text-slate-400">{i + 1}</span>
+              {r.name}
+            </span>
+            <span className="shrink-0 font-display text-base font-bold text-navy tabular-nums">{r.value.toFixed(1)}</span>
+          </div>
+          <div className="mt-1 h-2 overflow-hidden rounded-full bg-slate-100" aria-hidden>
+            <div
+              className="h-full rounded-full"
+              style={{ width: `${((r.value - min) / (max - min)) * 100}%`, background: muted ? "#94a3b8" : teamColor(r.id) }}
+            />
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
+function GameLine({ side, won }: { side: { name: string; teamId?: number; score: number }; won?: boolean }) {
+  return (
+    <p className="mt-1 flex items-center gap-2 text-sm">
+      <TeamAvatar teamId={side.teamId} size="sm" className="size-5 text-[8px]" />
+      <span className={cn("min-w-0 flex-1 truncate", won ? "font-semibold text-navy" : "text-slate-500")}>{side.name}</span>
+      <span className={cn("font-display text-base font-bold tabular-nums", won ? "text-navy" : "text-slate-400")}>{side.score.toFixed(2)}</span>
+    </p>
+  );
+}
+
+function MiniStat({ label, value, tone }: { label: string; value: string; tone?: "up" | "down" }) {
+  return (
+    <div>
+      <p className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">{label}</p>
+      <p className={cn("font-display text-lg leading-tight font-bold tabular-nums", tone === "up" ? "text-turf" : tone === "down" ? "text-loss" : "text-navy")}>
+        {value}
+      </p>
+    </div>
   );
 }

@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Fragment } from "react";
 import Link from "next/link";
-import { LuckChip, PageHead } from "@/components/league/hud";
+import { Card, LuckBadge, PageHeader, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
-import { callsign, getLuck } from "@/lib/intel";
+import { getLuck } from "@/lib/intel";
 import { boardForTeam, formatRecord, PLAYOFF_SEEDS, snapshot } from "@/lib/league";
 
 export const metadata: Metadata = {
   title: "Standings",
-  description: "Chicken league standings after week 7: record, points for and against, luck index, playoff seed.",
+  description: "Chicken league standings after week 7: record, points for and against, luck, playoff seed.",
 };
 
 /** Mirrors the header cells so full-width rows don't make hidden columns reserve space. */
@@ -16,38 +16,29 @@ const COLUMN_VISIBILITY = ["", "", "", "sm:hidden", "hidden sm:table-cell", "hid
 
 export default function StandingsPage() {
   const rows = [...snapshot.standings].sort((a, b) => a.rank - b.rank);
-  const maxPf = Math.max(...rows.map((r) => r.pointsFor));
-  const minPf = Math.min(...rows.map((r) => r.pointsFor));
 
   return (
     <>
-      <PageHead
-        code={`TBL // ${snapshot.league.name} ${snapshot.league.season} · after wk ${snapshot.league.week - 1}`}
-        title="Standings"
-        kicker={
-          <>
-            Top {PLAYOFF_SEEDS} seeds make the playoffs. The luck column compares scoring rank to record rank:{" "}
-            <span className="font-mono text-xs text-phos">HOT</span> means the record is ahead of the points,{" "}
-            <span className="font-mono text-xs text-sig">DUE</span> means the points are ahead of the record.
-          </>
-        }
-      />
+      <PageHeader eyebrow={`${snapshot.league.season} season · after week ${snapshot.league.week - 1}`} title="Standings">
+        <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
+          Top {PLAYOFF_SEEDS} make the playoffs. <span className="font-semibold text-amber-800">Lucky (+)</span> teams have a better record than their
+          points rank; <span className="font-semibold text-sky-800">unlucky (−)</span> teams have scored better than their record shows.
+        </p>
+      </PageHeader>
 
-      <div className="hud-corners border border-white/[0.07] bg-panel/85">
+      <Card bodyClassName="p-0 sm:p-0">
         <table className="w-full table-fixed border-collapse text-left">
           <thead>
-            <tr className="border-b border-white/10 font-mono text-[10px] tracking-[0.16em] text-dim uppercase">
-              <th scope="col" className="w-9 py-2.5 pl-3 font-normal sm:w-12">#</th>
-              <th scope="col" className="py-2.5 font-normal">Team</th>
-              <th scope="col" className="w-10 py-2.5 text-right font-normal sm:w-14">W-L</th>
-              <th scope="col" className="w-16 py-2.5 text-right font-normal sm:hidden">
-                PF<span className="text-faint">/PA</span>
-              </th>
-              <th scope="col" className="hidden w-20 py-2.5 text-right font-normal sm:table-cell">PF</th>
-              <th scope="col" className="hidden w-20 py-2.5 text-right font-normal sm:table-cell">PA</th>
-              <th scope="col" className="hidden w-18 py-2.5 text-right font-normal md:table-cell">Diff</th>
-              <th scope="col" className="hidden w-24 py-2.5 text-right font-normal md:table-cell">PF# / W#</th>
-              <th scope="col" className="w-17 py-2.5 pr-3 text-right font-normal sm:w-24">Luck</th>
+            <tr className="border-b border-line bg-slate-50 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
+              <th scope="col" className="w-10 py-2.5 pl-3 sm:w-12 sm:pl-4">#</th>
+              <th scope="col" className="py-2.5">Team</th>
+              <th scope="col" className="w-11 py-2.5 text-right sm:w-14">W-L</th>
+              <th scope="col" className="w-16 py-2.5 text-right sm:hidden">PF/PA</th>
+              <th scope="col" className="hidden w-20 py-2.5 text-right sm:table-cell">PF</th>
+              <th scope="col" className="hidden w-20 py-2.5 text-right sm:table-cell">PA</th>
+              <th scope="col" className="hidden w-18 py-2.5 text-right md:table-cell">Diff</th>
+              <th scope="col" className="hidden w-20 py-2.5 text-right md:table-cell">PF rank</th>
+              <th scope="col" className="w-16 py-2.5 pr-3 text-right sm:w-28 sm:pr-4">Luck</th>
             </tr>
           </thead>
           <tbody>
@@ -56,106 +47,76 @@ export default function StandingsPage() {
               const luck = getLuck(r.teamId);
               const diff = r.pointsFor - r.pointsAgainst;
               const inPlayoffs = r.playoffSeed <= PLAYOFF_SEEDS;
-              const cutLine = r.playoffSeed === PLAYOFF_SEEDS;
               return (
                 <Fragment key={r.teamId}>
-                <tr
-                  className={cn(
-                    "border-b border-white/[0.05] last:border-0",
-                    board && "bg-phos/[0.05]",
-                    !inPlayoffs && "text-zinc-500",
-                  )}
-                >
-                  <td className="py-3 pl-3 align-top">
-                    <span
-                      className={cn(
-                        "inline-flex size-6 items-center justify-center font-mono text-xs font-semibold ring-1 ring-inset",
-                        inPlayoffs ? "text-phos ring-phos/40" : "text-faint ring-white/10",
-                      )}
-                    >
-                      {r.rank}
-                    </span>
-                  </td>
-                  <td className="py-3 pr-2 align-top">
-                    {board ? (
-                      <Link href={board.path} className="block leading-tight font-medium text-zinc-50 underline decoration-phos/50 underline-offset-4">
-                        {r.teamName}
-                      </Link>
-                    ) : (
-                      <span className={cn("block leading-tight font-medium", inPlayoffs ? "text-zinc-100" : "text-zinc-400")}>{r.teamName}</span>
-                    )}
-                    <span className="mt-1 flex items-center gap-2 font-mono text-[10px] tracking-wider whitespace-nowrap text-faint uppercase">
-                      {callsign(r.teamId)} · S{r.playoffSeed}
-                      <span className={cn("md:hidden", diff >= 0 ? "text-phos/80" : "text-sig/80")}>
-                        {diff >= 0 ? "+" : "−"}
-                        {Math.abs(diff).toFixed(1)}
-                      </span>
-                    </span>
-                    <span className="mt-1.5 block h-0.5 bg-white/[0.06]" aria-hidden>
+                  <tr className={cn("border-b border-line last:border-0", board && "bg-turf-light/40")}>
+                    <td className="py-3 pl-3 align-middle sm:pl-4">
                       <span
-                        className={cn("block h-full", inPlayoffs ? "bg-phos/70" : "bg-white/20")}
-                        style={{ width: `${8 + ((r.pointsFor - minPf) / (maxPf - minPf)) * 92}%` }}
-                      />
-                    </span>
-                  </td>
-                  <td className="py-3 text-right align-top font-mono text-sm font-medium text-zinc-100 tabular-nums">{formatRecord(r)}</td>
-                  <td className="py-3 text-right align-top font-mono text-[13px] leading-tight tabular-nums sm:hidden">
-                    <span className="block text-zinc-200">{r.pointsFor.toFixed(1)}</span>
-                    <span className="block text-[11px] text-faint">{r.pointsAgainst.toFixed(1)}</span>
-                  </td>
-                  <td className="hidden py-3 text-right align-top font-mono text-sm text-zinc-200 tabular-nums sm:table-cell">{r.pointsFor.toFixed(1)}</td>
-                  <td className="hidden py-3 text-right align-top font-mono text-sm text-dim tabular-nums sm:table-cell">{r.pointsAgainst.toFixed(1)}</td>
-                  <td
-                    className={cn(
-                      "hidden py-3 text-right align-top font-mono text-sm tabular-nums md:table-cell",
-                      diff >= 0 ? "text-phos" : "text-sig",
-                    )}
-                  >
-                    {diff >= 0 ? "+" : "−"}
-                    {Math.abs(diff).toFixed(1)}
-                  </td>
-                  <td className="hidden py-3 text-right align-top font-mono text-sm text-zinc-300 tabular-nums md:table-cell">
-                    {luck ? (
-                      <>
-                        {luck.pfRank}
-                        <span className="text-faint"> / </span>
-                        {luck.winRank}
-                      </>
-                    ) : (
-                      "—"
-                    )}
-                  </td>
-                  <td className="py-3 pr-3 text-right align-top">{luck && <LuckChip row={luck} />}</td>
-                </tr>
-                {cutLine && (
-                  <tr className="bg-hot/[0.06]">
-                    {COLUMN_VISIBILITY.map((vis, i) => (
-                      <td key={i} className={cn("border-y border-hot/60 py-1", vis, i === 0 && "pl-3")}>
-                        {i === 1 && (
-                          <span className="font-mono text-[9.5px] tracking-[0.22em] whitespace-nowrap text-hot uppercase">
-                            ▲ Playoff cut · {PLAYOFF_SEEDS + 1}–{rows.length} out
-                          </span>
+                        className={cn(
+                          "inline-flex size-7 items-center justify-center rounded-full font-display text-sm font-bold",
+                          inPlayoffs ? "bg-turf text-white" : "bg-slate-100 text-slate-500",
                         )}
-                      </td>
-                    ))}
+                      >
+                        {r.rank}
+                      </span>
+                    </td>
+                    <td className="py-3 pr-2 align-middle">
+                      <span className="flex min-w-0 items-center gap-2.5">
+                        <TeamAvatar teamId={r.teamId} size="sm" className="hidden sm:inline-flex" />
+                        <span className="min-w-0">
+                          {board ? (
+                            <Link href={board.path} className="block leading-tight font-semibold break-words text-navy underline decoration-turf/40 underline-offset-4">
+                              {r.teamName}
+                            </Link>
+                          ) : (
+                            <span className="block leading-tight font-semibold break-words text-navy">{r.teamName}</span>
+                          )}
+                          <span className={cn("text-xs md:hidden", diff >= 0 ? "text-turf" : "text-loss")}>
+                            {diff >= 0 ? "+" : "−"}
+                            {Math.abs(diff).toFixed(1)} diff
+                          </span>
+                        </span>
+                      </span>
+                    </td>
+                    <td className="py-3 text-right align-middle font-display text-lg font-bold text-navy tabular-nums">{formatRecord(r)}</td>
+                    <td className="py-3 text-right align-middle text-sm leading-tight tabular-nums sm:hidden">
+                      <span className="block font-semibold text-navy">{r.pointsFor.toFixed(1)}</span>
+                      <span className="block text-xs text-slate-500">{r.pointsAgainst.toFixed(1)}</span>
+                    </td>
+                    <td className="hidden py-3 text-right align-middle font-semibold text-navy tabular-nums sm:table-cell">{r.pointsFor.toFixed(1)}</td>
+                    <td className="hidden py-3 text-right align-middle text-slate-500 tabular-nums sm:table-cell">{r.pointsAgainst.toFixed(1)}</td>
+                    <td className={cn("hidden py-3 text-right align-middle font-semibold tabular-nums md:table-cell", diff >= 0 ? "text-turf" : "text-loss")}>
+                      {diff >= 0 ? "+" : "−"}
+                      {Math.abs(diff).toFixed(1)}
+                    </td>
+                    <td className="hidden py-3 text-right align-middle text-slate-600 tabular-nums md:table-cell">{luck ? `#${luck.pfRank}` : "—"}</td>
+                    <td className="py-3 pr-3 text-right align-middle sm:pr-4">{luck && <LuckBadge row={luck} compact />}</td>
                   </tr>
-                )}
+                  {r.playoffSeed === PLAYOFF_SEEDS && (
+                    <tr>
+                      {COLUMN_VISIBILITY.map((vis, i) => (
+                        <td key={i} className={cn("border-y-2 border-dashed border-loss/50 bg-red-50/60 py-1", vis, i === 0 && "pl-3 sm:pl-4")}>
+                          {i === 1 && <span className="text-[11px] font-bold tracking-wider whitespace-nowrap text-red-700 uppercase">Playoff line</span>}
+                        </td>
+                      ))}
+                    </tr>
+                  )}
                 </Fragment>
               );
             })}
           </tbody>
         </table>
-      </div>
+      </Card>
 
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-[10.5px] tracking-wider text-dim uppercase">
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500">
         <span className="flex items-center gap-2">
-          <span className="inline-block h-0.5 w-6 bg-hot" /> Playoff cut after seed {PLAYOFF_SEEDS}
+          <span className="inline-block size-3 rounded-full bg-turf" /> Playoff spot
         </span>
         <span className="flex items-center gap-2">
-          <span className="inline-block size-2.5 bg-phos/30" /> Op boards
+          <span className="inline-block size-3 rounded bg-turf-light" /> Featured teams
         </span>
-        <Link href="/insights" className="text-sig hover:underline">
-          Luck index detail ▸
+        <Link href="/insights" className="font-semibold text-turf hover:underline">
+          Luck & points-for breakdown →
         </Link>
       </div>
     </>

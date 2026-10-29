@@ -27,10 +27,10 @@ export function TvModeButton() {
     <button
       type="button"
       onClick={toggle}
-      className="hidden h-9 shrink-0 items-center gap-2 px-3 font-mono text-[11px] tracking-[0.18em] text-dim uppercase ring-1 ring-white/15 ring-inset transition-colors hover:bg-phos/10 hover:text-phos hover:ring-phos/40 lg:inline-flex"
+      className="hidden h-9 shrink-0 items-center gap-2 rounded-full bg-white px-3.5 text-sm font-semibold text-navy shadow-sm ring-1 ring-line transition-colors hover:bg-slate-50 lg:inline-flex"
     >
       {isFull ? <Minimize className="size-3.5" /> : <Maximize className="size-3.5" />}
-      {isFull ? "Exit wall mode" : "Wall mode"}
+      {isFull ? "Exit TV mode" : "TV mode"}
     </button>
   );
 }

@@ -1,56 +1,47 @@
 import type { Metadata, Viewport } from "next";
-import { Chakra_Petch, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 
-const plexSans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+const barlow = Barlow({
+  variable: "--font-barlow",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
+const barlowCondensed = Barlow_Condensed({
+  variable: "--font-barlow-condensed",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const chakra = Chakra_Petch({
-  variable: "--font-chakra",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fantasy-board-demo.vercel.app"),
   title: {
-    default: "Chicken Command · Week 08 Ops",
-    template: "%s · Chicken Command",
+    default: "Chicken League · Week 8",
+    template: "%s · Chicken League",
   },
   description:
-    "Chicken Command: the ops board for the Chicken league. Matchup briefs, score trails, the luck index, and the champions archive.",
+    "The Chicken fantasy football league hub: week 8 matchups, standings, power rankings, luck, high scores, and league history.",
   openGraph: {
-    title: "Chicken Command · Week 08 Ops",
-    description: "Matchup briefs, score trails, luck index, and the Chicken champions archive.",
+    title: "Chicken League · Week 8",
+    description: "Week 8 matchups, standings, insights, and the Chicken champions history.",
     url: "https://fantasy-board-demo.vercel.app",
-    siteName: "Chicken Command",
+    siteName: "Chicken League",
     type: "website",
   },
-  appleWebApp: { capable: true, title: "Chicken Cmd", statusBarStyle: "black-translucent" },
+  appleWebApp: { capable: true, title: "Chicken League", statusBarStyle: "black-translucent" },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#08090a",
+  themeColor: "#0f1e36",
   viewportFit: "cover",
-  colorScheme: "dark",
+  colorScheme: "light",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`dark ${plexSans.variable} ${plexMono.variable} ${chakra.variable} h-full antialiased`}
-    >
-      <body className="flex min-h-full flex-col bg-ink text-zinc-100">{children}</body>
+    <html lang="en" className={`${barlow.variable} ${barlowCondensed.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-field text-slate-800">{children}</body>
     </html>
   );
 }

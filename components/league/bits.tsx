@@ -1,22 +1,22 @@
 import { cn } from "@/lib/utils";
 
 const SLOT_STYLES: { [slot: string]: string } = {
-  QB: "text-phos ring-phos/35",
-  RB: "text-sig ring-sig/35",
-  WR: "text-zinc-100 ring-white/25",
-  TE: "text-amber-200 ring-amber-200/25",
-  FLEX: "text-sig/80 ring-sig/25 hatch",
-  K: "text-dim ring-white/15",
-  "D/ST": "text-dim ring-white/15",
-  Bench: "text-faint ring-white/10",
-  IR: "text-hot ring-hot/35",
+  QB: "bg-rose-50 text-rose-700",
+  RB: "bg-emerald-50 text-emerald-700",
+  WR: "bg-sky-50 text-sky-700",
+  TE: "bg-amber-50 text-amber-700",
+  FLEX: "bg-violet-50 text-violet-700",
+  K: "bg-slate-100 text-slate-600",
+  "D/ST": "bg-slate-100 text-slate-600",
+  Bench: "bg-slate-100 text-slate-500",
+  IR: "bg-red-50 text-red-700",
 };
 
 export function SlotChip({ slot, className }: { slot: string; className?: string }) {
   return (
     <span
       className={cn(
-        "inline-flex h-6 min-w-10 items-center justify-center px-1 font-mono text-[10.5px] font-semibold tracking-wider ring-1 ring-inset",
+        "inline-flex h-7 min-w-11 items-center justify-center rounded-md px-1.5 font-display text-sm font-bold",
         SLOT_STYLES[slot] ?? SLOT_STYLES.Bench,
         className,
       )}
@@ -26,22 +26,18 @@ export function SlotChip({ slot, className }: { slot: string; className?: string
   );
 }
 
-const STATUS: { [status: string]: { label: string; tone: string } } = {
-  Questionable: { label: "Q", tone: "bg-phos/15 text-phos ring-phos/40" },
-  Doubtful: { label: "D", tone: "bg-hot/15 text-hot ring-hot/40" },
-  Out: { label: "OUT", tone: "bg-hot/15 text-hot ring-hot/40" },
-  IR: { label: "IR", tone: "bg-hot/15 text-hot ring-hot/40" },
+const STATUS: { [status: string]: string } = {
+  Questionable: "Q",
+  Doubtful: "D",
+  Out: "O",
+  IR: "IR",
 };
 
 export function StatusChip({ status }: { status?: string }) {
   if (!status || status === "Active") return null;
-  const s = STATUS[status] ?? { label: status, tone: "bg-white/5 text-zinc-300 ring-white/20" };
   return (
-    <span
-      title={status}
-      className={cn("inline-flex h-4 shrink-0 items-center px-1 font-mono text-[9.5px] font-semibold tracking-wider ring-1 ring-inset", s.tone)}
-    >
-      {s.label}
+    <span title={status} className="shrink-0 text-xs font-bold text-loss">
+      {STATUS[status] ?? status}
     </span>
   );
 }

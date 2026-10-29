@@ -5,7 +5,7 @@ import { getBoard } from "@/lib/league";
 
 export const metadata: Metadata = {
   title: "Bibi's Boys",
-  description: "Op 08: Bibi's Boys vs Chewy's Warriors. Matchup brief, projection readout, score trail, and lineups.",
+  description: "Week 8: Bibi's Boys vs Chewy's Warriors. Matchup preview, tale of the tape, weekly scoring, and lineups.",
 };
 
 export default function BibisPage() {

@@ -7,23 +7,24 @@
 @theme {
   --breakpoint-tv: 160rem;
 
-  /* Chicken Command console palette */
-  --color-ink: #08090a;
-  --color-panel: #0e1110;
-  --color-panel-2: #131716;
-  --color-phos: #ffb238;
-  --color-sig: #3fe0cf;
-  --color-hot: #ff5a36;
-  --color-dim: #7f8984;
-  --color-faint: #4a524e;
+  /* Chicken League fantasy palette */
+  --color-navy: #0f1e36;
+  --color-navy-2: #18304f;
+  --color-turf: #15803d;
+  --color-turf-dark: #166534;
+  --color-turf-light: #dcfce7;
+  --color-gold: #d99a06;
+  --color-gold-light: #fef3c7;
+  --color-field: #f2f4f0;
+  --color-line: #e2e7e1;
+  --color-loss: #dc2626;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-plex-sans);
-  --font-display: var(--font-chakra);
-  --font-mono: var(--font-plex-mono);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-barlow-condensed);
   --font-heading: var(--font-display);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -70,8 +71,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: #15803d;
+  --primary-foreground: #ffffff;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -87,7 +88,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.25rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -142,136 +143,17 @@
   html {
     @apply font-sans;
   }
-  /* Team names mix 0 and O; slashed zeros keep them unambiguous in every readout. */
-  .font-mono {
-    font-feature-settings: "zero" 1;
-  }
 }
 
-/* Faint plotting grid + vignette behind every console page. */
-@utility bg-console {
-  background-color: var(--color-ink);
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, color-mix(in oklab, var(--color-phos) 9%, transparent), transparent 70%),
-    radial-gradient(ellipse 60% 40% at 100% 100%, color-mix(in oklab, var(--color-sig) 6%, transparent), transparent 70%),
-    linear-gradient(color-mix(in oklab, white 3.5%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in oklab, white 3.5%, transparent) 1px, transparent 1px);
-  background-size:
-    100% 100%,
-    100% 100%,
-    28px 28px,
-    28px 28px;
-  background-attachment: fixed;
-}
-
-/* CRT scanlines, layered above content but never interactive. */
-@utility scanlines {
-  pointer-events: none;
+/* Subtle yard-line stripes behind the app header. */
+@utility yard-lines {
   background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 2px,
-    color-mix(in oklab, black 22%, transparent) 3px
+    90deg,
+    color-mix(in oklab, white 7%, transparent) 0 1px,
+    transparent 1px 48px
   );
-  mix-blend-mode: multiply;
-}
-
-/* Corner brackets. Set --hud-c (color) and --hud-l (arm length) to tune. */
-@utility hud-corners {
-  --hud-c: color-mix(in oklab, var(--color-phos) 55%, transparent);
-  --hud-l: 10px;
-  background-image:
-    linear-gradient(var(--hud-c), var(--hud-c)), linear-gradient(var(--hud-c), var(--hud-c)),
-    linear-gradient(var(--hud-c), var(--hud-c)), linear-gradient(var(--hud-c), var(--hud-c)),
-    linear-gradient(var(--hud-c), var(--hud-c)), linear-gradient(var(--hud-c), var(--hud-c)),
-    linear-gradient(var(--hud-c), var(--hud-c)), linear-gradient(var(--hud-c), var(--hud-c));
-  background-repeat: no-repeat;
-  background-size:
-    var(--hud-l) 1px, 1px var(--hud-l),
-    var(--hud-l) 1px, 1px var(--hud-l),
-    var(--hud-l) 1px, 1px var(--hud-l),
-    var(--hud-l) 1px, 1px var(--hud-l);
-  background-position:
-    top left, top left,
-    top right, top right,
-    bottom left, bottom left,
-    bottom right, bottom right;
-}
-
-@utility hud-corners-sig {
-  --hud-c: color-mix(in oklab, var(--color-sig) 55%, transparent);
-}
-
-@utility hud-corners-dim {
-  --hud-c: color-mix(in oklab, white 22%, transparent);
-}
-
-@utility glow-phos {
-  text-shadow:
-    0 0 12px color-mix(in oklab, var(--color-phos) 45%, transparent),
-    0 0 2px color-mix(in oklab, var(--color-phos) 60%, transparent);
-}
-
-@utility glow-sig {
-  text-shadow:
-    0 0 12px color-mix(in oklab, var(--color-sig) 40%, transparent),
-    0 0 2px color-mix(in oklab, var(--color-sig) 55%, transparent);
-}
-
-@utility hatch {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    color-mix(in oklab, white 6%, transparent) 0 1px,
-    transparent 1px 6px
-  );
-}
-
-@keyframes radar-sweep {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@utility animate-radar {
-  animation: radar-sweep 4.5s linear infinite;
-}
-
-@keyframes blink {
-  0%,
-  55% {
-    opacity: 1;
-  }
-  56%,
-  100% {
-    opacity: 0.15;
-  }
-}
-
-@utility animate-blink {
-  animation: blink 1.6s steps(1, end) infinite;
-}
-
-@keyframes ticker {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@utility animate-ticker {
-  animation: ticker 60s linear infinite;
 }
 
 html[data-tv] .app-chrome {
   display: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-ticker,
-  .animate-radar,
-  .animate-blink {
-    animation: none;
-  }
 }

@@ -7,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function LivePage() {
-  return <FantasyBoard />;
+  return (
+    <div className="dark flex min-h-dvh flex-col bg-[#07090d] text-zinc-100">
+      <FantasyBoard />
+    </div>
+  );
 }

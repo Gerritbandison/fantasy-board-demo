@@ -1,223 +1,212 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DisplayName, Frame, PageHead, Rule, Tag } from "@/components/league/hud";
+import { Medal, Trophy } from "lucide-react";
+import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { MiniTrail } from "@/components/league/trail";
 import { cn } from "@/lib/utils";
-import {
-  archiveHits,
-  callsign,
-  championSeeds,
-  intel,
-  teamIdByName,
-  titleBoard,
-  trailStats,
-  type ArchiveRole,
-} from "@/lib/intel";
-import { boardInvolving } from "@/lib/league";
+import { archiveHits, championSeeds, displayName, intel, teamColor, teamIdByName, titleBoard, trailStats, type ArchiveRole } from "@/lib/intel";
+import { boardInvolving, getStanding } from "@/lib/league";
 
 export const metadata: Metadata = {
   title: "History",
-  description: "The Chicken league archive: champions 2022–2025, the all-time title board, and franchise arcs.",
+  description: "Chicken league history: champions 2022–2025, the mid-seed title pattern, the trophy case, and franchise arcs.",
 };
 
-const ROLE: { [r in ArchiveRole]: { short: string; cell: string } } = {
-  champion: { short: "CHAMP", cell: "bg-phos text-ink font-semibold" },
-  "runner-up": { short: "FINAL", cell: "bg-sig/15 text-sig ring-1 ring-inset ring-sig/40" },
-  mentioned: { short: "FILE", cell: "bg-white/[0.04] text-zinc-300 ring-1 ring-inset ring-white/15" },
+const ROLE: { [r in ArchiveRole]: { label: string; cell: string } } = {
+  champion: { label: "Champ", cell: "bg-gold text-white" },
+  "runner-up": { label: "Final", cell: "bg-slate-200 text-slate-700" },
+  mentioned: { label: "Note", cell: "bg-sky-50 text-sky-800 ring-1 ring-inset ring-sky-200" },
 };
 
 export default function HistoryPage() {
   const seeds = championSeeds();
   const board = titleBoard();
   const years = intel.league.seasonsOnRecord;
-  const firstChamp = Math.min(...intel.champions.map((c) => c.year));
-  const lastChamp = Math.max(...intel.champions.map((c) => c.year));
-  const midSeed = intel.leaguePulse.find((p) => /mid-seed/i.test(p.title));
+  const champYears = intel.champions.map((c) => c.year).sort((a, b) => a - b);
   const distinct = new Set(intel.champions.map((c) => c.champion)).size;
+  const midSeed = intel.leaguePulse.find((p) => /mid-seed/i.test(p.title));
+  const seedList = champYears.map((y) => seeds.get(y)).filter((s): s is number => s != null);
 
   return (
     <>
-      <PageHead
-        code={`ARC // Archive ${years[0]}–${years[years.length - 1]}`}
-        title="The Chicken record"
-        kicker={`${intel.champions.length} title games on file, ${firstChamp}–${lastChamp}. ${distinct} different champions${distinct === intel.champions.length ? ", and nobody has repeated" : ""}.`}
-      />
-
-      <ol className="grid grid-cols-7 gap-px border border-white/[0.07] bg-white/[0.07]" aria-label="Seasons on record">
-        {years.map((y) => {
-          const c = intel.champions.find((x) => x.year === y);
-          const champId = c ? teamIdByName(c.champion) : undefined;
-          const live = y === intel.league.season;
-          return (
-            <li key={y} className={cn("bg-panel px-0.5 py-2 text-center", live && "bg-phos/[0.07]")}>
-              <span className={cn("block font-mono text-[10px] tracking-wider", live ? "text-phos" : "text-dim")}>&apos;{String(y).slice(2)}</span>
-              <span
-                className={cn(
-                  "mt-0.5 block font-mono text-[10.5px] font-semibold tracking-wider",
-                  c ? "text-zinc-50" : live ? "animate-blink text-phos" : "text-faint",
-                )}
-              >
-                {c && champId ? callsign(champId) : live ? `W${String(intel.league.week).padStart(2, "0")}` : "N/F"}
-              </span>
-            </li>
-          );
-        })}
-      </ol>
-      <p className="-mt-3 font-mono text-[10px] tracking-wider text-faint uppercase">
-        Seasons on record · champion call sign · N/F = no title file · {intel.league.season} in progress
-      </p>
+      <PageHeader eyebrow={`League history · ${years[0]}–${years[years.length - 1]}`} title="Chicken history">
+        <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
+          {intel.champions.length} title games on record ({champYears[0]}–{champYears[champYears.length - 1]}), {distinct} different champions
+          {distinct === intel.champions.length ? ", and nobody has won twice" : ""}.
+        </p>
+      </PageHeader>
 
       {midSeed && (
-        <div className="border-l-2 border-sig bg-sig/[0.05] px-3 py-2.5">
-          <p className="font-mono text-[10.5px] tracking-[0.2em] text-sig uppercase">Pattern ▸ {midSeed.title}</p>
-          <p className="mt-1 text-sm leading-snug text-zinc-300">{midSeed.body}</p>
-        </div>
+        <section className="overflow-hidden rounded-2xl bg-navy yard-lines p-4 text-white shadow-lg shadow-navy/15 sm:p-5">
+          <p className="flex items-center gap-1.5 text-xs font-bold tracking-wider text-gold uppercase">
+            <Trophy className="size-3.5" /> League pattern
+          </p>
+          <p className="mt-1 font-display text-3xl leading-tight font-extrabold">{midSeed.title}</p>
+          <p className="mt-2 text-[15px] leading-relaxed text-white/80">{midSeed.body}</p>
+          {seedList.length > 0 && (
+            <ol className="mt-4 grid grid-cols-4 gap-2">
+              {champYears.map((y) => {
+                const c = intel.champions.find((x) => x.year === y)!;
+                return (
+                  <li key={y} className="rounded-xl bg-white/10 px-1 py-2 text-center ring-1 ring-white/10">
+                    <p className="text-[11px] font-semibold text-white/60">{y}</p>
+                    <p className="font-display text-2xl leading-none font-extrabold text-gold">#{seeds.get(y) ?? "?"}</p>
+                    <p className="mt-1 truncate px-1 text-[11px] text-white/80">{displayName(c.champion).split(" ")[0]}</p>
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+          <p className="mt-2 text-[11px] text-white/50">Champion&apos;s playoff seed</p>
+        </section>
       )}
 
-      <Rule label="Champions // title games" right={`${intel.champions.length} on file`} />
-      <ol className="relative grid gap-4 pl-6 before:absolute before:inset-y-2 before:left-[7px] before:w-px before:bg-gradient-to-b before:from-phos/60 before:via-white/15 before:to-transparent lg:grid-cols-2 lg:gap-5 lg:pl-0 lg:before:hidden">
+      <SectionHeading title="Title timeline" />
+      <ol className="relative grid gap-4 pl-7 before:absolute before:inset-y-3 before:left-[11px] before:w-0.5 before:rounded-full before:bg-line lg:grid-cols-2 lg:gap-5 lg:pl-0 lg:before:hidden">
         {intel.champions.map((c) => {
           const champId = teamIdByName(c.champion);
           const ruId = teamIdByName(c.runnerUp);
           const seed = seeds.get(c.year);
           return (
             <li key={c.year} className="relative">
-              <span
-                className="absolute top-4 -left-6 size-[15px] border border-phos bg-ink shadow-[0_0_10px_var(--color-phos)] lg:hidden"
-                aria-hidden
-              >
-                <span className="absolute inset-[3px] bg-phos" />
+              <span className="absolute top-5 -left-7 flex size-6 items-center justify-center rounded-full bg-gold text-white ring-4 ring-field lg:hidden" aria-hidden>
+                <Trophy className="size-3.5" />
               </span>
-              <Frame as="article" label="Title game" code={String(c.year)} meta={seed ? `Won as ${seed}-seed` : undefined}>
+              <Card as="article" accent={champId ? teamColor(champId) : undefined}>
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="font-mono text-[10px] tracking-[0.2em] text-phos uppercase">Champion</p>
-                    <p className="font-display text-2xl leading-tight font-bold tracking-wide break-words text-zinc-50 uppercase sm:text-3xl">
-                      <DisplayName text={c.champion} />
-                    </p>
-                    <p className="mt-2 font-mono text-[10px] tracking-[0.2em] text-dim uppercase">Runner-up</p>
-                    <p className="text-[15px] leading-tight text-zinc-300">{c.runnerUp}</p>
+                    <p className="font-display text-3xl leading-none font-extrabold text-navy">{c.year}</p>
+                    <p className="mt-0.5 text-xs font-semibold tracking-wider text-slate-500 uppercase">Champion{seed ? ` · ${seed} seed` : ""}</p>
                   </div>
-                  <span className="shrink-0 font-display text-5xl leading-none font-bold text-phos/15 tabular-nums select-none sm:text-6xl" aria-hidden>
-                    {String(c.year).slice(2)}
+                  <Trophy className="size-8 shrink-0 text-gold" />
+                </div>
+                <div className="mt-3 flex items-center gap-3">
+                  <TeamAvatar teamId={champId} />
+                  <p className="min-w-0 font-display text-2xl leading-tight font-bold break-words text-navy">{displayName(c.champion)}</p>
+                </div>
+                <div className="mt-2 flex items-center gap-3 text-sm text-slate-600">
+                  <TeamAvatar teamId={ruId} size="sm" className="mx-1.5" />
+                  <span className="min-w-0">
+                    <span className="text-slate-500">Runner-up: </span>
+                    <span className="font-semibold text-slate-700">{displayName(c.runnerUp)}</span>
                   </span>
                 </div>
-                <div className="mt-2 flex flex-wrap gap-1.5">
-                  {champId && <Tag tone="phos">★ {callsign(champId)}</Tag>}
-                  {ruId && <Tag tone="sig">◇ {callsign(ruId)}</Tag>}
-                </div>
-                <p className="mt-3 border-t border-dashed border-white/10 pt-3 text-sm leading-relaxed text-zinc-400">{c.note}</p>
-              </Frame>
+                <p className="mt-3 border-t border-line pt-3 text-sm leading-relaxed text-slate-600">{c.note}</p>
+              </Card>
             </li>
           );
         })}
       </ol>
 
-      <Rule label="Title board // all time on file" right="★ title · ◇ final" />
-      <Frame label="Rings & finals" code="TTL" meta={`${firstChamp}–${lastChamp}`} bodyClassName="p-0 sm:p-0">
-        <ol>
-          {board.map((r, i) => (
-            <li
-              key={r.team}
-              className="grid grid-cols-[1.5rem_minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1 border-b border-white/[0.05] px-3 py-3 last:border-0 sm:grid-cols-[1.5rem_minmax(0,14rem)_6rem_minmax(0,1fr)] sm:items-center sm:px-4"
-            >
-              <span className="pt-0.5 font-mono text-[11px] text-faint">{String(i + 1).padStart(2, "0")}</span>
-              <span className="min-w-0">
-                <span className={cn("block font-display text-lg leading-tight font-semibold tracking-wide break-words uppercase", r.titles ? "text-zinc-50" : "text-zinc-400")}>
-                  <DisplayName text={r.team} />
-                </span>
-                <span className="block font-mono text-[10px] tracking-wider text-faint uppercase">
-                  {r.titleYears.length ? `Won ${r.titleYears.join(", ")}` : "No title on file"}
-                  {r.runnerUpYears.length ? ` · RU ${r.runnerUpYears.join(", ")}` : ""}
-                </span>
-              </span>
-              <span className="flex items-center gap-1 pt-1 font-mono text-sm sm:justify-start sm:pt-0" aria-label={`${r.titles} titles, ${r.finals} finals`}>
-                {Array.from({ length: r.titles }, (_, k) => (
-                  <span key={`t${k}`} className="text-phos glow-phos">★</span>
-                ))}
-                {Array.from({ length: r.finals - r.titles }, (_, k) => (
-                  <span key={`f${k}`} className="text-sig">◇</span>
-                ))}
-                {r.finals === 0 && <span className="text-faint">—</span>}
-              </span>
-              <span className="col-span-2 col-start-2 text-sm leading-snug text-zinc-400 sm:col-span-1 sm:col-start-auto">
-                {r.note ?? (r.runnerUpYears.length > 1 ? `${r.runnerUpYears.length}× runner-up, still hunting the first ring` : "")}
-              </span>
+      <SectionHeading title="Trophy case" action={`${champYears[0]}–${champYears[champYears.length - 1]}`} />
+      <Card bodyClassName="p-0 sm:p-0">
+        <ol className="divide-y divide-line">
+          {board.map((r) => (
+            <li key={r.team} className="flex items-start gap-3 px-4 py-3 sm:px-5">
+              <TeamAvatar teamId={r.teamId} />
+              <div className="min-w-0 flex-1">
+                <p className="leading-tight font-semibold break-words text-navy">{displayName(r.team)}</p>
+                <p className="mt-0.5 text-sm leading-snug text-slate-600">
+                  {r.note ?? (r.runnerUpYears.length > 1 ? `${r.runnerUpYears.length}-time runner-up, still chasing a first title` : "")}
+                </p>
+                <div className="mt-1.5 flex flex-wrap gap-1.5">
+                  {r.titleYears.map((y) => (
+                    <Pill key={`t${y}`} tone="gold">
+                      <Trophy className="size-3" /> {y}
+                    </Pill>
+                  ))}
+                  {r.runnerUpYears.map((y) => (
+                    <Pill key={`r${y}`}>
+                      <Medal className="size-3" /> {y} final
+                    </Pill>
+                  ))}
+                </div>
+              </div>
+              <div className="shrink-0 text-right">
+                <p className={cn("font-display text-3xl leading-none font-extrabold tabular-nums", r.titles ? "text-gold" : "text-slate-300")}>{r.titles}</p>
+                <p className="text-[10px] font-semibold tracking-wider text-slate-500 uppercase">title{r.titles === 1 ? "" : "s"}</p>
+              </div>
             </li>
           ))}
         </ol>
-      </Frame>
+      </Card>
 
-      <Rule label="Franchise arcs // tracked" right={`${intel.franchises.length} files`} />
-      <ul className="grid gap-4 lg:grid-cols-2 lg:gap-5">
-        {intel.franchises.map((f, i) => {
+      <SectionHeading title="Franchise arcs" />
+      <ul className="grid gap-5 lg:grid-cols-2">
+        {intel.franchises.map((f) => {
           const hits = archiveHits(f);
           const st = trailStats(f);
           const op = boardInvolving(f.teamId);
-          const tone = i % 2 ? "sig" : "phos";
-          const span = [...intel.champions.map((c) => c.year)].sort((a, b) => a - b);
+          const name = getStanding(f.teamId)?.teamName ?? f.name;
           return (
-            <Frame key={f.teamId} as="li" label={f.name} code={callsign(f.teamId)} meta={f.ownerLabel} tone={tone}>
-              <ol className="grid grid-cols-5 gap-px bg-white/[0.06]" aria-label={`${f.name} by season`}>
-                {span.map((y) => {
+            <Card key={f.teamId} as="li" accent={teamColor(f.teamId)}>
+              <div className="flex items-start gap-3">
+                <TeamAvatar teamId={f.teamId} size="lg" />
+                <div className="min-w-0 flex-1">
+                  <p className="font-display text-2xl leading-tight font-bold break-words text-navy">{name}</p>
+                  <p className="text-sm text-slate-500">
+                    {f.ownerLabel} · {f.titles} title{f.titles === 1 ? "" : "s"} · Playoffs {f.playoffAppearancesRecent}
+                  </p>
+                </div>
+              </div>
+
+              <ol className="mt-4 grid grid-cols-5 gap-1.5" aria-label={`${name} by season`}>
+                {champYears.map((y) => {
                   const hit = hits.find((h) => h.year === y);
                   return (
-                    <li key={y} className="bg-panel p-1 text-center">
-                      <span className="block font-mono text-[9.5px] tracking-wider text-faint">{y}</span>
-                      <span
-                        className={cn(
-                          "mt-0.5 flex h-5 items-center justify-center font-mono text-[9.5px] tracking-wider",
-                          hit ? ROLE[hit.role].cell : "text-faint",
-                        )}
-                      >
-                        {hit ? ROLE[hit.role].short : "—"}
-                      </span>
+                    <li key={y} className="text-center">
+                      <p className="text-[11px] font-semibold text-slate-400">{y}</p>
+                      <p className={cn("mt-0.5 flex h-7 items-center justify-center rounded-md text-xs font-bold", hit ? ROLE[hit.role].cell : "bg-slate-50 text-slate-300")}>
+                        {hit ? ROLE[hit.role].label : "—"}
+                      </p>
                     </li>
                   );
                 })}
-                <li className="bg-phos/[0.06] p-1 text-center">
-                  <span className="block font-mono text-[9.5px] tracking-wider text-phos">{intel.league.season}</span>
-                  <span className="mt-0.5 flex h-5 items-center justify-center font-mono text-[10px] font-semibold tracking-wider text-zinc-50 tabular-nums">
+                <li className="text-center">
+                  <p className="text-[11px] font-semibold text-turf">{intel.league.season}</p>
+                  <p className="mt-0.5 flex h-7 items-center justify-center rounded-md bg-turf-light font-display text-sm font-bold text-turf-dark tabular-nums">
                     {st.record}
-                  </span>
+                  </p>
                 </li>
               </ol>
 
-              <p className="mt-3 text-[15px] leading-relaxed text-zinc-200">{f.arc}</p>
+              <p className="mt-4 text-[15px] leading-relaxed text-slate-700">{f.arc}</p>
 
               {hits.length > 0 && (
-                <ul className="mt-3 grid gap-2">
+                <ul className="mt-3 grid gap-2 border-l-2 border-line pl-3">
                   {hits.map((h) => (
-                    <li key={h.year} className="grid grid-cols-[2.75rem_minmax(0,1fr)] gap-2 text-sm leading-snug">
-                      <span className={cn("font-mono text-[11px] tracking-wider", h.role === "champion" ? "text-phos" : "text-dim")}>{h.year}</span>
-                      <span className="text-zinc-400">
-                        {h.role === "champion" && <span className="text-zinc-200">Beat {h.runnerUp} in the final. </span>}
-                        {h.role === "runner-up" && <span className="text-zinc-200">Lost the final to {h.champion}. </span>}
-                        {h.note}
-                      </span>
+                    <li key={h.year} className="text-sm leading-snug text-slate-600">
+                      <span className={cn("mr-1.5 font-display font-bold", h.role === "champion" ? "text-amber-700" : "text-navy")}>{h.year}</span>
+                      {h.role === "champion" && <span className="font-semibold text-slate-700">Beat {displayName(h.runnerUp)} in the final. </span>}
+                      {h.role === "runner-up" && <span className="font-semibold text-slate-700">Lost the final to {displayName(h.champion)}. </span>}
+                      {h.note}
                     </li>
                   ))}
                 </ul>
               )}
 
-              <div className="mt-3 flex items-center justify-between gap-3 border-t border-white/[0.06] pt-3">
-                <div className="min-w-0">
-                  <p className="font-mono text-[10px] tracking-[0.18em] text-dim uppercase">{intel.league.season} trail · med {st.median.toFixed(0)}</p>
-                  <p className="font-mono text-[10px] tracking-wider text-faint uppercase">
-                    Playoffs {f.playoffAppearancesRecent} · {f.titles} title{f.titles === 1 ? "" : "s"}
+              <div className="mt-4 flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-2 ring-1 ring-slate-100">
+                <div className="min-w-0 text-xs text-slate-500">
+                  <p className="font-semibold text-slate-700">{intel.league.season} so far</p>
+                  <p>
+                    {st.record} · median {st.median.toFixed(1)} · best {st.high.pf.toFixed(1)}
                   </p>
                 </div>
-                <MiniTrail franchise={f} tone={tone} />
+                <MiniTrail franchise={f} />
               </div>
               {op && (
-                <Link href={op.path} className="mt-2 inline-block font-mono text-[10.5px] tracking-[0.16em] text-dim uppercase hover:text-zinc-100">
-                  Week {intel.league.week} op ▸
+                <Link href={op.path} className="mt-3 inline-block text-sm font-semibold text-turf hover:underline">
+                  Week {intel.league.week} matchup →
                 </Link>
               )}
-            </Frame>
+            </Card>
           );
         })}
       </ul>
+
+      <p className="text-xs text-slate-500">
+        Seasons on record: {years.join(", ")}. Title-game details are on file for {champYears.join(", ")}.
+      </p>
     </>
   );
 }

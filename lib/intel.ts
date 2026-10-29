@@ -70,22 +70,26 @@ export interface LeagueIntel {
 
 export const intel = raw as LeagueIntel;
 
-/** Three-letter call signs used across the console; keyed by ESPN team id. */
-const CALLSIGNS: { [teamId: number]: string } = {
-  1: "BIB",
-  2: "JAH",
-  3: "CHW",
-  4: "AHT",
-  5: "EPZ",
-  6: "SMF",
-  7: "MIG",
-  8: "DIM",
-  10: "SND",
-  11: "KAB",
+/** Short ESPN-style abbreviations and avatar colors, keyed by ESPN team id. */
+const TEAM_META: { [teamId: number]: { abbrev: string; color: string } } = {
+  1: { abbrev: "BIB", color: "#2563eb" },
+  2: { abbrev: "JAH", color: "#0f766e" },
+  3: { abbrev: "CHW", color: "#c2410c" },
+  4: { abbrev: "AH", color: "#be185d" },
+  5: { abbrev: "EPZ", color: "#a16207" },
+  6: { abbrev: "SMF", color: "#6d28d9" },
+  7: { abbrev: "MAYE", color: "#15803d" },
+  8: { abbrev: "DIM", color: "#0e7490" },
+  10: { abbrev: "SND", color: "#4d7c0f" },
+  11: { abbrev: "KAB", color: "#b91c1c" },
 };
 
-export function callsign(teamId: number) {
-  return CALLSIGNS[teamId] ?? "???";
+export function abbrev(teamId: number) {
+  return TEAM_META[teamId]?.abbrev ?? "—";
+}
+
+export function teamColor(teamId: number) {
+  return TEAM_META[teamId]?.color ?? "#64748b";
 }
 
 /** Intel sometimes shortens names ("Easy Peasy"); resolve to the snapshot's display name. */
@@ -93,6 +97,11 @@ export function teamIdByName(name: string) {
   const exact = snapshot.standings.find((s) => s.teamName === name);
   if (exact) return exact.teamId;
   return snapshot.standings.find((s) => s.teamName.startsWith(name))?.teamId;
+}
+
+export function displayName(name: string) {
+  const id = teamIdByName(name);
+  return (id && snapshot.standings.find((s) => s.teamId === id)?.teamName) || name;
 }
 
 export function getFranchise(teamId: number) {
@@ -120,13 +129,9 @@ export function trailStats(f: Franchise) {
   const losses = f.weekly2026.filter((w) => w.result === "L").length;
   const high = f.weekly2026.reduce((a, b) => (b.pf > a.pf ? b : a));
   const low = f.weekly2026.reduce((a, b) => (b.pf < a.pf ? b : a));
-  return {
-    avg: pfs.reduce((a, b) => a + b, 0) / Math.max(1, pfs.length),
-    median: median(pfs),
-    high,
-    low,
-    record: `${wins}-${losses}`,
-  };
+  const avg = pfs.reduce((a, b) => a + b, 0) / Math.max(1, pfs.length);
+  const stdDev = Math.sqrt(pfs.reduce((a, v) => a + (v - avg) ** 2, 0) / Math.max(1, pfs.length));
+  return { avg, median: median(pfs), high, low, stdDev, range: high.pf - low.pf, record: `${wins}-${losses}` };
 }
 
 /** Shared y-range so every trail in the app reads on the same scale. */
@@ -138,7 +143,67 @@ export const TRAIL_RANGE = (() => {
 /** "Chewy — a loss puts them…" → { subject, detail } */
 export function splitMustWin(text: string) {
   const [subject, ...rest] = text.split(" — ");
-  return { subject: subject.trim(), detail: rest.join(" — ").trim() };
+  const detail = rest.join(" — ").trim();
+  return { subject: subject.trim(), detail: detail.charAt(0).toUpperCase() + detail.slice(1) };
+}
+
+export interface GameSide {
+  name: string;
+  teamId?: number;
+  score: number;
+}
+
+export interface Game {
+  week: number;
+  winner: GameSide;
+  loser: GameSide;
+  margin: number;
+}
+
+/**
+ * Every distinct game in the tracked franchises' weekly logs. Games between two tracked
+ * franchises appear in both logs, so they are de-duplicated by week and team pair.
+ */
+export function trackedGames(): Game[] {
+  const seen = new Set<string>();
+  const games: Game[] = [];
+  for (const f of intel.franchises) {
+    for (const w of f.weekly2026) {
+      const oppId = teamIdByName(w.opp);
+      const key = `${w.week}:${[f.teamId, oppId ?? w.opp].sort().join("-")}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const me: GameSide = { name: f.name, teamId: f.teamId, score: w.pf };
+      const opp: GameSide = { name: displayName(w.opp), teamId: oppId, score: w.pa };
+      const won = w.result === "W";
+      games.push({ week: w.week, winner: won ? me : opp, loser: won ? opp : me, margin: Math.abs(w.pf - w.pa) });
+    }
+  }
+  return games;
+}
+
+/** League games per week so far, for "N of M games" coverage labels. */
+export function leagueGamesPlayed() {
+  return ((intel.league.week - 1) * snapshot.standings.length) / 2;
+}
+
+export const CLOSE_GAME_MARGIN = 5;
+
+/** Record in games decided by fewer than CLOSE_GAME_MARGIN points. */
+export function closeGameRecord(f: Franchise) {
+  const close = f.weekly2026.filter((w) => Math.abs(w.pf - w.pa) < CLOSE_GAME_MARGIN);
+  const wins = close.filter((w) => w.result === "W").length;
+  return { wins, losses: close.length - wins, games: close };
+}
+
+/** Single-game scores from both sides of every tracked game, highest first. */
+export function highScores(games = trackedGames()) {
+  return games
+    .flatMap((g) => [
+      { ...g.winner, week: g.week, won: true, vs: g.loser },
+      { ...g.loser, week: g.week, won: false, vs: g.winner },
+    ])
+    .sort((a, b) => b.score - a.score);
 }
 
 export interface TitleBoardRow {
@@ -202,12 +267,8 @@ export function archiveHits(f: Franchise) {
   });
 }
 
-export const LUCK_TONE: { [label in LuckLabel]: { short: string; tone: string } } = {
-  "running hot": { short: "HOT", tone: "text-phos ring-phos/40 bg-phos/10" },
-  fair: { short: "EVEN", tone: "text-dim ring-white/15 bg-white/[0.03]" },
-  unlucky: { short: "DUE", tone: "text-sig ring-sig/40 bg-sig/10" },
+export const LUCK_LABEL: { [label in LuckLabel]: { text: string; tone: string } } = {
+  "running hot": { text: "Lucky", tone: "bg-amber-100 text-amber-800 ring-amber-300" },
+  fair: { text: "Even", tone: "bg-slate-100 text-slate-600 ring-slate-200" },
+  unlucky: { text: "Unlucky", tone: "bg-sky-100 text-sky-800 ring-sky-300" },
 };
-
-export function weekCode(week: number) {
-  return String(week).padStart(2, "0");
-}
