@@ -4,20 +4,19 @@
 
 **Chicken League** is the fantasy football hub for the private ESPN **Chicken** league (2026, week 8). Every one of the 10 teams gets a page, all 5 week 8 games get a preview, and the insights and history cover the whole league. Everything is prerendered from two committed JSON files, so it deploys to Vercel with **zero secrets**.
 
-| Gerrit's matchup (`/`) | Team page | Teams | Insights |
+| Teams (`/`) | Team page | Matchup | Insights |
 | --- | --- | --- | --- |
-| ![Maye i give you a blowj0b matchup on iPhone](docs/mobile-home.png) | ![Team page on iPhone](docs/mobile-team.png) | ![Teams directory on iPhone](docs/mobile-teams.png) | ![Insights on iPhone](docs/mobile-insights.png) |
+| ![Teams directory on iPhone](docs/mobile-home.png) | ![Team page on iPhone](docs/mobile-team.png) | ![Matchup page on iPhone](docs/mobile-matchup.png) | ![Insights on iPhone](docs/mobile-insights.png) |
 
-![Maye i give you a blowj0b matchup on desktop](docs/desktop-home.png)
+![Teams directory on desktop](docs/desktop-home.png)
 
 ## Pages
 
 | Route | What it shows |
 | --- | --- |
-| `/` | Gerrit's **Maye i give you a blowj0b** (team 7) week 8 matchup. It uses the same layout as every `/matchups/[slug]` page. |
+| `/` | **Teams**, the home page: all 10 teams in standings order with record, PF and rank, power rank, luck, week 8 opponent, and recent form. A switch moves between it and `/standings`. `/teams` redirects here. |
 | `/matchups` | **Scores:** all 5 week 8 games with projections and a one-line preview, each linking to its matchup page, plus last week's final scores. |
 | `/matchups/[slug]` | One page per week 8 game: `maye-dim`, `bib-chw`, `epz-kab`, `smf-snd`, `jah-ah`. Each page has: <ul><li>A projected scorecard and a data-generated preview: story, edges for each side, and what's at stake.</li><li>A tale of the tape (projection, points for and rank, power rank, all-play, averages, best and worst week, swing, points against, opponents' average, close games, titles).</li><li>The two teams' **all-time head-to-head series** (record, points, last meeting, each side's biggest win, streaks) with a roast line.</li><li>Both teams' weekly scoring, team cards with history, the starters' injury report, head-to-head lineups, and both benches and IR.</li></ul> |
-| `/teams` | Directory of all 10 teams in standings order: record, PF and rank, power rank, luck, week 8 opponent, and recent form. A switch moves between it and `/standings`. |
 | `/teams/[id]` | One page per team. It has: <ul><li>Record, seed, power rank, luck, PF/PA with ranks, all-play record, close-game record, and ESPN's projected finish.</li><li>The week 8 matchup and a weekly score chart against the **league average**.</li><li>A results table with each week's margin over or under the league average.</li><li>Boom or bust, luck and strength of schedule, the injury report, and recent moves.</li><li>The full roster (starters, bench, IR).</li><li>An **all-time head-to-head** section: easiest opponent ("Personal ATM" / "Favorite snack"), nemesis ("Kryptonite" / "Who's your daddy"), biggest win, most embarrassing loss, best and worst week, closest win and loss, streaks, playoff résumé, and a record table against every opponent. Each card has a roast line generated from its numbers.</li><li>A trophy case and a 2020–2025 season-by-season table.</li></ul> |
 | `/standings` | Table with record, PF/PA, differential, PF rank, and a luck badge. Every team links to its page. |
 | `/insights` | League-wide insights over all 10 teams and all 35 games: <ul><li>At-a-glance leaders and the week 8 slate.</li><li>**Power rankings** (by all-play), the **luck meter** (PF rank vs standings, plus wins vs all-play), points for, and **strength of schedule** (opponents' average).</li><li>A record book: **high scores**, **closest games**, **bad beats**, biggest blowouts, the **weekly top scorer**, and close-game records.</li><li>**Consistency** (boom or bust) and a **head-to-head grid**.</li></ul> |
@@ -25,7 +24,7 @@
 | `/bibis` | Redirects to `/matchups/bib-chw` so old links keep working. |
 | `/live` | The original polling board, which can read a public ESPN league (optional, not in the nav). |
 
-On phones the nav is a five-tab bottom bar (Maye · Scores · Teams · Insights · History) that respects iPhone safe areas. Standings sits behind Teams. From `md` up the nav moves into the navy top bar and adds Standings. On `lg` screens matchup pages offer **TV mode**. Layouts are checked for horizontal overflow at 320, 390, and 1440 px on every route.
+On phones the nav is a four-tab bottom bar (Teams · Scores · Insights · History) that respects iPhone safe areas. Standings sits behind Teams. From `md` up the nav moves into the navy top bar (Teams · Standings · Scores · Insights · History). On `lg` screens matchup pages offer **TV mode**. Layouts are checked for horizontal overflow at 320, 390, and 1440 px on every route.
 
 ## Data
 
@@ -84,9 +83,9 @@ No environment variables are needed. The Vercel project `fantasy-board-demo` isn
 app/
   layout.tsx                 fonts, metadata, viewport (safe-area aware)
   (league)/layout.tsx        app chrome: navy top bar, bottom tab bar
-  (league)/page.tsx          / — Gerrit's matchup (team 7)
+  (league)/page.tsx          / — Teams directory (home)
   (league)/matchups/         /matchups (Scores) and /matchups/[slug]
-  (league)/teams/            /teams and /teams/[id]
+  (league)/teams/[id]/       /teams/[id]
   (league)/standings/        /standings
   (league)/insights/         /insights
   (league)/history/          /history
