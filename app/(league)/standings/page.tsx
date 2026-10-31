@@ -26,8 +26,9 @@ export default function StandingsPage() {
 
       <Card bodyClassName="p-0 sm:p-0">
         <table className="w-full table-fixed border-collapse text-left">
+          <caption className="sr-only">Chicken standings after week {LEAGUE.week - 1}</caption>
           <thead>
-            <tr className="border-b border-line bg-slate-50 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
+            <tr className="border-b border-line bg-slate-50 text-xs font-bold tracking-wider text-slate-600 uppercase">
               <th scope="col" className="w-10 py-2.5 pl-3 sm:w-12 sm:pl-4">#</th>
               <th scope="col" className="py-2.5">Team</th>
               <th scope="col" className="w-11 py-2.5 text-right sm:w-14">W-L</th>
@@ -65,10 +66,10 @@ export default function StandingsPage() {
                   <td className="py-3 text-right align-middle font-display text-lg font-bold text-navy tabular-nums">{formatRecord(t)}</td>
                   <td className="py-3 text-right align-middle text-sm leading-tight tabular-nums sm:hidden">
                     <span className="block font-semibold text-navy">{t.pointsFor.toFixed(1)}</span>
-                    <span className="block text-xs text-slate-500">{t.pointsAgainst.toFixed(1)}</span>
+                    <span className="block text-xs text-slate-600">{t.pointsAgainst.toFixed(1)}</span>
                   </td>
                   <td className="hidden py-3 text-right align-middle font-semibold text-navy tabular-nums sm:table-cell">{t.pointsFor.toFixed(1)}</td>
-                  <td className="hidden py-3 text-right align-middle text-slate-500 tabular-nums sm:table-cell">{t.pointsAgainst.toFixed(1)}</td>
+                  <td className="hidden py-3 text-right align-middle text-slate-600 tabular-nums sm:table-cell">{t.pointsAgainst.toFixed(1)}</td>
                   <td className={cn("hidden py-3 text-right align-middle font-semibold tabular-nums md:table-cell", diff >= 0 ? "text-turf" : "text-loss")}>
                     {diff >= 0 ? "+" : "−"}
                     {Math.abs(diff).toFixed(1)}
@@ -84,7 +85,7 @@ export default function StandingsPage() {
         </table>
       </Card>
 
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-500">
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-600">
         <span>Rank is ESPN&apos;s standings order. The data doesn&apos;t include the playoff team count, so no cut line is drawn.</span>
         <Link href="/insights" className="font-semibold text-turf hover:underline">
           Power rankings & luck →

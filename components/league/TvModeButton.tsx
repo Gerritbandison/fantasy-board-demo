@@ -29,7 +29,7 @@ export function TvModeButton() {
       onClick={toggle}
       className="hidden h-9 shrink-0 items-center gap-2 rounded-full bg-white px-3.5 text-sm font-semibold text-navy shadow-sm ring-1 ring-line transition-colors hover:bg-slate-50 lg:inline-flex"
     >
-      {isFull ? <Minimize className="size-3.5" /> : <Maximize className="size-3.5" />}
+      {isFull ? <Minimize className="size-3.5" aria-hidden /> : <Maximize className="size-3.5" aria-hidden />}
       {isFull ? "Exit TV mode" : "TV mode"}
     </button>
   );

@@ -153,7 +153,7 @@ export function TrailLegend({ focus, compare = "league" }: { focus: Team; compar
         />
         {compare === "league" ? "League average" : compare.name}
       </span>
-      <span className="text-slate-400">Wk {WEEKS} = projection</span>
+      <span className="text-slate-600">Wk {WEEKS} = projection</span>
     </div>
   );
 }
@@ -170,10 +170,10 @@ export function WeekStrip({ weeks, className }: { weeks: TeamWeek[]; className?:
             className="flex min-w-0 flex-col items-center gap-0.5 rounded-lg bg-slate-50 px-0.5 py-1.5 ring-1 ring-slate-100"
             title={`Week ${w.week} vs ${opp?.name}: ${w.result} ${w.pf}–${w.pa}`}
           >
-            <span className="text-[10px] font-semibold text-slate-400">W{w.week}</span>
+            <span className="text-xs font-semibold text-slate-600">W{w.week}</span>
             <ResultChip result={w.result} />
             <span className="font-display text-sm leading-none font-bold text-navy tabular-nums">{w.pf.toFixed(0)}</span>
-            <span className="max-w-full truncate text-[9px] font-semibold text-slate-400">{opp?.abbrev}</span>
+            <span className="max-w-full truncate text-xs font-semibold text-slate-600">{opp?.abbrev}</span>
           </li>
         );
       })}

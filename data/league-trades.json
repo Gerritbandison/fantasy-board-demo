@@ -14,7 +14,8 @@
    "ESPN's structured feed leaves out player sides on accepted trade rows (structured_details_incomplete). Sides were rebuilt by diffing weekly roster snapshots and cross-checked against current rosters where acquisitionType is TRADE. All 14 TRADE-tagged players are accounted for.",
    "Duplicate proposal rows (the same offer logged twice within days) are deduped; rawProposalRows keeps the original count.",
    "trade_veto rows give one team id per row. ESPN does not say whether that is the voter, so these are labelled veto votes logged. Every trade that drew veto rows still went through, except possibly the unmatched accept rows.",
-   "Display names follow league-h2h-history.json (teamIndex and seasonNames aliases). Raw ESPN team names are not stored."
+   "Display names follow league-h2h-history.json (teamIndex and seasonNames aliases). Raw ESPN team names are not stored.",
+   "2026-10-31: Josh Jacobs' Thursday week-8 total (23.2, full PPR, started) was added to trade 2026-T6 only. The value verdict was not recomputed. Pending offers are not stored on accepted trades and are never rendered."
   ],
   "counts": {
    "acceptedTrades": 7,
@@ -24,7 +25,7 @@
    "vetoVoteRows": 13,
    "unmatchedAcceptRows": 1
   },
-  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 7 (the last completed week). We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (±10% band) and the points gained (±10 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
+  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 7 (the last completed week). We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (\u00b110% band) and the points gained (\u00b110 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
   "pastSeasons": {
    "source": "Flaim Fantasy (ESPN) get_matchups detail=players for each matchup in weeks 1-13 (2020) / 1-14 (2021-2025); ESPN public players_wl for positions.",
    "whyNotTransactions": "ESPN transactions for past seasons are unavailable: Flaim get_transactions returns ESPN_SEASON_NOT_SUPPORTED, and ESPN direct API returns 401 AUTH_LEAGUE_NOT_VISIBLE (private league, needs login cookies, which were not used).",
@@ -38,7 +39,8 @@
    "grading": "Points the received players scored for the new team (all roster spots) from the first week after the trade through the end of that regular season. Edge under 10 points = even; 75+ = lopsided. No long-term value.",
    "evenUnder": 10,
    "lopsidedFrom": 75
-  }
+  },
+  "updatedAt": "2026-10-31T12:00:00-04:00"
  },
  "tradesPerSeason": {
   "2020": 27,
@@ -17981,7 +17983,7 @@
         "pointsGained": 15.2,
         "signal": 1
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      },
      "4": {
@@ -18264,7 +18266,7 @@
         "pointsGained": -15.2,
         "signal": -1
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      }
     },
@@ -18716,7 +18718,7 @@
         "pointsGained": -35.7,
         "signal": -1
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      },
      "6": {
@@ -18993,7 +18995,7 @@
         "pointsGained": 35.7,
         "signal": 1
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      }
     },
@@ -19317,7 +19319,7 @@
         "pointsGained": -47.3,
         "signal": -1
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      },
      "8": {
@@ -19514,7 +19516,7 @@
         "pointsGained": 47.3,
         "signal": 1
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      }
     },
@@ -19551,11 +19553,6 @@
        "name": "Chase Brown",
        "position": "RB",
        "nflTeam": null
-      },
-      {
-       "name": "KC Concepcion",
-       "position": "WR",
-       "nflTeam": "CLE"
       }
      ],
      "sent": [
@@ -19610,11 +19607,6 @@
        "name": "Chase Brown",
        "position": "RB",
        "nflTeam": null
-      },
-      {
-       "name": "KC Concepcion",
-       "position": "WR",
-       "nflTeam": "CLE"
       }
      ],
      "receivedPicks": [],
@@ -19639,16 +19631,16 @@
     "6e0791fb-2259-4c81-821b-bc5f2965ba74",
     "965363c9-3fc0-46fd-b465-d96d9232aaac"
    ],
-   "note": "Gerrit accepted on Oct 14 and it processed Oct 15. All Heart released KC Concepcion right away (Smert Fellas later claimed him). Chewy's logged a veto vote on Oct 14.",
+   "note": "Accepted Oct 14 and processed Oct 15, 2026 (week 6). Maye dropped KC Concepcion in the deal. He is not counted for either side.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7, plus Josh Jacobs' Thursday of week 8 (23.2). Week 8 is still in progress; the other players in this deal did not play Thursday. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      6,
-     7
+     8
     ],
     "bySide": {
      "7": {
-      "totalPointsForNewTeam": 39.2,
+      "totalPointsForNewTeam": 62.4,
       "startedPointsForNewTeam": 20.1,
       "weeks": [
        {
@@ -19686,6 +19678,13 @@
         "week": 7,
         "points": 0,
         "started": false
+       },
+       {
+        "player": "Josh Jacobs",
+        "week": 8,
+        "points": 23.2,
+        "started": true,
+        "note": "Thursday only"
        }
       ]
      },
@@ -19749,7 +19748,7 @@
       },
       "pointsReceived": 37.7,
       "pointsSentAway": 39.2,
-      "pointsGained": -1.5,
+      "pointsGained": -24.7,
       "ppgTrendReceived": 10.22,
       "ppgTrendSent": 8.84,
       "received": [
@@ -19825,7 +19824,7 @@
          "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
          "changeSinceTrade": null
         },
-        "note": null
+        "note": "ESPN season line before this week: 76.5 points, 10.93 per game. Not a Thursday game."
        },
        {
         "name": "Chase Brown",
@@ -19905,7 +19904,7 @@
          "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
          "changeSinceTrade": null
         },
-        "note": null
+        "note": "ESPN season line before this week: 74.8 points, 12.47 per game. Not a Thursday game."
        },
        {
         "name": "KC Concepcion",
@@ -19990,7 +19989,7 @@
          "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
          "changeSinceTrade": null
         },
-        "note": "Released by the receiving team on 2026-10-15. ppgAfter = (league-scoring season total 62.9 - pre-trade 31.8) / 2 games, using Flaim get_players (league scoring), fetched 2026-10-29."
+        "note": "Dropped by Maye in the deal on 2026-10-15. Not counted for either side. ppgAfter = (league-scoring season total 62.9 - pre-trade 31.8) / 2 games, using Flaim get_players (league scoring), fetched 2026-10-29."
        }
       ],
       "sent": [
@@ -20250,10 +20249,10 @@
         "signal": -1
        },
        "pointsSignal": {
-        "pointsGained": -1.5,
-        "signal": 0
+        "pointsGained": -24.7,
+        "signal": -1
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      },
      "7": {
@@ -20270,9 +20269,9 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 39.2,
+      "pointsReceived": 62.4,
       "pointsSentAway": 37.7,
-      "pointsGained": 1.5,
+      "pointsGained": 24.7,
       "ppgTrendReceived": 8.84,
       "ppgTrendSent": 10.22,
       "received": [
@@ -20280,12 +20279,12 @@
         "name": "Josh Jacobs",
         "position": "RB",
         "nflTeam": "GB",
-        "pointsForNewTeam": 20.1,
+        "pointsForNewTeam": 43.3,
         "startedPointsForNewTeam_reference": 20.1,
         "ppgBefore": null,
         "gamesBefore": 0,
-        "ppgAfter": 20.1,
-        "gamesAfter": 1,
+        "ppgAfter": 21.65,
+        "gamesAfter": 2,
         "ppgTrend": null,
         "weeksBefore": [
          {
@@ -20331,6 +20330,13 @@
           "points": 20.1,
           "status": "played",
           "fantasyTeamId": 7
+         },
+         {
+          "week": 8,
+          "points": 23.2,
+          "status": "played",
+          "fantasyTeamId": 7,
+          "note": "Thursday only. Week 8 is still in progress."
          }
         ],
         "zeroOrMissingWeeksAfter": [
@@ -20354,7 +20360,7 @@
          "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
          "changeSinceTrade": null
         },
-        "note": null
+        "note": "Post-trade tally is 43.3: 20.1 in week 7 plus 23.2 on Thursday of week 8. He was out in week 6, so that is 2 games played for the new team. ESPN season line before Thursday: 43.3 points, 21.65 per game, about 2 games. One Thursday does not regrade the deal."
        },
        {
         "name": "Cam Skattebo",
@@ -20434,7 +20440,7 @@
          "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
          "changeSinceTrade": null
         },
-        "note": null
+        "note": "ESPN season line before this week: 70.4 points, 10.06 per game. Not a Thursday game."
        },
        {
         "name": "DJ Moore",
@@ -20519,7 +20525,7 @@
          "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
          "changeSinceTrade": null
         },
-        "note": null
+        "note": "ESPN season line before this week: 36.3 points, 9.07 per game. Not a Thursday game."
        }
       ],
       "sent": [
@@ -20760,7 +20766,7 @@
          "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
          "changeSinceTrade": null
         },
-        "note": "Released by the receiving team on 2026-10-15. ppgAfter = (league-scoring season total 62.9 - pre-trade 31.8) / 2 games, using Flaim get_players (league scoring), fetched 2026-10-29."
+        "note": "Dropped by Maye in the deal on 2026-10-15. Not counted for either side. ppgAfter = (league-scoring season total 62.9 - pre-trade 31.8) / 2 games, using Flaim get_players (league scoring), fetched 2026-10-29."
        }
       ],
       "verdict": {
@@ -20773,10 +20779,10 @@
         "signal": 1
        },
        "pointsSignal": {
-        "pointsGained": 1.5,
-        "signal": 0
+        "pointsGained": 24.7,
+        "signal": 1
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      }
     },
@@ -20786,6 +20792,12 @@
      "byes": "ESPN public team schedule API site.api.espn.com/apis/site/v2/sports/football/nfl/teams/{abbr}/schedule?season=2026",
      "values": "https://api.fantasycalc.com/values/current?isDynasty=false&numQbs=1&numTeams=10&ppr=1 (fetched 2026-10-29T02:14-04:00; league scoring confirmed full PPR from a Jacobs week-7 line: 5 rec, 91 yds, 1 TD = 20.1)"
     }
+   },
+   "droppedByTeamId": 7,
+   "spanNote": "weeks 6\u20137, plus Jacobs' Thursday in week 8",
+   "week8Take": {
+    "summary": "Not settled. Through week 7 the two sides were almost even on points, and the value grade is still low confidence. Thursday added 23.2 from Josh Jacobs, started, which takes his post-trade total to 43.3 over the two games he has played for his new team (he was out in week 6). ESPN had him at 43.3 points on the season before Thursday, 21.65 a game across about two games, so that rate is a short sample. Skattebo 70.4 (10.06), Moore 36.3 (9.07), Metcalf 76.5 (10.93) and Brown 74.8 (12.47) are season lines before this week. They did not play Thursday. KC Concepcion was dropped in the deal and does not count for either side.",
+    "roast": "Jacobs hung 23.2 on Thursday. A two-game pace is a tease, not a coronation."
    }
   },
   {
@@ -21269,7 +21281,7 @@
         "pointsGained": 3.1,
         "signal": 0
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      },
      "8": {
@@ -21610,7 +21622,7 @@
         "pointsGained": -3.1,
         "signal": 0
        },
-       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (±10% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (±10 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
+       "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
      }
     },
@@ -21632,14 +21644,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "15da3039-42a3-4ef5-8ebc-314fa35eabed",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21653,14 +21657,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "c2256347-4bfa-4db3-933e-019f15c3cf4a",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21674,48 +21670,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "ab09e479-e3dc-4578-843a-14ff71fa7e22",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -21729,14 +21683,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "82902892-4bcb-4949-a8e6-582286e621ef",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE"
-    }
-   ],
    "teamIds": [
     7
    ],
@@ -21750,48 +21696,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "c423064b-d62d-4031-9c9a-f2fb9122aded",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -21805,14 +21709,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "39047d07-a39f-47aa-95f2-74a1a8dbeb66",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21826,14 +21722,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "95094341-f9ae-40ad-b6a7-8b9402f0d070",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE"
-    }
-   ],
    "teamIds": [
     7
    ],
@@ -21847,14 +21735,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "fbe55915-6b2d-42bf-9e2e-1e4dec12ea07",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21868,14 +21748,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "101b0a88-f146-442c-99b2-5f202bc4d960",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21889,14 +21761,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "cab1a4fb-102f-4906-8c15-884812b7cd91",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21910,14 +21774,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "63711595-7584-43ee-a8d9-563c753a4aa5",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21931,14 +21787,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "bb07f618-c591-4bbd-97b5-756406182e53",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21952,14 +21800,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "ea771393-2fed-4986-b2e0-09b4b024e2b8",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21973,14 +21813,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "bdb27f45-43ff-4daf-9ca3-833746800783",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -21994,14 +21826,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "4dab9937-d700-4621-a08d-fb088d1bb90b",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH"
-    }
-   ],
    "teamIds": [
     4
    ],
@@ -22015,58 +21839,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 6,
    "espnTransactionId": "52aaeb4e-24a4-4147-a447-e1526defd4c6",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "De'Zhaun Stribling",
-       "position": "WR",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Dak Prescott",
-       "position": "QB",
-       "nflTeam": "DAL"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Lamar Jackson",
-       "position": "QB",
-       "nflTeam": "BAL"
-      }
-     ]
-    },
-    {
-     "teamId": 6,
-     "displayName": "Smert Fellas",
-     "seasonName": "Smert Fellas",
-     "abbrev": "SMF",
-     "wouldReceive": [
-      {
-       "name": "Lamar Jackson",
-       "position": "QB",
-       "nflTeam": "BAL"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "De'Zhaun Stribling",
-       "position": "WR",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Dak Prescott",
-       "position": "QB",
-       "nflTeam": "DAL"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     6
@@ -22080,58 +21852,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "db824788-7098-4e24-8786-9950500c9450",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Tony Pollard",
-       "position": "RB",
-       "nflTeam": "TEN"
-      },
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Tony Pollard",
-       "position": "RB",
-       "nflTeam": "TEN"
-      },
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -22145,68 +21865,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "dd4550b4-18a9-42e0-ae11-0faab799ba1c",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Ashton Jeanty",
-       "position": "RB",
-       "nflTeam": "LV"
-      },
-      {
-       "name": "Jeremiyah Love",
-       "position": "RB",
-       "nflTeam": "ARI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      }
-     ]
-    },
-    {
-     "teamId": 11,
-     "displayName": "Kabul FC",
-     "seasonName": "Kabul FC",
-     "abbrev": "KAB",
-     "wouldReceive": [
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Ashton Jeanty",
-       "position": "RB",
-       "nflTeam": "LV"
-      },
-      {
-       "name": "Jeremiyah Love",
-       "position": "RB",
-       "nflTeam": "ARI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     11
@@ -22220,78 +21878,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "cf8a7bcb-a056-4117-b448-562637ab5308",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Jordan Addison",
-       "position": "WR",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kyle Monangai",
-       "position": "RB",
-       "nflTeam": "CHI"
-      },
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    },
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Kyle Monangai",
-       "position": "RB",
-       "nflTeam": "CHI"
-      },
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jordan Addison",
-       "position": "WR",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     4
@@ -22305,58 +21891,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "ff6f7af2-b283-40af-a748-0adfe15d5187",
-   "teams": [
-    {
-     "teamId": 2,
-     "displayName": "Jahmyr I Go Again",
-     "seasonName": "Jahmyr I Go Again",
-     "abbrev": "JAH",
-     "wouldReceive": [
-      {
-       "name": "Jonathon Brooks",
-       "position": "RB",
-       "nflTeam": "CAR"
-      },
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jonathon Brooks",
-       "position": "RB",
-       "nflTeam": "CAR"
-      },
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     2,
     3
@@ -22370,88 +21904,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "8598b5f5-c044-4c06-a615-18a1ccdedd06",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Isaiah Likely",
-       "position": "TE",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      },
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Woody Marks",
-       "position": "RB",
-       "nflTeam": "HOU"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Woody Marks",
-       "position": "RB",
-       "nflTeam": "HOU"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Isaiah Likely",
-       "position": "TE",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      },
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -22465,68 +21917,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "07c6c875-49b2-4df4-971b-0df2815f41f9",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jordan Addison",
-       "position": "WR",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jordan Addison",
-       "position": "WR",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -22540,68 +21930,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 8,
    "espnTransactionId": "63f8d8f0-5c09-496d-92ac-d19d0e3e71b4",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Quinshon Judkins",
-       "position": "RB",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Deebo Samuel Sr.",
-       "position": "WR",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Zay Flowers",
-       "position": "WR",
-       "nflTeam": "BAL"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Quinshon Judkins",
-       "position": "RB",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Deebo Samuel Sr.",
-       "position": "WR",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Zay Flowers",
-       "position": "WR",
-       "nflTeam": "BAL"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     7,
     8
@@ -22615,78 +21943,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "f8288c48-5061-4db6-8e77-5a1f2c0b0b12",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Breece Hall",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "Zay Flowers",
-       "position": "WR",
-       "nflTeam": "BAL"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Breece Hall",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "Zay Flowers",
-       "position": "WR",
-       "nflTeam": "BAL"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     8
@@ -22700,48 +21956,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "d66c257b-f220-41c1-a173-d99e26711d06",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Michael Wilson",
-       "position": "WR",
-       "nflTeam": "ARI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ]
-    },
-    {
-     "teamId": 10,
-     "displayName": "Sandusky's Soldiers",
-     "seasonName": "Sandusky's Soldiers",
-     "abbrev": "SND",
-     "wouldReceive": [
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Michael Wilson",
-       "position": "WR",
-       "nflTeam": "ARI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     10
@@ -22755,48 +21969,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "a3ec2e37-c888-46b2-b458-00c040234e40",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Bhayshul Tuten",
-       "position": "RB",
-       "nflTeam": "JAX"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    },
-    {
-     "teamId": 11,
-     "displayName": "Kabul FC",
-     "seasonName": "Kabul FC",
-     "abbrev": "KAB",
-     "wouldReceive": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bhayshul Tuten",
-       "position": "RB",
-       "nflTeam": "JAX"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     11
@@ -22810,48 +21982,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "74e4fde0-3966-4705-b88d-156b5ef09f62",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Aaron Jones Sr.",
-       "position": "RB",
-       "nflTeam": "MIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Aaron Jones Sr.",
-       "position": "RB",
-       "nflTeam": "MIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -22865,14 +21995,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": null,
    "espnTransactionId": "c4908cf5-5d1f-4ee7-a381-5620678d5cc0",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW"
-    }
-   ],
    "teamIds": [
     3
    ],
@@ -22886,48 +22008,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "ada59ea9-cb18-40be-9a4b-2fa22ead48c6",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Kyle Pitts Sr.",
-       "position": "TE",
-       "nflTeam": "ATL"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Dallas Goedert",
-       "position": "TE",
-       "nflTeam": "PHI"
-      }
-     ]
-    },
-    {
-     "teamId": 6,
-     "displayName": "Smert Fellas",
-     "seasonName": "Smert Fellas",
-     "abbrev": "SMF",
-     "wouldReceive": [
-      {
-       "name": "Dallas Goedert",
-       "position": "TE",
-       "nflTeam": "PHI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kyle Pitts Sr.",
-       "position": "TE",
-       "nflTeam": "ATL"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     6
@@ -22941,48 +22021,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "438cb46c-43cf-4e3d-85e6-4c3a7470e440",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -22996,88 +22034,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "c18fcfa9-6f67-4553-9696-f1f8bf5d69c1",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      },
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      },
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -23091,78 +22047,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "9ca659d3-c840-42be-96e7-892687278695",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "Tony Pollard",
-       "position": "RB",
-       "nflTeam": "TEN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "Tony Pollard",
-       "position": "RB",
-       "nflTeam": "TEN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -23176,48 +22060,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "b91dc415-ace7-4f67-93d9-ff73c836915e",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Tony Pollard",
-       "position": "RB",
-       "nflTeam": "TEN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Tony Pollard",
-       "position": "RB",
-       "nflTeam": "TEN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     7
@@ -23231,48 +22073,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "9d65b5df-78cd-4d47-ba72-7351664f1eb2",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Tetairoa McMillan",
-       "position": "WR",
-       "nflTeam": "CAR"
-      }
-     ]
-    },
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Tetairoa McMillan",
-       "position": "WR",
-       "nflTeam": "CAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     4
@@ -23286,48 +22086,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "05e5dbcd-e999-4dd6-aa11-c6ea999c141c",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Bucky Irving",
-       "position": "RB",
-       "nflTeam": "TB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bucky Irving",
-       "position": "RB",
-       "nflTeam": "TB"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -23341,48 +22099,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "ed3ff483-8af7-458b-b872-d5fbbbbec4c7",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Bhayshul Tuten",
-       "position": "RB",
-       "nflTeam": "JAX"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ]
-    },
-    {
-     "teamId": 11,
-     "displayName": "Kabul FC",
-     "seasonName": "Kabul FC",
-     "abbrev": "KAB",
-     "wouldReceive": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bhayshul Tuten",
-       "position": "RB",
-       "nflTeam": "JAX"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     11
@@ -23396,48 +22112,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "075f371a-29b2-4b77-9067-5f3c1271b1f8",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Quinshon Judkins",
-       "position": "RB",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Quinshon Judkins",
-       "position": "RB",
-       "nflTeam": "CLE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -23451,48 +22125,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "adc2e442-b6ff-4033-9cd6-e95989f6ef1d",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Tetairoa McMillan",
-       "position": "WR",
-       "nflTeam": "CAR"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Tetairoa McMillan",
-       "position": "WR",
-       "nflTeam": "CAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     7
@@ -23506,48 +22138,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "0b013283-ef2b-4331-bf39-8e43f52ff3df",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Rico Dowdle",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    },
-    {
-     "teamId": 10,
-     "displayName": "Sandusky's Soldiers",
-     "seasonName": "Sandusky's Soldiers",
-     "abbrev": "SND",
-     "wouldReceive": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Rico Dowdle",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     10
@@ -23561,78 +22151,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "5234d7d8-e531-4479-8523-8c83af714f77",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Patrick Mahomes",
-       "position": "QB",
-       "nflTeam": "KC"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -23646,48 +22164,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "74d687dc-3854-45a4-93db-de0fee212508",
-   "teams": [
-    {
-     "teamId": 2,
-     "displayName": "Jahmyr I Go Again",
-     "seasonName": "Jahmyr I Go Again",
-     "abbrev": "JAH",
-     "wouldReceive": [
-      {
-       "name": "Tetairoa McMillan",
-       "position": "WR",
-       "nflTeam": "CAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Tetairoa McMillan",
-       "position": "WR",
-       "nflTeam": "CAR"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     2,
     3
@@ -23701,48 +22177,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "1f630c10-2876-4204-885c-68f29cf774c3",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     7
@@ -23756,58 +22190,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "c981a665-8dab-41e7-a222-944064ffb5f0",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      },
-      {
-       "name": "Josh Downs",
-       "position": "WR",
-       "nflTeam": "IND"
-      }
-     ]
-    },
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      },
-      {
-       "name": "Josh Downs",
-       "position": "WR",
-       "nflTeam": "IND"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     4
@@ -23821,48 +22203,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "b48c2d89-eae7-4d69-8df5-1d1f0e659d11",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "George Pickens",
-       "position": "WR",
-       "nflTeam": "DAL"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ]
-    },
-    {
-     "teamId": 6,
-     "displayName": "Smert Fellas",
-     "seasonName": "Smert Fellas",
-     "abbrev": "SMF",
-     "wouldReceive": [
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "George Pickens",
-       "position": "WR",
-       "nflTeam": "DAL"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     6
@@ -23876,68 +22216,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "40316b82-6ced-43c2-90bd-5cc229862978",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "David Montgomery",
-       "position": "RB",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Garrett Wilson",
-       "position": "WR",
-       "nflTeam": "NYJ"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jordan Addison",
-       "position": "WR",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ]
-    },
-    {
-     "teamId": 6,
-     "displayName": "Smert Fellas",
-     "seasonName": "Smert Fellas",
-     "abbrev": "SMF",
-     "wouldReceive": [
-      {
-       "name": "Jordan Addison",
-       "position": "WR",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "Malik Nabers",
-       "position": "WR",
-       "nflTeam": "NYG"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "David Montgomery",
-       "position": "RB",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Garrett Wilson",
-       "position": "WR",
-       "nflTeam": "NYJ"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     6
@@ -23951,48 +22229,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "ba7fdc44-c80b-4122-9271-8ebba6e6af91",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Bhayshul Tuten",
-       "position": "RB",
-       "nflTeam": "JAX"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Josh Downs",
-       "position": "WR",
-       "nflTeam": "IND"
-      }
-     ]
-    },
-    {
-     "teamId": 11,
-     "displayName": "Kabul FC",
-     "seasonName": "Kabul FC",
-     "abbrev": "KAB",
-     "wouldReceive": [
-      {
-       "name": "Josh Downs",
-       "position": "WR",
-       "nflTeam": "IND"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bhayshul Tuten",
-       "position": "RB",
-       "nflTeam": "JAX"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     11
@@ -24006,48 +22242,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "0553d68b-d436-4535-a1fb-d6ed5034bcc7",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -24061,58 +22255,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "18bff43f-6c2d-46b1-a67c-9a4e877792e2",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jalen Hurts",
-       "position": "QB",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jalen Hurts",
-       "position": "QB",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -24126,48 +22268,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "afcefd74-810c-40e4-aaf8-cab312d31d33",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Breece Hall",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Breece Hall",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -24181,48 +22281,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "abc85f3c-db68-42c0-9e6a-d0ad96cd6294",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Blake Corum",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Blake Corum",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -24236,88 +22294,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "6aaece12-bab8-4ed3-88e4-13e4e03e4b79",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Jadarian Price",
-       "position": "RB",
-       "nflTeam": "SEA"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      },
-      {
-       "name": "Blake Corum",
-       "position": "RB",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "Chris Olave",
-       "position": "WR",
-       "nflTeam": "NO"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      },
-      {
-       "name": "Blake Corum",
-       "position": "RB",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "Chris Olave",
-       "position": "WR",
-       "nflTeam": "NO"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Jadarian Price",
-       "position": "RB",
-       "nflTeam": "SEA"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -24331,58 +22307,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "d167fde8-6773-4d95-af9e-d84a8823bea2",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Saquon Barkley",
-       "position": "RB",
-       "nflTeam": "PHI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Blake Corum",
-       "position": "RB",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Blake Corum",
-       "position": "RB",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Saquon Barkley",
-       "position": "RB",
-       "nflTeam": "PHI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     8
@@ -24396,58 +22320,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "b7a06283-26a1-4199-b945-bafc910e64e8",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Jadarian Price",
-       "position": "RB",
-       "nflTeam": "SEA"
-      },
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jadarian Price",
-       "position": "RB",
-       "nflTeam": "SEA"
-      },
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -24461,68 +22333,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "1c22b563-6382-4bbe-969b-56f3861c5b9d",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Bo Nix",
-       "position": "QB",
-       "nflTeam": "DEN"
-      },
-      {
-       "name": "Quinshon Judkins",
-       "position": "RB",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bo Nix",
-       "position": "QB",
-       "nflTeam": "DEN"
-      },
-      {
-       "name": "Quinshon Judkins",
-       "position": "RB",
-       "nflTeam": "CLE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -24536,58 +22346,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "040ad11b-4ff1-4968-aee6-76d45ab352ba",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Javonte Williams",
-       "position": "RB",
-       "nflTeam": "DAL"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 5,
-     "displayName": "Easy Peasy Lemon Squeezy",
-     "seasonName": "Easy Peasy Lemon Squeezy",
-     "abbrev": "EPZ",
-     "wouldReceive": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Javonte Williams",
-       "position": "RB",
-       "nflTeam": "DAL"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     5
@@ -24601,48 +22359,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "7d8c5675-612f-40f9-b400-30770c92d924",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Bhayshul Tuten",
-       "position": "RB",
-       "nflTeam": "JAX"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      }
-     ]
-    },
-    {
-     "teamId": 11,
-     "displayName": "Kabul FC",
-     "seasonName": "Kabul FC",
-     "abbrev": "KAB",
-     "wouldReceive": [
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bhayshul Tuten",
-       "position": "RB",
-       "nflTeam": "JAX"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     7,
     11
@@ -24656,58 +22372,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "a92acdc5-28c9-4c35-af19-f46c6538c6d2",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Quinshon Judkins",
-       "position": "RB",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Braelon Allen",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Braelon Allen",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Quinshon Judkins",
-       "position": "RB",
-       "nflTeam": "CLE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -24721,48 +22385,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "92fc6f51-613d-4af8-951a-37d6fb430e12",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Saquon Barkley",
-       "position": "RB",
-       "nflTeam": "PHI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "De'Von Achane",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Saquon Barkley",
-       "position": "RB",
-       "nflTeam": "PHI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -24776,78 +22398,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "a381b120-f6aa-423d-adfa-eaa6180fe88b",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Bo Nix",
-       "position": "QB",
-       "nflTeam": "DEN"
-      },
-      {
-       "name": "Breece Hall",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Tetairoa McMillan",
-       "position": "WR",
-       "nflTeam": "CAR"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Tetairoa McMillan",
-       "position": "WR",
-       "nflTeam": "CAR"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bo Nix",
-       "position": "QB",
-       "nflTeam": "DEN"
-      },
-      {
-       "name": "Breece Hall",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -24861,78 +22411,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "ef55f6b0-a30e-4eb3-aaf9-fbd919718110",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Jalen Hurts",
-       "position": "QB",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Chris Olave",
-       "position": "WR",
-       "nflTeam": "NO"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaxon Smith-Njigba",
-       "position": "WR",
-       "nflTeam": "SEA"
-      },
-      {
-       "name": "Vikings D/ST",
-       "position": "D/ST",
-       "nflTeam": "MIN"
-      }
-     ]
-    },
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Jaxon Smith-Njigba",
-       "position": "WR",
-       "nflTeam": "SEA"
-      },
-      {
-       "name": "Vikings D/ST",
-       "position": "D/ST",
-       "nflTeam": "MIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jalen Hurts",
-       "position": "QB",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "Chris Olave",
-       "position": "WR",
-       "nflTeam": "NO"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     4
@@ -24946,78 +22424,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "11c06656-a885-4814-938d-35d599f96f37",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -25031,48 +22437,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "df9d498d-ccfa-4168-85df-9e12bf450938",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Kyler Murray",
-       "position": "QB",
-       "nflTeam": "MIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Broncos D/ST",
-       "position": "D/ST",
-       "nflTeam": "DEN"
-      }
-     ]
-    },
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Broncos D/ST",
-       "position": "D/ST",
-       "nflTeam": "DEN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kyler Murray",
-       "position": "QB",
-       "nflTeam": "MIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     4
@@ -25086,68 +22450,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 2,
    "espnTransactionId": "92ee47b9-c8d5-4ea3-8ac8-0440449c7320",
-   "teams": [
-    {
-     "teamId": 2,
-     "displayName": "Jahmyr I Go Again",
-     "seasonName": "Jahmyr I Go Again",
-     "abbrev": "JAH",
-     "wouldReceive": [
-      {
-       "name": "Jacory Croskey-Merritt",
-       "position": "RB",
-       "nflTeam": "WSH"
-      },
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Ladd McConkey",
-       "position": "WR",
-       "nflTeam": "LAC"
-      },
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Ladd McConkey",
-       "position": "WR",
-       "nflTeam": "LAC"
-      },
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jacory Croskey-Merritt",
-       "position": "RB",
-       "nflTeam": "WSH"
-      },
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     2,
     7
@@ -25161,68 +22463,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "67449fcb-acf6-4448-ab66-5e73d2b624fb",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Christian Watson",
-       "position": "WR",
-       "nflTeam": "GB"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Marvin Harrison Jr.",
-       "position": "WR",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Christian Watson",
-       "position": "WR",
-       "nflTeam": "GB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -25236,58 +22476,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "eced5824-6ab6-4c92-95d4-7388966ead8d",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "James Cook III",
-       "position": "RB",
-       "nflTeam": "BUF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      },
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      }
-     ]
-    },
-    {
-     "teamId": 10,
-     "displayName": "Sandusky's Soldiers",
-     "seasonName": "Sandusky's Soldiers",
-     "abbrev": "SND",
-     "wouldReceive": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      },
-      {
-       "name": "Harold Fannin Jr.",
-       "position": "TE",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "James Cook III",
-       "position": "RB",
-       "nflTeam": "BUF"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     7,
     10
@@ -25301,58 +22489,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "22bc904c-b2ad-437c-9edb-a7d8123e0d12",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Bucky Irving",
-       "position": "RB",
-       "nflTeam": "TB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bucky Irving",
-       "position": "RB",
-       "nflTeam": "TB"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     7,
     8
@@ -25366,58 +22502,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "4dbcab0b-6699-421c-9895-8632bc89f0be",
-   "teams": [
-    {
-     "teamId": 2,
-     "displayName": "Jahmyr I Go Again",
-     "seasonName": "Jahmyr I Go Again",
-     "abbrev": "JAH",
-     "wouldReceive": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      },
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      },
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     2,
     7
@@ -25431,68 +22515,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "65536e27-c77f-4c40-acd6-7530d0c97e0b",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Chuba Hubbard",
-       "position": "RB",
-       "nflTeam": "CAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Jacory Croskey-Merritt",
-       "position": "RB",
-       "nflTeam": "WSH"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    },
-    {
-     "teamId": 11,
-     "displayName": "Kabul FC",
-     "seasonName": "Kabul FC",
-     "abbrev": "KAB",
-     "wouldReceive": [
-      {
-       "name": "Denzel Boston",
-       "position": "WR",
-       "nflTeam": "CLE"
-      },
-      {
-       "name": "Jacory Croskey-Merritt",
-       "position": "RB",
-       "nflTeam": "WSH"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Chuba Hubbard",
-       "position": "RB",
-       "nflTeam": "CAR"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     7,
     11
@@ -25506,58 +22528,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "10783653-2763-44f9-8695-9c120d6fc064",
-   "teams": [
-    {
-     "teamId": 5,
-     "displayName": "Easy Peasy Lemon Squeezy",
-     "seasonName": "Easy Peasy Lemon Squeezy",
-     "abbrev": "EPZ",
-     "wouldReceive": [
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Rhamondre Stevenson",
-       "position": "RB",
-       "nflTeam": "NE"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Rhamondre Stevenson",
-       "position": "RB",
-       "nflTeam": "NE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     5,
     7
@@ -25571,78 +22541,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "9a5f33c1-cfdb-4d24-849b-66e3190f1fab",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -25656,88 +22554,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "ced2b27f-ae5c-4e84-b27a-09848f5a4856",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "Isaiah Likely",
-       "position": "TE",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Matthew Golden",
-       "position": "WR",
-       "nflTeam": "GB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Chris Olave",
-       "position": "WR",
-       "nflTeam": "NO"
-      },
-      {
-       "name": "Christian Watson",
-       "position": "WR",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "Travis Kelce",
-       "position": "TE",
-       "nflTeam": "KC"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Chris Olave",
-       "position": "WR",
-       "nflTeam": "NO"
-      },
-      {
-       "name": "Christian Watson",
-       "position": "WR",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "Travis Kelce",
-       "position": "TE",
-       "nflTeam": "KC"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "Isaiah Likely",
-       "position": "TE",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Matthew Golden",
-       "position": "WR",
-       "nflTeam": "GB"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -25751,68 +22567,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "6f4df8a8-f4d1-4a6a-a087-f50c0f4d97d9",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Chase Brown",
-       "position": "RB",
-       "nflTeam": "CIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DJ Moore",
-       "position": "WR",
-       "nflTeam": "BUF"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -25826,108 +22580,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "9e48fefa-47a9-4a37-ab94-3e39021bcdef",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      },
-      {
-       "name": "Chris Olave",
-       "position": "WR",
-       "nflTeam": "NO"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      },
-      {
-       "name": "Chris Olave",
-       "position": "WR",
-       "nflTeam": "NO"
-      },
-      {
-       "name": "Christian McCaffrey",
-       "position": "RB",
-       "nflTeam": "SF"
-      },
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Puka Nacua",
-       "position": "WR",
-       "nflTeam": "LAR"
-      },
-      {
-       "name": "A.J. Brown",
-       "position": "WR",
-       "nflTeam": "NE"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -25941,68 +22593,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 6,
    "espnTransactionId": "e70a3e2f-54fc-4e39-8622-add7634bdbb6",
-   "teams": [
-    {
-     "teamId": 6,
-     "displayName": "Smert Fellas",
-     "seasonName": "Smert Fellas",
-     "abbrev": "SMF",
-     "wouldReceive": [
-      {
-       "name": "Aaron Jones Sr.",
-       "position": "RB",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "George Pickens",
-       "position": "WR",
-       "nflTeam": "DAL"
-      },
-      {
-       "name": "Garrett Wilson",
-       "position": "WR",
-       "nflTeam": "NYJ"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "George Pickens",
-       "position": "WR",
-       "nflTeam": "DAL"
-      },
-      {
-       "name": "Garrett Wilson",
-       "position": "WR",
-       "nflTeam": "NYJ"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Aaron Jones Sr.",
-       "position": "RB",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     6,
     8
@@ -26016,88 +22606,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 6,
    "espnTransactionId": "cd8e8d93-a231-4137-ba95-3da33713af7e",
-   "teams": [
-    {
-     "teamId": 6,
-     "displayName": "Smert Fellas",
-     "seasonName": "Smert Fellas",
-     "abbrev": "SMF",
-     "wouldReceive": [
-      {
-       "name": "Saquon Barkley",
-       "position": "RB",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "David Montgomery",
-       "position": "RB",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Omarion Hampton",
-       "position": "RB",
-       "nflTeam": "LAC"
-      },
-      {
-       "name": "Garrett Wilson",
-       "position": "WR",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "George Pickens",
-       "position": "WR",
-       "nflTeam": "DAL"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "David Montgomery",
-       "position": "RB",
-       "nflTeam": "HOU"
-      },
-      {
-       "name": "Omarion Hampton",
-       "position": "RB",
-       "nflTeam": "LAC"
-      },
-      {
-       "name": "Garrett Wilson",
-       "position": "WR",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "George Pickens",
-       "position": "WR",
-       "nflTeam": "DAL"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Saquon Barkley",
-       "position": "RB",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "DeVonta Smith",
-       "position": "WR",
-       "nflTeam": "PHI"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     6,
     8
@@ -26111,58 +22619,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "c4a0aab6-1ba2-4c10-9b56-be7797b053b6",
-   "teams": [
-    {
-     "teamId": 5,
-     "displayName": "Easy Peasy Lemon Squeezy",
-     "seasonName": "Easy Peasy Lemon Squeezy",
-     "abbrev": "EPZ",
-     "wouldReceive": [
-      {
-       "name": "Germie Bernard",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Rhamondre Stevenson",
-       "position": "RB",
-       "nflTeam": "NE"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Rhamondre Stevenson",
-       "position": "RB",
-       "nflTeam": "NE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Germie Bernard",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     5,
     7
@@ -26176,78 +22632,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "f1103316-fbb3-4b6c-81d3-ca7c808b2beb",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jordan Mason",
-       "position": "RB",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Jordan Mason",
-       "position": "RB",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -26261,58 +22645,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "20fd2086-4c99-4b59-a352-e88744971045",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Broncos D/ST",
-       "position": "D/ST",
-       "nflTeam": "DEN"
-      },
-      {
-       "name": "Jordyn Tyson",
-       "position": "WR",
-       "nflTeam": "NO"
-      }
-     ]
-    },
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Broncos D/ST",
-       "position": "D/ST",
-       "nflTeam": "DEN"
-      },
-      {
-       "name": "Jordyn Tyson",
-       "position": "WR",
-       "nflTeam": "NO"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     4
@@ -26326,58 +22658,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "386bd04d-8ee9-4d19-9083-118e128587a3",
-   "teams": [
-    {
-     "teamId": 2,
-     "displayName": "Jahmyr I Go Again",
-     "seasonName": "Jahmyr I Go Again",
-     "abbrev": "JAH",
-     "wouldReceive": [
-      {
-       "name": "Dallas Goedert",
-       "position": "TE",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Dallas Goedert",
-       "position": "TE",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     2,
     3
@@ -26391,48 +22671,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "5d0be247-df43-4c11-82d8-3be73ed6f789",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "James Cook III",
-       "position": "RB",
-       "nflTeam": "BUF"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 10,
-     "displayName": "Sandusky's Soldiers",
-     "seasonName": "Sandusky's Soldiers",
-     "abbrev": "SND",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "James Cook III",
-       "position": "RB",
-       "nflTeam": "BUF"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     10
@@ -26446,48 +22684,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 7,
    "espnTransactionId": "c504635c-d377-44e6-a765-a909b44b7706",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Rico Dowdle",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ]
-    },
-    {
-     "teamId": 10,
-     "displayName": "Sandusky's Soldiers",
-     "seasonName": "Sandusky's Soldiers",
-     "abbrev": "SND",
-     "wouldReceive": [
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Rico Dowdle",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     7,
     10
@@ -26501,68 +22697,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "8a93c45b-a6d9-4ee6-b3a7-25d3a696b931",
-   "teams": [
-    {
-     "teamId": 2,
-     "displayName": "Jahmyr I Go Again",
-     "seasonName": "Jahmyr I Go Again",
-     "abbrev": "JAH",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Dallas Goedert",
-       "position": "TE",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "Broncos D/ST",
-       "position": "D/ST",
-       "nflTeam": "DEN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Dallas Goedert",
-       "position": "TE",
-       "nflTeam": "PHI"
-      },
-      {
-       "name": "Broncos D/ST",
-       "position": "D/ST",
-       "nflTeam": "DEN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     2,
     3
@@ -26576,48 +22710,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "141e7e5d-e2bd-4f72-b806-6f92d856efbe",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Ashton Jeanty",
-       "position": "RB",
-       "nflTeam": "LV"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    },
-    {
-     "teamId": 11,
-     "displayName": "Kabul FC",
-     "seasonName": "Kabul FC",
-     "abbrev": "KAB",
-     "wouldReceive": [
-      {
-       "name": "Jaylen Warren",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Ashton Jeanty",
-       "position": "RB",
-       "nflTeam": "LV"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     11
@@ -26631,58 +22723,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "55803d6b-780d-4ce7-947f-55b73ff92a1c",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Bryce Young",
-       "position": "QB",
-       "nflTeam": "CAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Kirk Cousins",
-       "position": "QB",
-       "nflTeam": "LV"
-      },
-      {
-       "name": "Braelon Allen",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Kirk Cousins",
-       "position": "QB",
-       "nflTeam": "LV"
-      },
-      {
-       "name": "Braelon Allen",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Bryce Young",
-       "position": "QB",
-       "nflTeam": "CAR"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -26696,68 +22736,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "af668cbe-47dd-46e7-9c0f-a25a92f08d11",
-   "teams": [
-    {
-     "teamId": 2,
-     "displayName": "Jahmyr I Go Again",
-     "seasonName": "Jahmyr I Go Again",
-     "abbrev": "JAH",
-     "wouldReceive": [
-      {
-       "name": "Christian Watson",
-       "position": "WR",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "T.J. Hockenson",
-       "position": "TE",
-       "nflTeam": "MIN"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Tyler Warren",
-       "position": "TE",
-       "nflTeam": "IND"
-      },
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ]
-    },
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Tyler Warren",
-       "position": "TE",
-       "nflTeam": "IND"
-      },
-      {
-       "name": "Kyren Williams",
-       "position": "RB",
-       "nflTeam": "LAR"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Christian Watson",
-       "position": "WR",
-       "nflTeam": "GB"
-      },
-      {
-       "name": "T.J. Hockenson",
-       "position": "TE",
-       "nflTeam": "MIN"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     2,
     4
@@ -26771,58 +22749,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 1,
    "espnTransactionId": "c6ad364a-0ddd-4a25-8ed4-63f9af951f94",
-   "teams": [
-    {
-     "teamId": 1,
-     "displayName": "Bibi's Boys",
-     "seasonName": "Bibi's Boys",
-     "abbrev": "BIB",
-     "wouldReceive": [
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Brian Thomas Jr.",
-       "position": "WR",
-       "nflTeam": "JAX"
-      },
-      {
-       "name": "TreVeyon Henderson",
-       "position": "RB",
-       "nflTeam": "NE"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Brian Thomas Jr.",
-       "position": "WR",
-       "nflTeam": "JAX"
-      },
-      {
-       "name": "TreVeyon Henderson",
-       "position": "RB",
-       "nflTeam": "NE"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     1,
     7
@@ -26836,48 +22762,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 10,
    "espnTransactionId": "4c834d10-49de-4244-a792-5391c49c41d1",
-   "teams": [
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Rico Dowdle",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ]
-    },
-    {
-     "teamId": 10,
-     "displayName": "Sandusky's Soldiers",
-     "seasonName": "Sandusky's Soldiers",
-     "abbrev": "SND",
-     "wouldReceive": [
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Rico Dowdle",
-       "position": "RB",
-       "nflTeam": "PIT"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     7,
     10
@@ -26891,78 +22775,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 4,
    "espnTransactionId": "0a44cb71-ae41-4b48-bd95-fdd3fe737a24",
-   "teams": [
-    {
-     "teamId": 4,
-     "displayName": "All Heart",
-     "seasonName": "All Heart",
-     "abbrev": "AH",
-     "wouldReceive": [
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Jordan Mason",
-       "position": "RB",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "DK Metcalf",
-       "position": "WR",
-       "nflTeam": "PIT"
-      },
-      {
-       "name": "Jordan Mason",
-       "position": "RB",
-       "nflTeam": "MIN"
-      },
-      {
-       "name": "Jameson Williams",
-       "position": "WR",
-       "nflTeam": "DET"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Cam Skattebo",
-       "position": "RB",
-       "nflTeam": "NYG"
-      },
-      {
-       "name": "Josh Jacobs",
-       "position": "RB",
-       "nflTeam": "GB"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     4,
     7
@@ -26976,58 +22788,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 1,
    "espnTransactionId": "e55ca9c5-b51d-487e-ae5c-c802250eae35",
-   "teams": [
-    {
-     "teamId": 1,
-     "displayName": "Bibi's Boys",
-     "seasonName": "Bibi's Boys",
-     "abbrev": "BIB",
-     "wouldReceive": [
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Brian Thomas Jr.",
-       "position": "WR",
-       "nflTeam": "JAX"
-      },
-      {
-       "name": "Travis Etienne Jr.",
-       "position": "RB",
-       "nflTeam": "NO"
-      }
-     ]
-    },
-    {
-     "teamId": 7,
-     "displayName": "Maye i give you a blowj0b",
-     "seasonName": "Maye i give you a blowj0b",
-     "abbrev": "MAYE",
-     "wouldReceive": [
-      {
-       "name": "Brian Thomas Jr.",
-       "position": "WR",
-       "nflTeam": "JAX"
-      },
-      {
-       "name": "Travis Etienne Jr.",
-       "position": "RB",
-       "nflTeam": "NO"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Ollie Gordon II",
-       "position": "RB",
-       "nflTeam": "MIA"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     1,
     7
@@ -27041,58 +22801,6 @@
    "status": "proposed (not accepted)",
    "proposedByTeamId": 3,
    "espnTransactionId": "dde03d96-8b46-4f66-b09f-929dd0e19392",
-   "teams": [
-    {
-     "teamId": 3,
-     "displayName": "Chewy's Warriors",
-     "seasonName": "Chewy's Warriors",
-     "abbrev": "CHW",
-     "wouldReceive": [
-      {
-       "name": "Garrett Wilson",
-       "position": "WR",
-       "nflTeam": "NYJ"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Braelon Allen",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "Emeka Egbuka",
-       "position": "WR",
-       "nflTeam": "TB"
-      }
-     ]
-    },
-    {
-     "teamId": 8,
-     "displayName": "Dimes McSorley",
-     "seasonName": "Dimes McSorley",
-     "abbrev": "DIM",
-     "wouldReceive": [
-      {
-       "name": "Braelon Allen",
-       "position": "RB",
-       "nflTeam": "NYJ"
-      },
-      {
-       "name": "Emeka Egbuka",
-       "position": "WR",
-       "nflTeam": "TB"
-      }
-     ],
-     "wouldSend": [
-      {
-       "name": "Garrett Wilson",
-       "position": "WR",
-       "nflTeam": "NYJ"
-      }
-     ]
-    }
-   ],
    "teamIds": [
     3,
     8
@@ -28167,8 +23875,7 @@
     "Christian Watson",
     "Joe Mixon",
     "DK Metcalf",
-    "Chase Brown",
-    "KC Concepcion"
+    "Chase Brown"
    ],
    "playersSent": [
     "Jaylen Warren",
@@ -28220,7 +23927,7 @@
    "proposalsReceived2026": 7,
    "declinesLogged2026": 13,
    "vetoVotesLogged2026": 1,
-   "netPointsFromTrades2026": -99.7,
+   "netPointsFromTrades2026": -122.9,
    "partnersAllTime": [
     {
      "teamId": 3,
@@ -28496,8 +24203,7 @@
    ],
    "playersSent": [
     "DK Metcalf",
-    "Chase Brown",
-    "KC Concepcion"
+    "Chase Brown"
    ],
    "tradeIds": [
     "2020-T2",
@@ -28524,7 +24230,7 @@
    "proposalsReceived2026": 25,
    "declinesLogged2026": 9,
    "vetoVotesLogged2026": 0,
-   "netPointsFromTrades2026": 1.5,
+   "netPointsFromTrades2026": 24.7,
    "partnersAllTime": [
     {
      "teamId": 4,

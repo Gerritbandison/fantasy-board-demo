@@ -84,6 +84,43 @@ interface RawWeek8Game {
   awayTeamId: number;
   homeProjected: number | null;
   awayProjected: number | null;
+  /** Fantasy points already scored this week. 0 is a real zero, not "not started". */
+  homeCurrentPoints?: number | null;
+  awayCurrentPoints?: number | null;
+  /** "HOME", "AWAY", or "UNDECIDED". */
+  winner?: string | null;
+  /** "in-progress" once the week has started, even if a team is still on 0. */
+  status?: string | null;
+}
+
+interface RawThursdayPlayer {
+  teamId: number;
+  name: string;
+  nflTeam?: string | null;
+  position: string;
+  points: number;
+  started: boolean;
+  line?: string | null;
+}
+
+interface RawThursday {
+  week: number;
+  date: string;
+  kickoff: string;
+  scoring: string;
+  nfl: {
+    away: string;
+    home: string;
+    awayScore: number;
+    homeScore: number;
+    site: string;
+    awayRecord: string;
+    homeRecord: string;
+    quarters: { [abbr: string]: number[] };
+    source: string;
+  };
+  players: RawThursdayPlayer[];
+  quietTeamIds: number[];
 }
 
 interface RawChampion {
@@ -97,7 +134,8 @@ interface RawChampion {
 interface RawFile {
   meta: { generatedAt: string; source: string; leagueId: string; season: number; currentWeek: number };
   league: { name: string; size: number; previousSeasons: number[] };
-  schedule: { weeks1to7: RawGame[]; week8: RawWeek8Game[] };
+  schedule: { weeks1to7?: RawGame[]; completed?: RawGame[]; week8?: RawWeek8Game[] } & { [key: string]: unknown };
+  week8Thursday?: RawThursday | null;
   champions: RawChampion[];
   teams: RawTeam[];
 }
@@ -235,9 +273,7 @@ export const TEAMS: Team[] = file.teams.map((t) => ({
     result: w.result as TeamWeek["result"],
     projected: nn(w.projected),
   })),
-  week8: t.week8
-    ? { opponentId: t.week8.opponentTeamId, projected: nn(t.week8.projected), opponentProjected: nn(t.week8.opponentProjected) }
-    : undefined,
+  week8: currentWeekSide(t),
   roster: { starters: t.roster.starters.map(player), bench: t.roster.bench.map(player), ir: t.roster.ir.map(player) },
   moves: t.recentTransactions.map((m) => ({
     date: nn(m.date),
@@ -311,7 +347,9 @@ export interface Game {
   margin: number;
 }
 
-export const GAMES: Game[] = file.schedule.weeks1to7.map((g) => ({
+const completedGames = (file.schedule.completed ?? file.schedule.weeks1to7 ?? []) as RawGame[];
+
+export const GAMES: Game[] = completedGames.map((g) => ({
   week: g.week,
   home: { teamId: g.homeTeamId, score: g.homeScore, projected: nn(g.homeProjected) },
   away: { teamId: g.awayTeamId, score: g.awayScore, projected: nn(g.awayProjected) },
@@ -329,26 +367,71 @@ export function loserSide(g: Game) {
   return g.winnerId === g.home.teamId ? g.away : g.home;
 }
 
+export type MatchupState = "projected" | "live" | "final";
+
+export interface MatchupSide {
+  teamId: number;
+  projected?: number;
+  /** Set once the week is underway, including a real 0. */
+  points?: number;
+}
+
 export interface Matchup {
   slug: string;
   week: number;
   homeId: number;
   awayId: number;
+  state: MatchupState;
   /** Display order: the user's team first, otherwise away then home. */
-  left: { teamId: number; projected?: number };
-  right: { teamId: number; projected?: number };
+  left: MatchupSide;
+  right: MatchupSide;
 }
 
-export const MATCHUPS: Matchup[] = file.schedule.week8
+function currentWeekGames(): RawWeek8Game[] {
+  const key = `week${file.meta.currentWeek}`;
+  const found = file.schedule[key];
+  if (Array.isArray(found)) return found as RawWeek8Game[];
+  return file.schedule.week8 ?? [];
+}
+
+function currentWeekSide(t: RawTeam) {
+  const bag = t as RawTeam & { [key: string]: RawTeam["week8"] };
+  const raw = bag[`week${file.meta.currentWeek}`] ?? t.week8;
+  return raw
+    ? { opponentId: raw.opponentTeamId, projected: nn(raw.projected), opponentProjected: nn(raw.opponentProjected) }
+    : undefined;
+}
+
+function matchupState(g: RawWeek8Game): MatchupState {
+  const winner = (g.winner ?? "").toUpperCase();
+  if (winner === "HOME" || winner === "AWAY") return "final";
+  const status = (g.status ?? "").toLowerCase();
+  if (status === "in-progress" || status === "live" || status === "final") return status === "final" ? "final" : "live";
+  if ((g.homeCurrentPoints ?? 0) > 0 || (g.awayCurrentPoints ?? 0) > 0) return "live";
+  return "projected";
+}
+
+export const MATCHUPS: Matchup[] = currentWeekGames()
   .map((g) => {
-    const away = { teamId: g.awayTeamId, projected: nn(g.awayProjected) };
-    const home = { teamId: g.homeTeamId, projected: nn(g.homeProjected) };
+    const state = matchupState(g);
+    const live = state !== "projected";
+    const away: MatchupSide = {
+      teamId: g.awayTeamId,
+      projected: nn(g.awayProjected),
+      points: live ? (g.awayCurrentPoints ?? 0) : undefined,
+    };
+    const home: MatchupSide = {
+      teamId: g.homeTeamId,
+      projected: nn(g.homeProjected),
+      points: live ? (g.homeCurrentPoints ?? 0) : undefined,
+    };
     const [left, right] = home.teamId === USER_TEAM.id ? [home, away] : [away, home];
     return {
       slug: `${team(left.teamId).abbrev}-${team(right.teamId).abbrev}`.toLowerCase(),
       week: LEAGUE.week,
       homeId: home.teamId,
       awayId: away.teamId,
+      state,
       left,
       right,
     };
@@ -417,6 +500,51 @@ export function isFlagged(p: Player) {
   return p.status != null && p.status !== "Active";
 }
 
+/** Up to 2 decimals, without a trailing zero. */
+export function formatPoints(n: number) {
+  return n.toFixed(2).replace(/0$/, "").replace(/\.0$/, "");
+}
+
+export interface ThursdayPlayer {
+  teamId: number;
+  name: string;
+  nflTeam?: string;
+  position: string;
+  points: number;
+  started: boolean;
+  line?: string;
+}
+
+export interface ThursdayNight {
+  week: number;
+  date: string;
+  kickoff: string;
+  scoring: string;
+  nfl: RawThursday["nfl"];
+  players: ThursdayPlayer[];
+  quietTeamIds: number[];
+}
+
+export const THURSDAY: ThursdayNight | null = file.week8Thursday
+  ? {
+      week: file.week8Thursday.week,
+      date: file.week8Thursday.date,
+      kickoff: file.week8Thursday.kickoff,
+      scoring: file.week8Thursday.scoring,
+      nfl: file.week8Thursday.nfl,
+      quietTeamIds: file.week8Thursday.quietTeamIds,
+      players: file.week8Thursday.players.map((p) => ({
+        teamId: p.teamId,
+        name: p.name,
+        nflTeam: nn(p.nflTeam),
+        position: p.position,
+        points: p.points,
+        started: p.started,
+        line: nn(p.line),
+      })),
+    }
+  : null;
+
 /** Everything the public API returns: display names only. */
 export function publicLeague() {
   return {
@@ -425,7 +553,10 @@ export function publicLeague() {
     league: { id: LEAGUE.id, name: LEAGUE.name, season: LEAGUE.season, week: LEAGUE.week },
     teams: TEAMS,
     games: GAMES,
+    matchups: MATCHUPS,
+    /** @deprecated Use `matchups`. Kept so older clients still resolve. */
     week8: MATCHUPS,
+    thursday: THURSDAY,
     champions: CHAMPIONS,
   };
 }

@@ -3,14 +3,14 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeftRight, Medal, ShieldAlert, Trophy } from "lucide-react";
 import { BenchList, PlayerCell } from "@/components/league/MatchupBoard";
-import { SlotChip } from "@/components/league/bits";
+import { ScoreReadout, SlotChip } from "@/components/league/bits";
 import { TeamHeadToHead } from "@/components/league/h2h";
 import { TeamTabs } from "@/components/league/TeamTabs";
 import { TeamTradesSection } from "@/components/league/trades";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, Stat, TeamAvatar } from "@/components/league/ui";
 import { ScoreTrail, TrailLegend, WeekStrip } from "@/components/league/trail";
 import { cn } from "@/lib/utils";
-import { formatRecord, getTeam, isFlagged, LEAGUE, matchupFor, matchupPath, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
+import { formatRecord, getTeam, isFlagged, LEAGUE, matchupFor, matchupPath, ordinal, STANDINGS, team, teamPath, type MatchupSide } from "@/lib/league";
 import {
   allPlay,
   CLOSE_GAME_MARGIN,
@@ -46,9 +46,10 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
   const close = closeGameRecord(t.id);
   const tops = weeklyTopCount(t.id);
   const m = matchupFor(t.id);
-  const oppId = m ? (m.left.teamId === t.id ? m.right.teamId : m.left.teamId) : undefined;
-  const myProj = m ? (m.left.teamId === t.id ? m.left.projected : m.right.projected) : undefined;
-  const oppProj = m ? (m.left.teamId === t.id ? m.right.projected : m.left.projected) : undefined;
+  const mine: MatchupSide | undefined = m ? (m.left.teamId === t.id ? m.left : m.right) : undefined;
+  const opp: MatchupSide | undefined = m ? (m.left.teamId === t.id ? m.right : m.left) : undefined;
+  const oppId = opp?.teamId;
+  const myProj = mine?.projected;
   const flagged = [...t.roster.starters, ...t.roster.bench, ...t.roster.ir].filter(isFlagged);
   const idx = STANDINGS.findIndex((x) => x.id === t.id);
   const prev = STANDINGS[(idx - 1 + STANDINGS.length) % STANDINGS.length];
@@ -75,24 +76,27 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div className="grid content-start gap-5">
           {m && oppId != null && (
-            <Card title={`Week ${LEAGUE.week} matchup`} action={myProj != null ? "Projected" : undefined} accent={t.color}>
+            <Card title={`Week ${LEAGUE.week} matchup`} action={m.state === "live" ? "In progress" : m.state === "final" ? "Final" : "Projected"} accent={t.color}>
               <div className="grid gap-2 rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
-                {[
-                  { id: t.id, p: myProj },
-                  { id: oppId, p: oppProj },
-                ].map((x) => {
-                  const xt = team(x.id);
-                  const lead = myProj != null && oppProj != null && x.p === Math.max(myProj, oppProj);
+                {[mine, opp].filter((x): x is MatchupSide => x != null).map((x) => {
+                  const xt = team(x.teamId);
+                  const live = m.state !== "projected";
+                  const shown = live ? (x.points ?? 0) : (x.projected ?? -1);
+                  const other = x === mine ? opp : mine;
+                  const otherShown = other ? (live ? (other.points ?? 0) : (other.projected ?? -1)) : -1;
+                  const lead = shown === Math.max(shown, otherShown);
                   return (
-                    <div key={x.id} className="flex items-center gap-3">
-                      <TeamAvatar teamId={x.id} size="sm" />
+                    <div key={x.teamId} className="flex items-center gap-3">
+                      <TeamAvatar teamId={x.teamId} size="sm" />
                       <span className="min-w-0 flex-1">
                         <span className="block text-sm leading-tight font-semibold break-words text-navy">{xt.name}</span>
-                        <span className="text-xs text-slate-500">
-                          {formatRecord(xt)} · {ordinal(xt.rank)} · {m.homeId === x.id ? "Home" : "Away"}
+                        <span className="text-xs text-slate-600">
+                          {formatRecord(xt)} · {ordinal(xt.rank)} · {m.homeId === x.teamId ? "Home" : "Away"}
                         </span>
                       </span>
-                      <span className={cn("font-display text-2xl font-bold tabular-nums", lead ? "text-turf" : "text-slate-400")}>{x.p != null ? x.p.toFixed(1) : "—"}</span>
+                      <span className={cn("font-display text-2xl font-bold tabular-nums", lead ? "text-turf" : "text-slate-600")}>
+                        <ScoreReadout side={x} state={m.state} bracketClassName="text-slate-600" />
+                      </span>
                     </div>
                   );
                 })}
@@ -122,7 +126,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
           <Card title="Results" bodyClassName="p-0 sm:p-0" className="overflow-hidden">
             <table className="w-full table-fixed text-sm">
               <thead>
-                <tr className="border-y border-line bg-slate-50 text-left text-[11px] font-bold tracking-wider text-slate-500 uppercase">
+                <tr className="border-y border-line bg-slate-50 text-left text-xs font-bold tracking-wider text-slate-600 uppercase">
                   <th className="w-11 py-2 pl-4 sm:pl-5">Wk</th>
                   <th className="py-2">Opponent</th>
                   <th className="w-[5.5rem] py-2 text-right">Score</th>
@@ -134,7 +138,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                   const diff = w.pf - (LEAGUE_AVG_BY_WEEK.get(w.week) ?? 0);
                   return (
                     <tr key={w.week} className="border-b border-line last:border-0">
-                      <td className="py-2.5 pl-4 font-display font-bold text-slate-500 sm:pl-5">{w.week}</td>
+                      <td className="py-2.5 pl-4 font-display font-bold text-slate-600 sm:pl-5">{w.week}</td>
                       <td className="py-2.5 pr-2">
                         <Link href={teamPath(w.opponentId)} className="flex min-w-0 items-center gap-2 hover:underline">
                           <ResultChip result={w.result} />
@@ -145,7 +149,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                       </td>
                       <td className="py-2.5 text-right tabular-nums">
                         <span className="font-semibold text-navy">{w.pf.toFixed(1)}</span>
-                        <span className="text-slate-400">–{w.pa.toFixed(1)}</span>
+                        <span className="text-slate-600">–{w.pa.toFixed(1)}</span>
                       </td>
                       <td className={cn("py-2.5 pr-4 text-right font-semibold tabular-nums sm:pr-5", diff >= 0 ? "text-turf" : "text-loss")}>
                         {diff >= 0 ? "+" : "−"}
@@ -206,9 +210,9 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
               <ul className="divide-y divide-line">
                 {t.moves.map((mv, i) => (
                   <li key={i} className="flex gap-3 py-2.5 first:pt-0 last:pb-0">
-                    <ArrowLeftRight className="mt-0.5 size-4 shrink-0 text-slate-400" />
+                    <ArrowLeftRight className="mt-0.5 size-4 shrink-0 text-slate-600" />
                     <div className="min-w-0 text-sm leading-snug">
-                      <p className="text-xs font-semibold text-slate-500">
+                      <p className="text-xs font-semibold text-slate-600">
                         {[mv.week != null ? `Week ${mv.week}` : null, mv.date ? formatDate(mv.date) : null, mv.type === "waiver" ? "Waiver claim" : "Free agent"]
                           .filter(Boolean)
                           .join(" · ")}
@@ -221,7 +225,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                         </p>
                       ))}
                       {mv.dropped.map((d) => (
-                        <p key={d} className="text-slate-500">
+                        <p key={d} className="text-slate-600">
                           <span className="font-bold text-loss">− </span>
                           {d}
                         </p>
@@ -231,7 +235,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                 ))}
               </ul>
             ) : (
-              <p className="text-sm text-slate-500">No completed moves in the last two weeks.</p>
+              <p className="text-sm text-slate-600">No completed moves in the last two weeks.</p>
             )}
           </Card>
         </div>
@@ -265,7 +269,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
         <Card title="Trophy case">
           <div className="grid grid-cols-2 gap-4">
-            <Stat label="Titles" value={h.titles} valueClassName={h.titles ? "text-gold" : "text-slate-300"} sub={h.titleYears.join(", ") || undefined} />
+            <Stat label="Titles" value={h.titles} valueClassName={h.titles ? "text-gold-ink" : "text-slate-600"} sub={h.titleYears.join(", ") || undefined} />
             <Stat label="Finals" value={h.finalsYears.length} sub={h.finalsYears.join(", ") || undefined} />
             {h.bestFinish != null && <Stat label="Best finish" value={ordinal(h.bestFinish)} />}
             <Stat label="#1 seeds" value={h.number1Seeds.length} sub={h.number1Seeds.join(", ") || undefined} />
@@ -290,7 +294,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
         <Card title="Season by season" bodyClassName="p-0 sm:p-0" className="overflow-hidden">
           <table className="w-full table-fixed text-sm">
             <thead>
-              <tr className="border-y border-line bg-slate-50 text-left text-[11px] font-bold tracking-wider text-slate-500 uppercase">
+              <tr className="border-y border-line bg-slate-50 text-left text-xs font-bold tracking-wider text-slate-600 uppercase">
                 <th className="w-14 py-2 pl-4 sm:pl-5">Year</th>
                 <th className="py-2">Team name</th>
                 <th className="w-12 py-2 text-right">W-L</th>
@@ -306,7 +310,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                     <td className="py-2.5 pl-4 font-display font-bold text-navy sm:pl-5">{se.season}</td>
                     <td className="py-2.5 pr-2">
                       <span className="block leading-tight break-words text-slate-700">{se.name}</span>
-                      {se.pointsFor != null && <span className="text-xs text-slate-400 tabular-nums">{se.pointsFor.toFixed(1)} PF</span>}
+                      {se.pointsFor != null && <span className="text-xs text-slate-600 tabular-nums">{se.pointsFor.toFixed(1)} PF</span>}
                     </td>
                     <td className="py-2.5 text-right font-semibold text-navy tabular-nums">{formatRecord(se)}</td>
                     <td className="py-2.5 text-right text-slate-600 tabular-nums">{se.seed ?? "—"}</td>
@@ -328,7 +332,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
               })}
             </tbody>
           </table>
-          <p className="border-t border-line px-4 py-3 text-xs leading-relaxed text-slate-500 sm:px-5">
+          <p className="border-t border-line px-4 py-3 text-xs leading-relaxed text-slate-600 sm:px-5">
             History follows ESPN team slot {t.id} across seasons. Names are as shown that season; the owner may have changed along the way.
           </p>
         </Card>
@@ -373,7 +377,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
           <Link key={x.id} href={teamPath(x.id)} className={cn("flex min-w-0 items-center gap-2.5 rounded-2xl bg-white p-3 ring-1 ring-line hover:shadow-sm", i === 1 && "flex-row-reverse text-right")}>
             <TeamAvatar teamId={x.id} size="sm" />
             <span className="min-w-0">
-              <span className="block text-[11px] font-semibold text-slate-500">{i === 0 ? "← Previous" : "Next →"}</span>
+              <span className="block text-xs font-semibold text-slate-600">{i === 0 ? "← Previous" : "Next →"}</span>
               <span className="block truncate text-sm font-semibold text-navy">{x.name}</span>
             </span>
           </Link>

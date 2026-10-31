@@ -4,11 +4,12 @@ import { Trophy } from "lucide-react";
 import { Card, LuckBadge, PageHeader, Pill, TeamAvatar } from "@/components/league/ui";
 import { MiniTrail } from "@/components/league/trail";
 import { TeamsTabs } from "@/components/league/TeamsTabs";
-import { formatRecord, LEAGUE, matchupFor, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
+import { FindNav } from "@/components/league/FindNav";
+import { formatPoints, formatRecord, LEAGUE, matchupFor, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
 import { luck, pfRank, powerRank, teamStats } from "@/lib/stats";
 
 export const metadata: Metadata = {
-  description: "All ten Chicken league teams: record, points, power rank, week 8 opponent, and titles.",
+  description: `All ten Chicken league teams: record, points, power rank, week ${LEAGUE.week} opponent, and titles.`,
 };
 
 export default function HomePage() {
@@ -19,6 +20,7 @@ export default function HomePage() {
         <div className="mt-4">
           <TeamsTabs active="teams" />
         </div>
+        <FindNav />
       </PageHeader>
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -33,13 +35,13 @@ export default function HomePage() {
                 <div className="flex items-start gap-3">
                   <TeamAvatar teamId={t.id} size="lg" />
                   <div className="min-w-0 flex-1">
-                    <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">{ordinal(t.rank)} place</p>
+                    <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">{ordinal(t.rank)} place</p>
                     <p className="font-display text-xl leading-tight font-bold break-words text-navy">{t.name}</p>
-                    {t.owner && <p className="text-xs text-slate-500">{t.owner}</p>}
+                    {t.owner && <p className="text-xs text-slate-600">{t.owner}</p>}
                   </div>
                   {t.history.titles > 0 && (
-                    <span className="flex shrink-0 items-center gap-0.5 font-display text-lg font-bold text-gold" title={`Titles: ${t.history.titleYears.join(", ")}`}>
-                      <Trophy className="size-4" />
+                    <span className="flex shrink-0 items-center gap-0.5 font-display text-lg font-bold text-gold-ink" title={`Titles: ${t.history.titleYears.join(", ")}`}>
+                      <Trophy className="size-4" aria-hidden />
                       {t.history.titles > 1 ? `×${t.history.titles}` : ""}
                     </span>
                   )}
@@ -53,11 +55,19 @@ export default function HomePage() {
                   <LuckBadge row={luck(t.id)} />
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-3 border-t border-line pt-3">
-                  <div className="min-w-0 text-xs text-slate-500">
-                    {oppId != null && (
+                  <div className="min-w-0 text-xs text-slate-600">
+                    {oppId != null && m && (
                       <p className="truncate">
                         Wk {LEAGUE.week} vs <span className="font-semibold text-slate-700">{team(oppId).name}</span>
-                        {proj != null && <> · proj {proj.toFixed(1)}</>}
+                        {m.state !== "projected" ? (
+                          <>
+                            {" "}
+                            · {formatPoints(m.left.teamId === t.id ? (m.left.points ?? 0) : (m.right.points ?? 0))}
+                            {proj != null && <> [{proj.toFixed(1)}]</>}
+                          </>
+                        ) : (
+                          proj != null && <> · proj {proj.toFixed(1)}</>
+                        )}
                       </p>
                     )}
                     <p>
@@ -71,7 +81,7 @@ export default function HomePage() {
           );
         })}
       </ul>
-      <p className="text-xs text-slate-500">Dashed line in each trend: the weekly league average.</p>
+      <p className="text-xs text-slate-600">Dashed line in each trend: the weekly league average.</p>
     </>
   );
 }
