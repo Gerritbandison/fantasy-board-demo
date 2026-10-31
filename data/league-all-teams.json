@@ -1,0 +1,5173 @@
+{
+  "meta": {
+    "generatedAt": "2026-10-28T23:34:15.260987-04:00",
+    "source": "Flaim Fantasy (ESPN)",
+    "leagueId": "12115010",
+    "season": 2026,
+    "currentWeek": 8,
+    "seasonPhase": "regular_season",
+    "notes": [
+      "Scores rounded to 2 decimals. Unknown values are null.",
+      "ownerName: Flaim's ESPN league info returned no owner names; ownerLabelFromApp is copied from the app's existing league-intel.json (nicknames, 4 teams only).",
+      "history.playoffAppearances is null: Flaim marks madePlayoffs=true for all 10 teams in every past season (consolation bracket), and the league's playoff team count isn't returned. Raw flag kept as madePlayoffsFlaim.",
+      "History is keyed by ESPN teamId slot (franchise continuity assumed by slot; owners may have changed). Seasons 2020-2025 available.",
+      "Week 8 projections are ESPN totalProjectedPoints at fetch time (pre-kickoff)."
+    ],
+    "displayPolicy": "Team 7 shows its real ESPN name. Others use the existing app alias where present, else trimmed ESPN name; vulgar names get a proposed clean alias."
+  },
+  "league": {
+    "id": 12115010,
+    "name": "Chicken",
+    "size": 10,
+    "scoringType": "H2H_POINTS",
+    "playoffSeedingRule": "TOTAL_POINTS_SCORED",
+    "keeperSettings": {
+      "keeperCount": 3,
+      "keeperCountFuture": 3,
+      "keeperOrderType": "MANUAL",
+      "keeperDeadlineDate": "2026-08-23T03:00:00.000Z"
+    },
+    "draftType": "SNAKE",
+    "tradeDeadline": "2026-12-09T17:00:00.000Z",
+    "previousSeasons": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "teamIndex": {
+    "1": {
+      "espnName": "Bibi's Boys X KASE Capital",
+      "displayName": "Bibi's Boys",
+      "abbrev": "BIB"
+    },
+    "2": {
+      "espnName": "Jahmyr I Go Again",
+      "displayName": "Jahmyr I Go Again",
+      "abbrev": "JAH"
+    },
+    "3": {
+      "espnName": "Chewy's Warriors",
+      "displayName": "Chewy's Warriors",
+      "abbrev": "CHW"
+    },
+    "4": {
+      "espnName": "All Heart",
+      "displayName": "All Heart",
+      "abbrev": "AH"
+    },
+    "5": {
+      "espnName": "Easy Peasy Lemon Squeezy",
+      "displayName": "Easy Peasy Lemon Squeezy",
+      "abbrev": "EPZ"
+    },
+    "6": {
+      "espnName": "Smert Fellas",
+      "displayName": "Smert Fellas",
+      "abbrev": "SMF"
+    },
+    "7": {
+      "espnName": "Maye i give you a blowj0b",
+      "displayName": "Maye i give you a blowj0b",
+      "abbrev": "MAYE"
+    },
+    "8": {
+      "espnName": "Dimes McSorley",
+      "displayName": "Dimes McSorley",
+      "abbrev": "DIM"
+    },
+    "10": {
+      "espnName": "Sandusky's Soldiers ",
+      "displayName": "Sandusky's Soldiers",
+      "abbrev": "SND"
+    },
+    "11": {
+      "espnName": "Kabul Cocknballs",
+      "displayName": "Kabul FC",
+      "abbrev": "KAB"
+    }
+  },
+  "standings": [
+    {
+      "teamId": 1,
+      "displayName": "Bibi's Boys",
+      "rank": 1,
+      "playoffSeed": 1,
+      "wins": 6,
+      "losses": 1,
+      "ties": 0,
+      "winPercentage": 0.857,
+      "pointsFor": 876.92,
+      "pointsAgainst": 805.26
+    },
+    {
+      "teamId": 8,
+      "displayName": "Dimes McSorley",
+      "rank": 2,
+      "playoffSeed": 2,
+      "wins": 5,
+      "losses": 2,
+      "ties": 0,
+      "winPercentage": 0.714,
+      "pointsFor": 811.86,
+      "pointsAgainst": 746.7
+    },
+    {
+      "teamId": 3,
+      "displayName": "Chewy's Warriors",
+      "rank": 3,
+      "playoffSeed": 3,
+      "wins": 4,
+      "losses": 3,
+      "ties": 0,
+      "winPercentage": 0.571,
+      "pointsFor": 992.74,
+      "pointsAgainst": 917.32
+    },
+    {
+      "teamId": 2,
+      "displayName": "Jahmyr I Go Again",
+      "rank": 4,
+      "playoffSeed": 4,
+      "wins": 4,
+      "losses": 3,
+      "ties": 0,
+      "winPercentage": 0.571,
+      "pointsFor": 929.12,
+      "pointsAgainst": 806.4
+    },
+    {
+      "teamId": 5,
+      "displayName": "Easy Peasy Lemon Squeezy",
+      "rank": 5,
+      "playoffSeed": 5,
+      "wins": 3,
+      "losses": 4,
+      "ties": 0,
+      "winPercentage": 0.429,
+      "pointsFor": 911.74,
+      "pointsAgainst": 928.28
+    },
+    {
+      "teamId": 10,
+      "displayName": "Sandusky's Soldiers",
+      "rank": 6,
+      "playoffSeed": 6,
+      "wins": 3,
+      "losses": 4,
+      "ties": 0,
+      "winPercentage": 0.429,
+      "pointsFor": 823.14,
+      "pointsAgainst": 900.18
+    },
+    {
+      "teamId": 4,
+      "displayName": "All Heart",
+      "rank": 7,
+      "playoffSeed": 7,
+      "wins": 3,
+      "losses": 4,
+      "ties": 0,
+      "winPercentage": 0.429,
+      "pointsFor": 814.98,
+      "pointsAgainst": 819.24
+    },
+    {
+      "teamId": 11,
+      "displayName": "Kabul FC",
+      "rank": 8,
+      "playoffSeed": 8,
+      "wins": 3,
+      "losses": 4,
+      "ties": 0,
+      "winPercentage": 0.429,
+      "pointsFor": 776.74,
+      "pointsAgainst": 855.92
+    },
+    {
+      "teamId": 6,
+      "displayName": "Smert Fellas",
+      "rank": 9,
+      "playoffSeed": 9,
+      "wins": 2,
+      "losses": 5,
+      "ties": 0,
+      "winPercentage": 0.286,
+      "pointsFor": 827.84,
+      "pointsAgainst": 866.54
+    },
+    {
+      "teamId": 7,
+      "displayName": "Maye i give you a blowj0b",
+      "rank": 10,
+      "playoffSeed": 10,
+      "wins": 2,
+      "losses": 5,
+      "ties": 0,
+      "winPercentage": 0.286,
+      "pointsFor": 771.16,
+      "pointsAgainst": 890.4
+    }
+  ],
+  "schedule": {
+    "weeks1to7": [
+      {
+        "week": 1,
+        "homeTeamId": 11,
+        "awayTeamId": 1,
+        "homeScore": 118.7,
+        "awayScore": 122.2,
+        "homeProjected": 118.29,
+        "awayProjected": 116.57,
+        "winner": "AWAY",
+        "winnerTeamId": 1,
+        "margin": 3.5
+      },
+      {
+        "week": 1,
+        "homeTeamId": 7,
+        "awayTeamId": 4,
+        "homeScore": 87.82,
+        "awayScore": 121.52,
+        "homeProjected": 116.8,
+        "awayProjected": 119.12,
+        "winner": "AWAY",
+        "winnerTeamId": 4,
+        "margin": 33.7
+      },
+      {
+        "week": 1,
+        "homeTeamId": 10,
+        "awayTeamId": 2,
+        "homeScore": 96.76,
+        "awayScore": 155.2,
+        "homeProjected": 121.35,
+        "awayProjected": 128.75,
+        "winner": "AWAY",
+        "winnerTeamId": 2,
+        "margin": 58.44
+      },
+      {
+        "week": 1,
+        "homeTeamId": 8,
+        "awayTeamId": 3,
+        "homeScore": 99.74,
+        "awayScore": 141.46,
+        "homeProjected": 117.8,
+        "awayProjected": 126.69,
+        "winner": "AWAY",
+        "winnerTeamId": 3,
+        "margin": 41.72
+      },
+      {
+        "week": 1,
+        "homeTeamId": 5,
+        "awayTeamId": 6,
+        "homeScore": 143.66,
+        "awayScore": 99.2,
+        "homeProjected": 114.89,
+        "awayProjected": 119.25,
+        "winner": "HOME",
+        "winnerTeamId": 5,
+        "margin": 44.46
+      },
+      {
+        "week": 2,
+        "homeTeamId": 1,
+        "awayTeamId": 10,
+        "homeScore": 126.64,
+        "awayScore": 135.72,
+        "homeProjected": 118.26,
+        "awayProjected": 129.35,
+        "winner": "AWAY",
+        "winnerTeamId": 10,
+        "margin": 9.08
+      },
+      {
+        "week": 2,
+        "homeTeamId": 8,
+        "awayTeamId": 11,
+        "homeScore": 112.52,
+        "awayScore": 77.8,
+        "homeProjected": 118.16,
+        "awayProjected": 120.61,
+        "winner": "HOME",
+        "winnerTeamId": 8,
+        "margin": 34.72
+      },
+      {
+        "week": 2,
+        "homeTeamId": 3,
+        "awayTeamId": 6,
+        "homeScore": 130.8,
+        "awayScore": 141.06,
+        "homeProjected": 129.7,
+        "awayProjected": 124.63,
+        "winner": "AWAY",
+        "winnerTeamId": 6,
+        "margin": 10.26
+      },
+      {
+        "week": 2,
+        "homeTeamId": 5,
+        "awayTeamId": 4,
+        "homeScore": 133.52,
+        "awayScore": 128.16,
+        "homeProjected": 122.14,
+        "awayProjected": 124.45,
+        "winner": "HOME",
+        "winnerTeamId": 5,
+        "margin": 5.36
+      },
+      {
+        "week": 2,
+        "homeTeamId": 7,
+        "awayTeamId": 2,
+        "homeScore": 65.12,
+        "awayScore": 128.28,
+        "homeProjected": 95.14,
+        "awayProjected": 131.04,
+        "winner": "AWAY",
+        "winnerTeamId": 2,
+        "margin": 63.16
+      },
+      {
+        "week": 3,
+        "homeTeamId": 8,
+        "awayTeamId": 1,
+        "homeScore": 100.04,
+        "awayScore": 123.88,
+        "homeProjected": 124.22,
+        "awayProjected": 118.73,
+        "winner": "AWAY",
+        "winnerTeamId": 1,
+        "margin": 23.84
+      },
+      {
+        "week": 3,
+        "homeTeamId": 10,
+        "awayTeamId": 7,
+        "homeScore": 106.98,
+        "awayScore": 70.36,
+        "homeProjected": 127.21,
+        "awayProjected": 108.93,
+        "winner": "HOME",
+        "winnerTeamId": 10,
+        "margin": 36.62
+      },
+      {
+        "week": 3,
+        "homeTeamId": 6,
+        "awayTeamId": 11,
+        "homeScore": 124.84,
+        "awayScore": 132.18,
+        "homeProjected": 117.95,
+        "awayProjected": 123.84,
+        "winner": "AWAY",
+        "winnerTeamId": 11,
+        "margin": 7.34
+      },
+      {
+        "week": 3,
+        "homeTeamId": 2,
+        "awayTeamId": 5,
+        "homeScore": 168.1,
+        "awayScore": 131.86,
+        "homeProjected": 122.6,
+        "awayProjected": 125.9,
+        "winner": "HOME",
+        "winnerTeamId": 2,
+        "margin": 36.24
+      },
+      {
+        "week": 3,
+        "homeTeamId": 3,
+        "awayTeamId": 4,
+        "homeScore": 105.1,
+        "awayScore": 115.12,
+        "homeProjected": 137.42,
+        "awayProjected": 130.68,
+        "winner": "AWAY",
+        "winnerTeamId": 4,
+        "margin": 10.02
+      },
+      {
+        "week": 4,
+        "homeTeamId": 6,
+        "awayTeamId": 8,
+        "homeScore": 122,
+        "awayScore": 130.16,
+        "homeProjected": 115.0,
+        "awayProjected": 123.04,
+        "winner": "AWAY",
+        "winnerTeamId": 8,
+        "margin": 8.16
+      },
+      {
+        "week": 4,
+        "homeTeamId": 11,
+        "awayTeamId": 4,
+        "homeScore": 115.22,
+        "awayScore": 102.5,
+        "homeProjected": 128.61,
+        "awayProjected": 131.74,
+        "winner": "HOME",
+        "winnerTeamId": 11,
+        "margin": 12.72
+      },
+      {
+        "week": 4,
+        "homeTeamId": 10,
+        "awayTeamId": 5,
+        "homeScore": 128.62,
+        "awayScore": 115.72,
+        "homeProjected": 120.05,
+        "awayProjected": 128.53,
+        "winner": "HOME",
+        "winnerTeamId": 10,
+        "margin": 12.9
+      },
+      {
+        "week": 4,
+        "homeTeamId": 7,
+        "awayTeamId": 1,
+        "homeScore": 128.76,
+        "awayScore": 132.38,
+        "homeProjected": 112.95,
+        "awayProjected": 125.44,
+        "winner": "AWAY",
+        "winnerTeamId": 1,
+        "margin": 3.62
+      },
+      {
+        "week": 4,
+        "homeTeamId": 3,
+        "awayTeamId": 2,
+        "homeScore": 176.18,
+        "awayScore": 154.74,
+        "homeProjected": 139.54,
+        "awayProjected": 133.48,
+        "winner": "HOME",
+        "winnerTeamId": 3,
+        "margin": 21.44
+      },
+      {
+        "week": 5,
+        "homeTeamId": 7,
+        "awayTeamId": 5,
+        "homeScore": 168.96,
+        "awayScore": 160.1,
+        "homeProjected": 123.44,
+        "awayProjected": 122.43,
+        "winner": "HOME",
+        "winnerTeamId": 7,
+        "margin": 8.86
+      },
+      {
+        "week": 5,
+        "homeTeamId": 10,
+        "awayTeamId": 3,
+        "homeScore": 146.68,
+        "awayScore": 180.28,
+        "homeProjected": 131.17,
+        "awayProjected": 120.25,
+        "winner": "AWAY",
+        "winnerTeamId": 3,
+        "margin": 33.6
+      },
+      {
+        "week": 5,
+        "homeTeamId": 8,
+        "awayTeamId": 4,
+        "homeScore": 141.64,
+        "awayScore": 112.7,
+        "homeProjected": 119.51,
+        "awayProjected": 117.33,
+        "winner": "HOME",
+        "winnerTeamId": 8,
+        "margin": 28.94
+      },
+      {
+        "week": 5,
+        "homeTeamId": 6,
+        "awayTeamId": 1,
+        "homeScore": 114.24,
+        "awayScore": 117.06,
+        "homeProjected": 121.13,
+        "awayProjected": 129.59,
+        "winner": "AWAY",
+        "winnerTeamId": 1,
+        "margin": 2.82
+      },
+      {
+        "week": 5,
+        "homeTeamId": 11,
+        "awayTeamId": 2,
+        "homeScore": 110.36,
+        "awayScore": 149.72,
+        "homeProjected": 121.48,
+        "awayProjected": 136.7,
+        "winner": "AWAY",
+        "winnerTeamId": 2,
+        "margin": 39.36
+      },
+      {
+        "week": 6,
+        "homeTeamId": 5,
+        "awayTeamId": 1,
+        "homeScore": 88.3,
+        "awayScore": 119.04,
+        "homeProjected": 129.56,
+        "awayProjected": 108.98,
+        "winner": "AWAY",
+        "winnerTeamId": 1,
+        "margin": 30.74
+      },
+      {
+        "week": 6,
+        "homeTeamId": 2,
+        "awayTeamId": 8,
+        "homeScore": 75.88,
+        "awayScore": 99.84,
+        "homeProjected": 116.32,
+        "awayProjected": 110.58,
+        "winner": "AWAY",
+        "winnerTeamId": 8,
+        "margin": 23.96
+      },
+      {
+        "week": 6,
+        "homeTeamId": 4,
+        "awayTeamId": 6,
+        "homeScore": 115.48,
+        "awayScore": 100.22,
+        "homeProjected": 125.96,
+        "awayProjected": 121.21,
+        "winner": "HOME",
+        "winnerTeamId": 4,
+        "margin": 15.26
+      },
+      {
+        "week": 6,
+        "homeTeamId": 3,
+        "awayTeamId": 7,
+        "homeScore": 142.72,
+        "awayScore": 121.4,
+        "homeProjected": 130.89,
+        "awayProjected": 124.02,
+        "winner": "HOME",
+        "winnerTeamId": 3,
+        "margin": 21.32
+      },
+      {
+        "week": 6,
+        "homeTeamId": 10,
+        "awayTeamId": 11,
+        "homeScore": 115.4,
+        "awayScore": 124.06,
+        "homeProjected": 128.7,
+        "awayProjected": 122.33,
+        "winner": "AWAY",
+        "winnerTeamId": 11,
+        "margin": 8.66
+      },
+      {
+        "week": 7,
+        "homeTeamId": 3,
+        "awayTeamId": 5,
+        "homeScore": 116.2,
+        "awayScore": 138.58,
+        "homeProjected": 131.55,
+        "awayProjected": 117.27,
+        "winner": "AWAY",
+        "winnerTeamId": 5,
+        "margin": 22.38
+      },
+      {
+        "week": 7,
+        "homeTeamId": 6,
+        "awayTeamId": 2,
+        "homeScore": 126.28,
+        "awayScore": 97.2,
+        "homeProjected": 122.09,
+        "awayProjected": 133.14,
+        "winner": "HOME",
+        "winnerTeamId": 6,
+        "margin": 29.08
+      },
+      {
+        "week": 7,
+        "homeTeamId": 8,
+        "awayTeamId": 10,
+        "homeScore": 127.92,
+        "awayScore": 92.98,
+        "homeProjected": 120.69,
+        "awayProjected": 118.28,
+        "winner": "HOME",
+        "winnerTeamId": 8,
+        "margin": 34.94
+      },
+      {
+        "week": 7,
+        "homeTeamId": 11,
+        "awayTeamId": 7,
+        "homeScore": 98.42,
+        "awayScore": 128.74,
+        "homeProjected": 115.41,
+        "awayProjected": 133.81,
+        "winner": "AWAY",
+        "winnerTeamId": 7,
+        "margin": 30.32
+      },
+      {
+        "week": 7,
+        "homeTeamId": 1,
+        "awayTeamId": 4,
+        "homeScore": 135.72,
+        "awayScore": 119.5,
+        "homeProjected": 130.68,
+        "awayProjected": 120.88,
+        "winner": "HOME",
+        "winnerTeamId": 1,
+        "margin": 16.22
+      }
+    ],
+    "week8": [
+      {
+        "week": 8,
+        "homeTeamId": 11,
+        "awayTeamId": 5,
+        "homeProjected": 82.65,
+        "awayProjected": 138.36,
+        "homeCurrentPoints": 0,
+        "awayCurrentPoints": 0,
+        "winner": "UNDECIDED"
+      },
+      {
+        "week": 8,
+        "homeTeamId": 10,
+        "awayTeamId": 6,
+        "homeProjected": 129.77,
+        "awayProjected": 111.41,
+        "homeCurrentPoints": 0,
+        "awayCurrentPoints": 0,
+        "winner": "UNDECIDED"
+      },
+      {
+        "week": 8,
+        "homeTeamId": 4,
+        "awayTeamId": 2,
+        "homeProjected": 111.35,
+        "awayProjected": 127.85,
+        "homeCurrentPoints": 0,
+        "awayCurrentPoints": 0,
+        "winner": "UNDECIDED"
+      },
+      {
+        "week": 8,
+        "homeTeamId": 3,
+        "awayTeamId": 1,
+        "homeProjected": 133.28,
+        "awayProjected": 129.22,
+        "homeCurrentPoints": 0,
+        "awayCurrentPoints": 0,
+        "winner": "UNDECIDED"
+      },
+      {
+        "week": 8,
+        "homeTeamId": 7,
+        "awayTeamId": 8,
+        "homeProjected": 131.27,
+        "awayProjected": 123.49,
+        "homeCurrentPoints": 0,
+        "awayCurrentPoints": 0,
+        "winner": "UNDECIDED"
+      }
+    ]
+  },
+  "champions": [
+    {
+      "season": 2025,
+      "championTeamId": 2,
+      "championEspnName": "Gibbs no step Burrow",
+      "championDisplayName": "Gibbs no step Burrow",
+      "championSeed": 4,
+      "runnerUpTeamId": 3,
+      "runnerUpEspnName": "Chewy's Warriors",
+      "runnerUpDisplayName": "Chewy's Warriors",
+      "runnerUpSeed": 2
+    },
+    {
+      "season": 2024,
+      "championTeamId": 1,
+      "championEspnName": "The Mar's x CMAC farewell tour",
+      "championDisplayName": "The Mar's x CMAC farewell tour",
+      "championSeed": 4,
+      "runnerUpTeamId": 3,
+      "runnerUpEspnName": "Chewy's Warriors",
+      "runnerUpDisplayName": "Chewy's Warriors",
+      "runnerUpSeed": 2
+    },
+    {
+      "season": 2023,
+      "championTeamId": 10,
+      "championEspnName": "Sandusky's Soldiers ",
+      "championDisplayName": "Sandusky's Soldiers",
+      "championSeed": 4,
+      "runnerUpTeamId": 4,
+      "runnerUpEspnName": "GIBBY NEUTRON",
+      "runnerUpDisplayName": "GIBBY NEUTRON",
+      "runnerUpSeed": 2
+    },
+    {
+      "season": 2022,
+      "championTeamId": 6,
+      "championEspnName": "chiefs KINGDOM  Joka",
+      "championDisplayName": "chiefs KINGDOM  Joka",
+      "championSeed": 3,
+      "runnerUpTeamId": 4,
+      "runnerUpEspnName": "DaBrotha Hasbulla",
+      "runnerUpDisplayName": "DaBrotha Hasbulla",
+      "runnerUpSeed": 4
+    },
+    {
+      "season": 2021,
+      "championTeamId": 5,
+      "championEspnName": "Team KGB",
+      "championDisplayName": "Team KGB",
+      "championSeed": 1,
+      "runnerUpTeamId": 7,
+      "runnerUpEspnName": "BOOMIN University",
+      "runnerUpDisplayName": "BOOMIN University",
+      "runnerUpSeed": 3
+    },
+    {
+      "season": 2020,
+      "championTeamId": 6,
+      "championEspnName": "Team Tino",
+      "championDisplayName": "Team Tino",
+      "championSeed": 4,
+      "runnerUpTeamId": 7,
+      "runnerUpEspnName": "Biden 2020",
+      "runnerUpDisplayName": "Biden 2020",
+      "runnerUpSeed": 2
+    }
+  ],
+  "proposedAliases": {
+    "Ni66as in  Trouble": "In Trouble",
+    "The Fucking Letdowns": "The Letdowns",
+    "Team Wet Ass Pussy": "Team WAP",
+    "Kabul Cocknballs": "Kabul FC",
+    "Brioon Omeglemeally😈": "Brioon Omeglemeally"
+  },
+  "transactionsWindow": {
+    "mode": "recent_two_weeks",
+    "unit": "matchup_period",
+    "requested_week": null,
+    "normalization": "none",
+    "weeks": [
+      8,
+      7
+    ],
+    "provider_scoring_period_ids": [
+      7,
+      8
+    ],
+    "start_date": null,
+    "end_date": null,
+    "date_bounds_kind": "unavailable",
+    "timezone": "America/New_York",
+    "returned_rows": 92
+  },
+  "teams": [
+    {
+      "teamId": 1,
+      "espnName": "Bibi's Boys X KASE Capital",
+      "displayName": "Bibi's Boys",
+      "displayNameSource": "existing app alias",
+      "espnAbbrev": "KASE",
+      "displayAbbrev": "BIB",
+      "ownerName": null,
+      "ownerLabelFromApp": "Kyle / KASE",
+      "isUserTeam": false,
+      "record": {
+        "wins": 6,
+        "losses": 1,
+        "ties": 0,
+        "winPercentage": 0.857
+      },
+      "pointsFor": 876.92,
+      "pointsAgainst": 805.26,
+      "rank": 1,
+      "playoffSeed": 1,
+      "currentProjectedRank": 1,
+      "draftDayProjectedRank": 3,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 11,
+          "homeAway": "away",
+          "pointsFor": 122.2,
+          "pointsAgainst": 118.7,
+          "result": "W",
+          "projected": 116.57
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 10,
+          "homeAway": "home",
+          "pointsFor": 126.64,
+          "pointsAgainst": 135.72,
+          "result": "L",
+          "projected": 118.26
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 8,
+          "homeAway": "away",
+          "pointsFor": 123.88,
+          "pointsAgainst": 100.04,
+          "result": "W",
+          "projected": 118.73
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 7,
+          "homeAway": "away",
+          "pointsFor": 132.38,
+          "pointsAgainst": 128.76,
+          "result": "W",
+          "projected": 125.44
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 6,
+          "homeAway": "away",
+          "pointsFor": 117.06,
+          "pointsAgainst": 114.24,
+          "result": "W",
+          "projected": 129.59
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 5,
+          "homeAway": "away",
+          "pointsFor": 119.04,
+          "pointsAgainst": 88.3,
+          "result": "W",
+          "projected": 108.98
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 4,
+          "homeAway": "home",
+          "pointsFor": 135.72,
+          "pointsAgainst": 119.5,
+          "result": "W",
+          "projected": 130.68
+        }
+      ],
+      "seasonStats": {
+        "highScore": 135.72,
+        "lowScore": 117.06,
+        "avgScore": 125.27,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 3,
+        "homeAway": "away",
+        "projected": 129.22,
+        "opponentProjected": 133.28
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "nflTeam": "CIN",
+            "lineupSlot": "WR",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.91,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "Brock Bowers",
+            "position": "TE",
+            "nflTeam": "LV",
+            "lineupSlot": "TE",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.87,
+            "keeperValueRound": 2
+          },
+          {
+            "name": "Amon-Ra St. Brown",
+            "position": "WR",
+            "nflTeam": "DET",
+            "lineupSlot": "WR",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.91,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "Luther Burden III",
+            "position": "WR",
+            "nflTeam": "CHI",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 91.72,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jayden Daniels",
+            "position": "QB",
+            "nflTeam": "WSH",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 94.06,
+            "keeperValueRound": 4
+          },
+          {
+            "name": "Zach Charbonnet",
+            "position": "RB",
+            "nflTeam": "SEA",
+            "lineupSlot": "RB",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 69.49,
+            "keeperValueRound": 12
+          },
+          {
+            "name": "Steelers D/ST",
+            "position": "D/ST",
+            "nflTeam": "PIT",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 95.85,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Will Reichard",
+            "position": "K",
+            "nflTeam": "MIN",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 91.56,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jonah Coleman",
+            "position": "RB",
+            "nflTeam": "DEN",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 39.68,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "TreVeyon Henderson",
+            "position": "RB",
+            "nflTeam": "NE",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 72.6,
+            "keeperValueRound": 4
+          },
+          {
+            "name": "RJ Harvey",
+            "position": "RB",
+            "nflTeam": "DEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 76.15,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Trevor Lawrence",
+            "position": "QB",
+            "nflTeam": "JAX",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 90.52,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Devaughn Vele",
+            "position": "WR",
+            "nflTeam": "NO",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 61.56,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Alvin Kamara",
+            "position": "RB",
+            "nflTeam": "NO",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 59.57,
+            "keeperValueRound": 4
+          },
+          {
+            "name": "Kendre Miller",
+            "position": "RB",
+            "nflTeam": "NO",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 32.72,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Brian Thomas Jr.",
+            "position": "WR",
+            "nflTeam": "JAX",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 41.63,
+            "keeperValueRound": 1
+          }
+        ],
+        "ir": [
+          {
+            "name": "Travis Etienne Jr.",
+            "position": "RB",
+            "nflTeam": "NO",
+            "lineupSlot": "IR",
+            "injuryStatus": "IR",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 80.46,
+            "keeperValueRound": 11
+          }
+        ],
+        "keeperPlayerIds": [
+          4362628,
+          4432665,
+          4374302
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "Jonah Coleman (RB, DEN)"
+          ],
+          "dropped": [
+            "C.J. Stroud (QB, HOU)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Brian Thomas Jr. (WR, JAX)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "waiver",
+          "added": [
+            "C.J. Stroud (QB, HOU)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Team PSU sucks",
+            "displayName": "Team PSU sucks",
+            "wins": 7,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1480.14,
+            "pointsAgainst": 1557.84,
+            "regularSeasonSeed": 5,
+            "finalRank": 5,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "Uno's World",
+            "displayName": "Uno's World",
+            "wins": 7,
+            "losses": 7,
+            "ties": 0,
+            "pointsFor": 1733.36,
+            "pointsAgainst": 1726.06,
+            "regularSeasonSeed": 6,
+            "finalRank": 7,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "It Over",
+            "displayName": "It Over",
+            "wins": 12,
+            "losses": 2,
+            "ties": 0,
+            "pointsFor": 1705.94,
+            "pointsAgainst": 1496.24,
+            "regularSeasonSeed": 1,
+            "finalRank": 3,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "First pick or bust",
+            "displayName": "First pick or bust",
+            "wins": 6,
+            "losses": 8,
+            "ties": 0,
+            "pointsFor": 1687.52,
+            "pointsAgainst": 1687.02,
+            "regularSeasonSeed": 7,
+            "finalRank": 6,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "The Mar's x CMAC farewell tour",
+            "displayName": "The Mar's x CMAC farewell tour",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1849.14,
+            "pointsAgainst": 1734.6,
+            "regularSeasonSeed": 4,
+            "finalRank": 1,
+            "championshipWon": true,
+            "playoffOutcome": "champion",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "Maye 4 MVP X KASE Capital",
+            "displayName": "Maye 4 MVP X KASE Capital",
+            "wins": 6,
+            "losses": 8,
+            "ties": 0,
+            "pointsFor": 1592.48,
+            "pointsAgainst": 1646.76,
+            "regularSeasonSeed": 7,
+            "finalRank": 10,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 1,
+        "titleYears": [
+          2024
+        ],
+        "finalsAppearances": 1,
+        "finalsYears": [
+          2024
+        ],
+        "bestFinish": 1,
+        "number1Seeds": [
+          2022
+        ],
+        "allTimeRegularSeason": {
+          "wins": 46,
+          "losses": 37,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 2,
+      "espnName": "Jahmyr I Go Again",
+      "displayName": "Jahmyr I Go Again",
+      "displayNameSource": "ESPN name (clean, trimmed)",
+      "espnAbbrev": "GAyY",
+      "displayAbbrev": "JAH",
+      "ownerName": null,
+      "ownerLabelFromApp": null,
+      "isUserTeam": false,
+      "record": {
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "winPercentage": 0.571
+      },
+      "pointsFor": 929.12,
+      "pointsAgainst": 806.4,
+      "rank": 4,
+      "playoffSeed": 4,
+      "currentProjectedRank": 3,
+      "draftDayProjectedRank": 1,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 10,
+          "homeAway": "away",
+          "pointsFor": 155.2,
+          "pointsAgainst": 96.76,
+          "result": "W",
+          "projected": 128.75
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 7,
+          "homeAway": "away",
+          "pointsFor": 128.28,
+          "pointsAgainst": 65.12,
+          "result": "W",
+          "projected": 131.04
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 5,
+          "homeAway": "home",
+          "pointsFor": 168.1,
+          "pointsAgainst": 131.86,
+          "result": "W",
+          "projected": 122.6
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 3,
+          "homeAway": "away",
+          "pointsFor": 154.74,
+          "pointsAgainst": 176.18,
+          "result": "L",
+          "projected": 133.48
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 11,
+          "homeAway": "away",
+          "pointsFor": 149.72,
+          "pointsAgainst": 110.36,
+          "result": "W",
+          "projected": 136.7
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 8,
+          "homeAway": "home",
+          "pointsFor": 75.88,
+          "pointsAgainst": 99.84,
+          "result": "L",
+          "projected": 116.32
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 6,
+          "homeAway": "away",
+          "pointsFor": 97.2,
+          "pointsAgainst": 126.28,
+          "result": "L",
+          "projected": 133.14
+        }
+      ],
+      "seasonStats": {
+        "highScore": 168.1,
+        "lowScore": 75.88,
+        "avgScore": 132.73,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 4,
+        "homeAway": "away",
+        "projected": 127.85,
+        "opponentProjected": 111.35
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Jahmyr Gibbs",
+            "position": "RB",
+            "nflTeam": "DET",
+            "lineupSlot": "RB",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.93,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "Bijan Robinson",
+            "position": "RB",
+            "nflTeam": "ATL",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.91,
+            "keeperValueRound": 2
+          },
+          {
+            "name": "Kyren Williams",
+            "position": "RB",
+            "nflTeam": "LAR",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.6,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "Ladd McConkey",
+            "position": "WR",
+            "nflTeam": "LAC",
+            "lineupSlot": "WR",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 84.14,
+            "keeperValueRound": 4
+          },
+          {
+            "name": "Rome Odunze",
+            "position": "WR",
+            "nflTeam": "CHI",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 84.28,
+            "keeperValueRound": 8
+          },
+          {
+            "name": "Tyler Warren",
+            "position": "TE",
+            "nflTeam": "IND",
+            "lineupSlot": "TE",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 96.05,
+            "keeperValueRound": 10
+          },
+          {
+            "name": "Matthew Stafford",
+            "position": "QB",
+            "nflTeam": "LAR",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.17,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Rams D/ST",
+            "position": "D/ST",
+            "nflTeam": "LAR",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 88.12,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Chris Boswell",
+            "position": "K",
+            "nflTeam": "PIT",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 74.33,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "Nico Collins",
+            "position": "WR",
+            "nflTeam": "HOU",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.06,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "J.K. Dobbins",
+            "position": "RB",
+            "nflTeam": "DEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 78.96,
+            "keeperValueRound": 9
+          },
+          {
+            "name": "Tyler Shough",
+            "position": "QB",
+            "nflTeam": "NO",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 69.43,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Dontayvion Wicks",
+            "position": "WR",
+            "nflTeam": "PHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 24.54,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Keon Coleman",
+            "position": "WR",
+            "nflTeam": "BUF",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 28.03,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Kenyon Sadiq",
+            "position": "TE",
+            "nflTeam": "NYJ",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 24.33,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Josh Downs",
+            "position": "WR",
+            "nflTeam": "IND",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 63.95,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [
+          {
+            "name": "Alec Pierce",
+            "position": "WR",
+            "nflTeam": "IND",
+            "lineupSlot": "IR",
+            "injuryStatus": "IR",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 50.99,
+            "keeperValueRound": 0
+          }
+        ],
+        "keeperPlayerIds": [
+          4429795,
+          4430807,
+          4258173
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "add",
+          "added": [
+            "Josh Downs (WR, IND)"
+          ],
+          "dropped": [
+            "Christian Kirk (WR, SF)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Christian Kirk (WR, SF)"
+          ],
+          "dropped": [
+            "Wan'Dale Robinson (WR, TEN)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "waiver",
+          "added": [
+            "Kenyon Sadiq (TE, NYJ)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Black  Lives ",
+            "displayName": "Black  Lives",
+            "wins": 6,
+            "losses": 7,
+            "ties": 0,
+            "pointsFor": 1590.16,
+            "pointsAgainst": 1697.18,
+            "regularSeasonSeed": 6,
+            "finalRank": 8,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "Rub My  Chubb",
+            "displayName": "Rub My  Chubb",
+            "wins": 7,
+            "losses": 7,
+            "ties": 0,
+            "pointsFor": 1631.3,
+            "pointsAgainst": 1562.76,
+            "regularSeasonSeed": 7,
+            "finalRank": 6,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "Pitts and  Giggles ",
+            "displayName": "Pitts and  Giggles",
+            "wins": 3,
+            "losses": 11,
+            "ties": 0,
+            "pointsFor": 1468.26,
+            "pointsAgainst": 1695.34,
+            "regularSeasonSeed": 9,
+            "finalRank": 7,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "Hurts to Suck ",
+            "displayName": "Hurts to Suck",
+            "wins": 9,
+            "losses": 5,
+            "ties": 0,
+            "pointsFor": 1848.1,
+            "pointsAgainst": 1603.84,
+            "regularSeasonSeed": 3,
+            "finalRank": 4,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "Hurts to Suck ",
+            "displayName": "Hurts to Suck",
+            "wins": 5,
+            "losses": 9,
+            "ties": 0,
+            "pointsFor": 1705.96,
+            "pointsAgainst": 1811.52,
+            "regularSeasonSeed": 8,
+            "finalRank": 6,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "Gibbs no step Burrow",
+            "displayName": "Gibbs no step Burrow",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1744.02,
+            "pointsAgainst": 1646.74,
+            "regularSeasonSeed": 4,
+            "finalRank": 1,
+            "championshipWon": true,
+            "playoffOutcome": "champion",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 1,
+        "titleYears": [
+          2025
+        ],
+        "finalsAppearances": 1,
+        "finalsYears": [
+          2025
+        ],
+        "bestFinish": 1,
+        "number1Seeds": [],
+        "allTimeRegularSeason": {
+          "wins": 38,
+          "losses": 45,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 3,
+      "espnName": "Chewy's Warriors",
+      "displayName": "Chewy's Warriors",
+      "displayNameSource": "ESPN name (clean, trimmed)",
+      "espnAbbrev": "vadr",
+      "displayAbbrev": "CHW",
+      "ownerName": null,
+      "ownerLabelFromApp": "Chewy",
+      "isUserTeam": false,
+      "record": {
+        "wins": 4,
+        "losses": 3,
+        "ties": 0,
+        "winPercentage": 0.571
+      },
+      "pointsFor": 992.74,
+      "pointsAgainst": 917.32,
+      "rank": 3,
+      "playoffSeed": 3,
+      "currentProjectedRank": 4,
+      "draftDayProjectedRank": 2,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 8,
+          "homeAway": "away",
+          "pointsFor": 141.46,
+          "pointsAgainst": 99.74,
+          "result": "W",
+          "projected": 126.69
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 6,
+          "homeAway": "home",
+          "pointsFor": 130.8,
+          "pointsAgainst": 141.06,
+          "result": "L",
+          "projected": 129.7
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 4,
+          "homeAway": "home",
+          "pointsFor": 105.1,
+          "pointsAgainst": 115.12,
+          "result": "L",
+          "projected": 137.42
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 2,
+          "homeAway": "home",
+          "pointsFor": 176.18,
+          "pointsAgainst": 154.74,
+          "result": "W",
+          "projected": 139.54
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 10,
+          "homeAway": "away",
+          "pointsFor": 180.28,
+          "pointsAgainst": 146.68,
+          "result": "W",
+          "projected": 120.25
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 7,
+          "homeAway": "home",
+          "pointsFor": 142.72,
+          "pointsAgainst": 121.4,
+          "result": "W",
+          "projected": 130.89
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 5,
+          "homeAway": "home",
+          "pointsFor": 116.2,
+          "pointsAgainst": 138.58,
+          "result": "L",
+          "projected": 131.55
+        }
+      ],
+      "seasonStats": {
+        "highScore": 180.28,
+        "lowScore": 105.1,
+        "avgScore": 141.82,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 1,
+        "homeAway": "home",
+        "projected": 133.28,
+        "opponentProjected": 129.22
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Jaxon Smith-Njigba",
+            "position": "WR",
+            "nflTeam": "SEA",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.93,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "Kenneth Walker III",
+            "position": "RB",
+            "nflTeam": "KC",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.85,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Emeka Egbuka",
+            "position": "WR",
+            "nflTeam": "TB",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 94.4,
+            "keeperValueRound": 8
+          },
+          {
+            "name": "Tetairoa McMillan",
+            "position": "WR",
+            "nflTeam": "CAR",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 98.57,
+            "keeperValueRound": 7
+          },
+          {
+            "name": "Lamar Jackson",
+            "position": "QB",
+            "nflTeam": "BAL",
+            "lineupSlot": "QB",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 98.51,
+            "keeperValueRound": 2
+          },
+          {
+            "name": "Sam LaPorta",
+            "position": "TE",
+            "nflTeam": "DET",
+            "lineupSlot": "TE",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 96.42,
+            "keeperValueRound": 6
+          },
+          {
+            "name": "Jaylen Warren",
+            "position": "RB",
+            "nflTeam": "PIT",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 96.27,
+            "keeperValueRound": 9
+          },
+          {
+            "name": "Vikings D/ST",
+            "position": "D/ST",
+            "nflTeam": "MIN",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 88.93,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Chase McLaughlin",
+            "position": "K",
+            "nflTeam": "TB",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 35.23,
+            "keeperValueRound": 15
+          }
+        ],
+        "bench": [
+          {
+            "name": "Kyle Monangai",
+            "position": "RB",
+            "nflTeam": "CHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 76.7,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Dallas Goedert",
+            "position": "TE",
+            "nflTeam": "PHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 84.49,
+            "keeperValueRound": 12
+          },
+          {
+            "name": "Ka'imi Fairbairn",
+            "position": "K",
+            "nflTeam": "HOU",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 82.51,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Emmett Johnson",
+            "position": "RB",
+            "nflTeam": "KC",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 12.35,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Braelon Allen",
+            "position": "RB",
+            "nflTeam": "NYJ",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 80.57,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Kirk Cousins",
+            "position": "QB",
+            "nflTeam": "LV",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 58.84,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jordyn Tyson",
+            "position": "WR",
+            "nflTeam": "NO",
+            "lineupSlot": "Bench",
+            "injuryStatus": "IR",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 34.97,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [
+          {
+            "name": "De'Von Achane",
+            "position": "RB",
+            "nflTeam": "MIA",
+            "lineupSlot": "IR",
+            "injuryStatus": "IR",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 31.4,
+            "keeperValueRound": 2
+          }
+        ],
+        "keeperPlayerIds": [
+          4429160,
+          4430878,
+          4567048
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "Chase McLaughlin (K, TB)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-22",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "DeMario Douglas (WR, NE)"
+          ],
+          "dropped": [
+            "Broncos D/ST (D/ST, DEN)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "waiver",
+          "added": [
+            "Jordyn Tyson (WR, NO)"
+          ],
+          "dropped": [
+            "Josh Downs (WR, IND)"
+          ],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "The Fucking Letdowns",
+            "displayName": "The Letdowns",
+            "wins": 5,
+            "losses": 8,
+            "ties": 0,
+            "pointsFor": 1528.26,
+            "pointsAgainst": 1526.14,
+            "regularSeasonSeed": 8,
+            "finalRank": 6,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "Long Beach Horned Frogs",
+            "displayName": "Long Beach Horned Frogs",
+            "wins": 6,
+            "losses": 8,
+            "ties": 0,
+            "pointsFor": 1695.82,
+            "pointsAgainst": 1763.42,
+            "regularSeasonSeed": 8,
+            "finalRank": 9,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "Chewies Warriors",
+            "displayName": "Chewies Warriors",
+            "wins": 9,
+            "losses": 5,
+            "ties": 0,
+            "pointsFor": 1828.58,
+            "pointsAgainst": 1639.76,
+            "regularSeasonSeed": 2,
+            "finalRank": 4,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "Chewies Warriors",
+            "displayName": "Chewies Warriors",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1607.24,
+            "pointsAgainst": 1618.04,
+            "regularSeasonSeed": 5,
+            "finalRank": 7,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "Chewy's Warriors",
+            "displayName": "Chewy's Warriors",
+            "wins": 7,
+            "losses": 7,
+            "ties": 0,
+            "pointsFor": 1792.68,
+            "pointsAgainst": 1769.12,
+            "regularSeasonSeed": 2,
+            "finalRank": 2,
+            "championshipWon": false,
+            "playoffOutcome": "runner_up",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "Chewy's Warriors",
+            "displayName": "Chewy's Warriors",
+            "wins": 9,
+            "losses": 5,
+            "ties": 0,
+            "pointsFor": 1876.8,
+            "pointsAgainst": 1703.02,
+            "regularSeasonSeed": 2,
+            "finalRank": 2,
+            "championshipWon": false,
+            "playoffOutcome": "runner_up",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 0,
+        "titleYears": [],
+        "finalsAppearances": 2,
+        "finalsYears": [
+          2024,
+          2025
+        ],
+        "bestFinish": 2,
+        "number1Seeds": [],
+        "allTimeRegularSeason": {
+          "wins": 44,
+          "losses": 39,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 4,
+      "espnName": "All Heart",
+      "displayName": "All Heart",
+      "displayNameSource": "ESPN name (clean, trimmed)",
+      "espnAbbrev": "CMC",
+      "displayAbbrev": "AH",
+      "ownerName": null,
+      "ownerLabelFromApp": null,
+      "isUserTeam": false,
+      "record": {
+        "wins": 3,
+        "losses": 4,
+        "ties": 0,
+        "winPercentage": 0.429
+      },
+      "pointsFor": 814.98,
+      "pointsAgainst": 819.24,
+      "rank": 7,
+      "playoffSeed": 7,
+      "currentProjectedRank": 7,
+      "draftDayProjectedRank": 4,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 7,
+          "homeAway": "away",
+          "pointsFor": 121.52,
+          "pointsAgainst": 87.82,
+          "result": "W",
+          "projected": 119.12
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 5,
+          "homeAway": "away",
+          "pointsFor": 128.16,
+          "pointsAgainst": 133.52,
+          "result": "L",
+          "projected": 124.45
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 3,
+          "homeAway": "away",
+          "pointsFor": 115.12,
+          "pointsAgainst": 105.1,
+          "result": "W",
+          "projected": 130.68
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 11,
+          "homeAway": "away",
+          "pointsFor": 102.5,
+          "pointsAgainst": 115.22,
+          "result": "L",
+          "projected": 131.74
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 8,
+          "homeAway": "away",
+          "pointsFor": 112.7,
+          "pointsAgainst": 141.64,
+          "result": "L",
+          "projected": 117.33
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 6,
+          "homeAway": "home",
+          "pointsFor": 115.48,
+          "pointsAgainst": 100.22,
+          "result": "W",
+          "projected": 125.96
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 1,
+          "homeAway": "away",
+          "pointsFor": 119.5,
+          "pointsAgainst": 135.72,
+          "result": "L",
+          "projected": 120.88
+        }
+      ],
+      "seasonStats": {
+        "highScore": 128.16,
+        "lowScore": 102.5,
+        "avgScore": 116.43,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 2,
+        "homeAway": "home",
+        "projected": 111.35,
+        "opponentProjected": 127.85
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Brandon Aubrey",
+            "position": "K",
+            "nflTeam": "DAL",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 95.57,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Kyler Murray",
+            "position": "QB",
+            "nflTeam": "MIN",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 59.83,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jameson Williams",
+            "position": "WR",
+            "nflTeam": "DET",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 91.35,
+            "keeperValueRound": 7
+          },
+          {
+            "name": "Christian Watson",
+            "position": "WR",
+            "nflTeam": "GB",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 96.9,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "T.J. Hockenson",
+            "position": "TE",
+            "nflTeam": "MIN",
+            "lineupSlot": "TE",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 73.82,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "DK Metcalf",
+            "position": "WR",
+            "nflTeam": "PIT",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 90.73,
+            "keeperValueRound": 5
+          },
+          {
+            "name": "Chase Brown",
+            "position": "RB",
+            "nflTeam": "CIN",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 98.68,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "Rachaad White",
+            "position": "RB",
+            "nflTeam": "WSH",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 69.56,
+            "keeperValueRound": 14
+          },
+          {
+            "name": "Bengals D/ST",
+            "position": "D/ST",
+            "nflTeam": "CIN",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 48.61,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "Christian McCaffrey",
+            "position": "RB",
+            "nflTeam": "SF",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.89,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "Chris Olave",
+            "position": "WR",
+            "nflTeam": "NO",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.41,
+            "keeperValueRound": 7
+          },
+          {
+            "name": "Travis Kelce",
+            "position": "TE",
+            "nflTeam": "KC",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.71,
+            "keeperValueRound": 7
+          },
+          {
+            "name": "Jordan Addison",
+            "position": "WR",
+            "nflTeam": "MIN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 72.38,
+            "keeperValueRound": 10
+          },
+          {
+            "name": "Patrick Mahomes",
+            "position": "QB",
+            "nflTeam": "KC",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 90.73,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jordan Mason",
+            "position": "RB",
+            "nflTeam": "MIN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 66.47,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Bears D/ST",
+            "position": "D/ST",
+            "nflTeam": "CHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 19.11,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [
+          {
+            "name": "Dameon Pierce",
+            "position": "RB",
+            "nflTeam": "PHI",
+            "lineupSlot": "IR",
+            "injuryStatus": "IR",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 35.74,
+            "keeperValueRound": 0
+          }
+        ],
+        "keeperPlayerIds": [
+          4595348,
+          3117251
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "add",
+          "added": [
+            "Bengals D/ST (D/ST, CIN)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "Rachaad White (RB, WSH)"
+          ],
+          "dropped": [
+            "Marvin Harrison Jr. (WR, HOU)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-22",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Bears D/ST (D/ST, CHI)"
+          ],
+          "dropped": [
+            "Jets D/ST (D/ST, NYJ)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Jets D/ST (D/ST, NYJ)"
+          ],
+          "dropped": [
+            "Jalen Hurts (QB, PHI)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Aaron Rodgers (QB, PIT)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "waiver",
+          "added": [
+            "Jordan Mason (RB, MIN)"
+          ],
+          "dropped": [
+            "Patriots D/ST (D/ST, NE)"
+          ],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Team MadisonLoeffler",
+            "displayName": "Team MadisonLoeffler",
+            "wins": 9,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1675.14,
+            "pointsAgainst": 1608.52,
+            "regularSeasonSeed": 3,
+            "finalRank": 3,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "YOU LIKE THAT YOU LIKE THAT",
+            "displayName": "YOU LIKE THAT YOU LIKE THAT",
+            "wins": 3,
+            "losses": 11,
+            "ties": 0,
+            "pointsFor": 1584.62,
+            "pointsAgainst": 1786.14,
+            "regularSeasonSeed": 9,
+            "finalRank": 8,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "DaBrotha Hasbulla",
+            "displayName": "DaBrotha Hasbulla",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1693.3,
+            "pointsAgainst": 1553.64,
+            "regularSeasonSeed": 4,
+            "finalRank": 2,
+            "championshipWon": false,
+            "playoffOutcome": "runner_up",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "GIBBY NEUTRON",
+            "displayName": "GIBBY NEUTRON",
+            "wins": 10,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1761.18,
+            "pointsAgainst": 1638.14,
+            "regularSeasonSeed": 2,
+            "finalRank": 2,
+            "championshipWon": false,
+            "playoffOutcome": "runner_up",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "The NaberHood ",
+            "displayName": "The NaberHood",
+            "wins": 6,
+            "losses": 8,
+            "ties": 0,
+            "pointsFor": 1688.38,
+            "pointsAgainst": 1727.16,
+            "regularSeasonSeed": 7,
+            "finalRank": 10,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "The NaberHood ",
+            "displayName": "The NaberHood",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1745.44,
+            "pointsAgainst": 1592.78,
+            "regularSeasonSeed": 3,
+            "finalRank": 3,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 0,
+        "titleYears": [],
+        "finalsAppearances": 2,
+        "finalsYears": [
+          2022,
+          2023
+        ],
+        "bestFinish": 2,
+        "number1Seeds": [],
+        "allTimeRegularSeason": {
+          "wins": 44,
+          "losses": 39,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 5,
+      "espnName": "Easy Peasy Lemon Squeezy",
+      "displayName": "Easy Peasy Lemon Squeezy",
+      "displayNameSource": "ESPN name (clean, trimmed)",
+      "espnAbbrev": "LMON",
+      "displayAbbrev": "EPZ",
+      "ownerName": null,
+      "ownerLabelFromApp": null,
+      "isUserTeam": false,
+      "record": {
+        "wins": 3,
+        "losses": 4,
+        "ties": 0,
+        "winPercentage": 0.429
+      },
+      "pointsFor": 911.74,
+      "pointsAgainst": 928.28,
+      "rank": 5,
+      "playoffSeed": 5,
+      "currentProjectedRank": 6,
+      "draftDayProjectedRank": 7,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 6,
+          "homeAway": "home",
+          "pointsFor": 143.66,
+          "pointsAgainst": 99.2,
+          "result": "W",
+          "projected": 114.89
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 4,
+          "homeAway": "home",
+          "pointsFor": 133.52,
+          "pointsAgainst": 128.16,
+          "result": "W",
+          "projected": 122.14
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 2,
+          "homeAway": "away",
+          "pointsFor": 131.86,
+          "pointsAgainst": 168.1,
+          "result": "L",
+          "projected": 125.9
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 10,
+          "homeAway": "away",
+          "pointsFor": 115.72,
+          "pointsAgainst": 128.62,
+          "result": "L",
+          "projected": 128.53
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 7,
+          "homeAway": "away",
+          "pointsFor": 160.1,
+          "pointsAgainst": 168.96,
+          "result": "L",
+          "projected": 122.43
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 1,
+          "homeAway": "home",
+          "pointsFor": 88.3,
+          "pointsAgainst": 119.04,
+          "result": "L",
+          "projected": 129.56
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 3,
+          "homeAway": "away",
+          "pointsFor": 138.58,
+          "pointsAgainst": 116.2,
+          "result": "W",
+          "projected": 117.27
+        }
+      ],
+      "seasonStats": {
+        "highScore": 160.1,
+        "lowScore": 88.3,
+        "avgScore": 130.25,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 11,
+        "homeAway": "away",
+        "projected": 138.36,
+        "opponentProjected": 82.65
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Josh Allen",
+            "position": "QB",
+            "nflTeam": "BUF",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.9,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "Drake London",
+            "position": "WR",
+            "nflTeam": "ATL",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.64,
+            "keeperValueRound": 2
+          },
+          {
+            "name": "Derrick Henry",
+            "position": "RB",
+            "nflTeam": "BAL",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.82,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "Javonte Williams",
+            "position": "RB",
+            "nflTeam": "DAL",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.38,
+            "keeperValueRound": 11
+          },
+          {
+            "name": "Tee Higgins",
+            "position": "WR",
+            "nflTeam": "CIN",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 96.99,
+            "keeperValueRound": 4
+          },
+          {
+            "name": "Parker Washington",
+            "position": "WR",
+            "nflTeam": "JAX",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 95.32,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Hunter Henry",
+            "position": "TE",
+            "nflTeam": "NE",
+            "lineupSlot": "TE",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 64.73,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jaguars D/ST",
+            "position": "D/ST",
+            "nflTeam": "JAX",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 66.94,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jake Bates",
+            "position": "K",
+            "nflTeam": "DET",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 40.95,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "Courtland Sutton",
+            "position": "WR",
+            "nflTeam": "DEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 62.96,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Rhamondre Stevenson",
+            "position": "RB",
+            "nflTeam": "NE",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.23,
+            "keeperValueRound": 10
+          },
+          {
+            "name": "Stefon Diggs",
+            "position": "WR",
+            "nflTeam": "WSH",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 83.25,
+            "keeperValueRound": 8
+          },
+          {
+            "name": "Makai Lemon",
+            "position": "WR",
+            "nflTeam": "PHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 39.11,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Dalton Kincaid",
+            "position": "TE",
+            "nflTeam": "BUF",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 77.26,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Bo Nix",
+            "position": "QB",
+            "nflTeam": "DEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 57.63,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Tre Tucker",
+            "position": "WR",
+            "nflTeam": "LV",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 69.26,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [
+          {
+            "name": "Terry McLaurin",
+            "position": "WR",
+            "nflTeam": "WSH",
+            "lineupSlot": "IR",
+            "injuryStatus": "IR",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 46.48,
+            "keeperValueRound": 2
+          }
+        ],
+        "keeperPlayerIds": [
+          3918298,
+          4426502,
+          3043078
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "Jake Bates (K, DET)"
+          ],
+          "dropped": [
+            "Eddy Pineiro (K, SF)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "Jaguars D/ST (D/ST, JAX)"
+          ],
+          "dropped": [
+            "Titans D/ST (D/ST, TEN)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "Tre Tucker (WR, LV)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Titans D/ST (D/ST, TEN)"
+          ],
+          "dropped": [
+            "Ravens D/ST (D/ST, BAL)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Hunter Henry (TE, NE)"
+          ],
+          "dropped": [
+            "Tyjae Spears (RB, TEN)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Bo Nix (QB, DEN)"
+          ],
+          "dropped": [
+            "Jake Ferguson (TE, DAL)"
+          ],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Team Wet Ass Pussy",
+            "displayName": "Team WAP",
+            "wins": 3,
+            "losses": 10,
+            "ties": 0,
+            "pointsFor": 1440.66,
+            "pointsAgainst": 1808.82,
+            "regularSeasonSeed": 10,
+            "finalRank": 7,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "Team KGB",
+            "displayName": "Team KGB",
+            "wins": 10,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1756.98,
+            "pointsAgainst": 1710.5,
+            "regularSeasonSeed": 1,
+            "finalRank": 1,
+            "championshipWon": true,
+            "playoffOutcome": "champion",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "Team Zelenskyy",
+            "displayName": "Team Zelenskyy",
+            "wins": 5,
+            "losses": 9,
+            "ties": 0,
+            "pointsFor": 1605.42,
+            "pointsAgainst": 1727.82,
+            "regularSeasonSeed": 8,
+            "finalRank": 5,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "Lockheed Martin F-35 Lightning ",
+            "displayName": "Lockheed Martin F-35 Lightning",
+            "wins": 4,
+            "losses": 10,
+            "ties": 0,
+            "pointsFor": 1551.5,
+            "pointsAgainst": 1643.3,
+            "regularSeasonSeed": 9,
+            "finalRank": 8,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "M1 Abrams",
+            "displayName": "M1 Abrams",
+            "wins": 9,
+            "losses": 5,
+            "ties": 0,
+            "pointsFor": 1850.1,
+            "pointsAgainst": 1813.14,
+            "regularSeasonSeed": 3,
+            "finalRank": 3,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "M1 Abrams",
+            "displayName": "M1 Abrams",
+            "wins": 7,
+            "losses": 7,
+            "ties": 0,
+            "pointsFor": 1664.48,
+            "pointsAgainst": 1830.44,
+            "regularSeasonSeed": 6,
+            "finalRank": 7,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 1,
+        "titleYears": [
+          2021
+        ],
+        "finalsAppearances": 1,
+        "finalsYears": [
+          2021
+        ],
+        "bestFinish": 1,
+        "number1Seeds": [
+          2021
+        ],
+        "allTimeRegularSeason": {
+          "wins": 38,
+          "losses": 45,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 6,
+      "espnName": "Smert Fellas",
+      "displayName": "Smert Fellas",
+      "displayNameSource": "ESPN name (clean, trimmed)",
+      "espnAbbrev": "Nerm",
+      "displayAbbrev": "SMF",
+      "ownerName": null,
+      "ownerLabelFromApp": null,
+      "isUserTeam": false,
+      "record": {
+        "wins": 2,
+        "losses": 5,
+        "ties": 0,
+        "winPercentage": 0.286
+      },
+      "pointsFor": 827.84,
+      "pointsAgainst": 866.54,
+      "rank": 9,
+      "playoffSeed": 9,
+      "currentProjectedRank": 9,
+      "draftDayProjectedRank": 8,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 5,
+          "homeAway": "away",
+          "pointsFor": 99.2,
+          "pointsAgainst": 143.66,
+          "result": "L",
+          "projected": 119.25
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 3,
+          "homeAway": "away",
+          "pointsFor": 141.06,
+          "pointsAgainst": 130.8,
+          "result": "W",
+          "projected": 124.63
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 11,
+          "homeAway": "home",
+          "pointsFor": 124.84,
+          "pointsAgainst": 132.18,
+          "result": "L",
+          "projected": 117.95
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 8,
+          "homeAway": "home",
+          "pointsFor": 122,
+          "pointsAgainst": 130.16,
+          "result": "L",
+          "projected": 115.0
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 1,
+          "homeAway": "home",
+          "pointsFor": 114.24,
+          "pointsAgainst": 117.06,
+          "result": "L",
+          "projected": 121.13
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 4,
+          "homeAway": "away",
+          "pointsFor": 100.22,
+          "pointsAgainst": 115.48,
+          "result": "L",
+          "projected": 121.21
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 2,
+          "homeAway": "home",
+          "pointsFor": 126.28,
+          "pointsAgainst": 97.2,
+          "result": "W",
+          "projected": 122.09
+        }
+      ],
+      "seasonStats": {
+        "highScore": 141.06,
+        "lowScore": 99.2,
+        "avgScore": 118.26,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 10,
+        "homeAway": "away",
+        "projected": 111.41,
+        "opponentProjected": 129.77
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Omarion Hampton",
+            "position": "RB",
+            "nflTeam": "LAC",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 90.14,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "CeeDee Lamb",
+            "position": "WR",
+            "nflTeam": "DAL",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.91,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "D'Andre Swift",
+            "position": "RB",
+            "nflTeam": "CHI",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 97.13,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Dak Prescott",
+            "position": "QB",
+            "nflTeam": "DAL",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 91.55,
+            "keeperValueRound": 14
+          },
+          {
+            "name": "Kyle Pitts Sr.",
+            "position": "TE",
+            "nflTeam": "ATL",
+            "lineupSlot": "TE",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 84.49,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jason Myers",
+            "position": "K",
+            "nflTeam": "SEA",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 88.59,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Quinshon Judkins",
+            "position": "RB",
+            "nflTeam": "CLE",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 93.84,
+            "keeperValueRound": 10
+          },
+          {
+            "name": "DeVonta Smith",
+            "position": "WR",
+            "nflTeam": "PHI",
+            "lineupSlot": "WR",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 97.28,
+            "keeperValueRound": 6
+          },
+          {
+            "name": "Panthers D/ST",
+            "position": "D/ST",
+            "nflTeam": "CAR",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 17.45,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "David Montgomery",
+            "position": "RB",
+            "nflTeam": "HOU",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 80.17,
+            "keeperValueRound": 7
+          },
+          {
+            "name": "Mark Andrews",
+            "position": "TE",
+            "nflTeam": "BAL",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 66.89,
+            "keeperValueRound": 9
+          },
+          {
+            "name": "Woody Marks",
+            "position": "RB",
+            "nflTeam": "HOU",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 74,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Malik Nabers",
+            "position": "WR",
+            "nflTeam": "NYG",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 99.35,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "Emanuel Wilson",
+            "position": "RB",
+            "nflTeam": "SEA",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 69.21,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Pat Freiermuth",
+            "position": "TE",
+            "nflTeam": "PIT",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 52.08,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "KC Concepcion",
+            "position": "WR",
+            "nflTeam": "CLE",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 55.35,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [],
+        "keeperPlayerIds": [
+          4685382,
+          4241389
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "KC Concepcion (WR, CLE)"
+          ],
+          "dropped": [
+            "MarShawn Lloyd (RB, GB)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Panthers D/ST (D/ST, CAR)"
+          ],
+          "dropped": [
+            "Jaguars D/ST (D/ST, JAX)"
+          ],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Team Tino",
+            "displayName": "Team Tino",
+            "wins": 7,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1685.74,
+            "pointsAgainst": 1630.58,
+            "regularSeasonSeed": 4,
+            "finalRank": 1,
+            "championshipWon": true,
+            "playoffOutcome": "champion",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "Slatt Gang",
+            "displayName": "Slatt Gang",
+            "wins": 10,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1668.84,
+            "pointsAgainst": 1491.58,
+            "regularSeasonSeed": 2,
+            "finalRank": 4,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "chiefs KINGDOM  Joka",
+            "displayName": "chiefs KINGDOM  Joka",
+            "wins": 10,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1728.44,
+            "pointsAgainst": 1625.66,
+            "regularSeasonSeed": 3,
+            "finalRank": 1,
+            "championshipWon": true,
+            "playoffOutcome": "champion",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "Brioon Omeglemeally😈",
+            "displayName": "Brioon Omeglemeally",
+            "wins": 7,
+            "losses": 7,
+            "ties": 0,
+            "pointsFor": 1776.94,
+            "pointsAgainst": 1686.64,
+            "regularSeasonSeed": 6,
+            "finalRank": 5,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "Brioon Omeglemeally😈",
+            "displayName": "Brioon Omeglemeally",
+            "wins": 10,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1601.58,
+            "pointsAgainst": 1522.64,
+            "regularSeasonSeed": 1,
+            "finalRank": 4,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "Brioon Omeglemeally😈",
+            "displayName": "Brioon Omeglemeally",
+            "wins": 5,
+            "losses": 9,
+            "ties": 0,
+            "pointsFor": 1555.78,
+            "pointsAgainst": 1723.46,
+            "regularSeasonSeed": 9,
+            "finalRank": 8,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 2,
+        "titleYears": [
+          2020,
+          2022
+        ],
+        "finalsAppearances": 2,
+        "finalsYears": [
+          2020,
+          2022
+        ],
+        "bestFinish": 1,
+        "number1Seeds": [
+          2024
+        ],
+        "allTimeRegularSeason": {
+          "wins": 49,
+          "losses": 34,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 7,
+      "espnName": "Maye i give you a blowj0b",
+      "displayName": "Maye i give you a blowj0b",
+      "displayNameSource": "real ESPN name (owner request)",
+      "espnAbbrev": "GOD",
+      "displayAbbrev": "MAYE",
+      "ownerName": null,
+      "ownerLabelFromApp": "Gerrit",
+      "isUserTeam": true,
+      "record": {
+        "wins": 2,
+        "losses": 5,
+        "ties": 0,
+        "winPercentage": 0.286
+      },
+      "pointsFor": 771.16,
+      "pointsAgainst": 890.4,
+      "rank": 10,
+      "playoffSeed": 10,
+      "currentProjectedRank": 10,
+      "draftDayProjectedRank": 10,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 4,
+          "homeAway": "home",
+          "pointsFor": 87.82,
+          "pointsAgainst": 121.52,
+          "result": "L",
+          "projected": 116.8
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 2,
+          "homeAway": "home",
+          "pointsFor": 65.12,
+          "pointsAgainst": 128.28,
+          "result": "L",
+          "projected": 95.14
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 10,
+          "homeAway": "away",
+          "pointsFor": 70.36,
+          "pointsAgainst": 106.98,
+          "result": "L",
+          "projected": 108.93
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 1,
+          "homeAway": "home",
+          "pointsFor": 128.76,
+          "pointsAgainst": 132.38,
+          "result": "L",
+          "projected": 112.95
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 5,
+          "homeAway": "home",
+          "pointsFor": 168.96,
+          "pointsAgainst": 160.1,
+          "result": "W",
+          "projected": 123.44
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 3,
+          "homeAway": "away",
+          "pointsFor": 121.4,
+          "pointsAgainst": 142.72,
+          "result": "L",
+          "projected": 124.02
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 11,
+          "homeAway": "away",
+          "pointsFor": 128.74,
+          "pointsAgainst": 98.42,
+          "result": "W",
+          "projected": 133.81
+        }
+      ],
+      "seasonStats": {
+        "highScore": 168.96,
+        "lowScore": 65.12,
+        "avgScore": 110.17,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 8,
+        "homeAway": "home",
+        "projected": 131.27,
+        "opponentProjected": 123.49
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Puka Nacua",
+            "position": "WR",
+            "nflTeam": "LAR",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.91,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "A.J. Brown",
+            "position": "WR",
+            "nflTeam": "NE",
+            "lineupSlot": "WR",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 96.28,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "Drake Maye",
+            "position": "QB",
+            "nflTeam": "NE",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 98.71,
+            "keeperValueRound": 11
+          },
+          {
+            "name": "Harold Fannin Jr.",
+            "position": "TE",
+            "nflTeam": "CLE",
+            "lineupSlot": "TE",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 85.4,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Matthew Golden",
+            "position": "WR",
+            "nflTeam": "GB",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 94.29,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Ollie Gordon II",
+            "position": "RB",
+            "nflTeam": "MIA",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 83.69,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Josh Jacobs",
+            "position": "RB",
+            "nflTeam": "GB",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 92.51,
+            "keeperValueRound": 2
+          },
+          {
+            "name": "Patriots D/ST",
+            "position": "D/ST",
+            "nflTeam": "NE",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 67.3,
+            "keeperValueRound": 15
+          },
+          {
+            "name": "Matt Gay",
+            "position": "K",
+            "nflTeam": "LV",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 51.17,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "Tony Pollard",
+            "position": "RB",
+            "nflTeam": "TEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 88.81,
+            "keeperValueRound": 7
+          },
+          {
+            "name": "Isaiah Likely",
+            "position": "TE",
+            "nflTeam": "NYG",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 95.31,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Denzel Boston",
+            "position": "WR",
+            "nflTeam": "CLE",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 77.58,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Malik Washington",
+            "position": "WR",
+            "nflTeam": "MIA",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 38.15,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Cam Skattebo",
+            "position": "RB",
+            "nflTeam": "NYG",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 92.12,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "DJ Moore",
+            "position": "WR",
+            "nflTeam": "BUF",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 90.2,
+            "keeperValueRound": 6
+          },
+          {
+            "name": "Omar Cooper Jr.",
+            "position": "WR",
+            "nflTeam": "NYJ",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 61.17,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [
+          {
+            "name": "Jadarian Price",
+            "position": "RB",
+            "nflTeam": "SEA",
+            "lineupSlot": "IR",
+            "injuryStatus": "IR",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 65.06,
+            "keeperValueRound": 0
+          }
+        ],
+        "keeperPlayerIds": [
+          4426515,
+          4047646,
+          4362238
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "add",
+          "added": [
+            "Matt Gay (K, LV)"
+          ],
+          "dropped": [
+            "Harrison Butker (K, KC)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "add",
+          "added": [
+            "Patriots D/ST (D/ST, NE)"
+          ],
+          "dropped": [
+            "Germie Bernard (WR, PIT)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "Omar Cooper Jr. (WR, NYJ)"
+          ],
+          "dropped": [
+            "Chiefs D/ST (D/ST, KC)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "waiver",
+          "added": [
+            "Harrison Butker (K, KC)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-21",
+          "week": 7,
+          "type": "waiver",
+          "added": [
+            "Germie Bernard (WR, PIT)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Biden 2020",
+            "displayName": "Biden 2020",
+            "wins": 9,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1664.46,
+            "pointsAgainst": 1531.22,
+            "regularSeasonSeed": 2,
+            "finalRank": 2,
+            "championshipWon": false,
+            "playoffOutcome": "runner_up",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "BOOMIN University",
+            "displayName": "BOOMIN University",
+            "wins": 9,
+            "losses": 5,
+            "ties": 0,
+            "pointsFor": 1795.92,
+            "pointsAgainst": 1641.4,
+            "regularSeasonSeed": 3,
+            "finalRank": 2,
+            "championshipWon": false,
+            "playoffOutcome": "runner_up",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "Ni66as in  Trouble",
+            "displayName": "In Trouble",
+            "wins": 5,
+            "losses": 9,
+            "ties": 0,
+            "pointsFor": 1692.28,
+            "pointsAgainst": 1761.66,
+            "regularSeasonSeed": 7,
+            "finalRank": 9,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "Lebron Oniell",
+            "displayName": "Lebron Oniell",
+            "wins": 10,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1784.06,
+            "pointsAgainst": 1621.5,
+            "regularSeasonSeed": 1,
+            "finalRank": 3,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "Mixon Impossible",
+            "displayName": "Mixon Impossible",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1690.92,
+            "pointsAgainst": 1723.54,
+            "regularSeasonSeed": 6,
+            "finalRank": 8,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "Gerry's Gang",
+            "displayName": "Gerry's Gang",
+            "wins": 7,
+            "losses": 7,
+            "ties": 0,
+            "pointsFor": 1791.62,
+            "pointsAgainst": 1726.42,
+            "regularSeasonSeed": 5,
+            "finalRank": 5,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 0,
+        "titleYears": [],
+        "finalsAppearances": 2,
+        "finalsYears": [
+          2020,
+          2021
+        ],
+        "bestFinish": 2,
+        "number1Seeds": [
+          2023
+        ],
+        "allTimeRegularSeason": {
+          "wins": 48,
+          "losses": 35,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 8,
+      "espnName": "Dimes McSorley",
+      "displayName": "Dimes McSorley",
+      "displayNameSource": "ESPN name (clean, trimmed)",
+      "espnAbbrev": "Marv",
+      "displayAbbrev": "DIM",
+      "ownerName": null,
+      "ownerLabelFromApp": "Dimes",
+      "isUserTeam": false,
+      "record": {
+        "wins": 5,
+        "losses": 2,
+        "ties": 0,
+        "winPercentage": 0.714
+      },
+      "pointsFor": 811.86,
+      "pointsAgainst": 746.7,
+      "rank": 2,
+      "playoffSeed": 2,
+      "currentProjectedRank": 2,
+      "draftDayProjectedRank": 9,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 3,
+          "homeAway": "home",
+          "pointsFor": 99.74,
+          "pointsAgainst": 141.46,
+          "result": "L",
+          "projected": 117.8
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 11,
+          "homeAway": "home",
+          "pointsFor": 112.52,
+          "pointsAgainst": 77.8,
+          "result": "W",
+          "projected": 118.16
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 1,
+          "homeAway": "home",
+          "pointsFor": 100.04,
+          "pointsAgainst": 123.88,
+          "result": "L",
+          "projected": 124.22
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 6,
+          "homeAway": "away",
+          "pointsFor": 130.16,
+          "pointsAgainst": 122,
+          "result": "W",
+          "projected": 123.04
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 4,
+          "homeAway": "home",
+          "pointsFor": 141.64,
+          "pointsAgainst": 112.7,
+          "result": "W",
+          "projected": 119.51
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 2,
+          "homeAway": "away",
+          "pointsFor": 99.84,
+          "pointsAgainst": 75.88,
+          "result": "W",
+          "projected": 110.58
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 10,
+          "homeAway": "home",
+          "pointsFor": 127.92,
+          "pointsAgainst": 92.98,
+          "result": "W",
+          "projected": 120.69
+        }
+      ],
+      "seasonStats": {
+        "highScore": 141.64,
+        "lowScore": 99.74,
+        "avgScore": 115.98,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 7,
+        "homeAway": "away",
+        "projected": 123.49,
+        "opponentProjected": 131.27
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Zay Flowers",
+            "position": "WR",
+            "nflTeam": "BAL",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.22,
+            "keeperValueRound": 5
+          },
+          {
+            "name": "Breece Hall",
+            "position": "RB",
+            "nflTeam": "NYJ",
+            "lineupSlot": "RB",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 96.16,
+            "keeperValueRound": 6
+          },
+          {
+            "name": "Bucky Irving",
+            "position": "RB",
+            "nflTeam": "TB",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 97.47,
+            "keeperValueRound": 2
+          },
+          {
+            "name": "Bryce Young",
+            "position": "QB",
+            "nflTeam": "CAR",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 82.09,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Tyler Loop",
+            "position": "K",
+            "nflTeam": "BAL",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 58.91,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "George Pickens",
+            "position": "WR",
+            "nflTeam": "DAL",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 98.82,
+            "keeperValueRound": 7
+          },
+          {
+            "name": "Garrett Wilson",
+            "position": "WR",
+            "nflTeam": "NYJ",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 98.59,
+            "keeperValueRound": 5
+          },
+          {
+            "name": "Brenton Strange",
+            "position": "TE",
+            "nflTeam": "JAX",
+            "lineupSlot": "TE",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 43.82,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Commanders D/ST",
+            "position": "D/ST",
+            "nflTeam": "WSH",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 24.05,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "Saquon Barkley",
+            "position": "RB",
+            "nflTeam": "PHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 97.82,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "George Kittle",
+            "position": "TE",
+            "nflTeam": "SF",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 98.2,
+            "keeperValueRound": 5
+          },
+          {
+            "name": "Aaron Jones Sr.",
+            "position": "RB",
+            "nflTeam": "MIN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 90.43,
+            "keeperValueRound": 7
+          },
+          {
+            "name": "Deebo Samuel Sr.",
+            "position": "WR",
+            "nflTeam": "SF",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 71.51,
+            "keeperValueRound": 11
+          },
+          {
+            "name": "49ers D/ST",
+            "position": "D/ST",
+            "nflTeam": "SF",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 43.05,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jared Goff",
+            "position": "QB",
+            "nflTeam": "DET",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 90.35,
+            "keeperValueRound": 14
+          },
+          {
+            "name": "Blake Corum",
+            "position": "RB",
+            "nflTeam": "LAR",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 77.4,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [
+          {
+            "name": "Tyreek Hill",
+            "position": "WR",
+            "nflTeam": "FA",
+            "lineupSlot": "IR",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 26.43,
+            "keeperValueRound": 2
+          }
+        ],
+        "keeperPlayerIds": [
+          3929630,
+          4241478,
+          4429615
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "add",
+          "added": [
+            "Commanders D/ST (D/ST, WSH)"
+          ],
+          "dropped": [
+            "Konata Mumpfield (WR, LAR)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-28",
+          "week": 8,
+          "type": "waiver",
+          "added": [
+            "Brenton Strange (TE, JAX)"
+          ],
+          "dropped": [
+            "Juwan Johnson (TE, NO)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-22",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Konata Mumpfield (WR, LAR)"
+          ],
+          "dropped": [
+            "Tre Tucker (WR, LV)"
+          ],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Dimes McSorley",
+            "displayName": "Dimes McSorley",
+            "wins": 10,
+            "losses": 3,
+            "ties": 0,
+            "pointsFor": 1848.6,
+            "pointsAgainst": 1463.4,
+            "regularSeasonSeed": 1,
+            "finalRank": 4,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "Dimes McSorley",
+            "displayName": "Dimes McSorley",
+            "wins": 3,
+            "losses": 11,
+            "ties": 0,
+            "pointsFor": 1561.68,
+            "pointsAgainst": 1825.28,
+            "regularSeasonSeed": 10,
+            "finalRank": 10,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "Dimes McSorley",
+            "displayName": "Dimes McSorley",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1659.52,
+            "pointsAgainst": 1546.4,
+            "regularSeasonSeed": 6,
+            "finalRank": 8,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "Dimes McSorley",
+            "displayName": "Dimes McSorley",
+            "wins": 4,
+            "losses": 10,
+            "ties": 0,
+            "pointsFor": 1592.2,
+            "pointsAgainst": 1760.74,
+            "regularSeasonSeed": 8,
+            "finalRank": 10,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "Dimes McSorley",
+            "displayName": "Dimes McSorley",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1750.42,
+            "pointsAgainst": 1566.14,
+            "regularSeasonSeed": 5,
+            "finalRank": 5,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "Dimes McSorley",
+            "displayName": "Dimes McSorley",
+            "wins": 5,
+            "losses": 9,
+            "ties": 0,
+            "pointsFor": 1636.52,
+            "pointsAgainst": 1694.26,
+            "regularSeasonSeed": 8,
+            "finalRank": 6,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 0,
+        "titleYears": [],
+        "finalsAppearances": 0,
+        "finalsYears": [],
+        "bestFinish": 4,
+        "number1Seeds": [
+          2020
+        ],
+        "allTimeRegularSeason": {
+          "wins": 38,
+          "losses": 45,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 10,
+      "espnName": "Sandusky's Soldiers ",
+      "displayName": "Sandusky's Soldiers",
+      "displayNameSource": "ESPN name (clean, trimmed)",
+      "espnAbbrev": "Dusk",
+      "displayAbbrev": "SND",
+      "ownerName": null,
+      "ownerLabelFromApp": null,
+      "isUserTeam": false,
+      "record": {
+        "wins": 3,
+        "losses": 4,
+        "ties": 0,
+        "winPercentage": 0.429
+      },
+      "pointsFor": 823.14,
+      "pointsAgainst": 900.18,
+      "rank": 6,
+      "playoffSeed": 6,
+      "currentProjectedRank": 5,
+      "draftDayProjectedRank": 5,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 2,
+          "homeAway": "home",
+          "pointsFor": 96.76,
+          "pointsAgainst": 155.2,
+          "result": "L",
+          "projected": 121.35
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 1,
+          "homeAway": "away",
+          "pointsFor": 135.72,
+          "pointsAgainst": 126.64,
+          "result": "W",
+          "projected": 129.35
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 7,
+          "homeAway": "home",
+          "pointsFor": 106.98,
+          "pointsAgainst": 70.36,
+          "result": "W",
+          "projected": 127.21
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 5,
+          "homeAway": "home",
+          "pointsFor": 128.62,
+          "pointsAgainst": 115.72,
+          "result": "W",
+          "projected": 120.05
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 3,
+          "homeAway": "home",
+          "pointsFor": 146.68,
+          "pointsAgainst": 180.28,
+          "result": "L",
+          "projected": 131.17
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 11,
+          "homeAway": "home",
+          "pointsFor": 115.4,
+          "pointsAgainst": 124.06,
+          "result": "L",
+          "projected": 128.7
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 8,
+          "homeAway": "away",
+          "pointsFor": 92.98,
+          "pointsAgainst": 127.92,
+          "result": "L",
+          "projected": 118.28
+        }
+      ],
+      "seasonStats": {
+        "highScore": 146.68,
+        "lowScore": 92.98,
+        "avgScore": 117.59,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 6,
+        "homeAway": "home",
+        "projected": 129.77,
+        "opponentProjected": 111.41
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "James Cook III",
+            "position": "RB",
+            "nflTeam": "BUF",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.87,
+            "keeperValueRound": 4
+          },
+          {
+            "name": "Justin Jefferson",
+            "position": "WR",
+            "nflTeam": "MIN",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.83,
+            "keeperValueRound": 2
+          },
+          {
+            "name": "Jonathan Taylor",
+            "position": "RB",
+            "nflTeam": "IND",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.87,
+            "keeperValueRound": 3
+          },
+          {
+            "name": "Colston Loveland",
+            "position": "TE",
+            "nflTeam": "CHI",
+            "lineupSlot": "TE",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 95.05,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Joe Burrow",
+            "position": "QB",
+            "nflTeam": "CIN",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 98.49,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Michael Wilson",
+            "position": "WR",
+            "nflTeam": "ARI",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 89.64,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Jalen Coker",
+            "position": "WR",
+            "nflTeam": "CAR",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 90.03,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Spencer Shrader",
+            "position": "K",
+            "nflTeam": "IND",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 85.54,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Seahawks D/ST",
+            "position": "D/ST",
+            "nflTeam": "SEA",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 93.54,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "Davante Adams",
+            "position": "WR",
+            "nflTeam": "LAR",
+            "lineupSlot": "Bench",
+            "injuryStatus": "IR",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 91.74,
+            "keeperValueRound": 4
+          },
+          {
+            "name": "Carnell Tate",
+            "position": "WR",
+            "nflTeam": "TEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 86.89,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Rico Dowdle",
+            "position": "RB",
+            "nflTeam": "PIT",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 61.58,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Caleb Williams",
+            "position": "QB",
+            "nflTeam": "CHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 89.61,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Tucker Kraft",
+            "position": "TE",
+            "nflTeam": "GB",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.01,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Texans D/ST",
+            "position": "D/ST",
+            "nflTeam": "HOU",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 75.01,
+            "keeperValueRound": 10
+          },
+          {
+            "name": "Roschon Johnson",
+            "position": "RB",
+            "nflTeam": "CHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 14.36,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [
+          {
+            "name": "Isiah Pacheco",
+            "position": "RB",
+            "nflTeam": "DET",
+            "lineupSlot": "IR",
+            "injuryStatus": "IR",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 15.72,
+            "keeperValueRound": 8
+          }
+        ],
+        "keeperPlayerIds": [
+          4379399,
+          4262921,
+          4242335
+        ]
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-22",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Roschon Johnson (RB, CHI)"
+          ],
+          "dropped": [
+            "Brenton Strange (TE, JAX)"
+          ],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Sandusky's Soldiers ",
+            "displayName": "Sandusky's Soldiers",
+            "wins": 5,
+            "losses": 8,
+            "ties": 0,
+            "pointsFor": 1556.72,
+            "pointsAgainst": 1489.82,
+            "regularSeasonSeed": 7,
+            "finalRank": 9,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "Sandusky's Soldiers ",
+            "displayName": "Sandusky's Soldiers",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1712.54,
+            "pointsAgainst": 1649.32,
+            "regularSeasonSeed": 4,
+            "finalRank": 3,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "Sandusky's Soldiers ",
+            "displayName": "Sandusky's Soldiers",
+            "wins": 8,
+            "losses": 6,
+            "ties": 0,
+            "pointsFor": 1666.48,
+            "pointsAgainst": 1679.12,
+            "regularSeasonSeed": 5,
+            "finalRank": 6,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "Sandusky's Soldiers ",
+            "displayName": "Sandusky's Soldiers",
+            "wins": 9,
+            "losses": 5,
+            "ties": 0,
+            "pointsFor": 1650.86,
+            "pointsAgainst": 1695.8,
+            "regularSeasonSeed": 4,
+            "finalRank": 1,
+            "championshipWon": true,
+            "playoffOutcome": "champion",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "Sandusky's Soldiers ",
+            "displayName": "Sandusky's Soldiers",
+            "wins": 4,
+            "losses": 10,
+            "ties": 0,
+            "pointsFor": 1548.62,
+            "pointsAgainst": 1665.26,
+            "regularSeasonSeed": 10,
+            "finalRank": 7,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "Sandusky's Soldiers ",
+            "displayName": "Sandusky's Soldiers",
+            "wins": 10,
+            "losses": 4,
+            "ties": 0,
+            "pointsFor": 1728.56,
+            "pointsAgainst": 1524.52,
+            "regularSeasonSeed": 1,
+            "finalRank": 4,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 1,
+        "titleYears": [
+          2023
+        ],
+        "finalsAppearances": 1,
+        "finalsYears": [
+          2023
+        ],
+        "bestFinish": 1,
+        "number1Seeds": [
+          2025
+        ],
+        "allTimeRegularSeason": {
+          "wins": 44,
+          "losses": 39,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    },
+    {
+      "teamId": 11,
+      "espnName": "Kabul Cocknballs",
+      "displayName": "Kabul FC",
+      "displayNameSource": "existing app alias",
+      "espnAbbrev": "NIGG",
+      "displayAbbrev": "KAB",
+      "ownerName": null,
+      "ownerLabelFromApp": null,
+      "isUserTeam": false,
+      "record": {
+        "wins": 3,
+        "losses": 4,
+        "ties": 0,
+        "winPercentage": 0.429
+      },
+      "pointsFor": 776.74,
+      "pointsAgainst": 855.92,
+      "rank": 8,
+      "playoffSeed": 8,
+      "currentProjectedRank": 8,
+      "draftDayProjectedRank": 6,
+      "weekly": [
+        {
+          "week": 1,
+          "opponentTeamId": 1,
+          "homeAway": "home",
+          "pointsFor": 118.7,
+          "pointsAgainst": 122.2,
+          "result": "L",
+          "projected": 118.29
+        },
+        {
+          "week": 2,
+          "opponentTeamId": 8,
+          "homeAway": "away",
+          "pointsFor": 77.8,
+          "pointsAgainst": 112.52,
+          "result": "L",
+          "projected": 120.61
+        },
+        {
+          "week": 3,
+          "opponentTeamId": 6,
+          "homeAway": "away",
+          "pointsFor": 132.18,
+          "pointsAgainst": 124.84,
+          "result": "W",
+          "projected": 123.84
+        },
+        {
+          "week": 4,
+          "opponentTeamId": 4,
+          "homeAway": "home",
+          "pointsFor": 115.22,
+          "pointsAgainst": 102.5,
+          "result": "W",
+          "projected": 128.61
+        },
+        {
+          "week": 5,
+          "opponentTeamId": 2,
+          "homeAway": "home",
+          "pointsFor": 110.36,
+          "pointsAgainst": 149.72,
+          "result": "L",
+          "projected": 121.48
+        },
+        {
+          "week": 6,
+          "opponentTeamId": 10,
+          "homeAway": "away",
+          "pointsFor": 124.06,
+          "pointsAgainst": 115.4,
+          "result": "W",
+          "projected": 122.33
+        },
+        {
+          "week": 7,
+          "opponentTeamId": 7,
+          "homeAway": "home",
+          "pointsFor": 98.42,
+          "pointsAgainst": 128.74,
+          "result": "L",
+          "projected": 115.41
+        }
+      ],
+      "seasonStats": {
+        "highScore": 132.18,
+        "lowScore": 77.8,
+        "avgScore": 110.96,
+        "gamesScored": 7
+      },
+      "week8": {
+        "opponentTeamId": 5,
+        "homeAway": "home",
+        "projected": 82.65,
+        "opponentProjected": 138.36
+      },
+      "roster": {
+        "starters": [
+          {
+            "name": "Ashton Jeanty",
+            "position": "RB",
+            "nflTeam": "LV",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.67,
+            "keeperValueRound": 1
+          },
+          {
+            "name": "Trey McBride",
+            "position": "TE",
+            "nflTeam": "ARI",
+            "lineupSlot": "TE",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.88,
+            "keeperValueRound": 4
+          },
+          {
+            "name": "Jaylen Waddle",
+            "position": "WR",
+            "nflTeam": "DEN",
+            "lineupSlot": "WR",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 87.07,
+            "keeperValueRound": 6
+          },
+          {
+            "name": "Kenny Gainwell",
+            "position": "RB",
+            "nflTeam": "TB",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 51.09,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Chuba Hubbard",
+            "position": "RB",
+            "nflTeam": "CAR",
+            "lineupSlot": "RB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 95.27,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Brock Purdy",
+            "position": "QB",
+            "nflTeam": "SF",
+            "lineupSlot": "QB",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 98.4,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Browns D/ST",
+            "position": "D/ST",
+            "nflTeam": "CLE",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 55.11,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Xavier Worthy",
+            "position": "WR",
+            "nflTeam": "KC",
+            "lineupSlot": "WR",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 75.2,
+            "keeperValueRound": 5
+          },
+          {
+            "name": "Dominic Zvada",
+            "position": "K",
+            "nflTeam": "NYG",
+            "lineupSlot": "K",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 31.83,
+            "keeperValueRound": 0
+          }
+        ],
+        "bench": [
+          {
+            "name": "Jeremiyah Love",
+            "position": "RB",
+            "nflTeam": "ARI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 94.67,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Rashee Rice",
+            "position": "WR",
+            "nflTeam": "KC",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 94.14,
+            "keeperValueRound": 5
+          },
+          {
+            "name": "Bhayshul Tuten",
+            "position": "RB",
+            "nflTeam": "JAX",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 93.09,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Mike Evans",
+            "position": "WR",
+            "nflTeam": "SF",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.85,
+            "keeperValueRound": 5
+          },
+          {
+            "name": "Jakobi Meyers",
+            "position": "WR",
+            "nflTeam": "JAX",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 68.65,
+            "keeperValueRound": 0
+          },
+          {
+            "name": "Cameron Dicker",
+            "position": "K",
+            "nflTeam": "LAC",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 44.16,
+            "keeperValueRound": 14
+          },
+          {
+            "name": "Jordan Love",
+            "position": "QB",
+            "nflTeam": "GB",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Active",
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 89.36,
+            "keeperValueRound": 0
+          }
+        ],
+        "ir": [
+          {
+            "name": "Jaxson Dart",
+            "position": "QB",
+            "nflTeam": "NYG",
+            "lineupSlot": "IR",
+            "injuryStatus": "IR",
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 22.99,
+            "keeperValueRound": 0
+          }
+        ],
+        "keeperPlayerIds": []
+      },
+      "recentTransactions": [
+        {
+          "date": "2026-10-22",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Dominic Zvada (K, NYG)"
+          ],
+          "dropped": [
+            "Caleb Douglas (WR, MIA)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-10-22",
+          "week": 7,
+          "type": "add",
+          "added": [
+            "Xavier Worthy (WR, KC)"
+          ],
+          "dropped": [
+            "Romeo Doubs (WR, NE)"
+          ],
+          "faabBid": 0
+        }
+      ],
+      "history": {
+        "seasons": [
+          {
+            "season": 2020,
+            "espnName": "Zimbabwe  Swag moneys",
+            "displayName": "Zimbabwe  Swag moneys",
+            "wins": 4,
+            "losses": 9,
+            "ties": 0,
+            "pointsFor": 1459.8,
+            "pointsAgainst": 1616.16,
+            "regularSeasonSeed": 9,
+            "finalRank": 10,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2021,
+            "espnName": "Kabul Cocknballs",
+            "displayName": "Kabul FC",
+            "wins": 7,
+            "losses": 7,
+            "ties": 0,
+            "pointsFor": 1792.2,
+            "pointsAgainst": 1776.8,
+            "regularSeasonSeed": 5,
+            "finalRank": 5,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2022,
+            "espnName": "Kabul Cocknballs",
+            "displayName": "Kabul FC",
+            "wins": 2,
+            "losses": 12,
+            "ties": 0,
+            "pointsFor": 1477.28,
+            "pointsAgainst": 1799.86,
+            "regularSeasonSeed": 10,
+            "finalRank": 10,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2023,
+            "espnName": "Kabul Cocknballs",
+            "displayName": "Kabul FC",
+            "wins": 3,
+            "losses": 11,
+            "ties": 0,
+            "pointsFor": 1444.16,
+            "pointsAgainst": 1748.74,
+            "regularSeasonSeed": 10,
+            "finalRank": 9,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2024,
+            "espnName": "Kabul Cocknballs",
+            "displayName": "Kabul FC",
+            "wins": 5,
+            "losses": 9,
+            "ties": 0,
+            "pointsFor": 1551.04,
+            "pointsAgainst": 1695.72,
+            "regularSeasonSeed": 9,
+            "finalRank": 9,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          },
+          {
+            "season": 2025,
+            "espnName": "Kabul Cocknballs",
+            "displayName": "Kabul FC",
+            "wins": 5,
+            "losses": 9,
+            "ties": 0,
+            "pointsFor": 1458.88,
+            "pointsAgainst": 1706.18,
+            "regularSeasonSeed": 10,
+            "finalRank": 9,
+            "championshipWon": false,
+            "playoffOutcome": "eliminated",
+            "madePlayoffsFlaim": true,
+            "outcomeConfidence": "explicit"
+          }
+        ],
+        "titles": 0,
+        "titleYears": [],
+        "finalsAppearances": 0,
+        "finalsYears": [],
+        "bestFinish": 5,
+        "number1Seeds": [],
+        "allTimeRegularSeason": {
+          "wins": 26,
+          "losses": 57,
+          "ties": 0
+        },
+        "playoffAppearances": null
+      }
+    }
+  ]
+}

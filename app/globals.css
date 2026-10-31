@@ -6,14 +6,25 @@
 
 @theme {
   --breakpoint-tv: 160rem;
+
+  /* Chicken League fantasy palette */
+  --color-navy: #0f1e36;
+  --color-navy-2: #18304f;
+  --color-turf: #15803d;
+  --color-turf-dark: #166534;
+  --color-turf-light: #dcfce7;
+  --color-gold: #d99a06;
+  --color-gold-light: #fef3c7;
+  --color-field: #f2f4f0;
+  --color-line: #e2e7e1;
+  --color-loss: #dc2626;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-display: var(--font-barlow);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-barlow);
+  --font-display: var(--font-barlow-condensed);
   --font-heading: var(--font-display);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -60,8 +71,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  --primary: #15803d;
+  --primary-foreground: #ffffff;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -77,7 +88,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -89,37 +100,37 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #08090a;
+  --foreground: oklch(0.94 0.01 160);
+  --card: #0e1110;
+  --card-foreground: oklch(0.94 0.01 160);
+  --popover: #0e1110;
+  --popover-foreground: oklch(0.94 0.01 160);
+  --primary: #ffb238;
+  --primary-foreground: #08090a;
+  --secondary: oklch(0.24 0.005 160);
+  --secondary-foreground: oklch(0.94 0.01 160);
+  --muted: oklch(0.24 0.005 160);
+  --muted-foreground: #7f8984;
+  --accent: oklch(0.24 0.005 160);
+  --accent-foreground: oklch(0.94 0.01 160);
+  --destructive: #ff5a36;
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: #ffb238;
+  --chart-1: #ffb238;
+  --chart-2: #3fe0cf;
+  --chart-3: #ff5a36;
+  --chart-4: #7f8984;
+  --chart-5: #4a524e;
+  --sidebar: #0e1110;
+  --sidebar-foreground: oklch(0.94 0.01 160);
+  --sidebar-primary: #ffb238;
+  --sidebar-primary-foreground: #08090a;
+  --sidebar-accent: oklch(0.24 0.005 160);
+  --sidebar-accent-foreground: oklch(0.94 0.01 160);
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: #ffb238;
 }
 
 @layer base {
@@ -133,21 +144,16 @@
     @apply font-sans;
   }
 }
-@keyframes ticker {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+
+/* Subtle yard-line stripes behind the app header. */
+@utility yard-lines {
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in oklab, white 7%, transparent) 0 1px,
+    transparent 1px 48px
+  );
 }
 
-@utility animate-ticker {
-  animation: ticker 60s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-ticker {
-    animation: none;
-  }
+html[data-tv] .app-chrome {
+  display: none;
 }
