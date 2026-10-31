@@ -26,7 +26,7 @@ export function Card({
       {(title || action) && (
         <header className="flex items-center justify-between gap-3 px-4 pt-4 sm:px-5">
           {title && <h2 className="min-w-0 font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">{title}</h2>}
-          {action && <div className="shrink-0 text-sm text-slate-500">{action}</div>}
+          {action && <div className="shrink-0 text-sm text-slate-600">{action}</div>}
         </header>
       )}
       <div className={cn("p-4 sm:p-5", (title || action) && "pt-3 sm:pt-3", bodyClassName)}>{children}</div>
@@ -44,14 +44,14 @@ export function PageHeader({ eyebrow, title, children }: { eyebrow: string; titl
   );
 }
 
-export function SectionHeading({ title, action }: { title: string; action?: React.ReactNode }) {
+export function SectionHeading({ title, action, id }: { title: string; action?: React.ReactNode; id?: string }) {
   return (
-    <div className="flex items-end justify-between gap-3">
+    <div id={id} className="flex scroll-mt-28 items-end justify-between gap-3">
       <h2 className="flex items-center gap-2 font-display text-xl font-bold tracking-wide text-navy uppercase">
         <span className="h-5 w-1 rounded-full bg-turf" aria-hidden />
         {title}
       </h2>
-      {action && <div className="shrink-0 text-sm text-slate-500">{action}</div>}
+      {action && <div className="shrink-0 text-sm text-slate-600">{action}</div>}
     </div>
   );
 }
@@ -115,9 +115,9 @@ export function Stat({
 }) {
   return (
     <div className={cn("min-w-0", className)}>
-      <p className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase">{label}</p>
+      <p className="text-xs font-semibold tracking-wider text-slate-600 uppercase">{label}</p>
       <p className={cn("font-display text-2xl leading-tight font-bold text-navy tabular-nums", valueClassName)}>{value}</p>
-      {sub && <p className="text-xs leading-snug text-slate-500">{sub}</p>}
+      {sub && <p className="text-xs leading-snug text-slate-600">{sub}</p>}
     </div>
   );
 }
@@ -134,7 +134,7 @@ export function LuckBadge({ row, withRanks, compact }: { row: Luck; withRanks?: 
       <span className={cn(compact && row.delta !== 0 && "max-sm:hidden")}>{l.text}</span>
       {row.delta !== 0 && <span className="tabular-nums">{delta}</span>}
       {withRanks && (
-        <span className="font-normal opacity-75">
+        <span className="font-normal">
           · PF #{row.pfRank}
         </span>
       )}

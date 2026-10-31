@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ScoreReadout } from "@/components/league/bits";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
 import { formatRecord, GAMES, LEAGUE, loserSide, MATCHUPS, matchupPath, STANDINGS, team, teamPath, TEAMS, winnerSide, type Game } from "@/lib/league";
@@ -77,9 +78,11 @@ export default function InsightsPage() {
                   const fav = m.left.projected != null && m.right.projected != null && s.projected === Math.max(m.left.projected, m.right.projected);
                   return (
                     <p key={s.teamId} className="flex items-center gap-2 text-sm">
-                      <TeamAvatar teamId={s.teamId} size="sm" className="size-6 text-[9px]" />
-                      <span className={cn("min-w-0 flex-1 truncate", fav ? "font-semibold text-navy" : "text-slate-500")}>{team(s.teamId).name}</span>
-                      <span className={cn("font-display font-bold tabular-nums", fav ? "text-turf" : "text-slate-400")}>{s.projected?.toFixed(1) ?? "—"}</span>
+                      <TeamAvatar teamId={s.teamId} size="sm" className="size-6 text-xs" />
+                      <span className={cn("min-w-0 flex-1 truncate", fav ? "font-semibold text-navy" : "text-slate-600")}>{team(s.teamId).name}</span>
+                      <span className={cn("font-display font-bold tabular-nums", fav ? "text-turf" : "text-slate-600")}>
+                        <ScoreReadout side={s} state={m.state} bracketClassName="text-slate-600" />
+                      </span>
                     </p>
                   );
                 })}
@@ -89,19 +92,19 @@ export default function InsightsPage() {
         </ul>
       </Card>
 
-      <SectionHeading title="Power & luck" />
+      <SectionHeading id="power" title="Power & luck" />
       <div className="grid gap-5 lg:grid-cols-2">
         <Card title="Power rankings" action="By all-play record">
           <ol className="divide-y divide-line">
             {power.map((p) => (
               <li key={p.team.id} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
-                <span className={cn("w-6 shrink-0 font-display text-2xl leading-none font-extrabold", p.rank === 1 ? "text-gold" : "text-slate-300")}>{p.rank}</span>
+                <span className={cn("w-6 shrink-0 font-display text-2xl leading-none font-extrabold", p.rank === 1 ? "text-gold-ink" : "text-slate-600")}>{p.rank}</span>
                 <TeamAvatar teamId={p.team.id} size="sm" />
                 <div className="min-w-0 flex-1">
                   <Link href={teamPath(p.team.id)} className="block truncate text-sm font-semibold text-navy hover:underline">
                     {p.team.name}
                   </Link>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-600">
                     All-play {p.allPlay.wins}-{p.allPlay.losses} · actual {formatRecord(p.team)} · last 3 {p.last3.toFixed(1)}
                   </p>
                 </div>
@@ -109,7 +112,7 @@ export default function InsightsPage() {
               </li>
             ))}
           </ol>
-          <p className="mt-3 border-t border-line pt-3 text-xs leading-relaxed text-slate-500">
+          <p className="mt-3 border-t border-line pt-3 text-xs leading-relaxed text-slate-600">
             All-play: each week, every team is scored against all nine others. Arrows compare with the standings rank.
           </p>
         </Card>
@@ -125,7 +128,7 @@ export default function InsightsPage() {
                     <Link href={teamPath(t.id)} className="block truncate text-sm font-semibold text-navy hover:underline">
                       {t.name}
                     </Link>
-                    <span className="block text-[11px] text-slate-500">
+                    <span className="block text-xs text-slate-600">
                       {formatRecord(t)} · PF #{l.pfRank} · {l.winsOverExpected >= 0 ? "+" : "−"}
                       {Math.abs(l.winsOverExpected).toFixed(1)} wins vs all-play
                     </span>
@@ -136,14 +139,14 @@ export default function InsightsPage() {
                       <span className={cn("absolute inset-y-0 rounded-full", l.delta > 0 ? "left-1/2 bg-gold" : "right-1/2 bg-sky-500")} style={{ width: `${pct}%` }} />
                     )}
                   </span>
-                  <span className={cn("text-right font-display text-lg font-bold tabular-nums", l.delta > 0 ? "text-amber-700" : l.delta < 0 ? "text-sky-700" : "text-slate-400")}>
+                  <span className={cn("text-right font-display text-lg font-bold tabular-nums", l.delta > 0 ? "text-amber-700" : l.delta < 0 ? "text-sky-700" : "text-slate-600")}>
                     {l.delta > 0 ? `+${l.delta}` : l.delta < 0 ? `−${-l.delta}` : "0"}
                   </span>
                 </li>
               );
             })}
           </ol>
-          <p className="mt-4 border-t border-line pt-3 text-xs leading-relaxed text-slate-500">
+          <p className="mt-4 border-t border-line pt-3 text-xs leading-relaxed text-slate-600">
             Points-for rank minus standings rank. <span className="font-semibold text-amber-700">Gold</span>: record is ahead of the scoring.{" "}
             <span className="font-semibold text-sky-700">Blue</span>: scoring is ahead of the record.
           </p>
@@ -156,7 +159,7 @@ export default function InsightsPage() {
         </Card>
         <Card title="Strength of schedule" action="Opponents' avg score">
           <BarList rows={sos.map((r) => ({ id: r.team.id, name: r.team.name, value: r.oppAvg, label: r.oppAvg.toFixed(1), sub: `${r.pointsAgainst.toFixed(1)} PA` }))} min={oppMin} max={oppMax} muted />
-          <p className="mt-3 text-xs leading-relaxed text-slate-500">
+          <p className="mt-3 text-xs leading-relaxed text-slate-600">
             Season scoring average of every opponent faced, hardest first, with points allowed alongside. {sos[0].team.name} has had the toughest road so far.
           </p>
         </Card>
@@ -168,12 +171,12 @@ export default function InsightsPage() {
           <ol className="divide-y divide-line">
             {ALL_SCORES.slice(0, 8).map((s, i) => (
               <li key={`${s.week}-${s.teamId}`} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
-                <span className={cn("w-5 font-display text-lg font-bold", i === 0 ? "text-gold" : "text-slate-300")}>{i + 1}</span>
+                <span className={cn("w-5 font-display text-lg font-bold", i === 0 ? "text-gold-ink" : "text-slate-600")}>{i + 1}</span>
                 <TeamAvatar teamId={s.teamId} size="sm" />
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-semibold text-navy">{team(s.teamId).name}</span>
-                  <span className="flex items-center gap-1.5 text-xs text-slate-500">
-                    <ResultChip result={s.won ? "W" : "L"} className="size-4 text-[10px]" /> Wk {s.week} vs {team(s.oppId).abbrev}
+                  <span className="flex items-center gap-1.5 text-xs text-slate-600">
+                    <ResultChip result={s.won ? "W" : "L"} className="size-4 text-xs" /> Wk {s.week} vs {team(s.oppId).abbrev}
                   </span>
                 </span>
                 <span className="font-display text-xl font-bold text-navy tabular-nums">{s.score.toFixed(2)}</span>
@@ -220,7 +223,7 @@ export default function InsightsPage() {
         <Card title="Weekly top scorer" bodyClassName="p-0 sm:p-0" className="overflow-hidden">
           <table className="w-full table-fixed text-sm">
             <thead>
-              <tr className="border-y border-line bg-slate-50 text-left text-[11px] font-bold tracking-wider text-slate-500 uppercase">
+              <tr className="border-y border-line bg-slate-50 text-left text-xs font-bold tracking-wider text-slate-600 uppercase">
                 <th className="w-11 py-2 pl-4 sm:pl-5">Wk</th>
                 <th className="py-2">Top score</th>
                 <th className="w-[4.25rem] py-2 text-right">Avg</th>
@@ -230,17 +233,17 @@ export default function InsightsPage() {
             <tbody>
               {leaders.map((w) => (
                 <tr key={w.week} className="border-b border-line last:border-0">
-                  <td className="py-2.5 pl-4 font-display font-bold text-slate-500 sm:pl-5">{w.week}</td>
+                  <td className="py-2.5 pl-4 font-display font-bold text-slate-600 sm:pl-5">{w.week}</td>
                   <td className="py-2.5 pr-2">
                     <span className="flex min-w-0 items-center gap-2">
-                      <TeamAvatar teamId={w.top.teamId} size="sm" className="size-6 text-[9px]" />
+                      <TeamAvatar teamId={w.top.teamId} size="sm" className="size-6 text-xs" />
                       <span className="min-w-0">
                         <span className="block truncate font-semibold text-navy">{team(w.top.teamId).name}</span>
                         <span className="font-display font-bold text-turf tabular-nums">{w.top.score.toFixed(2)}</span>
                       </span>
                     </span>
                   </td>
-                  <td className="py-2.5 text-right text-slate-500 tabular-nums">{w.avg.toFixed(1)}</td>
+                  <td className="py-2.5 text-right text-slate-600 tabular-nums">{w.avg.toFixed(1)}</td>
                   <td className="py-2.5 pr-4 text-right sm:pr-5">
                     <span className="block text-xs font-semibold text-slate-600">{team(w.bottom.teamId).abbrev}</span>
                     <span className="font-display font-bold text-loss tabular-nums">{w.bottom.score.toFixed(2)}</span>
@@ -249,7 +252,7 @@ export default function InsightsPage() {
               ))}
             </tbody>
           </table>
-          <p className="border-t border-line px-4 py-3 text-xs text-slate-500 sm:px-5">
+          <p className="border-t border-line px-4 py-3 text-xs text-slate-600 sm:px-5">
             {topScorerSummary()} League average across all games: {LEAGUE_AVG.toFixed(1)}.
           </p>
         </Card>
@@ -270,7 +273,7 @@ export default function InsightsPage() {
                 </li>
               ))}
           </ul>
-          <p className="mt-3 text-xs text-slate-500">
+          <p className="mt-3 text-xs text-slate-600">
             Teams without a game decided by fewer than {CLOSE_GAME_MARGIN} points: {TEAMS.filter((t) => closeGameRecord(t.id).games === 0).map((t) => t.name).join(", ") || "none"}.
           </p>
         </Card>
@@ -286,14 +289,14 @@ export default function InsightsPage() {
                   <TeamAvatar teamId={r.team.id} size="sm" />
                   <span className="truncate text-sm font-semibold text-navy">{r.team.name}</span>
                 </Link>
-                <span className="shrink-0 text-xs text-slate-500">
+                <span className="shrink-0 text-xs text-slate-600">
                   {i === 0 ? <Pill tone="turf">Steadiest</Pill> : i === consistency.length - 1 ? <Pill tone="gold">Most volatile</Pill> : `±${r.stdDev.toFixed(1)}`}
                 </span>
               </div>
               <div className="mt-2">
                 <RangeBar low={r.low.pf} median={r.median} high={r.high.pf} color={r.team.color} />
               </div>
-              <div className="mt-1 flex justify-between text-[11px] text-slate-500 tabular-nums">
+              <div className="mt-1 flex justify-between text-xs text-slate-600 tabular-nums">
                 <span>Low {r.low.pf.toFixed(1)}</span>
                 <span>Median {r.median.toFixed(1)}</span>
                 <span>High {r.high.pf.toFixed(1)}</span>
@@ -334,7 +337,7 @@ export default function InsightsPage() {
                         className={cn("size-7 rounded font-display text-xs font-bold text-white sm:size-10 sm:text-sm", cell.won ? "bg-turf" : "bg-loss")}
                       >
                         <span className="block leading-none">{cell.won ? "W" : "L"}</span>
-                        <span className="hidden text-[9px] leading-none font-semibold opacity-80 sm:block">wk{cell.week}</span>
+                        <span className="hidden text-xs leading-none font-semibold opacity-80 sm:block">wk{cell.week}</span>
                       </td>
                     );
                   })}
@@ -343,12 +346,12 @@ export default function InsightsPage() {
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-xs text-slate-500">
+        <p className="mt-3 text-xs text-slate-600">
           Read across: each row is a team&apos;s result against the column team, both in standings order. Blank squares haven&apos;t played yet in {LEAGUE.season}. On desktop, hover a square for the score; every score is also on each team&apos;s page.
         </p>
       </Card>
 
-      <ul className="grid gap-x-4 gap-y-1 text-xs text-slate-500 sm:grid-cols-2">
+      <ul className="grid gap-x-4 gap-y-1 text-xs text-slate-600 sm:grid-cols-2">
         {STANDINGS.map((t) => (
           <li key={t.id} className="flex items-center gap-2">
             <TeamAvatar teamId={t.id} size="sm" className="size-5 text-[7px]" />
@@ -380,7 +383,7 @@ function Glance({ label, teamId, value, sub, className }: { label: string; teamI
   const t = team(teamId);
   return (
     <li className={cn("min-w-0 rounded-2xl bg-white p-3 ring-1 ring-line", className)}>
-      <p className="text-[11px] font-bold tracking-wider text-slate-500 uppercase">{label}</p>
+      <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">{label}</p>
       <div className="mt-1.5 flex items-center gap-2">
         <TeamAvatar teamId={teamId} size="sm" />
         <Link href={teamPath(teamId)} className="min-w-0 flex-1 truncate text-sm font-semibold text-navy hover:underline">
@@ -389,14 +392,14 @@ function Glance({ label, teamId, value, sub, className }: { label: string; teamI
       </div>
       <p className="mt-1 font-display text-2xl leading-none font-bold text-navy tabular-nums">
         {value}
-        {sub && <span className="ml-1.5 font-sans text-xs font-medium text-slate-500">{sub}</span>}
+        {sub && <span className="ml-1.5 font-sans text-xs font-medium text-slate-600">{sub}</span>}
       </p>
     </li>
   );
 }
 
 function Move({ move }: { move: number }) {
-  if (move === 0) return <span className="w-8 text-right text-xs text-slate-400">—</span>;
+  if (move === 0) return <span className="w-8 text-right text-xs text-slate-600">—</span>;
   return (
     <span className={cn("w-8 text-right text-xs font-bold tabular-nums", move > 0 ? "text-turf" : "text-loss")} title={`${Math.abs(move)} spot${Math.abs(move) === 1 ? "" : "s"} ${move > 0 ? "higher" : "lower"} than the standings`}>
       {move > 0 ? "▲" : "▼"}
@@ -410,15 +413,15 @@ function GameItem({ g, badge, tone = "gold" }: { g: Game; badge: string; tone?: 
   const l = loserSide(g);
   return (
     <li className="py-2.5 first:pt-0 last:pb-0">
-      <p className="flex items-center justify-between text-xs font-semibold text-slate-500">
+      <p className="flex items-center justify-between text-xs font-semibold text-slate-600">
         <span>Week {g.week}</span>
         <Pill tone={tone}>{badge}</Pill>
       </p>
       {[w, l].map((s, i) => (
         <p key={s.teamId} className="mt-1 flex items-center gap-2 text-sm">
-          <TeamAvatar teamId={s.teamId} size="sm" className="size-5 text-[8px]" />
-          <span className={cn("min-w-0 flex-1 truncate", i === 0 ? "font-semibold text-navy" : "text-slate-500")}>{team(s.teamId).name}</span>
-          <span className={cn("font-display text-base font-bold tabular-nums", i === 0 ? "text-navy" : "text-slate-400")}>{s.score.toFixed(2)}</span>
+          <TeamAvatar teamId={s.teamId} size="sm" className="size-5 text-xs" />
+          <span className={cn("min-w-0 flex-1 truncate", i === 0 ? "font-semibold text-navy" : "text-slate-600")}>{team(s.teamId).name}</span>
+          <span className={cn("font-display text-base font-bold tabular-nums", i === 0 ? "text-navy" : "text-slate-600")}>{s.score.toFixed(2)}</span>
         </p>
       ))}
     </li>
@@ -432,11 +435,11 @@ function BarList({ rows, min, max, muted }: { rows: { id: number; name: string; 
         <li key={r.id}>
           <div className="flex items-baseline justify-between gap-2 text-sm">
             <span className="min-w-0 truncate text-slate-700">
-              <span className="mr-2 font-display font-bold text-slate-400">{i + 1}</span>
+              <span className="mr-2 font-display font-bold text-slate-600">{i + 1}</span>
               {r.name}
             </span>
             <span className="shrink-0 font-display text-base font-bold text-navy tabular-nums">
-              {r.sub && <span className="mr-2 font-sans text-xs font-medium text-slate-400">{r.sub}</span>}
+              {r.sub && <span className="mr-2 font-sans text-xs font-medium text-slate-600">{r.sub}</span>}
               {r.label}
             </span>
           </div>

@@ -11,9 +11,11 @@
       "ownerName: Flaim's ESPN league info returned no owner names; ownerLabelFromApp is copied from the app's existing league-intel.json (nicknames, 4 teams only).",
       "history.playoffAppearances is null: Flaim marks madePlayoffs=true for all 10 teams in every past season (consolation bracket), and the league's playoff team count isn't returned. Raw flag kept as madePlayoffsFlaim.",
       "History is keyed by ESPN teamId slot (franchise continuity assumed by slot; owners may have changed). Seasons 2020-2025 available.",
-      "Week 8 projections are ESPN totalProjectedPoints at fetch time (pre-kickoff)."
+      "Week 8 projections are ESPN totalProjectedPoints at fetch time (pre-kickoff).",
+      "2026-10-31 Flaim/ESPN update: week 8 is in progress after Thursday Oct 29 (Packers 27, Panthers 19). homeCurrentPoints/awayCurrentPoints are fantasy points so far (full PPR). Bracketed projections are the projected finals supplied with that pull. Standings, weekly results, and season totals are still through week 7. Jordan Love started for Kabul on Thursday, so he is in the QB slot and Brock Purdy is on the bench."
     ],
-    "displayPolicy": "Team 7 shows its real ESPN name. Others use the existing app alias where present, else trimmed ESPN name; vulgar names get a proposed clean alias."
+    "displayPolicy": "Team 7 shows its real ESPN name. Others use the existing app alias where present, else trimmed ESPN name; vulgar names get a proposed clean alias.",
+    "updatedAt": "2026-10-31T12:00:00-04:00"
   },
   "league": {
     "id": 12115010,
@@ -640,51 +642,61 @@
         "week": 8,
         "homeTeamId": 11,
         "awayTeamId": 5,
-        "homeProjected": 82.65,
-        "awayProjected": 138.36,
-        "homeCurrentPoints": 0,
+        "homeProjected": 127.7,
+        "awayProjected": 138.8,
+        "homeCurrentPoints": 46.42,
         "awayCurrentPoints": 0,
-        "winner": "UNDECIDED"
+        "winner": "UNDECIDED",
+        "margin": null,
+        "status": "in-progress"
       },
       {
         "week": 8,
         "homeTeamId": 10,
         "awayTeamId": 6,
-        "homeProjected": 129.77,
-        "awayProjected": 111.41,
-        "homeCurrentPoints": 0,
-        "awayCurrentPoints": 0,
-        "winner": "UNDECIDED"
+        "homeProjected": 125.5,
+        "awayProjected": 98.5,
+        "homeCurrentPoints": 9.6,
+        "awayCurrentPoints": 5,
+        "winner": "UNDECIDED",
+        "margin": null,
+        "status": "in-progress"
       },
       {
         "week": 8,
         "homeTeamId": 4,
         "awayTeamId": 2,
-        "homeProjected": 111.35,
-        "awayProjected": 127.85,
-        "homeCurrentPoints": 0,
+        "homeProjected": 113.1,
+        "awayProjected": 128.9,
+        "homeCurrentPoints": 17.3,
         "awayCurrentPoints": 0,
-        "winner": "UNDECIDED"
+        "winner": "UNDECIDED",
+        "margin": null,
+        "status": "in-progress"
       },
       {
         "week": 8,
         "homeTeamId": 3,
         "awayTeamId": 1,
-        "homeProjected": 133.28,
-        "awayProjected": 129.22,
-        "homeCurrentPoints": 0,
+        "homeProjected": 116.5,
+        "awayProjected": 124.7,
+        "homeCurrentPoints": 11.8,
         "awayCurrentPoints": 0,
-        "winner": "UNDECIDED"
+        "winner": "UNDECIDED",
+        "margin": null,
+        "status": "in-progress"
       },
       {
         "week": 8,
         "homeTeamId": 7,
         "awayTeamId": 8,
-        "homeProjected": 131.27,
-        "awayProjected": 123.49,
-        "homeCurrentPoints": 0,
-        "awayCurrentPoints": 0,
-        "winner": "UNDECIDED"
+        "homeProjected": 142.4,
+        "awayProjected": 115.9,
+        "homeCurrentPoints": 44.1,
+        "awayCurrentPoints": 10.36,
+        "winner": "UNDECIDED",
+        "margin": null,
+        "status": "in-progress"
       }
     ]
   },
@@ -761,7 +773,7 @@
     "The Fucking Letdowns": "The Letdowns",
     "Team Wet Ass Pussy": "Team WAP",
     "Kabul Cocknballs": "Kabul FC",
-    "Brioon Omeglemeally😈": "Brioon Omeglemeally"
+    "Brioon Omeglemeally\ud83d\ude08": "Brioon Omeglemeally"
   },
   "transactionsWindow": {
     "mode": "recent_two_weeks",
@@ -879,8 +891,10 @@
       "week8": {
         "opponentTeamId": 3,
         "homeAway": "away",
-        "projected": 129.22,
-        "opponentProjected": 133.28
+        "projected": 124.7,
+        "opponentProjected": 116.5,
+        "currentPoints": 0,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -1314,8 +1328,10 @@
       "week8": {
         "opponentTeamId": 4,
         "homeAway": "away",
-        "projected": 127.85,
-        "opponentProjected": 111.35
+        "projected": 128.9,
+        "opponentProjected": 113.1,
+        "currentPoints": 0,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -1749,8 +1765,10 @@
       "week8": {
         "opponentTeamId": 1,
         "homeAway": "home",
-        "projected": 133.28,
-        "opponentProjected": 129.22
+        "projected": 116.5,
+        "opponentProjected": 124.7,
+        "currentPoints": 11.8,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -2183,8 +2201,10 @@
       "week8": {
         "opponentTeamId": 2,
         "homeAway": "home",
-        "projected": 111.35,
-        "opponentProjected": 127.85
+        "projected": 113.1,
+        "opponentProjected": 128.9,
+        "currentPoints": 17.3,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -2650,8 +2670,10 @@
       "week8": {
         "opponentTeamId": 11,
         "homeAway": "away",
-        "projected": 138.36,
-        "opponentProjected": 82.65
+        "projected": 138.8,
+        "opponentProjected": 127.7,
+        "currentPoints": 0,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -3123,8 +3145,10 @@
       "week8": {
         "opponentTeamId": 10,
         "homeAway": "away",
-        "projected": 111.41,
-        "opponentProjected": 129.77
+        "projected": 98.5,
+        "opponentProjected": 125.5,
+        "currentPoints": 5,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -3375,7 +3399,7 @@
           },
           {
             "season": 2023,
-            "espnName": "Brioon Omeglemeally😈",
+            "espnName": "Brioon Omeglemeally\ud83d\ude08",
             "displayName": "Brioon Omeglemeally",
             "wins": 7,
             "losses": 7,
@@ -3391,7 +3415,7 @@
           },
           {
             "season": 2024,
-            "espnName": "Brioon Omeglemeally😈",
+            "espnName": "Brioon Omeglemeally\ud83d\ude08",
             "displayName": "Brioon Omeglemeally",
             "wins": 10,
             "losses": 4,
@@ -3407,7 +3431,7 @@
           },
           {
             "season": 2025,
-            "espnName": "Brioon Omeglemeally😈",
+            "espnName": "Brioon Omeglemeally\ud83d\ude08",
             "displayName": "Brioon Omeglemeally",
             "wins": 5,
             "losses": 9,
@@ -3540,8 +3564,10 @@
       "week8": {
         "opponentTeamId": 8,
         "homeAway": "home",
-        "projected": 131.27,
-        "opponentProjected": 123.49
+        "projected": 142.4,
+        "opponentProjected": 115.9,
+        "currentPoints": 44.1,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -3998,8 +4024,10 @@
       "week8": {
         "opponentTeamId": 7,
         "homeAway": "away",
-        "projected": 123.49,
-        "opponentProjected": 131.27
+        "projected": 115.9,
+        "opponentProjected": 142.4,
+        "currentPoints": 10.36,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -4433,8 +4461,10 @@
       "week8": {
         "opponentTeamId": 6,
         "homeAway": "home",
-        "projected": 129.77,
-        "opponentProjected": 111.41
+        "projected": 125.5,
+        "opponentProjected": 98.5,
+        "currentPoints": 9.6,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -4848,8 +4878,10 @@
       "week8": {
         "opponentTeamId": 5,
         "homeAway": "home",
-        "projected": 82.65,
-        "opponentProjected": 138.36
+        "projected": 127.7,
+        "opponentProjected": 138.8,
+        "currentPoints": 46.42,
+        "status": "in-progress"
       },
       "roster": {
         "starters": [
@@ -4904,13 +4936,13 @@
             "keeperValueRound": 0
           },
           {
-            "name": "Brock Purdy",
+            "name": "Jordan Love",
             "position": "QB",
-            "nflTeam": "SF",
+            "nflTeam": "GB",
             "lineupSlot": "QB",
             "injuryStatus": "Active",
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 98.4,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 89.36,
             "keeperValueRound": 0
           },
           {
@@ -5006,13 +5038,13 @@
             "keeperValueRound": 14
           },
           {
-            "name": "Jordan Love",
+            "name": "Brock Purdy",
             "position": "QB",
-            "nflTeam": "GB",
+            "nflTeam": "SF",
             "lineupSlot": "Bench",
             "injuryStatus": "Active",
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 89.36,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 98.4,
             "keeperValueRound": 0
           }
         ],
@@ -5169,5 +5201,130 @@
         "playoffAppearances": null
       }
     }
-  ]
+  ],
+  "week8Thursday": {
+    "week": 8,
+    "date": "2026-10-29",
+    "kickoff": "Thursday night",
+    "scoring": "full PPR",
+    "nfl": {
+      "away": "Panthers",
+      "home": "Packers",
+      "awayScore": 19,
+      "homeScore": 27,
+      "site": "Lambeau Field",
+      "awayRecord": "3-4",
+      "homeRecord": "5-3",
+      "quarters": {
+        "CAR": [
+          3,
+          7,
+          3,
+          6
+        ],
+        "GB": [
+          6,
+          14,
+          7,
+          0
+        ]
+      },
+      "source": "https://www.espn.com/nfl/game/_/gameId/401873023/panthers-packers"
+    },
+    "players": [
+      {
+        "teamId": 11,
+        "name": "Chuba Hubbard",
+        "nflTeam": "CAR",
+        "position": "RB",
+        "points": 24.9,
+        "started": true,
+        "line": "22-81, 1 TD, and 7 catches for 38 yards"
+      },
+      {
+        "teamId": 11,
+        "name": "Jordan Love",
+        "nflTeam": "GB",
+        "position": "QB",
+        "points": 21.52,
+        "started": true,
+        "line": "30/41, 288 yards, 3 TD, 1 INT"
+      },
+      {
+        "teamId": 7,
+        "name": "Josh Jacobs",
+        "nflTeam": "GB",
+        "position": "RB",
+        "points": 23.2,
+        "started": true,
+        "line": "21-39 rushing and 6-13 receiving, 1 rush TD and 1 receiving TD"
+      },
+      {
+        "teamId": 7,
+        "name": "Matthew Golden",
+        "nflTeam": "GB",
+        "position": "WR",
+        "points": 20.9,
+        "started": true,
+        "line": "7-79, 1 TD"
+      },
+      {
+        "teamId": 4,
+        "name": "Christian Watson",
+        "nflTeam": "GB",
+        "position": "WR",
+        "points": 17.3,
+        "started": true,
+        "line": "8-113"
+      },
+      {
+        "teamId": 10,
+        "name": "Tucker Kraft",
+        "nflTeam": "GB",
+        "position": "TE",
+        "points": 17.3,
+        "started": false,
+        "line": "6-53, 1 TD"
+      },
+      {
+        "teamId": 3,
+        "name": "Tetairoa McMillan",
+        "nflTeam": "CAR",
+        "position": "WR",
+        "points": 11.8,
+        "started": true,
+        "line": "6-58"
+      },
+      {
+        "teamId": 8,
+        "name": "Bryce Young",
+        "nflTeam": "CAR",
+        "position": "QB",
+        "points": 10.36,
+        "started": true,
+        "line": "23/41, 209 yards, 1 TD, 1 INT, sacked 6 times"
+      },
+      {
+        "teamId": 10,
+        "name": "Jalen Coker",
+        "nflTeam": "CAR",
+        "position": "WR",
+        "points": 9.6,
+        "started": true
+      },
+      {
+        "teamId": 6,
+        "name": "Panthers D/ST",
+        "nflTeam": "CAR",
+        "position": "D/ST",
+        "points": 5,
+        "started": true
+      }
+    ],
+    "quietTeamIds": [
+      2,
+      5,
+      1
+    ]
+  }
 }

@@ -33,13 +33,13 @@ export function TopBar({ week, season }: { week: number; season: number }) {
   return (
     <header className="app-chrome sticky top-0 z-30 bg-navy yard-lines pt-[env(safe-area-inset-top)] text-white shadow-[0_2px_10px_rgba(15,30,54,0.25)]">
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-3 pr-[max(1rem,env(safe-area-inset-right))] pl-[max(1rem,env(safe-area-inset-left))]">
-        <Link href="/" className="flex min-w-0 items-center gap-2.5" aria-label="Chicken League home">
+        <Link href="/" className="flex min-w-0 items-center gap-2.5">
           <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
             <Football className="size-7" />
           </span>
           <span className="min-w-0 leading-none">
             <span className="block truncate font-display text-xl font-bold tracking-wide">Chicken League</span>
-            <span className="mt-0.5 block text-[11px] font-medium text-white/60">
+            <span className="mt-0.5 block text-xs font-medium text-white/80">
               Week {week} · {season} season
             </span>
           </span>
@@ -58,14 +58,14 @@ export function TopBar({ week, season }: { week: number; season: number }) {
                   active ? "bg-white text-navy" : "text-white/75 hover:bg-white/10 hover:text-white",
                 )}
               >
-                <item.icon className="size-4 max-lg:hidden" />
+                <item.icon className="size-4 max-lg:hidden" aria-hidden />
                 {item.label}
               </Link>
             );
           })}
         </nav>
 
-        <span className="shrink-0 rounded-full bg-turf px-2.5 py-1 text-[11px] font-bold tracking-wide uppercase md:hidden">Wk {week}</span>
+        <span className="shrink-0 rounded-full bg-turf px-2.5 py-1 text-xs font-bold tracking-wide uppercase md:hidden">Wk {week}</span>
       </div>
     </header>
   );
@@ -87,12 +87,12 @@ export function BottomNav() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "relative flex h-16 flex-col items-center justify-center gap-1 text-[11px] font-semibold transition-colors",
-                  active ? "text-turf" : "text-slate-500 active:text-navy",
+                  "relative flex h-16 flex-col items-center justify-center gap-1 text-xs font-semibold transition-colors",
+                  active ? "text-turf" : "text-slate-600 active:text-navy",
                 )}
               >
                 {active && <span className="absolute inset-x-5 top-0 h-[3px] rounded-b-full bg-turf" />}
-                <item.icon className="size-[22px]" strokeWidth={active ? 2.25 : 1.75} />
+                <item.icon className="size-[22px]" strokeWidth={active ? 2.25 : 1.75} aria-hidden />
                 {item.label}
               </Link>
             </li>

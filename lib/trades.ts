@@ -42,6 +42,7 @@ interface RawPlayerGrade {
   gamesAfter: number;
   zeroOrMissingWeeksAfter: { week: number; why: string }[];
   disposition: string;
+  note?: string | null;
   value: { valueNow: number | null; valueAtTrade?: number | null; changeSinceTrade?: number | null; fetchedAt?: string };
 }
 
@@ -76,8 +77,16 @@ interface RawTrade {
   picksMoved: number;
   releasedInDeal: RawPlayer[];
   confidence: "partial" | "inferred" | "verified-by-rosters";
+  /** Only "accepted" trades are listed. Anything else is pending, declined, or a veto row. */
+  status?: string;
   whoWonIt: RawWhoWon | null;
   longTermGrade: { grade?: string; reason?: string; weeksAfterTrade?: number[]; sides?: { [teamId: string]: RawSideGrade } };
+  /** Team that dropped a player inside the deal, when the file says so. */
+  droppedByTeamId?: number | null;
+  /** Replaces the default week span when part of the last week is in progress. */
+  spanNote?: string | null;
+  /** A careful, data-backed note. Shown instead of the automatic roast. */
+  week8Take?: { summary: string; roast: string } | null;
 }
 
 interface RawTeamSummary {
@@ -156,6 +165,8 @@ export interface PlayerTrend {
   quiet: QuietWeek[];
   /** Still on the team, released, or flipped in a later trade (by trade number). */
   status: { kind: "kept" } | { kind: "released" } | { kind: "flipped"; tradeNum: number };
+  /** Extra context from the file, such as a short sample or a Thursday add-on. */
+  note?: string;
 }
 
 export type Asset =
@@ -224,6 +235,12 @@ export interface Trade {
   picksMoved: number;
   /** First and last week counted for points. */
   span: [number, number] | null;
+  /** Shown in place of the week span when the count is not a clean range. */
+  spanNote: string | null;
+  /** Who dropped the released player, when the file names them. */
+  droppedBy: number | null;
+  /** Optional careful read. When set, it replaces the generated roast. */
+  take: { summary: string; roast: string } | null;
   /** Points edge on all points; null when even or not comparable. */
   edge: { teamId: number; points: number } | null;
   /** Why the file didn't grade it (draft-pick-only deals). */
@@ -265,6 +282,7 @@ function trend(g: RawPlayerGrade): PlayerTrend {
     valueChange: g.value.changeSinceTrade ?? null,
     quiet: g.zeroOrMissingWeeksAfter.flatMap((z) => quietWeek(z) ?? []),
     status: status(g.disposition),
+    note: g.note ?? undefined,
   };
 }
 
@@ -315,7 +333,12 @@ function pastCall(w: RawWhoWon | null): PastCall {
 /** Sort key: the accepted time, or the first day of a past deal's window. */
 const when = (t: RawTrade) => new Date(t.acceptedAt ?? `${t.dateWindow?.from ?? t.date}T12:00:00Z`).getTime();
 
-const ALL_TRADES: Trade[] = [...file.trades]
+/** Pending, proposed, declined, and unprocessed rows stay out of every list. */
+function isProcessedTrade(t: RawTrade) {
+  return (t.status ?? "accepted").trim().toLowerCase() === "accepted";
+}
+
+const ALL_TRADES: Trade[] = file.trades.filter(isProcessedTrade)
   .sort((x, y) => y.season - x.season || when(y) - when(x) || Number(y.id.split("-T")[1]) - Number(x.id.split("-T")[1]))
   .map((t) => {
     const w = t.whoWonIt;
@@ -347,6 +370,9 @@ const ALL_TRADES: Trade[] = [...file.trades]
       playersMoved: t.playersMoved,
       picksMoved: t.picksMoved,
       span: w ? w.weeksCounted : null,
+      spanNote: t.spanNote ?? null,
+      droppedBy: t.droppedByTeamId ?? null,
+      take: t.week8Take ?? null,
       edge: w?.edgeTeamId != null && w.edgePoints ? { teamId: w.edgeTeamId, points: w.edgePoints } : null,
       ungraded: lt.grade === "INC" ? (lt.reason ?? "Not graded.") : null,
       confidence: graded?.confidence ?? null,

@@ -40,9 +40,9 @@ export default function TradesPage() {
             { k: `Veto votes, ${TRADE_SEASON}`, v: COUNTS.vetoVotes },
           ].map((x) => (
             <div key={x.k} className="min-w-0">
-              <dt className="text-[11px] font-semibold tracking-wider text-white/60 uppercase">{x.k}</dt>
+              <dt className="text-xs font-semibold tracking-wider text-white/85 uppercase">{x.k}</dt>
               <dd className="font-display text-3xl leading-tight font-bold tabular-nums">{x.v}</dd>
-              {x.sub && <dd className="text-xs text-white/60">{x.sub}</dd>}
+              {x.sub && <dd className="text-xs text-white/85">{x.sub}</dd>}
             </div>
           ))}
         </dl>
@@ -53,13 +53,13 @@ export default function TradesPage() {
                 {s.trades}
               </span>
               <span className="w-full rounded-t bg-gold/80" style={{ height: `${Math.max(4, (s.trades / busiest) * 48)}px` }} aria-hidden />
-              <span className="text-[10px] text-white/60 tabular-nums" aria-hidden>
+              <span className="text-xs text-white/85 tabular-nums" aria-hidden>
                 {s.season}
               </span>
             </li>
           ))}
         </ol>
-        <p className="mt-3 text-xs leading-snug text-white/60">
+        <p className="mt-3 text-xs leading-snug text-white/85">
           Offers, declines and veto rows are shown as counts only; pending and declined offers stay private.
           {COUNTS.neverProcessed > 0 &&
             ` ${COUNTS.neverProcessed === 1 ? "One more deal was" : `${COUNTS.neverProcessed} more deals were`} accepted but never processed (likely vetoed); ESPN didn't record the teams or players.`}

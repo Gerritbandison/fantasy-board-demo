@@ -83,7 +83,6 @@ export function TeamTabs({ tabs }: { tabs: TeamTab[] }) {
                 data-tab={t.id}
                 aria-selected={on}
                 aria-controls={`team-panel-${t.id}`}
-                aria-label={t.title}
                 tabIndex={on ? 0 : -1}
                 onClick={() => select(t.id)}
                 className={cn(
@@ -92,6 +91,7 @@ export function TeamTabs({ tabs }: { tabs: TeamTab[] }) {
                 )}
               >
                 {t.label}
+                {t.title && t.title !== t.label && <span className="sr-only"> ({t.title})</span>}
               </button>
             );
           })}

@@ -2,7 +2,7 @@
 
 **Live:** [https://fantasy-board-demo.vercel.app](https://fantasy-board-demo.vercel.app). Share that link. It's public, needs no login, and works on iPhone.
 
-**Chicken League** is the fantasy football hub for the private ESPN **Chicken** league (2026, week 8). Every one of the 10 teams gets a page, all 5 week 8 games get a preview, and the insights and history cover the whole league. Everything is prerendered from two committed JSON files, so it deploys to Vercel with **zero secrets**.
+**Chicken League** is the fantasy football hub for the private ESPN **Chicken** league (2026, week 8). Every one of the 10 teams gets a page, all 5 week 8 games get a preview, and the insights and history cover the whole league. Everything is prerendered from committed JSON, so it deploys to Vercel with **zero secrets**. The week number in the UI comes from `meta.currentWeek`. It is still week 8.
 
 | Teams (`/`) | Team page | Matchup | Insights |
 | --- | --- | --- | --- |
@@ -15,15 +15,15 @@
 | Route | What it shows |
 | --- | --- |
 | `/` | **Teams**, the home page: all 10 teams in standings order with record, PF and rank, power rank, luck, week 8 opponent, and recent form. A switch moves between it and `/standings`. `/teams` redirects here. |
-| `/matchups` | **Scores:** all 5 week 8 games with projections and a one-line preview, each linking to its matchup page, plus last week's final scores. |
+| `/matchups` | **Scores:** all 5 current-week games. After Thursday they are labeled in progress, with points so far and the projected final in brackets, plus a Thursday card (who cashed, and any bench blunder). Last week's finals sit below. |
 | `/matchups/[slug]` | One page per week 8 game: `maye-dim`, `bib-chw`, `epz-kab`, `smf-snd`, `jah-ah`. Each page has: <ul><li>A projected scorecard and a data-generated preview: story, edges for each side, and what's at stake.</li><li>A tale of the tape (projection, points for and rank, power rank, all-play, averages, best and worst week, swing, points against, opponents' average, close games, titles).</li><li>The two teams' **all-time head-to-head series** (record, points, last meeting, each side's biggest win, streaks) with a roast line.</li><li>Both teams' weekly scoring, team cards with history, the starters' injury report, head-to-head lineups, and both benches and IR.</li></ul> |
-| `/teams/[id]` | One page per team. The header and record pills sit above a sticky tab bar (**Overview · Roster · Trades · H2H · History**) so each section is one tap away instead of one long scroll. The open tab is kept in the URL hash (`/teams/7#trades`), so tabs can be linked and survive a reload. The tabs hold: <ul><li>Record, seed, power rank, luck, PF/PA with ranks, all-play record, close-game record, and ESPN's projected finish.</li><li>The week 8 matchup and a weekly score chart against the **league average**.</li><li>A results table with each week's margin over or under the league average.</li><li>Boom or bust, luck and strength of schedule, the injury report, and recent moves.</li><li>The full roster (starters, bench, IR).</li><li>An **all-time head-to-head** section: easiest opponent ("Personal ATM" / "Favorite snack"), nemesis ("Kryptonite" / "Who's your daddy"), biggest win, most embarrassing loss, best and worst week, closest win and loss, streaks, playoff résumé, and a record table against every opponent. Each card has a roast line generated from its numbers.</li><li>**Trades**: an all-time card (player trades, the 2020–2025 won-lost-even record on points, net points from trades in total and per season, and the all-time favorite trading partner), a 2026 card (verdict tally, offers sent and received as counts only, net rest-of-season value and net points), then the team's player trades in one dropdown per season, newest first and closed by default.</li><li>A trophy case and a 2020–2025 season-by-season table.</li></ul> |
+| `/teams/[id]` | One page per team. The header and record pills sit above a sticky tab bar (**Overview · Roster · Trades · H2H · History**) so each section is one tap away instead of one long scroll. The open tab is kept in the URL hash (`/teams/7#trades`), so tabs can be linked and survive a reload. The tabs hold: <ul><li>Record, seed, power rank, luck, PF/PA with ranks, all-play record, close-game record, and ESPN's projected finish.</li><li>The week 8 matchup and a weekly score chart against the **league average**.</li><li>A results table with each week's margin over or under the league average.</li><li>Boom or bust, luck and strength of schedule, the injury report, and recent moves.</li><li>The full roster (starters, bench, IR).</li><li>An **all-time head-to-head** section: easiest opponent ("Personal ATM" / "Favorite snack"), nemesis ("Kryptonite" / "Who's your daddy"), biggest win, most embarrassing loss, best and worst week, closest win and loss, streaks, playoff résumé, and a record table against every opponent. Each card has a roast line generated from its numbers.</li><li>**Trades**: an all-time card (player trades, the 2020–2025 won-lost-even record on points, net points from trades in total and per season, and the all-time favorite trading partner), a 2026 card (verdict tally, offers sent and received as counts only, net rest-of-season value and net points), then the team's player trades in one dropdown per season, newest first, with the current season open and earlier seasons closed.</li><li>A trophy case and a 2020–2025 season-by-season table.</li></ul> |
 | `/standings` | Table with record, PF/PA, differential, PF rank, and a luck badge. Every team links to its page. |
 | `/insights` | League-wide insights over all 10 teams and all 35 games: <ul><li>At-a-glance leaders and the week 8 slate.</li><li>**Power rankings** (by all-play), the **luck meter** (PF rank vs standings, plus wins vs all-play), points for, and **strength of schedule** (opponents' average).</li><li>A record book: **high scores**, **closest games**, **bad beats**, biggest blowouts, the **weekly top scorer**, and close-game records.</li><li>**Consistency** (boom or bust) and a **head-to-head grid**.</li></ul> |
 | `/history` | Champions and runners-up for **2020–2025** (each under its name that season, with the current franchise name), the champion-seed pattern, the trophy case for all 10 franchises, and a finishes-by-season grid. Below that, the all-time **Hall of Fame / Hall of Shame** (highest and lowest score, biggest blowout, closest game, longest win and losing streaks, fewest points in a win, most points in a loss), two-week playoff records kept separate, the most-played and most lopsided rivalries, a **rivalry heatmap**, and every title-game score. |
-| `/trades` | **Trade desk**, 2020–2026: <ul><li>A banner with all-time player trades, players moved and a per-season bar chart (2026 offers and veto votes as counts).</li><li>All-time cards: most active trader, sharks vs suckers (net points from trades, with the 2020–2025 record), most-traded player (with a gap marker where he left a roster some other way) and the biggest heist on points.</li><li>Only player trades are listed, in one dropdown per season, newest first and closed by default; draft-pick-only swaps are counted in the banner but not listed.</li><li>2020–2025 cards show the date window and "after week N", each team's name that season, the points each side's players scored for their new team through the end of that regular season, and a points-only call: won, lost, even, lopsided ("won big" / "lost big") or too little data. One footnote explains they were rebuilt from weekly rosters, so offseason and player-for-pick deals are missing.</li><li>A 2026 card per player trade with the accepted date and time in ET and a "who won it so far" summary: each side's verdict from the file (paying off, even or backfiring), the confidence (from the weeks of data), the value edge and %, and the points gained.</li><li>Each side shows what it got, with each player's points for the new team, PPG before → after, current value, and bye, out, zero-stat, released and flipped labels. Below that: points for the new team (all points, started or benched), rest-of-season value received vs sent, the value edge, and the value change since the trade, or "value at trade date unavailable" with the PPG trend.</li><li>A roast line per trade that follows the verdicts.</li><li>2026 superlatives: most active trader, most offers sent, most negotiated pair, veto votes logged (not proof of who voted), player hot potato, the trade-and-cut, the best value so far, buyer's remorse (verdicts per team), and repeat customers.</li><li>How the verdicts work, with the FantasyCalc credit.</li></ul>Linked from History and the desktop nav. |
+| `/trades` | **Trade desk**, 2020–2026: <ul><li>A banner with all-time player trades, players moved and a per-season bar chart (2026 offers and veto votes as counts).</li><li>All-time cards: most active trader, sharks vs suckers (net points from trades, with the 2020–2025 record), most-traded player (with a gap marker where he left a roster some other way) and the biggest heist on points.</li><li>Only player trades are listed, in one dropdown per season, newest first, with the current season open and earlier seasons closed; draft-pick-only swaps are counted in the banner but not listed.</li><li>2020–2025 cards show the date window and "after week N", each team's name that season, the points each side's players scored for their new team through the end of that regular season, and a points-only call: won, lost, even, lopsided ("won big" / "lost big") or too little data. One footnote explains they were rebuilt from weekly rosters, so offseason and player-for-pick deals are missing.</li><li>A 2026 card per player trade with the accepted date and time in ET and a "who won it so far" summary: each side's verdict from the file (paying off, even or backfiring), the confidence (from the weeks of data), the value edge and %, and the points gained.</li><li>Each side shows what it got, with each player's points for the new team, PPG before → after, current value, and bye, out, zero-stat, released and flipped labels. Below that: points for the new team (all points, started or benched), rest-of-season value received vs sent, the value edge, and the value change since the trade, or "value at trade date unavailable" with the PPG trend.</li><li>A roast line per trade that follows the verdicts.</li><li>2026 superlatives: most active trader, most offers sent, most negotiated pair, veto votes logged (not proof of who voted), player hot potato, the trade-and-cut, the best value so far, buyer's remorse (verdicts per team), and repeat customers.</li><li>How the verdicts work, with the FantasyCalc credit.</li></ul>Linked from History and the desktop nav. |
 | `/bibis` | Redirects to `/matchups/bib-chw` so old links keep working. |
-| `/live` | The original polling board, which can read a public ESPN league (optional, not in the nav). |
+| `/share` | A share card of this week's real scores (points so far, projected final in brackets) with the system share sheet or a copied link. |
 
 On phones the nav is a four-tab bottom bar (Teams · Scores · Insights · History) that respects iPhone safe areas. Standings sits behind Teams, and Trades behind History. From `md` up the nav moves into the navy top bar (Teams · Standings · Scores · Insights · Trades · History). On `lg` screens matchup pages offer **TV mode**. Layouts are checked for horizontal overflow at 320, 390, and 1440 px on every route.
 
@@ -56,11 +56,21 @@ How the code uses the data:
 - `GET /api/league` returns teams, games, week 8 matchups and champions, with display names only.
 - `GET /api/matchup/:slug` returns one week 8 matchup with its preview. The old `golden-goose` and `bibis` ids still resolve.
 
-To roll to a new week, replace the data files and redeploy. Head-to-head and trade labels, verdicts and captions follow the new numbers automatically.
+## Weekly refresh
 
-### Optional ESPN live path
+The app does not call ESPN at runtime. A refresh is a JSON edit and a PR. Do not push straight to `main` (that deploys production).
 
-`/live` and `GET /api/fantasy` keep the original ESPN adapter (`lib/espn.ts`). It defaults to built-in demo data. Set `MOCK_FANTASY=0` with `ESPN_LEAGUE_ID` and `ESPN_TEAM_ID` to read a league that is **viewable to public**. Private leagues need ESPN cookies, which this app never asks for. See `.env.example`. None of this affects the snapshot pages.
+1. Set `meta.currentWeek` in `data/league-all-teams.json` to the league week (the 2026 season is still on week 8; do not bump it just because the NFL week number moved).
+2. Finished weeks live in `schedule.weeks1to7` (or `schedule.completed`). The current week lives in `schedule.week{N}`, which today is `schedule.week8`. Each game can carry:
+   - `homeProjected` / `awayProjected` — projected final
+   - `homeCurrentPoints` / `awayCurrentPoints` — fantasy points so far, including a real `0`
+   - `status`: `"in-progress"` until the week is over, then a decided `winner` of `"HOME"` or `"AWAY"`
+   - Mirror the same projections on each team's `week{N}` object (`projected`, `opponentProjected`)
+3. Thursday (or any single game) also has a card at `week8Thursday`: NFL final, quarters, and one row per rostered player with `teamId`, `name`, `points`, `started`, and an optional `line`. `quietTeamIds` lists teams with nobody in the game. Those points are not added to standings or the weekly chart until you roll the game into `schedule.weeks1to7` and the team `weekly` arrays.
+4. Standings (`record`, `pointsFor`, `pointsAgainst`, `rank`) stay through the last completed week until you update them. Do not invent a result from the in-progress score.
+5. Trades: append a processed deal to `trades` in `data/league-trades.json` with `"status": "accepted"` and a `processedAt` timestamp. Only that status is rendered. Proposals, declines, vetoes, and `unprocessedAccepts` are counts only — do not put player names for an offer into `trades`. To add points to an existing deal (a Thursday game, for example), add them to that player's `pointsForNewTeam` and to the side's `pointsReceived` / `pointsGained`, and set `week8Take` if the sample is too small to regrade. Leave the FantasyCalc `verdict.call` alone unless you have a new value pull. `droppedByTeamId` names who cut a player inside the deal.
+
+Head-to-head roasts, verdict captions, and the week label follow those fields. No env vars are required.
 
 ## Design system
 
@@ -79,7 +89,7 @@ npm run build && npm start
 
 **Production URL:** [https://fantasy-board-demo.vercel.app](https://fantasy-board-demo.vercel.app)
 
-No environment variables are needed. The Vercel project `fantasy-board-demo` isn't connected to this GitHub repo, so pushes don't redeploy it. Redeploy by uploading a new build (`npx vercel --prod` from a linked checkout). Alternatively, grant the Vercel GitHub app access to the repo and link it so pushes to `main` redeploy automatically.
+No environment variables are needed. The Vercel project `fantasy-board-demo` is Git-linked: a push to `main` deploys production. Open a pull request for every change, including the weekly JSON refresh.
 
 ## Project structure
 
@@ -94,19 +104,17 @@ app/
   (league)/insights/         /insights
   (league)/history/          /history
   (league)/trades/           /trades
-  live/                      optional ESPN polling board
+  (league)/share/            /share
   api/league/                GET /api/league
   api/matchup/[slug]/        GET /api/matchup/:slug
-  api/fantasy/               optional ESPN/mock feed for /live
-components/league/           nav, UI primitives, score charts, matchup page, team tabs, head-to-head, trades, TV mode
-data/league-all-teams.json   the league data (source of truth)
+components/league/           nav, UI primitives, score charts, Thursday card, matchup page, team tabs, head-to-head, trades, share, TV mode
+data/league-all-teams.json   teams, schedule, Thursday card (source of truth)
 data/league-h2h-history.json all-time head-to-head data
-data/league-trades.json      trade data, 2020–2026
-lib/league.ts                data types, name-safe mapping, lookups
+data/league-trades.json      processed trades, 2020–2026 (offers are counts only)
+lib/league.ts                data types, name-safe mapping, current-week scores
 lib/stats.ts                 derived league stats
 lib/preview.ts               data-generated matchup previews
 lib/h2h.ts                   head-to-head loader and formatting
-lib/trades.ts                trade loader, verdicts, superlatives
+lib/trades.ts                trade loader, verdicts, superlatives (accepted trades only)
 lib/roast.ts                 data-driven roast captions
-lib/espn.ts                  optional public ESPN adapter
 ```

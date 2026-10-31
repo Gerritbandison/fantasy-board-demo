@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Barlow, Barlow_Condensed } from "next/font/google";
+import { LEAGUE } from "@/lib/league";
 import "./globals.css";
 
 const barlow = Barlow({
@@ -14,21 +15,24 @@ const barlowCondensed = Barlow_Condensed({
   weight: ["500", "600", "700", "800"],
 });
 
+const title = `Chicken League · Week ${LEAGUE.week}`;
+const description = `The Chicken fantasy football league hub: week ${LEAGUE.week} matchups, standings, power rankings, awards, and league history.`;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://fantasy-board-demo.vercel.app"),
   title: {
-    default: "Chicken League · Week 8",
+    default: title,
     template: "%s · Chicken League",
   },
-  description:
-    "The Chicken fantasy football league hub: week 8 matchups, standings, power rankings, luck, high scores, and league history.",
+  description,
   openGraph: {
-    title: "Chicken League · Week 8",
-    description: "Week 8 matchups, standings, insights, and the Chicken champions history.",
+    title,
+    description,
     url: "https://fantasy-board-demo.vercel.app",
     siteName: "Chicken League",
     type: "website",
   },
+  twitter: { card: "summary_large_image", title, description },
   appleWebApp: { capable: true, title: "Chicken League", statusBarStyle: "black-translucent" },
 };
 

@@ -42,8 +42,8 @@ export function Eyebrow({ icon: Icon, children, tone = "slate" }: { icon: Lucide
   return (
     <p
       className={cn(
-        "flex items-center gap-1.5 text-[11px] font-bold tracking-wider uppercase",
-        tone === "turf" ? "text-turf" : tone === "loss" ? "text-loss" : tone === "gold" ? "text-amber-700" : "text-slate-500",
+        "flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase",
+        tone === "turf" ? "text-turf" : tone === "loss" ? "text-loss" : tone === "gold" ? "text-amber-700" : "text-slate-600",
       )}
     >
       <Icon className="size-3.5" aria-hidden /> {children}
@@ -59,14 +59,14 @@ function TeamLine({ id, season, sub, prefix }: { id: number; season?: number; su
       <TeamAvatar teamId={id} size="sm" />
       <div className="min-w-0">
         <p className="text-sm leading-tight font-semibold break-words text-navy">
-          {prefix && <span className="font-medium text-slate-500">{prefix} </span>}
+          {prefix && <span className="font-medium text-slate-600">{prefix} </span>}
           <Link href={teamPath(id)} className="hover:underline">
             {t.name}
           </Link>
-          {t.year != null && <span className="font-medium text-slate-500"> ({t.year})</span>}
+          {t.year != null && <span className="font-medium text-slate-600"> ({t.year})</span>}
         </p>
         {(sub || t.alias) && (
-          <p className="text-xs leading-snug text-slate-500">
+          <p className="text-xs leading-snug text-slate-600">
             {t.alias && <span>as {t.alias}</span>}
             {t.alias && sub ? " · " : null}
             {sub}
@@ -81,7 +81,7 @@ function TeamLine({ id, season, sub, prefix }: { id: number; season?: number; su
 function Versus({ id, season, score, suffix }: { id: number; season: number; score?: number | null; suffix?: string }) {
   const t = teamThen(id, season);
   return (
-    <p className="mt-2 flex items-start gap-1.5 text-xs leading-snug text-slate-500">
+    <p className="mt-2 flex items-start gap-1.5 text-xs leading-snug text-slate-600">
       <TeamAvatar teamId={id} size="sm" className="size-4 text-[6px]" />
       <span className="min-w-0">
         vs{" "}
@@ -141,7 +141,7 @@ function GameCard({ g, icon, label, tone, line }: { g: TeamGame; icon: LucideIco
     <RoastCard icon={icon} label={label} tone={tone} accent={team(g.teamId).color} value={signed(g.margin)} valueClassName={tone === "turf" ? "text-turf" : "text-loss"} line={line}>
       <TeamLine id={g.teamId} season={g.when.season} sub={<span className="tabular-nums">scored {pts(g.pf)}</span>} />
       <Versus id={g.opponentId} season={g.when.season} score={g.pa} />
-      <p className="mt-1.5 text-xs text-slate-500">{whenLabel(g.when)}</p>
+      <p className="mt-1.5 text-xs text-slate-600">{whenLabel(g.when)}</p>
     </RoastCard>
   );
 }
@@ -151,7 +151,7 @@ function WeekCard({ s, icon, label, tone, line }: { s: WeekScore; icon: LucideIc
     <RoastCard icon={icon} label={label} tone={tone} accent={team(s.teamId).color} value={pts(s.score)} valueClassName={tone === "turf" ? "text-turf" : "text-loss"} line={line}>
       <TeamLine id={s.teamId} season={s.when.season} />
       <Versus id={s.opponentId} season={s.when.season} score={s.opponentScore} suffix=" that week" />
-      <p className="mt-1.5 text-xs text-slate-500">
+      <p className="mt-1.5 text-xs text-slate-600">
         {whenLabel(s.when, s.week)}
         {s.leg && " · one week of a two-week game"}
       </p>
@@ -190,7 +190,7 @@ export function TeamHeadToHead({ teamId }: { teamId: number }) {
       <section id="head-to-head" className="-mt-2 scroll-mt-20 overflow-hidden rounded-2xl bg-navy yard-lines p-4 text-white shadow-lg shadow-navy/15 sm:p-5">
         <p className="text-xs font-bold tracking-wider text-gold uppercase">{SCOPE_LABEL}</p>
         <p className="mt-1 font-display text-4xl leading-none font-extrabold tabular-nums">
-          {record(f)} <span className="text-xl font-bold text-white/60">all-time</span>
+          {record(f)} <span className="text-xl font-bold text-white/85">all-time</span>
         </p>
         <p className="mt-2 text-[15px] leading-snug text-white/80">{roast.overallLine(f)}</p>
         <dl className="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-4">
@@ -201,7 +201,7 @@ export function TeamHeadToHead({ teamId }: { teamId: number }) {
             { k: "Current streak", v: streak ? `${streak.result}${streak.length}` : "—" },
           ].map((x) => (
             <div key={x.k} className="min-w-0">
-              <dt className="text-[11px] font-semibold tracking-wider text-white/60 uppercase">{x.k}</dt>
+              <dt className="text-xs font-semibold tracking-wider text-white/85 uppercase">{x.k}</dt>
               <dd className="font-display text-2xl font-bold tabular-nums">{x.v}</dd>
             </div>
           ))}
@@ -231,16 +231,16 @@ export function TeamHeadToHead({ teamId }: { teamId: number }) {
             <div className="grid grid-cols-3 gap-3">
               <Stat label="Bracket" value={`${p.wins}-${p.losses}`} />
               <Stat label="Finals" value={p.titleGames} />
-              <Stat label="Titles" value={p.titles} valueClassName={p.titles ? "text-gold" : "text-slate-300"} />
+              <Stat label="Titles" value={p.titles} valueClassName={p.titles ? "text-gold-ink" : "text-slate-600"} />
             </div>
-            {p.consolationRecord && <p className="mt-1.5 text-xs text-slate-500">Consolation games: {p.consolationRecord.replace(/-0$/, "")}</p>}
+            {p.consolationRecord && <p className="mt-1.5 text-xs text-slate-600">Consolation games: {p.consolationRecord.replace(/-0$/, "")}</p>}
           </RoastCard>
         </ul>
 
         <Card title="Record vs everyone" bodyClassName="p-0 sm:p-0" className="overflow-hidden">
           <table className="w-full table-fixed text-sm">
             <thead>
-              <tr className="border-y border-line bg-slate-50 text-left text-[11px] font-bold tracking-wider text-slate-500 uppercase">
+              <tr className="border-y border-line bg-slate-50 text-left text-xs font-bold tracking-wider text-slate-600 uppercase">
                 <th className="py-2 pl-4 sm:pl-5">Opponent</th>
                 <th className="w-14 py-2 text-right">W-L</th>
                 <th className="w-[4.5rem] py-2 text-right">Avg ±</th>
@@ -255,7 +255,7 @@ export function TeamHeadToHead({ teamId }: { teamId: number }) {
                   <tr key={s.opponentId} className={cn("border-b border-line last:border-0", tag === "snack" && "bg-turf-light/50", tag === "nemesis" && "bg-red-50/70")}>
                     <td className="py-2.5 pr-2 pl-4 sm:pl-5">
                       <Link href={teamPath(s.opponentId)} className="flex min-w-0 items-center gap-2 hover:underline">
-                        <TeamAvatar teamId={s.opponentId} size="sm" className="size-6 text-[8px]" />
+                        <TeamAvatar teamId={s.opponentId} size="sm" className="size-6 text-xs" />
                         <span className="min-w-0 truncate font-medium text-slate-700">{team(s.opponentId).name}</span>
                         {tag === "snack" && <Cookie className="size-3.5 shrink-0 text-turf" aria-label="Easiest opponent" />}
                         {tag === "nemesis" && <Zap className="size-3.5 shrink-0 text-loss" aria-label="Nemesis" />}
@@ -263,7 +263,7 @@ export function TeamHeadToHead({ teamId }: { teamId: number }) {
                     </td>
                     <td className="py-2.5 text-right font-display text-base font-bold text-navy tabular-nums">{record(s)}</td>
                     <td className={cn("py-2.5 text-right font-semibold tabular-nums", s.avgMargin >= 0 ? "text-turf" : "text-loss")}>{signed(s.avgMargin)}</td>
-                    <td className="hidden py-2.5 text-right text-xs text-slate-500 tabular-nums min-[420px]:table-cell">
+                    <td className="hidden py-2.5 text-right text-xs text-slate-600 tabular-nums min-[420px]:table-cell">
                       {s.last ? (
                         <>
                           <span className={cn("font-bold", s.last.result === "W" ? "text-turf" : "text-loss")}>{s.last.result}</span> {s.last.when.season}
@@ -280,7 +280,7 @@ export function TeamHeadToHead({ teamId }: { teamId: number }) {
               })}
             </tbody>
           </table>
-          <p className="border-t border-line px-4 py-3 text-xs leading-relaxed text-slate-500 sm:px-5">
+          <p className="border-t border-line px-4 py-3 text-xs leading-relaxed text-slate-600 sm:px-5">
             Every game counts, including playoffs and consolation; a two-week playoff matchup counts as one game. Easiest opponent and nemesis need at least {MIN_GAMES} games. The franchise is tracked by
             ESPN team slot, so earlier seasons may have had a different owner.
           </p>
@@ -302,13 +302,13 @@ export function MatchupSeries({ leftId, rightId }: { leftId: number; rightId: nu
   const share = total ? (s.wins / total) * 100 : 50;
   return (
     <Card title="Head-to-head" accent={L.color}>
-      <p className="-mt-1 text-xs font-semibold text-slate-500">{SCOPE_LABEL}</p>
+      <p className="-mt-1 text-xs font-semibold text-slate-600">{SCOPE_LABEL}</p>
       <div className="mt-3 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3">
         <div className="flex min-w-0 items-center gap-2">
           <TeamAvatar teamId={L.id} />
           <span className="font-display text-4xl leading-none font-extrabold text-navy tabular-nums">{s.wins}</span>
         </div>
-        <span className="text-xs font-semibold text-slate-400 uppercase">{total} games</span>
+        <span className="text-xs font-semibold text-slate-600 uppercase">{total} games</span>
         <div className="flex min-w-0 items-center justify-end gap-2">
           <span className="font-display text-4xl leading-none font-extrabold text-navy tabular-nums">{s.losses}</span>
           <TeamAvatar teamId={R.id} />
@@ -346,7 +346,7 @@ function Line({ k, v, sub, tone }: { k: string; v: string; sub?: string; tone?: 
     <div className="flex items-baseline justify-between gap-3 border-b border-line pb-2 last:border-0 last:pb-0">
       <dt className="min-w-0 text-slate-600">
         {k}
-        {sub && <span className="block text-xs text-slate-400">{sub}</span>}
+        {sub && <span className="block text-xs text-slate-600">{sub}</span>}
       </dt>
       <dd className={cn("shrink-0 text-right font-display text-lg font-bold tabular-nums", tone === "turf" ? "text-turf" : tone === "loss" ? "text-loss" : "text-navy")}>{v}</dd>
     </div>
@@ -383,10 +383,10 @@ function RecordCard({
       <div className="mt-2.5">{children}</div>
       <Roast>{line}</Roast>
       {more && more.length > 0 && (
-        <ol className="mt-3 grid gap-1 border-t border-line pt-2.5 text-xs text-slate-500" start={2}>
+        <ol className="mt-3 grid gap-1 border-t border-line pt-2.5 text-xs text-slate-600" start={2}>
           {more.map((m, i) => (
             <li key={m.key} className="flex gap-2">
-              <span className="w-4 shrink-0 font-semibold text-slate-400">#{i + 2}</span>
+              <span className="w-4 shrink-0 font-semibold text-slate-600">#{i + 2}</span>
               <span className="min-w-0">{m.text}</span>
             </li>
           ))}
@@ -510,7 +510,7 @@ export function HallOfFameAndShame() {
           </RecordCard>
         )}
       </ul>
-      <p className="-mt-2 text-xs leading-relaxed text-slate-500">
+      <p className="-mt-2 text-xs leading-relaxed text-slate-600">
         {RECORDS_NOTE} {STREAK_NOTE}
       </p>
 
@@ -535,17 +535,17 @@ function TwoWeekRecords() {
         {rows.map(({ label, g, v }) => (
           <li key={label} className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
             <div className="min-w-0 flex-1">
-              <p className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase">{label}</p>
+              <p className="text-xs font-semibold tracking-wider text-slate-600 uppercase">{label}</p>
               <p className="text-sm leading-snug text-slate-700">
                 <span className="font-semibold text-navy">{team(g!.winnerId).name}</span> over {team(g!.loserId).name}, {pts(g!.winnerScore)}-{pts(g!.loserScore)}
               </p>
-              <p className="text-xs text-slate-500">{whenLabel(g!.when)}</p>
+              <p className="text-xs text-slate-600">{whenLabel(g!.when)}</p>
             </div>
             <span className="shrink-0 font-display text-2xl font-bold text-navy tabular-nums">{v(g!)}</span>
           </li>
         ))}
       </ul>
-      <p className="mt-3 text-xs leading-relaxed text-slate-500">Semifinals (and some finals and consolation rounds) are two-week totals, so they stay out of the single-game margin records above.</p>
+      <p className="mt-3 text-xs leading-relaxed text-slate-600">Semifinals (and some finals and consolation rounds) are two-week totals, so they stay out of the single-game margin records above.</p>
     </Card>
   );
 }
@@ -555,13 +555,13 @@ function Rivalries() {
   const lopsided = RECORDS.mostLopsided[0];
   return (
     <>
-      <SectionHeading title="Rivalries" />
+      <SectionHeading id="rivalries" title="Rivalries" />
       <div className="grid gap-4 sm:grid-cols-2">
         {played && (
           <Card accent={team(played.a).color}>
             <Eyebrow icon={Swords}>Most-played rivalry</Eyebrow>
             <RivalryRow a={played.a} b={played.b} aw={played.aWins} bw={played.bWins} />
-            <p className="mt-1.5 text-xs text-slate-500">
+            <p className="mt-1.5 text-xs text-slate-600">
               {played.games} games · {pts(played.pointsA)}–{pts(played.pointsB)} total points
               {played.playoffMeetings > 0 && ` · ${played.playoffMeetings} in the postseason`}
             </p>
@@ -572,7 +572,7 @@ function Rivalries() {
           <Card accent={team(lopsided.aWins >= lopsided.bWins ? lopsided.a : lopsided.b).color}>
             <Eyebrow icon={Scale}>Most lopsided rivalry</Eyebrow>
             <RivalryRow a={lopsided.a} b={lopsided.b} aw={lopsided.aWins} bw={lopsided.bWins} />
-            <p className="mt-1.5 text-xs text-slate-500">
+            <p className="mt-1.5 text-xs text-slate-600">
               {lopsided.games} games · {team(lopsided.a).abbrev} average margin {signed(lopsided.avgMarginForA)}
             </p>
             <Roast>{roast.lopsidedLine(lopsided)}</Roast>
@@ -600,8 +600,9 @@ function RivalryRow({ a, b, aw, bw }: { a: number; b: number; aw: number; bw: nu
 
 function heat(wp: number) {
   const d = Math.min(1, Math.abs(wp - 0.5) * 2);
-  const a = 0.1 + d * 0.8;
-  return { background: wp >= 0.5 ? `rgba(21,128,61,${a})` : `rgba(220,38,38,${a})`, color: a > 0.5 ? "#fff" : "#0f1e36" };
+  // Cap the tint so navy text stays above 4.5:1 on both red and green.
+  const a = (0.12 + d * 0.4).toFixed(2);
+  return { background: wp >= 0.5 ? `rgba(21,128,61,${a})` : `rgba(185,28,28,${a})`, color: "#0f1e36" };
 }
 
 function RivalryHeatmap() {
@@ -614,8 +615,9 @@ function RivalryHeatmap() {
             <tr>
               <th className="sticky left-0 z-10 bg-white" />
               {order.map((id) => (
-                <th key={id} className="pb-1" title={team(id).name}>
+                <th key={id} scope="col" className="pb-1" title={team(id).name}>
                   <TeamAvatar teamId={id} size="sm" className="size-6 text-[7px]" />
+                  <span className="sr-only">{team(id).abbrev}</span>
                 </th>
               ))}
             </tr>
@@ -624,14 +626,14 @@ function RivalryHeatmap() {
             {order.map((row) => (
               <tr key={row}>
                 <th scope="row" className="sticky left-0 z-10 bg-white pr-1 text-left" title={team(row).name}>
-                  <Link href={teamPath(row)} className="inline-flex">
+                  <Link href={teamPath(row)} className="inline-flex size-6 items-center justify-center" aria-label={`${team(row).abbrev}, ${team(row).name}`}>
                     <TeamAvatar teamId={row} size="sm" className="size-6 text-[7px]" />
                   </Link>
                 </th>
                 {order.map((col) => {
                   if (row === col) return <td key={col} className="h-9 rounded-md bg-slate-100" aria-hidden />;
                   const s = seriesBetween(row, col);
-                  if (!s) return <td key={col} className="h-9 rounded-md bg-slate-50 text-[11px] text-slate-400">—</td>;
+                  if (!s) return <td key={col} className="h-9 rounded-md bg-slate-50 text-xs text-slate-600">—</td>;
                   return (
                     <td
                       key={col}
@@ -648,7 +650,7 @@ function RivalryHeatmap() {
           </tbody>
         </table>
       </div>
-      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600">
         <span className="flex items-center gap-1.5">
           <span className="size-3 rounded" style={heat(1)} /> Row team owns it
         </span>
@@ -675,14 +677,14 @@ function TitleGameScores() {
             <span className="w-11 shrink-0 font-display text-xl leading-tight font-extrabold text-navy">{g.season}</span>
             <div className="min-w-0 flex-1 text-sm leading-snug">
               <p className="break-words text-slate-700">
-                <Trophy className="mr-1 inline size-3.5 -translate-y-px text-gold" aria-hidden />
-                <span className="font-semibold text-navy">{g.championSeasonName}</span> <span className="text-xs text-slate-400">{team(g.championId).abbrev}</span>{" "}
+                <Trophy className="mr-1 inline size-3.5 -translate-y-px text-gold-ink" aria-hidden />
+                <span className="font-semibold text-navy">{g.championSeasonName}</span> <span className="text-xs text-slate-600">{team(g.championId).abbrev}</span>{" "}
                 <span className="font-semibold tabular-nums">{pts(g.championScore)}</span>
               </p>
-              <p className="break-words text-slate-500">
-                {g.runnerUpSeasonName} <span className="text-xs text-slate-400">{team(g.runnerUpId).abbrev}</span> <span className="tabular-nums">{pts(g.runnerUpScore)}</span>
+              <p className="break-words text-slate-600">
+                {g.runnerUpSeasonName} <span className="text-xs text-slate-600">{team(g.runnerUpId).abbrev}</span> <span className="tabular-nums">{pts(g.runnerUpScore)}</span>
               </p>
-              <p className="mt-0.5 text-xs text-slate-500">
+              <p className="mt-0.5 text-xs text-slate-600">
                 {g.weeks.length > 1 ? `Two-week final, weeks ${g.weeks[0]}–${g.weeks[g.weeks.length - 1]}` : `Week ${g.weeks[0]}`} · {roast.titleGameLine(g)}
               </p>
             </div>

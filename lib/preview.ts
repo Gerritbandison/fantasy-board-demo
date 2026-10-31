@@ -1,4 +1,4 @@
-import { formatRecord, isFlagged, LEAGUE, ordinal, team, winnerSide, type Matchup, type Team } from "./league";
+import { formatPoints, formatRecord, isFlagged, LEAGUE, ordinal, team, winnerSide, type Matchup, type Team } from "./league";
 import { allPlay, meetings, pfRank, teamStats } from "./stats";
 
 export interface Edge {
@@ -26,11 +26,16 @@ export function buildPreview(m: Matchup): Preview {
   let favoriteId: number | undefined;
   let margin: number | undefined;
 
+  if (m.state !== "projected") {
+    const label = m.state === "final" ? "Final" : "In progress";
+    story.push(`${label}: ${L.name} ${formatPoints(m.left.points ?? 0)}, ${R.name} ${formatPoints(m.right.points ?? 0)}.`);
+  }
   if (lp != null && rp != null) {
     const fav = lp >= rp ? L : R;
     favoriteId = fav.id;
     margin = Math.abs(lp - rp);
-    story.push(`${fav.name} ${verb(fav, "is", "are")} projected to win by ${f1(margin)}, ${f1(Math.max(lp, rp))} to ${f1(Math.min(lp, rp))}.`);
+    const lead = m.state === "projected" ? `${fav.name} ${verb(fav, "is", "are")} projected to win` : `${fav.name} ${verb(fav, "is", "are")} the projected final favorite`;
+    story.push(`${lead} by ${f1(margin)}, ${f1(Math.max(lp, rp))} to ${f1(Math.min(lp, rp))}.`);
   }
   story.push(`${standingLine(L)}; ${standingLine(R, true)}.`);
   const ls = teamStats(L);

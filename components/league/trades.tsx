@@ -107,7 +107,7 @@ export function OutcomePill({ outcome, lopsided }: { outcome: PastOutcome; lopsi
 
 export function ConfidencePill({ confidence, weeks }: { confidence: string; weeks: number }) {
   return (
-    <Pill tone={confidence === "low" ? "sky" : confidence === "medium" ? "gold" : "turf"} className="h-5 px-2 text-[10px] tracking-normal normal-case">
+    <Pill tone={confidence === "low" ? "sky" : confidence === "medium" ? "gold" : "turf"} className="h-5 px-2 text-xs tracking-normal normal-case">
       {capitalize(confidence)} confidence · {weeks === 1 ? "1 week" : `${weeks} weeks`} of data
     </Pill>
   );
@@ -138,24 +138,26 @@ function quietLabels(quiet: QuietWeek[]) {
 function TrendLine({ tr }: { tr: PlayerTrend }) {
   const labels = quietLabels(tr.quiet);
   return (
-    <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-500">
+    <span className="mt-0.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-600">
       <span>
         <span className="font-semibold text-slate-700 tabular-nums">{tp(tr.points)}</span> pts for them
       </span>
       {(tr.ppgBefore != null || tr.ppgAfter != null) && (
         <span className="tabular-nums">
           PPG {tr.ppgBefore != null ? tp(tr.ppgBefore) : "—"} → {tr.ppgAfter != null ? tp(tr.ppgAfter) : "—"}
+          {tr.gamesAfter > 0 && ` over ${tr.gamesAfter} game${tr.gamesAfter === 1 ? "" : "s"}`}
         </span>
       )}
+      {tr.note && <span className="basis-full leading-snug text-slate-600">{tr.note}</span>}
       {tr.valueNow != null && <span className="tabular-nums">Value {tv(tr.valueNow)}</span>}
       {labels.map((l) => (
-        <span key={l} className="rounded bg-slate-200/70 px-1.5 text-[11px] leading-4.5 font-semibold text-slate-600">
+        <span key={l} className="rounded bg-slate-200/70 px-1.5 text-xs leading-4.5 font-semibold text-slate-600">
           {l}
         </span>
       ))}
-      {tr.status.kind === "released" && <span className="rounded bg-red-50 px-1.5 text-[11px] leading-4.5 font-semibold text-red-700">Released</span>}
+      {tr.status.kind === "released" && <span className="rounded bg-red-50 px-1.5 text-xs leading-4.5 font-semibold text-red-700">Released</span>}
       {tr.status.kind === "flipped" && (
-        <span className="rounded bg-amber-50 px-1.5 text-[11px] leading-4.5 font-semibold text-amber-800">Flipped in Trade {tr.status.tradeNum}</span>
+        <span className="rounded bg-amber-50 px-1.5 text-xs leading-4.5 font-semibold text-amber-800">Flipped in Trade {tr.status.tradeNum}</span>
       )}
     </span>
   );
@@ -171,7 +173,7 @@ function AssetItem({ a }: { a: Asset }) {
   return (
     <li className="text-sm leading-snug text-slate-700">
       <span className="font-semibold">{a.name}</span>{" "}
-      <span className="text-xs text-slate-500">
+      <span className="text-xs text-slate-600">
         {a.position}
         {a.nflTeam && ` · ${a.nflTeam}`}
       </span>
@@ -183,16 +185,16 @@ function AssetItem({ a }: { a: Asset }) {
 function Figure({ label, children, sub }: { label: string; children: React.ReactNode; sub?: React.ReactNode }) {
   return (
     <div className="min-w-0">
-      <dt className="text-[10px] font-bold tracking-wider text-slate-500 uppercase">{label}</dt>
-      <dd className="text-sm leading-snug font-semibold text-slate-700 tabular-nums">{children}</dd>
-      {sub && <dd className="text-[11px] leading-snug text-slate-500">{sub}</dd>}
+      <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">{label}</p>
+      <p className="text-sm leading-snug font-semibold text-slate-700 tabular-nums">{children}</p>
+      {sub ? <p className="text-xs leading-snug text-slate-600">{sub}</p> : null}
     </div>
   );
 }
 
 function SideFigures({ g, points }: { g: SideGrade; points: number | null }) {
   return (
-    <dl className="mt-2 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-line pt-2">
+    <div className="mt-2 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-line pt-2">
       <Figure label="Points for them" sub={<span className={tone(g.pointsGained)}>{signed(g.pointsGained)} vs what they sent</span>}>
         {points != null ? tp(points) : "—"}
       </Figure>
@@ -211,11 +213,11 @@ function SideFigures({ g, points }: { g: SideGrade; points: number | null }) {
         {g.valueChange ? (
           <ValueChange change={g.valueChange.net} />
         ) : (
-          <span className="text-xs leading-snug font-medium text-slate-500">Value at trade date unavailable</span>
+          <span className="text-xs leading-snug font-medium text-slate-600">Value at trade date unavailable</span>
         )}
       </Figure>
       {!g.valueChange && (g.ppgTrendReceived != null || g.ppgTrendSent != null) && (
-        <div className="col-span-2 text-[11px] leading-snug text-slate-500">
+        <div className="col-span-2 text-xs leading-snug text-slate-600">
           PPG trend since the deal (after minus before, summed):{" "}
           {g.ppgTrendReceived != null && (
             <>
@@ -230,7 +232,7 @@ function SideFigures({ g, points }: { g: SideGrade; points: number | null }) {
           )}
         </div>
       )}
-    </dl>
+    </div>
   );
 }
 
@@ -246,14 +248,14 @@ function SideBlock({ trade, s, mine }: { trade: Trade; s: TradeSide; mine?: bool
             <Link href={tradesPath(s.teamId)} className="font-semibold break-words text-navy hover:underline">
               {t.name}
             </Link>
-            {t.year != null && <span className="text-slate-500"> ({t.year})</span>}
-            {t.alias && <p className="text-xs leading-snug text-slate-500">as {t.alias}</p>}
+            {t.year != null && <span className="text-slate-600"> ({t.year})</span>}
+            {t.alias && <p className="text-xs leading-snug text-slate-600">as {t.alias}</p>}
           </div>
         </div>
         {s.grade && <VerdictPill verdict={s.grade.verdict} />}
         {outcome && <OutcomePill outcome={outcome} lopsided={trade.call === "lopsided"} />}
       </div>
-      <p className="mt-2 text-[11px] font-bold tracking-wider text-slate-500 uppercase">Got</p>
+      <p className="mt-2 text-xs font-bold tracking-wider text-slate-600 uppercase">Got</p>
       {s.got.length ? (
         <ul className="mt-0.5 grid gap-1.5">
           {s.got.map((a) => (
@@ -261,23 +263,27 @@ function SideBlock({ trade, s, mine }: { trade: Trade; s: TradeSide; mine?: bool
           ))}
         </ul>
       ) : (
-        <p className="mt-0.5 text-sm text-slate-500">Nothing ESPN recorded</p>
+        <p className="mt-0.5 text-sm text-slate-600">Nothing ESPN recorded</p>
       )}
       {s.grade && <SideFigures g={s.grade} points={s.points} />}
       {trade.past && (
-        <dl className="mt-2 border-t border-line pt-2">
+        <div className="mt-2 border-t border-line pt-2">
           <Figure label="Points for them" sub={trade.span ? `${weeksText(trade.span)}, all points` : undefined}>
             {s.points != null ? tp(s.points) : "—"}
           </Figure>
-        </dl>
+        </div>
       )}
     </div>
   );
 }
 
 /** Past seasons: who won on points, from the file's call. */
+function spanLabel(t: Trade) {
+  return t.spanNote ?? (t.span ? weeksText(t.span) : "");
+}
+
 function PastVerdict({ t }: { t: Trade }) {
-  const span = t.span ? ` (${weeksText(t.span)})` : "";
+  const span = spanLabel(t) ? ` (${spanLabel(t)})` : "";
   if (t.call === "too-little-data") return <p className="mt-0.5">Too little data: the deal had one week left to count{span}.</p>;
   if (t.call === "even" || !t.edge) return <p className="mt-0.5">Even: within {tp(t.edge?.points ?? 0)} points{span}.</p>;
   return (
@@ -299,7 +305,7 @@ function partlyKnown(t: Trade) {
 function Verdicts({ t }: { t: Trade }) {
   if (t.ungraded) return <p className="mt-0.5">Not graded. {t.ungraded}</p>;
   const v = verdictWinner(t);
-  if (!v) return <p className="mt-0.5">Even for both sides so far{t.span ? ` (${weeksText(t.span)})` : ""}.</p>;
+  if (!v) return <p className="mt-0.5">Even for both sides so far{spanLabel(t) ? ` (${spanLabel(t)})` : ""}.</p>;
   const g = v.win.grade!;
   return (
     <>
@@ -307,14 +313,16 @@ function Verdicts({ t }: { t: Trade }) {
         {VERDICT[g.verdict].label} for <span className="font-semibold text-navy">{team(v.win.teamId).name}</span>, {VERDICT[v.lose.grade!.verdict].label.toLowerCase()} for{" "}
         <span className="font-semibold text-navy">{team(v.lose.teamId).name}</span>.
       </p>
-      <p className="mt-0.5 text-xs text-slate-500">
+      <p className="mt-0.5 text-xs text-slate-600">
         <span className={cn("font-semibold tabular-nums", tone(g.valueEdge))}>
           {signedValue(g.valueEdge)} value ({signedPct(g.valueEdgePct)})
         </span>
         ;{" "}
         <span className={cn("font-semibold tabular-nums", tone(g.pointsGained))}>{signed(g.pointsGained)} points</span>
-        {t.span && ` (${weeksText(t.span)})`}.{g.mixedSignals && " Value and points disagree; value decides."}
+        {spanLabel(t) && ` (${spanLabel(t)})`}.{g.mixedSignals && " Value and points disagree; value decides."}
+        {t.take && " The value grade was not recomputed."}
       </p>
+      {t.take && <p className="mt-1 leading-snug">{t.take.summary}</p>}
     </>
   );
 }
@@ -329,12 +337,12 @@ export function TradeCard({ t, focus }: { t: Trade; focus?: number }) {
         </Eyebrow>
         {(t.known === "partial" || t.known === "inferred") && <Pill tone="gold">Partly known</Pill>}
       </div>
-      <p className="mt-1 text-xs text-slate-500">
+      <p className="mt-1 text-xs text-slate-600">
         {t.acceptedAt ? `Accepted ${tradeDate(t.acceptedAt)}` : t.window ? `Went through ${windowLabel(t.window)}` : `${t.season} season`}
       </p>
 
       <div className="mt-3 rounded-xl bg-navy/[0.04] px-3 py-2 text-sm leading-snug text-slate-700 ring-1 ring-navy/10">
-        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-bold tracking-wider text-slate-500 uppercase">
+        <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs font-bold tracking-wider text-slate-600 uppercase">
           {t.past ? "Who won it" : "Who won it so far"}
           {t.confidence && <ConfidencePill confidence={t.confidence} weeks={t.weeksOfData} />}
         </p>
@@ -347,15 +355,15 @@ export function TradeCard({ t, focus }: { t: Trade; focus?: number }) {
         ))}
       </div>
 
-      {(t.known === "partial" || t.known === "inferred") && <p className="mt-2 text-xs leading-snug text-slate-500">{partlyKnown(t)}</p>}
+      {(t.known === "partial" || t.known === "inferred") && <p className="mt-2 text-xs leading-snug text-slate-600">{partlyKnown(t)}</p>}
       {t.released.length > 0 && (
-        <p className="mt-2 text-xs leading-snug text-slate-500">
-          Released in the deal: {t.released.map((p) => `${p.name} (${p.position})`).join(", ")}
+        <p className="mt-2 text-xs leading-snug text-slate-600">
+          {t.droppedBy != null ? `Dropped by ${team(t.droppedBy).name}` : "Released in the deal"}: {t.released.map((p) => `${p.name} (${p.position})`).join(", ")}. Not counted for either side.
         </p>
       )}
 
       <div className="mt-auto pt-3">
-        <Roast className="">{roast.tradeLine(t)}</Roast>
+        <Roast className="">{t.take?.roast ?? roast.tradeLine(t)}</Roast>
       </div>
     </Card>
   );
@@ -364,7 +372,7 @@ export function TradeCard({ t, focus }: { t: Trade; focus?: number }) {
 /** FantasyCalc credit and the one-line method note. */
 export function ValuesCredit({ className }: { className?: string }) {
   return (
-    <p className={cn("text-xs leading-snug text-slate-500", className)}>
+    <p className={cn("text-xs leading-snug text-slate-600", className)}>
       <a href="https://www.fantasycalc.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-turf hover:underline">
         Values: FantasyCalc redraft{VALUES_FETCHED && `, fetched ${longDate(VALUES_FETCHED)}`}
       </a>
@@ -379,13 +387,13 @@ function Chain({ path }: { path: (number | null)[] }) {
     <p className="flex flex-wrap items-center gap-x-1 gap-y-1 text-xs leading-snug text-slate-600">
       {path.map((id, i) =>
         id == null ? (
-          <span key={`gap-${i}`} className="text-slate-400" title="Left by another route before the next trade">
+          <span key={`gap-${i}`} className="text-slate-600" title="Left by another route before the next trade">
             · · ·
           </span>
         ) : (
           <span key={`${id}-${i}`} className="inline-flex min-w-0 items-center gap-1">
-            {i > 0 && path[i - 1] != null && <span className="text-slate-400">→</span>}
-            <Link href={tradesPath(id)} className="font-semibold text-slate-700 hover:underline">
+            {i > 0 && path[i - 1] != null && <span className="text-slate-600">→</span>}
+            <Link href={tradesPath(id)} className="inline-flex min-h-6 items-center font-semibold text-slate-700 hover:underline">
               {team(id).name}
             </Link>
           </span>
@@ -436,12 +444,12 @@ export function TradeSuperlatives() {
     <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       <RoastCard icon={Handshake} label="Most active trader" tone="gold" accent={team(active.id).color} value={`${active.n} of ${CURRENT.length}`} line={roast.mostActiveLine(active.id, active.n, CURRENT.length)}>
         <p className="text-sm font-semibold text-navy">{team(active.id).name}</p>
-        <p className="text-xs text-slate-500">player trades this season</p>
+        <p className="text-xs text-slate-600">player trades this season</p>
       </RoastCard>
 
       <RoastCard icon={Megaphone} label="Most offers sent" accent={team(sent[0].id).color} value={sent[0].n} line={roast.offersSentLine(sent[0].id, sent[0].n)}>
         <Ranked rows={sent.slice(0, 3)} unit="offers" />
-        <p className="mt-1.5 text-xs text-slate-500">
+        <p className="mt-1.5 text-xs text-slate-600">
           Counts only. {S.offersWithKnownSender} of {COUNTS.offers} offers have a known sender.
         </p>
       </RoastCard>
@@ -449,7 +457,7 @@ export function TradeSuperlatives() {
       {neg && (
         <RoastCard icon={Repeat} label="Most negotiated pair" accent={team(neg.ids[0]).color} value={neg.offers} line={roast.negotiatedLine(neg.ids[0], neg.ids[1], neg.offers, neg.trades)}>
           <p className="text-sm font-semibold break-words text-navy">{names(neg.ids)}</p>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-600">
             offers between them · {neg.trades} accepted
           </p>
         </RoastCard>
@@ -457,7 +465,7 @@ export function TradeSuperlatives() {
 
       <RoastCard icon={Gavel} label="Veto votes logged" value={COUNTS.vetoVotes} line={roast.vetoLine(veto[0].id, veto[0].n)}>
         <Ranked rows={veto.slice(0, 3)} unit="veto votes logged" />
-        <p className="mt-1.5 text-xs leading-snug text-slate-500">
+        <p className="mt-1.5 text-xs leading-snug text-slate-600">
           ESPN logs one team per veto row and doesn&apos;t say whether that team cast it, so these aren&apos;t proof of who voted. Every trade on this page still went through.
         </p>
       </RoastCard>
@@ -468,7 +476,7 @@ export function TradeSuperlatives() {
             {S.hotPotatoes.map((h) => (
               <li key={h.name}>
                 <p className="text-sm font-semibold text-navy">
-                  {h.name} <span className="text-xs font-medium text-slate-500">· {h.days} days</span>
+                  {h.name} <span className="text-xs font-medium text-slate-600">· {h.days} days</span>
                 </p>
                 <Chain path={h.path} />
               </li>
@@ -480,7 +488,7 @@ export function TradeSuperlatives() {
       {S.tradeAndCut && (
         <RoastCard icon={Scissors} label="Trade-and-cut" tone="loss" accent={team(S.tradeAndCut.side.teamId).color} value={tp(0)} line={roast.tradeAndCutLine()}>
           <p className="text-sm leading-snug text-slate-700">{S.tradeAndCut.note}</p>
-          <p className="mt-1 text-xs text-slate-500">Points the trade got {team(S.tradeAndCut.side.teamId).name}</p>
+          <p className="mt-1 text-xs text-slate-600">Points the trade got {team(S.tradeAndCut.side.teamId).name}</p>
         </RoastCard>
       )}
 
@@ -495,7 +503,7 @@ export function TradeSuperlatives() {
           line={roast.bestValueLine(S.bestValue.trade, S.bestValue.side)}
         >
           <p className="text-sm font-semibold break-words text-navy">{team(S.bestValue.side.teamId).name}</p>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-600">
             Trade {S.bestValue.trade.num}, accepted {shortDate(S.bestValue.trade.acceptedAt!)} · value edge {signedPct(S.bestValue.grade.valueEdgePct)} ·{" "}
             {S.bestValue.grade.confidence} confidence
           </p>
@@ -520,14 +528,14 @@ export function TradeSuperlatives() {
                 </Link>
                 <span className="shrink-0 text-xs tabular-nums">
                   <span className="font-semibold text-turf">{r.payingOff} paying off</span>
-                  {r.even > 0 && <span className="text-slate-500"> · {r.even} even</span>}
-                  <span className="text-slate-400"> · </span>
+                  {r.even > 0 && <span className="text-slate-600"> · {r.even} even</span>}
+                  <span className="text-slate-600"> · </span>
                   <span className="font-semibold text-loss">{r.backfiring} backfiring</span>
                 </span>
               </li>
             ))}
           </ul>
-          <p className="mt-1.5 text-xs text-slate-500">Verdicts per side, player trades only.</p>
+          <p className="mt-1.5 text-xs text-slate-600">Verdicts per side, player trades only.</p>
         </RoastCard>
       )}
 
@@ -553,7 +561,7 @@ function NetRows({ rows }: { rows: { id: number; net: number; record: { won: num
           <Link href={tradesPath(r.id)} className="min-w-0 flex-1 truncate text-slate-700 hover:underline">
             {team(r.id).name}
           </Link>
-          <span className="shrink-0 text-xs text-slate-500 tabular-nums">{recordText(r.record)}</span>
+          <span className="shrink-0 text-xs text-slate-600 tabular-nums">{recordText(r.record)}</span>
           <span className={cn("w-16 shrink-0 text-right font-semibold tabular-nums", tone(r.net))}>{signed(r.net)}</span>
         </li>
       ))}
@@ -581,7 +589,7 @@ export function AllTimeTradeSuperlatives() {
           line={roast.allTimeActiveLine(active.id, active.n, TRADES.length)}
         >
           <Ranked rows={A.mostActive} unit="player trades" />
-          <p className="mt-1.5 text-xs text-slate-500">
+          <p className="mt-1.5 text-xs text-slate-600">
             Player trades, {SEASONS_LABEL}. {TRADES.length} in the league.
           </p>
         </RoastCard>
@@ -589,15 +597,15 @@ export function AllTimeTradeSuperlatives() {
 
       {shark && (
         <RoastCard icon={Fish} label="Sharks vs suckers" tone="turf" accent={team(shark.id).color} line={roast.sharksLine(shark.id, shark.net, sucker?.id ?? null, sucker?.net ?? null)}>
-          <p className="text-[11px] font-semibold tracking-wider text-turf uppercase">Sharks</p>
+          <p className="text-xs font-semibold tracking-wider text-turf uppercase">Sharks</p>
           <NetRows rows={A.sharks} />
           {A.suckers.length > 0 && (
             <>
-              <p className="mt-2 text-[11px] font-semibold tracking-wider text-loss uppercase">Suckers</p>
+              <p className="mt-2 text-xs font-semibold tracking-wider text-loss uppercase">Suckers</p>
               <NetRows rows={A.suckers} />
             </>
           )}
-          <p className="mt-1.5 text-xs leading-snug text-slate-500">Net points from trades, {SEASONS_LABEL}, with the 2020–2025 won-lost(-even) record on points.</p>
+          <p className="mt-1.5 text-xs leading-snug text-slate-600">Net points from trades, {SEASONS_LABEL}, with the 2020–2025 won-lost(-even) record on points.</p>
         </RoastCard>
       )}
 
@@ -616,7 +624,7 @@ export function AllTimeTradeSuperlatives() {
                 <li key={p.name}>
                   <p className="text-sm font-semibold text-navy">
                     {p.name}{" "}
-                    <span className="text-xs font-medium text-slate-500">
+                    <span className="text-xs font-medium text-slate-600">
                       · {p.moves.length} trades, {[...new Set(p.moves.map((m) => m.trade.season))].join(", ")}
                     </span>
                   </p>
@@ -642,7 +650,7 @@ export function AllTimeTradeSuperlatives() {
             {heist.winner.got.map((a) => (a.kind === "player" ? a.name : assetLabel(a))).join(", ")} for{" "}
             {heist.loser.got.map((a) => (a.kind === "player" ? a.name : assetLabel(a))).join(", ")}.
           </p>
-          <p className="mt-1 text-xs text-slate-500 tabular-nums">
+          <p className="mt-1 text-xs text-slate-600 tabular-nums">
             {heist.trade.season}, {heist.trade.weekLabel.toLowerCase()} · {tp(heist.winner.points ?? 0)} vs {tp(heist.loser.points ?? 0)} points for the new teams
             {heist.trade.span ? `, ${weeksText(heist.trade.span)}` : ""}
           </p>
@@ -704,7 +712,7 @@ function UnknownSeasons() {
   const first = UNKNOWN_SEASONS[0];
   const last = UNKNOWN_SEASONS[UNKNOWN_SEASONS.length - 1];
   return (
-    <p className="rounded-xl bg-white px-3 py-2 text-xs leading-snug text-slate-500 ring-1 ring-line">
+    <p className="rounded-xl bg-white px-3 py-2 text-xs leading-snug text-slate-600 ring-1 ring-line">
       <span className="font-semibold text-slate-700">
         {first}–{last}:
       </span>{" "}
@@ -721,14 +729,14 @@ const PAST = PAST_SEASONS.length ? { first: PAST_SEASONS[0], last: PAST_SEASONS[
 function RebuiltNote() {
   if (!PAST) return null;
   return (
-    <p className="text-xs leading-snug text-slate-500">
+    <p className="text-xs leading-snug text-slate-600">
       {PAST.first}–{PAST.last} trades are rebuilt from weekly rosters: ESPN kept no trade log for those seasons, so dates are windows and the calls are on points only.
       Offseason and player-for-pick deals never show up in weekly rosters, so some trades are missing.
     </p>
   );
 }
 
-/** Player trades grouped by season, newest first, each season a dropdown that starts closed. */
+/** Player trades grouped by season, newest first. The current season starts open. */
 export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?: number; empty?: string }) {
   const groups = bySeason(trades);
   const net = focus != null ? new Map(teamTrades(focus).allTime.bySeason.map((r) => [r.season, r.netPoints])) : null;
@@ -738,10 +746,10 @@ export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?
         groups.map((g) => {
           const n = net?.get(g.season) ?? null;
           return (
-            <details key={g.season} className="group">
+            <details key={g.season} className="group" open={g.season === TRADE_SEASON}>
               <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-white px-4 py-2.5 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line hover:ring-slate-300 [&::-webkit-details-marker]:hidden">
                 <span className="font-display text-lg leading-tight font-bold text-navy">{g.season} season</span>
-                <span className="flex min-w-0 items-center gap-2 text-xs text-slate-500">
+                <span className="flex min-w-0 items-center gap-2 text-xs text-slate-600">
                   <span className="text-right tabular-nums">
                     {g.trades.length} player {g.trades.length === 1 ? "trade" : "trades"}
                     {n != null && (
@@ -751,7 +759,7 @@ export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?
                       </>
                     )}
                   </span>
-                  <ChevronDown className="size-4 shrink-0 text-slate-400 transition-transform group-open:rotate-180" aria-hidden />
+                  <ChevronDown className="size-4 shrink-0 text-slate-600 transition-transform group-open:rotate-180" aria-hidden />
                 </span>
               </summary>
               <ul className="mt-3 mb-2 grid gap-4 lg:grid-cols-2">
@@ -763,7 +771,7 @@ export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?
           );
         })
       ) : (
-        <p className="text-sm text-slate-500">{empty}</p>
+        <p className="text-sm text-slate-600">{empty}</p>
       )}
       <UnknownSeasons />
       {trades.some((t) => t.past) && <RebuiltNote />}
@@ -774,7 +782,7 @@ export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?
 function Partner({ fav }: { fav: NonNullable<ReturnType<typeof teamTrades>["favorite"]> | null }) {
   return (
     <div className="mt-4 border-t border-line pt-3">
-      <p className="text-[11px] font-semibold tracking-wider text-slate-500 uppercase">{fav?.basis === "offers" ? "Most offers exchanged with" : "Favorite trading partner"}</p>
+      <p className="text-xs font-semibold tracking-wider text-slate-600 uppercase">{fav?.basis === "offers" ? "Most offers exchanged with" : "Favorite trading partner"}</p>
       {fav ? (
         <div className="mt-1 flex min-w-0 items-center gap-2">
           <span className="flex shrink-0 -space-x-1.5">
@@ -786,22 +794,22 @@ function Partner({ fav }: { fav: NonNullable<ReturnType<typeof teamTrades>["favo
             <p className="font-semibold break-words text-navy">
               {fav.teamIds.map((id, i) => (
                 <span key={id}>
-                  {i > 0 && <span className="font-medium text-slate-500"> & </span>}
+                  {i > 0 && <span className="font-medium text-slate-600"> & </span>}
                   <Link href={tradesPath(id)} className="hover:underline">
                     {team(id).name}
                   </Link>
                 </span>
               ))}
-              {fav.teamIds.length > 1 && <span className="font-medium text-slate-500"> (tied)</span>}
+              {fav.teamIds.length > 1 && <span className="font-medium text-slate-600"> (tied)</span>}
             </p>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-600">
               {fav.basis === "trades" ? `${fav.trades} player ${fav.trades === 1 ? "trade" : "trades"} all-time · ` : "No player trades yet · "}
               {fav.offers} {fav.offers === 1 ? "offer" : "offers"} exchanged in {TRADE_SEASON}
             </p>
           </div>
         </div>
       ) : (
-        <p className="mt-1 text-sm text-slate-500">Nobody yet. Not a single offer either way.</p>
+        <p className="mt-1 text-sm text-slate-600">Nobody yet. Not a single offer either way.</p>
       )}
     </div>
   );
@@ -837,8 +845,8 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
           <dl className="mt-3 grid grid-cols-4 gap-1.5 sm:grid-cols-7">
             {s.allTime.bySeason.map((x) => (
               <div key={x.season} className="min-w-0 rounded-lg bg-slate-50 px-2 py-1.5 text-center ring-1 ring-line">
-                <dt className="text-[10px] font-semibold text-slate-500 tabular-nums">{x.season}</dt>
-                <dd className={cn("text-xs font-semibold tabular-nums", x.netPoints != null ? tone(x.netPoints) : "text-slate-400")}>
+                <dt className="text-xs font-semibold text-slate-600 tabular-nums">{x.season}</dt>
+                <dd className={cn("text-xs font-semibold tabular-nums", x.netPoints != null ? tone(x.netPoints) : "text-slate-600")}>
                   {x.netPoints != null ? signed(x.netPoints) : "—"}
                 </dd>
               </div>
@@ -866,9 +874,9 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
             sub={s.current.length ? "all points, from trades" : undefined}
           />
         </div>
-        <p className="mt-3 text-xs text-slate-500">Offer counts only; the contents of pending or declined offers stay private.</p>
+        <p className="mt-3 text-xs text-slate-600">Offer counts only; the contents of pending or declined offers stay private.</p>
         {swaps > 0 && (
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs text-slate-600">
             Plus {swaps === 1 ? "one draft-pick-only swap" : `${swaps} draft-pick-only swaps`}, not listed here.
           </p>
         )}

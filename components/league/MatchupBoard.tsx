@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { formatRecord, isFlagged, LEAGUE, ordinal, team, teamPath, type Matchup, type Player, type Team } from "@/lib/league";
 import { buildPreview, type Edge } from "@/lib/preview";
 import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
-import { SlotChip, StatusChip } from "./bits";
+import { ScoreReadout, SlotChip, StatusChip } from "./bits";
 import { MatchupSeries } from "./h2h";
 import { Card, PageHeader, Stat, TeamAvatar } from "./ui";
 import { MiniTrail, ScoreTrail, TrailLegend, WeekStrip } from "./trail";
@@ -18,7 +18,7 @@ export function MatchupBoard({ matchup }: { matchup: Matchup }) {
   return (
     <>
       <div className="flex items-end justify-between gap-3">
-        <PageHeader eyebrow={`Week ${LEAGUE.week} matchup`} title={<span className="text-[1.75rem] sm:text-4xl">{L.name} <span className="text-slate-400">vs</span> {R.name}</span>} />
+        <PageHeader eyebrow={`Week ${LEAGUE.week} matchup`} title={<span className="text-[1.75rem] sm:text-4xl">{L.name} <span className="text-slate-600">vs</span> {R.name}</span>} />
         <TvModeButton />
       </div>
 
@@ -32,7 +32,7 @@ export function MatchupBoard({ matchup }: { matchup: Matchup }) {
                 <p key={s}>{s}</p>
               ))}
             </div>
-            <h3 className="mt-5 text-xs font-bold tracking-wider text-slate-500 uppercase">Edges</h3>
+            <h3 className="mt-5 text-xs font-bold tracking-wider text-slate-600 uppercase">Edges</h3>
             <div className="mt-2 grid gap-4 sm:grid-cols-2">
               <EdgeList t={L} edges={preview.edges.left} />
               <EdgeList t={R} edges={preview.edges.right} />
@@ -55,8 +55,8 @@ export function MatchupBoard({ matchup }: { matchup: Matchup }) {
             <ScoreTrail focus={L} compare={R} focusProj={matchup.left.projected} compareProj={matchup.right.projected} />
             {[L, R].map((t) => (
               <div key={t.id} className="mt-3">
-                <p className="mb-1 flex items-center gap-2 text-xs font-semibold text-slate-500">
-                  <TeamAvatar teamId={t.id} size="sm" className="size-5 text-[8px]" /> {t.name}
+                <p className="mb-1 flex items-center gap-2 text-xs font-semibold text-slate-600">
+                  <TeamAvatar teamId={t.id} size="sm" className="size-5 text-xs" /> {t.name}
                 </p>
                 <WeekStrip weeks={t.weekly} />
               </div>
@@ -84,41 +84,61 @@ export function MatchupBoard({ matchup }: { matchup: Matchup }) {
 }
 
 function Scorecard({ matchup, L, R }: { matchup: Matchup; L: Team; R: Team }) {
+  const live = matchup.state !== "projected";
+  const lShow = live ? (matchup.left.points ?? 0) : (matchup.left.projected ?? 0);
+  const rShow = live ? (matchup.right.points ?? 0) : (matchup.right.projected ?? 0);
+  const total = lShow + rShow;
+  const share = total > 0 ? (lShow / total) * 100 : 50;
   const lp = matchup.left.projected;
   const rp = matchup.right.projected;
   const hasProj = lp != null && rp != null;
   const margin = hasProj ? lp - rp : 0;
-  const share = hasProj ? (lp / (lp + rp)) * 100 : 50;
   const fav = margin >= 0 ? L : R;
+  const stateLabel = matchup.state === "final" ? "Final" : matchup.state === "live" ? "In progress" : "Projected";
   return (
-    <section className="overflow-hidden rounded-2xl bg-navy yard-lines text-white shadow-lg shadow-navy/15">
-      <div className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-2.5 text-xs font-semibold text-white/70 sm:px-5">
+    <section className="overflow-hidden rounded-2xl bg-navy yard-lines text-white shadow-lg shadow-navy/15" aria-label={`${stateLabel} score`}>
+      <div className="flex items-center justify-between gap-2 border-b border-white/10 px-4 py-2.5 text-xs font-semibold text-white/80 sm:px-5">
         <span className="tracking-wider uppercase">Week {matchup.week} matchup</span>
-        {hasProj && <span className="rounded-full bg-white/10 px-2 py-0.5 tracking-wide uppercase">Projected</span>}
+        <span className="rounded-full bg-white/10 px-2 py-0.5 tracking-wide uppercase">{stateLabel}</span>
       </div>
       <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-3 px-4 pt-4 sm:px-5">
-        <ScoreSide t={L} projected={lp} leading={margin >= 0} home={matchup.homeId === L.id} />
-        <span className="pt-16 font-display text-sm font-bold text-white/40 uppercase">vs</span>
-        <ScoreSide t={R} projected={rp} leading={margin < 0} home={matchup.homeId === R.id} align="right" />
+        <ScoreSide t={L} side={matchup.left} state={matchup.state} leading={lShow >= rShow} home={matchup.homeId === L.id} />
+        <span className="pt-16 font-display text-sm font-bold text-white/80 uppercase">vs</span>
+        <ScoreSide t={R} side={matchup.right} state={matchup.state} leading={rShow > lShow} home={matchup.homeId === R.id} align="right" />
       </div>
-      {hasProj && (
-        <div className="px-4 pt-4 pb-4 sm:px-5">
-          <div className="flex h-2.5 overflow-hidden rounded-full bg-white/10" role="img" aria-label={`Projected share: ${share.toFixed(0)}% to ${(100 - share).toFixed(0)}%`}>
-            <span style={{ width: `${share}%`, background: L.color }} />
-            <span className="w-0.5 bg-navy" />
-            <span className="flex-1" style={{ background: R.color }} />
-          </div>
-          <p className="mt-2 text-center text-sm text-white/80">
-            <span className="font-semibold text-white">{fav.name}</span> projected to win by{" "}
-            <span className="font-display text-base font-bold text-gold tabular-nums">{Math.abs(margin).toFixed(1)}</span>
-          </p>
+      <div className="px-4 pt-4 pb-4 sm:px-5">
+        <div className="flex h-2.5 overflow-hidden rounded-full bg-white/10" role="img" aria-label={live ? `Score so far: ${share.toFixed(0)}% to ${(100 - share).toFixed(0)}%` : `Projected share: ${share.toFixed(0)}% to ${(100 - share).toFixed(0)}%`}>
+          <span style={{ width: `${share}%`, background: L.color }} />
+          <span className="w-0.5 bg-navy" />
+          <span className="flex-1" style={{ background: R.color }} />
         </div>
-      )}
+        {hasProj && (
+          <p className="mt-2 text-center text-sm text-white/90">
+            <span className="font-semibold text-white">{fav.name}</span> projected final by{" "}
+            <span className="font-display text-base font-bold text-gold tabular-nums">{Math.abs(margin).toFixed(1)}</span>
+            {live && <span className="text-white/80"> · brackets are the projected final</span>}
+          </p>
+        )}
+      </div>
     </section>
   );
 }
 
-function ScoreSide({ t, projected, leading, home, align = "left" }: { t: Team; projected?: number; leading: boolean; home: boolean; align?: "left" | "right" }) {
+function ScoreSide({
+  t,
+  side,
+  state,
+  leading,
+  home,
+  align = "left",
+}: {
+  t: Team;
+  side: Matchup["left"];
+  state: Matchup["state"];
+  leading: boolean;
+  home: boolean;
+  align?: "left" | "right";
+}) {
   return (
     <div className={cn("flex min-w-0 flex-col gap-2", align === "right" ? "items-end text-right" : "items-start")}>
       <TeamAvatar teamId={t.id} size="lg" className="ring-2 ring-white/20" />
@@ -126,12 +146,12 @@ function ScoreSide({ t, projected, leading, home, align = "left" }: { t: Team; p
         <Link href={teamPath(t.id)} className="text-[15px] leading-tight font-semibold break-words hover:underline">
           {t.name}
         </Link>
-        <p className="text-xs text-white/60">
+        <p className="text-xs text-white/80">
           {formatRecord(t)} · {ordinal(t.rank)} · {home ? "Home" : "Away"}
         </p>
       </div>
-      <p className={cn("font-display text-5xl leading-none font-extrabold tabular-nums sm:text-6xl", leading ? "text-white" : "text-white/55")}>
-        {projected != null ? projected.toFixed(1) : "—"}
+      <p className={cn("font-display text-5xl leading-none font-extrabold tabular-nums sm:text-6xl", leading ? "text-white" : "text-white/80")}>
+        <ScoreReadout side={side} state={state} bracketClassName="text-white/80" />
       </p>
     </div>
   );
@@ -154,7 +174,7 @@ function EdgeList({ t, edges }: { t: Team; edges: Edge[] }) {
           ))}
         </ul>
       ) : (
-        <p className="mt-2 text-sm text-slate-500">No statistical edge this week.</p>
+        <p className="mt-2 text-sm text-slate-600">No statistical edge this week.</p>
       )}
     </div>
   );
@@ -204,16 +224,16 @@ function TaleOfTheTape({ L, R, matchup }: { L: Team; R: Team; matchup: Matchup }
           const w = winner(r);
           return (
             <div key={r.label} className="grid grid-cols-[4.5rem_minmax(0,1fr)_4.5rem] items-center gap-2 py-2">
-              <dd className={cn("font-display text-lg font-bold tabular-nums", w === "l" ? "text-turf" : "text-navy", w === "r" && "text-slate-400")}>{show(r, r.l)}</dd>
-              <dt className="text-center text-xs font-medium text-slate-500">{r.label}</dt>
-              <dd className={cn("text-right font-display text-lg font-bold tabular-nums", w === "r" ? "text-turf" : "text-navy", w === "l" && "text-slate-400")}>
+              <dd className={cn("font-display text-lg font-bold tabular-nums", w === "l" ? "text-turf" : "text-navy", w === "r" && "text-slate-600")}>{show(r, r.l)}</dd>
+              <dt className="text-center text-xs font-medium text-slate-600">{r.label}</dt>
+              <dd className={cn("text-right font-display text-lg font-bold tabular-nums", w === "r" ? "text-turf" : "text-navy", w === "l" && "text-slate-600")}>
                 {show(r, r.r)}
               </dd>
             </div>
           );
         })}
       </dl>
-      <p className="mt-2 text-xs text-slate-500">Green marks the better side where higher or lower is clearly better. All-play: record if you played every team every week.</p>
+      <p className="mt-2 text-xs text-slate-600">Green marks the better side where higher or lower is clearly better. All-play: record if you played every team every week.</p>
     </Card>
   );
 }
@@ -228,19 +248,19 @@ function TeamCard({ t }: { t: Team }) {
           <Link href={teamPath(t.id)} className="font-semibold break-words text-navy hover:underline">
             {t.name}
           </Link>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-600">
             {[t.owner, `${formatRecord(t)} · ${ordinal(t.rank)}`].filter(Boolean).join(" · ")}
           </p>
         </div>
         <MiniTrail team={t} className="hidden min-[380px]:block" />
       </div>
       <div className="mt-3 grid grid-cols-3 gap-3">
-        <Stat label="Titles" value={h.titles} sub={h.titleYears.join(", ") || "—"} valueClassName={h.titles ? "text-gold" : undefined} />
+        <Stat label="Titles" value={h.titles} sub={h.titleYears.join(", ") || "—"} valueClassName={h.titles ? "text-gold-ink" : undefined} />
         <Stat label="Finals" value={h.finalsYears.length} sub={h.finalsYears.join(", ") || "—"} />
         {h.allTime && <Stat label="2020–25" value={formatRecord(h.allTime)} sub="Regular season" />}
       </div>
       <Link href={teamPath(t.id)} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-turf hover:underline">
-        {h.titles > 0 && <Trophy className="size-3.5 text-gold" />}
+        {h.titles > 0 && <Trophy className="size-3.5 text-gold-ink" aria-hidden />}
         Team page, roster & history →
       </Link>
     </Card>
@@ -260,7 +280,7 @@ function InjuryReport({ L, R }: { L: Team; R: Team }) {
             <span key={`${t.id}-${p.name}`}>
               {i > 0 && " · "}
               {p.name} <span className="font-semibold text-loss">({p.status === "Questionable" ? "Q" : p.status})</span>{" "}
-              <span className="text-slate-500">{t.abbrev}</span>
+              <span className="text-slate-600">{t.abbrev}</span>
             </span>
           ))}
         </p>
@@ -273,7 +293,7 @@ function Lineups({ L, R }: { L: Team; R: Team }) {
   const rows = Math.max(L.roster.starters.length, R.roster.starters.length);
   return (
     <div>
-      <div className="grid grid-cols-[minmax(0,1fr)_2.75rem_minmax(0,1fr)] gap-2 border-b border-line bg-slate-50 px-4 py-2 text-xs font-bold text-slate-500 sm:px-5">
+      <div className="grid grid-cols-[minmax(0,1fr)_2.75rem_minmax(0,1fr)] gap-2 border-b border-line bg-slate-50 px-4 py-2 text-xs font-bold text-slate-600 sm:px-5">
         <span className="truncate">{L.name}</span>
         <span className="text-center">Pos</span>
         <span className="truncate text-right">{R.name}</span>
@@ -296,12 +316,12 @@ function Lineups({ L, R }: { L: Team; R: Team }) {
 }
 
 export function PlayerCell({ player, align = "left" }: { player?: Player; align?: "left" | "right" }) {
-  if (!player) return <span className="text-slate-300">—</span>;
+  if (!player) return <span className="text-slate-600">—</span>;
   return (
     <div className={cn("min-w-0", align === "right" && "text-right")}>
       <p className="text-[15px] leading-tight font-semibold break-words text-navy">{player.name}</p>
       {(player.nflTeam || isFlagged(player)) && (
-        <p className={cn("mt-0.5 flex items-center gap-1.5 text-xs text-slate-500", align === "right" && "justify-end")}>
+        <p className={cn("mt-0.5 flex items-center gap-1.5 text-xs text-slate-600", align === "right" && "justify-end")}>
           {player.nflTeam && (
             <span>
               {player.slot === "FLEX" ? `${player.position} · ` : ""}
@@ -316,14 +336,14 @@ export function PlayerCell({ player, align = "left" }: { player?: Player; align?
 }
 
 export function BenchList({ players }: { players: Player[] }) {
-  if (players.length === 0) return <p className="py-3 text-center text-sm text-slate-500">Nobody on the bench.</p>;
+  if (players.length === 0) return <p className="py-3 text-center text-sm text-slate-600">Nobody on the bench.</p>;
   return (
     <ul className="divide-y divide-line">
       {players.map((p) => (
         <li key={p.name} className="flex min-h-12 items-center gap-3 py-2">
           <SlotChip slot={p.slot === "Bench" ? p.position : p.slot} className={p.slot === "Bench" ? "opacity-80" : undefined} />
           <span className="min-w-0 flex-1 text-[15px] leading-tight font-medium break-words text-slate-700">{p.name}</span>
-          {p.nflTeam && <span className="text-xs text-slate-500">{p.nflTeam}</span>}
+          {p.nflTeam && <span className="text-xs text-slate-600">{p.nflTeam}</span>}
           <StatusChip status={p.status} />
         </li>
       ))}

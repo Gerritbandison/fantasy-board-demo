@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ScoreReadout } from "@/components/league/bits";
+import { ThursdayNight } from "@/components/league/ThursdayNight";
 import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
-import { formatRecord, GAMES, LEAGUE, MATCHUPS, matchupPath, ordinal, team, teamPath, USER_TEAM, winnerSide } from "@/lib/league";
+import { formatRecord, GAMES, LEAGUE, MATCHUPS, matchupPath, ordinal, team, teamPath, THURSDAY, USER_TEAM, winnerSide } from "@/lib/league";
 import { buildPreview } from "@/lib/preview";
 
 export const metadata: Metadata = {
@@ -13,12 +15,19 @@ export const metadata: Metadata = {
 export default function MatchupsPage() {
   const lastWeek = LEAGUE.week - 1;
   const finals = GAMES.filter((g) => g.week === lastWeek);
+  const live = MATCHUPS.some((m) => m.state === "live");
 
   return (
     <>
       <PageHeader eyebrow={`Week ${LEAGUE.week} scoreboard`} title="Scores">
-        <p className="mt-2 text-[15px] text-slate-600">All {MATCHUPS.length} games this week. Tap one for the preview, tale of the tape, and lineups.</p>
+        <p className="mt-2 text-[15px] text-slate-600">
+          {live
+            ? `All ${MATCHUPS.length} games this week are in progress${THURSDAY ? " after Thursday" : ""}. The number in brackets is the projected final. Standings are still through week ${lastWeek}.`
+            : `All ${MATCHUPS.length} games this week. Tap one for the preview, tale of the tape, and lineups.`}
+        </p>
       </PageHeader>
+
+      <ThursdayNight />
 
       <ul className="grid gap-5 lg:grid-cols-2">
         {MATCHUPS.map((m) => {
@@ -27,11 +36,11 @@ export default function MatchupsPage() {
           const mine = m.left.teamId === USER_TEAM.id;
           return (
             <Card key={m.slug} as="li" accent={mine ? USER_TEAM.color : undefined}>
-              <div className="mb-3 flex items-center justify-between gap-2 text-xs font-semibold text-slate-500">
+              <div className="mb-3 flex items-center justify-between gap-2 text-xs font-semibold text-slate-600">
                 <span className="tracking-wider uppercase">Week {m.week}</span>
                 <span className="flex items-center gap-1.5">
                   {mine && <Pill tone="turf">Your game</Pill>}
-                  <span>Projected</span>
+                  <span>{m.state === "final" ? "Final" : m.state === "live" ? "In progress" : "Projected"}</span>
                 </span>
               </div>
               <div className="grid gap-3">
@@ -42,15 +51,15 @@ export default function MatchupsPage() {
                     <div key={t.id} className="flex items-center gap-3">
                       <TeamAvatar teamId={t.id} />
                       <div className="min-w-0 flex-1">
-                        <Link href={teamPath(t.id)} className={cn("leading-tight font-semibold break-words hover:underline", fav ? "text-navy" : "text-slate-500")}>
+                        <Link href={teamPath(t.id)} className={cn("leading-tight font-semibold break-words hover:underline", fav ? "text-navy" : "text-slate-600")}>
                           {t.name}
                         </Link>
-                        <p className="text-xs text-slate-500">
+                        <p className="text-xs text-slate-600">
                           {formatRecord(t)} · {ordinal(t.rank)} · {m.homeId === t.id ? "Home" : "Away"}
                         </p>
                       </div>
-                      <span className={cn("font-display text-3xl font-bold tabular-nums", fav ? "text-turf" : "text-slate-400")}>
-                        {s.projected != null ? s.projected.toFixed(1) : "—"}
+                      <span className={cn("font-display text-3xl font-bold tabular-nums", fav ? "text-turf" : "text-slate-600")}>
+                        <ScoreReadout side={s} state={m.state} bracketClassName="text-slate-600" />
                       </span>
                     </div>
                   );
@@ -75,10 +84,10 @@ export default function MatchupsPage() {
                 {[g.away, g.home].map((s) => (
                   <p key={s.teamId} className="flex items-center gap-2.5 text-sm">
                     <TeamAvatar teamId={s.teamId} size="sm" />
-                    <Link href={teamPath(s.teamId)} className={cn("min-w-0 flex-1 truncate hover:underline", s === w ? "font-semibold text-navy" : "text-slate-500")}>
+                    <Link href={teamPath(s.teamId)} className={cn("min-w-0 flex-1 truncate hover:underline", s === w ? "font-semibold text-navy" : "text-slate-600")}>
                       {team(s.teamId).name}
                     </Link>
-                    <span className={cn("font-display text-lg font-bold tabular-nums", s === w ? "text-navy" : "text-slate-400")}>{s.score.toFixed(2)}</span>
+                    <span className={cn("font-display text-lg font-bold tabular-nums", s === w ? "text-navy" : "text-slate-600")}>{s.score.toFixed(2)}</span>
                   </p>
                 ))}
               </li>
