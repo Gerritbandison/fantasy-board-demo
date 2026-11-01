@@ -14,7 +14,7 @@
       "Week 8 projections are ESPN totalProjectedPoints at fetch time (pre-kickoff).",
       "2026-10-31 Flaim/ESPN update: week 8 is in progress after Thursday Oct 29 (Packers 27, Panthers 19). homeCurrentPoints/awayCurrentPoints are fantasy points so far (full PPR). Bracketed projections are the projected finals supplied with that pull. Standings, weekly results, and season totals are still through week 7. Jordan Love started for Kabul on Thursday, so he is in the QB slot and Brock Purdy is on the bench."
     ],
-    "displayPolicy": "Team 7 shows its real ESPN name. Others use the existing app alias where present, else trimmed ESPN name; vulgar names get a proposed clean alias.",
+    "displayPolicy": "Team 7 displays as Maye Day (MAYE). Other teams use their clean display names.",
     "updatedAt": "2026-10-31T12:00:00-04:00"
   },
   "league": {
@@ -72,8 +72,8 @@
       "abbrev": "SMF"
     },
     "7": {
-      "espnName": "Maye i give you a blowj0b",
-      "displayName": "Maye i give you a blowj0b",
+      "espnName": "Maye Day",
+      "displayName": "Maye Day",
       "abbrev": "MAYE"
     },
     "8": {
@@ -87,7 +87,7 @@
       "abbrev": "SND"
     },
     "11": {
-      "espnName": "Kabul Cocknballs",
+      "espnName": "Kabul FC",
       "displayName": "Kabul FC",
       "abbrev": "KAB"
     }
@@ -203,7 +203,7 @@
     },
     {
       "teamId": 7,
-      "displayName": "Maye i give you a blowj0b",
+      "displayName": "Maye Day",
       "rank": 10,
       "playoffSeed": 10,
       "wins": 2,
@@ -769,10 +769,6 @@
     }
   ],
   "proposedAliases": {
-    "Ni66as in  Trouble": "In Trouble",
-    "The Fucking Letdowns": "The Letdowns",
-    "Team Wet Ass Pussy": "Team WAP",
-    "Kabul Cocknballs": "Kabul FC",
     "Brioon Omeglemeally\ud83d\ude08": "Brioon Omeglemeally"
   },
   "transactionsWindow": {
@@ -1993,7 +1989,7 @@
         "seasons": [
           {
             "season": 2020,
-            "espnName": "The Fucking Letdowns",
+            "espnName": "The Letdowns",
             "displayName": "The Letdowns",
             "wins": 5,
             "losses": 8,
@@ -2934,7 +2930,7 @@
         "seasons": [
           {
             "season": 2020,
-            "espnName": "Team Wet Ass Pussy",
+            "espnName": "Team WAP",
             "displayName": "Team WAP",
             "wins": 3,
             "losses": 10,
@@ -3470,9 +3466,9 @@
     },
     {
       "teamId": 7,
-      "espnName": "Maye i give you a blowj0b",
-      "displayName": "Maye i give you a blowj0b",
-      "displayNameSource": "real ESPN name (owner request)",
+      "espnName": "Maye Day",
+      "displayName": "Maye Day",
+      "displayNameSource": "Maye Day",
       "espnAbbrev": "GOD",
       "displayAbbrev": "MAYE",
       "ownerName": null,
@@ -3846,7 +3842,7 @@
           },
           {
             "season": 2022,
-            "espnName": "Ni66as in  Trouble",
+            "espnName": "In Trouble",
             "displayName": "In Trouble",
             "wins": 5,
             "losses": 9,
@@ -4784,10 +4780,10 @@
     },
     {
       "teamId": 11,
-      "espnName": "Kabul Cocknballs",
+      "espnName": "Kabul FC",
       "displayName": "Kabul FC",
       "displayNameSource": "existing app alias",
-      "espnAbbrev": "NIGG",
+      "espnAbbrev": "KAB",
       "displayAbbrev": "KAB",
       "ownerName": null,
       "ownerLabelFromApp": null,
@@ -5108,7 +5104,7 @@
           },
           {
             "season": 2021,
-            "espnName": "Kabul Cocknballs",
+            "espnName": "Kabul FC",
             "displayName": "Kabul FC",
             "wins": 7,
             "losses": 7,
@@ -5124,7 +5120,7 @@
           },
           {
             "season": 2022,
-            "espnName": "Kabul Cocknballs",
+            "espnName": "Kabul FC",
             "displayName": "Kabul FC",
             "wins": 2,
             "losses": 12,
@@ -5140,7 +5136,7 @@
           },
           {
             "season": 2023,
-            "espnName": "Kabul Cocknballs",
+            "espnName": "Kabul FC",
             "displayName": "Kabul FC",
             "wins": 3,
             "losses": 11,
@@ -5156,7 +5152,7 @@
           },
           {
             "season": 2024,
-            "espnName": "Kabul Cocknballs",
+            "espnName": "Kabul FC",
             "displayName": "Kabul FC",
             "wins": 5,
             "losses": 9,
@@ -5172,7 +5168,7 @@
           },
           {
             "season": 2025,
-            "espnName": "Kabul Cocknballs",
+            "espnName": "Kabul FC",
             "displayName": "Kabul FC",
             "wins": 5,
             "losses": 9,

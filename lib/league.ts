@@ -1,4 +1,5 @@
 import raw from "@/data/league-all-teams.json";
+import { franchiseAbbrev, franchiseName, isRetiredSeasonName, publicSeasonName } from "@/lib/names";
 
 /*
  * The committed Flaim/ESPN pull is the single source of truth. Raw ESPN names and
@@ -234,24 +235,12 @@ function player(p: RawPlayer): Player {
   return { name: p.name, position: p.position, nflTeam: nn(p.nflTeam), slot: p.lineupSlot, status: nn(p.injuryStatus) };
 }
 
-/** Season names never shown; the franchise's current name plus the year stands in for them. */
-const RETIRED_SEASON_NAMES = new Set(["Black Lives"]);
-
-const clean = (name: string) => name.replace(/\s+/g, " ").trim();
-
-export function isRetiredSeasonName(name: string) {
-  return RETIRED_SEASON_NAMES.has(clean(name));
-}
-
-/** A past season's display name, safe to render on its own. */
-export function publicSeasonName(currentName: string, season: number, name: string) {
-  return isRetiredSeasonName(name) ? `${currentName} (${season})` : clean(name);
-}
+export { isRetiredSeasonName, publicSeasonName };
 
 export const TEAMS: Team[] = file.teams.map((t) => ({
   id: t.teamId,
-  name: t.displayName.trim(),
-  abbrev: t.displayAbbrev,
+  name: franchiseName(t.teamId, t.displayName),
+  abbrev: franchiseAbbrev(t.teamId, t.displayAbbrev),
   color: COLORS[t.teamId] ?? "#64748b",
   owner: nn(t.ownerLabelFromApp),
   isUser: t.isUserTeam,
@@ -286,7 +275,7 @@ export const TEAMS: Team[] = file.teams.map((t) => ({
   history: {
     seasons: t.history.seasons.map((s) => ({
       season: s.season,
-      name: publicSeasonName(t.displayName.trim(), s.season, s.displayName),
+      name: publicSeasonName(franchiseName(t.teamId, t.displayName), s.season, s.displayName),
       wins: s.wins,
       losses: s.losses,
       ties: s.ties,

@@ -38,7 +38,7 @@ Three committed files are the source of truth:
 Name handling:
 
 - `lib/league.ts` maps the raw file into public types that **drop every `espnName` and `espnAbbrev`**, so pages and the API can only render `displayName` and the app abbreviation.
-- Gerrit's team 7 shows its real ESPN name, `Maye i give you a blowj0b`, at his request. Other teams use their `displayName`, which applies the clean aliases (for example, team 11 is `Kabul FC` / `KAB`).
+- Gerrit's team 7 displays as **Maye Day** (`MAYE`) on every page. Other teams use their `displayName` (for example, team 11 is `Kabul FC` / `KAB`).
 - Past-season names use each season's `displayName` (`seasonNames[].displayName` in the head-to-head file), never `espnName`.
 - Owner names aren't in the data. The app shows the existing nickname (`ownerLabelFromApp`) only for the four teams that have one.
 - Null fields are hidden rather than filled in.
@@ -75,7 +75,7 @@ Head-to-head roasts, verdict captions, and the week label follow those fields. N
 ## Design system
 
 - **Palette:** light field background (`field`), white cards, a navy app bar and scorecard (`navy`), turf green as the primary (`turf`), gold for leaders and champions (`gold`), and red for losses and injuries (`loss`). Each team has its own avatar color (`lib/league.ts`).
-- **Type:** Barlow Condensed for scores, headings, and numbers. Barlow for text. Team names are never upper-cased, so the `0` in `blowj0b` stays distinct from an `O`.
+- **Type:** Barlow Condensed for scores, headings, and numbers. Barlow for text. Team names keep their written capitalization.
 - **Primitives:** `components/league/ui.tsx` holds `Card`, `PageHeader`, `SectionHeading`, `TeamAvatar`, `Pill`, `Stat`, `LuckBadge`, `ResultChip`, and `RangeBar`. `components/league/trail.tsx` holds `ScoreTrail` (against an opponent or the league average), `WeekStrip`, and `MiniTrail`. All charts share one y-scale.
 
 ## Run locally

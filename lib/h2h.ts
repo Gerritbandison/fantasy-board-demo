@@ -1,5 +1,6 @@
 import raw from "@/data/league-h2h-history.json";
-import { isRetiredSeasonName, publicSeasonName, team } from "@/lib/league";
+import { team } from "@/lib/league";
+import { cleanName, isRetiredSeasonName, publicSeasonName } from "@/lib/names";
 
 /*
  * All-time head-to-head pull (Flaim/ESPN). Like lib/league.ts, every ESPN name field
@@ -223,7 +224,7 @@ function when(gameId: string, season: number, tier: Tier, fallbackWeek?: number)
 }
 
 const SEASON_NAMES = new Map(
-  Object.values(file.franchises).map((f) => [f.teamId, new Map(f.seasonNames.map((s) => [s.season, s.displayName.replace(/\s+/g, " ").trim()]))]),
+  Object.values(file.franchises).map((f) => [f.teamId, new Map(f.seasonNames.map((s) => [s.season, cleanName(s.displayName)]))]),
 );
 
 /** The franchise's display name for a season, safe to render on its own. */
