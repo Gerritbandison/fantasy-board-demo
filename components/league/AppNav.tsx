@@ -2,18 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowLeftRight, ChartColumn, Gauge, ListOrdered, Swords, Trophy, Users, type LucideIcon } from "lucide-react";
+import { ArrowLeftRight, ChartColumn, ListOrdered, Swords, Trophy, Users, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /** `also`: extra paths that light up the item; `phoneAlso` only applies in the bottom bar, where Standings and Trades have no tab of their own. */
-const NAV: { href: string; label: string; icon: LucideIcon; phone: boolean; also?: string[]; phoneAlso?: string[]; iconBelowLg?: boolean }[] = [
+const NAV: { href: string; label: string; icon: LucideIcon; phone: boolean; also?: string[]; phoneAlso?: string[] }[] = [
   { href: "/", label: "Teams", icon: Users, phone: true, also: ["/teams/"], phoneAlso: ["/standings"] },
   { href: "/standings", label: "Standings", icon: ListOrdered, phone: false },
   { href: "/matchups", label: "Scores", icon: Swords, phone: true },
   { href: "/insights", label: "Insights", icon: ChartColumn, phone: true },
   { href: "/trades", label: "Trades", icon: ArrowLeftRight, phone: false },
   { href: "/history", label: "History", icon: Trophy, phone: true, phoneAlso: ["/trades"] },
-  { href: "/playoffs", label: "Playoffs", icon: Gauge, phone: false, also: ["/simulator"], iconBelowLg: true },
 ];
 
 function Football({ className }: { className?: string }) {
@@ -59,8 +58,8 @@ export function TopBar({ week, season }: { week: number; season: number }) {
                   active ? "bg-white text-navy" : "text-white/75 hover:bg-white/10 hover:text-white",
                 )}
               >
-                <item.icon className={cn("size-4", item.iconBelowLg ? "lg:hidden" : "max-lg:hidden")} aria-hidden />
-                <span className={cn(item.iconBelowLg && "max-lg:sr-only")}>{item.label}</span>
+                <item.icon className="size-4 max-lg:hidden" aria-hidden />
+                {item.label}
               </Link>
             );
           })}

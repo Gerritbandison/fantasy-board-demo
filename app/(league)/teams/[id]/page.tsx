@@ -369,11 +369,6 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
               </Pill>
             )}
           </div>
-          {t.isUser && (
-            <Link href="/playoffs" className="mt-3 inline-flex h-11 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
-              Playoff simulator →
-            </Link>
-          )}
         </PageHeader>
       </div>
 

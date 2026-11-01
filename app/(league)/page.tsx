@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Trophy } from "lucide-react";
-import { Card, LuckBadge, PageHeader, Pill, Stat, TeamAvatar } from "@/components/league/ui";
+import { Card, LuckBadge, PageHeader, Pill, TeamAvatar } from "@/components/league/ui";
 import { MiniTrail } from "@/components/league/trail";
 import { TeamsTabs } from "@/components/league/TeamsTabs";
 import { FindNav } from "@/components/league/FindNav";
-import { formatPoints, formatRecord, LEAGUE, matchupFor, ordinal, STANDINGS, team, teamPath, USER_TEAM } from "@/lib/league";
-import { formatPct } from "@/lib/playoff-sim";
-import { simulatorPreview } from "@/lib/playoff-preview";
+import { formatPoints, formatRecord, LEAGUE, matchupFor, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
 import { luck, pfRank, powerRank, teamStats } from "@/lib/stats";
 
 export const metadata: Metadata = {
@@ -15,7 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  const preview = simulatorPreview();
   return (
     <>
       <PageHeader eyebrow={`${LEAGUE.size} teams · ${LEAGUE.season} season`} title="Teams">
@@ -25,22 +22,6 @@ export default function HomePage() {
         </div>
         <FindNav />
       </PageHeader>
-
-      <Card accent={USER_TEAM.color}>
-        <Link href="/playoffs" className="block">
-          <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">Playoff simulator</p>
-          <p className="font-display text-xl leading-tight font-bold break-words text-navy">{USER_TEAM.name}</p>
-          <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <Stat label="Right now" value={formatPct(preview.baseline, 1)} sub="Nothing locked" />
-            <Stat label="Win out" value={formatPct(preview.winOut, 1)} sub="9-5" />
-            <Stat label="Win all 7" value={formatPct(preview.winAll, 1)} sub="Product of the game odds" />
-          </div>
-          <p className="mt-3 text-sm text-slate-600">
-            At 8-6, about {formatPct(preview.atEight)}. At 7-7, about {formatPct(preview.atSeven)}.
-          </p>
-          <p className="mt-2 text-sm font-semibold text-turf">Open the simulator →</p>
-        </Link>
-      </Card>
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {STANDINGS.map((t) => {
@@ -96,6 +77,11 @@ export default function HomePage() {
                   <MiniTrail team={t} />
                 </div>
               </Link>
+              {t.isUser && (
+                <Link href="/playoffs" className="mt-3 inline-flex h-11 items-center border-t border-line pt-3 text-sm font-semibold text-turf hover:underline">
+                  Playoff simulator →
+                </Link>
+              )}
             </Card>
           );
         })}

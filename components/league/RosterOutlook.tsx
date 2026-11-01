@@ -1,6 +1,5 @@
-import Link from "next/link";
 import { Card } from "@/components/league/ui";
-import { team, USER_TEAM } from "@/lib/league";
+import { team } from "@/lib/league";
 import { formatPct } from "@/lib/playoff-sim";
 import { MAYE_ROS } from "@/lib/ros";
 import { cn } from "@/lib/utils";
@@ -71,9 +70,6 @@ export function RosterOutlook() {
         ))}
       </ul>
 
-      <Link href="/playoffs" className="mt-4 inline-flex h-11 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
-        {USER_TEAM.name} playoff simulator →
-      </Link>
     </Card>
   );
 }
