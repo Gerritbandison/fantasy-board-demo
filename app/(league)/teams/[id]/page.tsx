@@ -7,6 +7,7 @@ import { ScoreReadout, SlotChip } from "@/components/league/bits";
 import { TeamHeadToHead } from "@/components/league/h2h";
 import { TeamTabs } from "@/components/league/TeamTabs";
 import { TeamTradesSection } from "@/components/league/trades";
+import { RosterOutlook } from "@/components/league/RosterOutlook";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, Stat, TeamAvatar } from "@/components/league/ui";
 import { ScoreTrail, TrailLegend, WeekStrip } from "@/components/league/trail";
 import { cn } from "@/lib/utils";
@@ -58,6 +59,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
 
   const overview = (
     <>
+      {t.isUser && <RosterOutlook />}
       <Card bodyClassName="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-6">
         <Stat label="Points for" value={t.pointsFor.toFixed(1)} sub={`${ordinal(pfRank(t.id))} in the league`} />
         <Stat label="Points against" value={t.pointsAgainst.toFixed(1)} sub={`${ordinal(paRank(t.id))} most faced`} />
@@ -359,6 +361,11 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
               </Pill>
             )}
           </div>
+          {t.isUser && (
+            <Link href="/playoffs" className="mt-3 inline-flex h-11 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
+              Playoff simulator →
+            </Link>
+          )}
         </PageHeader>
       </div>
 

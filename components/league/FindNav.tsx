@@ -3,6 +3,7 @@ import Link from "next/link";
 const LINKS = [
   { href: "/matchups", label: "Scores" },
   { href: "/matchups#thursday", label: "Thursday" },
+  { href: "/playoffs", label: "Playoffs" },
   { href: "/standings", label: "Standings" },
   { href: "/insights#power", label: "Power rankings" },
   { href: "/history#awards", label: "Awards" },

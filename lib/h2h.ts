@@ -244,7 +244,7 @@ export function teamThen(teamId: number, season: number): { name: string; alias:
   return { name, alias: raw, year: null };
 }
 
-/** e.g. "Maye i give you a blowj0b (as Mixon Impossible)" or "Jahmyr I Go Again (2020)". */
+/** e.g. "Jahmyr I Go Again (as Gibbs no step Burrow)" or "Jahmyr I Go Again (2020)". */
 export function teamThenLabel(teamId: number, season: number) {
   const t = teamThen(teamId, season);
   return t.alias ? `${t.name} (as ${t.alias})` : t.year ? `${t.name} (${t.year})` : t.name;

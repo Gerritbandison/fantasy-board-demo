@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/bibis", destination: "/matchups/bib-chw", permanent: false },
       { source: "/teams", destination: "/", permanent: false },
+      { source: "/simulator", destination: "/playoffs", permanent: false },
     ];
   },
   turbopack: {
