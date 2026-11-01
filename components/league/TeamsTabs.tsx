@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 /** Teams and Standings share one phone tab; this switch moves between them. */
 export function TeamsTabs({ active }: { active: "teams" | "standings" }) {
   const tabs = [
-    { key: "teams", href: "/", label: "Directory" },
+    { key: "teams", href: "/teams", label: "Directory" },
     { key: "standings", href: "/standings", label: "Standings" },
   ] as const;
   return (

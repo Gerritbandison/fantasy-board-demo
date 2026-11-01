@@ -3,7 +3,7 @@
 import { useMemo, useState, type ReactNode } from "react";
 import { PLAYOFF_MODEL } from "@/lib/playoff-data";
 import { SIM_COUNT, focusSchedule, formatPct, simulate, winOutChance, winOutPath } from "@/lib/playoff-sim";
-import { cn } from "@/lib/utils";
+import { cx } from "@/lib/cx";
 
 interface SimTeam {
   id: number;
@@ -28,7 +28,17 @@ function points(n: number) {
   return n.toFixed(2).replace(/0$/, "").replace(/\.0$/, "");
 }
 
-export function PlayoffSimulator({ teams, focusName }: { teams: SimTeam[]; focusName: string }) {
+export function PlayoffSimulator({
+  teams,
+  focusName,
+  completedWeek,
+  currentWeek,
+}: {
+  teams: SimTeam[];
+  focusName: string;
+  completedWeek: number;
+  currentWeek: number;
+}) {
   const [shift, setShift] = useState(0);
   const [mayePick, setMayePick] = useState<Record<number, "W" | "L">>({});
   const [forced, setForced] = useState<Record<number, number>>({});
@@ -127,7 +137,7 @@ export function PlayoffSimulator({ teams, focusName }: { teams: SimTeam[]; focus
               type="button"
               aria-pressed={shift === preset.shift}
               onClick={() => setShift(preset.shift)}
-              className={cn(
+              className={cx(
                 "min-h-11 rounded-full px-3 text-sm font-semibold",
                 shift === preset.shift ? "bg-navy text-white" : "bg-white text-navy ring-1 ring-line",
               )}
@@ -211,7 +221,7 @@ export function PlayoffSimulator({ teams, focusName }: { teams: SimTeam[]; focus
                         type="button"
                         aria-pressed={pick === value}
                         onClick={() => setPick(row.gameIndex, value)}
-                        className={cn(
+                        className={cx(
                           "min-h-11 min-w-11 rounded-full px-3 text-sm font-bold",
                           pick === value
                             ? value === "W"
@@ -251,7 +261,7 @@ export function PlayoffSimulator({ teams, focusName }: { teams: SimTeam[]; focus
                       type="button"
                       aria-pressed={locked === id}
                       onClick={() => toggleForce(gameIndex, id)}
-                      className={cn(
+                      className={cx(
                         "min-h-11 rounded-full px-3 text-left text-sm font-semibold",
                         locked === id ? "bg-navy text-white" : "bg-white text-navy ring-1 ring-line",
                       )}
@@ -278,7 +288,7 @@ export function PlayoffSimulator({ teams, focusName }: { teams: SimTeam[]; focus
             const rec = modelTeam(row.id);
             const mine = row.id === PLAYOFF_MODEL.focusId;
             return (
-              <li key={row.id} className={cn("flex min-w-0 items-center gap-3 rounded-xl px-2 py-2", mine && "bg-turf-light")}>
+              <li key={row.id} className={cx("flex min-w-0 items-center gap-3 rounded-xl px-2 py-2", mine && "bg-turf-light")}>
                 <span
                   className="inline-flex size-7 shrink-0 items-center justify-center rounded-full font-display text-[10px] font-bold text-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.18)]"
                   style={{ background: byId.get(row.id)?.color ?? "#94a3b8" }}
@@ -344,7 +354,7 @@ export function PlayoffSimulator({ teams, focusName }: { teams: SimTeam[]; focus
                           aria-pressed={forced[gameIndex] === id}
                           aria-label={`${name(id)} wins in week ${week}`}
                           onClick={() => toggleForce(gameIndex, id)}
-                          className={cn(
+                          className={cx(
                             "min-h-11 rounded-full px-3 text-sm font-semibold",
                             forced[gameIndex] === id ? "bg-navy text-white" : "bg-slate-50 text-navy ring-1 ring-line",
                           )}
@@ -365,7 +375,9 @@ export function PlayoffSimulator({ teams, focusName }: { teams: SimTeam[]; focus
       <details className="rounded-2xl bg-white p-4 ring-1 ring-line sm:p-5">
         <summary className="min-h-11 cursor-pointer font-display text-lg font-bold tracking-wide text-navy uppercase">How the model works</summary>
         <ul className="mt-3 grid gap-2 text-sm leading-snug text-slate-600">
-          <li>Standings are through Week 7. Week 8 uses the points already scored and only the noise left in the game.</li>
+          <li>
+            Standings are through Week {completedWeek}. Week {currentWeek} uses the points already scored and only the noise left in the game.
+          </li>
           <li>Each other team&apos;s weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss. {focusName} gets no penalty. The slider moves that team instead.</li>
           <li>Scores are normal draws using each team&apos;s weekly spread. The top 4 by wins, then points for, make the playoffs.</li>
         </ul>

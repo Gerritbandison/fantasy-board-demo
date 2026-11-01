@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PlayoffSimulator } from "@/components/league/PlayoffSimulator";
 import { PageHeader } from "@/components/league/ui";
-import { formatRecord, TEAMS, USER_TEAM } from "@/lib/league";
+import { formatRecord, LEAGUE, TEAMS, USER_TEAM } from "@/lib/league";
 
 export const metadata: Metadata = {
   title: `${USER_TEAM.name} playoff simulator`,
@@ -18,6 +18,8 @@ export default function PlayoffsPage() {
       </PageHeader>
       <PlayoffSimulator
         focusName={USER_TEAM.name}
+        completedWeek={LEAGUE.week - 1}
+        currentWeek={LEAGUE.week}
         teams={TEAMS.map((t) => ({ id: t.id, name: t.name, abbrev: t.abbrev, color: t.color }))}
       />
     </>

@@ -352,7 +352,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
 
   return (
     <>
-      <Link href="/" className="-mb-2 text-sm font-semibold text-turf hover:underline">
+      <Link href="/teams" className="-mb-2 text-sm font-semibold text-turf hover:underline">
         ← All teams
       </Link>
       <div className="flex items-start gap-4">

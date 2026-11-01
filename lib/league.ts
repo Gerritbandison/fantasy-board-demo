@@ -100,36 +100,6 @@ interface RawWeek8Game {
   status?: string | null;
 }
 
-interface RawThursdayPlayer {
-  teamId: number;
-  name: string;
-  nflTeam?: string | null;
-  position: string;
-  points: number;
-  started: boolean;
-  line?: string | null;
-}
-
-interface RawThursday {
-  week: number;
-  date: string;
-  kickoff: string;
-  scoring: string;
-  nfl: {
-    away: string;
-    home: string;
-    awayScore: number;
-    homeScore: number;
-    site: string;
-    awayRecord: string;
-    homeRecord: string;
-    quarters: { [abbr: string]: number[] };
-    source: string;
-  };
-  players: RawThursdayPlayer[];
-  quietTeamIds: number[];
-}
-
 interface RawChampion {
   season: number;
   championTeamId: number;
@@ -142,7 +112,6 @@ interface RawFile {
   meta: { generatedAt: string; source: string; leagueId: string; season: number; currentWeek: number };
   league: { name: string; size: number; previousSeasons: number[] };
   schedule: { weeks1to7?: RawGame[]; completed?: RawGame[]; week8?: RawWeek8Game[] } & { [key: string]: unknown };
-  week8Thursday?: RawThursday | null;
   champions: RawChampion[];
   teams: RawTeam[];
 }
@@ -509,46 +478,6 @@ export function formatPoints(n: number) {
   return n.toFixed(2).replace(/0$/, "").replace(/\.0$/, "");
 }
 
-export interface ThursdayPlayer {
-  teamId: number;
-  name: string;
-  nflTeam?: string;
-  position: string;
-  points: number;
-  started: boolean;
-  line?: string;
-}
-
-export interface ThursdayNight {
-  week: number;
-  date: string;
-  kickoff: string;
-  scoring: string;
-  nfl: RawThursday["nfl"];
-  players: ThursdayPlayer[];
-  quietTeamIds: number[];
-}
-
-export const THURSDAY: ThursdayNight | null = file.week8Thursday
-  ? {
-      week: file.week8Thursday.week,
-      date: file.week8Thursday.date,
-      kickoff: file.week8Thursday.kickoff,
-      scoring: file.week8Thursday.scoring,
-      nfl: file.week8Thursday.nfl,
-      quietTeamIds: file.week8Thursday.quietTeamIds,
-      players: file.week8Thursday.players.map((p) => ({
-        teamId: p.teamId,
-        name: p.name,
-        nflTeam: nn(p.nflTeam),
-        position: p.position,
-        points: p.points,
-        started: p.started,
-        line: nn(p.line),
-      })),
-    }
-  : null;
-
 /** Everything the public API returns: display names only. */
 export function publicLeague() {
   return {
@@ -560,7 +489,6 @@ export function publicLeague() {
     matchups: MATCHUPS,
     /** @deprecated Use `matchups`. Kept so older clients still resolve. */
     week8: MATCHUPS,
-    thursday: THURSDAY,
     champions: CHAMPIONS,
   };
 }
