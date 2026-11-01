@@ -11,10 +11,12 @@
       "ownerName: Flaim's ESPN league info returned no owner names; ownerLabelFromApp is copied from the app's existing league-intel.json (nicknames, 4 teams only).",
       "history.playoffAppearances is null: Flaim marks madePlayoffs=true for all 10 teams in every past season (consolation bracket), and the league's playoff team count isn't returned. Raw flag kept as madePlayoffsFlaim.",
       "History is keyed by ESPN teamId slot (franchise continuity assumed by slot; owners may have changed). Seasons 2020-2025 available.",
-      "2026-11-01 Flaim/ESPN pull at 12:20 PM ET, before the Sunday games. Scoring period 8 is still current. Thursday points are locked (Josh Jacobs 23.2, Matthew Golden 20.9). Lineups, injury tags, bye weeks, projections, and completed adds and drops match that pull. Standings, weekly results, and season totals are still through week 7. Pending offers and waiver claims are not stored."
+      "2026-11-01 Flaim/ESPN pull at 12:20 PM ET, before the Sunday games. Scoring period 8 is still current. Thursday points are locked (Josh Jacobs 23.2, Matthew Golden 20.9). Lineups, injury tags, bye weeks, projections, and completed adds and drops match that pull. Standings, weekly results, and season totals are still through week 7. Pending offers and waiver claims are not stored.",
+      "2026-11-01 Flaim/ESPN pull at 4:28 PM ET, during the Sunday games. Week 8 live scores, ESPN live projections, starter points, lineups and injury tags come from that pull. Each starter's game state comes from ESPN's public NFL Week 8 scoreboard. Standings, weekly results and season totals are still through Week 7. Pending offers and waiver claims are not stored."
     ],
     "displayPolicy": "Team 7 shows its ESPN name and ESPN abbreviation. Other teams use their clean display names.",
-    "updatedAt": "2026-11-01T12:20:00-05:00"
+    "updatedAt": "2026-11-01T16:28:00-05:00",
+    "pulledAt": "2026-11-01T16:28:00-05:00"
   },
   "league": {
     "id": 12115010,
@@ -641,10 +643,10 @@
         "week": 8,
         "homeTeamId": 11,
         "awayTeamId": 5,
-        "homeProjected": 127.7,
-        "awayProjected": 139.1,
-        "homeCurrentPoints": 46.42,
-        "awayCurrentPoints": 0,
+        "homeProjected": 102.87,
+        "awayProjected": 105.99,
+        "homeCurrentPoints": 83.82,
+        "awayCurrentPoints": 79.96,
         "winner": "UNDECIDED",
         "margin": null,
         "status": "in-progress"
@@ -653,10 +655,10 @@
         "week": 8,
         "homeTeamId": 10,
         "awayTeamId": 6,
-        "homeProjected": 125.5,
-        "awayProjected": 109.9,
-        "homeCurrentPoints": 9.6,
-        "awayCurrentPoints": 5.0,
+        "homeProjected": 122.5,
+        "awayProjected": 89.43,
+        "homeCurrentPoints": 104.94,
+        "awayCurrentPoints": 65.2,
         "winner": "UNDECIDED",
         "margin": null,
         "status": "in-progress"
@@ -665,10 +667,10 @@
         "week": 8,
         "homeTeamId": 4,
         "awayTeamId": 2,
-        "homeProjected": 111.4,
-        "awayProjected": 129.0,
-        "homeCurrentPoints": 17.3,
-        "awayCurrentPoints": 0,
+        "homeProjected": 102.15,
+        "awayProjected": 103.99,
+        "homeCurrentPoints": 64.6,
+        "awayCurrentPoints": 56.7,
         "winner": "UNDECIDED",
         "margin": null,
         "status": "in-progress"
@@ -677,10 +679,10 @@
         "week": 8,
         "homeTeamId": 3,
         "awayTeamId": 1,
-        "homeProjected": 133.4,
-        "awayProjected": 131.0,
-        "homeCurrentPoints": 11.8,
-        "awayCurrentPoints": 0,
+        "homeProjected": 122.06,
+        "awayProjected": 138.67,
+        "homeCurrentPoints": 80.3,
+        "awayCurrentPoints": 82.8,
         "winner": "UNDECIDED",
         "margin": null,
         "status": "in-progress"
@@ -689,10 +691,10 @@
         "week": 8,
         "homeTeamId": 7,
         "awayTeamId": 8,
-        "homeProjected": 142.7,
-        "awayProjected": 115.4,
-        "homeCurrentPoints": 44.1,
-        "awayCurrentPoints": 10.36,
+        "homeProjected": 173.33,
+        "awayProjected": 83.85,
+        "homeCurrentPoints": 135.3,
+        "awayCurrentPoints": 62.96,
         "winner": "UNDECIDED",
         "margin": null,
         "status": "in-progress"
@@ -886,10 +888,71 @@
       "week8": {
         "opponentTeamId": 3,
         "homeAway": "away",
-        "projected": 131.0,
-        "opponentProjected": 133.4,
-        "currentPoints": 0,
-        "status": "in-progress"
+        "projected": 138.67,
+        "opponentProjected": 122.06,
+        "currentPoints": 82.8,
+        "status": "in-progress",
+        "opponentCurrentPoints": 80.3,
+        "starters": [
+          {
+            "name": "Ja'Marr Chase",
+            "slot": "WR",
+            "points": 26,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Brock Bowers",
+            "slot": "TE",
+            "points": 28.2,
+            "gameState": "final"
+          },
+          {
+            "name": "Amon-Ra St. Brown",
+            "slot": "WR",
+            "points": 12.6,
+            "gameState": "final"
+          },
+          {
+            "name": "Luther Burden III",
+            "slot": "FLEX",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Jayden Daniels",
+            "slot": "QB",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Zach Charbonnet",
+            "slot": "RB",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Steelers D/ST",
+            "slot": "D/ST",
+            "points": 16,
+            "gameState": "final"
+          },
+          {
+            "name": "Will Reichard",
+            "slot": "K",
+            "points": 0,
+            "gameState": "final"
+          },
+          {
+            "name": "Jonah Coleman",
+            "slot": "RB",
+            "points": 0,
+            "gameState": "in_progress"
+          }
+        ],
+        "startersFinal": 4,
+        "startersInProgress": 2,
+        "startersYetToPlay": 3,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -1343,10 +1406,71 @@
       "week8": {
         "opponentTeamId": 4,
         "homeAway": "away",
-        "projected": 129.0,
-        "opponentProjected": 111.4,
-        "currentPoints": 0,
-        "status": "in-progress"
+        "projected": 103.99,
+        "opponentProjected": 102.15,
+        "currentPoints": 56.7,
+        "status": "in-progress",
+        "opponentCurrentPoints": 64.6,
+        "starters": [
+          {
+            "name": "Jahmyr Gibbs",
+            "slot": "RB",
+            "points": 24.8,
+            "gameState": "final"
+          },
+          {
+            "name": "Bijan Robinson",
+            "slot": "RB",
+            "points": 7.6,
+            "gameState": "final"
+          },
+          {
+            "name": "Kyren Williams",
+            "slot": "FLEX",
+            "points": 0.1,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Ladd McConkey",
+            "slot": "WR",
+            "points": 2.2,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Rome Odunze",
+            "slot": "WR",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Tyler Warren",
+            "slot": "TE",
+            "points": 5.8,
+            "gameState": "final"
+          },
+          {
+            "name": "Matthew Stafford",
+            "slot": "QB",
+            "points": -1.8,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Rams D/ST",
+            "slot": "D/ST",
+            "points": 10,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Chris Boswell",
+            "slot": "K",
+            "points": 8,
+            "gameState": "final"
+          }
+        ],
+        "startersFinal": 4,
+        "startersInProgress": 4,
+        "startersYetToPlay": 1,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -1789,10 +1913,71 @@
       "week8": {
         "opponentTeamId": 1,
         "homeAway": "home",
-        "projected": 133.4,
-        "opponentProjected": 131.0,
-        "currentPoints": 11.8,
-        "status": "in-progress"
+        "projected": 122.06,
+        "opponentProjected": 138.67,
+        "currentPoints": 80.3,
+        "status": "in-progress",
+        "opponentCurrentPoints": 82.8,
+        "starters": [
+          {
+            "name": "Jaxon Smith-Njigba",
+            "slot": "WR",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Kenneth Walker III",
+            "slot": "RB",
+            "points": 0.4,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Tetairoa McMillan",
+            "slot": "WR",
+            "points": 11.8,
+            "gameState": "final"
+          },
+          {
+            "name": "Lamar Jackson",
+            "slot": "QB",
+            "points": 0,
+            "gameState": "final"
+          },
+          {
+            "name": "Sam LaPorta",
+            "slot": "TE",
+            "points": 6.5,
+            "gameState": "final"
+          },
+          {
+            "name": "Jaylen Warren",
+            "slot": "RB",
+            "points": 21.3,
+            "gameState": "final"
+          },
+          {
+            "name": "Vikings D/ST",
+            "slot": "D/ST",
+            "points": 5,
+            "gameState": "final"
+          },
+          {
+            "name": "Braelon Allen",
+            "slot": "FLEX",
+            "points": 23.3,
+            "gameState": "final"
+          },
+          {
+            "name": "Chase McLaughlin",
+            "slot": "K",
+            "points": 12,
+            "gameState": "final"
+          }
+        ],
+        "startersFinal": 7,
+        "startersInProgress": 1,
+        "startersYetToPlay": 1,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -1801,7 +1986,7 @@
             "position": "QB",
             "nflTeam": "BAL",
             "lineupSlot": "QB",
-            "injuryStatus": null,
+            "injuryStatus": "Out",
             "byeWeek": 13,
             "acquisitionType": "DRAFT",
             "percentOwnedEspnWide": 98.51,
@@ -1852,15 +2037,15 @@
             "keeperValueRound": 7
           },
           {
-            "name": "Dallas Goedert",
+            "name": "Sam LaPorta",
             "position": "TE",
-            "nflTeam": "PHI",
+            "nflTeam": "DET",
             "lineupSlot": "TE",
             "injuryStatus": null,
-            "byeWeek": 10,
+            "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 84.49,
-            "keeperValueRound": 12
+            "percentOwnedEspnWide": 96.42,
+            "keeperValueRound": 6
           },
           {
             "name": "Braelon Allen",
@@ -1897,6 +2082,17 @@
           }
         ],
         "bench": [
+          {
+            "name": "Dallas Goedert",
+            "position": "TE",
+            "nflTeam": "PHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "byeWeek": 10,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 84.49,
+            "keeperValueRound": 12
+          },
           {
             "name": "C.J. Stroud",
             "position": "QB",
@@ -1948,17 +2144,6 @@
             "acquisitionType": "ADD",
             "percentOwnedEspnWide": 34.97,
             "keeperValueRound": 0
-          },
-          {
-            "name": "Sam LaPorta",
-            "position": "TE",
-            "nflTeam": "DET",
-            "lineupSlot": "Bench",
-            "injuryStatus": null,
-            "byeWeek": 6,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 96.42,
-            "keeperValueRound": 6
           },
           {
             "name": "Ka'imi Fairbairn",
@@ -2234,10 +2419,71 @@
       "week8": {
         "opponentTeamId": 2,
         "homeAway": "home",
-        "projected": 111.4,
-        "opponentProjected": 129.0,
-        "currentPoints": 17.3,
-        "status": "in-progress"
+        "projected": 102.15,
+        "opponentProjected": 103.99,
+        "currentPoints": 64.6,
+        "status": "in-progress",
+        "opponentCurrentPoints": 56.7,
+        "starters": [
+          {
+            "name": "Brandon Aubrey",
+            "slot": "K",
+            "points": 12,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Patrick Mahomes",
+            "slot": "QB",
+            "points": 0,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Christian Watson",
+            "slot": "WR",
+            "points": 17.3,
+            "gameState": "final"
+          },
+          {
+            "name": "T.J. Hockenson",
+            "slot": "TE",
+            "points": 15.8,
+            "gameState": "final"
+          },
+          {
+            "name": "DK Metcalf",
+            "slot": "WR",
+            "points": 1.4,
+            "gameState": "final"
+          },
+          {
+            "name": "Chase Brown",
+            "slot": "RB",
+            "points": 16.1,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Rachaad White",
+            "slot": "RB",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Bengals D/ST",
+            "slot": "D/ST",
+            "points": 2,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "DeMario Douglas",
+            "slot": "FLEX",
+            "points": 0,
+            "gameState": "in_progress"
+          }
+        ],
+        "startersFinal": 3,
+        "startersInProgress": 5,
+        "startersYetToPlay": 1,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -2725,10 +2971,71 @@
       "week8": {
         "opponentTeamId": 11,
         "homeAway": "away",
-        "projected": 139.1,
-        "opponentProjected": 127.7,
-        "currentPoints": 0,
-        "status": "in-progress"
+        "projected": 105.99,
+        "opponentProjected": 102.87,
+        "currentPoints": 79.96,
+        "status": "in-progress",
+        "opponentCurrentPoints": 83.82,
+        "starters": [
+          {
+            "name": "Josh Allen",
+            "slot": "QB",
+            "points": 26.56,
+            "gameState": "final"
+          },
+          {
+            "name": "Drake London",
+            "slot": "WR",
+            "points": 1.8,
+            "gameState": "final"
+          },
+          {
+            "name": "Derrick Henry",
+            "slot": "RB",
+            "points": 14,
+            "gameState": "final"
+          },
+          {
+            "name": "Javonte Williams",
+            "slot": "RB",
+            "points": 6.5,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Rhamondre Stevenson",
+            "slot": "FLEX",
+            "points": 0,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Parker Washington",
+            "slot": "WR",
+            "points": 3.6,
+            "gameState": "final"
+          },
+          {
+            "name": "Hunter Henry",
+            "slot": "TE",
+            "points": 0,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Jaguars D/ST",
+            "slot": "D/ST",
+            "points": 21.5,
+            "gameState": "final"
+          },
+          {
+            "name": "Jake Bates",
+            "slot": "K",
+            "points": 6,
+            "gameState": "final"
+          }
+        ],
+        "startersFinal": 6,
+        "startersInProgress": 3,
+        "startersYetToPlay": 0,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -3200,10 +3507,71 @@
       "week8": {
         "opponentTeamId": 10,
         "homeAway": "away",
-        "projected": 109.9,
-        "opponentProjected": 125.5,
-        "currentPoints": 5.0,
-        "status": "in-progress"
+        "projected": 89.43,
+        "opponentProjected": 122.5,
+        "currentPoints": 65.2,
+        "status": "in-progress",
+        "opponentCurrentPoints": 104.94,
+        "starters": [
+          {
+            "name": "CeeDee Lamb",
+            "slot": "WR",
+            "points": 12.8,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "D'Andre Swift",
+            "slot": "RB",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Dak Prescott",
+            "slot": "QB",
+            "points": 19.8,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Kyle Pitts Sr.",
+            "slot": "TE",
+            "points": 2.6,
+            "gameState": "final"
+          },
+          {
+            "name": "Jason Myers",
+            "slot": "K",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Quinshon Judkins",
+            "slot": "RB",
+            "points": 6.9,
+            "gameState": "final"
+          },
+          {
+            "name": "Panthers D/ST",
+            "slot": "D/ST",
+            "points": 5,
+            "gameState": "final"
+          },
+          {
+            "name": "KC Concepcion",
+            "slot": "WR",
+            "points": 6.7,
+            "gameState": "final"
+          },
+          {
+            "name": "Khalil Shakir",
+            "slot": "FLEX",
+            "points": 11.4,
+            "gameState": "final"
+          }
+        ],
+        "startersFinal": 5,
+        "startersInProgress": 2,
+        "startersYetToPlay": 2,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -3649,10 +4017,71 @@
       "week8": {
         "opponentTeamId": 8,
         "homeAway": "home",
-        "projected": 142.7,
-        "opponentProjected": 115.4,
-        "currentPoints": 44.1,
-        "status": "in-progress"
+        "projected": 173.33,
+        "opponentProjected": 83.85,
+        "currentPoints": 135.3,
+        "status": "in-progress",
+        "opponentCurrentPoints": 62.96,
+        "starters": [
+          {
+            "name": "Puka Nacua",
+            "slot": "WR",
+            "points": 2.5,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Drake Maye",
+            "slot": "QB",
+            "points": 0,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Harold Fannin Jr.",
+            "slot": "TE",
+            "points": 23.4,
+            "gameState": "final"
+          },
+          {
+            "name": "Tony Pollard",
+            "slot": "RB",
+            "points": 28.7,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Matthew Golden",
+            "slot": "FLEX",
+            "points": 20.9,
+            "gameState": "final"
+          },
+          {
+            "name": "Josh Jacobs",
+            "slot": "RB",
+            "points": 23.2,
+            "gameState": "final"
+          },
+          {
+            "name": "DJ Moore",
+            "slot": "WR",
+            "points": 16.6,
+            "gameState": "final"
+          },
+          {
+            "name": "Patriots D/ST",
+            "slot": "D/ST",
+            "points": 10,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Matt Gay",
+            "slot": "K",
+            "points": 10,
+            "gameState": "final"
+          }
+        ],
+        "startersFinal": 5,
+        "startersInProgress": 4,
+        "startersYetToPlay": 0,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -3705,7 +4134,7 @@
             "position": "WR",
             "nflTeam": "BUF",
             "lineupSlot": "WR",
-            "injuryStatus": null,
+            "injuryStatus": "Questionable",
             "byeWeek": 7,
             "acquisitionType": "TRADE",
             "percentOwnedEspnWide": 90.2,
@@ -4121,10 +4550,71 @@
       "week8": {
         "opponentTeamId": 7,
         "homeAway": "away",
-        "projected": 115.4,
-        "opponentProjected": 142.7,
-        "currentPoints": 10.36,
-        "status": "in-progress"
+        "projected": 83.85,
+        "opponentProjected": 173.33,
+        "currentPoints": 62.96,
+        "status": "in-progress",
+        "opponentCurrentPoints": 135.3,
+        "starters": [
+          {
+            "name": "Saquon Barkley",
+            "slot": "RB",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Zay Flowers",
+            "slot": "WR",
+            "points": 0,
+            "gameState": "final"
+          },
+          {
+            "name": "Bucky Irving",
+            "slot": "RB",
+            "points": 21,
+            "gameState": "final"
+          },
+          {
+            "name": "Bryce Young",
+            "slot": "QB",
+            "points": 10.36,
+            "gameState": "final"
+          },
+          {
+            "name": "Tyler Loop",
+            "slot": "K",
+            "points": 3,
+            "gameState": "final"
+          },
+          {
+            "name": "George Pickens",
+            "slot": "FLEX",
+            "points": 6.8,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Garrett Wilson",
+            "slot": "WR",
+            "points": 14.3,
+            "gameState": "final"
+          },
+          {
+            "name": "Brenton Strange",
+            "slot": "TE",
+            "points": 7.5,
+            "gameState": "final"
+          },
+          {
+            "name": "Commanders D/ST",
+            "slot": "D/ST",
+            "points": 0,
+            "gameState": "not_started"
+          }
+        ],
+        "startersFinal": 6,
+        "startersInProgress": 1,
+        "startersYetToPlay": 2,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -4569,10 +5059,71 @@
       "week8": {
         "opponentTeamId": 6,
         "homeAway": "home",
-        "projected": 125.5,
-        "opponentProjected": 109.9,
-        "currentPoints": 9.6,
-        "status": "in-progress"
+        "projected": 122.5,
+        "opponentProjected": 89.43,
+        "currentPoints": 104.94,
+        "status": "in-progress",
+        "opponentCurrentPoints": 65.2,
+        "starters": [
+          {
+            "name": "James Cook III",
+            "slot": "RB",
+            "points": 18.1,
+            "gameState": "final"
+          },
+          {
+            "name": "Justin Jefferson",
+            "slot": "WR",
+            "points": 14.3,
+            "gameState": "final"
+          },
+          {
+            "name": "Jonathan Taylor",
+            "slot": "RB",
+            "points": 6.7,
+            "gameState": "final"
+          },
+          {
+            "name": "Colston Loveland",
+            "slot": "TE",
+            "points": 0,
+            "gameState": "not_started"
+          },
+          {
+            "name": "Joe Burrow",
+            "slot": "QB",
+            "points": 30.14,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Michael Wilson",
+            "slot": "FLEX",
+            "points": 25.1,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Jalen Coker",
+            "slot": "WR",
+            "points": 9.6,
+            "gameState": "final"
+          },
+          {
+            "name": "Spencer Shrader",
+            "slot": "K",
+            "points": 1,
+            "gameState": "final"
+          },
+          {
+            "name": "Seahawks D/ST",
+            "slot": "D/ST",
+            "points": 0,
+            "gameState": "not_started"
+          }
+        ],
+        "startersFinal": 5,
+        "startersInProgress": 2,
+        "startersYetToPlay": 2,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -4998,10 +5549,71 @@
       "week8": {
         "opponentTeamId": 5,
         "homeAway": "home",
-        "projected": 127.7,
-        "opponentProjected": 139.1,
-        "currentPoints": 46.42,
-        "status": "in-progress"
+        "projected": 102.87,
+        "opponentProjected": 105.99,
+        "currentPoints": 83.82,
+        "status": "in-progress",
+        "opponentCurrentPoints": 79.96,
+        "starters": [
+          {
+            "name": "Ashton Jeanty",
+            "slot": "RB",
+            "points": 10.3,
+            "gameState": "final"
+          },
+          {
+            "name": "Trey McBride",
+            "slot": "TE",
+            "points": 18.4,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Jeremiyah Love",
+            "slot": "FLEX",
+            "points": 2.3,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Rashee Rice",
+            "slot": "WR",
+            "points": 0,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Chuba Hubbard",
+            "slot": "RB",
+            "points": 24.9,
+            "gameState": "final"
+          },
+          {
+            "name": "Jakobi Meyers",
+            "slot": "WR",
+            "points": 4.4,
+            "gameState": "final"
+          },
+          {
+            "name": "Cameron Dicker",
+            "slot": "K",
+            "points": 0,
+            "gameState": "in_progress"
+          },
+          {
+            "name": "Browns D/ST",
+            "slot": "D/ST",
+            "points": 2,
+            "gameState": "final"
+          },
+          {
+            "name": "Jordan Love",
+            "slot": "QB",
+            "points": 21.52,
+            "gameState": "final"
+          }
+        ],
+        "startersFinal": 5,
+        "startersInProgress": 4,
+        "startersYetToPlay": 0,
+        "asOf": "2026-11-01T16:28:00-05:00"
       },
       "roster": {
         "starters": [
@@ -5039,17 +5651,6 @@
             "keeperValueRound": 0
           },
           {
-            "name": "Jaylen Waddle",
-            "position": "WR",
-            "nflTeam": "DEN",
-            "lineupSlot": "WR",
-            "injuryStatus": "Questionable",
-            "byeWeek": 10,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 87.07,
-            "keeperValueRound": 6
-          },
-          {
             "name": "Jakobi Meyers",
             "position": "WR",
             "nflTeam": "JAX",
@@ -5059,6 +5660,17 @@
             "acquisitionType": "DRAFT",
             "percentOwnedEspnWide": 68.65,
             "keeperValueRound": 0
+          },
+          {
+            "name": "Rashee Rice",
+            "position": "WR",
+            "nflTeam": "KC",
+            "lineupSlot": "WR",
+            "injuryStatus": null,
+            "byeWeek": 5,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 94.14,
+            "keeperValueRound": 5
           },
           {
             "name": "Trey McBride",
@@ -5076,7 +5688,7 @@
             "position": "RB",
             "nflTeam": "ARI",
             "lineupSlot": "FLEX",
-            "injuryStatus": null,
+            "injuryStatus": "Out",
             "byeWeek": 14,
             "acquisitionType": "DRAFT",
             "percentOwnedEspnWide": 94.67,
@@ -5106,6 +5718,17 @@
           }
         ],
         "bench": [
+          {
+            "name": "Jaylen Waddle",
+            "position": "WR",
+            "nflTeam": "DEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "byeWeek": 10,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 87.07,
+            "keeperValueRound": 6
+          },
           {
             "name": "Brock Purdy",
             "position": "QB",
@@ -5138,17 +5761,6 @@
             "acquisitionType": "DRAFT",
             "percentOwnedEspnWide": 51.09,
             "keeperValueRound": 0
-          },
-          {
-            "name": "Rashee Rice",
-            "position": "WR",
-            "nflTeam": "KC",
-            "lineupSlot": "Bench",
-            "injuryStatus": null,
-            "byeWeek": 5,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 94.14,
-            "keeperValueRound": 5
           },
           {
             "name": "Mike Evans",
