@@ -84,11 +84,11 @@
     "match": true
    }
   ],
-  "displayPolicy": "displayName is the sanitized app name. Team 7 displays as Maye Day. Per-season names reuse history displayName from league-all-teams.json.",
+  "displayPolicy": "displayName is the app name. Team 7 shows its ESPN name. Per-season names reuse history displayName from league-all-teams.json.",
   "proposedAliases": {
    "Brioon Omeglemeally😈": "Brioon Omeglemeally"
   },
-  "aliasReview": "Season display names use each franchise's clean alias. Team 7 displays as Maye Day. Team 11 displays as Kabul FC."
+  "aliasReview": "Season display names use each franchise's clean alias, except team 7, which shows its ESPN name. Team 11 displays as Kabul FC."
  },
  "teamIndex": {
   "1": {
@@ -129,8 +129,8 @@
   },
   "7": {
    "teamId": 7,
-   "espnName": "Maye Day",
-   "displayName": "Maye Day",
+   "espnName": "Maye i give you a blowj0b",
+   "displayName": "Maye i give you a blowj0b",
    "abbrev": "MAYE"
   },
   "8": {
@@ -16038,8 +16038,8 @@
    "loserTeamId": 7,
    "isTie": false,
    "margin": 33.7,
-   "homeEspnName": "Maye Day",
-   "homeDisplayName": "Maye Day",
+   "homeEspnName": "Maye i give you a blowj0b",
+   "homeDisplayName": "Maye i give you a blowj0b",
    "awayEspnName": "All Heart",
    "awayDisplayName": "All Heart",
    "gameId": "2026-mp01-4v7"
@@ -16269,8 +16269,8 @@
    "loserTeamId": 7,
    "isTie": false,
    "margin": 63.16,
-   "homeEspnName": "Maye Day",
-   "homeDisplayName": "Maye Day",
+   "homeEspnName": "Maye i give you a blowj0b",
+   "homeDisplayName": "Maye i give you a blowj0b",
    "awayEspnName": "Jahmyr I Go Again",
    "awayDisplayName": "Jahmyr I Go Again",
    "gameId": "2026-mp02-2v7"
@@ -16469,8 +16469,8 @@
    "margin": 36.62,
    "homeEspnName": "Sandusky's Soldiers ",
    "homeDisplayName": "Sandusky's Soldiers",
-   "awayEspnName": "Maye Day",
-   "awayDisplayName": "Maye Day",
+   "awayEspnName": "Maye i give you a blowj0b",
+   "awayDisplayName": "Maye i give you a blowj0b",
    "gameId": "2026-mp03-7v10"
   },
   {
@@ -16566,8 +16566,8 @@
    "loserTeamId": 7,
    "isTie": false,
    "margin": 3.62,
-   "homeEspnName": "Maye Day",
-   "homeDisplayName": "Maye Day",
+   "homeEspnName": "Maye i give you a blowj0b",
+   "homeDisplayName": "Maye i give you a blowj0b",
    "awayEspnName": "Bibi's Boys X KASE Capital",
    "awayDisplayName": "Bibi's Boys",
    "gameId": "2026-mp04-1v7"
@@ -16698,8 +16698,8 @@
    "loserTeamId": 5,
    "isTie": false,
    "margin": 8.86,
-   "homeEspnName": "Maye Day",
-   "homeDisplayName": "Maye Day",
+   "homeEspnName": "Maye i give you a blowj0b",
+   "homeDisplayName": "Maye i give you a blowj0b",
    "awayEspnName": "Easy Peasy Lemon Squeezy",
    "awayDisplayName": "Easy Peasy Lemon Squeezy",
    "gameId": "2026-mp05-5v7"
@@ -16865,8 +16865,8 @@
    "margin": 21.32,
    "homeEspnName": "Chewy's Warriors",
    "homeDisplayName": "Chewy's Warriors",
-   "awayEspnName": "Maye Day",
-   "awayDisplayName": "Maye Day",
+   "awayEspnName": "Maye i give you a blowj0b",
+   "awayDisplayName": "Maye i give you a blowj0b",
    "gameId": "2026-mp06-3v7"
   },
   {
@@ -17129,8 +17129,8 @@
    "margin": 30.32,
    "homeEspnName": "Kabul FC",
    "homeDisplayName": "Kabul FC",
-   "awayEspnName": "Maye Day",
-   "awayDisplayName": "Maye Day",
+   "awayEspnName": "Maye i give you a blowj0b",
+   "awayDisplayName": "Maye i give you a blowj0b",
    "gameId": "2026-mp07-7v11"
   }
  ],
@@ -17269,7 +17269,7 @@
     "season": 2020,
     "matchupPeriod": 2,
     "opponentTeamId": 7,
-    "opponentDisplayName": "Maye Day",
+    "opponentDisplayName": "Maye i give you a blowj0b",
     "opponentSeasonDisplayName": "Biden 2020",
     "pointsFor": 80.78,
     "pointsAgainst": 175.6,
@@ -17282,7 +17282,7 @@
     "season": 2022,
     "matchupPeriod": 10,
     "opponentTeamId": 7,
-    "opponentDisplayName": "Maye Day",
+    "opponentDisplayName": "Maye i give you a blowj0b",
     "opponentSeasonDisplayName": "In Trouble",
     "pointsFor": 98.5,
     "pointsAgainst": 97,
@@ -17536,8 +17536,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 13,
      "wins": 7,
      "losses": 6,
@@ -18105,8 +18105,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 8,
      "wins": 5,
      "losses": 3,
@@ -18433,7 +18433,7 @@
     "season": 2020,
     "matchupPeriod": 13,
     "opponentTeamId": 7,
-    "opponentDisplayName": "Maye Day",
+    "opponentDisplayName": "Maye i give you a blowj0b",
     "opponentSeasonDisplayName": "Biden 2020",
     "pointsFor": 103.7,
     "pointsAgainst": 105.18,
@@ -18674,8 +18674,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 13,
      "wins": 4,
      "losses": 9,
@@ -19243,8 +19243,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 10,
      "wins": 5,
      "losses": 5,
@@ -19545,7 +19545,7 @@
     "season": 2025,
     "matchupPeriod": 2,
     "opponentTeamId": 7,
-    "opponentDisplayName": "Maye Day",
+    "opponentDisplayName": "Maye i give you a blowj0b",
     "opponentSeasonDisplayName": "Gerry's Gang",
     "pointsFor": 81.52,
     "pointsAgainst": 175.8,
@@ -19812,8 +19812,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 16,
      "wins": 5,
      "losses": 11,
@@ -20381,8 +20381,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 8,
      "wins": 3,
      "losses": 5,
@@ -20551,8 +20551,8 @@
   },
   "7": {
    "teamId": 7,
-   "espnName": "Maye Day",
-   "displayName": "Maye Day",
+   "espnName": "Maye i give you a blowj0b",
+   "displayName": "Maye i give you a blowj0b",
    "seasonNames": [
     {
      "season": 2020,
@@ -20586,8 +20586,8 @@
     },
     {
      "season": 2026,
-     "espnName": "Maye Day",
-     "displayName": "Maye Day"
+     "espnName": "Maye i give you a blowj0b",
+     "displayName": "Maye i give you a blowj0b"
     }
    ],
    "allTime": {
@@ -21194,7 +21194,7 @@
    },
    "easiestOpponent": {
     "opponentTeamId": 7,
-    "opponentDisplayName": "Maye Day",
+    "opponentDisplayName": "Maye i give you a blowj0b",
     "record": "5-3-0",
     "games": 8,
     "winPct": 0.625,
@@ -21561,8 +21561,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 8,
      "wins": 5,
      "losses": 3,
@@ -21847,7 +21847,7 @@
     "season": 2025,
     "matchupPeriod": 5,
     "opponentTeamId": 7,
-    "opponentDisplayName": "Maye Day",
+    "opponentDisplayName": "Maye i give you a blowj0b",
     "opponentSeasonDisplayName": "Gerry's Gang",
     "pointsFor": 137.26,
     "pointsAgainst": 138.22,
@@ -22130,8 +22130,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 12,
      "wins": 7,
      "losses": 5,
@@ -22699,8 +22699,8 @@
     },
     "7": {
      "opponentTeamId": 7,
-     "opponentEspnName": "Maye Day",
-     "opponentDisplayName": "Maye Day",
+     "opponentEspnName": "Maye i give you a blowj0b",
+     "opponentDisplayName": "Maye i give you a blowj0b",
      "games": 14,
      "wins": 5,
      "losses": 9,
@@ -22833,7 +22833,7 @@
     "teamId": 7,
     "seasonDisplayName": "Mixon Impossible",
     "seasonEspnName": "Mixon Impossible",
-    "currentDisplayName": "Maye Day",
+    "currentDisplayName": "Maye i give you a blowj0b",
     "season": 2024,
     "scoringPeriod": 11,
     "score": 192.68,
@@ -22847,7 +22847,7 @@
     "teamId": 7,
     "seasonDisplayName": "Gerry's Gang",
     "seasonEspnName": "Gerry's Gang",
-    "currentDisplayName": "Maye Day",
+    "currentDisplayName": "Maye i give you a blowj0b",
     "season": 2025,
     "scoringPeriod": 4,
     "score": 192.62,
@@ -22977,7 +22977,7 @@
     "teamId": 7,
     "seasonDisplayName": "Mixon Impossible",
     "seasonEspnName": "Mixon Impossible",
-    "currentDisplayName": "Maye Day",
+    "currentDisplayName": "Maye i give you a blowj0b",
     "season": 2024,
     "scoringPeriod": 11,
     "score": 192.68,
@@ -22991,7 +22991,7 @@
     "teamId": 7,
     "seasonDisplayName": "Gerry's Gang",
     "seasonEspnName": "Gerry's Gang",
-    "currentDisplayName": "Maye Day",
+    "currentDisplayName": "Maye i give you a blowj0b",
     "season": 2025,
     "scoringPeriod": 4,
     "score": 192.62,
@@ -23294,7 +23294,7 @@
     "playoffTier": "NONE",
     "twoWeekMatchup": false,
     "homeTeamId": 7,
-    "homeDisplayName": "Maye Day",
+    "homeDisplayName": "Maye i give you a blowj0b",
     "homeScore": 168.96,
     "awayTeamId": 5,
     "awayDisplayName": "Easy Peasy Lemon Squeezy",
@@ -23446,7 +23446,7 @@
    },
    {
     "teamId": 7,
-    "displayName": "Maye Day",
+    "displayName": "Maye i give you a blowj0b",
     "length": 8,
     "range": {
      "fromGameId": "2023-mp05-7v10",

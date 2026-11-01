@@ -4,7 +4,7 @@ import { MatchupBoard } from "@/components/league/MatchupBoard";
 import { getMatchup, LEAGUE, MATCHUPS, team } from "@/lib/league";
 
 export function generateStaticParams() {
-  return MATCHUPS.map((m) => ({ slug: m.slug }));
+  return [...MATCHUPS.map((m) => ({ slug: m.slug })), { slug: "maye-dim" }, { slug: "golden-goose" }];
 }
 
 export async function generateMetadata({ params }: PageProps<"/matchups/[slug]">): Promise<Metadata> {

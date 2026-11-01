@@ -2,9 +2,10 @@ import raw from "@/data/league-all-teams.json";
 import { franchiseAbbrev, franchiseName, isRetiredSeasonName, publicSeasonName } from "@/lib/names";
 
 /*
- * The committed Flaim/ESPN pull is the single source of truth. Raw ESPN names and
- * abbreviations are dropped while mapping into the public types below, so nothing
- * downstream can render them; only `displayName` / the app abbreviation survive.
+ * The committed Flaim/ESPN pull is the single source of truth. For every franchise
+ * except team 7, raw ESPN names and abbreviations are dropped while mapping, so
+ * only `displayName` and the app abbreviation survive. Team 7 keeps ESPN's name
+ * and uses ESPN's abbreviation when that abbreviation is not MAYE.
  */
 
 interface RawPlayer {
@@ -43,6 +44,10 @@ interface RawTeam {
   teamId: number;
   displayName: string;
   displayAbbrev: string;
+  /** Present on the pull. Team 7 renders this name; other franchises keep `displayName`. */
+  espnName?: string | null;
+  /** Present on the pull. Team 7 uses this when it is not MAYE. */
+  espnAbbrev?: string | null;
   ownerLabelFromApp: string | null;
   isUserTeam: boolean;
   record: { wins: number; losses: number; ties: number; winPercentage: number };
@@ -239,8 +244,8 @@ export { isRetiredSeasonName, publicSeasonName };
 
 export const TEAMS: Team[] = file.teams.map((t) => ({
   id: t.teamId,
-  name: franchiseName(t.teamId, t.displayName),
-  abbrev: franchiseAbbrev(t.teamId, t.displayAbbrev),
+  name: franchiseName(t.teamId, t.displayName, t.espnName),
+  abbrev: franchiseAbbrev(t.teamId, t.displayAbbrev, t.espnAbbrev),
   color: COLORS[t.teamId] ?? "#64748b",
   owner: nn(t.ownerLabelFromApp),
   isUser: t.isUserTeam,
@@ -275,7 +280,7 @@ export const TEAMS: Team[] = file.teams.map((t) => ({
   history: {
     seasons: t.history.seasons.map((s) => ({
       season: s.season,
-      name: publicSeasonName(franchiseName(t.teamId, t.displayName), s.season, s.displayName),
+      name: publicSeasonName(franchiseName(t.teamId, t.displayName, t.espnName), s.season, s.displayName),
       wins: s.wins,
       losses: s.losses,
       ties: s.ties,
@@ -428,7 +433,7 @@ export const MATCHUPS: Matchup[] = currentWeekGames()
   .sort((a, b) => Number(b.left.teamId === USER_TEAM.id) - Number(a.left.teamId === USER_TEAM.id));
 
 /** Older URL ids kept working for shared links. */
-const SLUG_ALIASES: { [slug: string]: number } = { "golden-goose": 7, bibis: 1 };
+const SLUG_ALIASES: { [slug: string]: number } = { "golden-goose": 7, "maye-dim": 7, bibis: 1 };
 
 export function getMatchup(slug: string) {
   const aliased = SLUG_ALIASES[slug];

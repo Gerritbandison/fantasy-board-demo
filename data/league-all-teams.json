@@ -14,7 +14,7 @@
       "Week 8 projections are ESPN totalProjectedPoints at fetch time (pre-kickoff).",
       "2026-10-31 Flaim/ESPN update: week 8 is in progress after Thursday Oct 29 (Packers 27, Panthers 19). homeCurrentPoints/awayCurrentPoints are fantasy points so far (full PPR). Bracketed projections are the projected finals supplied with that pull. Standings, weekly results, and season totals are still through week 7. Jordan Love started for Kabul on Thursday, so he is in the QB slot and Brock Purdy is on the bench."
     ],
-    "displayPolicy": "Team 7 displays as Maye Day (MAYE). Other teams use their clean display names.",
+    "displayPolicy": "Team 7 shows its ESPN name and ESPN abbreviation. Other teams use their clean display names.",
     "updatedAt": "2026-10-31T12:00:00-04:00"
   },
   "league": {
@@ -72,9 +72,9 @@
       "abbrev": "SMF"
     },
     "7": {
-      "espnName": "Maye Day",
-      "displayName": "Maye Day",
-      "abbrev": "MAYE"
+      "espnName": "Maye i give you a blowj0b",
+      "displayName": "Maye i give you a blowj0b",
+      "abbrev": "GOD"
     },
     "8": {
       "espnName": "Dimes McSorley",
@@ -203,7 +203,7 @@
     },
     {
       "teamId": 7,
-      "displayName": "Maye Day",
+      "displayName": "Maye i give you a blowj0b",
       "rank": 10,
       "playoffSeed": 10,
       "wins": 2,
@@ -3466,11 +3466,11 @@
     },
     {
       "teamId": 7,
-      "espnName": "Maye Day",
-      "displayName": "Maye Day",
-      "displayNameSource": "Maye Day",
+      "espnName": "Maye i give you a blowj0b",
+      "displayName": "Maye i give you a blowj0b",
+      "displayNameSource": "real ESPN name (owner request)",
       "espnAbbrev": "GOD",
-      "displayAbbrev": "MAYE",
+      "displayAbbrev": "GOD",
       "ownerName": null,
       "ownerLabelFromApp": "Gerrit",
       "isUserTeam": true,

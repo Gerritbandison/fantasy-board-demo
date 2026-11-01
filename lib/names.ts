@@ -1,11 +1,8 @@
-/** Public name for the user's franchise. Historical season names stay on their own aliases. */
+/** Team 7 keeps ESPN's own name. These other raw strings still map to the app's clean names. */
 export const USER_TEAM_ID = 7;
-export const USER_PUBLIC_NAME = "Maye Day";
-export const USER_PUBLIC_ABBREV = "MAYE";
 
-/** Raw strings that must never be rendered. Keys are matched after whitespace is collapsed. */
+/** Raw strings for every franchise except team 7. Matched after whitespace is collapsed. */
 const VULGAR_TO_CLEAN: { test: RegExp; clean: string }[] = [
-  { test: /^maye i give you a blowj0b$/i, clean: USER_PUBLIC_NAME },
   { test: /^kabul cocknballs$/i, clean: "Kabul FC" },
   { test: /^the fucking letdowns$/i, clean: "The Letdowns" },
   { test: /^team wet ass pussy$/i, clean: "Team WAP" },
@@ -35,15 +32,28 @@ export function publicSeasonName(currentName: string, season: number, name: stri
   return isRetiredSeasonName(shown) ? `${current} (${season})` : shown;
 }
 
-/** Current franchise name. Team 7 is always Maye Day. */
-export function franchiseName(teamId: number, displayName: string) {
-  if (teamId === USER_TEAM_ID) return USER_PUBLIC_NAME;
+/**
+ * Current franchise name. Team 7 uses ESPN's spelling when the pull includes it.
+ * Every other franchise goes through the clean-name list.
+ */
+export function franchiseName(teamId: number, displayName: string, espnName?: string | null) {
+  if (teamId === USER_TEAM_ID) {
+    const espn = collapseName(espnName ?? "");
+    if (espn) return espn;
+  }
   return cleanName(displayName);
 }
 
-/** Current franchise abbreviation. Team 7 is always MAYE. */
-export function franchiseAbbrev(teamId: number, abbrev: string) {
-  if (teamId === USER_TEAM_ID) return USER_PUBLIC_ABBREV;
-  const trimmed = abbrev.trim();
-  return trimmed.toUpperCase() === "NIGG" ? "KAB" : trimmed;
+/**
+ * Current franchise abbreviation. Team 7 stays MAYE when that is also ESPN's abbreviation,
+ * and uses ESPN's own abbreviation when the two differ.
+ */
+export function franchiseAbbrev(teamId: number, abbrev: string, espnAbbrev?: string | null) {
+  const shown = abbrev.trim();
+  const espn = (espnAbbrev ?? "").trim();
+  if (teamId === USER_TEAM_ID) {
+    if (espn && espn.toUpperCase() !== "MAYE") return espn;
+    return shown || "MAYE";
+  }
+  return shown.toUpperCase() === "NIGG" ? "KAB" : shown;
 }

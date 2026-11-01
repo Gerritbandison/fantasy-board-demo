@@ -2,10 +2,10 @@ import { getMatchup, LEAGUE, MATCHUPS, team } from "@/lib/league";
 import { buildPreview } from "@/lib/preview";
 
 export async function generateStaticParams() {
-  return [...MATCHUPS.map((m) => ({ slug: m.slug })), { slug: "golden-goose" }, { slug: "bibis" }];
+  return [...MATCHUPS.map((m) => ({ slug: m.slug })), { slug: "maye-dim" }, { slug: "golden-goose" }, { slug: "bibis" }];
 }
 
-/** GET /api/matchup/:slug for any week 8 game (e.g. maye-dim); golden-goose and bibis still resolve. */
+/** GET /api/matchup/:slug for any week 8 game (e.g. god-dim); maye-dim, golden-goose, and bibis still resolve. */
 export async function GET(_req: Request, ctx: RouteContext<"/api/matchup/[slug]">) {
   const { slug } = await ctx.params;
   const m = getMatchup(slug);
