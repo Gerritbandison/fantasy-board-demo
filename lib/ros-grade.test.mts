@@ -44,7 +44,8 @@ test("position grades cite counted Weeks 4–7 numbers", () => {
   assert.match(pos("WR").reason, /Puka Nacua is 1st/);
   assert.match(pos("WR").reason, /25\.3 points per game/);
   assert.match(pos("WR").reason, /DJ Moore is the weakest starter/);
-  assert.match(pos("WR").reason, /2\.7 points, Questionable/);
+  assert.match(pos("WR").reason, /2\.7 points\./);
+  assert.doesNotMatch(pos("WR").reason, /Questionable/);
   assert.match(pos("WR").reason, /Projection: Moore is the No\. 7/);
 
   assert.equal(pos("TE").letter, "A");
@@ -55,7 +56,7 @@ test("position grades cite counted Weeks 4–7 numbers", () => {
   assert.match(pos("TE").reason, /does not set this grade/);
 
   assert.equal(pos("FLEX").letter, "A-");
-  assert.match(pos("FLEX").reason, /Matthew Golden is 2nd/);
+  assert.match(pos("FLEX").reason, /Matthew Golden is 3rd of 8/);
   assert.match(pos("FLEX").reason, /No\. 3 flex/);
 
   assert.equal(pos("DST").letter, "C");

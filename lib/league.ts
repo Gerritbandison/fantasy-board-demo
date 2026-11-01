@@ -14,6 +14,7 @@ interface RawPlayer {
   nflTeam: string | null;
   lineupSlot: string;
   injuryStatus: string | null;
+  byeWeek?: number | null;
 }
 
 interface RawWeek {
@@ -154,6 +155,8 @@ export interface Player {
   nflTeam?: string;
   slot: string;
   status?: string;
+  /** True when the player's NFL bye is the current league week. */
+  onBye?: boolean;
 }
 
 export interface TeamWeek {
@@ -237,7 +240,14 @@ const COLORS: { [id: number]: string } = {
 const nn = <T>(v: T | null | undefined): T | undefined => (v == null ? undefined : v);
 
 function player(p: RawPlayer): Player {
-  return { name: p.name, position: p.position, nflTeam: nn(p.nflTeam), slot: p.lineupSlot, status: nn(p.injuryStatus) };
+  return {
+    name: p.name,
+    position: p.position,
+    nflTeam: nn(p.nflTeam),
+    slot: p.lineupSlot,
+    status: nn(p.injuryStatus),
+    onBye: p.byeWeek === file.meta.currentWeek ? true : undefined,
+  };
 }
 
 export { isRetiredSeasonName, publicSeasonName };

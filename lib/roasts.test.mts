@@ -76,4 +76,37 @@ test("week 8 roast cards stay on the app's names", () => {
     assert.equal(/\bJIGA\b|\bKBL\b/.test(blob), false, blob);
     assert.equal(/\bKabul\b(?! FC)/.test(normalizeRoastText(blob)), false, blob);
   }
+
+  const card = (home: number, away: number) => roasts.matchups.find((m) => m.homeTeamId === home && m.awayTeamId === away);
+  const kabul = card(11, 5);
+  assert.match(kabul?.roast ?? "", /Jakobi Meyers was cleared/);
+  assert.doesNotMatch(`${kabul?.roast} ${kabul?.tag}`, /Meyers both/);
+  assert.equal(kabul?.projection.away, 139.1);
+
+  const smert = card(10, 6);
+  assert.match(smert?.roast ?? "", /Khalil Shakir/);
+  assert.match(smert?.roast ?? "", /KC Concepcion/);
+  assert.doesNotMatch(smert?.roast ?? "", /starting DeVonta Smith/);
+  assert.equal(smert?.projection.away, 109.9);
+  assert.match(smert?.tag ?? "", /15\.6/);
+
+  const heart = card(4, 2);
+  assert.match(heart?.roast ?? "", /Patrick Mahomes starts/);
+  assert.doesNotMatch(`${heart?.roast} ${heart?.tag}`, /Mahomes on the bench|benched Patrick Mahomes/);
+  assert.match(heart?.tag ?? "", /17\.6/);
+  assert.equal(heart?.projection.home, 111.4);
+
+  const chewy = card(3, 1);
+  assert.doesNotMatch(chewy?.tag ?? "", /LOCK:/);
+  assert.equal(chewy?.projection.home, 133.4);
+  assert.equal(chewy?.projection.away, 131.0);
+  assert.match(chewy?.tag ?? "", /133\.4 to 131\.0/);
+
+  const home = card(7, 8);
+  assert.match(home?.roast ?? "", /DJ Moore was cleared/);
+  assert.doesNotMatch(`${home?.roast} ${home?.tag}`, /Moore starts as Questionable/);
+  assert.equal(home?.projection.away, 115.4);
+  assert.match(home?.tag ?? "", /27\.3/);
+  assert.match(home?.roast ?? "", /23\.2/);
+  assert.match(home?.roast ?? "", /20\.9/);
 });

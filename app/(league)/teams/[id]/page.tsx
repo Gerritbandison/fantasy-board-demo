@@ -51,7 +51,9 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
   const opp: MatchupSide | undefined = m ? (m.left.teamId === t.id ? m.right : m.left) : undefined;
   const oppId = opp?.teamId;
   const myProj = mine?.projected;
-  const flagged = [...t.roster.starters, ...t.roster.bench, ...t.roster.ir].filter(isFlagged);
+  const rosterPlayers = [...t.roster.starters, ...t.roster.bench, ...t.roster.ir];
+  const flagged = rosterPlayers.filter(isFlagged);
+  const onBye = rosterPlayers.filter((p) => p.onBye);
   const idx = STANDINGS.findIndex((x) => x.id === t.id);
   const prev = STANDINGS[(idx - 1 + STANDINGS.length) % STANDINGS.length];
   const next = STANDINGS[(idx + 1) % STANDINGS.length];
@@ -189,6 +191,12 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
             </dl>
           </Card>
 
+          {onBye.length > 0 && (
+            <p className="text-sm leading-snug text-slate-600">
+              Bye this week: {onBye.map((p) => p.name).join(", ")}.
+            </p>
+          )}
+
           {flagged.length > 0 && (
             <div className="flex items-start gap-3 rounded-2xl bg-red-50 px-4 py-3 ring-1 ring-red-100">
               <ShieldAlert className="mt-0.5 size-5 shrink-0 text-loss" />
@@ -215,7 +223,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                     <ArrowLeftRight className="mt-0.5 size-4 shrink-0 text-slate-600" />
                     <div className="min-w-0 text-sm leading-snug">
                       <p className="text-xs font-semibold text-slate-600">
-                        {[mv.week != null ? `Week ${mv.week}` : null, mv.date ? formatDate(mv.date) : null, mv.type === "waiver" ? "Waiver claim" : "Free agent"]
+                        {[mv.week != null ? `Week ${mv.week}` : null, mv.date ? formatDate(mv.date) : null, moveLabel(mv.type)]
                           .filter(Boolean)
                           .join(" · ")}
                         {mv.faabBid != null && ` · $${mv.faabBid} FAAB`}
@@ -418,4 +426,11 @@ function winPct(r: { wins: number; losses: number; ties: number }) {
 function formatDate(iso: string) {
   const d = new Date(`${iso}T12:00:00`);
   return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
+
+function moveLabel(type: string) {
+  if (type === "waiver") return "Waiver claim";
+  if (type === "drop") return "Drop";
+  if (type === "trade") return "Trade";
+  return "Free agent";
 }

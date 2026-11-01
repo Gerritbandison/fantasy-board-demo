@@ -3,7 +3,7 @@
   "playoffSpots": 4,
   "regularSeasonWeeks": 14,
   "nonByeEspn": 130.2,
-  "source": "ESPN via Flaim, pulled Sat Oct 31, 2026, 9:35 PM ET. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead.",
+  "source": "ESPN via Flaim, pulled Sat Oct 31, 2026, 9:35 PM ET. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 projections for Smert Fellas, All Heart, Chewy's Warriors, and Dimes McSorley were refreshed Sun Nov 1, 2026, 12:20 PM ET. Weeks 9-14 were not re-pulled.",
   "teams": [
     {
       "id": 1,
@@ -101,7 +101,7 @@
       "homeId": 10,
       "awayId": 6,
       "homeProj": 125.5,
-      "awayProj": 98.5,
+      "awayProj": 109.9,
       "homeCurrent": 9.6,
       "awayCurrent": 5
     },
@@ -109,7 +109,7 @@
       "week": 8,
       "homeId": 4,
       "awayId": 2,
-      "homeProj": 114.4,
+      "homeProj": 111.4,
       "awayProj": 129.0,
       "homeCurrent": 17.3,
       "awayCurrent": 0
@@ -118,7 +118,7 @@
       "week": 8,
       "homeId": 3,
       "awayId": 1,
-      "homeProj": 116.2,
+      "homeProj": 133.4,
       "awayProj": 131.0,
       "homeCurrent": 11.8,
       "awayCurrent": 0
@@ -128,7 +128,7 @@
       "homeId": 7,
       "awayId": 8,
       "homeProj": 142.7,
-      "awayProj": 115.9,
+      "awayProj": 115.4,
       "homeCurrent": 44.1,
       "awayCurrent": 10.36
     },

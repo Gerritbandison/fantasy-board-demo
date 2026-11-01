@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { formatRecord, isFlagged, LEAGUE, ordinal, team, teamPath, type Matchup, type Player, type Team } from "@/lib/league";
 import { buildPreview, type Edge } from "@/lib/preview";
 import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
-import { ScoreReadout, SlotChip, StatusChip } from "./bits";
+import { ByeChip, ScoreReadout, SlotChip, StatusChip } from "./bits";
 import { MatchupSeries } from "./h2h";
 import { Card, PageHeader, Stat, TeamAvatar } from "./ui";
 import { MiniTrail, ScoreTrail, TrailLegend, WeekStrip } from "./trail";
@@ -267,8 +267,13 @@ function TeamCard({ t }: { t: Team }) {
   );
 }
 
+function starterTag(p: Player) {
+  const bits = [isFlagged(p) ? (p.status === "Questionable" ? "Q" : p.status) : null, p.onBye ? "Bye" : null].filter(Boolean);
+  return bits.join(", ");
+}
+
 function InjuryReport({ L, R }: { L: Team; R: Team }) {
-  const list = [L, R].flatMap((t) => t.roster.starters.filter(isFlagged).map((p) => ({ p, t })));
+  const list = [L, R].flatMap((t) => t.roster.starters.filter((p) => isFlagged(p) || p.onBye).map((p) => ({ p, t })));
   if (list.length === 0) return null;
   return (
     <div className="flex items-start gap-3 rounded-2xl bg-red-50 px-4 py-3 ring-1 ring-red-100">
@@ -279,8 +284,7 @@ function InjuryReport({ L, R }: { L: Team; R: Team }) {
           {list.map(({ p, t }, i) => (
             <span key={`${t.id}-${p.name}`}>
               {i > 0 && " · "}
-              {p.name} <span className="font-semibold text-loss">({p.status === "Questionable" ? "Q" : p.status})</span>{" "}
-              <span className="text-slate-600">{t.abbrev}</span>
+              {p.name} <span className="font-semibold text-loss">({starterTag(p)})</span> <span className="text-slate-600">{t.abbrev}</span>
             </span>
           ))}
         </p>
@@ -320,7 +324,7 @@ export function PlayerCell({ player, align = "left" }: { player?: Player; align?
   return (
     <div className={cn("min-w-0", align === "right" && "text-right")}>
       <p className="text-[15px] leading-tight font-semibold break-words text-navy">{player.name}</p>
-      {(player.nflTeam || isFlagged(player)) && (
+      {(player.nflTeam || isFlagged(player) || player.onBye) && (
         <p className={cn("mt-0.5 flex items-center gap-1.5 text-xs text-slate-600", align === "right" && "justify-end")}>
           {player.nflTeam && (
             <span>
@@ -329,6 +333,7 @@ export function PlayerCell({ player, align = "left" }: { player?: Player; align?
             </span>
           )}
           <StatusChip status={player.status} />
+          <ByeChip onBye={player.onBye} />
         </p>
       )}
     </div>
@@ -345,6 +350,7 @@ export function BenchList({ players }: { players: Player[] }) {
           <span className="min-w-0 flex-1 text-[15px] leading-tight font-medium break-words text-slate-700">{p.name}</span>
           {p.nflTeam && <span className="text-xs text-slate-600">{p.nflTeam}</span>}
           <StatusChip status={p.status} />
+          <ByeChip onBye={p.onBye} />
         </li>
       ))}
     </ul>
