@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ScoreReadout } from "@/components/league/bits";
-import { ThursdayNight } from "@/components/league/ThursdayNight";
 import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components/league/ui";
+import { WeekRoasts } from "@/components/league/WeekRoasts";
 import { cn } from "@/lib/utils";
-import { formatRecord, GAMES, LEAGUE, MATCHUPS, matchupPath, ordinal, team, teamPath, THURSDAY, USER_TEAM, winnerSide } from "@/lib/league";
+import { formatRecord, GAMES, LEAGUE, MATCHUPS, matchupPath, ordinal, team, teamPath, USER_TEAM, winnerSide } from "@/lib/league";
 import { buildPreview } from "@/lib/preview";
 
 export const metadata: Metadata = {
   title: "Scores",
-  description: `All five week ${LEAGUE.week} matchups in the Chicken league with projections and previews, plus last week's finals.`,
+  description: `All five week ${LEAGUE.week} matchups in the Chicken league, with live scores, projections, roast cards, and last week's finals.`,
 };
 
 export default function MatchupsPage() {
@@ -22,12 +22,12 @@ export default function MatchupsPage() {
       <PageHeader eyebrow={`Week ${LEAGUE.week} scoreboard`} title="Scores">
         <p className="mt-2 text-[15px] text-slate-600">
           {live
-            ? `All ${MATCHUPS.length} games this week are in progress${THURSDAY ? " after Thursday" : ""}. The number in brackets is the projected final. Standings are still through week ${lastWeek}.`
-            : `All ${MATCHUPS.length} games this week. Tap one for the preview, tale of the tape, and lineups.`}
+            ? `The roast cards are this week's takes. Under them, all ${MATCHUPS.length} games are in progress: the number in brackets is the projected final. Standings are still through week ${lastWeek}.`
+            : `The roast cards are this week's takes. Under them, all ${MATCHUPS.length} games. Tap one for the preview, tale of the tape, and lineups.`}
         </p>
       </PageHeader>
 
-      <ThursdayNight />
+      <WeekRoasts />
 
       <ul className="grid gap-5 lg:grid-cols-2">
         {MATCHUPS.map((m) => {

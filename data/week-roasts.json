@@ -1,0 +1,62 @@
+{
+  "week": 8,
+  "dataPulledAt": "2026-11-01T12:20:00-05:00",
+  "note": "Swap this file each week. The scores page shows it only when week matches meta.currentWeek in league-all-teams.json. Team names, abbreviations, and records are taken from that directory, not from the words in headline or roast.",
+  "matchups": [
+    {
+      "matchupId": "2026-mp08-11v5",
+      "homeTeamId": 11,
+      "awayTeamId": 5,
+      "homePoints": 46.42,
+      "awayPoints": 0,
+      "headline": "Kabul FC Cashed In on Thursday. Easy Peasy Lemon Squeezy Still Has Josh Allen.",
+      "roast": "Kabul FC banked 46.42 before Sunday because Chuba Hubbard (24.9) and Jordan Love (21.52) both started in the same game, and Kabul FC is 9th in points for (776.74), so it needed every one of them. Jakobi Meyers was cleared and starts. Jaylen Waddle is still Questionable. Easy Peasy Lemon Squeezy has Tee Higgins, Courtland Sutton and Stefon Diggs on the bench while Parker Washington starts. It also starts a Jaguars D/ST that averaged -2.0 over Weeks 4-7. Easy Peasy Lemon Squeezy leads the all-time series 9-5, so Kabul FC's Thursday head start may not hold.",
+      "projection": { "home": 127.7, "away": 139.1 },
+      "tag": "UPSET ALERT: Kabul FC leads 46.42-0, but ESPN still projects Easy Peasy Lemon Squeezy to win by 11.4."
+    },
+    {
+      "matchupId": "2026-mp08-10v6",
+      "homeTeamId": 10,
+      "awayTeamId": 6,
+      "homePoints": 9.6,
+      "awayPoints": 5,
+      "headline": "Sandusky's Soldiers Benched 17.3 Points and Still Leads",
+      "roast": "Sandusky's Soldiers left Tucker Kraft on the bench for his 17.3-point Thursday and started Jalen Coker (9.6) instead. Sandusky's Soldiers has lost three straight, including a season-low 92.98 last week. Smert Fellas benched DeVonta Smith, who is listed Out, and now starts Khalil Shakir at flex and KC Concepcion at wide receiver. So far its only points are 5 from the Panthers D/ST. Smert Fellas is 2-5. ESPN has Smert Fellas at 109.9, and Sandusky's Soldiers is still up by 15.6.",
+      "projection": { "home": 125.5, "away": 109.9 },
+      "tag": "LOCK: Sandusky's Soldiers, projected to win by 15.6."
+    },
+    {
+      "matchupId": "2026-mp08-4v2",
+      "homeTeamId": 4,
+      "awayTeamId": 2,
+      "homePoints": 17.3,
+      "awayPoints": 0,
+      "headline": "All Heart's Ex, Josh Jacobs, Scored 23.2 for Someone Else on Thursday",
+      "roast": "All Heart traded Josh Jacobs, Cam Skattebo and DJ Moore to Maye i give you a blowj0b on Oct 15. Jacobs scored 23.2 for his new team on Thursday, while DK Metcalf and Chase Brown have yet to play for All Heart. Patrick Mahomes starts, with Kyler Murray on the bench, and DeMario Douglas starts at flex. Christian McCaffrey, Travis Kelce and Chris Olave are still sitting. Jahmyr I Go Again has lost two straight with 75.88 and 97.2 after opening 3-0. It still starts Jahmyr Gibbs, Bijan Robinson and Kyren Williams, so it has no excuse. The all-time series is tied 7-7.",
+      "projection": { "home": 111.4, "away": 129.0 },
+      "tag": "UPSET ALERT: All Heart's Christian Watson already has 17.3, and Jahmyr I Go Again is favored by 17.6."
+    },
+    {
+      "matchupId": "2026-mp08-3v1",
+      "homeTeamId": 3,
+      "awayTeamId": 1,
+      "homePoints": 11.8,
+      "awayPoints": 0,
+      "headline": "The League's Top Scorer vs. the League's Best Record",
+      "roast": "Chewy's Warriors lead the league with 992.74 points for and still sit at 4-3. De'Von Achane is on IR, while Emeka Egbuka and Kyle Monangai are listed Out. Braelon Allen moved into the flex, and Dallas Goedert starts over Sam LaPorta. Bibi's Boys is 6-1 on five straight wins despite ranking just 4th in points for. It has scored between 117.06 and 135.72 every week, so it never surprises anyone, and it keeps winning. Bibi's Boys leads the all-time series 9-8. ESPN flipped the favorite: Chewy's Warriors 133.4, Bibi's Boys 131.0.",
+      "projection": { "home": 133.4, "away": 131.0 },
+      "tag": "TOSS-UP: Chewy's Warriors is favored by 2.4, 133.4 to 131.0."
+    },
+    {
+      "matchupId": "2026-mp08-7v8",
+      "homeTeamId": 7,
+      "awayTeamId": 8,
+      "homePoints": 44.1,
+      "awayPoints": 10.36,
+      "headline": "The Last-Place Points Team vs. the Team That Keeps Winning Without Points",
+      "roast": "Maye i give you a blowj0b is 2-5 and last in points for with 771.16. Josh Jacobs (23.2) and Matthew Golden (20.9) already have 44.1 points, and those Thursday totals are locked. DJ Moore was cleared and starts. Harold Fannin Jr. still starts at tight end because Isaiah Likely is on bye, and nobody in the starting lineup is Out, Questionable, or on bye. Dimes McSorley has won four straight while ranking just 8th in points for. On Thursday its QB, Bryce Young, scored 10.36 after being sacked six times. Dimes McSorley is starting Brenton Strange at TE with George Kittle on the bench. Dimes McSorley leads the all-time series 5-3, but the home side won the last meeting 127.84-74.48 in 2025.",
+      "projection": { "home": 142.7, "away": 115.4 },
+      "tag": "LOCK: Maye i give you a blowj0b, the week's top projection at 142.7, favored by 27.3."
+    }
+  ]
+}

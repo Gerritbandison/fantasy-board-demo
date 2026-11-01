@@ -63,3 +63,12 @@ export function StatusChip({ status }: { status?: string }) {
     </span>
   );
 }
+
+export function ByeChip({ onBye }: { onBye?: boolean }) {
+  if (!onBye) return null;
+  return (
+    <span title="Bye this week" className="shrink-0 text-xs font-bold text-slate-600">
+      BYE
+    </span>
+  );
+}

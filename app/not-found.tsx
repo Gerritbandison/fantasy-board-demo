@@ -11,11 +11,11 @@ export default function NotFound() {
         <h1 className="font-display text-5xl font-extrabold text-navy">That page isn&apos;t on the board</h1>
         <p className="max-w-xl text-base text-slate-700">The link doesn&apos;t match a team, a matchup, or a section of Chicken League.</p>
         <div className="mt-2 flex flex-wrap gap-2">
-          <Link href="/" className="inline-flex h-11 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white">
-            Teams
-          </Link>
-          <Link href="/matchups" className="inline-flex h-11 items-center rounded-full bg-white px-4 text-sm font-semibold text-navy ring-1 ring-line">
+          <Link href="/matchups" className="inline-flex h-11 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white">
             Scores
+          </Link>
+          <Link href="/teams" className="inline-flex h-11 items-center rounded-full bg-white px-4 text-sm font-semibold text-navy ring-1 ring-line">
+            Teams
           </Link>
           <Link href="/history" className="inline-flex h-11 items-center rounded-full bg-white px-4 text-sm font-semibold text-navy ring-1 ring-line">
             History

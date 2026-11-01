@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useSyncExternalStore, type KeyboardEvent, type ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { cx } from "@/lib/cx";
 
 export interface TeamTab {
   id: string;
@@ -85,7 +85,7 @@ export function TeamTabs({ tabs }: { tabs: TeamTab[] }) {
                 aria-controls={`team-panel-${t.id}`}
                 tabIndex={on ? 0 : -1}
                 onClick={() => select(t.id)}
-                className={cn(
+                className={cx(
                   "h-9 flex-1 shrink-0 rounded-full px-3 text-sm font-semibold whitespace-nowrap transition-colors",
                   on ? "bg-navy text-white shadow-sm" : "text-slate-600 hover:bg-slate-100 hover:text-navy",
                 )}

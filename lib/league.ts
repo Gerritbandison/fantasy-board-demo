@@ -1,9 +1,11 @@
 import raw from "@/data/league-all-teams.json";
+import { franchiseAbbrev, franchiseName, isRetiredSeasonName, publicSeasonName } from "@/lib/names";
 
 /*
- * The committed Flaim/ESPN pull is the single source of truth. Raw ESPN names and
- * abbreviations are dropped while mapping into the public types below, so nothing
- * downstream can render them; only `displayName` / the app abbreviation survive.
+ * The committed Flaim/ESPN pull is the single source of truth. For every franchise
+ * except team 7, raw ESPN names and abbreviations are dropped while mapping, so
+ * only `displayName` and the app abbreviation survive. Team 7 keeps ESPN's name
+ * and uses ESPN's abbreviation when that abbreviation is not MAYE.
  */
 
 interface RawPlayer {
@@ -12,6 +14,7 @@ interface RawPlayer {
   nflTeam: string | null;
   lineupSlot: string;
   injuryStatus: string | null;
+  byeWeek?: number | null;
 }
 
 interface RawWeek {
@@ -42,6 +45,10 @@ interface RawTeam {
   teamId: number;
   displayName: string;
   displayAbbrev: string;
+  /** Present on the pull. Team 7 renders this name; other franchises keep `displayName`. */
+  espnName?: string | null;
+  /** Present on the pull. Team 7 uses this when it is not MAYE. */
+  espnAbbrev?: string | null;
   ownerLabelFromApp: string | null;
   isUserTeam: boolean;
   record: { wins: number; losses: number; ties: number; winPercentage: number };
@@ -93,36 +100,6 @@ interface RawWeek8Game {
   status?: string | null;
 }
 
-interface RawThursdayPlayer {
-  teamId: number;
-  name: string;
-  nflTeam?: string | null;
-  position: string;
-  points: number;
-  started: boolean;
-  line?: string | null;
-}
-
-interface RawThursday {
-  week: number;
-  date: string;
-  kickoff: string;
-  scoring: string;
-  nfl: {
-    away: string;
-    home: string;
-    awayScore: number;
-    homeScore: number;
-    site: string;
-    awayRecord: string;
-    homeRecord: string;
-    quarters: { [abbr: string]: number[] };
-    source: string;
-  };
-  players: RawThursdayPlayer[];
-  quietTeamIds: number[];
-}
-
 interface RawChampion {
   season: number;
   championTeamId: number;
@@ -135,7 +112,6 @@ interface RawFile {
   meta: { generatedAt: string; source: string; leagueId: string; season: number; currentWeek: number };
   league: { name: string; size: number; previousSeasons: number[] };
   schedule: { weeks1to7?: RawGame[]; completed?: RawGame[]; week8?: RawWeek8Game[] } & { [key: string]: unknown };
-  week8Thursday?: RawThursday | null;
   champions: RawChampion[];
   teams: RawTeam[];
 }
@@ -148,6 +124,8 @@ export interface Player {
   nflTeam?: string;
   slot: string;
   status?: string;
+  /** True when the player's NFL bye is the current league week. */
+  onBye?: boolean;
 }
 
 export interface TeamWeek {
@@ -231,27 +209,22 @@ const COLORS: { [id: number]: string } = {
 const nn = <T>(v: T | null | undefined): T | undefined => (v == null ? undefined : v);
 
 function player(p: RawPlayer): Player {
-  return { name: p.name, position: p.position, nflTeam: nn(p.nflTeam), slot: p.lineupSlot, status: nn(p.injuryStatus) };
+  return {
+    name: p.name,
+    position: p.position,
+    nflTeam: nn(p.nflTeam),
+    slot: p.lineupSlot,
+    status: nn(p.injuryStatus),
+    onBye: p.byeWeek === file.meta.currentWeek ? true : undefined,
+  };
 }
 
-/** Season names never shown; the franchise's current name plus the year stands in for them. */
-const RETIRED_SEASON_NAMES = new Set(["Black Lives"]);
-
-const clean = (name: string) => name.replace(/\s+/g, " ").trim();
-
-export function isRetiredSeasonName(name: string) {
-  return RETIRED_SEASON_NAMES.has(clean(name));
-}
-
-/** A past season's display name, safe to render on its own. */
-export function publicSeasonName(currentName: string, season: number, name: string) {
-  return isRetiredSeasonName(name) ? `${currentName} (${season})` : clean(name);
-}
+export { isRetiredSeasonName, publicSeasonName };
 
 export const TEAMS: Team[] = file.teams.map((t) => ({
   id: t.teamId,
-  name: t.displayName.trim(),
-  abbrev: t.displayAbbrev,
+  name: franchiseName(t.teamId, t.displayName, t.espnName),
+  abbrev: franchiseAbbrev(t.teamId, t.displayAbbrev, t.espnAbbrev),
   color: COLORS[t.teamId] ?? "#64748b",
   owner: nn(t.ownerLabelFromApp),
   isUser: t.isUserTeam,
@@ -286,7 +259,7 @@ export const TEAMS: Team[] = file.teams.map((t) => ({
   history: {
     seasons: t.history.seasons.map((s) => ({
       season: s.season,
-      name: publicSeasonName(t.displayName.trim(), s.season, s.displayName),
+      name: publicSeasonName(franchiseName(t.teamId, t.displayName, t.espnName), s.season, s.displayName),
       wins: s.wins,
       losses: s.losses,
       ties: s.ties,
@@ -439,7 +412,7 @@ export const MATCHUPS: Matchup[] = currentWeekGames()
   .sort((a, b) => Number(b.left.teamId === USER_TEAM.id) - Number(a.left.teamId === USER_TEAM.id));
 
 /** Older URL ids kept working for shared links. */
-const SLUG_ALIASES: { [slug: string]: number } = { "golden-goose": 7, bibis: 1 };
+const SLUG_ALIASES: { [slug: string]: number } = { "golden-goose": 7, "maye-dim": 7, bibis: 1 };
 
 export function getMatchup(slug: string) {
   const aliased = SLUG_ALIASES[slug];
@@ -505,46 +478,6 @@ export function formatPoints(n: number) {
   return n.toFixed(2).replace(/0$/, "").replace(/\.0$/, "");
 }
 
-export interface ThursdayPlayer {
-  teamId: number;
-  name: string;
-  nflTeam?: string;
-  position: string;
-  points: number;
-  started: boolean;
-  line?: string;
-}
-
-export interface ThursdayNight {
-  week: number;
-  date: string;
-  kickoff: string;
-  scoring: string;
-  nfl: RawThursday["nfl"];
-  players: ThursdayPlayer[];
-  quietTeamIds: number[];
-}
-
-export const THURSDAY: ThursdayNight | null = file.week8Thursday
-  ? {
-      week: file.week8Thursday.week,
-      date: file.week8Thursday.date,
-      kickoff: file.week8Thursday.kickoff,
-      scoring: file.week8Thursday.scoring,
-      nfl: file.week8Thursday.nfl,
-      quietTeamIds: file.week8Thursday.quietTeamIds,
-      players: file.week8Thursday.players.map((p) => ({
-        teamId: p.teamId,
-        name: p.name,
-        nflTeam: nn(p.nflTeam),
-        position: p.position,
-        points: p.points,
-        started: p.started,
-        line: nn(p.line),
-      })),
-    }
-  : null;
-
 /** Everything the public API returns: display names only. */
 export function publicLeague() {
   return {
@@ -556,7 +489,6 @@ export function publicLeague() {
     matchups: MATCHUPS,
     /** @deprecated Use `matchups`. Kept so older clients still resolve. */
     week8: MATCHUPS,
-    thursday: THURSDAY,
     champions: CHAMPIONS,
   };
 }

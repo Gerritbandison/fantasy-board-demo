@@ -165,7 +165,7 @@ export interface PlayerTrend {
   quiet: QuietWeek[];
   /** Still on the team, released, or flipped in a later trade (by trade number). */
   status: { kind: "kept" } | { kind: "released" } | { kind: "flipped"; tradeNum: number };
-  /** Extra context from the file, such as a short sample or a Thursday add-on. */
+  /** Extra context from the file, such as a short sample or a partial week. */
   note?: string;
 }
 

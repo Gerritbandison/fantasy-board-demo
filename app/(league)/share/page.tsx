@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { ShareButton } from "@/components/league/ShareButton";
 import { PageHeader, TeamAvatar } from "@/components/league/ui";
-import { formatPoints, formatRecord, LEAGUE, MATCHUPS, STANDINGS, team, THURSDAY } from "@/lib/league";
+import { formatPoints, formatRecord, LEAGUE, MATCHUPS, STANDINGS, team } from "@/lib/league";
 
 export const metadata: Metadata = {
   title: "Share card",
-  description: `Week ${LEAGUE.week} Chicken League card: in-progress scores and the Thursday slate. Standings are through week ${LEAGUE.week - 1}.`,
+  description: `Week ${LEAGUE.week} Chicken League card: in-progress scores and projected finals. Standings are through week ${LEAGUE.week - 1}.`,
 };
 
 export default function SharePage() {
@@ -54,15 +53,6 @@ export default function SharePage() {
             </li>
           ))}
         </ul>
-        {THURSDAY && (
-          <p className="px-5 py-4 text-sm leading-snug text-white/90">
-            Thursday: {THURSDAY.nfl.home} {THURSDAY.nfl.homeScore}, {THURSDAY.nfl.away} {THURSDAY.nfl.awayScore}. Fantasy points from that game are on the{" "}
-            <Link href="/matchups#thursday" className="font-semibold text-gold underline-offset-2 hover:underline">
-              Thursday card
-            </Link>
-            .
-          </p>
-        )}
       </article>
 
       <ShareButton title={`Chicken League · Week ${LEAGUE.week}`} text={text} />
