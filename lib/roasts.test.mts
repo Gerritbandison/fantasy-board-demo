@@ -31,7 +31,7 @@ interface LeagueFile {
 
 test("normalizeRoastText uses the app abbreviations", () => {
   assert.equal(normalizeRoastText("Kabul and KBL lead, but JIGA is favored"), "Kabul FC and KAB lead, but JAH is favored");
-  assert.equal(normalizeRoastText("Kabul FC's Thursday"), "Kabul FC's Thursday");
+  assert.equal(normalizeRoastText("Kabul FC's bench"), "Kabul FC's bench");
   assert.equal(normalizeRoastText(TEAM_7), TEAM_7);
 });
 
@@ -79,33 +79,44 @@ test("week 8 roast cards stay on the app's names", () => {
 
   const card = (home: number, away: number) => roasts.matchups.find((m) => m.homeTeamId === home && m.awayTeamId === away);
   const kabul = card(11, 5);
-  assert.match(kabul?.roast ?? "", /Jaylen Waddle was cleared and then benched for Rashee Rice/);
+  assert.match(kabul?.headline ?? "", /Kabul FC Leads by 3\.86/);
+  assert.match(kabul?.roast ?? "", /Rashee Rice is starting at 0/);
+  assert.match(kabul?.roast ?? "", /Jaylen Waddle sits on the bench/);
+  assert.match(kabul?.roast ?? "", /Jeremiyah Love is listed Out/);
   assert.doesNotMatch(`${kabul?.roast} ${kabul?.tag}`, /Meyers both/);
   assert.equal(kabul?.projection.away, 105.99);
   assert.equal(kabul?.homePoints, 83.82);
 
   const smert = card(10, 6);
+  assert.match(smert?.headline ?? "", /Up 39\.74/);
   assert.match(smert?.roast ?? "", /Khalil Shakir/);
   assert.match(smert?.roast ?? "", /KC Concepcion/);
+  assert.match(smert?.roast ?? "", /DeVonta Smith is Out on the bench/);
   assert.doesNotMatch(smert?.roast ?? "", /starting DeVonta Smith/);
   assert.equal(smert?.projection.away, 89.43);
   assert.match(smert?.tag ?? "", /33\.1/);
 
   const heart = card(4, 2);
+  assert.match(heart?.headline ?? "", /Leads by 7\.9/);
   assert.match(heart?.roast ?? "", /Patrick Mahomes starts/);
+  assert.match(heart?.roast ?? "", /Matthew Stafford is at -1\.8/);
   assert.doesNotMatch(`${heart?.roast} ${heart?.tag}`, /Mahomes on the bench|benched Patrick Mahomes/);
   assert.match(heart?.tag ?? "", /1\.8/);
   assert.equal(heart?.projection.home, 102.15);
 
   const chewy = card(3, 1);
-  assert.match(chewy?.roast ?? "", /Sam LaPorta replaced Dallas Goedert/);
+  assert.match(chewy?.headline ?? "", /Lamar Jackson Scored 0/);
+  assert.match(chewy?.roast ?? "", /Sam LaPorta has 6\.5 at tight end/);
+  assert.match(chewy?.roast ?? "", /Dallas Goedert is on the bench/);
   assert.doesNotMatch(chewy?.roast ?? "", /Goedert starts over/);
   assert.equal(chewy?.projection.home, 122.06);
   assert.equal(chewy?.projection.away, 138.67);
   assert.match(chewy?.tag ?? "", /138\.67 to 122\.06/);
 
   const home = card(7, 8);
+  assert.match(home?.headline ?? "", /Up 72\.34 on Dimes McSorley/);
   assert.match(home?.roast ?? "", /Against Dimes McSorley/);
+  assert.match(home?.roast ?? "", /still listed Questionable/);
   assert.doesNotMatch(`${home?.roast} ${home?.tag}`, /Moore starts as Questionable/);
   assert.equal(home?.projection.away, 83.85);
   assert.match(home?.tag ?? "", /135\.3-62\.96/);
