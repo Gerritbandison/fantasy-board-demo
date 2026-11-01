@@ -1,5 +1,5 @@
 import raw from "@/data/league-h2h-history.json";
-import { isRetiredSeasonName, publicSeasonName, team } from "@/lib/league";
+import { isRetiredSeasonName, publicDisplayName, publicSeasonName, team } from "@/lib/league";
 
 /*
  * All-time head-to-head pull (Flaim/ESPN). Like lib/league.ts, every ESPN name field
@@ -239,12 +239,13 @@ export function seasonName(teamId: number, season: number) {
 export function teamThen(teamId: number, season: number): { name: string; alias: string | null; year: number | null } {
   const name = team(teamId).name;
   const raw = SEASON_NAMES.get(teamId)?.get(season);
-  if (!raw || raw === name) return { name, alias: null, year: null };
-  if (isRetiredSeasonName(raw)) return { name, alias: null, year: season };
-  return { name, alias: raw, year: null };
+  const shown = raw ? publicDisplayName(raw) : "";
+  if (!shown || shown === name) return { name, alias: null, year: null };
+  if (isRetiredSeasonName(shown)) return { name, alias: null, year: season };
+  return { name, alias: shown, year: null };
 }
 
-/** e.g. "Maye i give you a blowj0b (as Mixon Impossible)" or "Jahmyr I Go Again (2020)". */
+/** e.g. "Maye Day (as Mixon Impossible)" or "Jahmyr I Go Again (2020)". */
 export function teamThenLabel(teamId: number, season: number) {
   const t = teamThen(teamId, season);
   return t.alias ? `${t.name} (as ${t.alias})` : t.year ? `${t.name} (${t.year})` : t.name;

@@ -44,10 +44,21 @@ export function PageHeader({ eyebrow, title, children }: { eyebrow: string; titl
   );
 }
 
-export function SectionHeading({ title, action, id }: { title: string; action?: React.ReactNode; id?: string }) {
+export function SectionHeading({
+  title,
+  action,
+  id,
+  headingId,
+}: {
+  title: string;
+  action?: React.ReactNode;
+  id?: string;
+  /** Id on the heading itself, for `aria-labelledby`. */
+  headingId?: string;
+}) {
   return (
     <div id={id} className="flex scroll-mt-28 items-end justify-between gap-3">
-      <h2 className="flex items-center gap-2 font-display text-xl font-bold tracking-wide text-navy uppercase">
+      <h2 id={headingId} className="flex items-center gap-2 font-display text-xl font-bold tracking-wide text-navy uppercase">
         <span className="h-5 w-1 rounded-full bg-turf" aria-hidden />
         {title}
       </h2>

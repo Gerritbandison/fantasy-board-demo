@@ -6,7 +6,8 @@
     "dev": "next dev -p 43123",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node scripts/check-roasts.mjs && tsx --test lib/roasts.test.ts"
   },
   "dependencies": {
     "cn": "^0.5.0",
@@ -23,6 +24,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.3",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

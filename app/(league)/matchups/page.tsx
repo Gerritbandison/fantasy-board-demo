@@ -3,13 +3,14 @@ import Link from "next/link";
 import { ScoreReadout } from "@/components/league/bits";
 import { ThursdayNight } from "@/components/league/ThursdayNight";
 import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components/league/ui";
+import { WeekRoasts } from "@/components/league/WeekRoasts";
 import { cn } from "@/lib/utils";
 import { formatRecord, GAMES, LEAGUE, MATCHUPS, matchupPath, ordinal, team, teamPath, THURSDAY, USER_TEAM, winnerSide } from "@/lib/league";
 import { buildPreview } from "@/lib/preview";
 
 export const metadata: Metadata = {
   title: "Scores",
-  description: `All five week ${LEAGUE.week} matchups in the Chicken league with projections and previews, plus last week's finals.`,
+  description: `All five week ${LEAGUE.week} matchups in the Chicken league with projections, roasts, and previews, plus last week's finals.`,
 };
 
 export default function MatchupsPage() {
@@ -73,6 +74,8 @@ export default function MatchupsPage() {
           );
         })}
       </ul>
+
+      <WeekRoasts />
 
       <SectionHeading title={`Week ${lastWeek} finals`} />
       <Card bodyClassName="p-0 sm:p-0">

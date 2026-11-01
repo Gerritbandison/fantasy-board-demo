@@ -239,18 +239,36 @@ const RETIRED_SEASON_NAMES = new Set(["Black Lives"]);
 
 const clean = (name: string) => name.replace(/\s+/g, " ").trim();
 
+/** Display names that must never reach the page. Keys are the raw strings; values are what we show. */
+const DISPLAY_NAME_ALIASES: { [name: string]: string } = {
+  "Maye i give you a blowj0b": "Maye Day",
+};
+
+/** The name a page, caption, or API response is allowed to show. */
+export function publicDisplayName(name: string) {
+  const cleaned = clean(name);
+  return DISPLAY_NAME_ALIASES[cleaned] ?? cleaned;
+}
+
+/** Replace a banned display name inside a sentence. Leaves every other word alone. */
+export function sanitizeCopy(text: string) {
+  return Object.entries(DISPLAY_NAME_ALIASES).reduce((out, [from, to]) => out.replaceAll(from, to), text);
+}
+
 export function isRetiredSeasonName(name: string) {
-  return RETIRED_SEASON_NAMES.has(clean(name));
+  return RETIRED_SEASON_NAMES.has(publicDisplayName(name));
 }
 
 /** A past season's display name, safe to render on its own. */
 export function publicSeasonName(currentName: string, season: number, name: string) {
-  return isRetiredSeasonName(name) ? `${currentName} (${season})` : clean(name);
+  const current = publicDisplayName(currentName);
+  const shown = publicDisplayName(name);
+  return isRetiredSeasonName(shown) ? `${current} (${season})` : shown;
 }
 
 export const TEAMS: Team[] = file.teams.map((t) => ({
   id: t.teamId,
-  name: t.displayName.trim(),
+  name: publicDisplayName(t.displayName),
   abbrev: t.displayAbbrev,
   color: COLORS[t.teamId] ?? "#64748b",
   owner: nn(t.ownerLabelFromApp),
