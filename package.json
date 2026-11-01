@@ -6,7 +6,8 @@
     "dev": "next dev -p 43123",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test lib/*.test.mts"
   },
   "dependencies": {
     "cn": "^0.5.0",

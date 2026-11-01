@@ -1,0 +1,363 @@
+{
+  "focusId": 7,
+  "playoffSpots": 4,
+  "regularSeasonWeeks": 14,
+  "nonByeEspn": 130.2,
+  "source": "ESPN via Flaim, pulled Sat Oct 31, 2026, 9:35 PM ET. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead.",
+  "teams": [
+    {
+      "id": 1,
+      "bias": 2.05,
+      "sd": 16.1,
+      "wins": 6,
+      "losses": 1,
+      "pf": 876.92
+    },
+    {
+      "id": 2,
+      "bias": 1.93,
+      "sd": 27.4,
+      "wins": 4,
+      "losses": 3,
+      "pf": 929.12
+    },
+    {
+      "id": 3,
+      "bias": 5.48,
+      "sd": 26.7,
+      "wins": 4,
+      "losses": 3,
+      "pf": 992.74
+    },
+    {
+      "id": 4,
+      "bias": -3.94,
+      "sd": 17.3,
+      "wins": 3,
+      "losses": 4,
+      "pf": 814.98
+    },
+    {
+      "id": 5,
+      "bias": 3.64,
+      "sd": 24.4,
+      "wins": 3,
+      "losses": 4,
+      "pf": 911.74
+    },
+    {
+      "id": 6,
+      "bias": -0.96,
+      "sd": 18.3,
+      "wins": 2,
+      "losses": 5,
+      "pf": 827.84
+    },
+    {
+      "id": 7,
+      "bias": 0,
+      "sd": 26.0,
+      "wins": 2,
+      "losses": 5,
+      "pf": 771.16
+    },
+    {
+      "id": 8,
+      "bias": -1.58,
+      "sd": 19.1,
+      "wins": 5,
+      "losses": 2,
+      "pf": 811.86
+    },
+    {
+      "id": 10,
+      "bias": -3.78,
+      "sd": 19.5,
+      "wins": 3,
+      "losses": 4,
+      "pf": 823.14
+    },
+    {
+      "id": 11,
+      "bias": -5.27,
+      "sd": 19.4,
+      "wins": 3,
+      "losses": 4,
+      "pf": 776.74
+    }
+  ],
+  "games": [
+    {
+      "week": 8,
+      "homeId": 11,
+      "awayId": 5,
+      "homeProj": 127.7,
+      "awayProj": 139.1,
+      "homeCurrent": 46.42,
+      "awayCurrent": 0
+    },
+    {
+      "week": 8,
+      "homeId": 10,
+      "awayId": 6,
+      "homeProj": 125.5,
+      "awayProj": 98.5,
+      "homeCurrent": 9.6,
+      "awayCurrent": 5
+    },
+    {
+      "week": 8,
+      "homeId": 4,
+      "awayId": 2,
+      "homeProj": 114.4,
+      "awayProj": 129.0,
+      "homeCurrent": 17.3,
+      "awayCurrent": 0
+    },
+    {
+      "week": 8,
+      "homeId": 3,
+      "awayId": 1,
+      "homeProj": 116.2,
+      "awayProj": 131.0,
+      "homeCurrent": 11.8,
+      "awayCurrent": 0
+    },
+    {
+      "week": 8,
+      "homeId": 7,
+      "awayId": 8,
+      "homeProj": 142.7,
+      "awayProj": 115.9,
+      "homeCurrent": 44.1,
+      "awayCurrent": 10.36
+    },
+    {
+      "week": 9,
+      "homeId": 7,
+      "awayId": 6,
+      "homeProj": 133.0,
+      "awayProj": 116.7
+    },
+    {
+      "week": 9,
+      "homeId": 8,
+      "awayId": 5,
+      "homeProj": 126.7,
+      "awayProj": 123.5
+    },
+    {
+      "week": 9,
+      "homeId": 3,
+      "awayId": 11,
+      "homeProj": 129.7,
+      "awayProj": 109.2
+    },
+    {
+      "week": 9,
+      "homeId": 1,
+      "awayId": 2,
+      "homeProj": 132.2,
+      "awayProj": 122.4
+    },
+    {
+      "week": 9,
+      "homeId": 4,
+      "awayId": 10,
+      "homeProj": 124.8,
+      "awayProj": 131.5
+    },
+    {
+      "week": 10,
+      "homeId": 10,
+      "awayId": 2,
+      "homeProj": 119.0,
+      "awayProj": 123.1
+    },
+    {
+      "week": 10,
+      "homeId": 1,
+      "awayId": 11,
+      "homeProj": 110.1,
+      "awayProj": 97.5
+    },
+    {
+      "week": 10,
+      "homeId": 6,
+      "awayId": 5,
+      "homeProj": 85.1,
+      "awayProj": 132.1
+    },
+    {
+      "week": 10,
+      "homeId": 7,
+      "awayId": 4,
+      "homeProj": 131.8,
+      "awayProj": 110.8
+    },
+    {
+      "week": 10,
+      "homeId": 3,
+      "awayId": 8,
+      "homeProj": 132.2,
+      "awayProj": 93.7
+    },
+    {
+      "week": 11,
+      "homeId": 1,
+      "awayId": 10,
+      "homeProj": 121.5,
+      "awayProj": 127.3
+    },
+    {
+      "week": 11,
+      "homeId": 11,
+      "awayId": 8,
+      "homeProj": 88.7,
+      "awayProj": 122.0
+    },
+    {
+      "week": 11,
+      "homeId": 7,
+      "awayId": 2,
+      "homeProj": 89.2,
+      "awayProj": 69.1
+    },
+    {
+      "week": 11,
+      "homeId": 4,
+      "awayId": 5,
+      "homeProj": 104.5,
+      "awayProj": 114.0
+    },
+    {
+      "week": 11,
+      "homeId": 3,
+      "awayId": 6,
+      "homeProj": 130.6,
+      "awayProj": 83.2
+    },
+    {
+      "week": 12,
+      "homeId": 3,
+      "awayId": 4,
+      "homeProj": 135.3,
+      "awayProj": 117.7
+    },
+    {
+      "week": 12,
+      "homeId": 8,
+      "awayId": 1,
+      "homeProj": 128.8,
+      "awayProj": 135.6
+    },
+    {
+      "week": 12,
+      "homeId": 7,
+      "awayId": 10,
+      "homeProj": 131.5,
+      "awayProj": 132.7
+    },
+    {
+      "week": 12,
+      "homeId": 5,
+      "awayId": 2,
+      "homeProj": 119.0,
+      "awayProj": 128.5
+    },
+    {
+      "week": 12,
+      "homeId": 11,
+      "awayId": 6,
+      "homeProj": 112.1,
+      "awayProj": 117.8
+    },
+    {
+      "week": 13,
+      "homeId": 5,
+      "awayId": 10,
+      "homeProj": 98.5,
+      "awayProj": 96.9
+    },
+    {
+      "week": 13,
+      "homeId": 3,
+      "awayId": 2,
+      "homeProj": 128.8,
+      "awayProj": 117.3
+    },
+    {
+      "week": 13,
+      "homeId": 6,
+      "awayId": 8,
+      "homeProj": 111.2,
+      "awayProj": 86.8
+    },
+    {
+      "week": 13,
+      "homeId": 1,
+      "awayId": 7,
+      "homeProj": 122.3,
+      "awayProj": 124.6
+    },
+    {
+      "week": 13,
+      "homeId": 11,
+      "awayId": 4,
+      "homeProj": 96.8,
+      "awayProj": 100.9
+    },
+    {
+      "week": 14,
+      "homeId": 10,
+      "awayId": 3,
+      "homeProj": 120.9,
+      "awayProj": 133.7
+    },
+    {
+      "week": 14,
+      "homeId": 6,
+      "awayId": 1,
+      "homeProj": 81.6,
+      "awayProj": 136.0
+    },
+    {
+      "week": 14,
+      "homeId": 5,
+      "awayId": 7,
+      "homeProj": 110.4,
+      "awayProj": 130.1
+    },
+    {
+      "week": 14,
+      "homeId": 4,
+      "awayId": 8,
+      "homeProj": 93.2,
+      "awayProj": 111.1
+    },
+    {
+      "week": 14,
+      "homeId": 2,
+      "awayId": 11,
+      "homeProj": 127.9,
+      "awayProj": 88.6
+    }
+  ],
+  "rootFor": [
+    {
+      "week": 8,
+      "winnerId": 4,
+      "loserId": 2
+    },
+    {
+      "week": 12,
+      "winnerId": 1,
+      "loserId": 8
+    },
+    {
+      "week": 13,
+      "winnerId": 6,
+      "loserId": 8
+    }
+  ]
+}

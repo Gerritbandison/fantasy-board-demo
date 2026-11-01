@@ -1,0 +1,9 @@
+{
+  "source": "Bye weeks named with the Oct 31, 2026 ESPN projection pull. Only those weeks are listed.",
+  "byes": {
+    "8": ["Isaiah Likely"],
+    "9": ["Tony Pollard"],
+    "11": ["Drake Maye", "Josh Jacobs", "Puka Nacua", "Matthew Golden", "Harold Fannin Jr.", "Patriots D/ST"],
+    "13": ["Matt Gay"]
+  }
+}
