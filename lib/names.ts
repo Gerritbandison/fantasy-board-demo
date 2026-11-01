@@ -11,6 +11,13 @@ const VULGAR_TO_CLEAN: { test: RegExp; clean: string }[] = [
 
 const RETIRED_SEASON_NAMES = new Set(["Black Lives"]);
 
+/** Raw strings for every franchise except team 7. */
+const OTHER_RAW = [/cocknballs/i, /fucking letdowns/i, /wet ass pussy/i, /ni66as/i];
+
+export function hasOtherRawName(value: string) {
+  return OTHER_RAW.some((pattern) => pattern.test(value));
+}
+
 export function collapseName(name: string) {
   return name.replace(/\s+/g, " ").trim();
 }

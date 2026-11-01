@@ -10,7 +10,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 /** ESPN's exact spelling for team 7. This name is supposed to render. */
 const TEAM_7_ESPN_NAME = "Maye i give you a blowj0b";
 
-/** Raw strings for the other franchises. Team 7 is not in this list. */
+/** Raw strings for the other franchises. Team 7 is not in this list. The NIGG abbrev is file-only. */
 const OTHER_RAW = [/cocknballs/i, /fucking letdowns/i, /wet ass pussy/i, /ni66as/i, /"espnAbbrev": "NIGG"/];
 
 const NAME_KEYS = /name$|abbrev$|Name$|Abbrev$/;
