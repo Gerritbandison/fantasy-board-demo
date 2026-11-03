@@ -153,7 +153,7 @@ export function TrailLegend({ focus, compare = "league" }: { focus: Team; compar
         />
         {compare === "league" ? "League average" : compare.name}
       </span>
-      <span className="text-slate-600">Wk {WEEKS} = projection</span>
+      <span className="text-slate-600">Wk {WEEKS} dot is the live score. Provisional, Week {WEEKS} not final.</span>
     </div>
   );
 }
@@ -161,14 +161,14 @@ export function TrailLegend({ focus, compare = "league" }: { focus: Team; compar
 /** Week-by-week results row: W/L, score, and opponent. */
 export function WeekStrip({ weeks, className }: { weeks: TeamWeek[]; className?: string }) {
   return (
-    <ol className={cn("grid grid-cols-7 gap-1", className)}>
+    <ol className={cn("grid gap-1", className)} style={{ gridTemplateColumns: `repeat(${Math.max(weeks.length, 1)}, minmax(0, 1fr))` }}>
       {weeks.map((w) => {
         const opp = getTeam(w.opponentId);
         return (
           <li
             key={w.week}
             className="flex min-w-0 flex-col items-center gap-0.5 rounded-lg bg-slate-50 px-0.5 py-1.5 ring-1 ring-slate-100"
-            title={`Week ${w.week} vs ${opp?.name}: ${w.result} ${w.pf}–${w.pa}`}
+            title={`Week ${w.week} vs ${opp?.name}: ${w.result} ${w.pf}–${w.pa}${w.provisional ? `. Provisional, Week ${w.week} not final` : ""}`}
           >
             <span className="text-xs font-semibold text-slate-600">W{w.week}</span>
             <ResultChip result={w.result} />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ProvisionalNote } from "@/components/league/ProvisionalNote";
 import { Card, LuckBadge, PageHeader, TeamAvatar } from "@/components/league/ui";
 import { TeamsTabs } from "@/components/league/TeamsTabs";
 import { cn } from "@/lib/utils";
@@ -8,13 +9,14 @@ import { luck, pfRank } from "@/lib/stats";
 
 export const metadata: Metadata = {
   title: "Standings",
-  description: `Chicken league standings after week ${LEAGUE.week - 1}: record, points for and against, points rank, and luck.`,
+  description: `Chicken league standings. Provisional, Week ${LEAGUE.week} not final: record, points for and against, points rank, and luck.`,
 };
 
 export default function StandingsPage() {
   return (
     <>
-      <PageHeader eyebrow={`${LEAGUE.season} season · after week ${LEAGUE.week - 1}`} title="Standings">
+      <PageHeader eyebrow={`${LEAGUE.season} season · Week ${LEAGUE.week}`} title="Standings">
+        <ProvisionalNote className="mt-2 text-sm font-semibold text-amber-800" />
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
           <span className="font-semibold text-amber-800">Lucky (+)</span> teams have a better record than their points rank;{" "}
           <span className="font-semibold text-sky-800">unlucky (−)</span> teams have scored better than their record shows.
@@ -26,7 +28,7 @@ export default function StandingsPage() {
 
       <Card bodyClassName="p-0 sm:p-0">
         <table className="w-full table-fixed border-collapse text-left">
-          <caption className="sr-only">Chicken standings after week {LEAGUE.week - 1}</caption>
+          <caption className="sr-only">Chicken standings. Provisional, Week {LEAGUE.week} not final.</caption>
           <thead>
             <tr className="border-b border-line bg-slate-50 text-xs font-bold tracking-wider text-slate-600 uppercase">
               <th scope="col" className="w-10 py-2.5 pl-3 sm:w-12 sm:pl-4">#</th>
@@ -86,7 +88,7 @@ export default function StandingsPage() {
       </Card>
 
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-600">
-        <span>Rank is ESPN&apos;s standings order. The data doesn&apos;t include the playoff team count, so no cut line is drawn.</span>
+        <span>Rank is wins, then points for. Provisional, Week {LEAGUE.week} not final. The live leader counts as the winner. No playoff cut line is drawn.</span>
         <Link href="/insights" className="font-semibold text-turf hover:underline">
           Power rankings & luck →
         </Link>

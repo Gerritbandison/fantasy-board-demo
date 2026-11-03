@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { formatPoints, teamPath, USER_TEAM } from "@/lib/league";
+import { formatPoints, LEAGUE, teamPath, USER_TEAM } from "@/lib/league";
 import { WEEK_ROASTS, type RoastSide, type RoastTag } from "@/lib/roasts";
 import { cn } from "@/lib/utils";
 import { Card, SectionHeading, TeamAvatar } from "./ui";
@@ -65,7 +65,12 @@ export function WeekRoasts() {
   return (
     <section aria-labelledby="roasts-heading" className="grid gap-4">
       <SectionHeading id="roasts" headingId="roasts-heading" title={`Week ${roasts.week} Roasts`} />
-      {pulled ? <p className="text-sm text-slate-600">ESPN projections as of {pulled}.</p> : null}
+      {pulled ? (
+        <p className="text-sm leading-snug text-slate-600">
+          These cards are the {pulled} snapshot, including the score on each card.
+          {LEAGUE.provisionalLabel ? ` ${LEAGUE.provisionalLabel}. Live totals are on the scoreboard below.` : ""}
+        </p>
+      ) : null}
       <ul className="grid gap-5 lg:grid-cols-2">
         {roasts.matchups.map((m) => {
           const mine = m.home.teamId === USER_TEAM.id || m.away.teamId === USER_TEAM.id;

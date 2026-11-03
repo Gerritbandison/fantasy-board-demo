@@ -3,87 +3,87 @@
   "playoffSpots": 4,
   "regularSeasonWeeks": 14,
   "nonByeEspn": 130.2,
-  "source": "ESPN via Flaim, pulled Sat Oct 31, 2026, 9:35 PM ET. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 projections for Smert Fellas, All Heart, Chewy's Warriors, and Dimes McSorley were refreshed Sun Nov 1, 2026, 12:20 PM ET. Weeks 9-14 were not re-pulled.",
+  "source": "ESPN via Flaim, pulled Sat Oct 31, 2026, 9:35 PM ET. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 projections for Smert Fellas, All Heart, Chewy's Warriors, and Dimes McSorley were refreshed Sun Nov 1, 2026, 12:20 PM ET. Weeks 9-14 were not re-pulled. Week 8 live scores as of Nov 2, 2026, about 8:58 PM ET are provisional and already included in wins, losses, and pf. Those games are marked counted and are not simulated again.",
   "teams": [
     {
       "id": 1,
       "bias": 2.05,
       "sd": 16.1,
-      "wins": 6,
+      "wins": 7,
       "losses": 1,
-      "pf": 876.92
+      "pf": 1015.2
     },
     {
       "id": 2,
       "bias": 1.93,
       "sd": 27.4,
       "wins": 4,
-      "losses": 3,
-      "pf": 929.12
+      "losses": 4,
+      "pf": 1020.1
     },
     {
       "id": 3,
       "bias": 5.48,
       "sd": 26.7,
       "wins": 4,
-      "losses": 3,
-      "pf": 992.74
+      "losses": 4,
+      "pf": 1090.74
     },
     {
       "id": 4,
       "bias": -3.94,
       "sd": 17.3,
-      "wins": 3,
+      "wins": 4,
       "losses": 4,
-      "pf": 814.98
+      "pf": 935.62
     },
     {
       "id": 5,
       "bias": 3.64,
       "sd": 24.4,
       "wins": 3,
-      "losses": 4,
-      "pf": 911.74
+      "losses": 5,
+      "pf": 1009.4
     },
     {
       "id": 6,
       "bias": -0.96,
       "sd": 18.3,
       "wins": 2,
-      "losses": 5,
-      "pf": 827.84
+      "losses": 6,
+      "pf": 899.34
     },
     {
       "id": 7,
       "bias": 0,
       "sd": 26.0,
-      "wins": 2,
+      "wins": 3,
       "losses": 5,
-      "pf": 771.16
+      "pf": 950.42
     },
     {
       "id": 8,
       "bias": -1.58,
       "sd": 19.1,
       "wins": 5,
-      "losses": 2,
-      "pf": 811.86
+      "losses": 3,
+      "pf": 901.22
     },
     {
       "id": 10,
       "bias": -3.78,
       "sd": 19.5,
-      "wins": 3,
+      "wins": 4,
       "losses": 4,
-      "pf": 823.14
+      "pf": 952.82
     },
     {
       "id": 11,
       "bias": -5.27,
       "sd": 19.4,
-      "wins": 3,
+      "wins": 4,
       "losses": 4,
-      "pf": 776.74
+      "pf": 891.66
     }
   ],
   "games": [
@@ -93,8 +93,9 @@
       "awayId": 5,
       "homeProj": 127.7,
       "awayProj": 139.1,
-      "homeCurrent": 46.42,
-      "awayCurrent": 0
+      "homeCurrent": 114.92,
+      "awayCurrent": 97.66,
+      "counted": true
     },
     {
       "week": 8,
@@ -102,8 +103,9 @@
       "awayId": 6,
       "homeProj": 125.5,
       "awayProj": 109.9,
-      "homeCurrent": 9.6,
-      "awayCurrent": 5
+      "homeCurrent": 129.68,
+      "awayCurrent": 71.5,
+      "counted": true
     },
     {
       "week": 8,
@@ -111,8 +113,9 @@
       "awayId": 2,
       "homeProj": 111.4,
       "awayProj": 129.0,
-      "homeCurrent": 17.3,
-      "awayCurrent": 0
+      "homeCurrent": 120.64,
+      "awayCurrent": 90.98,
+      "counted": true
     },
     {
       "week": 8,
@@ -120,8 +123,9 @@
       "awayId": 1,
       "homeProj": 133.4,
       "awayProj": 131.0,
-      "homeCurrent": 11.8,
-      "awayCurrent": 0
+      "homeCurrent": 98,
+      "awayCurrent": 138.28,
+      "counted": true
     },
     {
       "week": 8,
@@ -129,8 +133,9 @@
       "awayId": 8,
       "homeProj": 142.7,
       "awayProj": 115.4,
-      "homeCurrent": 44.1,
-      "awayCurrent": 10.36
+      "homeCurrent": 179.26,
+      "awayCurrent": 89.36,
+      "counted": true
     },
     {
       "week": 9,
