@@ -5,6 +5,7 @@ import { Card, LuckBadge, PageHeader, Pill, TeamAvatar } from "@/components/leag
 import { MiniTrail } from "@/components/league/trail";
 import { TeamsTabs } from "@/components/league/TeamsTabs";
 import { FindNav } from "@/components/league/FindNav";
+import { ProvisionalNote } from "@/components/league/ProvisionalNote";
 import { formatPoints, formatRecord, LEAGUE, matchupFor, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
 import { luck, pfRank, powerRank, teamStats } from "@/lib/stats";
 
@@ -17,6 +18,7 @@ export default function HomePage() {
     <>
       <PageHeader eyebrow={`${LEAGUE.size} teams · ${LEAGUE.season} season`} title="Teams">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">Every franchise in Chicken, in standings order. Tap a team for its schedule, roster, moves, and history.</p>
+        <ProvisionalNote className="mt-2 text-sm font-semibold text-amber-800" />
         <div className="mt-4">
           <TeamsTabs active="teams" />
         </div>

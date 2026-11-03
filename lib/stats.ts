@@ -31,6 +31,15 @@ export function weekScores(week: number) {
 
 export const LEAGUE_AVG_BY_WEEK = new Map(WEEKS_PLAYED.map((w) => [w, mean(weekScores(w).map((s) => s.score))]));
 
+/** Weeks that are only on team schedules, such as a provisional current week. */
+for (const team of TEAMS) {
+  for (const week of team.weekly) {
+    if (LEAGUE_AVG_BY_WEEK.has(week.week)) continue;
+    const scores = TEAMS.flatMap((row) => row.weekly.filter((item) => item.week === week.week).map((item) => item.pf));
+    if (scores.length) LEAGUE_AVG_BY_WEEK.set(week.week, mean(scores));
+  }
+}
+
 export const LEAGUE_AVG = mean(GAMES.flatMap((g) => [g.home.score, g.away.score]));
 
 export function teamStats(t: Team) {
@@ -207,7 +216,8 @@ export function luckTable() {
 export const TRAIL_RANGE = (() => {
   const all = [
     ...ALL_SCORES.map((s) => s.score),
-    ...MATCHUPS.flatMap((m) => [m.left.projected ?? LEAGUE_AVG, m.right.projected ?? LEAGUE_AVG]),
+    ...TEAMS.flatMap((t) => t.weekly.map((w) => w.pf)),
+    ...MATCHUPS.flatMap((m) => [m.left.projected ?? LEAGUE_AVG, m.right.projected ?? LEAGUE_AVG, m.left.points ?? LEAGUE_AVG, m.right.points ?? LEAGUE_AVG]),
   ];
   return { min: Math.floor((Math.min(...all) - 5) / 10) * 10, max: Math.ceil((Math.max(...all) + 5) / 10) * 10 };
 })();

@@ -1,5 +1,5 @@
 /**
- * Client-side Monte Carlo for the Chicken league's last seven regular-season weeks.
+ * Client-side Monte Carlo for the Chicken league's remaining regular-season weeks.
  * Ported from the playoff canvas: ESPN projection, plus each team's bias,
  * plus normal noise. The focus team's bias is 0; `shift` moves that mean instead.
  * Top 4 make the playoffs. Tiebreak is wins, then points for.
@@ -25,6 +25,8 @@ export interface SimGame {
   awayProj: number;
   homeCurrent?: number;
   awayCurrent?: number;
+  /** Wins, losses, and points already include this game. Do not sample it again. */
+  counted?: boolean;
 }
 
 export interface RootFor {
@@ -104,6 +106,8 @@ export interface ScheduleRow {
   margin: number;
   winProb: number;
   live: boolean;
+  /** Already in the provisional record. */
+  counted: boolean;
 }
 
 export function rngFrom(seed: number) {
@@ -184,13 +188,16 @@ export function focusSchedule(model: SimModel, shift: number): ScheduleRow[] {
       margin: mm - om,
       winProb: phi((mm - om) / Math.sqrt(ms * ms + os * os)),
       live: game.week === 8 && game.homeCurrent != null,
+      counted: game.counted === true,
     });
   });
   return rows;
 }
 
 export function winOutChance(model: SimModel, shift: number) {
-  return focusSchedule(model, shift).reduce((acc, row) => acc * row.winProb, 1);
+  return focusSchedule(model, shift)
+    .filter((row) => !row.counted)
+    .reduce((acc, row) => acc * row.winProb, 1);
 }
 
 function gaussOf(rand: () => number) {
@@ -228,6 +235,7 @@ interface Prepared {
   means: [number, number][];
   sds: [number, number][];
   mayeAt: number[];
+  counted: boolean[];
   focusI: number;
   baseW: Float64Array;
   basePf: Float64Array;
@@ -242,7 +250,9 @@ function prepare(model: SimModel, shift: number): Prepared {
   const means: [number, number][] = [];
   const sds: [number, number][] = [];
   const mayeAt: number[] = [];
+  const counted: boolean[] = [];
   model.games.forEach((game, i) => {
+    counted.push(game.counted === true);
     const hi = index.get(game.homeId);
     const ai = index.get(game.awayId);
     if (hi == null || ai == null) throw new Error(`Game ${i} names an unknown team`);
@@ -253,7 +263,7 @@ function prepare(model: SimModel, shift: number): Prepared {
     const [ma, sa] = sideDist(model, game, "away", shift);
     means.push([mh, ma]);
     sds.push([sh, sa]);
-    if (game.homeId === model.focusId || game.awayId === model.focusId) mayeAt.push(i);
+    if (!game.counted && (game.homeId === model.focusId || game.awayId === model.focusId)) mayeAt.push(i);
   });
   const focusI = index.get(model.focusId);
   if (focusI == null) throw new Error("Focus team missing");
@@ -268,6 +278,7 @@ function prepare(model: SimModel, shift: number): Prepared {
     means,
     sds,
     mayeAt,
+    counted,
     focusI,
     baseW: Float64Array.from(model.teams.map((t) => t.wins)),
     basePf: Float64Array.from(model.teams.map((t) => t.pf)),
@@ -291,7 +302,7 @@ export function simulate(model: SimModel, opts: SimOpts): SimSummary {
   const prep = prepare(model, opts.shift);
   const rand = rngFrom(opts.seed);
   const gauss = gaussOf(rand);
-  const { nt, ng, focusI, homeI, awayI, homeId, means, sds, baseW, basePf } = prep;
+  const { nt, ng, focusI, homeI, awayI, homeId, means, sds, baseW, basePf, counted } = prep;
   const forced = opts.forced ?? {};
   const mayeSet = new Set(prep.mayeAt);
   const made = new Uint32Array(nt);
@@ -314,6 +325,7 @@ export function simulate(model: SimModel, opts: SimOpts): SimSummary {
     PF.set(basePf);
     const homeWon = new Uint8Array(ng);
     for (let gi = 0; gi < ng; gi++) {
+      if (counted[gi]) continue;
       const [h, a] = samplePair(gauss, means[gi][0], sds[gi][0], means[gi][1], sds[gi][1], forced[gi], homeId[gi]);
       applyScore(W, PF, homeI[gi], awayI[gi], h, a);
       if (h > a) homeWon[gi] = 1;
@@ -334,7 +346,7 @@ export function simulate(model: SimModel, opts: SimOpts): SimSummary {
       if (focusMade) pfWon += 1;
     }
     for (let gi = 0; gi < ng; gi++) {
-      if (mayeSet.has(gi) || forced[gi] !== undefined) continue;
+      if (counted[gi] || mayeSet.has(gi) || forced[gi] !== undefined) continue;
       if (homeWon[gi]) {
         swingH[gi] += 1;
         if (focusMade) swingHMade[gi] += 1;
@@ -399,7 +411,7 @@ function finishSummary(
 }
 
 /**
- * Playoff odds if the focus team wins the next k remaining games, k = 0…7.
+ * Playoff odds if the focus team wins the next k remaining games.
  * Later games stay random. Other forced results apply on every step.
  * One pass draws each other game once and each focus game twice (random, and a forced win).
  */
@@ -407,7 +419,7 @@ export function winOutPath(model: SimModel, opts: SimOpts): PathStep[] {
   const prep = prepare(model, opts.shift);
   const rand = rngFrom(opts.seed);
   const gauss = gaussOf(rand);
-  const { nt, ng, focusI, homeI, awayI, homeId, means, sds, mayeAt, baseW, basePf } = prep;
+  const { nt, ng, focusI, homeI, awayI, homeId, means, sds, mayeAt, baseW, basePf, counted } = prep;
   const forced = opts.forced ?? {};
   const mayeSet = new Set(mayeAt);
   const steps = mayeAt.length;
@@ -426,7 +438,7 @@ export function winOutPath(model: SimModel, opts: SimOpts): PathStep[] {
     W.set(baseW);
     PF.set(basePf);
     for (let gi = 0; gi < ng; gi++) {
-      if (mayeSet.has(gi)) continue;
+      if (mayeSet.has(gi) || counted[gi]) continue;
       const [h, a] = samplePair(gauss, means[gi][0], sds[gi][0], means[gi][1], sds[gi][1], forced[gi], homeId[gi]);
       applyScore(W, PF, homeI[gi], awayI[gi], h, a);
     }

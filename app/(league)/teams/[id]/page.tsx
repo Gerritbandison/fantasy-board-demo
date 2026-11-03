@@ -7,6 +7,7 @@ import { ScoreReadout, SlotChip } from "@/components/league/bits";
 import { TeamHeadToHead } from "@/components/league/h2h";
 import { TeamTabs } from "@/components/league/TeamTabs";
 import { TeamTradesSection } from "@/components/league/trades";
+import { ProvisionalNote } from "@/components/league/ProvisionalNote";
 import { RosterOutlook } from "@/components/league/RosterOutlook";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, Stat, TeamAvatar } from "@/components/league/ui";
 import { ScoreTrail, TrailLegend, WeekStrip } from "@/components/league/trail";
@@ -63,7 +64,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
     <>
       {t.isUser && <RosterOutlook />}
       <Card bodyClassName="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-6">
-        <Stat label="Points for" value={t.pointsFor.toFixed(1)} sub={`${ordinal(pfRank(t.id))} in the league`} />
+        <Stat label="Points for" value={t.pointsFor.toFixed(1)} sub={`${ordinal(pfRank(t.id))} in the league${LEAGUE.provisionalLabel ? ` · ${LEAGUE.provisionalLabel}` : ""}`} />
         <Stat label="Points against" value={t.pointsAgainst.toFixed(1)} sub={`${ordinal(paRank(t.id))} most faced`} />
         <Stat label="Avg / week" value={s.avg.toFixed(1)} sub={`Median ${s.median.toFixed(1)}`} />
         <Stat label="All-play" value={`${ap.wins}-${ap.losses}`} sub={`${ap.expectedWins.toFixed(1)} expected wins`} />
@@ -146,8 +147,9 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                       <td className="py-2.5 pr-2">
                         <Link href={teamPath(w.opponentId)} className="flex min-w-0 items-center gap-2 hover:underline">
                           <ResultChip result={w.result} />
-                          <span className="truncate text-slate-700">
+                          <span className="min-w-0 truncate text-slate-700">
                             {w.home ? "vs" : "@"} {team(w.opponentId).name}
+                            {w.provisional ? <span className="ml-1 font-semibold text-amber-800">Provisional, Week {w.week} not final</span> : null}
                           </span>
                         </Link>
                       </td>
@@ -363,6 +365,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
             <Pill>{ordinal(t.seed)} seed</Pill>
             <Pill tone="sky">Power #{powerRank(t.id)}</Pill>
             <LuckBadge row={lk} withRanks />
+            <ProvisionalNote className="basis-full text-sm font-semibold text-amber-800" />
             {h.titles > 0 && (
               <Pill tone="gold">
                 <Trophy className="size-3" /> {h.titleYears.join(", ")}

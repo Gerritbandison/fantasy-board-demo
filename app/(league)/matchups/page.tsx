@@ -22,7 +22,7 @@ export default function MatchupsPage() {
       <PageHeader eyebrow={`Week ${LEAGUE.week} scoreboard`} title="Scores">
         <p className="mt-2 text-[15px] text-slate-600">
           {live
-            ? `The roast cards are this week's takes. Under them, all ${MATCHUPS.length} games are in progress: the number in brackets is the projected final. Standings are still through week ${lastWeek}.`
+            ? `The roast cards are an earlier snapshot. Under them, all ${MATCHUPS.length} games are in progress: the number in brackets is the projected final. Standings count the live leader. Provisional, Week ${LEAGUE.week} not final.`
             : `The roast cards are this week's takes. Under them, all ${MATCHUPS.length} games. Tap one for the preview, tale of the tape, and lineups.`}
         </p>
       </PageHeader>

@@ -57,13 +57,25 @@ export interface WeekRoasts {
   matchups: RoastMatchup[];
 }
 
+/** Record before a provisional week, so a Sunday snapshot does not pick up Monday's live result. */
+function recordAtSnapshot(t: ReturnType<typeof team>) {
+  const live = t.weekly.find((row) => row.week === LEAGUE.week && row.provisional);
+  if (!live) return formatRecord(t);
+  return formatRecord({
+    wins: t.wins - (live.result === "W" ? 1 : 0),
+    losses: t.losses - (live.result === "L" ? 1 : 0),
+    ties: t.ties - (live.result === "T" ? 1 : 0),
+  });
+}
+
 function side(teamId: number, points: number, projected: number, home: boolean): RoastSide {
   const t = team(teamId);
-  return { teamId, name: t.name, abbrev: t.abbrev, record: formatRecord(t), points, projected, home };
+  return { teamId, name: t.name, abbrev: t.abbrev, record: recordAtSnapshot(t), points, projected, home };
 }
 
 function projectionLine(home: RoastSide, away: RoastSide) {
-  return `ESPN projection: ${home.name} ${home.projected.toFixed(1)} vs ${away.name} ${away.projected.toFixed(1)} (current ${formatPoints(home.points)}-${formatPoints(away.points)})`;
+  const when = LEAGUE.provisionalLabel ? "at that snapshot" : "current";
+  return `ESPN projection: ${home.name} ${home.projected.toFixed(1)} vs ${away.name} ${away.projected.toFixed(1)} (${when} ${formatPoints(home.points)}-${formatPoints(away.points)})`;
 }
 
 function load(): WeekRoasts | null {

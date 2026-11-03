@@ -25,6 +25,8 @@ interface RawWeek {
   pointsAgainst: number;
   result: string;
   projected: number | null;
+  /** Live score for a week ESPN has not finalized. */
+  provisional?: boolean;
 }
 
 interface RawSeason {
@@ -109,7 +111,14 @@ interface RawChampion {
 }
 
 interface RawFile {
-  meta: { generatedAt: string; source: string; leagueId: string; season: number; currentWeek: number };
+  meta: {
+    generatedAt: string;
+    source: string;
+    leagueId: string;
+    season: number;
+    currentWeek: number;
+    weekInProgress?: { week: number; final: boolean; label: string; asOf?: string };
+  };
   league: { name: string; size: number; previousSeasons: number[] };
   schedule: { weeks1to7?: RawGame[]; completed?: RawGame[]; week8?: RawWeek8Game[] } & { [key: string]: unknown };
   champions: RawChampion[];
@@ -136,6 +145,8 @@ export interface TeamWeek {
   pa: number;
   result: "W" | "L" | "T";
   projected?: number;
+  /** The score is live. The result is the current leader, not a final. */
+  provisional?: boolean;
 }
 
 export interface Season {
@@ -245,6 +256,7 @@ export const TEAMS: Team[] = file.teams.map((t) => ({
     pa: w.pointsAgainst,
     result: w.result as TeamWeek["result"],
     projected: nn(w.projected),
+    provisional: w.provisional ? true : undefined,
   })),
   week8: currentWeekSide(t),
   roster: { starters: t.roster.starters.map(player), bench: t.roster.bench.map(player), ir: t.roster.ir.map(player) },
@@ -302,6 +314,8 @@ export const LEAGUE = {
   generatedAt: file.meta.generatedAt,
   source: file.meta.source,
   seasonsOnRecord: [...file.league.previousSeasons, file.meta.season].sort((a, b) => a - b),
+  /** Set while the current week is still being played. Records and points for include it. */
+  provisionalLabel: file.meta.weekInProgress?.final === false ? file.meta.weekInProgress.label : null,
 };
 
 export const STANDINGS = [...TEAMS].sort((a, b) => a.rank - b.rank);

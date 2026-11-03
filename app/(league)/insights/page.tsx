@@ -51,7 +51,7 @@ export default function InsightsPage() {
     <>
       <PageHeader eyebrow={`League hub · Week ${week}`} title="League insights">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
-          Every number here is computed from all {GAMES.length} games through week {week - 1}, across all {TEAMS.length} teams.
+          Records and points for include Week {week} and are provisional, Week {week} not final. The record book is still the {GAMES.length} final games through week {week - 1}.
         </p>
       </PageHeader>
 
@@ -154,7 +154,7 @@ export default function InsightsPage() {
       </div>
 
       <div className="grid gap-5 lg:grid-cols-2">
-        <Card title="Points for" action="Season total">
+        <Card title="Points for" action={LEAGUE.provisionalLabel ?? "Season"}>
           <BarList rows={byPf.map((t) => ({ id: t.id, name: t.name, value: t.pointsFor, label: t.pointsFor.toFixed(1) }))} min={pfMin} max={pfMax} />
         </Card>
         <Card title="Strength of schedule" action="Opponents' avg score">

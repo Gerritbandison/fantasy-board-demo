@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 const LINKS: { href: string; label: string; phoneOnly?: boolean }[] = [
   { href: "/standings", label: "Standings", phoneOnly: true },
   { href: "/insights#power", label: "Power rankings" },
+  { href: "/history#biggest-wins", label: "Biggest wins" },
+  { href: "/history#high-scores", label: "High scores" },
   { href: "/history#awards", label: "Awards" },
   { href: "/history#rivalries", label: "Rivalries" },
   { href: "/trades", label: "Trades", phoneOnly: true },

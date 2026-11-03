@@ -1,0 +1,295 @@
+{
+  "title": "Biggest regular-season wins (single week), all time",
+  "league": "Chicken (ESPN 12115010)",
+  "generatedAt": "2026-11-02T20:50:00-05:00",
+  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-7.",
+  "regularSeasonWeeks": {
+    "2020": 13,
+    "2021": 14,
+    "2022": 14,
+    "2023": 14,
+    "2024": 14,
+    "2025": 14,
+    "2026": 7
+  },
+  "seasonsCovered": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "gamesConsidered": 450,
+  "boundary": {
+    "tenthMargin": 80.14,
+    "eleventh": {
+      "season": 2022,
+      "week": 7,
+      "margin": 79.2
+    },
+    "tieAtBoundary": false
+  },
+  "pending": [
+    {
+      "season": 2026,
+      "week": 8,
+      "winnerTeamId": 7,
+      "winnerName": "Maye i give you a blowj0b",
+      "loserTeamId": 8,
+      "loserName": "Dimes McSorley",
+      "winnerScore": 179.26,
+      "loserScore": 89.36,
+      "margin": 89.9,
+      "status": "Still ESPN UNDECIDED as of Nov 2 ~8:58 PM ET (MNF in progress); 179.26-89.36, margin 89.90, would rank #4"
+    }
+  ],
+  "notes": [
+    "Owner names: Flaim/ESPN returns no owner names; owner filled only for the 4 slots the app already labels (1 Kyle/KASE, 3 Chewy, 7 Gerrit, 8 Dimes). Franchises tracked by ESPN team slot; owners may have changed.",
+    "Names: per-season names run through the app's lib/names.ts clean-name rules; the retired 2020 name for team 2 is shown as current franchise name + (2020).",
+    "Source: data/league-h2h-history.json (Flaim get_matchups, generated Oct 29) re-verified live via Flaim for every top-10 week on Nov 2."
+  ],
+  "top10": [
+    {
+      "rank": 1,
+      "season": 2021,
+      "week": 5,
+      "gameId": "2021-mp05-2v4",
+      "winner": {
+        "teamId": 2,
+        "nameThatSeason": "Rub My Chubb",
+        "franchiseNow": "Jahmyr I Go Again",
+        "owner": null,
+        "isGerrit": false,
+        "score": 162.52
+      },
+      "loser": {
+        "teamId": 4,
+        "nameThatSeason": "YOU LIKE THAT YOU LIKE THAT",
+        "franchiseNow": "All Heart",
+        "owner": null,
+        "isGerrit": false,
+        "score": 63.66
+      },
+      "margin": 98.86,
+      "verifiedLive": true
+    },
+    {
+      "rank": 2,
+      "season": 2020,
+      "week": 2,
+      "gameId": "2020-mp02-1v7",
+      "winner": {
+        "teamId": 7,
+        "nameThatSeason": "Biden 2020",
+        "franchiseNow": "Maye i give you a blowj0b",
+        "owner": "Gerrit",
+        "isGerrit": true,
+        "score": 175.6
+      },
+      "loser": {
+        "teamId": 1,
+        "nameThatSeason": "Team PSU sucks",
+        "franchiseNow": "Bibi's Boys",
+        "owner": "Kyle / KASE",
+        "isGerrit": false,
+        "score": 80.78
+      },
+      "margin": 94.82,
+      "verifiedLive": true
+    },
+    {
+      "rank": 3,
+      "season": 2025,
+      "week": 2,
+      "gameId": "2025-mp02-5v7",
+      "winner": {
+        "teamId": 7,
+        "nameThatSeason": "Gerry's Gang",
+        "franchiseNow": "Maye i give you a blowj0b",
+        "owner": "Gerrit",
+        "isGerrit": true,
+        "score": 175.8
+      },
+      "loser": {
+        "teamId": 5,
+        "nameThatSeason": "M1 Abrams",
+        "franchiseNow": "Easy Peasy Lemon Squeezy",
+        "owner": null,
+        "isGerrit": false,
+        "score": 81.52
+      },
+      "margin": 94.28,
+      "verifiedLive": true
+    },
+    {
+      "rank": 4,
+      "season": 2020,
+      "week": 12,
+      "gameId": "2020-mp12-6v10",
+      "winner": {
+        "teamId": 10,
+        "nameThatSeason": "Sandusky's Soldiers",
+        "franchiseNow": "Sandusky's Soldiers",
+        "owner": null,
+        "isGerrit": false,
+        "score": 165.78
+      },
+      "loser": {
+        "teamId": 6,
+        "nameThatSeason": "Team Tino",
+        "franchiseNow": "Smert Fellas",
+        "owner": null,
+        "isGerrit": false,
+        "score": 76.2
+      },
+      "margin": 89.58,
+      "verifiedLive": true
+    },
+    {
+      "rank": 5,
+      "season": 2020,
+      "week": 2,
+      "gameId": "2020-mp02-2v6",
+      "winner": {
+        "teamId": 6,
+        "nameThatSeason": "Team Tino",
+        "franchiseNow": "Smert Fellas",
+        "owner": null,
+        "isGerrit": false,
+        "score": 169.62
+      },
+      "loser": {
+        "teamId": 2,
+        "nameThatSeason": "Jahmyr I Go Again (2020)",
+        "franchiseNow": "Jahmyr I Go Again",
+        "owner": null,
+        "isGerrit": false,
+        "score": 80.58
+      },
+      "margin": 89.04,
+      "verifiedLive": true
+    },
+    {
+      "rank": 6,
+      "season": 2021,
+      "week": 9,
+      "gameId": "2021-mp09-5v11",
+      "winner": {
+        "teamId": 11,
+        "nameThatSeason": "Kabul FC",
+        "franchiseNow": "Kabul FC",
+        "owner": null,
+        "isGerrit": false,
+        "score": 179.06
+      },
+      "loser": {
+        "teamId": 5,
+        "nameThatSeason": "Team KGB",
+        "franchiseNow": "Easy Peasy Lemon Squeezy",
+        "owner": null,
+        "isGerrit": false,
+        "score": 92.24
+      },
+      "margin": 86.82,
+      "verifiedLive": true
+    },
+    {
+      "rank": 7,
+      "season": 2020,
+      "week": 4,
+      "gameId": "2020-mp04-8v11",
+      "winner": {
+        "teamId": 8,
+        "nameThatSeason": "Dimes McSorley",
+        "franchiseNow": "Dimes McSorley",
+        "owner": "Dimes",
+        "isGerrit": false,
+        "score": 165.42
+      },
+      "loser": {
+        "teamId": 11,
+        "nameThatSeason": "Zimbabwe Swag moneys",
+        "franchiseNow": "Kabul FC",
+        "owner": null,
+        "isGerrit": false,
+        "score": 80.3
+      },
+      "margin": 85.12,
+      "verifiedLive": true
+    },
+    {
+      "rank": 8,
+      "season": 2023,
+      "week": 4,
+      "gameId": "2023-mp04-1v11",
+      "winner": {
+        "teamId": 1,
+        "nameThatSeason": "First pick or bust",
+        "franchiseNow": "Bibi's Boys",
+        "owner": "Kyle / KASE",
+        "isGerrit": false,
+        "score": 178.32
+      },
+      "loser": {
+        "teamId": 11,
+        "nameThatSeason": "Kabul FC",
+        "franchiseNow": "Kabul FC",
+        "owner": null,
+        "isGerrit": false,
+        "score": 95.14
+      },
+      "margin": 83.18,
+      "verifiedLive": true
+    },
+    {
+      "rank": 9,
+      "season": 2025,
+      "week": 7,
+      "gameId": "2025-mp07-3v6",
+      "winner": {
+        "teamId": 3,
+        "nameThatSeason": "Chewy's Warriors",
+        "franchiseNow": "Chewy's Warriors",
+        "owner": "Chewy",
+        "isGerrit": false,
+        "score": 157.14
+      },
+      "loser": {
+        "teamId": 6,
+        "nameThatSeason": "Brioon Omeglemeally",
+        "franchiseNow": "Smert Fellas",
+        "owner": null,
+        "isGerrit": false,
+        "score": 76.84
+      },
+      "margin": 80.3,
+      "verifiedLive": true
+    },
+    {
+      "rank": 10,
+      "season": 2020,
+      "week": 8,
+      "gameId": "2020-mp08-5v8",
+      "winner": {
+        "teamId": 8,
+        "nameThatSeason": "Dimes McSorley",
+        "franchiseNow": "Dimes McSorley",
+        "owner": "Dimes",
+        "isGerrit": false,
+        "score": 153.92
+      },
+      "loser": {
+        "teamId": 5,
+        "nameThatSeason": "Team WAP",
+        "franchiseNow": "Easy Peasy Lemon Squeezy",
+        "owner": null,
+        "isGerrit": false,
+        "score": 73.78
+      },
+      "margin": 80.14,
+      "verifiedLive": true
+    }
+  ]
+}

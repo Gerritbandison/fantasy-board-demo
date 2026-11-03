@@ -5,7 +5,7 @@ import { formatPoints, formatRecord, LEAGUE, MATCHUPS, STANDINGS, team } from "@
 
 export const metadata: Metadata = {
   title: "Share card",
-  description: `Week ${LEAGUE.week} Chicken League card: in-progress scores and projected finals. Standings are through week ${LEAGUE.week - 1}.`,
+  description: `Week ${LEAGUE.week} Chicken League card: in-progress scores and projected finals. Provisional, Week ${LEAGUE.week} not final.`,
 };
 
 export default function SharePage() {
@@ -19,13 +19,13 @@ export default function SharePage() {
     }
     return `${a.abbrev} ${formatPoints(m.left.points ?? 0)} [${m.left.projected?.toFixed(1) ?? "—"}] · ${b.abbrev} ${formatPoints(m.right.points ?? 0)} [${m.right.projected?.toFixed(1) ?? "—"}]`;
   });
-  const text = [`Chicken League · Week ${LEAGUE.week}`, `${leader.name} ${formatRecord(leader)} leads after week ${LEAGUE.week - 1}.`, ...lines].join("\n");
+  const text = [`Chicken League · Week ${LEAGUE.week}`, `${leader.name} ${formatRecord(leader)} leads. Provisional, Week ${LEAGUE.week} not final.`, ...lines].join("\n");
 
   return (
     <>
       <PageHeader eyebrow={`${LEAGUE.season} · Week ${LEAGUE.week}`} title="Share card">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
-          A card of this week&apos;s real scores. Brackets are projected finals. Standings stay through week {LEAGUE.week - 1}.
+          A card of this week&apos;s real scores. Brackets are projected finals. Provisional, Week {LEAGUE.week} not final.
         </p>
       </PageHeader>
 
@@ -34,7 +34,7 @@ export default function SharePage() {
           <p className="text-xs font-bold tracking-wider text-gold uppercase">Chicken League · Week {LEAGUE.week}</p>
           <h2 className="mt-1 font-display text-4xl leading-none font-extrabold">{live ? "In progress" : "This week"}</h2>
           <p className="mt-3 text-sm text-white/90">
-            {leader.name} {formatRecord(leader)} leads after week {LEAGUE.week - 1}.
+            {leader.name} {formatRecord(leader)} leads. Provisional, Week {LEAGUE.week} not final.
           </p>
         </div>
         <ul className="grid gap-px bg-white/10">

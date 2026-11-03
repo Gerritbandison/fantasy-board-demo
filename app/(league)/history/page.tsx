@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeftRight, ChevronRight, Medal, Trophy } from "lucide-react";
+import { ArrowLeftRight, ChevronRight, Flame, Medal, Trophy } from "lucide-react";
+import { BiggestWins } from "@/components/league/biggest-wins";
+import { HighScores } from "@/components/league/high-scores";
 import { HallOfFameAndShame } from "@/components/league/h2h";
 import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
@@ -11,7 +13,7 @@ import { SEASONS_LABEL, TRADES } from "@/lib/trades";
 export const metadata: Metadata = {
   title: "History",
   description:
-    "Chicken league history: every champion and runner-up, the champion-seed pattern, the trophy case, each franchise's finishes, and the all-time Hall of Fame, Hall of Shame, and rivalry heatmap.",
+    "Chicken league history: every champion and runner-up, the top 10 biggest regular-season wins, the top 20 single-week scores, the champion-seed pattern, the trophy case, each franchise's finishes, and the all-time Hall of Fame, Hall of Shame, and rivalry heatmap.",
 };
 
 export default function HistoryPage() {
@@ -47,6 +49,34 @@ export default function HistoryPage() {
         </span>
         <ChevronRight className="size-5 shrink-0 text-slate-600" />
       </Link>
+
+      <a
+        href="#biggest-wins"
+        className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line transition-colors hover:bg-slate-50 sm:px-5"
+      >
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold-light text-amber-700">
+          <Flame className="size-5" aria-hidden />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">Top 10 biggest wins</span>
+          <span className="block text-sm leading-snug text-slate-600">Single-week regular-season margins, 2020 through this season</span>
+        </span>
+        <ChevronRight className="size-5 shrink-0 text-slate-600" />
+      </a>
+
+      <a
+        href="#high-scores"
+        className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line transition-colors hover:bg-slate-50 sm:px-5"
+      >
+        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold-light text-amber-700">
+          <Trophy className="size-5" aria-hidden />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">Top 20 most points</span>
+          <span className="block text-sm leading-snug text-slate-600">Highest single-week scores, regular season only</span>
+        </span>
+        <ChevronRight className="size-5 shrink-0 text-slate-600" />
+      </a>
 
       <section className="overflow-hidden rounded-2xl bg-navy yard-lines p-4 text-white shadow-lg shadow-navy/15 sm:p-5">
         <p className="flex items-center gap-1.5 text-xs font-bold tracking-wider text-gold uppercase">
@@ -221,6 +251,10 @@ export default function HistoryPage() {
           <span>Numbers are final rank.</span>
         </div>
       </Card>
+
+      <BiggestWins />
+
+      <HighScores />
 
       <HallOfFameAndShame />
 

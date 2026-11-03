@@ -31,12 +31,10 @@ function points(n: number) {
 export function PlayoffSimulator({
   teams,
   focusName,
-  completedWeek,
   currentWeek,
 }: {
   teams: SimTeam[];
   focusName: string;
-  completedWeek: number;
   currentWeek: number;
 }) {
   const [shift, setShift] = useState(0);
@@ -66,6 +64,10 @@ export function PlayoffSimulator({
   const winAll = useMemo(() => winOutChance(PLAYOFF_MODEL, shift), [shift]);
   const ordered = useMemo(() => [...scenario.teams].sort((a, b) => b.odds - a.odds || a.id - b.id), [scenario]);
   const mean = PLAYOFF_MODEL.nonByeEspn + shift;
+  const remaining = schedule.filter((row) => !row.counted);
+  const winOutRecord = path[path.length - 1];
+  const pfOrder = [...PLAYOFF_MODEL.teams].sort((a, b) => b.pf - a.pf);
+  const pfPlace = pfOrder.findIndex((team) => team.id === PLAYOFF_MODEL.focusId) + 1;
 
   function setPick(gameIndex: number, pick: "W" | "L" | "auto") {
     setMayePick((prev) => {
@@ -87,7 +89,9 @@ export function PlayoffSimulator({
 
   function winOut() {
     const next: Record<number, "W"> = {};
-    for (const row of focusSchedule(PLAYOFF_MODEL, 0)) next[row.gameIndex] = "W";
+    for (const row of focusSchedule(PLAYOFF_MODEL, 0)) {
+      if (!row.counted) next[row.gameIndex] = "W";
+    }
     setMayePick(next);
   }
 
@@ -108,8 +112,8 @@ export function PlayoffSimulator({
         <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
           <Stat label="This scenario" value={formatPct(scenario.focusOdds, 1)} sub={Object.keys(scenarioForced).length ? "With results locked" : "Nothing locked"} />
           <Stat label="Every game modeled" value={formatPct(baseline.focusOdds, 1)} sub="No results locked" />
-          <Stat label="Win out" value={formatPct(path[path.length - 1]?.odds ?? 0, 1)} sub="9-5, other locks kept" />
-          <Stat label="Win all 7" value={formatPct(winAll, 1)} sub="Product of the game odds" />
+          <Stat label="Win out" value={formatPct(winOutRecord?.odds ?? 0, 1)} sub={winOutRecord ? `${winOutRecord.wins}-${winOutRecord.losses}, other locks kept` : "Other locks kept"} />
+          <Stat label={`Win all ${remaining.length}`} value={formatPct(winAll, 1)} sub="Product of the remaining game odds" />
         </div>
 
         <label htmlFor="strength" className="mt-5 block text-sm text-slate-600">
@@ -191,23 +195,28 @@ export function PlayoffSimulator({
             const game = PLAYOFF_MODEL.games[row.gameIndex];
             const pick = mayePick[row.gameIndex] ?? "auto";
             const opp = name(row.opponentId);
+            const liveFor = game.homeId === PLAYOFF_MODEL.focusId ? game.homeCurrent : game.awayCurrent;
+            const liveAgainst = game.homeId === PLAYOFF_MODEL.focusId ? game.awayCurrent : game.homeCurrent;
             return (
               <li key={row.gameIndex} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-navy">
                       Week {row.week}
-                      {row.live ? " · live" : ""} {row.home ? "vs" : "@"} {opp}
+                      {row.counted ? " · provisional" : row.live ? " · live" : ""} {row.home ? "vs" : "@"} {opp}
                     </p>
-                    <p className="text-xs text-slate-600 tabular-nums">
-                      Proj {row.focusProj.toFixed(1)}–{row.oppProj.toFixed(1)} · margin {signed(row.margin)} · win {formatPct(row.winProb)}
-                    </p>
-                    {row.live && game.homeCurrent != null && game.awayCurrent != null && (
+                    {row.counted ? (
                       <p className="text-xs text-slate-600 tabular-nums">
-                        So far {points(game.homeId === PLAYOFF_MODEL.focusId ? game.homeCurrent : game.awayCurrent)}–{points(game.homeId === PLAYOFF_MODEL.focusId ? game.awayCurrent : game.homeCurrent)}
+                        {liveFor != null && liveAgainst != null ? `${points(liveFor)}–${points(liveAgainst)} so far. ` : ""}
+                        Provisional, Week {row.week} not final. This result is already in the record.
+                      </p>
+                    ) : (
+                      <p className="text-xs text-slate-600 tabular-nums">
+                        Proj {row.focusProj.toFixed(1)}–{row.oppProj.toFixed(1)} · margin {signed(row.margin)} · win {formatPct(row.winProb)}
                       </p>
                     )}
                   </div>
+                  {row.counted ? null : (
                   <div className="flex gap-1" role="group" aria-label={`Week ${row.week} result versus ${opp}`}>
                     {(
                       [
@@ -236,6 +245,7 @@ export function PlayoffSimulator({
                       </button>
                     ))}
                   </div>
+                  )}
                 </div>
               </li>
             );
@@ -251,6 +261,8 @@ export function PlayoffSimulator({
             );
             const swing = scenario.swings.find((row) => row.gameIndex === gameIndex);
             const locked = forced[gameIndex];
+            const counted = gameIndex >= 0 && PLAYOFF_MODEL.games[gameIndex]?.counted === true;
+            if (counted) return null;
             return (
               <li key={`${root.week}-${root.winnerId}`} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
                 <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">Week {root.week}</p>
@@ -311,8 +323,8 @@ export function PlayoffSimulator({
 
       <Panel title="What record gets in">
         <p className="text-sm leading-snug text-slate-600">
-          Final record if every game is simulated and nothing is locked. {eight ? `8-6 gets in ${formatPct(eight.odds, 1)} of the time. ` : ""}
-          {seven ? `7-7 gets in ${formatPct(seven.odds, 1)}.` : ""} The win-out chart is different: 8-5 there still has a game left.
+          Final record if every remaining game is simulated and nothing is locked. {eight ? `8-6 gets in ${formatPct(eight.odds, 1)} of the time. ` : ""}
+          {seven ? `7-7 gets in ${formatPct(seven.odds, 1)}.` : ""} The win-out chart forces {focusName}&apos;s remaining games one week at a time.
         </p>
         <ul className="mt-3 divide-y divide-line">
           {baseline.byWins.map((row) => (
@@ -327,7 +339,7 @@ export function PlayoffSimulator({
 
       <Panel title="Points-for tiebreaker">
         <p className="text-sm leading-snug text-slate-600">
-          {focusName} has {modelTeam(PLAYOFF_MODEL.focusId)?.pf.toFixed(2)} points, the lowest total in the league. In this scenario,{" "}
+          {focusName} has {modelTeam(PLAYOFF_MODEL.focusId)?.pf.toFixed(2)} points, {place(pfPlace)} in points for. Provisional, Week {currentWeek} not final. In this scenario,{" "}
           {formatPct(scenario.pfDecidedRate, 1)} of sims are a wins tie on the 4/5 line that includes {focusName}
           {scenario.pfDecidedRate > 0 ? `, and ${focusName} wins ${formatPct(scenario.pfWonRate, 1)} of those` : ""}.
         </p>
@@ -339,7 +351,7 @@ export function PlayoffSimulator({
           {[8, 9, 10, 11, 12, 13, 14].map((week) => {
             const games = PLAYOFF_MODEL.games
               .map((game, gameIndex) => ({ game, gameIndex }))
-              .filter(({ game }) => game.week === week && game.homeId !== PLAYOFF_MODEL.focusId && game.awayId !== PLAYOFF_MODEL.focusId);
+              .filter(({ game }) => game.week === week && !game.counted && game.homeId !== PLAYOFF_MODEL.focusId && game.awayId !== PLAYOFF_MODEL.focusId);
             if (!games.length) return null;
             return (
               <div key={week}>
@@ -376,7 +388,7 @@ export function PlayoffSimulator({
         <summary className="min-h-11 cursor-pointer font-display text-lg font-bold tracking-wide text-navy uppercase">How the model works</summary>
         <ul className="mt-3 grid gap-2 text-sm leading-snug text-slate-600">
           <li>
-            Standings are through Week {completedWeek}. Week {currentWeek} uses the points already scored and only the noise left in the game.
+            Week {currentWeek} is already in the wins, losses, and points, and it is provisional, Week {currentWeek} not final. Later weeks are simulated. The live score is not added a second time.
           </li>
           <li>Each other team&apos;s weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss. {focusName} gets no penalty. The slider moves that team instead.</li>
           <li>Scores are normal draws using each team&apos;s weekly spread. The top 4 by wins, then points for, make the playoffs.</li>
@@ -384,6 +396,12 @@ export function PlayoffSimulator({
       </details>
     </div>
   );
+}
+
+function place(n: number) {
+  const suffix = ["th", "st", "nd", "rd"];
+  const v = n % 100;
+  return `${n}${suffix[(v - 20) % 10] || suffix[v] || suffix[0]}`;
 }
 
 function Panel({ title, children }: { title: string; children: ReactNode }) {
