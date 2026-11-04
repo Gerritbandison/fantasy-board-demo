@@ -43,7 +43,6 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
 
   const overview = (
     <>
-      {t.isUser && <RosterOutlook />}
       <p className="max-w-2xl text-[15px] leading-snug text-slate-700">
         {teamBlurb({
           name: t.name,
@@ -126,6 +125,8 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
             </p>
           </Card>
 
+          {t.isUser && <RosterOutlook />}
+
           <Card title="Results" bodyClassName="p-0 sm:p-0" className="overflow-hidden">
             <table className="w-full table-fixed text-sm">
               <thead>
@@ -145,7 +146,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                       <td className="py-2.5 pr-2">
                         <Link href={teamPath(w.opponentId)} className="flex min-w-0 items-center gap-2 hover:underline">
                           <ResultChip result={w.result} />
-                          <span className="min-w-0 truncate text-slate-700">
+                          <span className="min-w-0 break-words text-slate-700">
                             {w.home ? "vs" : "@"} {team(w.opponentId).name}
                             {w.provisional ? <span className="ml-1 font-semibold text-amber-800">Provisional, Week {w.week} not final</span> : null}
                           </span>

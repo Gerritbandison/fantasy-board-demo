@@ -38,7 +38,7 @@ export function PageHeader({ eyebrow, title, children }: { eyebrow: string; titl
   return (
     <div>
       <p className="text-xs font-bold tracking-[0.14em] text-turf uppercase">{eyebrow}</p>
-      <h1 className="mt-1 font-display text-[2.15rem] leading-[1.02] font-extrabold break-words text-navy sm:text-5xl">{title}</h1>
+      <h1 className="mt-1 font-display text-3xl leading-[1.05] font-extrabold break-words text-navy sm:text-4xl">{title}</h1>
       {children}
     </div>
   );

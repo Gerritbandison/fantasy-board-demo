@@ -48,8 +48,18 @@ export function FindNav() {
   return (
     <nav aria-label="Find" className="relative mt-4">
       <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">Find</p>
-      <div className="relative mt-2">
-        <ul ref={scroller} className="flex gap-2 overflow-x-auto pb-2 [scrollbar-width:thin]">
+      <div className="mt-2 flex items-start gap-1.5">
+        {edges.left && (
+          <button
+            type="button"
+            onClick={() => scrollBy(-1)}
+            className="flex h-11 shrink-0 items-center rounded-full bg-white px-2 text-navy ring-1 ring-line"
+            aria-label="Scroll links left"
+          >
+            <Chevron direction="left" />
+          </button>
+        )}
+        <ul ref={scroller} className="flex min-w-0 flex-1 gap-2 overflow-x-auto pb-2 [scrollbar-width:thin]">
           {LINKS.map((item) => (
             <li key={item.href} className={cn("shrink-0", item.phoneOnly && "md:hidden")}>
               <Link
@@ -61,21 +71,11 @@ export function FindNav() {
             </li>
           ))}
         </ul>
-        {edges.left && (
-          <button
-            type="button"
-            onClick={() => scrollBy(-1)}
-            className="absolute top-0 left-0 flex h-11 items-center rounded-full bg-white/95 px-2 text-navy shadow-sm ring-1 ring-line"
-            aria-label="Scroll links left"
-          >
-            <Chevron direction="left" />
-          </button>
-        )}
         {edges.right && (
           <button
             type="button"
             onClick={() => scrollBy(1)}
-            className="absolute top-0 right-0 flex h-11 items-center rounded-full bg-white/95 px-2 text-navy shadow-sm ring-1 ring-line"
+            className="flex h-11 shrink-0 items-center rounded-full bg-white px-2 text-navy ring-1 ring-line"
             aria-label="Scroll links right"
           >
             <Chevron direction="right" />

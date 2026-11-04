@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ScoreReadout } from "@/components/league/bits";
-import { ProjectionStrip, SinceUpdate } from "@/components/league/ScoreStrips";
+import { SinceUpdate } from "@/components/league/ScoreStrips";
 import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components/league/ui";
-import { WeekRoasts } from "@/components/league/WeekRoasts";
+import { RoastCopy, roastPulledLabel } from "@/components/league/WeekRoasts";
 import { cn } from "@/lib/utils";
+import { scoreEmphasis } from "@/lib/score-display";
+import { WEEK_ROASTS } from "@/lib/roasts";
 import {
   CURRENT_WEEK_POSTED,
   formatRecord,
@@ -20,9 +22,25 @@ import {
   USER_TEAM,
   winnerSide,
   type Matchup,
+  type MatchupSide,
 } from "@/lib/league";
 import { PlayoffSeriesNote } from "@/components/league/playoff-h2h";
 import { buildPreview } from "@/lib/preview";
+
+function signed(n: number) {
+  const text = Math.abs(n).toFixed(2);
+  if (n > 0) return `+${text}`;
+  if (n < 0) return `−${text}`;
+  return text;
+}
+
+function roastFor(m: Matchup) {
+  return WEEK_ROASTS?.matchups.find(
+    (row) =>
+      (row.home.teamId === m.homeId && row.away.teamId === m.awayId) ||
+      (row.home.teamId === m.awayId && row.away.teamId === m.homeId),
+  );
+}
 
 export const metadata: Metadata = {
   title: "Scores",
@@ -35,13 +53,18 @@ function stateLabel(state: Matchup["state"]) {
   return "Projected";
 }
 
+function otherSide(m: Matchup, side: MatchupSide) {
+  return side.teamId === m.left.teamId ? m.right : m.left;
+}
+
 function GameList({ games, linked }: { games: Matchup[]; linked: boolean }) {
   return (
     <ul className="grid gap-5 lg:grid-cols-2">
       {games.map((m) => {
         const preview = linked ? buildPreview(m) : null;
+        const roast = linked ? roastFor(m) : undefined;
         const sides = [m.left, m.right];
-        const mine = m.left.teamId === USER_TEAM.id;
+        const mine = sides.some((s) => s.teamId === USER_TEAM.id);
         return (
           <Card key={`${m.week}-${m.slug}`} as="li" accent={mine ? USER_TEAM.color : undefined}>
             <div className="mb-3 flex items-center justify-between gap-2 text-xs font-semibold text-slate-600">
@@ -54,29 +77,41 @@ function GameList({ games, linked }: { games: Matchup[]; linked: boolean }) {
             <div className="grid gap-3">
               {sides.map((s) => {
                 const t = team(s.teamId);
-                const fav = preview?.favoriteId === t.id || (m.left.projected != null && m.right.projected != null && s.projected === Math.max(m.left.projected ?? 0, m.right.projected ?? 0) && m.state === "projected");
+                const other = otherSide(m, s);
+                const emphasis = scoreEmphasis(m.state, s.points ?? null, s.projected ?? null, other.points ?? null, other.projected ?? null);
+                const delta = m.state !== "projected" && s.points != null && s.projected != null ? s.points - s.projected : null;
+                const role = emphasis === "ahead" && m.state === "final" ? "Winner" : emphasis === "ahead" ? "Ahead" : emphasis === "favorite" ? "Favored" : null;
                 return (
                   <div key={t.id} className="flex items-center gap-3">
                     <TeamAvatar teamId={t.id} />
                     <div className="min-w-0 flex-1">
-                      <Link href={teamPath(t.id)} className={cn("leading-tight font-semibold break-words hover:underline", fav ? "text-navy" : "text-slate-600")}>
+                      <Link href={teamPath(t.id)} className={cn("leading-tight font-semibold break-words hover:underline", emphasis === "plain" ? "text-slate-600" : "text-navy")}>
                         {t.name}
                       </Link>
                       <p className="text-xs text-slate-600">
                         {formatRecord(t)} · {ordinal(t.rank)} · {m.homeId === t.id ? "Home" : "Away"}
+                        {role && <span className={cn("font-bold", emphasis === "ahead" ? "text-turf" : "text-slate-700")}> · {role}</span>}
                       </p>
                     </div>
-                    <span className={cn("font-display text-3xl font-bold tabular-nums", fav ? "text-turf" : "text-slate-600")}>
-                      <ScoreReadout side={s} state={m.state} bracketClassName="text-slate-600" />
-                    </span>
+                    <div className="shrink-0 text-right">
+                      <p className={cn("font-display text-3xl leading-none font-bold tabular-nums", emphasis === "ahead" ? "text-turf" : "text-slate-600")}>
+                        {role && <span className="sr-only">{role}, </span>}
+                        <ScoreReadout side={s} state={m.state} bracketClassName="text-slate-600" />
+                      </p>
+                      {delta != null && (
+                        <p className={cn("mt-1 text-xs font-semibold tabular-nums", delta >= 0 ? "text-turf" : "text-loss")}>
+                          {signed(delta)} <span className="font-medium text-slate-600">vs proj</span>
+                        </p>
+                      )}
+                    </div>
                   </div>
                 );
               })}
             </div>
             <PlayoffSeriesNote leftId={m.left.teamId} rightId={m.right.teamId} className="mt-3" />
-            {preview && <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-slate-600">{preview.story.slice(0, 2).join(" ")}</p>}
+            {roast ? <RoastCopy roast={roast} /> : preview ? <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-slate-600">{preview.story[0]}</p> : null}
             {linked && (
-              <Link href={matchupPath(m)} className="mt-4 inline-flex h-10 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
+              <Link href={matchupPath(m)} className="mt-4 inline-flex h-11 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
                 Preview & lineups →
               </Link>
             )}
@@ -92,6 +127,7 @@ export default function MatchupsPage() {
   const finals = GAMES.filter((g) => g.week === lastWeek);
   const live = MATCHUPS.some((m) => m.state === "live");
   const final = MATCHUPS.length > 0 && MATCHUPS.every((m) => m.state === "final");
+  const pulled = roastPulledLabel();
 
   return (
     <>
@@ -100,12 +136,19 @@ export default function MatchupsPage() {
           {!CURRENT_WEEK_POSTED
             ? `Week ${LEAGUE.week} is not on the schedule yet.`
             : final
-              ? `Week ${LEAGUE.week} is final. The score is the result. The line under it is how that result compared with the projection.`
+              ? `Week ${LEAGUE.week} is final. Green is the winner. The small number is the score minus the projection.`
               : live
-                ? `All ${MATCHUPS.length} games are in progress. A bracket is the projection, and it comes off once the score passes it. ${LEAGUE.provisionalLabel ?? `Week ${LEAGUE.week} is final`}.`
+                ? `All ${MATCHUPS.length} games are in progress. Green is the side ahead. A bracket is the projection, and it comes off once the score passes it.`
                 : `All ${MATCHUPS.length} games. Tap one for the preview and the lineups.`}
         </p>
       </PageHeader>
+
+      {pulled && CURRENT_WEEK_POSTED && (
+        <p className="-mt-2 text-sm leading-snug text-slate-600">
+          Roast copy is the {pulled} snapshot.
+          {LEAGUE.provisionalLabel ? ` ${LEAGUE.provisionalLabel}. The scores above are the live totals.` : " The scores above are the finals."}
+        </p>
+      )}
 
       {CURRENT_WEEK_POSTED && MATCHUPS.length > 0 ? (
         <GameList games={MATCHUPS} linked />
@@ -117,9 +160,7 @@ export default function MatchupsPage() {
         </Card>
       )}
 
-      <ProjectionStrip />
       <SinceUpdate />
-      <WeekRoasts />
 
       {UPCOMING.length > 0 && (
         <>
