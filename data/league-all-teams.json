@@ -13,16 +13,17 @@
       "History is keyed by ESPN teamId slot (franchise continuity assumed by slot; owners may have changed). Seasons 2020-2025 available.",
       "2026-11-01 Flaim/ESPN pull at 12:20 PM ET, before the Sunday games. Scoring period 8 is still current. Thursday points are locked (Josh Jacobs 23.2, Matthew Golden 20.9). Lineups, injury tags, bye weeks, projections, and completed adds and drops match that pull. Standings, weekly results, and season totals are still through week 7. Pending offers and waiver claims are not stored.",
       "2026-11-01 Flaim/ESPN pull at 4:28 PM ET, during the Sunday games. Week 8 live scores, ESPN live projections, starter points, lineups and injury tags come from that pull. Each starter's game state comes from ESPN's public NFL Week 8 scoreboard. Standings, weekly results and season totals are still through Week 7. Pending offers and waiver claims are not stored.",
-      "2026-11-02 ~8:58 PM ET. Week 8 is not final (Monday night still in progress). Points for, points against, wins, losses, rank, and each team's week 8 weekly row use the live score. The live leader is the provisional winner. schedule.week8 stays UNDECIDED."
+      "2026-11-02 ~8:58 PM ET. Week 8 is not final (Monday night still in progress). Points for, points against, wins, losses, rank, and each team's week 8 weekly row use the live score. The live leader is the provisional winner. schedule.week8 stays UNDECIDED.",
+      "2026-11-03T09:09:25-05:00. Week 8 is final. Box scores, winners, projections, records, and points for and against match the production scoreboard at fantasy-board-demo.vercel.app/api/league. Team 7 keeps its ESPN name. Lineups were not re-pulled."
     ],
     "displayPolicy": "Team 7 shows its ESPN name and ESPN abbreviation. Other teams use their clean display names.",
-    "updatedAt": "2026-11-02T20:58:00-05:00",
+    "updatedAt": "2026-11-03T09:09:25-05:00",
     "pulledAt": "2026-11-01T16:28:00-05:00",
     "weekInProgress": {
       "week": 8,
-      "final": false,
-      "label": "Provisional, Week 8 not final",
-      "asOf": "2026-11-02 ~8:58 PM ET"
+      "final": true,
+      "label": "Week 8 final",
+      "asOf": "2026-11-03T09:09:25-05:00"
     }
   },
   "league": {
@@ -110,8 +111,8 @@
       "losses": 1,
       "ties": 0,
       "winPercentage": 0.875,
-      "pointsFor": 1015.2,
-      "pointsAgainst": 903.26
+      "pointsFor": 1024.7,
+      "pointsAgainst": 921.36
     },
     {
       "teamId": 8,
@@ -134,8 +135,8 @@
       "losses": 4,
       "ties": 0,
       "winPercentage": 0.5,
-      "pointsFor": 1090.74,
-      "pointsAgainst": 1055.6
+      "pointsFor": 1108.84,
+      "pointsAgainst": 1065.1
     },
     {
       "teamId": 2,
@@ -146,7 +147,7 @@
       "losses": 4,
       "ties": 0,
       "winPercentage": 0.5,
-      "pointsFor": 1020.1,
+      "pointsFor": 1032.8,
       "pointsAgainst": 927.04
     },
     {
@@ -158,8 +159,8 @@
       "losses": 4,
       "ties": 0,
       "winPercentage": 0.5,
-      "pointsFor": 952.82,
-      "pointsAgainst": 971.68
+      "pointsFor": 951.62,
+      "pointsAgainst": 995.28
     },
     {
       "teamId": 4,
@@ -171,7 +172,7 @@
       "ties": 0,
       "winPercentage": 0.5,
       "pointsFor": 935.62,
-      "pointsAgainst": 910.22
+      "pointsAgainst": 922.92
     },
     {
       "teamId": 11,
@@ -218,8 +219,8 @@
       "losses": 6,
       "ties": 0,
       "winPercentage": 0.25,
-      "pointsFor": 899.34,
-      "pointsAgainst": 996.22
+      "pointsFor": 922.94,
+      "pointsAgainst": 995.02
     }
   ],
   "schedule": {
@@ -650,61 +651,61 @@
         "week": 8,
         "homeTeamId": 11,
         "awayTeamId": 5,
-        "homeProjected": 102.87,
-        "awayProjected": 105.99,
+        "homeProjected": 115.27,
+        "awayProjected": 138.5,
         "homeCurrentPoints": 114.92,
         "awayCurrentPoints": 97.66,
-        "winner": "UNDECIDED",
-        "margin": null,
-        "status": "in-progress"
+        "winner": "HOME",
+        "margin": 17.26,
+        "status": "final"
       },
       {
         "week": 8,
         "homeTeamId": 10,
         "awayTeamId": 6,
-        "homeProjected": 122.5,
-        "awayProjected": 89.43,
-        "homeCurrentPoints": 129.68,
-        "awayCurrentPoints": 71.5,
-        "winner": "UNDECIDED",
-        "margin": null,
-        "status": "in-progress"
+        "homeProjected": 130.11,
+        "awayProjected": 109.5,
+        "homeCurrentPoints": 128.48,
+        "awayCurrentPoints": 95.1,
+        "winner": "HOME",
+        "margin": 33.38,
+        "status": "final"
       },
       {
         "week": 8,
         "homeTeamId": 4,
         "awayTeamId": 2,
-        "homeProjected": 102.15,
-        "awayProjected": 103.99,
+        "homeProjected": 108.58,
+        "awayProjected": 128.67,
         "homeCurrentPoints": 120.64,
-        "awayCurrentPoints": 90.98,
-        "winner": "UNDECIDED",
-        "margin": null,
-        "status": "in-progress"
+        "awayCurrentPoints": 103.68,
+        "winner": "HOME",
+        "margin": 16.96,
+        "status": "final"
       },
       {
         "week": 8,
         "homeTeamId": 3,
         "awayTeamId": 1,
-        "homeProjected": 122.06,
-        "awayProjected": 138.67,
-        "homeCurrentPoints": 98,
-        "awayCurrentPoints": 138.28,
-        "winner": "UNDECIDED",
-        "margin": null,
-        "status": "in-progress"
+        "homeProjected": 137.72,
+        "awayProjected": 131.05,
+        "homeCurrentPoints": 116.1,
+        "awayCurrentPoints": 147.78,
+        "winner": "AWAY",
+        "margin": 31.68,
+        "status": "final"
       },
       {
         "week": 8,
         "homeTeamId": 7,
         "awayTeamId": 8,
-        "homeProjected": 173.33,
-        "awayProjected": 83.85,
+        "homeProjected": 128.52,
+        "awayProjected": 121.66,
         "homeCurrentPoints": 179.26,
         "awayCurrentPoints": 89.36,
-        "winner": "UNDECIDED",
-        "margin": null,
-        "status": "in-progress"
+        "winner": "HOME",
+        "margin": 89.9,
+        "status": "final"
       }
     ]
   },
@@ -815,8 +816,8 @@
         "ties": 0,
         "winPercentage": 0.875
       },
-      "pointsFor": 1015.2,
-      "pointsAgainst": 903.26,
+      "pointsFor": 1024.7,
+      "pointsAgainst": 921.36,
       "rank": 1,
       "playoffSeed": 1,
       "currentProjectedRank": 1,
@@ -889,28 +890,27 @@
           "week": 8,
           "opponentTeamId": 3,
           "homeAway": "away",
-          "pointsFor": 138.28,
-          "pointsAgainst": 98,
+          "pointsFor": 147.78,
+          "pointsAgainst": 116.1,
           "result": "W",
-          "projected": 138.67,
-          "provisional": true
+          "projected": 131.05
         }
       ],
       "seasonStats": {
-        "highScore": 138.28,
+        "highScore": 147.78,
         "lowScore": 117.06,
-        "avgScore": 126.9,
+        "avgScore": 128.09,
         "gamesScored": 8
       },
       "week8": {
         "opponentTeamId": 3,
         "homeAway": "away",
-        "projected": 138.67,
-        "opponentProjected": 122.06,
-        "currentPoints": 138.28,
-        "status": "in-progress",
-        "opponentCurrentPoints": 98,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "projected": 131.05,
+        "opponentProjected": 137.72,
+        "currentPoints": 147.78,
+        "status": "final",
+        "opponentCurrentPoints": 116.1,
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -1284,7 +1284,7 @@
         "ties": 0,
         "winPercentage": 0.5
       },
-      "pointsFor": 1020.1,
+      "pointsFor": 1032.8,
       "pointsAgainst": 927.04,
       "rank": 4,
       "playoffSeed": 4,
@@ -1358,28 +1358,27 @@
           "week": 8,
           "opponentTeamId": 4,
           "homeAway": "away",
-          "pointsFor": 90.98,
+          "pointsFor": 103.68,
           "pointsAgainst": 120.64,
           "result": "L",
-          "projected": 103.99,
-          "provisional": true
+          "projected": 128.67
         }
       ],
       "seasonStats": {
         "highScore": 168.1,
         "lowScore": 75.88,
-        "avgScore": 127.51,
+        "avgScore": 129.1,
         "gamesScored": 8
       },
       "week8": {
         "opponentTeamId": 4,
         "homeAway": "away",
-        "projected": 103.99,
-        "opponentProjected": 102.15,
-        "currentPoints": 90.98,
-        "status": "in-progress",
+        "projected": 128.67,
+        "opponentProjected": 108.58,
+        "currentPoints": 103.68,
+        "status": "final",
         "opponentCurrentPoints": 120.64,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -1742,11 +1741,11 @@
         "ties": 0,
         "winPercentage": 0.5
       },
-      "pointsFor": 1090.74,
-      "pointsAgainst": 1055.6,
+      "pointsFor": 1108.84,
+      "pointsAgainst": 1065.1,
       "rank": 3,
       "playoffSeed": 3,
-      "currentProjectedRank": 4,
+      "currentProjectedRank": 5,
       "draftDayProjectedRank": 2,
       "weekly": [
         {
@@ -1816,28 +1815,27 @@
           "week": 8,
           "opponentTeamId": 1,
           "homeAway": "home",
-          "pointsFor": 98,
-          "pointsAgainst": 138.28,
+          "pointsFor": 116.1,
+          "pointsAgainst": 147.78,
           "result": "L",
-          "projected": 122.06,
-          "provisional": true
+          "projected": 137.72
         }
       ],
       "seasonStats": {
         "highScore": 180.28,
-        "lowScore": 98,
-        "avgScore": 136.34,
+        "lowScore": 105.1,
+        "avgScore": 138.6,
         "gamesScored": 8
       },
       "week8": {
         "opponentTeamId": 1,
         "homeAway": "home",
-        "projected": 122.06,
-        "opponentProjected": 138.67,
-        "currentPoints": 98,
-        "status": "in-progress",
-        "opponentCurrentPoints": 138.28,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "projected": 137.72,
+        "opponentProjected": 131.05,
+        "currentPoints": 116.1,
+        "status": "final",
+        "opponentCurrentPoints": 147.78,
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -2200,10 +2198,10 @@
         "winPercentage": 0.5
       },
       "pointsFor": 935.62,
-      "pointsAgainst": 910.22,
+      "pointsAgainst": 922.92,
       "rank": 6,
       "playoffSeed": 6,
-      "currentProjectedRank": 7,
+      "currentProjectedRank": 6,
       "draftDayProjectedRank": 4,
       "weekly": [
         {
@@ -2274,10 +2272,9 @@
           "opponentTeamId": 2,
           "homeAway": "home",
           "pointsFor": 120.64,
-          "pointsAgainst": 90.98,
+          "pointsAgainst": 103.68,
           "result": "W",
-          "projected": 102.15,
-          "provisional": true
+          "projected": 108.58
         }
       ],
       "seasonStats": {
@@ -2289,12 +2286,12 @@
       "week8": {
         "opponentTeamId": 2,
         "homeAway": "home",
-        "projected": 102.15,
-        "opponentProjected": 103.99,
+        "projected": 108.58,
+        "opponentProjected": 128.67,
         "currentPoints": 120.64,
-        "status": "in-progress",
-        "opponentCurrentPoints": 90.98,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "status": "final",
+        "opponentCurrentPoints": 103.68,
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -2706,7 +2703,7 @@
       "pointsAgainst": 1043.2,
       "rank": 8,
       "playoffSeed": 8,
-      "currentProjectedRank": 5,
+      "currentProjectedRank": 8,
       "draftDayProjectedRank": 7,
       "weekly": [
         {
@@ -2779,8 +2776,7 @@
           "pointsFor": 97.66,
           "pointsAgainst": 114.92,
           "result": "L",
-          "projected": 105.99,
-          "provisional": true
+          "projected": 138.5
         }
       ],
       "seasonStats": {
@@ -2792,12 +2788,12 @@
       "week8": {
         "opponentTeamId": 11,
         "homeAway": "away",
-        "projected": 105.99,
-        "opponentProjected": 102.87,
+        "projected": 138.5,
+        "opponentProjected": 115.27,
         "currentPoints": 97.66,
-        "status": "in-progress",
+        "status": "final",
         "opponentCurrentPoints": 114.92,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -3189,8 +3185,8 @@
         "ties": 0,
         "winPercentage": 0.25
       },
-      "pointsFor": 899.34,
-      "pointsAgainst": 996.22,
+      "pointsFor": 922.94,
+      "pointsAgainst": 995.02,
       "rank": 10,
       "playoffSeed": 10,
       "currentProjectedRank": 10,
@@ -3263,28 +3259,27 @@
           "week": 8,
           "opponentTeamId": 10,
           "homeAway": "away",
-          "pointsFor": 71.5,
-          "pointsAgainst": 129.68,
+          "pointsFor": 95.1,
+          "pointsAgainst": 128.48,
           "result": "L",
-          "projected": 89.43,
-          "provisional": true
+          "projected": 109.5
         }
       ],
       "seasonStats": {
         "highScore": 141.06,
-        "lowScore": 71.5,
-        "avgScore": 112.42,
+        "lowScore": 95.1,
+        "avgScore": 115.37,
         "gamesScored": 8
       },
       "week8": {
         "opponentTeamId": 10,
         "homeAway": "away",
-        "projected": 89.43,
-        "opponentProjected": 122.5,
-        "currentPoints": 71.5,
-        "status": "in-progress",
-        "opponentCurrentPoints": 129.68,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "projected": 109.5,
+        "opponentProjected": 130.11,
+        "currentPoints": 95.1,
+        "status": "final",
+        "opponentCurrentPoints": 128.48,
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -3727,8 +3722,7 @@
           "pointsFor": 179.26,
           "pointsAgainst": 89.36,
           "result": "W",
-          "projected": 173.33,
-          "provisional": true
+          "projected": 128.52
         }
       ],
       "seasonStats": {
@@ -3740,12 +3734,12 @@
       "week8": {
         "opponentTeamId": 8,
         "homeAway": "home",
-        "projected": 173.33,
-        "opponentProjected": 83.85,
+        "projected": 128.52,
+        "opponentProjected": 121.66,
         "currentPoints": 179.26,
-        "status": "in-progress",
+        "status": "final",
         "opponentCurrentPoints": 89.36,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -4211,8 +4205,7 @@
           "pointsFor": 89.36,
           "pointsAgainst": 179.26,
           "result": "L",
-          "projected": 83.85,
-          "provisional": true
+          "projected": 121.66
         }
       ],
       "seasonStats": {
@@ -4224,12 +4217,12 @@
       "week8": {
         "opponentTeamId": 7,
         "homeAway": "away",
-        "projected": 83.85,
-        "opponentProjected": 173.33,
+        "projected": 121.66,
+        "opponentProjected": 128.52,
         "currentPoints": 89.36,
-        "status": "in-progress",
+        "status": "final",
         "opponentCurrentPoints": 179.26,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -4594,11 +4587,11 @@
         "ties": 0,
         "winPercentage": 0.5
       },
-      "pointsFor": 952.82,
-      "pointsAgainst": 971.68,
+      "pointsFor": 951.62,
+      "pointsAgainst": 995.28,
       "rank": 5,
       "playoffSeed": 5,
-      "currentProjectedRank": 6,
+      "currentProjectedRank": 4,
       "draftDayProjectedRank": 5,
       "weekly": [
         {
@@ -4668,28 +4661,27 @@
           "week": 8,
           "opponentTeamId": 6,
           "homeAway": "home",
-          "pointsFor": 129.68,
-          "pointsAgainst": 71.5,
+          "pointsFor": 128.48,
+          "pointsAgainst": 95.1,
           "result": "W",
-          "projected": 122.5,
-          "provisional": true
+          "projected": 130.11
         }
       ],
       "seasonStats": {
         "highScore": 146.68,
         "lowScore": 92.98,
-        "avgScore": 119.1,
+        "avgScore": 118.95,
         "gamesScored": 8
       },
       "week8": {
         "opponentTeamId": 6,
         "homeAway": "home",
-        "projected": 122.5,
-        "opponentProjected": 89.43,
-        "currentPoints": 129.68,
-        "status": "in-progress",
-        "opponentCurrentPoints": 71.5,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "projected": 130.11,
+        "opponentProjected": 109.5,
+        "currentPoints": 128.48,
+        "status": "final",
+        "opponentCurrentPoints": 95.1,
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [
@@ -5039,7 +5031,7 @@
       "pointsAgainst": 953.58,
       "rank": 7,
       "playoffSeed": 7,
-      "currentProjectedRank": 8,
+      "currentProjectedRank": 7,
       "draftDayProjectedRank": 6,
       "weekly": [
         {
@@ -5112,8 +5104,7 @@
           "pointsFor": 114.92,
           "pointsAgainst": 97.66,
           "result": "W",
-          "projected": 102.87,
-          "provisional": true
+          "projected": 115.27
         }
       ],
       "seasonStats": {
@@ -5125,12 +5116,12 @@
       "week8": {
         "opponentTeamId": 5,
         "homeAway": "home",
-        "projected": 102.87,
-        "opponentProjected": 105.99,
+        "projected": 115.27,
+        "opponentProjected": 138.5,
         "currentPoints": 114.92,
-        "status": "in-progress",
+        "status": "final",
         "opponentCurrentPoints": 97.66,
-        "asOf": "2026-11-02T20:58:00-05:00"
+        "asOf": "2026-11-03T09:09:25-05:00"
       },
       "roster": {
         "starters": [

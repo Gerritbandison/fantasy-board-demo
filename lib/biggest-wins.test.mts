@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { shownPending, shownWin, type DirectoryTeam } from "./biggest-win-rows.ts";
+import { shownWin, type DirectoryTeam } from "./biggest-win-rows.ts";
 import { franchiseName, hasOtherRawName, USER_TEAM_ID } from "./names.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -61,8 +61,8 @@ function line(side: { seasonName: string; currentName: string; showCurrent: bool
 test("top 10 is final regular-season games, ranked by margin, with names from the directory", () => {
   assert.equal(wins.top10.length, 10);
   assert.equal(wins.boundary.tieAtBoundary, false);
-  assert.equal(wins.boundary.tenthMargin, 80.14);
-  assert.equal(wins.boundary.eleventh.margin, 79.2);
+  assert.equal(wins.boundary.tenthMargin, 80.3);
+  assert.equal(wins.boundary.eleventh.margin, 80.14);
 
   const ranked = wins.top10.map((row) => shownWin(row, teamAt));
   assert.deepEqual(
@@ -70,7 +70,7 @@ test("top 10 is final regular-season games, ranked by margin, with names from th
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   );
   const margins = ranked.map((row) => row.margin);
-  assert.deepEqual(margins, [98.86, 94.82, 94.28, 89.58, 89.04, 86.82, 85.12, 83.18, 80.3, 80.14]);
+  assert.deepEqual(margins, [98.86, 94.82, 94.28, 89.9, 89.58, 89.04, 86.82, 85.12, 83.18, 80.3]);
   for (let i = 1; i < margins.length; i++) assert.ok(margins[i - 1] > margins[i]);
 
   assert.deepEqual(
@@ -79,13 +79,13 @@ test("top 10 is final regular-season games, ranked by margin, with names from th
       "1 2021 wk5 Rub My Chubb|Jahmyr I Go Again||162.52 over YOU LIKE THAT YOU LIKE THAT|All Heart||63.66",
       "2 2020 wk2 Biden 2020|Maye i give you a blowj0b|Gerrit|175.60 over Team PSU sucks|Bibi's Boys|Kyle / KASE|80.78",
       "3 2025 wk2 Gerry's Gang|Maye i give you a blowj0b|Gerrit|175.80 over M1 Abrams|Easy Peasy Lemon Squeezy||81.52",
-      "4 2020 wk12 Sandusky's Soldiers|||165.78 over Team Tino|Smert Fellas||76.20",
-      "5 2020 wk2 Team Tino|Smert Fellas||169.62 over Jahmyr I Go Again (2020)|||80.58",
-      "6 2021 wk9 Kabul FC|||179.06 over Team KGB|Easy Peasy Lemon Squeezy||92.24",
-      "7 2020 wk4 Dimes McSorley||Dimes|165.42 over Zimbabwe Swag moneys|Kabul FC||80.30",
-      "8 2023 wk4 First pick or bust|Bibi's Boys|Kyle / KASE|178.32 over Kabul FC|||95.14",
-      "9 2025 wk7 Chewy's Warriors||Chewy|157.14 over Brioon Omeglemeally|Smert Fellas||76.84",
-      "10 2020 wk8 Dimes McSorley||Dimes|153.92 over Team WAP|Easy Peasy Lemon Squeezy||73.78",
+      "4 2026 wk8 Maye i give you a blowj0b||Gerrit|179.26 over Dimes McSorley||Dimes|89.36",
+      "5 2020 wk12 Sandusky's Soldiers|||165.78 over Team Tino|Smert Fellas||76.20",
+      "6 2020 wk2 Team Tino|Smert Fellas||169.62 over Jahmyr I Go Again (2020)|||80.58",
+      "7 2021 wk9 Kabul FC|||179.06 over Team KGB|Easy Peasy Lemon Squeezy||92.24",
+      "8 2020 wk4 Dimes McSorley||Dimes|165.42 over Zimbabwe Swag moneys|Kabul FC||80.30",
+      "9 2023 wk4 First pick or bust|Bibi's Boys|Kyle / KASE|178.32 over Kabul FC|||95.14",
+      "10 2025 wk7 Chewy's Warriors||Chewy|157.14 over Brioon Omeglemeally|Smert Fellas||76.84",
     ],
   );
 
@@ -96,38 +96,23 @@ test("top 10 is final regular-season games, ranked by margin, with names from th
     }
   }
   assert.equal(directory.get(USER_TEAM_ID)?.name, TEAM_7);
-  assert.equal(ranked.some((row) => row.season === 2026 && row.week === 8), false);
+  const promoted = ranked.find((row) => row.season === 2026 && row.week === 8);
+  assert.equal(promoted?.rank, 4);
+  assert.equal(promoted?.margin, 89.9);
 });
 
-test("the undecided 2026 week 8 game stays out of the ranking and would be 4th", () => {
-  assert.equal(wins.pending.length, 1);
-  const pending = wins.pending[0];
-  assert.equal(pending.winnerTeamId, USER_TEAM_ID);
-  assert.equal(pending.loserName, "Dimes McSorley");
-  assert.equal(pending.winnerScore, 179.26);
-  assert.equal(pending.loserScore, 89.36);
-  assert.equal(pending.margin, 89.9);
-
-  const shown = shownPending(
-    {
-      season: pending.season,
-      week: pending.week,
-      margin: pending.margin,
-      winner: { teamId: pending.winnerTeamId, nameThatSeason: pending.winnerName, score: pending.winnerScore },
-      loser: { teamId: pending.loserTeamId, nameThatSeason: pending.loserName, score: pending.loserScore },
-    },
-    wins.top10.map((row) => row.margin),
-    teamAt,
-  );
-  assert.equal(shown.season, 2026);
-  assert.equal(shown.week, 8);
-  assert.equal(shown.wouldRank, 4);
-  assert.equal(shown.margin.toFixed(2), "89.90");
-  assert.equal(line(shown.winner), "Maye i give you a blowj0b||Gerrit|179.26");
-  assert.equal(line(shown.loser), "Dimes McSorley||Dimes|89.36");
-  assert.equal(shown.winner.currentName, TEAM_7);
-  assert.equal(hasOtherRawName(shown.winner.seasonName), false);
-  assert.equal(hasOtherRawName(shown.loser.seasonName), false);
+test("the final 2026 week 8 margin is in the ranking and nothing is still pending", () => {
+  assert.equal(wins.pending.length, 0);
+  const ranked = wins.top10.map((row) => shownWin(row, teamAt));
+  const row = ranked.find((item) => item.season === 2026 && item.week === 8);
+  assert.ok(row);
+  assert.equal(row.rank, 4);
+  assert.equal(row.margin.toFixed(2), "89.90");
+  assert.equal(line(row.winner), "Maye i give you a blowj0b||Gerrit|179.26");
+  assert.equal(line(row.loser), "Dimes McSorley||Dimes|89.36");
+  assert.equal(row.winner.currentName, TEAM_7);
+  assert.equal(hasOtherRawName(row.winner.seasonName), false);
+  assert.equal(hasOtherRawName(row.loser.seasonName), false);
 });
 
 test("file owners match the nicknames the app already stores", () => {

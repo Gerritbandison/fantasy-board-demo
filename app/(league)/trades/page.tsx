@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { ArrowLeftRight } from "lucide-react";
 import { AllTimeTradeSuperlatives, TradeSeasons, TradeSuperlatives, ValuesCredit, VerdictKey } from "@/components/league/trades";
 import { PageHeader, SectionHeading } from "@/components/league/ui";
-import { LEAGUE } from "@/lib/league";
-import { COUNTS, CURRENT, FIRST_SEASON, SEASONS_LABEL, TRADE_SEASON, TRADES, TRADES_BY_SEASON, UNKNOWN_SEASONS } from "@/lib/trades";
+import { COUNTS, CURRENT, FIRST_SEASON, POINTS_THROUGH, SEASONS_LABEL, TRADE_SEASON, TRADES, TRADES_BY_SEASON, UNKNOWN_SEASONS } from "@/lib/trades";
 
 export const metadata: Metadata = {
   title: "Trades",
@@ -21,8 +20,8 @@ export default function TradesPage() {
     <>
       <PageHeader eyebrow={`Trades, ${SEASONS_LABEL}`} title="Trade desk">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
-          Every player trade since {FIRST_SEASON}, newest season first. {TRADE_SEASON} deals through week {LEAGUE.week} are judged on long-term value: is each side paying off,
-          even or backfiring. Earlier deals are called on points. Points count every point the new players scored for their new teams, started or benched.
+          Every player trade since {FIRST_SEASON}, newest season first. {TRADE_SEASON} deals are judged on long-term value: is each side paying off,
+          even or backfiring. Earlier deals are called on points. Points count every point the new players scored for their new teams, started or benched. {POINTS_THROUGH}.
           {UNKNOWN_SEASONS.length > 0 && ` Trades from ${firstUnknown}–${lastUnknown} aren't on record.`}
         </p>
         <ValuesCredit className="mt-2" />

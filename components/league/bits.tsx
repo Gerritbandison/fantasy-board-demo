@@ -1,3 +1,4 @@
+import { showProjectionBracket } from "@/lib/score-display";
 import { cn } from "@/lib/utils";
 import { formatPoints, type MatchupSide, type MatchupState } from "@/lib/league";
 
@@ -50,7 +51,9 @@ export function ScoreReadout({
   return (
     <span className={className}>
       {live ? formatPoints(side.points ?? 0) : side.projected != null ? side.projected.toFixed(1) : "—"}
-      {live && side.projected != null && <span className={cn("ml-1 font-sans text-xs font-semibold", bracketClassName)}>[{side.projected.toFixed(1)}]</span>}
+      {showProjectionBracket(state, side.points ?? null, side.projected ?? null) && (
+        <span className={cn("ml-1 font-sans text-xs font-semibold", bracketClassName)}>[{side.projected?.toFixed(1)}]</span>
+      )}
     </span>
   );
 }

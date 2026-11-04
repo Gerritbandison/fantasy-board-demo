@@ -1,4 +1,15 @@
 /** File abbrevs from outside the app directory, rewritten to the ones the app already uses. */
+/** A roast card is stale when its score no longer matches the scoreboard. */
+export function roastMatchesScoreboard(
+  cardHome: number,
+  cardAway: number,
+  boardHome: number | null | undefined,
+  boardAway: number | null | undefined,
+) {
+  if (boardHome == null || boardAway == null) return false;
+  return Math.abs(cardHome - boardHome) < 0.02 && Math.abs(cardAway - boardAway) < 0.02;
+}
+
 export function normalizeRoastText(text: string) {
   return text
     .replace(/\bJIGA\b/g, "JAH")

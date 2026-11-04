@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { formatPct } from "@/lib/playoff-sim";
-import { PROJECTED_AS_OF, PROJECTED_METHOD, PROJECTED_SPOTS, PROJECTED_STANDINGS, PROJECTED_WEEKS } from "@/lib/projected-standings";
+import { PROJECTED_AS_OF, PROJECTED_METHOD, PROJECTED_NOTE, PROJECTED_SPOTS, PROJECTED_STANDINGS, PROJECTED_WEEKS } from "@/lib/projected-standings";
 import { team, teamPath } from "@/lib/league";
 import { Card, TeamAvatar } from "./ui";
 
@@ -10,7 +10,7 @@ export function ProjectedStandings() {
   return (
     <Card title="Projected standings" action={PROJECTED_AS_OF} bodyClassName="p-0 sm:p-0">
       <p className="px-4 pt-1 text-sm leading-snug text-slate-600 sm:px-5">
-        As of {PROJECTED_AS_OF}. Provisional, Week 8 not final. Top {PROJECTED_SPOTS} of the {PROJECTED_WEEKS}-week regular season make the playoffs.
+        As of {PROJECTED_AS_OF}. {PROJECTED_NOTE} Top {PROJECTED_SPOTS} of the {PROJECTED_WEEKS}-week regular season make the playoffs. Rank is average finish, not expected wins.
       </p>
       <ol className="mt-3 divide-y divide-line" aria-label="Projected final standings">
         {PROJECTED_STANDINGS.map((row) => {

@@ -51,7 +51,9 @@ export default function InsightsPage() {
     <>
       <PageHeader eyebrow={`League hub · Week ${week}`} title="League insights">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
-          Records and points for include Week {week} and are provisional, Week {week} not final. The record book is still the {GAMES.length} final games through week {week - 1}.
+          {LEAGUE.provisionalLabel
+            ? `Records, points for, and all-play include Week ${week}, which is still in progress. The record book is the ${GAMES.length} final games through week ${week - 1}.`
+            : `Records, points, all-play, and the record book include the ${GAMES.length} final games through week ${week}.`}
         </p>
       </PageHeader>
 

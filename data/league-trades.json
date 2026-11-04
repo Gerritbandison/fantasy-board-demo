@@ -2,6 +2,7 @@
  "scope": "2020-2026. 2026 from ESPN transactions; 2020-2025 rebuilt from weekly roster snapshots (player-for-player trades only).",
  "meta": {
   "generatedAt": "2026-10-29T02:18:23-04:00",
+  "pointsThrough": "Player points through Week 7. Week 8 box scores are final, but this file does not have those player lines.",
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "timezone": "America/New_York",
@@ -25,7 +26,7 @@
    "vetoVoteRows": 13,
    "unmatchedAcceptRows": 1
   },
-  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 7 (the last completed week). We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (\u00b110% band) and the points gained (\u00b110 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
+  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 7. Week 8 box scores are final, but those player points are not in this file. We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (\u00b110% band) and the points gained (\u00b110 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
   "pastSeasons": {
    "source": "Flaim Fantasy (ESPN) get_matchups detail=players for each matchup in weeks 1-13 (2020) / 1-14 (2021-2025); ESPN public players_wl for positions.",
    "whyNotTransactions": "ESPN transactions for past seasons are unavailable: Flaim get_transactions returns ESPN_SEASON_NOT_SUPPORTED, and ESPN direct API returns 401 AUTH_LEAGUE_NOT_VISIBLE (private league, needs login cookies, which were not used).",
@@ -17609,7 +17610,7 @@
    ],
    "note": "Accepted Sep 28 and processed by Sep 29. All Heart cut Dalton Schultz to make room.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 player points are not in this grade; the tally stops at week 7. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      4,
      7
@@ -18356,7 +18357,7 @@
    ],
    "note": "Players moved between the week 3 and week 4 roster snapshots. The ESPN accept row maps to this trade by elimination.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 player points are not in this grade; the tally stops at week 7. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      4,
      7
@@ -19075,7 +19076,7 @@
    ],
    "note": "All Heart dropped Joe Mixon on Oct 9, two days after the trade (add/drop log), so he never played a week for them.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 player points are not in this grade; the tally stops at week 7. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      5,
      7
@@ -19633,7 +19634,7 @@
    ],
    "note": "Accepted Oct 14 and processed Oct 15, 2026 (week 6). Maye dropped KC Concepcion in the deal. He is not counted for either side.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7, plus Josh Jacobs' Thursday of week 8 (23.2). Week 8 is still in progress; the other players in this deal did not play Thursday. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7, plus Josh Jacobs' Thursday of week 8 (23.2). The rest of Week 8 is not in this grade; the other players in this deal did not play Thursday. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      6,
      8
@@ -20888,7 +20889,7 @@
    ],
    "note": "Accepted Oct 19. This is a counter version of Smert Fellas' Aaron Jones and DeVonta Smith offer. Chewy's logged a veto vote that day.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 has not been played yet. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 player points are not in this grade; the tally stops at week 7. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
     "weeksCounted": [
      7,
      7

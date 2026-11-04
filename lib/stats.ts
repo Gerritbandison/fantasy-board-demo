@@ -11,7 +11,7 @@ import {
   winnerSide,
   type Game,
   type Team,
-} from "./league";
+} from "./league.ts";
 
 export const CLOSE_GAME_MARGIN = 5;
 
@@ -53,13 +53,26 @@ export function teamStats(t: Team) {
   return { avg, median: median(pfs), high, low, stdDev, range: high.pf - low.pf, last3, aboveAvgWeeks };
 }
 
-/** Record if the team had played every other team every week. */
+/** Weeks on the standings, including a current week that is still on the team schedule. */
+function recordWeeks() {
+  return [...new Set(TEAMS.flatMap((entry) => entry.weekly.map((week) => week.week)))].sort((a, b) => a - b);
+}
+
+function scoresOnRecord(week: number) {
+  return TEAMS.flatMap((entry) => {
+    const row = entry.weekly.find((item) => item.week === week);
+    return row ? [{ teamId: entry.id, score: row.pf }] : [];
+  });
+}
+
+/** Record if the team had played every other team every week already on the standings. */
 export function allPlay(teamId: number) {
   let wins = 0;
   let losses = 0;
   let ties = 0;
-  for (const w of WEEKS_PLAYED) {
-    const scores = weekScores(w);
+  const weeks = recordWeeks();
+  for (const week of weeks) {
+    const scores = scoresOnRecord(week);
     const mine = scores.find((s) => s.teamId === teamId);
     if (!mine) continue;
     for (const s of scores) {
@@ -70,7 +83,7 @@ export function allPlay(teamId: number) {
     }
   }
   const games = wins + losses + ties;
-  return { wins, losses, ties, pct: games ? (wins + ties / 2) / games : 0, expectedWins: games ? (wins / games) * WEEKS_PLAYED.length : 0 };
+  return { wins, losses, ties, pct: games ? (wins + ties / 2) / games : 0, expectedWins: games ? (wins / games) * weeks.length : 0 };
 }
 
 const PF_ORDER = [...TEAMS].sort((a, b) => b.pointsFor - a.pointsFor).map((t) => t.id);

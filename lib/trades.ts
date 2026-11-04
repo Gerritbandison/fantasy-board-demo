@@ -105,6 +105,7 @@ interface RawFile {
     timezone: string;
     counts: { acceptedTrades: number; uniqueProposals: number; rawProposalRows: number; declines: number; vetoVoteRows: number; unmatchedAcceptRows: number };
     pastSeasons: { evenUnder: number; lopsidedFrom: number };
+    pointsThrough?: string;
   };
   tradesPerSeason: { [season: string]: number | null };
   trades: RawTrade[];
@@ -135,6 +136,8 @@ export const FIRST_SEASON = KNOWN_SEASONS[0] ?? TRADE_SEASON;
 export const SEASONS_LABEL = FIRST_SEASON === TRADE_SEASON ? String(TRADE_SEASON) : `${FIRST_SEASON}–${TRADE_SEASON}`;
 /** Past-season points calls: an edge under `evenUnder` is even, `lopsidedFrom` or more is lopsided. */
 export const PAST_GRADING = file.meta.pastSeasons;
+/** Player-point window for the graded deals. Week 8 box scores are final, but this file does not have those player lines. */
+export const POINTS_THROUGH = file.meta.pointsThrough ?? "Player points through Week 7";
 export const COUNTS = {
   accepted: file.trades.length,
   pickSwaps: file.trades.filter((t) => t.playersMoved === 0).length,
