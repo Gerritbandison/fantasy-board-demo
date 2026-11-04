@@ -1,5 +1,7 @@
 import raw from "../data/league-all-teams.json" with { type: "json" };
+import playoffRaw from "../data/playoff-model.json" with { type: "json" };
 import { franchiseAbbrev, franchiseName, isRetiredSeasonName, publicSeasonName } from "./names.ts";
+import { matchupState, projectionActual, selectScoreboard, type MatchupState, type WeekGame } from "./week-state.ts";
 
 /*
  * The committed Flaim/ESPN pull is the single source of truth. For every franchise
@@ -336,6 +338,37 @@ export interface Game {
   margin: number;
 }
 
+interface ModelPairing {
+  week: number;
+  homeId: number;
+  awayId: number;
+  homeProj: number;
+  awayProj: number;
+  counted?: boolean;
+}
+
+const modelGames = (playoffRaw as { games: ModelPairing[] }).games;
+
+/** Uncounted games after the scoreboard week. Used only when `schedule.week{N+1}` is not on the league file. */
+function futurePairings(currentWeek: number) {
+  const by = new Map<number, WeekGame[]>();
+  for (const game of modelGames) {
+    if (game.counted || game.week <= currentWeek) continue;
+    const list = by.get(game.week) ?? [];
+    list.push({
+      homeTeamId: game.homeId,
+      awayTeamId: game.awayId,
+      homeProjected: game.homeProj,
+      awayProjected: game.awayProj,
+      week: game.week,
+    });
+    by.set(game.week, list);
+  }
+  return [...by.entries()].map(([week, games]) => ({ week, games }));
+}
+
+const scoreboard = selectScoreboard(file.schedule as { [key: string]: unknown }, file.meta.currentWeek, futurePairings(file.meta.currentWeek));
+
 const completedGames = (file.schedule.completed ?? file.schedule.weeks1to7 ?? []) as RawGame[];
 
 export const GAMES: Game[] = [
@@ -359,7 +392,7 @@ export function loserSide(g: Game) {
   return g.winnerId === g.home.teamId ? g.away : g.home;
 }
 
-export type MatchupState = "projected" | "live" | "final";
+export type { MatchupState };
 
 export interface MatchupSide {
   teamId: number;
@@ -402,55 +435,57 @@ function finalCurrentWeekGames(): Game[] {
 }
 
 function currentWeekGames(): RawWeek8Game[] {
-  const key = `week${file.meta.currentWeek}`;
-  const found = file.schedule[key];
-  if (Array.isArray(found)) return found as RawWeek8Game[];
-  return file.schedule.week8 ?? [];
+  return (scoreboard.current ?? []) as RawWeek8Game[];
 }
 
 function currentWeekSide(t: RawTeam) {
   const bag = t as RawTeam & { [key: string]: RawTeam["week8"] };
-  const raw = bag[`week${file.meta.currentWeek}`] ?? t.week8;
+  const raw = bag[`week${file.meta.currentWeek}`];
   return raw
     ? { opponentId: raw.opponentTeamId, projected: nn(raw.projected), opponentProjected: nn(raw.opponentProjected) }
     : undefined;
 }
 
-function matchupState(g: RawWeek8Game): MatchupState {
-  const winner = (g.winner ?? "").toUpperCase();
-  if (winner === "HOME" || winner === "AWAY") return "final";
-  const status = (g.status ?? "").toLowerCase();
-  if (status === "in-progress" || status === "live" || status === "final") return status === "final" ? "final" : "live";
-  if ((g.homeCurrentPoints ?? 0) > 0 || (g.awayCurrentPoints ?? 0) > 0) return "live";
-  return "projected";
+function toMatchups(games: RawWeek8Game[], week: number): Matchup[] {
+  return games
+    .map((g) => {
+      const state = matchupState(g);
+      const live = state !== "projected";
+      const away: MatchupSide = {
+        teamId: g.awayTeamId,
+        projected: nn(g.awayProjected),
+        points: live ? (g.awayCurrentPoints ?? 0) : undefined,
+      };
+      const home: MatchupSide = {
+        teamId: g.homeTeamId,
+        projected: nn(g.homeProjected),
+        points: live ? (g.homeCurrentPoints ?? 0) : undefined,
+      };
+      const [left, right] = home.teamId === USER_TEAM.id ? [home, away] : [away, home];
+      return {
+        slug: `${team(left.teamId).abbrev}-${team(right.teamId).abbrev}`.toLowerCase(),
+        week,
+        homeId: home.teamId,
+        awayId: away.teamId,
+        state,
+        left,
+        right,
+      };
+    })
+    .sort((a, b) => Number(b.left.teamId === USER_TEAM.id) - Number(a.left.teamId === USER_TEAM.id));
 }
 
-export const MATCHUPS: Matchup[] = currentWeekGames()
-  .map((g) => {
-    const state = matchupState(g);
-    const live = state !== "projected";
-    const away: MatchupSide = {
-      teamId: g.awayTeamId,
-      projected: nn(g.awayProjected),
-      points: live ? (g.awayCurrentPoints ?? 0) : undefined,
-    };
-    const home: MatchupSide = {
-      teamId: g.homeTeamId,
-      projected: nn(g.homeProjected),
-      points: live ? (g.homeCurrentPoints ?? 0) : undefined,
-    };
-    const [left, right] = home.teamId === USER_TEAM.id ? [home, away] : [away, home];
-    return {
-      slug: `${team(left.teamId).abbrev}-${team(right.teamId).abbrev}`.toLowerCase(),
-      week: LEAGUE.week,
-      homeId: home.teamId,
-      awayId: away.teamId,
-      state,
-      left,
-      right,
-    };
-  })
-  .sort((a, b) => Number(b.left.teamId === USER_TEAM.id) - Number(a.left.teamId === USER_TEAM.id));
+/** True when `schedule.week{currentWeek}` is on the file. False shows the empty scoreboard, not an older week. */
+export const CURRENT_WEEK_POSTED = scoreboard.current != null;
+
+export const MATCHUPS: Matchup[] = toMatchups(currentWeekGames(), LEAGUE.week);
+
+/** Next week's pairings, once `schedule.week{N+1}` or the playoff model has them. */
+export const UPCOMING_WEEK = scoreboard.nextWeek;
+export const UPCOMING: Matchup[] = toMatchups((scoreboard.next ?? []) as RawWeek8Game[], scoreboard.nextWeek);
+
+/** Actual minus projected for the current week, only where both numbers are already on the game. */
+export const PROJECTION_GAPS = projectionActual(scoreboard.current ?? []);
 
 /** Older URL ids kept working for shared links. */
 const SLUG_ALIASES: { [slug: string]: number } = { "golden-goose": 7, "maye-dim": 7, bibis: 1 };

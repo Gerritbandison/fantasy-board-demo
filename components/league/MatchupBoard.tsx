@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ShieldAlert, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { formatRecord, isFlagged, LEAGUE, ordinal, team, teamPath, type Matchup, type Player, type Team } from "@/lib/league";
+import { formatRecord, isFlagged, LEAGUE, ordinal, team, teamPath, WEEKS_PLAYED, type Matchup, type Player, type Team } from "@/lib/league";
+import { recordBookLabel } from "@/lib/week-state";
 import { resultCallout } from "@/lib/commentary";
 import { buildPreview, matchupFacts, type Edge } from "@/lib/preview";
 import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
@@ -211,7 +212,7 @@ function TaleOfTheTape({ L, R, matchup }: { L: Team; R: Team; matchup: Matchup }
     return (r.better === "high") === r.l > r.r ? "l" : "r";
   };
   return (
-    <Card title="Tale of the tape" action={`Weeks 1–${LEAGUE.week - 1}`}>
+    <Card title="Tale of the tape" action={recordBookLabel(WEEKS_PLAYED)}>
       <div className="mb-2 flex items-center justify-between gap-2">
         <TeamAvatar teamId={L.id} size="sm" />
         <TeamAvatar teamId={R.id} size="sm" />

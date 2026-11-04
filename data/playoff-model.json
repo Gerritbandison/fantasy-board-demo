@@ -4,6 +4,13 @@
   "regularSeasonWeeks": 14,
   "nonByeEspn": 130.2,
   "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 finals as of 2026-11-03T09:09:25-05:00 are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Weeks 9-14 were not re-pulled.",
+  "biasNote": "Each other team's weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss.",
+  "presets": [
+    { "shift": -20, "name": "Season" },
+    { "shift": -5, "name": "Since trade" },
+    { "shift": 0, "name": "ESPN" },
+    { "shift": 7, "name": "Weeks 4–7" }
+  ],
   "teams": [
     {
       "id": 1,

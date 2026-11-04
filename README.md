@@ -65,6 +65,8 @@ How the code uses the data:
 
 The app does not call ESPN at runtime. A refresh is a JSON edit and a PR. Do not push straight to `main` (that deploys production).
 
+Follow [docs/refresh-checklist.md](docs/refresh-checklist.md). Every refresh updates the data files listed there together, and only files under `data/`.
+
 1. Set `meta.currentWeek` in `data/league-all-teams.json` to the league week (the 2026 season is still on week 8; do not bump it just because the NFL week number moved).
 2. Finished weeks live in `schedule.weeks1to7` (or `schedule.completed`). The current week lives in `schedule.week{N}`, which today is `schedule.week8`. Each game can carry:
    - `homeProjected` / `awayProjected` — projected final
