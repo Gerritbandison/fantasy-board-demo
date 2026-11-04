@@ -5,6 +5,7 @@ import { ArrowLeftRight, Medal, ShieldAlert, Trophy } from "lucide-react";
 import { BenchList, PlayerCell } from "@/components/league/MatchupBoard";
 import { ScoreReadout, SlotChip } from "@/components/league/bits";
 import { TeamHeadToHead } from "@/components/league/h2h";
+import { PlayoffSeriesNote, TeamPlayoffHistory } from "@/components/league/playoff-h2h";
 import { TeamTabs } from "@/components/league/TeamTabs";
 import { TeamTradesSection } from "@/components/league/trades";
 import { ProvisionalNote } from "@/components/league/ProvisionalNote";
@@ -121,6 +122,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                   );
                 })}
               </div>
+              {oppId != null && <PlayoffSeriesNote leftId={t.id} rightId={oppId} className="mt-3" />}
               <Link href={matchupPath(m)} className="mt-4 inline-flex h-10 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
                 Matchup preview →
               </Link>
@@ -366,6 +368,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
           </p>
         </Card>
       </div>
+      <TeamPlayoffHistory teamId={t.id} />
     </>
   );
 

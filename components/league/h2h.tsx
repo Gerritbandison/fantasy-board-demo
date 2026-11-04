@@ -25,6 +25,7 @@ import {
   type WeekScore,
 } from "@/lib/h2h";
 import * as roast from "@/lib/roast";
+import { PlayoffSeriesNote } from "./playoff-h2h";
 import { Card, SectionHeading, Stat, TeamAvatar } from "./ui";
 
 const signed = (v: number) => `${v >= 0 ? "+" : "−"}${pts(Math.abs(v))}`;
@@ -319,6 +320,7 @@ export function MatchupSeries({ leftId, rightId }: { leftId: number; rightId: nu
         <span className="w-0.5 bg-white" />
         <span className="flex-1" style={{ background: R.color }} />
       </div>
+      <PlayoffSeriesNote leftId={leftId} rightId={rightId} detail className="mt-3" />
       <dl className="mt-4 grid gap-2 text-sm">
         <Line k="Total points" v={`${pts(s.pointsFor)} – ${pts(s.pointsAgainst)}`} />
         <Line k={`Avg margin (${L.abbrev})`} v={signed(s.avgMargin)} tone={s.avgMargin >= 0 ? "turf" : "loss"} />
