@@ -59,7 +59,7 @@ export default function HomePage() {
                 <div className="mt-3 flex items-center justify-between gap-3 border-t border-line pt-3">
                   <div className="min-w-0 text-xs text-slate-600">
                     {oppId != null && m && (
-                      <p className="truncate">
+                      <p className="break-words">
                         Wk {LEAGUE.week} vs <span className="font-semibold text-slate-700">{team(oppId).name}</span>
                         {m.state !== "projected" ? (
                           <>

@@ -19,9 +19,9 @@ export default function PlayoffsPage() {
     <>
       <PageHeader eyebrow={`${USER_TEAM.name} · ${formatRecord(USER_TEAM)} · projection`} title="Playoff simulator">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
-          One model. The table is the baseline: the ESPN setting, nothing locked, ranked by average finish. The simulator below it changes when the strength slider moves or a game is locked.
+          The table is the ESPN baseline, nothing locked. The simulator below it moves when the slider moves or a game is locked.
           {LEAGUE.provisionalLabel ? ` ${LEAGUE.provisionalLabel}.` : ` Week ${LEAGUE.week} is final.`}
-          {oddsDelta == null ? " Odds have no earlier snapshot, so the table does not show a change." : " The small number under a playoff percentage is the change since the last snapshot."}
+          {oddsDelta == null ? " Odds have no earlier snapshot, so the table does not show a change." : " The small number under a percentage is the change since the last snapshot."}
         </p>
       </PageHeader>
       <ProjectedStandings oddsDelta={oddsDelta} />
