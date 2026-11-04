@@ -68,7 +68,7 @@ export function WeekRoasts() {
       {pulled ? (
         <p className="text-sm leading-snug text-slate-600">
           These cards are the {pulled} snapshot, including the score on each card.
-          {LEAGUE.provisionalLabel ? ` ${LEAGUE.provisionalLabel}. Live totals are on the scoreboard below.` : ""}
+          {LEAGUE.provisionalLabel ? ` ${LEAGUE.provisionalLabel}. Live totals are on the scoreboard above.` : ""}
         </p>
       ) : null}
       <ul className="grid gap-5 lg:grid-cols-2">

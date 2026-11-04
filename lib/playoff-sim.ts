@@ -44,6 +44,10 @@ export interface SimModel {
   currentWeek?: number;
   currentWeekFinal?: boolean;
   source?: string;
+  /** Sentence for the bias window. A refresh updates this instead of the component. */
+  biasNote?: string;
+  /** Named strength presets. Names live in data so a new sample window does not need a code edit. */
+  presets?: { shift: number; name: string }[];
   teams: SimTeam[];
   games: SimGame[];
   rootFor: RootFor[];

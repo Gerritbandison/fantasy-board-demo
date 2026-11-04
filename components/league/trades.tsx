@@ -1,4 +1,6 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
+import { ClosedSeasons } from "./ClosedSeasons";
 import {
   ArrowDownRight,
   ArrowLeftRight,
@@ -736,46 +738,82 @@ function RebuiltNote() {
   );
 }
 
-/** Player trades grouped by season, newest first. The current season starts open. */
+/** Player trades grouped by season, newest first. The current season is in the first HTML. Earlier seasons load when opened. */
 export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?: number; empty?: string }) {
   const groups = bySeason(trades);
   const net = focus != null ? new Map(teamTrades(focus).allTime.bySeason.map((r) => [r.season, r.netPoints])) : null;
+  const current = groups.filter((g) => g.season === TRADE_SEASON);
+  const past = groups.filter((g) => g.season !== TRADE_SEASON);
+  const pastRows = past.map((g) => {
+    const n = net?.get(g.season) ?? null;
+    return {
+      season: g.season,
+      count: g.trades.length,
+      netLabel: n == null ? null : `${signed(n)} pts`,
+      netClass: n == null ? "" : tone(n),
+    };
+  });
   return (
     <div className="grid gap-2.5">
       {groups.length ? (
-        groups.map((g) => {
-          const n = net?.get(g.season) ?? null;
-          return (
-            <details key={g.season} className="group" open={g.season === TRADE_SEASON}>
-              <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-white px-4 py-2.5 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line hover:ring-slate-300 [&::-webkit-details-marker]:hidden">
-                <span className="font-display text-lg leading-tight font-bold text-navy">{g.season} season</span>
-                <span className="flex min-w-0 items-center gap-2 text-xs text-slate-600">
-                  <span className="text-right tabular-nums">
-                    {g.trades.length} player {g.trades.length === 1 ? "trade" : "trades"}
-                    {n != null && (
-                      <>
-                        {" · "}
-                        <span className={cn("font-semibold", tone(n))}>{signed(n)} pts</span>
-                      </>
-                    )}
-                  </span>
-                  <ChevronDown className="size-4 shrink-0 text-slate-600 transition-transform group-open:rotate-180" aria-hidden />
-                </span>
-              </summary>
+        <>
+          {current.map((g) => {
+            const n = net?.get(g.season) ?? null;
+            return (
+            <SeasonBlock key={g.season} season={g.season} count={g.trades.length} netLabel={n == null ? null : `${signed(n)} pts`} netClass={n == null ? "" : tone(n)} open>
               <ul className="mt-3 mb-2 grid gap-4 lg:grid-cols-2">
                 {g.trades.map((t) => (
                   <TradeCard key={t.id} t={t} focus={focus} />
                 ))}
               </ul>
-            </details>
-          );
-        })
+            </SeasonBlock>
+            );
+          })}
+          {pastRows.length > 0 && <ClosedSeasons seasons={pastRows} focus={focus} />}
+        </>
       ) : (
         <p className="text-sm text-slate-600">{empty}</p>
       )}
       <UnknownSeasons />
       {trades.some((t) => t.past) && <RebuiltNote />}
     </div>
+  );
+}
+
+function SeasonBlock({
+  season,
+  count,
+  netLabel,
+  netClass,
+  open,
+  children,
+}: {
+  season: number;
+  count: number;
+  netLabel: string | null;
+  netClass: string;
+  open?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <details className="group" open={open}>
+      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 rounded-xl bg-white px-4 py-2.5 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line hover:ring-slate-300 [&::-webkit-details-marker]:hidden">
+        <span className="font-display text-lg leading-tight font-bold text-navy">{season} season</span>
+        <span className="flex min-w-0 items-center gap-2 text-xs text-slate-600">
+          <span className="text-right tabular-nums">
+            {count} player {count === 1 ? "trade" : "trades"}
+            {netLabel && (
+              <>
+                {" · "}
+                <span className={cn("font-semibold", netClass)}>{netLabel}</span>
+              </>
+            )}
+          </span>
+          <ChevronDown className="size-4 shrink-0 text-slate-600 transition-transform group-open:rotate-180" aria-hidden />
+        </span>
+      </summary>
+      {children}
+    </details>
   );
 }
 

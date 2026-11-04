@@ -6,7 +6,17 @@ import { Card, TeamAvatar } from "./ui";
 
 const one = (n: number) => n.toFixed(1);
 
-export function ProjectedStandings() {
+function OddsMove({ delta }: { delta: number }) {
+  const points = Math.abs(delta * 100).toFixed(1);
+  const text = delta > 0 ? `+${points}` : delta < 0 ? `−${points}` : "0.0";
+  return (
+    <p className={`text-xs font-semibold tabular-nums ${delta > 0 ? "text-turf" : delta < 0 ? "text-loss" : "text-slate-600"}`} title="Change in playoff odds since the last snapshot, in percentage points">
+      {text}
+    </p>
+  );
+}
+
+export function ProjectedStandings({ oddsDelta }: { oddsDelta?: Map<number, number> | null }) {
   return (
     <Card title="Projected standings" action={PROJECTED_AS_OF} bodyClassName="p-0 sm:p-0">
       <p className="px-4 pt-1 text-sm leading-snug text-slate-600 sm:px-5">
@@ -37,6 +47,7 @@ export function ProjectedStandings() {
               </div>
               <div className="shrink-0 text-right">
                 <p className="font-display text-2xl leading-none font-extrabold text-navy tabular-nums">{formatPct(row.playoffOdds)}</p>
+                {oddsDelta?.has(row.teamId) && <OddsMove delta={oddsDelta.get(row.teamId) ?? 0} />}
                 <p className="text-[10px] font-bold tracking-wider text-slate-600 uppercase">Playoffs</p>
                 <p className="mt-1 text-xs text-slate-600 tabular-nums">No. 1 seed {formatPct(row.topSeedOdds)}</p>
               </div>

@@ -4,7 +4,11 @@ import { ScoreReadout } from "@/components/league/bits";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
 import { slateRead } from "@/lib/commentary";
-import { formatRecord, GAMES, LEAGUE, loserSide, MATCHUPS, matchupPath, STANDINGS, team, teamPath, TEAMS, winnerSide, type Game } from "@/lib/league";
+import { formatRecord, GAMES, LEAGUE, loserSide, MATCHUPS, matchupPath, STANDINGS, team, teamPath, TEAMS, WEEKS_PLAYED, winnerSide, type Game } from "@/lib/league";
+import { liveBoard } from "@/lib/live-board";
+import { diffSnapshot } from "@/lib/snapshot";
+import { loadLatestSnapshot } from "@/lib/snapshot-store";
+import { recordBookLabel } from "@/lib/week-state";
 import { matchupFacts } from "@/lib/preview";
 import {
   ALL_SCORES,
@@ -36,6 +40,8 @@ const LUCK_SPAN = 5;
 export default function InsightsPage() {
   const week = LEAGUE.week;
   const power = powerRankings();
+  const snapshot = diffSnapshot(loadLatestSnapshot(), liveBoard());
+  const powerMove = snapshot.available ? new Map(snapshot.odds.map((row) => [row.teamId, row.powerDelta])) : null;
   const luckRows = luckTable();
   const byPf = [...TEAMS].sort((a, b) => b.pointsFor - a.pointsFor);
   const sos = scheduleTable();
@@ -113,12 +119,15 @@ export default function InsightsPage() {
                     All-play {p.allPlay.wins}-{p.allPlay.losses} · actual {formatRecord(p.team)} · last 3 {p.last3.toFixed(1)}
                   </p>
                 </div>
-                <Move move={p.move} />
+                <PowerMark delta={powerMove ? (powerMove.get(p.team.id) ?? null) : null} standingsRank={p.team.rank} />
               </li>
             ))}
           </ol>
           <p className="mt-3 border-t border-line pt-3 text-xs leading-relaxed text-slate-600">
-            All-play: each week, every team is scored against all nine others. Arrows compare with the standings rank.
+            All-play: each week, every team is scored against all nine others.{" "}
+            {powerMove
+              ? `Arrows are the change in power rank since the Week ${snapshot.week} snapshot.`
+              : "W-L is the standings rank. No earlier power order is saved, so this column is not a week-over-week move."}
           </p>
         </Card>
 
@@ -170,7 +179,7 @@ export default function InsightsPage() {
         </Card>
       </div>
 
-      <SectionHeading title="Record book" action={`Weeks 1–${week - 1}`} />
+      <SectionHeading title="Record book" action={recordBookLabel(WEEKS_PLAYED)} />
       <div className="grid gap-5 lg:grid-cols-3">
         <Card title="High scores">
           <ol className="divide-y divide-line">
@@ -403,12 +412,22 @@ function Glance({ label, teamId, value, sub, className }: { label: string; teamI
   );
 }
 
-function Move({ move }: { move: number }) {
-  if (move === 0) return <span className="w-8 text-right text-xs text-slate-600">—</span>;
+function PowerMark({ delta, standingsRank }: { delta: number | null; standingsRank: number }) {
+  if (delta == null) {
+    return (
+      <span className="w-14 text-right text-xs text-slate-600" title="Standings rank. No earlier power order is saved.">
+        W-L #{standingsRank}
+      </span>
+    );
+  }
+  if (delta === 0) return <span className="w-14 text-right text-xs text-slate-600" title="Same power rank as the last snapshot">—</span>;
   return (
-    <span className={cn("w-8 text-right text-xs font-bold tabular-nums", move > 0 ? "text-turf" : "text-loss")} title={`${Math.abs(move)} spot${Math.abs(move) === 1 ? "" : "s"} ${move > 0 ? "higher" : "lower"} than the standings`}>
-      {move > 0 ? "▲" : "▼"}
-      {Math.abs(move)}
+    <span
+      className={cn("w-14 text-right text-xs font-bold tabular-nums", delta > 0 ? "text-turf" : "text-loss")}
+      title={`${Math.abs(delta)} spot${Math.abs(delta) === 1 ? "" : "s"} ${delta > 0 ? "up" : "down"} since the last power snapshot`}
+    >
+      {delta > 0 ? "▲" : "▼"}
+      {Math.abs(delta)}
     </span>
   );
 }

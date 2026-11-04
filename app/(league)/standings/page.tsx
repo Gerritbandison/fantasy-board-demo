@@ -55,7 +55,7 @@ export default function StandingsPage() {
                     <span className="flex min-w-0 items-center gap-2.5">
                       <TeamAvatar teamId={t.id} size="sm" className="hidden sm:inline-flex" />
                       <span className="min-w-0">
-                        <Link href={teamPath(t.id)} className="block leading-tight font-semibold break-words text-navy underline decoration-turf/30 underline-offset-4 hover:decoration-turf">
+                        <Link href={teamPath(t.id)} className="block leading-tight font-semibold break-normal whitespace-normal text-navy underline decoration-turf/30 underline-offset-4 hover:decoration-turf">
                           {t.name}
                         </Link>
                         <span className={cn("text-xs md:hidden", diff >= 0 ? "text-turf" : "text-loss")}>

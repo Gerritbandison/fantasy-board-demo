@@ -3,6 +3,9 @@ import { PlayoffSimulator } from "@/components/league/PlayoffSimulator";
 import { ProjectedStandings } from "@/components/league/ProjectedStandings";
 import { PageHeader } from "@/components/league/ui";
 import { formatRecord, LEAGUE, TEAMS, USER_TEAM } from "@/lib/league";
+import { liveBoard } from "@/lib/live-board";
+import { diffSnapshot } from "@/lib/snapshot";
+import { loadLatestSnapshot } from "@/lib/snapshot-store";
 
 export const metadata: Metadata = {
   title: `${USER_TEAM.name} playoff simulator`,
@@ -10,15 +13,18 @@ export const metadata: Metadata = {
 };
 
 export default function PlayoffsPage() {
+  const diff = diffSnapshot(loadLatestSnapshot(), liveBoard());
+  const oddsDelta = diff.available ? new Map(diff.odds.map((row) => [row.teamId, row.playoffOddsDelta])) : null;
   return (
     <>
       <PageHeader eyebrow={`${USER_TEAM.name} · ${formatRecord(USER_TEAM)} · projection`} title="Playoff simulator">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
           One model. The table is the baseline: the ESPN setting, nothing locked, ranked by average finish. The simulator below it changes when the strength slider moves or a game is locked.
           {LEAGUE.provisionalLabel ? ` ${LEAGUE.provisionalLabel}.` : ` Week ${LEAGUE.week} is final.`}
+          {oddsDelta == null ? " Odds have no earlier snapshot, so the table does not show a change." : " The small number under a playoff percentage is the change since the last snapshot."}
         </p>
       </PageHeader>
-      <ProjectedStandings />
+      <ProjectedStandings oddsDelta={oddsDelta} />
       <PlayoffSimulator
         focusName={USER_TEAM.name}
         currentWeek={LEAGUE.week}
