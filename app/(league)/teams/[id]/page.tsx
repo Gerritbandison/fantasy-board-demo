@@ -12,7 +12,8 @@ import { RosterOutlook } from "@/components/league/RosterOutlook";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, Stat, TeamAvatar } from "@/components/league/ui";
 import { ScoreTrail, TrailLegend, WeekStrip } from "@/components/league/trail";
 import { cn } from "@/lib/utils";
-import { formatRecord, getTeam, isFlagged, LEAGUE, matchupFor, matchupPath, ordinal, STANDINGS, team, teamPath, type MatchupSide } from "@/lib/league";
+import { teamBlurb } from "@/lib/commentary";
+import { formatRecord, getTeam, isFlagged, LEAGUE, matchupFor, matchupPath, ordinal, STANDINGS, team, teamPath, type MatchupSide, type Team } from "@/lib/league";
 import {
   allPlay,
   CLOSE_GAME_MARGIN,
@@ -63,6 +64,20 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
   const overview = (
     <>
       {t.isUser && <RosterOutlook />}
+      <p className="max-w-2xl text-[15px] leading-snug text-slate-700">
+        {teamBlurb({
+          name: t.name,
+          wins: t.wins,
+          losses: t.losses,
+          ties: t.ties,
+          pointsFor: t.pointsFor,
+          rank: t.rank,
+          pointsRank: pfRank(t.id),
+          last3: s.last3,
+          seasonAvg: s.avg,
+          lossesInARow: trailingLosses(t),
+        })}
+      </p>
       <Card bodyClassName="grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-6">
         <Stat label="Points for" value={t.pointsFor.toFixed(1)} sub={`${ordinal(pfRank(t.id))} in the league${LEAGUE.provisionalLabel ? ` · ${LEAGUE.provisionalLabel}` : ""}`} />
         <Stat label="Points against" value={t.pointsAgainst.toFixed(1)} sub={`${ordinal(paRank(t.id))} most faced`} />
@@ -118,11 +133,13 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
             <WeekStrip weeks={t.weekly} className="mt-3" />
             <p className="mt-3 text-sm text-slate-600">
               Beat the weekly league average in <span className="font-semibold text-navy">{s.aboveAvgWeeks} of {t.weekly.length}</span> weeks
-              {tops > 0 && (
+              {tops > 0 ? (
                 <>
                   {" "}
-                  and was the league&apos;s top scorer <span className="font-semibold text-navy">{tops === 1 ? "once" : `${tops} times`}</span>
+                  and led the league <span className="font-semibold text-navy">{tops === 1 ? "once" : `${tops} times`}</span>
                 </>
+              ) : (
+                ". The weekly lead has not come from this roster"
               )}
               .
             </p>
@@ -398,6 +415,16 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
       </nav>
     </>
   );
+}
+
+function trailingLosses(t: Team) {
+  let streak = 0;
+  for (const week of [...t.weekly].reverse()) {
+    if (week.provisional) continue;
+    if (week.result !== "L") break;
+    streak += 1;
+  }
+  return streak;
 }
 
 function Row({ label, value, tone }: { label: string; value: string; tone?: "gold" | "sky" | "turf" | "loss" }) {

@@ -162,7 +162,7 @@ function WeekCard({ s, icon, label, tone, line }: { s: WeekScore; icon: LucideIc
 function SeriesCard({ me, s, kind }: { me: number; s: Series; kind: "snack" | "nemesis" }) {
   const snack = kind === "snack";
   const title = snack ? roast.snackTitle(s) : roast.nemesisTitle(s);
-  const icon = snack ? (title === "Personal ATM" ? Banknote : Cookie) : title === "Who's your daddy" ? Crown : Zap;
+  const icon = snack ? (s.winPct >= 0.65 ? Banknote : Cookie) : s.winPct <= 0.3 ? Crown : Zap;
   return (
     <RoastCard
       icon={icon}
@@ -416,7 +416,7 @@ export function HallOfFameAndShame() {
         <p className="text-xs font-bold tracking-wider text-gold uppercase">{SCOPE_LABEL}</p>
         <p className="mt-1 font-display text-3xl leading-tight font-extrabold">Hall of Fame &amp; Hall of Shame</p>
         <p className="mt-2 text-[15px] leading-relaxed text-white/80">
-          {TOTAL_GAMES} games of receipts. The league&apos;s best moments, its worst ones, and the rivalries that keep the group chat alive.
+          {TOTAL_GAMES} games. The highest scores, the worst losses, and the series that are not close.
         </p>
       </section>
 

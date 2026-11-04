@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: PageProps<"/matchups/[slug]">
   const m = getMatchup((await params).slug);
   if (!m) return {};
   const title = `${team(m.left.teamId).name} vs ${team(m.right.teamId).name}`;
-  return { title, description: `Week ${LEAGUE.week}: ${title}. Preview, tale of the tape, weekly scoring, and lineups.` };
+  return { title, description: `Week ${LEAGUE.week}: ${title}. Preview, weekly scoring, and lineups.` };
 }
 
 export default async function MatchupPage({ params }: PageProps<"/matchups/[slug]">) {

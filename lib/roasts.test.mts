@@ -103,4 +103,16 @@ test("week 8 roast cards stay on the app's names", () => {
     assert.match(blob, new RegExp(expected.homePoints.toString()));
     assert.match(blob, new RegExp(expected.awayPoints.toString()));
   }
+  const maye = card(7, 8);
+  assert.ok(maye);
+  assert.match(maye.roast, /favored by 6\.9/);
+  assert.doesNotMatch(maye.roast, /lower projection/);
+  assert.doesNotMatch(maye.roast, /Ninety/);
+  const easy = card(11, 5);
+  assert.ok(easy);
+  assert.match(easy.roast, /scored 97\.66/);
+  assert.doesNotMatch(easy.roast, /scored 97(?!\.)/);
+  const bibi = card(3, 1);
+  assert.ok(bibi);
+  assert.match(bibi.roast, /31\.7/);
 });
