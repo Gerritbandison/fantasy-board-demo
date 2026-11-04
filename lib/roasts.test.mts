@@ -25,8 +25,21 @@ interface RoastFile {
 }
 
 interface LeagueFile {
-  meta: { currentWeek: number };
-  teams: { teamId: number; displayName: string; displayAbbrev: string; espnName?: string; espnAbbrev?: string }[];
+  meta: { currentWeek: number; weekInProgress?: { final?: boolean } };
+  teams: {
+    teamId: number;
+    displayName: string;
+    displayAbbrev: string;
+    espnName?: string;
+    espnAbbrev?: string;
+    weekly?: { week: number; provisional?: boolean }[];
+  }[];
+}
+
+function latestCompletedWeek(league: LeagueFile) {
+  const weeks = league.teams.flatMap((team) => (team.weekly ?? []).filter((row) => !row.provisional).map((row) => row.week));
+  if (!weeks.length) return null;
+  return Math.max(...weeks);
 }
 
 test("normalizeRoastText uses the app abbreviations", () => {
@@ -62,7 +75,11 @@ test("parseRoastTag splits Lock, Upset alert, and Toss-up", () => {
 test("week 8 roast cards stay on the app's names", () => {
   const roasts = JSON.parse(readFileSync(join(root, "data/week-roasts.json"), "utf8")) as RoastFile;
   const league = JSON.parse(readFileSync(join(root, "data/league-all-teams.json"), "utf8")) as LeagueFile;
-  assert.equal(roasts.week, league.meta.currentWeek);
+  const completed = latestCompletedWeek(league);
+  assert.ok(completed != null);
+  assert.equal(roasts.week, completed);
+  if (league.meta.weekInProgress?.final === true) assert.equal(roasts.week, league.meta.currentWeek);
+  else assert.ok(roasts.week < league.meta.currentWeek);
   assert.equal(roasts.matchups.length, 5);
   const byId = new Map(league.teams.map((t) => [t.teamId, t]));
   for (const m of roasts.matchups) {

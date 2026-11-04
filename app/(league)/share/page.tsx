@@ -45,9 +45,9 @@ export default function SharePage() {
           {MATCHUPS.map((m) => (
             <li key={m.slug} className="grid grid-cols-2 gap-3 bg-navy px-5 py-3">
               {[m.left, m.right].map((s) => (
-                <p key={s.teamId} className="flex items-center gap-2 text-sm">
+                <p key={s.teamId} className="flex items-start gap-2 text-sm">
                   <TeamAvatar teamId={s.teamId} size="sm" />
-                  <span className="min-w-0 flex-1 truncate">{team(s.teamId).name}</span>
+                  <span className="min-w-0 flex-1 break-normal whitespace-normal">{team(s.teamId).name}</span>
                   <span className="font-display text-xl font-bold tabular-nums">
                     {m.state === "projected" ? (s.projected?.toFixed(1) ?? "—") : formatPoints(s.points ?? 0)}
                     {showProjectionBracket(m.state, s.points ?? null, s.projected ?? null) && (

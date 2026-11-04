@@ -27,15 +27,44 @@ export default function StandingsPage() {
       </PageHeader>
 
       <Card bodyClassName="p-0 sm:p-0">
-        <table className="w-full table-fixed border-collapse text-left">
+        <ol className="divide-y divide-line sm:hidden" aria-label={`Chicken standings. ${LEAGUE.provisionalLabel ?? `Week ${LEAGUE.week} is final`}.`}>
+          {STANDINGS.map((t) => {
+            const lk = luck(t.id);
+            const diff = t.pointsFor - t.pointsAgainst;
+            return (
+              <li key={t.id} className={cn("flex items-start gap-3 px-4 py-3", t.id === USER_TEAM.id && "bg-turf-light/40")}>
+                <span className="mt-0.5 inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-slate-100 font-display text-sm font-bold text-slate-600">{t.rank}</span>
+                <TeamAvatar teamId={t.id} size="sm" className="mt-0.5" />
+                <div className="min-w-0 flex-1">
+                  <Link href={teamPath(t.id)} className="block leading-tight font-semibold break-words text-navy underline decoration-turf/30 underline-offset-4">
+                    {t.name}
+                  </Link>
+                  <p className="mt-1 text-xs text-slate-600 tabular-nums">
+                    <span className="font-semibold text-navy">{t.pointsFor.toFixed(1)} PF</span>
+                    <span> · {t.pointsAgainst.toFixed(1)} PA</span>
+                    <span className={diff >= 0 ? "text-turf" : "text-loss"}>
+                      {" "}
+                      · {diff >= 0 ? "+" : "−"}
+                      {Math.abs(diff).toFixed(1)}
+                    </span>
+                  </p>
+                  <div className="mt-2">
+                    <LuckBadge row={lk} />
+                  </div>
+                </div>
+                <span className="font-display text-xl font-bold text-navy tabular-nums">{formatRecord(t)}</span>
+              </li>
+            );
+          })}
+        </ol>
+        <table className="hidden w-full table-fixed border-collapse text-left sm:table">
           <caption className="sr-only">Chicken standings. {LEAGUE.provisionalLabel ?? `Week ${LEAGUE.week} is final`}.</caption>
           <thead>
             <tr className="border-b border-line bg-slate-50 text-xs font-bold tracking-wider text-slate-600 uppercase">
               <th scope="col" className="w-10 py-2.5 pl-3 sm:w-12 sm:pl-4">#</th>
               <th scope="col" className="py-2.5">Team</th>
-              <th scope="col" className="w-11 py-2.5 text-right sm:w-14">W-L</th>
-              <th scope="col" className="w-16 py-2.5 text-right sm:hidden">PF/PA</th>
-              <th scope="col" className="hidden w-20 py-2.5 text-right sm:table-cell">PF</th>
+              <th scope="col" className="w-14 py-2.5 text-right">W-L</th>
+              <th scope="col" className="w-20 py-2.5 text-right">PF</th>
               <th scope="col" className="hidden w-20 py-2.5 text-right sm:table-cell">PA</th>
               <th scope="col" className="hidden w-18 py-2.5 text-right md:table-cell">Diff</th>
               <th scope="col" className="hidden w-20 py-2.5 text-right md:table-cell">PF rank</th>
@@ -53,9 +82,9 @@ export default function StandingsPage() {
                   </td>
                   <td className="py-3 pr-2 align-middle">
                     <span className="flex min-w-0 items-center gap-2.5">
-                      <TeamAvatar teamId={t.id} size="sm" className="hidden sm:inline-flex" />
+                      <TeamAvatar teamId={t.id} size="sm" />
                       <span className="min-w-0">
-                        <Link href={teamPath(t.id)} className="block leading-tight font-semibold break-words text-navy underline decoration-turf/30 underline-offset-4 hover:decoration-turf">
+                        <Link href={teamPath(t.id)} className="block leading-tight font-semibold break-normal whitespace-normal text-navy underline decoration-turf/30 underline-offset-4 hover:decoration-turf">
                           {t.name}
                         </Link>
                         <span className={cn("text-xs md:hidden", diff >= 0 ? "text-turf" : "text-loss")}>
@@ -66,12 +95,8 @@ export default function StandingsPage() {
                     </span>
                   </td>
                   <td className="py-3 text-right align-middle font-display text-lg font-bold text-navy tabular-nums">{formatRecord(t)}</td>
-                  <td className="py-3 text-right align-middle text-sm leading-tight tabular-nums sm:hidden">
-                    <span className="block font-semibold text-navy">{t.pointsFor.toFixed(1)}</span>
-                    <span className="block text-xs text-slate-600">{t.pointsAgainst.toFixed(1)}</span>
-                  </td>
-                  <td className="hidden py-3 text-right align-middle font-semibold text-navy tabular-nums sm:table-cell">{t.pointsFor.toFixed(1)}</td>
-                  <td className="hidden py-3 text-right align-middle text-slate-600 tabular-nums sm:table-cell">{t.pointsAgainst.toFixed(1)}</td>
+                  <td className="py-3 text-right align-middle font-semibold text-navy tabular-nums">{t.pointsFor.toFixed(1)}</td>
+                  <td className="py-3 text-right align-middle text-slate-600 tabular-nums">{t.pointsAgainst.toFixed(1)}</td>
                   <td className={cn("hidden py-3 text-right align-middle font-semibold tabular-nums md:table-cell", diff >= 0 ? "text-turf" : "text-loss")}>
                     {diff >= 0 ? "+" : "−"}
                     {Math.abs(diff).toFixed(1)}

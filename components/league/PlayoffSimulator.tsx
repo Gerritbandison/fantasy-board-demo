@@ -12,12 +12,12 @@ interface SimTeam {
   color: string;
 }
 
-const PRESET_SHIFTS = [
+const PRESET_SHIFTS = PLAYOFF_MODEL.presets ?? [
   { shift: -20, name: "Season" },
   { shift: -5, name: "Since trade" },
   { shift: 0, name: "ESPN" },
   { shift: 7, name: "Weeks 4–7" },
-] as const;
+];
 
 function signed(n: number) {
   const text = Math.abs(n).toFixed(1);
@@ -393,7 +393,9 @@ export function PlayoffSimulator({
           <li>
             Week {currentWeek} is already in the wins, losses, and points{weekFinal ? " and is final" : ", and it is still in progress"}. Later weeks are simulated. That score is not added a second time.
           </li>
-          <li>Each other team&apos;s weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss. {focusName} gets no penalty. The slider moves that team instead.</li>
+          <li>
+            {PLAYOFF_MODEL.biasNote ?? "Each other team's weekly mean is its ESPN projection plus half of its average miss."} {focusName} gets no penalty. The slider moves that team instead.
+          </li>
           <li>Scores are normal draws using each team&apos;s weekly spread. The top 4 by wins, then points for, make the playoffs.</li>
         </ul>
       </details>

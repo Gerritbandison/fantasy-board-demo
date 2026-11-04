@@ -14,11 +14,16 @@ test("all-play uses every week on the record, including the current week", () =>
   }
 });
 
-test("a final current week is in the record book with the standings", () => {
-  assert.equal(LEAGUE.provisionalLabel, null);
-  assert.ok(GAMES.some((game) => game.week === LEAGUE.week));
+test("a current week joins the record book once it is final", () => {
   const played = new Set(GAMES.map((game) => game.week));
   for (const entry of TEAMS) {
     for (const week of entry.weekly) assert.ok(played.has(week.week), `week ${week.week} missing from the record book`);
+  }
+  const currentInBook = GAMES.some((game) => game.week === LEAGUE.week);
+  if (LEAGUE.provisionalLabel == null) {
+    assert.equal(currentInBook, true);
+  } else {
+    assert.ok(LEAGUE.provisionalLabel.length > 0);
+    assert.equal(currentInBook, false);
   }
 });
