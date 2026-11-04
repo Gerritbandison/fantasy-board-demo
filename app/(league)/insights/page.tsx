@@ -3,7 +3,9 @@ import Link from "next/link";
 import { ScoreReadout } from "@/components/league/bits";
 import { Card, LuckBadge, PageHeader, Pill, RangeBar, ResultChip, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
+import { slateRead } from "@/lib/commentary";
 import { formatRecord, GAMES, LEAGUE, loserSide, MATCHUPS, matchupPath, STANDINGS, team, teamPath, TEAMS, winnerSide, type Game } from "@/lib/league";
+import { matchupFacts } from "@/lib/preview";
 import {
   ALL_SCORES,
   BAD_BEATS,
@@ -51,6 +53,7 @@ export default function InsightsPage() {
     <>
       <PageHeader eyebrow={`League hub · Week ${week}`} title="League insights">
         <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
+          {slateRead(MATCHUPS.map(matchupFacts))}{" "}
           {LEAGUE.provisionalLabel
             ? `Records, points for, and all-play include Week ${week}, which is still in progress. The record book is the ${GAMES.length} final games through week ${week - 1}.`
             : `Records, points, all-play, and the record book include the ${GAMES.length} final games through week ${week}.`}
@@ -162,7 +165,7 @@ export default function InsightsPage() {
         <Card title="Strength of schedule" action="Opponents' avg score">
           <BarList rows={sos.map((r) => ({ id: r.team.id, name: r.team.name, value: r.oppAvg, label: r.oppAvg.toFixed(1), sub: `${r.pointsAgainst.toFixed(1)} PA` }))} min={oppMin} max={oppMax} muted />
           <p className="mt-3 text-xs leading-relaxed text-slate-600">
-            Season scoring average of every opponent faced, hardest first, with points allowed alongside. {sos[0].team.name} has had the toughest road so far.
+            Opponent scoring average, hardest first, with points allowed alongside. {sos[0].team.name} has faced the highest average, {sos[0].oppAvg.toFixed(1)}.
           </p>
         </Card>
       </div>

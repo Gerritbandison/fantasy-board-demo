@@ -1,6 +1,7 @@
 import raw from "@/data/week-roasts.json";
+import { resultCallout } from "@/lib/commentary";
 import { normalizeRoastText, parseRoastTag, roastMatchesScoreboard, type RoastTag } from "@/lib/roast-copy";
-import { formatPoints, formatRecord, LEAGUE, MATCHUPS, team } from "@/lib/league";
+import { formatRecord, LEAGUE, MATCHUPS, team } from "@/lib/league";
 
 /*
  * Weekly roast cards for the scores page. Swap data/week-roasts.json when the
@@ -74,8 +75,13 @@ function side(teamId: number, points: number, projected: number, home: boolean):
 }
 
 function projectionLine(home: RoastSide, away: RoastSide) {
-  const when = LEAGUE.provisionalLabel ? "at that snapshot" : "current";
-  return `ESPN projection: ${home.name} ${home.projected.toFixed(1)} vs ${away.name} ${away.projected.toFixed(1)} (${when} ${formatPoints(home.points)}-${formatPoints(away.points)})`;
+  const blank = { wins: 0, losses: 0, lossesInARow: 0 };
+  return resultCallout({
+    state: LEAGUE.provisionalLabel ? "live" : "final",
+    seed: home.teamId,
+    left: { name: home.name, points: home.points, projected: home.projected, ...blank },
+    right: { name: away.name, points: away.points, projected: away.projected, ...blank },
+  });
 }
 
 function boardPoints(teamId: number, homeId: number, awayId: number) {

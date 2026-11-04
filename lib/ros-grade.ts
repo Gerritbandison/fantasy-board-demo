@@ -252,7 +252,7 @@ export function buildRosterGrade(
     rank: rosRank,
     field: rosRows.length,
     ppg: Math.round(rosPpg * 10) / 10,
-    summary: `${ordinal(rosRank)} of ${rosRows.length} on Weeks 9–14 team projections, ${one(Math.round(rosPpg * 10) / 10)} points per week. Projection from ESPN weekly totals in the Oct 31 pull, not a record grade.`,
+    summary: `${ordinal(rosRank)} of ${rosRows.length} on Weeks 9–14 team projections, ${one(Math.round(rosPpg * 10) / 10)} points per week. Projection from ESPN weekly totals in the Oct 31 pull. The record is a separate argument.`,
     positions,
     weeks,
     suggestions: [

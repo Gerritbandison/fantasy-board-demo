@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ShieldAlert, Trophy } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { formatRecord, isFlagged, LEAGUE, ordinal, team, teamPath, type Matchup, type Player, type Team } from "@/lib/league";
-import { buildPreview, type Edge } from "@/lib/preview";
+import { resultCallout } from "@/lib/commentary";
+import { buildPreview, matchupFacts, type Edge } from "@/lib/preview";
 import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
 import { ByeChip, ScoreReadout, SlotChip, StatusChip } from "./bits";
 import { MatchupSeries } from "./h2h";
@@ -92,8 +93,6 @@ function Scorecard({ matchup, L, R }: { matchup: Matchup; L: Team; R: Team }) {
   const lp = matchup.left.projected;
   const rp = matchup.right.projected;
   const hasProj = lp != null && rp != null;
-  const margin = hasProj ? lp - rp : 0;
-  const fav = margin >= 0 ? L : R;
   const stateLabel = matchup.state === "final" ? "Final" : matchup.state === "live" ? "In progress" : "Projected";
   return (
     <section className="overflow-hidden rounded-2xl bg-navy yard-lines text-white shadow-lg shadow-navy/15" aria-label={`${stateLabel} score`}>
@@ -113,11 +112,7 @@ function Scorecard({ matchup, L, R }: { matchup: Matchup; L: Team; R: Team }) {
           <span className="flex-1" style={{ background: R.color }} />
         </div>
         {hasProj && (
-          <p className="mt-2 text-center text-sm text-white/90">
-            <span className="font-semibold text-white">{fav.name}</span> projected final by{" "}
-            <span className="font-display text-base font-bold text-gold tabular-nums">{Math.abs(margin).toFixed(1)}</span>
-            {live && <span className="text-white/80"> · brackets are the projected final</span>}
-          </p>
+          <p className="mt-2 text-center text-sm text-white/90">{resultCallout(matchupFacts(matchup))}</p>
         )}
       </div>
     </section>

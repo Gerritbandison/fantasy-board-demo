@@ -22,10 +22,10 @@ export default function MatchupsPage() {
       <PageHeader eyebrow={`Week ${LEAGUE.week} scoreboard`} title="Scores">
         <p className="mt-2 text-[15px] text-slate-600">
           {MATCHUPS.every((m) => m.state === "final")
-            ? `Week ${LEAGUE.week} is final. A projection stays off the score once the game is over, and it stays off a live score it has already fallen below.`
+            ? `Week ${LEAGUE.week} is final. The score is the result. The line under it is how that result compared with the projection.`
             : live
-              ? `All ${MATCHUPS.length} games are in progress. A bracket is the projected final, and it hides once it falls below the points already scored. ${LEAGUE.provisionalLabel ?? `Week ${LEAGUE.week} is final`}.`
-              : `All ${MATCHUPS.length} games. Tap one for the preview, tale of the tape, and lineups.`}
+              ? `All ${MATCHUPS.length} games are in progress. A bracket is the projection, and it comes off once the score passes it. ${LEAGUE.provisionalLabel ?? `Week ${LEAGUE.week} is final`}.`
+              : `All ${MATCHUPS.length} games. Tap one for the preview and the lineups.`}
         </p>
       </PageHeader>
 

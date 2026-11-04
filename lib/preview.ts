@@ -1,4 +1,5 @@
-import { formatPoints, formatRecord, isFlagged, LEAGUE, ordinal, team, winnerSide, type Matchup, type Team } from "./league";
+import { gameCommentary, type GameInput, type SideInput } from "./commentary.ts";
+import { formatRecord, isFlagged, ordinal, team, winnerSide, type Matchup, type Team } from "./league";
 import { allPlay, meetings, pfRank, teamStats } from "./stats";
 
 export interface Edge {
@@ -16,6 +17,39 @@ export interface Preview {
 
 const f1 = (n: number) => n.toFixed(1);
 
+function lossesInARow(t: Team) {
+  let streak = 0;
+  for (const week of [...t.weekly].reverse()) {
+    if (week.provisional) continue;
+    if (week.result !== "L") break;
+    streak += 1;
+  }
+  return streak;
+}
+
+function sideInput(t: Team, points: number | undefined, projected: number | undefined): SideInput {
+  return {
+    name: t.name,
+    points: points ?? 0,
+    projected: projected ?? null,
+    wins: t.wins,
+    losses: t.losses,
+    lossesInARow: lossesInARow(t),
+  };
+}
+
+/** Facts the commentary templates are allowed to use. */
+export function matchupFacts(m: Matchup): GameInput {
+  const left = team(m.left.teamId);
+  const right = team(m.right.teamId);
+  return {
+    state: m.state,
+    seed: m.week * 100 + left.id * 10 + right.id,
+    left: sideInput(left, m.left.points, m.left.projected),
+    right: sideInput(right, m.right.points, m.right.projected),
+  };
+}
+
 /** A data-only preview: every sentence and edge is computed from the committed league file. */
 export function buildPreview(m: Matchup): Preview {
   const L = team(m.left.teamId);
@@ -26,30 +60,25 @@ export function buildPreview(m: Matchup): Preview {
   let favoriteId: number | undefined;
   let margin: number | undefined;
 
-  if (m.state !== "projected") {
-    const label = m.state === "final" ? "Final" : "In progress";
-    story.push(`${label}: ${L.name} ${formatPoints(m.left.points ?? 0)}, ${R.name} ${formatPoints(m.right.points ?? 0)}.`);
-  }
   if (lp != null && rp != null) {
     const fav = lp >= rp ? L : R;
     favoriteId = fav.id;
     margin = Math.abs(lp - rp);
-    const lead = m.state === "projected" ? `${fav.name} ${verb(fav, "is", "are")} projected to win` : `${fav.name} ${verb(fav, "is", "are")} the projected final favorite`;
-    story.push(`${lead} by ${f1(margin)}, ${f1(Math.max(lp, rp))} to ${f1(Math.min(lp, rp))}.`);
   }
-  story.push(`${standingLine(L)}; ${standingLine(R, true)}.`);
+  story.push(...gameCommentary(matchupFacts(m)).lines);
+  story.push(`${placeLine(L)} ${placeLine(R)}`);
   const ls = teamStats(L);
   const rs = teamStats(R);
-  story.push(`Over the last three weeks ${L.name} averaged ${f1(ls.last3)} and ${R.name} ${f1(rs.last3)}.`);
+  story.push(`Last three weeks: ${L.name} ${f1(ls.last3)}, ${R.name} ${f1(rs.last3)}.`);
   const met = meetings(L.id, R.id);
   if (met.length) {
     story.push(met.map((g) => {
       const w = winnerSide(g);
       const l = w === g.home ? g.away : g.home;
-      return `They already met in week ${g.week}: ${team(w.teamId).name} won ${w.score.toFixed(2)}–${l.score.toFixed(2)}.`;
+      return `Week ${g.week}: ${team(w.teamId).name} won ${w.score.toFixed(2)}–${l.score.toFixed(2)}.`;
     }).join(" "));
   } else {
-    story.push(`First meeting of the ${LEAGUE.season} season.`);
+    story.push("First meeting this season.");
   }
 
   const edges: Preview["edges"] = { left: [], right: [] };
@@ -106,12 +135,6 @@ export function buildPreview(m: Matchup): Preview {
   return { favoriteId, margin, story, edges, stakes };
 }
 
-/** Team names like "Bibi's Boys" read as plural. */
-function verb(t: Team, singular: string, plural: string) {
-  return /s$/i.test(t.name) ? plural : singular;
-}
-
-function standingLine(t: Team, short?: boolean) {
-  const v = short ? verb(t, "is", "are") : verb(t, "comes in", "come in");
-  return `${t.name} ${v} ${formatRecord(t)}, ${ordinal(t.rank)} in the standings and ${ordinal(pfRank(t.id))} in points`;
+function placeLine(t: Team) {
+  return `${t.name} is ${formatRecord(t)}, ${ordinal(t.rank)} in the standings and ${ordinal(pfRank(t.id))} in points.`;
 }
