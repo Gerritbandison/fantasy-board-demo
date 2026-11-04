@@ -35,5 +35,10 @@ test("the league file feed is newest first and only waivers, adds, and drops", (
   for (let i = 1; i < feed.length; i++) {
     assert.ok((feed[i - 1].date ?? "") >= (feed[i].date ?? ""), `${feed[i - 1].date} before ${feed[i].date}`);
   }
-  assert.equal(feed[0].date, "2026-11-01");
+  const newest = rows
+    .filter((row) => row.type.toLowerCase() === "waiver" || row.type.toLowerCase() === "add" || row.type.toLowerCase() === "drop")
+    .map((row) => row.date ?? "")
+    .sort()
+    .at(-1);
+  assert.equal(feed[0].date, newest);
 });

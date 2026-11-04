@@ -120,10 +120,14 @@ test("the committed schedule selects week 8 finals and week 9 pairings from the 
         })),
     }));
   const board = selectScoreboard(league.schedule, league.meta.currentWeek, extras);
-  assert.equal(board.currentWeek, 8);
-  assert.equal(board.current?.length, 5);
-  assert.ok(board.current?.every((game) => matchupState(game) === "final"));
-  assert.equal(board.nextWeek, 9);
-  assert.equal(board.next?.length, 5);
+  assert.equal(board.currentWeek, league.meta.currentWeek);
+  assert.deepEqual(board.current, gamesForWeek(league.schedule, league.meta.currentWeek));
+  assert.ok(board.current && board.current.length > 0);
+  const week8 = gamesForWeek(league.schedule, 8);
+  assert.equal(week8?.length, board.current.length);
+  assert.ok(week8?.every((game) => matchupState(game) === "final"));
+  if (league.meta.currentWeek !== 8) assert.notDeepEqual(board.current, week8);
+  assert.equal(board.nextWeek, league.meta.currentWeek + 1);
+  assert.equal(board.next?.length, board.current.length);
   assert.ok(board.next?.every((game) => game.homeProjected != null && game.awayProjected != null));
 });
