@@ -5,10 +5,19 @@ import { MAYE_ROS } from "@/lib/ros";
 import { cn } from "@/lib/utils";
 
 function letterClass(letter: string) {
+  if (letter === "—") return "text-slate-500";
   if (letter.startsWith("A")) return "text-turf";
   if (letter.startsWith("B")) return "text-navy";
   if (letter.startsWith("C")) return "text-gold-ink";
   return "text-loss";
+}
+
+function weekSpan(weeks: { week: number }[]) {
+  const first = weeks[0]?.week;
+  const last = weeks[weeks.length - 1]?.week;
+  if (first == null || last == null) return "Rest of season";
+  if (first === last) return `Week ${first}`;
+  return `Weeks ${first}\u2013${last}`;
 }
 
 /** Rest-of-season projection for the user's franchise. Counted numbers come from the roster pull. */
@@ -18,10 +27,14 @@ export function RosterOutlook() {
     <Card title="Rest of season" action="Projection">
       <div className="flex items-end justify-between gap-3">
         <p className={cn("font-display text-5xl leading-none font-extrabold", letterClass(report.letter))}>{report.letter}</p>
-        <p className="text-right text-sm text-slate-600">
-          <span className="font-display text-2xl font-bold text-navy tabular-nums">{report.ppg.toFixed(1)}</span>
-          <span className="block">pts/wk · {report.rank} of {report.field}</span>
-        </p>
+        {report.ppg != null && report.field > 0 ? (
+          <p className="text-right text-sm text-slate-600">
+            <span className="font-display text-2xl font-bold text-navy tabular-nums">{report.ppg.toFixed(1)}</span>
+            <span className="block">pts/wk · {report.rank} of {report.field}</span>
+          </p>
+        ) : (
+          <p className="text-right text-sm text-slate-600">No team projection in this file.</p>
+        )}
       </div>
       <p className="mt-3 text-sm leading-snug text-slate-600">{report.summary}</p>
 
@@ -37,7 +50,7 @@ export function RosterOutlook() {
         ))}
       </ul>
 
-      <h3 className="mt-5 text-xs font-bold tracking-wider text-slate-600 uppercase">Weeks 9–14</h3>
+      <h3 className="mt-5 text-xs font-bold tracking-wider text-slate-600 uppercase">{weekSpan(report.weeks)}</h3>
       <ul className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-6">
         {report.weeks.map((week) => {
           const opp = team(week.opponentId);
@@ -61,7 +74,7 @@ export function RosterOutlook() {
           );
         })}
       </ul>
-      <p className="mt-2 text-xs leading-snug text-slate-600">Win odds are the simulator at the ESPN projection. Isaiah Likely is the tight end. Harold Fannin Jr. is in the lineup only while Likely is on bye.</p>
+      <p className="mt-2 text-xs leading-snug text-slate-600">Win odds are the simulator at the ESPN projection.</p>
 
       <h3 className="mt-5 text-xs font-bold tracking-wider text-slate-600 uppercase">Suggestions</h3>
       <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">

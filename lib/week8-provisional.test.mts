@@ -93,9 +93,13 @@ const projected = JSON.parse(readFileSync(join(root, "data/projected-standings.j
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
 test("week 8 finals are in the season totals and decided on the schedule", () => {
-  assert.equal(league.meta.currentWeek, 8);
-  assert.equal(league.meta.weekInProgress.week, 8);
-  assert.equal(league.meta.weekInProgress.final, true);
+  assert.equal(league.meta.weekInProgress.week, league.meta.currentWeek);
+  assert.ok(league.meta.currentWeek >= 8);
+  assert.equal(typeof league.meta.weekInProgress.final, "boolean");
+  assert.ok(league.meta.weekInProgress.label.length > 0);
+  const latestFinal = Math.max(...league.teams.flatMap((team) => team.weekly.filter((row) => !row.provisional).map((row) => row.week)));
+  if (league.meta.weekInProgress.final) assert.equal(league.meta.currentWeek, latestFinal);
+  else assert.ok(league.meta.currentWeek > latestFinal);
   assert.equal(league.schedule.weeks1to7.some((game) => game.week === 8), false);
 
   const finals = [
@@ -130,7 +134,7 @@ test("week 8 finals are in the season totals and decided on the schedule", () =>
     assert.equal(team.week8.opponentTeamId, week8.opponentTeamId);
     assert.equal(team.week8.starters, undefined);
     assert.equal(team.week8.startersFinal, undefined);
-    assert.equal(team.seasonStats.gamesScored, 8);
+    assert.equal(team.seasonStats.gamesScored, team.weekly.filter((row) => !row.provisional).length);
     assert.equal(team.seasonStats.highScore, Math.max(...team.weekly.map((row) => row.pointsFor)));
     assert.equal(team.playoffSeed, team.rank);
 
@@ -186,7 +190,10 @@ test("projected standings use the final records and rank by average seed", () =>
   for (const row of projected.standings) {
     const team = league.teams.find((entry) => entry.teamId === row.teamId);
     assert.ok(team);
-    assert.equal(row.record_thru_wk8, `${team.record.wins}-${team.record.losses}`);
-    assert.equal(row.pf_thru_wk8, team.pointsFor);
+    const thru = team.weekly.filter((row) => row.week <= 8 && !row.provisional);
+    const wins = thru.filter((row) => row.result === "W").length;
+    const losses = thru.filter((row) => row.result === "L").length;
+    assert.equal(row.record_thru_wk8, `${wins}-${losses}`);
+    assert.equal(row.pf_thru_wk8, round2(thru.reduce((sum, row) => sum + row.pointsFor, 0)));
   }
 });

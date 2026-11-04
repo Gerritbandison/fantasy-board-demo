@@ -30,7 +30,10 @@ Every one of those refreshes updates the files below **together**. A page that r
 
 3. `data/league-trades.json` — player lines on processed trades: `pointsForNewTeam`, side `pointsReceived` / `pointsGained`, and `meta.pointsThrough`. The trade desk must not still say "through Week 7" after the scoreboard has moved on. Offers, declines, and vetoes stay counts only.
 
-4. `data/league-rosters.json`, `data/player-points-w4-7.json`, and `data/maye-byes.json` — team 7's roster outlook. Lineups and bye weeks live here, not in a component.
+4. `data/league-rosters.json`, `data/player-points-w4-7.json`, and `data/maye-byes.json` — the roster outlook, together with each team's `roster` in `data/league-all-teams.json`.
+   - The grade follows whoever is in the current lineup. An empty slot, including D/ST, is valid. A player with no row in the points file is left out of that grade. Do not invent a rate.
+   - For every team, `league-rosters.json` and `roster` (starters, bench, and IR) list the same players for `meta.currentWeek`: the same name, position, and lineup slot.
+   - Every name in `maye-byes.json` is still on the focus roster (team 7). Remove a name when that player is dropped.
 
 5. `data/playoff-model.json` — projections for every remaining week (weeks 9–14 until those weeks are played). Mark a finished game `counted: true` and set `homeCurrent` / `awayCurrent`. Update team `wins`, `losses`, and `pf`. Update `biasNote` when the sample window moves (it is the sentence on the simulator). Update `presets` when a named window such as "Weeks 4–7" is no longer the one on the slider. `source` stays the long method note.
 
@@ -42,9 +45,34 @@ Every one of those refreshes updates the files below **together**. A page that r
 
 9. `data/snapshots/<week>.json` — written at the **end** of the refresh, after the files above match the scoreboard. See below. The next refresh diffs against the newest numbered file. Until one exists, Scores, Playoffs, and power rankings say there is no earlier snapshot.
 
-10. `data/week-roasts.json` — **Tuesday only**, when the week closes and the roast is approved. Set `week` to the week that just ended and include all five matchups. Other nights leave the previous file alone. The scores page hides a roast file whose `week` is not `meta.currentWeek`.
+10. `data/week-roasts.json` — Tuesday, when the week closes and the roast is approved. Set `week` to that completed week and include every matchup. Other nights leave the file. Its `week` stays the latest completed week, which is behind `meta.currentWeek` until `weekInProgress.final` is `true`. The scores page hides a roast whose `week` is not `meta.currentWeek`.
 
 Team names in prose come from `lib/names.ts`. Team 7 stays `Maye i give you a blowj0b`. Do not put another franchise's raw ESPN name in a roast or a snapshot. Snapshots store team ids, not names.
+
+## Current week
+
+`meta.currentWeek` is the week on the scoreboard. `meta.weekInProgress` describes that same week:
+
+- `week` equals `meta.currentWeek`.
+- `final` is `true` only after the week is closed, and `false` while it is unplayed or live.
+- `label` is a non-empty sentence, such as `Week 9 not started` or `Week 8 final`.
+
+`data/playoff-model.json` uses the same pair: `currentWeek` and `currentWeekFinal`.
+
+While `final` is `false`:
+
+- `schedule.week{currentWeek}` is that week's slate. A game that is not over keeps `winner` as `UNDECIDED`.
+- No team has a completed `weekly` row for `currentWeek`. A `provisional: true` row is allowed while the week is live.
+- `week-roasts.json` stays on the latest completed week.
+
+When `final` is `true`:
+
+- Every game in `schedule.week{currentWeek}` is final.
+- Every team has one completed `weekly` row for `currentWeek`.
+- That week is also in `schedule.completed` once it is no longer the current week (weeks 1–7 stay in `schedule.weeks1to7`).
+- `week-roasts.json` `week` is `currentWeek`.
+
+Every team id in the playoff model, the roast file, the projected standings, and `schedule.week{currentWeek}` is a team in `league-all-teams.json`. Every league team appears once on that schedule and has a `week{currentWeek}` opponent who is the team on the other side of that game.
 
 ## How to write a snapshot
 
@@ -81,6 +109,21 @@ That writes `data/snapshots/<meta.currentWeek>.json`. The block below is the sha
 - Do not hand-edit a rank or an odds figure. If the script is wrong, fix the data file it reads and run it again.
 
 The following refresh updates the live files first, so the app can show who moved, which finals are new, and which adds were not on this snapshot. Then it writes a new snapshot for the week it just published.
+
+## Verify
+
+From the repo root, before opening the data PR:
+
+```bash
+npm run validate:data
+npm run lint
+npm test
+npm run build
+```
+
+`npm run validate:data` checks the files above against `meta.currentWeek`. It prints the file, the week, and the team or player that does not match. A missing lineup player, an unknown team in the playoff model or a roast, or a bye name who was dropped stops here instead of a 500 on `/teams/7`.
+
+`npm test` reads `meta.currentWeek` from these files. `/teams/7` must return 200 with the current roster grade. Fix any line `validate:data` prints and run it again. Production deploys from `main`.
 
 ## What a refresh does not change
 
