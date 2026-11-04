@@ -7,6 +7,7 @@ import { buildPreview, matchupFacts, type Edge } from "@/lib/preview";
 import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
 import { ByeChip, ScoreReadout, SlotChip, StatusChip } from "./bits";
 import { MatchupSeries } from "./h2h";
+import { PlayoffSeriesNote } from "./playoff-h2h";
 import { Card, PageHeader, Stat, TeamAvatar } from "./ui";
 import { MiniTrail, ScoreTrail, TrailLegend, WeekStrip } from "./trail";
 import { TvModeButton } from "./TvModeButton";
@@ -114,6 +115,7 @@ function Scorecard({ matchup, L, R }: { matchup: Matchup; L: Team; R: Team }) {
         {hasProj && (
           <p className="mt-2 text-center text-sm text-white/90">{resultCallout(matchupFacts(matchup))}</p>
         )}
+        <PlayoffSeriesNote leftId={L.id} rightId={R.id} onDark className="mt-2" />
       </div>
     </section>
   );

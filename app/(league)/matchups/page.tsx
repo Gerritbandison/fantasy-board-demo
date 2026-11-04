@@ -5,6 +5,7 @@ import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components
 import { WeekRoasts } from "@/components/league/WeekRoasts";
 import { cn } from "@/lib/utils";
 import { formatRecord, GAMES, LEAGUE, MATCHUPS, matchupPath, ordinal, team, teamPath, USER_TEAM, winnerSide } from "@/lib/league";
+import { PlayoffSeriesNote } from "@/components/league/playoff-h2h";
 import { buildPreview } from "@/lib/preview";
 
 export const metadata: Metadata = {
@@ -67,6 +68,7 @@ export default function MatchupsPage() {
                   );
                 })}
               </div>
+              <PlayoffSeriesNote leftId={m.left.teamId} rightId={m.right.teamId} className="mt-3" />
               <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-slate-600">{preview.story.slice(0, 2).join(" ")}</p>
               <Link href={matchupPath(m)} className="mt-4 inline-flex h-10 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
                 Preview & lineups →
