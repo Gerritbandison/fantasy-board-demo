@@ -24,6 +24,7 @@ import {
   type Matchup,
   type MatchupSide,
 } from "@/lib/league";
+import { PlayoffSeriesNote } from "@/components/league/playoff-h2h";
 import { buildPreview } from "@/lib/preview";
 
 function signed(n: number) {
@@ -107,6 +108,7 @@ function GameList({ games, linked }: { games: Matchup[]; linked: boolean }) {
                 );
               })}
             </div>
+            <PlayoffSeriesNote leftId={m.left.teamId} rightId={m.right.teamId} className="mt-3" />
             {roast ? <RoastCopy roast={roast} /> : preview ? <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-slate-600">{preview.story[0]}</p> : null}
             {linked && (
               <Link href={matchupPath(m)} className="mt-4 inline-flex h-11 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">

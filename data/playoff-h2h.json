@@ -1,0 +1,2146 @@
+{
+ "meta": {
+  "leagueId": "12115010",
+  "source": "Flaim Fantasy get_matchups (reused h2h-raw/matchups-raw.json via league-h2h-history.json, pulled 2026-10-29)",
+  "seasonsCovered": [
+   2020,
+   2021,
+   2022,
+   2023,
+   2024,
+   2025
+  ],
+  "seasonsMissing": [],
+  "note": "2026 playoffs not yet played. Team ids are ESPN slots, stable 2020-2025; owners are CURRENT owners per slot (per-season owner history not in data). Two-week playoff matchups count as one game. Winners-bracket = WINNERS_BRACKET only; WINNERS_CONSOLATION_LADDER (3rd place) and LOSERS_CONSOLATION_LADDER are consolation.",
+  "winnersGames": 18,
+  "consolationGames": 42
+ },
+ "games": [
+  {
+   "gameId": "2020-mp14-1v2",
+   "season": 2020,
+   "matchupPeriod": 14,
+   "scoringPeriods": [
+    14,
+    15
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "Team PSU sucks",
+    "score": 303
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Black  Lives",
+    "score": 164.24
+   },
+   "winnerTeamId": 1,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp14-4v7",
+   "season": 2020,
+   "matchupPeriod": 14,
+   "scoringPeriods": [
+    14,
+    15
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "Biden 2020",
+    "score": 300.64
+   },
+   "teamB": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "Team MadisonLoeffler",
+    "score": 224.38
+   },
+   "winnerTeamId": 7,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp14-6v8",
+   "season": 2020,
+   "matchupPeriod": 14,
+   "scoringPeriods": [
+    14,
+    15
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 271.7
+   },
+   "teamB": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Team Tino",
+    "score": 316.28
+   },
+   "winnerTeamId": 6,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp14-3v10",
+   "season": 2020,
+   "matchupPeriod": 14,
+   "scoringPeriods": [
+    14,
+    15
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 263.98
+   },
+   "teamB": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "The Letdowns",
+    "score": 267.24
+   },
+   "winnerTeamId": 3,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp14-5v11",
+   "season": 2020,
+   "matchupPeriod": 14,
+   "scoringPeriods": [
+    14,
+    15
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Zimbabwe  Swag moneys",
+    "score": 190.5
+   },
+   "teamB": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "Team WAP",
+    "score": 237.08
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp15-1v3",
+   "season": 2020,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    16,
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "Team PSU sucks",
+    "score": 279.86
+   },
+   "teamB": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "The Letdowns",
+    "score": 233.98
+   },
+   "winnerTeamId": 1,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp15-2v5",
+   "season": 2020,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    16,
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Black  Lives",
+    "score": 186.36
+   },
+   "teamB": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "Team WAP",
+    "score": 288.86
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp15-6v7",
+   "season": 2020,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    16,
+    17
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": true,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "Biden 2020",
+    "score": 280.34
+   },
+   "teamB": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Team Tino",
+    "score": 317.34
+   },
+   "winnerTeamId": 6,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp15-4v8",
+   "season": 2020,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    16,
+    17
+   ],
+   "playoffTier": "WINNERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 248.82
+   },
+   "teamB": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "Team MadisonLoeffler",
+    "score": 332.36
+   },
+   "winnerTeamId": 4,
+   "isTie": false
+  },
+  {
+   "gameId": "2020-mp15-10v11",
+   "season": 2020,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    16,
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 282.36
+   },
+   "teamB": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Zimbabwe  Swag moneys",
+    "score": 199.7
+   },
+   "winnerTeamId": 10,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp15-2v3",
+   "season": 2021,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Rub My  Chubb",
+    "score": 274.78
+   },
+   "teamB": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Long Beach Horned Frogs",
+    "score": 271.2
+   },
+   "winnerTeamId": 2,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp15-4v8",
+   "season": 2021,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "YOU LIKE THAT YOU LIKE THAT",
+    "score": 220.58
+   },
+   "teamB": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 184.38
+   },
+   "winnerTeamId": 4,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp15-5v10",
+   "season": 2021,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "Team KGB",
+    "score": 256.92
+   },
+   "teamB": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 202.78
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp15-6v7",
+   "season": 2021,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Slatt Gang",
+    "score": 200.46
+   },
+   "teamB": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "BOOMIN University",
+    "score": 231.9
+   },
+   "winnerTeamId": 7,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp15-1v11",
+   "season": 2021,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 237.64
+   },
+   "teamB": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "Uno's World",
+    "score": 217.34
+   },
+   "winnerTeamId": 11,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp16-1v4",
+   "season": 2021,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "Uno's World",
+    "score": 293.04
+   },
+   "teamB": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "YOU LIKE THAT YOU LIKE THAT",
+    "score": 182.72
+   },
+   "winnerTeamId": 1,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp16-3v8",
+   "season": 2021,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Long Beach Horned Frogs",
+    "score": 199.7
+   },
+   "teamB": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 187.5
+   },
+   "winnerTeamId": 3,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp16-5v7",
+   "season": 2021,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": true,
+   "teamA": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "Team KGB",
+    "score": 311.62
+   },
+   "teamB": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "BOOMIN University",
+    "score": 226.44
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp16-6v10",
+   "season": 2021,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "WINNERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Slatt Gang",
+    "score": 229.66
+   },
+   "teamB": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 230.14
+   },
+   "winnerTeamId": 10,
+   "isTie": false
+  },
+  {
+   "gameId": "2021-mp16-2v11",
+   "season": 2021,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 199.38
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Rub My  Chubb",
+    "score": 191.6
+   },
+   "winnerTeamId": 11,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp15-1v4",
+   "season": 2022,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "It Over",
+    "score": 227.02
+   },
+   "teamB": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "DaBrotha Hasbulla",
+    "score": 229.2
+   },
+   "winnerTeamId": 4,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp15-2v11",
+   "season": 2022,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Pitts and  Giggles",
+    "score": 197.54
+   },
+   "teamB": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 180.4
+   },
+   "winnerTeamId": 2,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp15-3v6",
+   "season": 2022,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Chewies Warriors",
+    "score": 214.24
+   },
+   "teamB": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "chiefs KINGDOM  Joka",
+    "score": 242.9
+   },
+   "winnerTeamId": 6,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp15-5v7",
+   "season": 2022,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "In Trouble",
+    "score": 276.4
+   },
+   "teamB": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "Team Zelenskyy",
+    "score": 288.14
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp15-8v10",
+   "season": 2022,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 268.02
+   },
+   "teamB": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 242.42
+   },
+   "winnerTeamId": 10,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp16-1v3",
+   "season": 2022,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "WINNERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "It Over",
+    "score": 190.2
+   },
+   "teamB": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Chewies Warriors",
+    "score": 176.96
+   },
+   "winnerTeamId": 1,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp16-4v6",
+   "season": 2022,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": true,
+   "teamA": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "chiefs KINGDOM  Joka",
+    "score": 247.2
+   },
+   "teamB": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "DaBrotha Hasbulla",
+    "score": 185.4
+   },
+   "winnerTeamId": 6,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp16-7v11",
+   "season": 2022,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "In Trouble",
+    "score": 160.22
+   },
+   "teamB": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 118.7
+   },
+   "winnerTeamId": 7,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp16-2v8",
+   "season": 2022,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 178.5
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Pitts and  Giggles",
+    "score": 215.06
+   },
+   "winnerTeamId": 2,
+   "isTie": false
+  },
+  {
+   "gameId": "2022-mp16-5v10",
+   "season": 2022,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 182.1
+   },
+   "teamB": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "Team Zelenskyy",
+    "score": 197.46
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp15-1v8",
+   "season": 2023,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "First pick or bust",
+    "score": 208.68
+   },
+   "teamB": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 177.88
+   },
+   "winnerTeamId": 1,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp15-3v6",
+   "season": 2023,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Chewies Warriors",
+    "score": 215.2
+   },
+   "teamB": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Brioon Omeglemeally",
+    "score": 299.3
+   },
+   "winnerTeamId": 6,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp15-2v4",
+   "season": 2023,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "GIBBY NEUTRON",
+    "score": 244.34
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Hurts to Suck",
+    "score": 203.66
+   },
+   "winnerTeamId": 4,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp15-5v11",
+   "season": 2023,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "Lockheed Martin F-35 Lightning",
+    "score": 268.42
+   },
+   "teamB": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 244.62
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp15-7v10",
+   "season": 2023,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "Lebron Oniell",
+    "score": 230.88
+   },
+   "teamB": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 257.22
+   },
+   "winnerTeamId": 10,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp16-3v5",
+   "season": 2023,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Chewies Warriors",
+    "score": 292.48
+   },
+   "teamB": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "Lockheed Martin F-35 Lightning",
+    "score": 150.52
+   },
+   "winnerTeamId": 3,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp16-4v10",
+   "season": 2023,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": true,
+   "teamA": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "GIBBY NEUTRON",
+    "score": 232.94
+   },
+   "teamB": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 244.48
+   },
+   "winnerTeamId": 10,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp16-1v6",
+   "season": 2023,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Brioon Omeglemeally",
+    "score": 183.7
+   },
+   "teamB": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "First pick or bust",
+    "score": 48.76
+   },
+   "winnerTeamId": 6,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp16-2v7",
+   "season": 2023,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "WINNERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "Lebron Oniell",
+    "score": 280.46
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Hurts to Suck",
+    "score": 192.38
+   },
+   "winnerTeamId": 7,
+   "isTie": false
+  },
+  {
+   "gameId": "2023-mp16-8v11",
+   "season": 2023,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17,
+    18
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 173.66
+   },
+   "teamB": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 199.64
+   },
+   "winnerTeamId": 11,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp15-3v5",
+   "season": 2024,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Chewy's Warriors",
+    "score": 256.74
+   },
+   "teamB": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "M1 Abrams",
+    "score": 235.84
+   },
+   "winnerTeamId": 3,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp15-2v4",
+   "season": 2024,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "The NaberHood",
+    "score": 260.36
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Hurts to Suck",
+    "score": 272.54
+   },
+   "winnerTeamId": 2,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp15-1v6",
+   "season": 2024,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Brioon Omeglemeally",
+    "score": 245.46
+   },
+   "teamB": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "The Mar's x CMAC farewell tour",
+    "score": 292.58
+   },
+   "winnerTeamId": 1,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp15-7v8",
+   "season": 2024,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 283.52
+   },
+   "teamB": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "Mixon Impossible",
+    "score": 278.4
+   },
+   "winnerTeamId": 8,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp15-10v11",
+   "season": 2024,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 236.3
+   },
+   "teamB": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 318.64
+   },
+   "winnerTeamId": 10,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp16-1v3",
+   "season": 2024,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": true,
+   "teamA": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Chewy's Warriors",
+    "score": 90.36
+   },
+   "teamB": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "The Mar's x CMAC farewell tour",
+    "score": 140.52
+   },
+   "winnerTeamId": 1,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp16-4v11",
+   "season": 2024,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "The NaberHood",
+    "score": 131.88
+   },
+   "teamB": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 134.98
+   },
+   "winnerTeamId": 11,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp16-5v6",
+   "season": 2024,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "WINNERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Brioon Omeglemeally",
+    "score": 102.1
+   },
+   "teamB": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "M1 Abrams",
+    "score": 143.08
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp16-7v10",
+   "season": 2024,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "Mixon Impossible",
+    "score": 135.24
+   },
+   "teamB": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 138.06
+   },
+   "winnerTeamId": 10,
+   "isTie": false
+  },
+  {
+   "gameId": "2024-mp16-2v8",
+   "season": 2024,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 167.88
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Hurts to Suck",
+    "score": 140.38
+   },
+   "winnerTeamId": 8,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp15-1v8",
+   "season": 2025,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "Maye 4 MVP X KASE Capital",
+    "score": 197.66
+   },
+   "teamB": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 267.98
+   },
+   "winnerTeamId": 8,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp15-3v4",
+   "season": 2025,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Chewy's Warriors",
+    "score": 283.76
+   },
+   "teamB": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "The NaberHood",
+    "score": 238.04
+   },
+   "winnerTeamId": 3,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp15-6v11",
+   "season": 2025,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Brioon Omeglemeally",
+    "score": 228.9
+   },
+   "teamB": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 211.8
+   },
+   "winnerTeamId": 6,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp15-5v7",
+   "season": 2025,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "Gerry's Gang",
+    "score": 253.7
+   },
+   "teamB": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "M1 Abrams",
+    "score": 204.92
+   },
+   "winnerTeamId": 7,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp15-2v10",
+   "season": 2025,
+   "matchupPeriod": 15,
+   "scoringPeriods": [
+    15,
+    16
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 259.06
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Gibbs no step Burrow",
+    "score": 328.3
+   },
+   "winnerTeamId": 2,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp16-1v11",
+   "season": 2025,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 1,
+    "owner": null,
+    "seasonName": "Maye 4 MVP X KASE Capital",
+    "score": 41.74
+   },
+   "teamB": {
+    "teamId": 11,
+    "owner": null,
+    "seasonName": "Kabul FC",
+    "score": 87.5
+   },
+   "winnerTeamId": 11,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp16-2v3",
+   "season": 2025,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "WINNERS_BRACKET",
+   "bracket": "winners",
+   "isChampionship": true,
+   "teamA": {
+    "teamId": 3,
+    "owner": null,
+    "seasonName": "Chewy's Warriors",
+    "score": 108.58
+   },
+   "teamB": {
+    "teamId": 2,
+    "owner": null,
+    "seasonName": "Gibbs no step Burrow",
+    "score": 142.62
+   },
+   "winnerTeamId": 2,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp16-5v6",
+   "season": 2025,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 5,
+    "owner": null,
+    "seasonName": "M1 Abrams",
+    "score": 140.88
+   },
+   "teamB": {
+    "teamId": 6,
+    "owner": null,
+    "seasonName": "Brioon Omeglemeally",
+    "score": 90.36
+   },
+   "winnerTeamId": 5,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp16-7v8",
+   "season": 2025,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "LOSERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 7,
+    "owner": null,
+    "seasonName": "Gerry's Gang",
+    "score": 127.84
+   },
+   "teamB": {
+    "teamId": 8,
+    "owner": null,
+    "seasonName": "Dimes McSorley",
+    "score": 74.48
+   },
+   "winnerTeamId": 7,
+   "isTie": false
+  },
+  {
+   "gameId": "2025-mp16-4v10",
+   "season": 2025,
+   "matchupPeriod": 16,
+   "scoringPeriods": [
+    17
+   ],
+   "playoffTier": "WINNERS_CONSOLATION_LADDER",
+   "bracket": "consolation",
+   "isChampionship": false,
+   "teamA": {
+    "teamId": 10,
+    "owner": null,
+    "seasonName": "Sandusky's Soldiers",
+    "score": 89.18
+   },
+   "teamB": {
+    "teamId": 4,
+    "owner": null,
+    "seasonName": "The NaberHood",
+    "score": 124.2
+   },
+   "winnerTeamId": 4,
+   "isTie": false
+  }
+ ],
+ "winnersBracketH2H": [
+  {
+   "teamA": 6,
+   "teamB": 7,
+   "teamADisplay": "Smert Fellas",
+   "teamBDisplay": "Maye i give you a blowj0b",
+   "teamAWins": 1,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 2,
+   "meetings": [
+    "2020-mp15-6v7",
+    "2021-mp15-6v7"
+   ],
+   "lastMeeting": {
+    "season": 2021,
+    "matchupPeriod": 15,
+    "winnerTeamId": 7,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 4,
+   "teamB": 7,
+   "teamADisplay": "All Heart",
+   "teamBDisplay": "Maye i give you a blowj0b",
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2020-mp14-4v7"
+   ],
+   "lastMeeting": {
+    "season": 2020,
+    "matchupPeriod": 14,
+    "winnerTeamId": 7,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 6,
+   "teamB": 8,
+   "teamADisplay": "Smert Fellas",
+   "teamBDisplay": "Dimes McSorley",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2020-mp14-6v8"
+   ],
+   "lastMeeting": {
+    "season": 2020,
+    "matchupPeriod": 14,
+    "winnerTeamId": 6,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 5,
+   "teamB": 10,
+   "teamADisplay": "Easy Peasy Lemon Squeezy",
+   "teamBDisplay": "Sandusky's Soldiers",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2021-mp15-5v10"
+   ],
+   "lastMeeting": {
+    "season": 2021,
+    "matchupPeriod": 15,
+    "winnerTeamId": 5,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 5,
+   "teamB": 7,
+   "teamADisplay": "Easy Peasy Lemon Squeezy",
+   "teamBDisplay": "Maye i give you a blowj0b",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2021-mp16-5v7"
+   ],
+   "lastMeeting": {
+    "season": 2021,
+    "matchupPeriod": 16,
+    "winnerTeamId": 5,
+    "championship": true
+   }
+  },
+  {
+   "teamA": 1,
+   "teamB": 4,
+   "teamADisplay": "Bibi's Boys",
+   "teamBDisplay": "All Heart",
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2022-mp15-1v4"
+   ],
+   "lastMeeting": {
+    "season": 2022,
+    "matchupPeriod": 15,
+    "winnerTeamId": 4,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 3,
+   "teamB": 6,
+   "teamADisplay": "Chewy's Warriors",
+   "teamBDisplay": "Smert Fellas",
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2022-mp15-3v6"
+   ],
+   "lastMeeting": {
+    "season": 2022,
+    "matchupPeriod": 15,
+    "winnerTeamId": 6,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 4,
+   "teamB": 6,
+   "teamADisplay": "All Heart",
+   "teamBDisplay": "Smert Fellas",
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2022-mp16-4v6"
+   ],
+   "lastMeeting": {
+    "season": 2022,
+    "matchupPeriod": 16,
+    "winnerTeamId": 6,
+    "championship": true
+   }
+  },
+  {
+   "teamA": 2,
+   "teamB": 4,
+   "teamADisplay": "Jahmyr I Go Again",
+   "teamBDisplay": "All Heart",
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2023-mp15-2v4"
+   ],
+   "lastMeeting": {
+    "season": 2023,
+    "matchupPeriod": 15,
+    "winnerTeamId": 4,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 7,
+   "teamB": 10,
+   "teamADisplay": "Maye i give you a blowj0b",
+   "teamBDisplay": "Sandusky's Soldiers",
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2023-mp15-7v10"
+   ],
+   "lastMeeting": {
+    "season": 2023,
+    "matchupPeriod": 15,
+    "winnerTeamId": 10,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 4,
+   "teamB": 10,
+   "teamADisplay": "All Heart",
+   "teamBDisplay": "Sandusky's Soldiers",
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2023-mp16-4v10"
+   ],
+   "lastMeeting": {
+    "season": 2023,
+    "matchupPeriod": 16,
+    "winnerTeamId": 10,
+    "championship": true
+   }
+  },
+  {
+   "teamA": 3,
+   "teamB": 5,
+   "teamADisplay": "Chewy's Warriors",
+   "teamBDisplay": "Easy Peasy Lemon Squeezy",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2024-mp15-3v5"
+   ],
+   "lastMeeting": {
+    "season": 2024,
+    "matchupPeriod": 15,
+    "winnerTeamId": 3,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 1,
+   "teamB": 6,
+   "teamADisplay": "Bibi's Boys",
+   "teamBDisplay": "Smert Fellas",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2024-mp15-1v6"
+   ],
+   "lastMeeting": {
+    "season": 2024,
+    "matchupPeriod": 15,
+    "winnerTeamId": 1,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 1,
+   "teamB": 3,
+   "teamADisplay": "Bibi's Boys",
+   "teamBDisplay": "Chewy's Warriors",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2024-mp16-1v3"
+   ],
+   "lastMeeting": {
+    "season": 2024,
+    "matchupPeriod": 16,
+    "winnerTeamId": 1,
+    "championship": true
+   }
+  },
+  {
+   "teamA": 3,
+   "teamB": 4,
+   "teamADisplay": "Chewy's Warriors",
+   "teamBDisplay": "All Heart",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2025-mp15-3v4"
+   ],
+   "lastMeeting": {
+    "season": 2025,
+    "matchupPeriod": 15,
+    "winnerTeamId": 3,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 2,
+   "teamB": 10,
+   "teamADisplay": "Jahmyr I Go Again",
+   "teamBDisplay": "Sandusky's Soldiers",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2025-mp15-2v10"
+   ],
+   "lastMeeting": {
+    "season": 2025,
+    "matchupPeriod": 15,
+    "winnerTeamId": 2,
+    "championship": false
+   }
+  },
+  {
+   "teamA": 2,
+   "teamB": 3,
+   "teamADisplay": "Jahmyr I Go Again",
+   "teamBDisplay": "Chewy's Warriors",
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1,
+   "meetings": [
+    "2025-mp16-2v3"
+   ],
+   "lastMeeting": {
+    "season": 2025,
+    "matchupPeriod": 16,
+    "winnerTeamId": 2,
+    "championship": true
+   }
+  }
+ ],
+ "consolationH2H": [
+  {
+   "teamA": 1,
+   "teamB": 2,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 3,
+   "teamB": 10,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 5,
+   "teamB": 11,
+   "teamAWins": 2,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 1,
+   "teamB": 3,
+   "teamAWins": 2,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 2,
+   "teamB": 5,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 4,
+   "teamB": 8,
+   "teamAWins": 2,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 10,
+   "teamB": 11,
+   "teamAWins": 2,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 2,
+   "teamB": 3,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 1,
+   "teamB": 11,
+   "teamAWins": 0,
+   "teamBWins": 2,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 1,
+   "teamB": 4,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 3,
+   "teamB": 8,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 6,
+   "teamB": 10,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 2,
+   "teamB": 11,
+   "teamAWins": 1,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 5,
+   "teamB": 7,
+   "teamAWins": 1,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 8,
+   "teamB": 10,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 7,
+   "teamB": 11,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 2,
+   "teamB": 8,
+   "teamAWins": 1,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 5,
+   "teamB": 10,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 1,
+   "teamB": 8,
+   "teamAWins": 1,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 3,
+   "teamB": 6,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 3,
+   "teamB": 5,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 1,
+   "teamB": 6,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 2,
+   "teamB": 7,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 8,
+   "teamB": 11,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 2,
+   "teamB": 4,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 7,
+   "teamB": 8,
+   "teamAWins": 1,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 4,
+   "teamB": 11,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 5,
+   "teamB": 6,
+   "teamAWins": 2,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 2
+  },
+  {
+   "teamA": 7,
+   "teamB": 10,
+   "teamAWins": 0,
+   "teamBWins": 1,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 6,
+   "teamB": 11,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  },
+  {
+   "teamA": 4,
+   "teamB": 10,
+   "teamAWins": 1,
+   "teamBWins": 0,
+   "ties": 0,
+   "games": 1
+  }
+ ]
+}
