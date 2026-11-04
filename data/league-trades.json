@@ -2,7 +2,7 @@
  "scope": "2020-2026. 2026 from ESPN transactions; 2020-2025 rebuilt from weekly roster snapshots (player-for-player trades only).",
  "meta": {
   "generatedAt": "2026-10-29T02:18:23-04:00",
-  "pointsThrough": "Player points through Week 7. Week 8 box scores are final, but this file does not have those player lines.",
+  "pointsThrough": "Player points on 2026 accepted trades run through Week 8 box scores (full week, 2026-11-04 pull). Per-game rates, FantasyCalc values, pointsGained, and value verdicts were not recomputed.",
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "timezone": "America/New_York",
@@ -16,17 +16,18 @@
    "Duplicate proposal rows (the same offer logged twice within days) are deduped; rawProposalRows keeps the original count.",
    "trade_veto rows give one team id per row. ESPN does not say whether that is the voter, so these are labelled veto votes logged. Every trade that drew veto rows still went through, except possibly the unmatched accept rows.",
    "Display names follow league-h2h-history.json (teamIndex and seasonNames aliases). Raw ESPN team names are not stored.",
-   "2026-10-31: Josh Jacobs' Thursday week-8 total (23.2, full PPR, started) was added to trade 2026-T6 only. The value verdict was not recomputed. Pending offers are not stored on accepted trades and are never rendered."
+   "2026-10-31: Josh Jacobs' Thursday week-8 total (23.2, full PPR, started) was added to trade 2026-T6 only. The value verdict was not recomputed. Pending offers are not stored on accepted trades and are never rendered.",
+   "2026-11-04: Week 8 player points from the five matchup box scores were added to 2026 accepted trades where the received player was on the new team's week 8 roster. Josh Jacobs' Thursday-only 23.2 line was replaced with his full week 8 total. pointsGained, ppg rates, and FantasyCalc verdicts were left as they were."
   ],
   "counts": {
    "acceptedTrades": 7,
-   "uniqueProposals": 90,
-   "rawProposalRows": 120,
-   "declines": 60,
+   "uniqueProposals": 93,
+   "rawProposalRows": 123,
+   "declines": 61,
    "vetoVoteRows": 13,
    "unmatchedAcceptRows": 1
   },
-  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 7. Week 8 box scores are final, but those player points are not in this file. We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (\u00b110% band) and the points gained (\u00b110 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
+  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 8. Week 8 box-score points are in whoWonIt and on each received player's weeksAfter. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed from those week 8 points. We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (\u00b110% band) and the points gained (\u00b110 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
   "pastSeasons": {
    "source": "Flaim Fantasy (ESPN) get_matchups detail=players for each matchup in weeks 1-13 (2020) / 1-14 (2021-2025); ESPN public players_wl for positions.",
    "whyNotTransactions": "ESPN transactions for past seasons are unavailable: Flaim get_transactions returns ESPN_SEASON_NOT_SUPPORTED, and ESPN direct API returns 401 AUTH_LEAGUE_NOT_VISIBLE (private league, needs login cookies, which were not used).",
@@ -41,7 +42,7 @@
    "evenUnder": 10,
    "lopsidedFrom": 75
   },
-  "updatedAt": "2026-10-31T12:00:00-04:00"
+  "updatedAt": "2026-11-04T10:20:00-05:00"
  },
  "tradesPerSeason": {
   "2020": 27,
@@ -17610,15 +17611,15 @@
    ],
    "note": "Accepted Sep 28 and processed by Sep 29. All Heart cut Dalton Schultz to make room.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 player points are not in this grade; the tally stops at week 7. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 8. Week 8 points are the full box score from the 2026-11-04 pull. startedPointsForNewTeam is reference only and is not used for grading. The long-term value verdict was not recomputed.",
     "weeksCounted": [
      4,
-     7
+     8
     ],
     "bySide": {
      "3": {
-      "totalPointsForNewTeam": 78.9,
-      "startedPointsForNewTeam": 78.9,
+      "totalPointsForNewTeam": 100.2,
+      "startedPointsForNewTeam": 100.2,
       "weeks": [
        {
         "player": "Jaylen Warren",
@@ -17643,11 +17644,17 @@
         "week": 7,
         "points": 16.7,
         "started": true
+       },
+       {
+        "player": "Jaylen Warren",
+        "week": 8,
+        "points": 21.3,
+        "started": true
        }
       ]
      },
      "4": {
-      "totalPointsForNewTeam": 63.7,
+      "totalPointsForNewTeam": 80.7,
       "startedPointsForNewTeam": 44.8,
       "weeks": [
        {
@@ -17685,23 +17692,30 @@
         "week": 7,
         "points": 26.1,
         "started": true
+       },
+       {
+        "player": "Jameson Williams",
+        "week": 8,
+        "points": 17,
+        "started": false
        }
       ]
      }
     },
     "edgeTeamId": 3,
-    "edgePoints": 15.2,
+    "edgePoints": 19.5,
     "verdict": "leaning"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 7,
-    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "lastFinalWeek": 8,
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      4,
      5,
      6,
-     7
+     7,
+     8
     ],
     "sides": {
      "3": {
@@ -17718,8 +17732,8 @@
        "net": 1424,
        "note": null
       },
-      "pointsReceived": 78.9,
-      "pointsSentAway": 63.7,
+      "pointsReceived": 100.2,
+      "pointsSentAway": 80.7,
       "pointsGained": 15.2,
       "ppgTrendReceived": 6.19,
       "ppgTrendSent": 4.26,
@@ -17728,8 +17742,8 @@
         "name": "Jaylen Warren",
         "position": "RB",
         "nflTeam": "PIT",
-        "pointsForNewTeam": 78.9,
-        "startedPointsForNewTeam_reference": 78.9,
+        "pointsForNewTeam": 100.2,
+        "startedPointsForNewTeam_reference": 100.2,
         "ppgBefore": 13.53,
         "gamesBefore": 3,
         "ppgAfter": 19.72,
@@ -17777,6 +17791,12 @@
          {
           "week": 7,
           "points": 16.7,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 8,
+          "points": 21.3,
           "status": "played",
           "fantasyTeamId": 3
          }
@@ -18001,8 +18021,8 @@
        "net": -1424,
        "note": null
       },
-      "pointsReceived": 63.7,
-      "pointsSentAway": 78.9,
+      "pointsReceived": 80.7,
+      "pointsSentAway": 100.2,
       "pointsGained": -15.2,
       "ppgTrendReceived": 4.26,
       "ppgTrendSent": 6.19,
@@ -18101,7 +18121,7 @@
         "name": "Jameson Williams",
         "position": "WR",
         "nflTeam": "DET",
-        "pointsForNewTeam": 61.0,
+        "pointsForNewTeam": 78.0,
         "startedPointsForNewTeam_reference": 44.8,
         "ppgBefore": 7.57,
         "gamesBefore": 3,
@@ -18150,6 +18170,12 @@
          {
           "week": 7,
           "points": 26.1,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 8,
+          "points": 17,
           "status": "played",
           "fantasyTeamId": 4
          }
@@ -18357,15 +18383,15 @@
    ],
    "note": "Players moved between the week 3 and week 4 roster snapshots. The ESPN accept row maps to this trade by elimination.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 player points are not in this grade; the tally stops at week 7. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 8. Week 8 points are the full box score from the 2026-11-04 pull. startedPointsForNewTeam is reference only and is not used for grading. The long-term value verdict was not recomputed.",
     "weeksCounted": [
      4,
-     7
+     8
     ],
     "bySide": {
      "4": {
-      "totalPointsForNewTeam": 63.2,
-      "startedPointsForNewTeam": 60.1,
+      "totalPointsForNewTeam": 80.5,
+      "startedPointsForNewTeam": 77.4,
       "weeks": [
        {
         "player": "Blake Corum",
@@ -18395,6 +18421,12 @@
         "player": "Christian Watson",
         "week": 7,
         "points": 10.7,
+        "started": true
+       },
+       {
+        "player": "Christian Watson",
+        "week": 8,
+        "points": 17.3,
         "started": true
        }
       ]
@@ -18426,23 +18458,30 @@
         "week": 7,
         "points": 18.1,
         "started": true
+       },
+       {
+        "player": "Malik Nabers",
+        "week": 8,
+        "points": 0,
+        "started": false
        }
       ]
      }
     },
     "edgeTeamId": 6,
-    "edgePoints": 35.7,
+    "edgePoints": 18.4,
     "verdict": "leaning"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 7,
-    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "lastFinalWeek": 8,
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      4,
      5,
      6,
-     7
+     7,
+     8
     ],
     "sides": {
      "4": {
@@ -18459,7 +18498,7 @@
        "net": -2173,
        "note": null
       },
-      "pointsReceived": 63.2,
+      "pointsReceived": 80.5,
       "pointsSentAway": 98.9,
       "pointsGained": -35.7,
       "ppgTrendReceived": -1.88,
@@ -18559,8 +18598,8 @@
         "name": "Christian Watson",
         "position": "WR",
         "nflTeam": "GB",
-        "pointsForNewTeam": 60.1,
-        "startedPointsForNewTeam_reference": 60.1,
+        "pointsForNewTeam": 77.4,
+        "startedPointsForNewTeam_reference": 77.4,
         "ppgBefore": 23.13,
         "gamesBefore": 3,
         "ppgAfter": 15.02,
@@ -18608,6 +18647,12 @@
          {
           "week": 7,
           "points": 10.7,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 8,
+          "points": 17.3,
           "status": "played",
           "fantasyTeamId": 4
          }
@@ -18737,7 +18782,7 @@
        "note": null
       },
       "pointsReceived": 98.9,
-      "pointsSentAway": 63.2,
+      "pointsSentAway": 80.5,
       "pointsGained": 35.7,
       "ppgTrendReceived": 17.53,
       "ppgTrendSent": -1.88,
@@ -18795,6 +18840,12 @@
          {
           "week": 7,
           "points": 18.1,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 8,
+          "points": 0,
           "status": "played",
           "fantasyTeamId": 6
          }
@@ -19076,10 +19127,10 @@
    ],
    "note": "All Heart dropped Joe Mixon on Oct 9, two days after the trade (add/drop log), so he never played a week for them.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 player points are not in this grade; the tally stops at week 7. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 8. Week 8 points are the full box score from the 2026-11-04 pull. startedPointsForNewTeam is reference only and is not used for grading. The long-term value verdict was not recomputed.",
     "weeksCounted": [
      5,
-     7
+     8
     ],
     "bySide": {
      "4": {
@@ -19088,7 +19139,7 @@
       "weeks": []
      },
      "8": {
-      "totalPointsForNewTeam": 47.3,
+      "totalPointsForNewTeam": 60.6,
       "startedPointsForNewTeam": 14.0,
       "weeks": [
        {
@@ -19108,22 +19159,29 @@
         "week": 7,
         "points": 17.1,
         "started": false
+       },
+       {
+        "player": "Blake Corum",
+        "week": 8,
+        "points": 13.3,
+        "started": false
        }
       ]
      }
     },
     "edgeTeamId": 8,
-    "edgePoints": 47.3,
+    "edgePoints": 60.6,
     "verdict": "leaning"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 7,
-    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "lastFinalWeek": 8,
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      5,
      6,
-     7
+     7,
+     8
     ],
     "sides": {
      "4": {
@@ -19140,8 +19198,8 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 0,
-      "pointsSentAway": 47.3,
+      "pointsReceived": 0.0,
+      "pointsSentAway": 60.6,
       "pointsGained": -47.3,
       "ppgTrendReceived": 0,
       "ppgTrendSent": 10.22,
@@ -19337,8 +19395,8 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 47.3,
-      "pointsSentAway": 0,
+      "pointsReceived": 60.6,
+      "pointsSentAway": 0.0,
       "pointsGained": 47.3,
       "ppgTrendReceived": 10.22,
       "ppgTrendSent": 0,
@@ -19347,7 +19405,7 @@
         "name": "Blake Corum",
         "position": "RB",
         "nflTeam": "LAR",
-        "pointsForNewTeam": 47.3,
+        "pointsForNewTeam": 60.6,
         "startedPointsForNewTeam_reference": 14,
         "ppgBefore": 5.55,
         "gamesBefore": 4,
@@ -19396,6 +19454,12 @@
          {
           "week": 7,
           "points": 17.1,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 8,
+          "points": 13.3,
           "status": "played",
           "fantasyTeamId": 8
          }
@@ -19634,15 +19698,15 @@
    ],
    "note": "Accepted Oct 14 and processed Oct 15, 2026 (week 6). Maye dropped KC Concepcion in the deal. He is not counted for either side.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7, plus Josh Jacobs' Thursday of week 8 (23.2). The rest of Week 8 is not in this grade; the other players in this deal did not play Thursday. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 8. Week 8 points are the full box score from the 2026-11-04 pull. startedPointsForNewTeam is reference only and is not used for grading. The long-term value verdict was not recomputed.",
     "weeksCounted": [
      6,
      8
     ],
     "bySide": {
      "7": {
-      "totalPointsForNewTeam": 62.4,
-      "startedPointsForNewTeam": 20.1,
+      "totalPointsForNewTeam": 79.0,
+      "startedPointsForNewTeam": 59.9,
       "weeks": [
        {
         "player": "Josh Jacobs",
@@ -19684,14 +19748,25 @@
         "player": "Josh Jacobs",
         "week": 8,
         "points": 23.2,
-        "started": true,
-        "note": "Thursday only"
+        "started": true
+       },
+       {
+        "player": "Cam Skattebo",
+        "week": 8,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "DJ Moore",
+        "week": 8,
+        "points": 16.6,
+        "started": true
        }
       ]
      },
      "4": {
-      "totalPointsForNewTeam": 37.7,
-      "startedPointsForNewTeam": 30.1,
+      "totalPointsForNewTeam": 55.2,
+      "startedPointsForNewTeam": 47.6,
       "weeks": [
        {
         "player": "DK Metcalf",
@@ -19716,21 +19791,34 @@
         "week": 7,
         "points": 9.8,
         "started": true
+       },
+       {
+        "player": "DK Metcalf",
+        "week": 8,
+        "points": 1.4,
+        "started": true
+       },
+       {
+        "player": "Chase Brown",
+        "week": 8,
+        "points": 16.1,
+        "started": true
        }
       ]
      }
     },
     "edgeTeamId": 7,
-    "edgePoints": 1.5,
+    "edgePoints": 23.8,
     "verdict": "leaning"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 7,
-    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "lastFinalWeek": 8,
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      6,
-     7
+     7,
+     8
     ],
     "sides": {
      "4": {
@@ -19747,8 +19835,8 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 37.7,
-      "pointsSentAway": 39.2,
+      "pointsReceived": 55.2,
+      "pointsSentAway": 79.0,
       "pointsGained": -24.7,
       "ppgTrendReceived": 10.22,
       "ppgTrendSent": 8.84,
@@ -19757,8 +19845,8 @@
         "name": "DK Metcalf",
         "position": "WR",
         "nflTeam": "PIT",
-        "pointsForNewTeam": 27.9,
-        "startedPointsForNewTeam_reference": 20.3,
+        "pointsForNewTeam": 29.3,
+        "startedPointsForNewTeam_reference": 21.7,
         "ppgBefore": 9.72,
         "gamesBefore": 5,
         "ppgAfter": 13.95,
@@ -19808,6 +19896,12 @@
           "points": 7.6,
           "status": "played",
           "fantasyTeamId": 4
+         },
+         {
+          "week": 8,
+          "points": 1.4,
+          "status": "played",
+          "fantasyTeamId": 4
          }
         ],
         "zeroOrMissingWeeksAfter": [],
@@ -19831,8 +19925,8 @@
         "name": "Chase Brown",
         "position": "RB",
         "nflTeam": "CIN",
-        "pointsForNewTeam": 9.8,
-        "startedPointsForNewTeam_reference": 9.8,
+        "pointsForNewTeam": 25.9,
+        "startedPointsForNewTeam_reference": 25.9,
         "ppgBefore": 13.0,
         "gamesBefore": 5,
         "ppgAfter": 9.8,
@@ -19880,6 +19974,12 @@
          {
           "week": 7,
           "points": 9.8,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 8,
+          "points": 16.1,
           "status": "played",
           "fantasyTeamId": 4
          }
@@ -20270,8 +20370,8 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 62.4,
-      "pointsSentAway": 37.7,
+      "pointsReceived": 79.0,
+      "pointsSentAway": 55.2,
       "pointsGained": 24.7,
       "ppgTrendReceived": 8.84,
       "ppgTrendSent": 10.22,
@@ -20281,7 +20381,7 @@
         "position": "RB",
         "nflTeam": "GB",
         "pointsForNewTeam": 43.3,
-        "startedPointsForNewTeam_reference": 20.1,
+        "startedPointsForNewTeam_reference": 43.3,
         "ppgBefore": null,
         "gamesBefore": 0,
         "ppgAfter": 21.65,
@@ -20337,7 +20437,7 @@
           "points": 23.2,
           "status": "played",
           "fantasyTeamId": 7,
-          "note": "Thursday only. Week 8 is still in progress."
+          "note": "Full week 8 box score is 23.2, the same total as the Thursday line. Week 8 is final."
          }
         ],
         "zeroOrMissingWeeksAfter": [
@@ -20418,6 +20518,12 @@
           "points": 19.1,
           "status": "played",
           "fantasyTeamId": 7
+         },
+         {
+          "week": 8,
+          "points": 0,
+          "status": "played",
+          "fantasyTeamId": 7
          }
         ],
         "zeroOrMissingWeeksAfter": [
@@ -20447,8 +20553,8 @@
         "name": "DJ Moore",
         "position": "WR",
         "nflTeam": "BUF",
-        "pointsForNewTeam": 0,
-        "startedPointsForNewTeam_reference": 0,
+        "pointsForNewTeam": 16.6,
+        "startedPointsForNewTeam_reference": 16.6,
         "ppgBefore": 9.07,
         "gamesBefore": 4,
         "ppgAfter": null,
@@ -20497,6 +20603,12 @@
           "week": 7,
           "points": 0,
           "status": "out (no game-log entry: injured or inactive)",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 8,
+          "points": 16.6,
+          "status": "played",
           "fantasyTeamId": 7
          }
         ],
@@ -20889,15 +21001,15 @@
    ],
    "note": "Accepted Oct 19. This is a counter version of Smert Fellas' Aaron Jones and DeVonta Smith offer. Chewy's logged a veto vote that day.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 7. Week 8 player points are not in this grade; the tally stops at week 7. Weeks after a player left the new team are not counted. startedPointsForNewTeam is reference only and is not used for grading.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 8. Week 8 points are the full box score from the 2026-11-04 pull. startedPointsForNewTeam is reference only and is not used for grading. The long-term value verdict was not recomputed.",
     "weeksCounted": [
      7,
-     7
+     8
     ],
     "bySide": {
      "6": {
-      "totalPointsForNewTeam": 23.4,
-      "startedPointsForNewTeam": 23.4,
+      "totalPointsForNewTeam": 30.3,
+      "startedPointsForNewTeam": 30.3,
       "weeks": [
        {
         "player": "DeVonta Smith",
@@ -20910,12 +21022,24 @@
         "week": 7,
         "points": 23.4,
         "started": true
+       },
+       {
+        "player": "DeVonta Smith",
+        "week": 8,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "Quinshon Judkins",
+        "week": 8,
+        "points": 6.9,
+        "started": true
        }
       ]
      },
      "8": {
-      "totalPointsForNewTeam": 20.3,
-      "startedPointsForNewTeam": 20.3,
+      "totalPointsForNewTeam": 41.4,
+      "startedPointsForNewTeam": 41.4,
       "weeks": [
        {
         "player": "George Pickens",
@@ -20928,20 +21052,33 @@
         "week": 7,
         "points": 4.6,
         "started": true
+       },
+       {
+        "player": "George Pickens",
+        "week": 8,
+        "points": 6.8,
+        "started": true
+       },
+       {
+        "player": "Garrett Wilson",
+        "week": 8,
+        "points": 14.3,
+        "started": true
        }
       ]
      }
     },
-    "edgeTeamId": 6,
-    "edgePoints": 3.1,
+    "edgeTeamId": 8,
+    "edgePoints": 11.1,
     "verdict": "too early"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 7,
-    "week8": "not included: NFL week 8 kicks off Thursday 2026-10-29, so no week-8 games had been played at fetch time",
+    "lastFinalWeek": 8,
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
-     7
+     7,
+     8
     ],
     "sides": {
      "6": {
@@ -20958,8 +21095,8 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 23.4,
-      "pointsSentAway": 20.3,
+      "pointsReceived": 30.3,
+      "pointsSentAway": 41.4,
       "pointsGained": 3.1,
       "ppgTrendReceived": 12.14,
       "ppgTrendSent": -9.13,
@@ -20968,7 +21105,7 @@
         "name": "DeVonta Smith",
         "position": "WR",
         "nflTeam": "PHI",
-        "pointsForNewTeam": 0,
+        "pointsForNewTeam": 0.0,
         "startedPointsForNewTeam_reference": 0,
         "ppgBefore": 17.25,
         "gamesBefore": 4,
@@ -21019,6 +21156,12 @@
           "points": 0,
           "status": "out (no game-log entry: injured or inactive)",
           "fantasyTeamId": 6
+         },
+         {
+          "week": 8,
+          "points": 0,
+          "status": "played",
+          "fantasyTeamId": 6
          }
         ],
         "zeroOrMissingWeeksAfter": [
@@ -21048,8 +21191,8 @@
         "name": "Quinshon Judkins",
         "position": "RB",
         "nflTeam": "CLE",
-        "pointsForNewTeam": 23.4,
-        "startedPointsForNewTeam_reference": 23.4,
+        "pointsForNewTeam": 30.3,
+        "startedPointsForNewTeam_reference": 30.3,
         "ppgBefore": 11.26,
         "gamesBefore": 5,
         "ppgAfter": 23.4,
@@ -21097,6 +21240,12 @@
          {
           "week": 7,
           "points": 23.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 8,
+          "points": 6.9,
           "status": "played",
           "fantasyTeamId": 6
          }
@@ -21299,8 +21448,8 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 20.3,
-      "pointsSentAway": 23.4,
+      "pointsReceived": 41.4,
+      "pointsSentAway": 30.3,
       "pointsGained": -3.1,
       "ppgTrendReceived": -9.13,
       "ppgTrendSent": 12.14,
@@ -21309,8 +21458,8 @@
         "name": "George Pickens",
         "position": "WR",
         "nflTeam": "DAL",
-        "pointsForNewTeam": 15.7,
-        "startedPointsForNewTeam_reference": 15.7,
+        "pointsForNewTeam": 22.5,
+        "startedPointsForNewTeam_reference": 22.5,
         "ppgBefore": 13.63,
         "gamesBefore": 6,
         "ppgAfter": 15.7,
@@ -21360,6 +21509,12 @@
           "points": 15.7,
           "status": "played",
           "fantasyTeamId": 8
+         },
+         {
+          "week": 8,
+          "points": 6.8,
+          "status": "played",
+          "fantasyTeamId": 8
          }
         ],
         "zeroOrMissingWeeksAfter": [],
@@ -21383,8 +21538,8 @@
         "name": "Garrett Wilson",
         "position": "WR",
         "nflTeam": "NYJ",
-        "pointsForNewTeam": 4.6,
-        "startedPointsForNewTeam_reference": 4.6,
+        "pointsForNewTeam": 18.9,
+        "startedPointsForNewTeam_reference": 18.9,
         "ppgBefore": 15.8,
         "gamesBefore": 6,
         "ppgAfter": 4.6,
@@ -21432,6 +21587,12 @@
          {
           "week": 7,
           "points": 4.6,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 8,
+          "points": 14.3,
           "status": "played",
           "fantasyTeamId": 8
          }
@@ -22806,6 +22967,48 @@
     3,
     8
    ]
+  },
+  {
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-03",
+   "proposedAt": "2026-11-03T14:24-05:00",
+   "status": "canceled",
+   "proposedByTeamId": null,
+   "espnTransactionId": "98519032-21a8-4e0e-8b17-92f14391f9a3",
+   "teamIds": [
+    3,
+    8
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-03",
+   "proposedAt": "2026-11-03T14:24-05:00",
+   "status": "canceled",
+   "proposedByTeamId": null,
+   "espnTransactionId": "a07f4234-9b32-4096-8411-cf96bf9545d4",
+   "teamIds": [
+    3,
+    8
+   ],
+   "detailsUnavailable": true
+  },
+  {
+   "season": 2026,
+   "week": 8,
+   "date": "2026-10-29",
+   "proposedAt": "2026-10-29T08:24-04:00",
+   "status": "canceled",
+   "proposedByTeamId": null,
+   "espnTransactionId": "bac614d5-936f-4a54-ae6d-52c4942b2538",
+   "teamIds": [
+    1,
+    7
+   ],
+   "detailsUnavailable": true
   }
  ],
  "declines": [
@@ -23348,6 +23551,15 @@
    "status": "declined",
    "teamIdReported": 3,
    "espnTransactionId": "a5560f85-c900-47e1-9f76-87fc63c39b69"
+  },
+  {
+   "season": 2026,
+   "week": 9,
+   "date": "2026-11-03",
+   "at": "2026-11-03T07:17-05:00",
+   "status": "declined",
+   "teamIdReported": 8,
+   "espnTransactionId": "735a49fb-5619-437c-8066-bd05e795bd53"
   }
  ],
  "vetoVotes": [
@@ -24344,7 +24556,7 @@
    ],
    "proposalsSent2026": 1,
    "proposalsReceived2026": 17,
-   "declinesLogged2026": 12,
+   "declinesLogged2026": 13,
    "vetoVotesLogged2026": 0,
    "netPointsFromTrades2026": 44.2,
    "partnersAllTime": [
@@ -24650,7 +24862,7 @@
      "Chewy's Warriors",
      "Dimes McSorley"
     ],
-    "offers": 12
+    "offers": 14
    },
    {
     "names": [
