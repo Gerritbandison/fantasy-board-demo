@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { focusTeam, formatPct, phi, simulate, winOutChance, winOutPath, type SimModel } from "./playoff-sim.ts";
+import { focusTeam, formatPct, phi, sideDist, simulate, winOutChance, winOutPath, type SimModel } from "./playoff-sim.ts";
 
 const dir = dirname(fileURLToPath(import.meta.url));
 const model = JSON.parse(readFileSync(join(dir, "../data/playoff-model.json"), "utf8")) as SimModel;
@@ -81,4 +81,89 @@ test("root-for games are real matchups", () => {
     assert.ok(game, `missing week ${root.week}`);
     assert.notEqual(root.winnerId, model.focusId);
   }
+});
+
+function toy(games: SimModel["games"], teams: SimModel["teams"], currentWeek = 1, currentWeekFinal = false): SimModel {
+  return {
+    focusId: 1,
+    playoffSpots: 1,
+    regularSeasonWeeks: 1,
+    nonByeEspn: 100,
+    currentWeek,
+    currentWeekFinal,
+    teams,
+    games,
+    rootFor: [],
+  };
+}
+
+test("a tied score gives neither team a win", () => {
+  const summary = simulate(
+    toy(
+      [{ week: 1, homeId: 1, awayId: 2, homeProj: 100, awayProj: 100 }],
+      [
+        { id: 1, bias: 0, sd: 0, wins: 0, losses: 0, pf: 50 },
+        { id: 2, bias: 0, sd: 0, wins: 0, losses: 0, pf: 0 },
+      ],
+    ),
+    { n: 40, seed: 1, shift: 0 },
+  );
+  const home = summary.teams.find((team) => team.id === 1);
+  const away = summary.teams.find((team) => team.id === 2);
+  assert.equal(home?.odds, 1);
+  assert.equal(away?.odds, 0);
+  assert.ok((home?.avgPf ?? 0) > (away?.avgPf ?? 0));
+});
+
+test("forcing an upset lifts the trailer instead of swapping the two scores", () => {
+  const summary = simulate(
+    toy(
+      [{ week: 1, homeId: 1, awayId: 2, homeProj: 100, awayProj: 10 }],
+      [
+        { id: 1, bias: 0, sd: 0, wins: 0, losses: 0, pf: 0 },
+        { id: 2, bias: 0, sd: 0, wins: 0, losses: 0, pf: 0 },
+      ],
+    ),
+    { n: 20, seed: 1, shift: 0, forced: { 0: 2 } },
+  );
+  const home = summary.teams.find((team) => team.id === 1);
+  const away = summary.teams.find((team) => team.id === 2);
+  assert.ok((home?.avgPf ?? 0) > 90, `home kept its score, avg ${home?.avgPf}`);
+  assert.ok((away?.avgPf ?? 0) > (home?.avgPf ?? 0), `away won, avg ${away?.avgPf}`);
+});
+
+test("the projected standings file is this simulator at the ESPN setting", () => {
+  const file = JSON.parse(readFileSync(join(dir, "../data/projected-standings.json"), "utf8")) as {
+    standings: { teamId: number; playoff_odds: number; top_seed_odds: number; avg_seed: number; exp_final_wins: number; projected_rank: number }[];
+  };
+  const summary = simulate(model, { n: 8000, seed: 7, shift: 0 });
+  const round = (n: number, digits: number) => Math.round(n * 10 ** digits) / 10 ** digits;
+  const ranked = [...summary.teams].sort((a, b) => a.avgSeed - b.avgSeed || a.id - b.id);
+  assert.deepEqual(
+    file.standings.map((row) => row.teamId),
+    ranked.map((row) => row.id),
+  );
+  file.standings.forEach((row, index) => {
+    const sim = summary.teams.find((team) => team.id === row.teamId);
+    assert.ok(sim);
+    assert.equal(row.projected_rank, index + 1);
+    assert.equal(row.playoff_odds, round(sim.odds, 4));
+    assert.equal(row.top_seed_odds, round(sim.topSeedOdds, 4));
+    assert.equal(row.avg_seed, round(sim.avgSeed, 2));
+    assert.equal(row.exp_final_wins, round(sim.expectedWins, 2));
+  });
+});
+
+test("live noise follows the current week, and a final week does not shrink", () => {
+  const teams = [
+    { id: 1, bias: 0, sd: 20, wins: 0, losses: 0, pf: 0 },
+    { id: 2, bias: 0, sd: 20, wins: 0, losses: 0, pf: 0 },
+  ];
+  const game = { week: 9, homeId: 1, awayId: 2, homeProj: 100, awayProj: 100, homeCurrent: 90, awayCurrent: 10 };
+  const live = sideDist(toy([game], teams, 9, false), game, "home", 0);
+  const finished = sideDist(toy([game], teams, 9, true), game, "home", 0);
+  const otherWeek = sideDist(toy([game], teams, 8, false), game, "home", 0);
+  assert.ok(live[1] < 20, `live sd ${live[1]}`);
+  assert.equal(finished[1], 20);
+  assert.equal(otherWeek[1], 20);
 });

@@ -82,6 +82,7 @@ interface ProjectedRow {
   record_thru_wk8: string;
   pf_thru_wk8: number;
   playoff_odds: number;
+  avg_seed: number;
   projected_rank: number;
 }
 
@@ -91,23 +92,33 @@ const projected = JSON.parse(readFileSync(join(root, "data/projected-standings.j
 
 const round2 = (n: number) => Math.round(n * 100) / 100;
 
-test("week 8 live scores are in the season totals and still undecided on the schedule", () => {
+test("week 8 finals are in the season totals and decided on the schedule", () => {
   assert.equal(league.meta.currentWeek, 8);
   assert.equal(league.meta.weekInProgress.week, 8);
-  assert.equal(league.meta.weekInProgress.final, false);
-  assert.equal(league.meta.weekInProgress.label, "Provisional, Week 8 not final");
+  assert.equal(league.meta.weekInProgress.final, true);
   assert.equal(league.schedule.weeks1to7.some((game) => game.week === 8), false);
 
-  for (const game of league.schedule.week8) {
-    assert.equal(game.winner, "UNDECIDED");
-    assert.equal(game.status, "in-progress");
-    assert.equal(game.margin, null);
+  const finals = [
+    { home: 11, away: 5, homeScore: 114.92, awayScore: 97.66, winner: "HOME", margin: 17.26 },
+    { home: 10, away: 6, homeScore: 128.48, awayScore: 95.1, winner: "HOME", margin: 33.38 },
+    { home: 4, away: 2, homeScore: 120.64, awayScore: 103.68, winner: "HOME", margin: 16.96 },
+    { home: 3, away: 1, homeScore: 116.1, awayScore: 147.78, winner: "AWAY", margin: 31.68 },
+    { home: 7, away: 8, homeScore: 179.26, awayScore: 89.36, winner: "HOME", margin: 89.9 },
+  ];
+  for (const expected of finals) {
+    const game = league.schedule.week8.find((row) => row.homeTeamId === expected.home && row.awayTeamId === expected.away);
+    assert.ok(game, `missing ${expected.home} vs ${expected.away}`);
+    assert.equal(game.winner, expected.winner);
+    assert.equal(game.status, "final");
+    assert.equal(game.homeCurrentPoints, expected.homeScore);
+    assert.equal(game.awayCurrentPoints, expected.awayScore);
+    assert.equal(game.margin, expected.margin);
   }
 
   for (const team of league.teams) {
     const week8 = team.weekly.find((row) => row.week === 8);
     assert.ok(week8, `team ${team.teamId} missing week 8`);
-    assert.equal(week8.provisional, true);
+    assert.equal(week8.provisional, undefined);
     assert.equal(team.weekly.filter((row) => row.week === 8).length, 1);
     assert.equal(team.pointsFor, round2(team.weekly.reduce((sum, row) => sum + row.pointsFor, 0)));
     assert.equal(team.pointsAgainst, round2(team.weekly.reduce((sum, row) => sum + row.pointsAgainst, 0)));
@@ -115,7 +126,7 @@ test("week 8 live scores are in the season totals and still undecided on the sch
     assert.equal(team.record.losses, team.weekly.filter((row) => row.result === "L").length);
     assert.equal(team.week8.currentPoints, week8.pointsFor);
     assert.equal(team.week8.opponentCurrentPoints, week8.pointsAgainst);
-    assert.equal(team.week8.status, "in-progress");
+    assert.equal(team.week8.status, "final");
     assert.equal(team.week8.opponentTeamId, week8.opponentTeamId);
     assert.equal(team.week8.starters, undefined);
     assert.equal(team.week8.startersFinal, undefined);
@@ -162,12 +173,13 @@ test("week 8 live scores are in the season totals and still undecided on the sch
   assert.equal(focusGame?.awayCurrent, 89.36);
 });
 
-test("projected standings use the same provisional records", () => {
+test("projected standings use the final records and rank by average seed", () => {
   assert.equal(projected.standings.length, 10);
   const odds = projected.standings.reduce((sum, row) => sum + row.playoff_odds, 0);
   assert.ok(Math.abs(odds - 4) < 0.02, `playoff odds sum ${odds}`);
+  const bySeed = [...projected.standings].sort((a, b) => a.avg_seed - b.avg_seed || a.teamId - b.teamId);
   assert.deepEqual(
-    projected.standings.map((row) => row.projected_rank).sort((a, b) => a - b),
+    bySeed.map((row) => row.projected_rank),
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   );
 
@@ -177,11 +189,4 @@ test("projected standings use the same provisional records", () => {
     assert.equal(row.record_thru_wk8, `${team.record.wins}-${team.record.losses}`);
     assert.equal(row.pf_thru_wk8, team.pointsFor);
   }
-
-  const bibi = projected.standings.find((row) => row.teamId === 1);
-  const chewy = projected.standings.find((row) => row.teamId === 3);
-  assert.equal(bibi?.playoff_odds, 0.983);
-  assert.equal(bibi?.projected_rank, 1);
-  assert.equal(chewy?.playoff_odds, 0.556);
-  assert.equal(chewy?.projected_rank, 4);
 });

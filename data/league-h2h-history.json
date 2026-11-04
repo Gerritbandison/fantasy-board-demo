@@ -5,7 +5,7 @@
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "scope": "all-time (2020–2026)",
-  "scopeLabel": "All-time: 2020 through 2026 week 7",
+  "scopeLabel": "All-time: 2020 through 2026 week 7. Week 8 finals are on the scoreboard, not in this history.",
   "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json",
   "seasonsCovered": [
    2020,
@@ -23528,7 +23528,7 @@
     }
    }
   ],
-  "streakNote": "Streaks run chronologically across seasons (2020 through 2026 week 7), including playoff and consolation games.",
+  "streakNote": "Streaks run chronologically across seasons (2020 through 2026 week 7), including playoff and consolation games. Week 8 finals are on the scoreboard, not in this history.",
   "mostPlayedRivalry": [
    {
     "teamA": 1,

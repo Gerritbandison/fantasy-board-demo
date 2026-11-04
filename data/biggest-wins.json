@@ -2,7 +2,7 @@
   "title": "Biggest regular-season wins (single week), all time",
   "league": "Chicken (ESPN 12115010)",
   "generatedAt": "2026-11-02T20:50:00-05:00",
-  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-7.",
+  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-8. The 89.90 Week 8 margin is the final score from the Nov 3 production scoreboard.",
   "regularSeasonWeeks": {
     "2020": 13,
     "2021": 14,
@@ -10,7 +10,7 @@
     "2023": 14,
     "2024": 14,
     "2025": 14,
-    "2026": 7
+    "2026": 8
   },
   "seasonsCovered": [
     2020,
@@ -21,34 +21,22 @@
     2025,
     2026
   ],
-  "gamesConsidered": 450,
+  "gamesConsidered": 455,
   "boundary": {
-    "tenthMargin": 80.14,
+    "tenthMargin": 80.3,
     "eleventh": {
-      "season": 2022,
-      "week": 7,
-      "margin": 79.2
+      "season": 2020,
+      "week": 8,
+      "margin": 80.14
     },
     "tieAtBoundary": false
   },
-  "pending": [
-    {
-      "season": 2026,
-      "week": 8,
-      "winnerTeamId": 7,
-      "winnerName": "Maye i give you a blowj0b",
-      "loserTeamId": 8,
-      "loserName": "Dimes McSorley",
-      "winnerScore": 179.26,
-      "loserScore": 89.36,
-      "margin": 89.9,
-      "status": "Still ESPN UNDECIDED as of Nov 2 ~8:58 PM ET (MNF in progress); 179.26-89.36, margin 89.90, would rank #4"
-    }
-  ],
+  "pending": [],
   "notes": [
     "Owner names: Flaim/ESPN returns no owner names; owner filled only for the 4 slots the app already labels (1 Kyle/KASE, 3 Chewy, 7 Gerrit, 8 Dimes). Franchises tracked by ESPN team slot; owners may have changed.",
     "Names: per-season names run through the app's lib/names.ts clean-name rules; the retired 2020 name for team 2 is shown as current franchise name + (2020).",
-    "Source: data/league-h2h-history.json (Flaim get_matchups, generated Oct 29) re-verified live via Flaim for every top-10 week on Nov 2."
+    "Source: data/league-h2h-history.json (Flaim get_matchups, generated Oct 29) re-verified live via Flaim for every top-10 week on Nov 2.",
+    "2026-11-03: the final Week 8 margin 89.90 (team 7 over team 8, 179.26-89.36) is rank 4. The previous rank 10 (2020 week 8, margin 80.14) dropped out. The other four Week 8 finals are below the cutoff."
   ],
   "top10": [
     {
@@ -125,6 +113,30 @@
     },
     {
       "rank": 4,
+      "season": 2026,
+      "week": 8,
+      "gameId": "2026-mp08-7v8",
+      "winner": {
+        "teamId": 7,
+        "nameThatSeason": "Maye i give you a blowj0b",
+        "franchiseNow": "Maye i give you a blowj0b",
+        "owner": "Gerrit",
+        "isGerrit": true,
+        "score": 179.26
+      },
+      "loser": {
+        "teamId": 8,
+        "nameThatSeason": "Dimes McSorley",
+        "franchiseNow": "Dimes McSorley",
+        "owner": "Dimes",
+        "isGerrit": false,
+        "score": 89.36
+      },
+      "margin": 89.9,
+      "verifiedLive": true
+    },
+    {
+      "rank": 5,
       "season": 2020,
       "week": 12,
       "gameId": "2020-mp12-6v10",
@@ -148,7 +160,7 @@
       "verifiedLive": true
     },
     {
-      "rank": 5,
+      "rank": 6,
       "season": 2020,
       "week": 2,
       "gameId": "2020-mp02-2v6",
@@ -172,7 +184,7 @@
       "verifiedLive": true
     },
     {
-      "rank": 6,
+      "rank": 7,
       "season": 2021,
       "week": 9,
       "gameId": "2021-mp09-5v11",
@@ -196,7 +208,7 @@
       "verifiedLive": true
     },
     {
-      "rank": 7,
+      "rank": 8,
       "season": 2020,
       "week": 4,
       "gameId": "2020-mp04-8v11",
@@ -220,7 +232,7 @@
       "verifiedLive": true
     },
     {
-      "rank": 8,
+      "rank": 9,
       "season": 2023,
       "week": 4,
       "gameId": "2023-mp04-1v11",
@@ -244,7 +256,7 @@
       "verifiedLive": true
     },
     {
-      "rank": 9,
+      "rank": 10,
       "season": 2025,
       "week": 7,
       "gameId": "2025-mp07-3v6",
@@ -265,30 +277,6 @@
         "score": 76.84
       },
       "margin": 80.3,
-      "verifiedLive": true
-    },
-    {
-      "rank": 10,
-      "season": 2020,
-      "week": 8,
-      "gameId": "2020-mp08-5v8",
-      "winner": {
-        "teamId": 8,
-        "nameThatSeason": "Dimes McSorley",
-        "franchiseNow": "Dimes McSorley",
-        "owner": "Dimes",
-        "isGerrit": false,
-        "score": 153.92
-      },
-      "loser": {
-        "teamId": 5,
-        "nameThatSeason": "Team WAP",
-        "franchiseNow": "Easy Peasy Lemon Squeezy",
-        "owner": null,
-        "isGerrit": false,
-        "score": 73.78
-      },
-      "margin": 80.14,
       "verifiedLive": true
     }
   ]

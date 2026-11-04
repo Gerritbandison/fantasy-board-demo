@@ -2,8 +2,9 @@ import raw from "@/data/projected-standings.json";
 import { team } from "@/lib/league";
 
 /*
- * Precomputed regular-season projection. Week 8 is provisional: the live leader
- * is counted as the winner. Names shown in the UI come from the team directory.
+ * Baseline of the playoff simulator, written to JSON so the table and the
+ * interactive sim start from the same model. Rank is average finish.
+ * Names shown in the UI come from the team directory.
  */
 
 interface RawRow {
@@ -15,6 +16,7 @@ interface RawRow {
   exp_final_pf: number;
   playoff_odds: number;
   top_seed_odds: number;
+  avg_seed: number;
   projected_rank: number;
 }
 
@@ -43,10 +45,10 @@ export interface ProjectedRow {
 }
 
 export const PROJECTED_STANDINGS: ProjectedRow[] = [...file.standings]
-  .sort((a, b) => a.projected_rank - b.projected_rank)
-  .map((row) => ({
+  .sort((a, b) => a.avg_seed - b.avg_seed || a.teamId - b.teamId)
+  .map((row, index) => ({
     teamId: row.teamId,
-    rank: row.projected_rank,
+    rank: index + 1,
     record: row.record_thru_wk8,
     pointsFor: row.pf_thru_wk8,
     expectedWins: row.exp_final_wins,
@@ -56,13 +58,11 @@ export const PROJECTED_STANDINGS: ProjectedRow[] = [...file.standings]
     topSeedOdds: row.top_seed_odds,
   }));
 
-export const PROJECTED_AS_OF = "Nov 2, Week 8 provisional";
+export const PROJECTED_AS_OF = file.asOf;
+export const PROJECTED_NOTE = file.week8Treatment;
 export const PROJECTED_SPOTS = file.playoffSpots;
 export const PROJECTED_WEEKS = file.regularSeasonWeeks;
-
-/** Short note for the page. The file's method is the source; this is the public wording. */
-export const PROJECTED_METHOD =
-  "Expected wins and playoff odds come from 20,000 simulated seasons. Each remaining week uses a best available lineup from Nov 1–2 rest-of-season projections, scaled to this year's league scoring. The chance of winning a game comes from the projected margin. The top 4 make the playoffs. Ties break on wins, then points for. Week 8's live leader counts as the winner.";
+export const PROJECTED_METHOD = file.method;
 
 export function projectedTeamName(teamId: number) {
   return team(teamId).name;

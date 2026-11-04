@@ -40,6 +40,9 @@ export interface SimModel {
   playoffSpots: number;
   regularSeasonWeeks: number;
   nonByeEspn: number;
+  /** Scoring week the scoreboard is on. Live noise applies only to this week, and only while it is not final. */
+  currentWeek?: number;
+  currentWeekFinal?: boolean;
   source?: string;
   teams: SimTeam[];
   games: SimGame[];
@@ -58,6 +61,10 @@ export interface TeamOdds {
   id: number;
   odds: number;
   avgPf: number;
+  expectedWins: number;
+  expectedLosses: number;
+  avgSeed: number;
+  topSeedOdds: number;
 }
 
 export interface WinBucket {
@@ -146,15 +153,21 @@ export function focusTeam(model: SimModel) {
   return teamOf(model, model.focusId);
 }
 
-/** Mean and SD of a side's final score. Week 8 shrinks the noise by how much of the projection is still out. */
+/** Mean and SD of a side's final score. The current week, while it is still going, shrinks the noise by how much of the projection is still out. */
 export function sideDist(model: SimModel, game: SimGame, side: "home" | "away", shift: number): [number, number] {
   const id = side === "home" ? game.homeId : game.awayId;
   const proj = side === "home" ? game.homeProj : game.awayProj;
   const cur = side === "home" ? game.homeCurrent : game.awayCurrent;
   const team = teamOf(model, id);
   const adj = id === model.focusId ? shift : team.bias;
-  if (game.week === 8 && cur != null) {
-    const frac = Math.max(0.05, (proj - cur) / proj);
+  const live =
+    model.currentWeek != null &&
+    game.week === model.currentWeek &&
+    model.currentWeekFinal !== true &&
+    game.counted !== true &&
+    cur != null;
+  if (live) {
+    const frac = Math.max(0.05, proj > 0 ? (proj - cur) / proj : 0.05);
     return [proj + adj * frac, team.sd * Math.sqrt(frac)];
   }
   return [proj + adj, team.sd];
@@ -187,7 +200,11 @@ export function focusSchedule(model: SimModel, shift: number): ScheduleRow[] {
       oppProj: oppEspn + opp.bias,
       margin: mm - om,
       winProb: phi((mm - om) / Math.sqrt(ms * ms + os * os)),
-      live: game.week === 8 && game.homeCurrent != null,
+      live:
+        model.currentWeek === game.week &&
+        model.currentWeekFinal !== true &&
+        game.counted !== true &&
+        (home ? game.homeCurrent : game.awayCurrent) != null,
       counted: game.counted === true,
     });
   });
@@ -216,10 +233,11 @@ function samplePair(gauss: () => number, mh: number, sh: number, ma: number, sa:
     a = ma + sa * gauss();
     if (want === undefined || (want === homeId) === (h > a)) break;
   }
+  // A forced winner keeps both samples. The trailer is lifted just past the leader
+  // instead of the two scores being exchanged.
   if (want !== undefined && (want === homeId) !== (h > a)) {
-    const swap = h;
-    h = a;
-    a = swap;
+    if (want === homeId) h = Math.max(h, a) + 0.01;
+    else a = Math.max(h, a) + 0.01;
   }
   return [h, a] as const;
 }
@@ -238,6 +256,7 @@ interface Prepared {
   counted: boolean[];
   focusI: number;
   baseW: Float64Array;
+  baseL: Float64Array;
   basePf: Float64Array;
 }
 
@@ -281,15 +300,26 @@ function prepare(model: SimModel, shift: number): Prepared {
     counted,
     focusI,
     baseW: Float64Array.from(model.teams.map((t) => t.wins)),
+    baseL: Float64Array.from(model.teams.map((t) => t.losses)),
     basePf: Float64Array.from(model.teams.map((t) => t.pf)),
   };
 }
 
-function applyScore(W: Float64Array, PF: Float64Array, hi: number, ai: number, h: number, a: number) {
+/** 1 when home wins, -1 when away wins, 0 on a tie. A tie adds points and no win. */
+function applyScore(W: Float64Array, L: Float64Array, PF: Float64Array, hi: number, ai: number, h: number, a: number) {
   PF[hi] += h;
   PF[ai] += a;
-  if (h > a) W[hi] += 1;
-  else W[ai] += 1;
+  if (h > a) {
+    W[hi] += 1;
+    L[ai] += 1;
+    return 1;
+  }
+  if (a > h) {
+    W[ai] += 1;
+    L[hi] += 1;
+    return -1;
+  }
+  return 0;
 }
 
 function ranked(W: Float64Array, PF: Float64Array) {
@@ -302,11 +332,15 @@ export function simulate(model: SimModel, opts: SimOpts): SimSummary {
   const prep = prepare(model, opts.shift);
   const rand = rngFrom(opts.seed);
   const gauss = gaussOf(rand);
-  const { nt, ng, focusI, homeI, awayI, homeId, means, sds, baseW, basePf, counted } = prep;
+  const { nt, ng, focusI, homeI, awayI, homeId, means, sds, baseW, baseL, basePf, counted } = prep;
   const forced = opts.forced ?? {};
   const mayeSet = new Set(prep.mayeAt);
   const made = new Uint32Array(nt);
   const pfSum = new Float64Array(nt);
+  const winSum = new Float64Array(nt);
+  const lossSum = new Float64Array(nt);
+  const seedSum = new Float64Array(nt);
+  const topSeed = new Uint32Array(nt);
   const byCount = new Uint32Array(model.regularSeasonWeeks + 1);
   const byMade = new Uint32Array(model.regularSeasonWeeks + 1);
   const cut = new Uint32Array(model.regularSeasonWeeks + 1);
@@ -317,18 +351,21 @@ export function simulate(model: SimModel, opts: SimOpts): SimSummary {
   let pfDecided = 0;
   let pfWon = 0;
   const W = new Float64Array(nt);
+  const L = new Float64Array(nt);
   const PF = new Float64Array(nt);
   const spots = model.playoffSpots;
 
   for (let s = 0; s < opts.n; s++) {
     W.set(baseW);
+    L.set(baseL);
     PF.set(basePf);
     const homeWon = new Uint8Array(ng);
     for (let gi = 0; gi < ng; gi++) {
       if (counted[gi]) continue;
       const [h, a] = samplePair(gauss, means[gi][0], sds[gi][0], means[gi][1], sds[gi][1], forced[gi], homeId[gi]);
-      applyScore(W, PF, homeI[gi], awayI[gi], h, a);
-      if (h > a) homeWon[gi] = 1;
+      const outcome = applyScore(W, L, PF, homeI[gi], awayI[gi], h, a);
+      if (outcome > 0) homeWon[gi] = 1;
+      else if (outcome < 0) homeWon[gi] = 2;
     }
     const order = ranked(W, PF);
     let focusMade = false;
@@ -336,7 +373,15 @@ export function simulate(model: SimModel, opts: SimOpts): SimSummary {
       made[order[k]] += 1;
       if (order[k] === focusI) focusMade = true;
     }
-    for (let i = 0; i < nt; i++) pfSum[i] += PF[i];
+    for (let i = 0; i < nt; i++) {
+      pfSum[i] += PF[i];
+      winSum[i] += W[i];
+      lossSum[i] += L[i];
+    }
+    order.forEach((idx, place) => {
+      seedSum[idx] += place + 1;
+      if (place === 0) topSeed[idx] += 1;
+    });
     const wins = W[focusI];
     byCount[wins] += 1;
     if (focusMade) byMade[wins] += 1;
@@ -347,17 +392,36 @@ export function simulate(model: SimModel, opts: SimOpts): SimSummary {
     }
     for (let gi = 0; gi < ng; gi++) {
       if (counted[gi] || mayeSet.has(gi) || forced[gi] !== undefined) continue;
-      if (homeWon[gi]) {
+      if (homeWon[gi] === 1) {
         swingH[gi] += 1;
         if (focusMade) swingHMade[gi] += 1;
-      } else {
+      } else if (homeWon[gi] === 2) {
         swingA[gi] += 1;
         if (focusMade) swingAMade[gi] += 1;
       }
     }
   }
 
-  return finishSummary(model, opts.n, prep, made, pfSum, byCount, byMade, cut, pfDecided, pfWon, swingH, swingHMade, swingA, swingAMade);
+  return finishSummary(
+    model,
+    opts.n,
+    prep,
+    made,
+    pfSum,
+    winSum,
+    lossSum,
+    seedSum,
+    topSeed,
+    byCount,
+    byMade,
+    cut,
+    pfDecided,
+    pfWon,
+    swingH,
+    swingHMade,
+    swingA,
+    swingAMade,
+  );
 }
 
 function finishSummary(
@@ -366,6 +430,10 @@ function finishSummary(
   prep: Prepared,
   made: Uint32Array,
   pfSum: Float64Array,
+  winSum: Float64Array,
+  lossSum: Float64Array,
+  seedSum: Float64Array,
+  topSeed: Uint32Array,
   byCount: Uint32Array,
   byMade: Uint32Array,
   cut: Uint32Array,
@@ -376,7 +444,15 @@ function finishSummary(
   swingA: Uint32Array,
   swingAMade: Uint32Array,
 ): SimSummary {
-  const teams: TeamOdds[] = prep.ids.map((id, i) => ({ id, odds: made[i] / n, avgPf: pfSum[i] / n }));
+  const teams: TeamOdds[] = prep.ids.map((id, i) => ({
+    id,
+    odds: made[i] / n,
+    avgPf: pfSum[i] / n,
+    expectedWins: winSum[i] / n,
+    expectedLosses: lossSum[i] / n,
+    avgSeed: seedSum[i] / n,
+    topSeedOdds: topSeed[i] / n,
+  }));
   const byWins: WinBucket[] = [];
   for (let wins = 0; wins < byCount.length; wins++) {
     if (byCount[wins] < 20) continue;
@@ -420,6 +496,7 @@ export function winOutPath(model: SimModel, opts: SimOpts): PathStep[] {
   const rand = rngFrom(opts.seed);
   const gauss = gaussOf(rand);
   const { nt, ng, focusI, homeI, awayI, homeId, means, sds, mayeAt, baseW, basePf, counted } = prep;
+  const scratchL = new Float64Array(nt);
   const forced = opts.forced ?? {};
   const mayeSet = new Set(mayeAt);
   const steps = mayeAt.length;
@@ -440,7 +517,7 @@ export function winOutPath(model: SimModel, opts: SimOpts): PathStep[] {
     for (let gi = 0; gi < ng; gi++) {
       if (mayeSet.has(gi) || counted[gi]) continue;
       const [h, a] = samplePair(gauss, means[gi][0], sds[gi][0], means[gi][1], sds[gi][1], forced[gi], homeId[gi]);
-      applyScore(W, PF, homeI[gi], awayI[gi], h, a);
+      applyScore(W, scratchL, PF, homeI[gi], awayI[gi], h, a);
     }
     snapW.set(W);
     snapPf.set(PF);
@@ -460,7 +537,7 @@ export function winOutPath(model: SimModel, opts: SimOpts): PathStep[] {
         const gi = mayeAt[j];
         const h = j < k ? fh[j] : uh[j];
         const a = j < k ? fa[j] : ua[j];
-        applyScore(W, PF, homeI[gi], awayI[gi], h, a);
+        applyScore(W, scratchL, PF, homeI[gi], awayI[gi], h, a);
       }
       const order = ranked(W, PF);
       for (let p = 0; p < spots; p++) {

@@ -1,6 +1,6 @@
 import raw from "@/data/week-roasts.json";
-import { normalizeRoastText, parseRoastTag, type RoastTag } from "@/lib/roast-copy";
-import { formatPoints, formatRecord, LEAGUE, team } from "@/lib/league";
+import { normalizeRoastText, parseRoastTag, roastMatchesScoreboard, type RoastTag } from "@/lib/roast-copy";
+import { formatPoints, formatRecord, LEAGUE, MATCHUPS, team } from "@/lib/league";
 
 /*
  * Weekly roast cards for the scores page. Swap data/week-roasts.json when the
@@ -78,15 +78,24 @@ function projectionLine(home: RoastSide, away: RoastSide) {
   return `ESPN projection: ${home.name} ${home.projected.toFixed(1)} vs ${away.name} ${away.projected.toFixed(1)} (${when} ${formatPoints(home.points)}-${formatPoints(away.points)})`;
 }
 
+function boardPoints(teamId: number, homeId: number, awayId: number) {
+  const matchup = MATCHUPS.find((row) => row.homeId === homeId && row.awayId === awayId);
+  if (!matchup) return null;
+  if (matchup.left.teamId === teamId) return matchup.left.points;
+  if (matchup.right.teamId === teamId) return matchup.right.points;
+  return null;
+}
+
 function load(): WeekRoasts | null {
   if (file.week !== LEAGUE.week || file.matchups.length === 0) return null;
-  return {
-    week: file.week,
-    dataPulledAt: file.dataPulledAt,
-    matchups: file.matchups.map((m) => {
-      const home = side(m.homeTeamId, m.homePoints, m.projection.home, true);
-      const away = side(m.awayTeamId, m.awayPoints, m.projection.away, false);
-      return {
+  const matchups = file.matchups.flatMap((m) => {
+    if (!roastMatchesScoreboard(m.homePoints, m.awayPoints, boardPoints(m.homeTeamId, m.homeTeamId, m.awayTeamId), boardPoints(m.awayTeamId, m.homeTeamId, m.awayTeamId))) {
+      return [];
+    }
+    const home = side(m.homeTeamId, m.homePoints, m.projection.home, true);
+    const away = side(m.awayTeamId, m.awayPoints, m.projection.away, false);
+    return [
+      {
         id: m.matchupId,
         home,
         away,
@@ -94,9 +103,11 @@ function load(): WeekRoasts | null {
         roast: normalizeRoastText(m.roast),
         projectionLine: projectionLine(home, away),
         tag: parseRoastTag(m.tag),
-      };
-    }),
-  };
+      },
+    ];
+  });
+  if (matchups.length === 0) return null;
+  return { week: file.week, dataPulledAt: file.dataPulledAt, matchups };
 }
 
 /** The current week's roast cards, or null when the file is for a different week. */

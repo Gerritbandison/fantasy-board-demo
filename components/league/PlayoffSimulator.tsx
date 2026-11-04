@@ -32,10 +32,12 @@ export function PlayoffSimulator({
   teams,
   focusName,
   currentWeek,
+  weekFinal,
 }: {
   teams: SimTeam[];
   focusName: string;
   currentWeek: number;
+  weekFinal: boolean;
 }) {
   const [shift, setShift] = useState(0);
   const [mayePick, setMayePick] = useState<Record<number, "W" | "L">>({});
@@ -107,7 +109,7 @@ export function PlayoffSimulator({
 
       <Panel title="Scenario">
         <p className="text-sm leading-snug text-slate-600">
-          Odds below are a projection from {SIM_COUNT.toLocaleString("en-US")} seeded simulations, not ESPN&apos;s. Top 4 of 10. Regular season ends Week 14. Tiebreak is record, then points for.
+          Same model as the standings table. That table is this scenario at the ESPN setting with nothing locked. Moving the slider or locking a game changes the odds below. {SIM_COUNT.toLocaleString("en-US")} seeded simulations. Top 4 of 10. Regular season ends Week 14. A tie adds no win. Tiebreak is record, then points for.
         </p>
         <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
           <Stat label="This scenario" value={formatPct(scenario.focusOdds, 1)} sub={Object.keys(scenarioForced).length ? "With results locked" : "Nothing locked"} />
@@ -203,12 +205,12 @@ export function PlayoffSimulator({
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-navy">
                       Week {row.week}
-                      {row.counted ? " · provisional" : row.live ? " · live" : ""} {row.home ? "vs" : "@"} {opp}
+                      {row.counted ? (weekFinal && row.week === currentWeek ? " · final" : " · in the record") : row.live ? " · live" : ""} {row.home ? "vs" : "@"} {opp}
                     </p>
                     {row.counted ? (
                       <p className="text-xs text-slate-600 tabular-nums">
-                        {liveFor != null && liveAgainst != null ? `${points(liveFor)}–${points(liveAgainst)} so far. ` : ""}
-                        Provisional, Week {row.week} not final. This result is already in the record.
+                        {liveFor != null && liveAgainst != null ? `${points(liveFor)}–${points(liveAgainst)}. ` : ""}
+                        {weekFinal && row.week === currentWeek ? `Week ${row.week} is final.` : `Provisional, Week ${row.week} not final.`} This result is already in the record.
                       </p>
                     ) : (
                       <p className="text-xs text-slate-600 tabular-nums">
@@ -339,7 +341,8 @@ export function PlayoffSimulator({
 
       <Panel title="Points-for tiebreaker">
         <p className="text-sm leading-snug text-slate-600">
-          {focusName} has {modelTeam(PLAYOFF_MODEL.focusId)?.pf.toFixed(2)} points, {place(pfPlace)} in points for. Provisional, Week {currentWeek} not final. In this scenario,{" "}
+          {focusName} has {modelTeam(PLAYOFF_MODEL.focusId)?.pf.toFixed(2)} points, {place(pfPlace)} in points for.{" "}
+          {weekFinal ? `Week ${currentWeek} is final.` : `Provisional, Week ${currentWeek} not final.`} In this scenario,{" "}
           {formatPct(scenario.pfDecidedRate, 1)} of sims are a wins tie on the 4/5 line that includes {focusName}
           {scenario.pfDecidedRate > 0 ? `, and ${focusName} wins ${formatPct(scenario.pfWonRate, 1)} of those` : ""}.
         </p>
@@ -348,7 +351,7 @@ export function PlayoffSimulator({
       <details className="rounded-2xl bg-white p-4 ring-1 ring-line sm:p-5">
         <summary className="min-h-11 cursor-pointer font-display text-lg font-bold tracking-wide text-navy uppercase">Other games</summary>
         <div className="mt-3 grid gap-3">
-          {[8, 9, 10, 11, 12, 13, 14].map((week) => {
+          {[...new Set(PLAYOFF_MODEL.games.map((game) => game.week))].sort((a, b) => a - b).map((week) => {
             const games = PLAYOFF_MODEL.games
               .map((game, gameIndex) => ({ game, gameIndex }))
               .filter(({ game }) => game.week === week && !game.counted && game.homeId !== PLAYOFF_MODEL.focusId && game.awayId !== PLAYOFF_MODEL.focusId);
@@ -388,7 +391,7 @@ export function PlayoffSimulator({
         <summary className="min-h-11 cursor-pointer font-display text-lg font-bold tracking-wide text-navy uppercase">How the model works</summary>
         <ul className="mt-3 grid gap-2 text-sm leading-snug text-slate-600">
           <li>
-            Week {currentWeek} is already in the wins, losses, and points, and it is provisional, Week {currentWeek} not final. Later weeks are simulated. The live score is not added a second time.
+            Week {currentWeek} is already in the wins, losses, and points{weekFinal ? " and is final" : ", and it is still in progress"}. Later weeks are simulated. That score is not added a second time.
           </li>
           <li>Each other team&apos;s weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss. {focusName} gets no penalty. The slider moves that team instead.</li>
           <li>Scores are normal draws using each team&apos;s weekly spread. The top 4 by wins, then points for, make the playoffs.</li>

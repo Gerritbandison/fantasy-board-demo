@@ -1,27 +1,13 @@
 {
   "title": "Most points by one team in a single week (regular season), all time",
   "league": "Chicken (ESPN 12115010)",
-  "method": "Regular season only: weeks 1-13 (2020), 1-14 (2021-25), 2026 weeks 1-7 final. Source data/league-h2h-history.json (Flaim get_matchups), names per lib/names.ts.",
+  "method": "Regular season only: weeks 1-13 (2020), 1-14 (2021-25), 2026 weeks 1-8 final. The 179.26 score is the final Week 8 total from the Nov 3 production scoreboard. Earlier rows: data/league-h2h-history.json (Flaim get_matchups), names per lib/names.ts.",
   "boundary": {
-    "twentieth": 171.92,
-    "twentyFirst": 170.92,
+    "twentieth": 172.36,
+    "twentyFirst": 171.92,
     "tie": false
   },
-  "pending": [
-    {
-      "season": 2026,
-      "week": 8,
-      "teamId": 7,
-      "team": "Maye i give you a blowj0b",
-      "owner": "Gerrit",
-      "points": 179.26,
-      "opponent": "Dimes McSorley",
-      "opponentScore": 89.36,
-      "result": "W (live)",
-      "status": "ESPN UNDECIDED as of Nov 2 ~8:58 PM ET (MNF in progress)",
-      "wouldRank": 8
-    }
-  ],
+  "pending": [],
   "top20": [
     {
       "season": 2024,
@@ -129,6 +115,21 @@
       "rank": 7
     },
     {
+      "season": 2026,
+      "week": 8,
+      "teamId": 7,
+      "team": "Maye i give you a blowj0b",
+      "franchiseNow": "Maye i give you a blowj0b",
+      "owner": "Gerrit",
+      "points": 179.26,
+      "opponentId": 8,
+      "opponent": "Dimes McSorley",
+      "opponentScore": 89.36,
+      "result": "W",
+      "gameId": "2026-mp08-7v8",
+      "rank": 8
+    },
+    {
       "season": 2021,
       "week": 9,
       "teamId": 11,
@@ -141,7 +142,7 @@
       "opponentScore": 92.24,
       "result": "W",
       "gameId": "2021-mp09-5v11",
-      "rank": 8
+      "rank": 9
     },
     {
       "season": 2023,
@@ -156,7 +157,7 @@
       "opponentScore": 95.14,
       "result": "W",
       "gameId": "2023-mp04-1v11",
-      "rank": 9
+      "rank": 10
     },
     {
       "season": 2024,
@@ -171,7 +172,7 @@
       "opponentScore": 127.88,
       "result": "W",
       "gameId": "2024-mp08-2v7",
-      "rank": 10
+      "rank": 11
     },
     {
       "season": 2020,
@@ -186,7 +187,7 @@
       "opponentScore": 151.04,
       "result": "W",
       "gameId": "2020-mp04-2v4",
-      "rank": 11
+      "rank": 12
     },
     {
       "season": 2025,
@@ -201,7 +202,7 @@
       "opponentScore": 121.22,
       "result": "W",
       "gameId": "2025-mp12-2v6",
-      "rank": 12
+      "rank": 13
     },
     {
       "season": 2026,
@@ -216,7 +217,7 @@
       "opponentScore": 154.74,
       "result": "W",
       "gameId": "2026-mp04-2v3",
-      "rank": 13
+      "rank": 14
     },
     {
       "season": 2024,
@@ -231,7 +232,7 @@
       "opponentScore": 139.04,
       "result": "W",
       "gameId": "2024-mp10-1v7",
-      "rank": 14
+      "rank": 15
     },
     {
       "season": 2025,
@@ -246,7 +247,7 @@
       "opponentScore": 81.52,
       "result": "W",
       "gameId": "2025-mp02-5v7",
-      "rank": 15
+      "rank": 16
     },
     {
       "season": 2022,
@@ -261,7 +262,7 @@
       "opponentScore": 151.72,
       "result": "W",
       "gameId": "2022-mp02-3v11",
-      "rank": 16
+      "rank": 17
     },
     {
       "season": 2020,
@@ -276,7 +277,7 @@
       "opponentScore": 80.78,
       "result": "W",
       "gameId": "2020-mp02-1v7",
-      "rank": 17
+      "rank": 18
     },
     {
       "season": 2024,
@@ -291,7 +292,7 @@
       "opponentScore": 99.94,
       "result": "W",
       "gameId": "2024-mp11-1v4",
-      "rank": 18
+      "rank": 19
     },
     {
       "season": 2021,
@@ -306,21 +307,6 @@
       "opponentScore": 138.46,
       "result": "W",
       "gameId": "2021-mp01-4v8",
-      "rank": 19
-    },
-    {
-      "season": 2025,
-      "week": 8,
-      "teamId": 6,
-      "team": "Brioon Omeglemeally",
-      "franchiseNow": "Smert Fellas",
-      "owner": null,
-      "points": 171.92,
-      "opponentId": 5,
-      "opponent": "M1 Abrams",
-      "opponentScore": 128.42,
-      "result": "W",
-      "gameId": "2025-mp08-5v6",
       "rank": 20
     }
   ]

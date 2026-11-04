@@ -163,9 +163,10 @@ export function buildRosterGrade(
   const starters = scored.filter((row) => onFocus(row) && row.slot !== "Bench" && row.slot !== "IR" && row.weeks > 0);
   const weakest = [...starters].sort((a, b) => a.total - b.total || a.name.localeCompare(b.name))[0];
 
+  const firstOpen = model.currentWeek == null ? 9 : model.currentWeekFinal === false ? model.currentWeek : model.currentWeek + 1;
   const ros = new Map<number, { sum: number; n: number }>();
   for (const game of model.games) {
-    if (game.week < 9) continue;
+    if (game.week < firstOpen) continue;
     for (const [id, proj] of [
       [game.homeId, game.homeProj],
       [game.awayId, game.awayProj],
@@ -184,7 +185,7 @@ export function buildRosterGrade(
   const letter = TEAM_GRADE[rosRank - 1] ?? "D";
 
   const weeks: WeekOutlook[] = model.games
-    .filter((game) => game.week >= 9 && (game.homeId === model.focusId || game.awayId === model.focusId))
+    .filter((game) => game.week >= firstOpen && (game.homeId === model.focusId || game.awayId === model.focusId))
     .map((game) => weekOutlook(model, game, byes))
     .sort((a, b) => a.week - b.week);
 
@@ -216,7 +217,7 @@ export function buildRosterGrade(
       id: "TE",
       label: "TE",
       letter: "A",
-      reason: `Isaiah Likely is the starter. Projection: the No. 2 tight end. He scored ${one(likely.ppg)} points per game over Weeks 4–7. He is on bye in Week ${likelyByeWeeks.join(" and ") || "8"}, so Harold Fannin Jr. starts this week in his place. Fannin scored ${one(fannin.ppg)} in that sample (${fanninRank === tes.length ? "last" : ordinal(fanninRank)} of ${tes.length} tight ends in the current lineup slot) and does not set this grade.`,
+      reason: `Isaiah Likely is the starter. Projection: the No. 2 tight end. He scored ${one(likely.ppg)} points per game over Weeks 4–7. He is on bye in Week ${likelyByeWeeks.join(" and ") || "8"}, ${model.currentWeek != null && likelyByeWeeks.includes(String(model.currentWeek)) ? "so Harold Fannin Jr. starts this week in his place" : `so Harold Fannin Jr. is the fill-in in Week ${likelyByeWeeks.join(" and ") || "8"}`}. Fannin scored ${one(fannin.ppg)} in that sample (${fanninRank === tes.length ? "last" : ordinal(fanninRank)} of ${tes.length} tight ends in the current lineup slot) and does not set this grade.`,
     },
     {
       id: "FLEX",

@@ -1,5 +1,5 @@
-import raw from "@/data/league-all-teams.json";
-import { franchiseAbbrev, franchiseName, isRetiredSeasonName, publicSeasonName } from "@/lib/names";
+import raw from "../data/league-all-teams.json" with { type: "json" };
+import { franchiseAbbrev, franchiseName, isRetiredSeasonName, publicSeasonName } from "./names.ts";
 
 /*
  * The committed Flaim/ESPN pull is the single source of truth. For every franchise
@@ -100,6 +100,8 @@ interface RawWeek8Game {
   winner?: string | null;
   /** "in-progress" once the week has started, even if a team is still on 0. */
   status?: string | null;
+  week?: number;
+  margin?: number | null;
 }
 
 interface RawChampion {
@@ -336,13 +338,16 @@ export interface Game {
 
 const completedGames = (file.schedule.completed ?? file.schedule.weeks1to7 ?? []) as RawGame[];
 
-export const GAMES: Game[] = completedGames.map((g) => ({
-  week: g.week,
-  home: { teamId: g.homeTeamId, score: g.homeScore, projected: nn(g.homeProjected) },
-  away: { teamId: g.awayTeamId, score: g.awayScore, projected: nn(g.awayProjected) },
-  winnerId: nn(g.winnerTeamId),
-  margin: g.margin,
-}));
+export const GAMES: Game[] = [
+  ...completedGames.map((g) => ({
+    week: g.week,
+    home: { teamId: g.homeTeamId, score: g.homeScore, projected: nn(g.homeProjected) },
+    away: { teamId: g.awayTeamId, score: g.awayScore, projected: nn(g.awayProjected) },
+    winnerId: nn(g.winnerTeamId),
+    margin: g.margin,
+  })),
+  ...finalCurrentWeekGames(),
+];
 
 export const WEEKS_PLAYED = [...new Set(GAMES.map((g) => g.week))].sort((a, b) => a - b);
 
@@ -372,6 +377,28 @@ export interface Matchup {
   /** Display order: the user's team first, otherwise away then home. */
   left: MatchupSide;
   right: MatchupSide;
+}
+
+/** Final current-week games join the record book. A week still in progress stays on the scoreboard only. */
+function finalCurrentWeekGames(): Game[] {
+  if (file.meta.weekInProgress?.final !== true) return [];
+  const current = file.meta.currentWeek;
+  if (completedGames.some((game) => game.week === current)) return [];
+  return currentWeekGames().flatMap((game) => {
+    const winner = (game.winner ?? "").toUpperCase();
+    if (winner !== "HOME" && winner !== "AWAY") return [];
+    const homeScore = game.homeCurrentPoints ?? 0;
+    const awayScore = game.awayCurrentPoints ?? 0;
+    return [
+      {
+        week: game.week ?? current,
+        home: { teamId: game.homeTeamId, score: homeScore, projected: nn(game.homeProjected) },
+        away: { teamId: game.awayTeamId, score: awayScore, projected: nn(game.awayProjected) },
+        winnerId: winner === "HOME" ? game.homeTeamId : game.awayTeamId,
+        margin: game.margin ?? Math.abs(homeScore - awayScore),
+      },
+    ];
+  });
 }
 
 function currentWeekGames(): RawWeek8Game[] {

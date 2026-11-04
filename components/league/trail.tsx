@@ -153,7 +153,9 @@ export function TrailLegend({ focus, compare = "league" }: { focus: Team; compar
         />
         {compare === "league" ? "League average" : compare.name}
       </span>
-      <span className="text-slate-600">Wk {WEEKS} dot is the live score. Provisional, Week {WEEKS} not final.</span>
+      <span className="text-slate-600">
+        {LEAGUE.provisionalLabel ? `Wk ${WEEKS} dot is the live score. ${LEAGUE.provisionalLabel}.` : `Wk ${WEEKS} dot is the final score.`}
+      </span>
     </div>
   );
 }
