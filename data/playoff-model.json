@@ -3,7 +3,7 @@
   "playoffSpots": 4,
   "regularSeasonWeeks": 14,
   "nonByeEspn": 130.2,
-  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 finals as of 2026-11-03T09:09:25-05:00 are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Weeks 9-14 were not re-pulled.",
+  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 finals as of 2026-11-03T09:09:25-05:00 are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 9 projections were replaced from the 2026-11-04 matchup pull. Week 9 has not started, so those games have no current points and are not counted. Weeks 10-14 were not re-pulled.",
   "biasNote": "Each other team's weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss.",
   "presets": [
     { "shift": -20, "name": "Season" },
@@ -148,36 +148,36 @@
       "week": 9,
       "homeId": 7,
       "awayId": 6,
-      "homeProj": 133.0,
-      "awayProj": 116.7
+      "homeProj": 130.84,
+      "awayProj": 120.31
     },
     {
       "week": 9,
       "homeId": 8,
       "awayId": 5,
-      "homeProj": 126.7,
-      "awayProj": 123.5
+      "homeProj": 108.53,
+      "awayProj": 124.98
     },
     {
       "week": 9,
       "homeId": 3,
       "awayId": 11,
-      "homeProj": 129.7,
-      "awayProj": 109.2
+      "homeProj": 124.78,
+      "awayProj": 103.6
     },
     {
       "week": 9,
       "homeId": 1,
       "awayId": 2,
-      "homeProj": 132.2,
-      "awayProj": 122.4
+      "homeProj": 138.35,
+      "awayProj": 130.19
     },
     {
       "week": 9,
       "homeId": 4,
       "awayId": 10,
-      "homeProj": 124.8,
-      "awayProj": 131.5
+      "homeProj": 127.03,
+      "awayProj": 133.5
     },
     {
       "week": 10,
@@ -372,6 +372,6 @@
       "loserId": 8
     }
   ],
-  "currentWeek": 8,
-  "currentWeekFinal": true
+  "currentWeek": 9,
+  "currentWeekFinal": false
 }
