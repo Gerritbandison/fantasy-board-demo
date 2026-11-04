@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeftRight, ShieldAlert } from "lucide-react";
 import { ScoreReadout, SlotChip } from "@/components/league/bits";
+import { PlayoffSeriesNote } from "@/components/league/playoff-h2h";
 import { RosterOutlook } from "@/components/league/RosterOutlook";
 import { Card, RangeBar, ResultChip, Stat, TeamAvatar } from "@/components/league/ui";
 import { ScoreTrail, TrailLegend, WeekStrip } from "@/components/league/trail";
@@ -100,6 +101,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
                   );
                 })}
               </div>
+              {oppId != null && <PlayoffSeriesNote leftId={t.id} rightId={oppId} className="mt-3" />}
               <Link href={matchupPath(m)} className="mt-4 inline-flex h-10 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
                 Matchup preview →
               </Link>

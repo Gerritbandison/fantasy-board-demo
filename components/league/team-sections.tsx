@@ -1,4 +1,5 @@
 import { Medal, Trophy } from "lucide-react";
+import { TeamPlayoffHistory } from "./playoff-h2h";
 import { BenchList, PlayerCell } from "@/components/league/MatchupBoard";
 import { SlotChip } from "@/components/league/bits";
 import { Card, Pill, SectionHeading, Stat } from "@/components/league/ui";
@@ -106,6 +107,7 @@ export function TeamHistory({ team }: { team: Team }) {
           </p>
         </Card>
       </div>
+      <TeamPlayoffHistory teamId={team.id} />
     </>
   );
 }

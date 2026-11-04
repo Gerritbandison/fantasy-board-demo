@@ -2,6 +2,7 @@ import Link from "next/link";
 import { formatPoints, LEAGUE, teamPath, USER_TEAM } from "@/lib/league";
 import { WEEK_ROASTS, type RoastSide, type RoastTag } from "@/lib/roasts";
 import { cn } from "@/lib/utils";
+import { PlayoffSeriesNote } from "./playoff-h2h";
 import { Card, SectionHeading, TeamAvatar } from "./ui";
 
 const TAG_TONE: { [kind in RoastTag["kind"]]: string } = {
@@ -80,6 +81,7 @@ export function WeekRoasts() {
                 <SideRow side={m.home} />
                 <SideRow side={m.away} />
               </div>
+              <PlayoffSeriesNote leftId={m.home.teamId} rightId={m.away.teamId} className="mt-3" />
               <h3 className="mt-4 font-display text-xl leading-tight font-bold text-navy">{m.headline}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-700">{m.roast}</p>
               <p className="mt-3 text-sm leading-snug font-semibold text-navy">{m.projectionLine}</p>

@@ -21,6 +21,7 @@ import {
   winnerSide,
   type Matchup,
 } from "@/lib/league";
+import { PlayoffSeriesNote } from "@/components/league/playoff-h2h";
 import { buildPreview } from "@/lib/preview";
 
 export const metadata: Metadata = {
@@ -72,6 +73,7 @@ function GameList({ games, linked }: { games: Matchup[]; linked: boolean }) {
                 );
               })}
             </div>
+            <PlayoffSeriesNote leftId={m.left.teamId} rightId={m.right.teamId} className="mt-3" />
             {preview && <p className="mt-4 border-t border-line pt-3 text-sm leading-relaxed text-slate-600">{preview.story.slice(0, 2).join(" ")}</p>}
             {linked && (
               <Link href={matchupPath(m)} className="mt-4 inline-flex h-10 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
