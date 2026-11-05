@@ -1,5 +1,6 @@
-import raw from "@/data/league-trades.json";
-import { team } from "@/lib/league";
+import raw from "../data/league-trades.json" with { type: "json" };
+import { team } from "./league.ts";
+import { currentSpanNote, dedupeById, isCompletedStatus, postTradeResult, roundPoint, type WeekPoint } from "./trade-points.ts";
 
 /*
  * Trade history (Flaim/ESPN). 2026 comes from ESPN's transaction log and is graded on
@@ -27,7 +28,7 @@ interface RawWhoWon {
   weeksCounted: [number, number];
   edgeTeamId: number | null;
   edgePoints: number | null;
-  bySide?: { [teamId: string]: { totalPointsForNewTeam: number } };
+  bySide?: { [teamId: string]: { totalPointsForNewTeam: number; weeks?: { week: number; player: string; points?: number }[] } };
   /** Past seasons only: "won", "lopsided", "even" or "too little data". */
   verdict?: string;
 }
@@ -325,38 +326,59 @@ const VALUES_FETCHED_AT = file.trades
   .find((p) => p.value.fetchedAt)?.value.fetchedAt;
 export const VALUES_FETCHED = VALUES_FETCHED_AT ? new Date(VALUES_FETCHED_AT) : null;
 
-const PAST_CALLS: { [verdict: string]: PastCall } = { won: "won", lopsided: "lopsided", even: "even", "too little data": "too-little-data" };
-
-function pastCall(w: RawWhoWon | null): PastCall {
-  const c = w?.verdict != null ? PAST_CALLS[w.verdict] : undefined;
-  if (!c) throw new Error(`Unrecognised past-season verdict "${w?.verdict}"`);
-  return c;
-}
-
 /** Sort key: the accepted time, or the first day of a past deal's window. */
 const when = (t: RawTrade) => new Date(t.acceptedAt ?? `${t.dateWindow?.from ?? t.date}T12:00:00Z`).getTime();
 
-/** Pending, proposed, declined, and unprocessed rows stay out of every list. */
-function isProcessedTrade(t: RawTrade) {
-  return (t.status ?? "accepted").trim().toLowerCase() === "accepted";
+function sidePoints(t: RawTrade, teamId: number) {
+  const total = t.whoWonIt?.bySide?.[String(teamId)]?.totalPointsForNewTeam;
+  if (typeof total === "number") return roundPoint(total);
+  const received = t.longTermGrade?.sides?.[String(teamId)]?.pointsReceived;
+  if (typeof received === "number") return roundPoint(received);
+  return null;
 }
 
-const ALL_TRADES: Trade[] = file.trades.filter(isProcessedTrade)
+function weekRows(t: RawTrade): WeekPoint[] {
+  return Object.values(t.whoWonIt?.bySide ?? {}).flatMap((side) => (side.weeks ?? []).map((row) => ({ week: row.week, player: row.player })));
+}
+
+/** Higher post-trade total wins. Inside the file's even band there is no winner. */
+function pointEdge(t: RawTrade) {
+  if (t.teams.length < 2) return null;
+  const rows = t.teams.map((s) => ({ teamId: s.teamId, points: sidePoints(t, s.teamId) }));
+  if (rows.some((row) => row.points == null)) return null;
+  const diff = roundPoint(rows[0].points! - rows[1].points!);
+  if (Math.abs(diff) < PAST_GRADING.evenUnder) return null;
+  const winner = diff > 0 ? rows[0] : rows[1];
+  return { teamId: winner.teamId, points: Math.abs(diff) };
+}
+
+function tradePointTotal(t: RawTrade) {
+  return Object.values(t.whoWonIt?.bySide ?? {}).reduce((sum, side) => sum + (side.totalPointsForNewTeam ?? 0), 0);
+}
+
+const ALL_TRADES: Trade[] = dedupeById(file.trades.filter((t) => isCompletedStatus(t.status)), tradePointTotal)
   .sort((x, y) => y.season - x.season || when(y) - when(x) || Number(y.id.split("-T")[1]) - Number(x.id.split("-T")[1]))
   .map((t) => {
     const w = t.whoWonIt;
     const lt = t.longTermGrade;
     const past = t.acceptedAt == null;
+    const edge = pointEdge(t);
+    const spanNote = currentSpanNote(t.spanNote, weekRows(t));
     const sides = t.teams.map((s) => {
       const g = lt.sides?.[String(s.teamId)];
+      const points = sidePoints(t, s.teamId);
+      const partner = t.teams.find((other) => other.teamId !== s.teamId);
+      const result = partner ? postTradeResult(points, sidePoints(t, partner.teamId), PAST_GRADING.evenUnder) : null;
+      const grade = g ? sideGrade(g) : null;
       return {
         teamId: s.teamId,
         got: [...s.received.map((p) => player(p, g)), ...s.receivedPicks.map(pick)],
-        points: g?.pointsReceived ?? (past ? (w?.bySide?.[String(s.teamId)]?.totalPointsForNewTeam ?? null) : null),
-        grade: g ? sideGrade(g) : null,
+        points,
+        grade: grade && result ? { ...grade, verdict: result.verdict, pointsGained: result.gained } : grade,
       };
     }) as [TradeSide, TradeSide];
     const graded = sides.find((s) => s.grade)?.grade ?? null;
+    const call: PastCall | null = !past ? null : w?.verdict === "too little data" ? "too-little-data" : !edge ? "even" : edge.points >= PAST_GRADING.lopsidedFrom ? "lopsided" : "won";
     return {
       id: t.id,
       num: Number(t.id.split("-T")[1]),
@@ -368,22 +390,24 @@ const ALL_TRADES: Trade[] = file.trades.filter(isProcessedTrade)
       window: t.dateWindow ? { from: t.dateWindow.from, to: t.dateWindow.to } : null,
       sides,
       known: past ? "rebuilt" : t.confidence === "partial" ? "partial" : t.confidence === "inferred" ? "inferred" : "full",
-      call: past ? pastCall(w) : null,
+      call,
       released: t.releasedInDeal.map((p) => ({ name: p.name, position: p.position })),
       playersMoved: t.playersMoved,
       picksMoved: t.picksMoved,
       span: w ? w.weeksCounted : null,
-      spanNote: t.spanNote ?? null,
+      spanNote,
       droppedBy: t.droppedByTeamId ?? null,
-      take: t.week8Take ?? null,
-      edge: w?.edgeTeamId != null && w.edgePoints ? { teamId: w.edgeTeamId, points: w.edgePoints } : null,
+      take: t.spanNote && !spanNote ? null : (t.week8Take ?? null),
+      edge: call === "too-little-data" ? null : edge,
       ungraded: lt.grade === "INC" ? (lt.reason ?? "Not graded.") : null,
       confidence: graded?.confidence ?? null,
-      weeksOfData: graded?.weeksOfData ?? 0,
+      weeksOfData: w ? w.weeksCounted[1] - w.weeksCounted[0] + 1 : (graded?.weeksOfData ?? 0),
     } satisfies Trade;
   });
 
-/** Every player trade, all seasons, newest first. Draft-pick-only swaps are counted but not listed. */
+/** Accepted trades, including draft-pick swaps, newest first. Pending, vetoed, and cancelled rows are excluded. */
+export const COMPLETED = ALL_TRADES;
+/** Player trades, all seasons, newest first. */
 export const TRADES = ALL_TRADES.filter((t) => t.playersMoved > 0);
 /** This season's player trades: the ones with long-term value grades. */
 export const CURRENT = TRADES.filter((t) => t.season === TRADE_SEASON);
@@ -416,6 +440,25 @@ export function pastOutcome(t: Trade, teamId: number): PastOutcome | null {
 
 export function tradesFor(teamId: number) {
   return TRADES.filter((t) => t.sides.some((s) => s.teamId === teamId));
+}
+
+/** Accepted trades for one franchise, including draft-pick swaps. */
+export function completedFor(teamId: number) {
+  return COMPLETED.filter((t) => t.sides.some((s) => s.teamId === teamId));
+}
+
+function pointsNet(teamId: number, trades: Trade[]) {
+  let sum = 0;
+  let any = false;
+  for (const trade of trades) {
+    if (trade.playersMoved === 0) continue;
+    const mine = sideOf(trade, teamId).points;
+    const other = partnerOf(trade, teamId).points;
+    if (mine == null || other == null) continue;
+    any = true;
+    sum += mine - other;
+  }
+  return any ? roundPoint(sum) : null;
 }
 
 export function sideOf(t: Trade, teamId: number) {
@@ -533,14 +576,14 @@ function favoritePartner(teamId: number, s: RawTeamSummary | undefined): TeamTra
 
 function allTime(teamId: number, s: RawTeamSummary | undefined, trades: Trade[]): AllTimeTrades {
   const r = s?.pastSeasonTradeRecord;
-  const net = s?.netPointsFromTradesBySeason ?? {};
   const bySeason = KNOWN_SEASONS.map((season) => {
-    const n = trades.filter((t) => t.season === season).length;
-    return { season, trades: n, netPoints: n ? (net[String(season)] ?? 0) : null };
+    const mine = trades.filter((t) => t.season === season);
+    const net = pointsNet(teamId, mine);
+    return { season, trades: mine.length, netPoints: mine.length ? net : null };
   }).reverse();
   return {
     record: { won: r?.won ?? 0, lost: r?.lost ?? 0, even: r?.even ?? 0, tooLittleData: r?.tooEarly ?? 0 },
-    netPoints: Object.values(net).reduce((sum, v) => sum + v, 0),
+    netPoints: roundPoint(bySeason.reduce((sum, row) => sum + (row.netPoints ?? 0), 0)),
     bySeason,
   };
 }
@@ -557,7 +600,7 @@ export function teamTrades(teamId: number): TeamTrades {
     current,
     offersSent: s?.proposalsSent2026 ?? 0,
     offersReceived: s?.proposalsReceived2026 ?? 0,
-    netPoints: s?.netPointsFromTrades2026 ?? 0,
+    netPoints: pointsNet(teamId, current) ?? 0,
     netValue: graded.length ? graded.reduce((sum, g) => sum + g.valueEdge, 0) : null,
     verdicts: { "paying-off": count("paying-off"), even: count("even"), backfiring: count("backfiring") },
     favorite: favoritePartner(teamId, s),

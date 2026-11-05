@@ -16,7 +16,7 @@ import {
   type TitleGame,
   type WeekScore,
 } from "@/lib/h2h";
-import { backfireNumber, partnerOf, tp, tv, verdictWinner, type SideGrade, type Trade, type TradeSide } from "@/lib/trades";
+import { partnerOf, tp, tv, verdictWinner, type Trade, type TradeSide } from "@/lib/trades";
 
 /*
  * Sharp reads on the historical numbers. Thresholds pick the line.
@@ -283,19 +283,6 @@ export function titleGameLine(g: TitleGame) {
 
 /* ---------- Trades (2026 trade file) ---------- */
 
-const list = (xs: string[]) => (xs.length <= 1 ? xs.join("") : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
-const playersGot = (s: TradeSide) => s.got.flatMap((a) => (a.kind === "player" ? [a.name] : []));
-
-const ordinal = (k: number) => `${k}${k % 10 === 1 && k % 100 !== 11 ? "st" : k % 10 === 2 && k % 100 !== 12 ? "nd" : k % 10 === 3 && k % 100 !== 13 ? "rd" : "th"}`;
-const pctText = (g: SideGrade) => `${g.valueEdgePct > 0 ? "+" : "−"}${Math.abs(g.valueEdgePct)}%`;
-const lowConfidence = (t: Trade) => t.confidence === "low";
-
-/** Appended to a backfiring side's line once it has become a habit. */
-function backfireTag(t: Trade, teamId: number) {
-  const k = backfireNumber(t, teamId);
-  return k >= 2 ? ` That's the ${ordinal(k)} backfire for ${n(teamId)}.` : "";
-}
-
 /** Past seasons: called on points alone. */
 function pastTradeLine(t: Trade) {
   const seed = t.season * 100 + t.num;
@@ -344,22 +331,11 @@ export function tradeLine(t: Trade) {
   const [a, b] = t.sides;
   if (t.ungraded) return `${n(a.teamId)} and ${n(b.teamId)} made a deal with no grade yet.`;
   const v = verdictWinner(t);
-  if (!v) return `Even on both counts so far.`;
+  if (!v) return `Even so far. The two sides are inside 10 points.`;
   const { win, lose } = v;
-  const wg = win.grade!;
-  const lg = lose.grade!;
-  const tag = backfireTag(t, lose.teamId);
-  if (lose.points === 0 && playersGot(lose).length)
-    return `${n(lose.teamId)} traded for ${list(playersGot(lose))} and moved on before a scored week. ${n(win.teamId)} has ${tp(win.points ?? 0)} points from the deal.${tag}`;
-  if (lg.pointsGained > 0)
-    return `${n(lose.teamId)} is up ${tp(lg.pointsGained)} points and still down ${tv(lg.valueEdge)} in rest-of-season value.${tag}`;
-  if (lowConfidence(t))
-    return `${n(win.teamId)} is up ${tv(wg.valueEdge)} in value (${pctText(wg)}) and ${tp(wg.pointsGained)} points after ${t.weeksOfData === 1 ? "one week" : `${t.weeksOfData} weeks`}. One week is not a verdict.${tag}`;
-  if (wg.valueChange && wg.valueEdge > 0 && playersGot(win).length < playersGot(lose).length)
-    return `${n(win.teamId)} turned ${list(playersGot(lose))} into ${list(playersGot(win))}: up ${tp(wg.pointsGained)} points and ${tv(wg.valueChange.net)} in value since the deal. ${n(lose.teamId)} got the extra names.${tag}`;
-  if (wg.valueChange)
-    return `${n(win.teamId)} is up ${tp(wg.pointsGained)} points and ${tv(wg.valueChange.net)} in value since the deal.${tag}`;
-  return `${n(win.teamId)} is up ${tp(wg.pointsGained)} points and ${tv(wg.valueEdge)} in rest-of-season value.${tag}`;
+  const by = tp(Math.abs(win.grade?.pointsGained ?? 0));
+  const sample = t.weeksOfData === 1 ? " One week is a short sample." : "";
+  return `${n(win.teamId)} is ahead by ${by} points since the trade. ${n(lose.teamId)} is the other side.${sample}`;
 }
 
 export function mostActiveLine(id: number, k: number, total: number) {

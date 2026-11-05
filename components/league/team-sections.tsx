@@ -1,29 +1,12 @@
 import { Medal, Trophy } from "lucide-react";
 import { TeamPlayoffHistory } from "./playoff-h2h";
-import { BenchList, PlayerCell } from "@/components/league/MatchupBoard";
-import { SlotChip } from "@/components/league/bits";
+import { RosterBoard } from "@/components/league/RosterBoard";
 import { Card, Pill, SectionHeading, Stat } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
-import { formatRecord, ordinal, type Team } from "@/lib/league";
+import { formatRecord, LEAGUE, ordinal, type Team } from "@/lib/league";
 
 export function TeamRoster({ team }: { team: Team }) {
-  return (
-    <div className="grid gap-5 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-      <Card title="Starters" action={`${team.roster.starters.length}`}>
-        <ul className="divide-y divide-line">
-          {team.roster.starters.map((player) => (
-            <li key={player.name} className="flex min-h-14 items-center gap-3 py-2">
-              <SlotChip slot={player.slot} />
-              <PlayerCell player={player} />
-            </li>
-          ))}
-        </ul>
-      </Card>
-      <Card title="Bench & IR" action={`${team.roster.bench.length + team.roster.ir.length}`}>
-        <BenchList players={[...team.roster.bench, ...team.roster.ir]} />
-      </Card>
-    </div>
-  );
+  return <RosterBoard roster={team.roster} week={LEAGUE.week} weekLabel={LEAGUE.provisionalLabel} season={LEAGUE.season} />;
 }
 
 function winPct(record: { wins: number; losses: number; ties: number }) {
