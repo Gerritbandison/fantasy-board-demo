@@ -1,4 +1,5 @@
 import raw from "../data/league-all-teams.json" with { type: "json" };
+import rosterRaw from "../data/league-rosters.json" with { type: "json" };
 import playoffRaw from "../data/playoff-model.json" with { type: "json" };
 import { franchiseAbbrev, franchiseName, isRetiredSeasonName, publicSeasonName } from "./names.ts";
 import { matchupState, projectionActual, selectScoreboard, type MatchupState, type WeekGame } from "./week-state.ts";
@@ -17,6 +18,20 @@ interface RawPlayer {
   lineupSlot: string;
   injuryStatus: string | null;
   byeWeek?: number | null;
+  /** Optional ESPN fields. Absent in the current pull; a later refresh can add them. */
+  id?: string | number | null;
+  playerId?: string | number | null;
+  percentOwnedEspnWide?: number | null;
+  opponent?: string | null;
+  gameStatus?: string | null;
+  projection?: number | null;
+  score?: number | null;
+  opponentRank?: number | null;
+  percentStarted?: number | null;
+  seasonRank?: number | null;
+  seasonPoints?: number | null;
+  seasonAverage?: number | null;
+  lastPoints?: number | null;
 }
 
 interface RawWeek {
@@ -139,6 +154,20 @@ export interface Player {
   status?: string;
   /** True when the player's NFL bye is the current league week. */
   onBye?: boolean;
+  /** ESPN athlete id from the roster file, when the name matches. */
+  playerId?: string;
+  /** ESPN-wide roster rate. Not a league-only rate. */
+  percentRostered?: number;
+  opponent?: string;
+  gameStatus?: string;
+  projection?: number;
+  score?: number;
+  opponentRank?: number;
+  percentStarted?: number;
+  seasonRank?: number;
+  seasonPoints?: number;
+  seasonAverage?: number;
+  lastPoints?: number;
 }
 
 export interface TeamWeek {
@@ -222,8 +251,17 @@ const COLORS: { [id: number]: string } = {
 };
 
 const nn = <T>(v: T | null | undefined): T | undefined => (v == null ? undefined : v);
+const num = (v: number | null | undefined) => (typeof v === "number" && Number.isFinite(v) ? v : undefined);
+
+const PLAYER_IDS = new Map<string, string>();
+for (const rows of Object.values(rosterRaw as Record<string, { id?: string; name?: string; pos?: string }[]>)) {
+  for (const row of rows) {
+    if (row.id && row.name && row.pos) PLAYER_IDS.set(`${row.name}|${row.pos}`, String(row.id));
+  }
+}
 
 function player(p: RawPlayer): Player {
+  const rawId = p.playerId ?? p.id;
   return {
     name: p.name,
     position: p.position,
@@ -231,6 +269,18 @@ function player(p: RawPlayer): Player {
     slot: p.lineupSlot,
     status: nn(p.injuryStatus),
     onBye: p.byeWeek === file.meta.currentWeek ? true : undefined,
+    playerId: rawId != null && rawId !== "" ? String(rawId) : PLAYER_IDS.get(`${p.name}|${p.position}`),
+    percentRostered: num(p.percentOwnedEspnWide),
+    opponent: nn(p.opponent),
+    gameStatus: nn(p.gameStatus),
+    projection: num(p.projection),
+    score: num(p.score),
+    opponentRank: num(p.opponentRank),
+    percentStarted: num(p.percentStarted),
+    seasonRank: num(p.seasonRank),
+    seasonPoints: num(p.seasonPoints),
+    seasonAverage: num(p.seasonAverage),
+    lastPoints: num(p.lastPoints),
   };
 }
 

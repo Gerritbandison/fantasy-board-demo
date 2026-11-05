@@ -39,6 +39,7 @@ import {
   SEASONS_LABEL,
   shortDate,
   SUPERLATIVES,
+  completedFor,
   teamTrades,
   tp,
   tradeDate,
@@ -321,7 +322,7 @@ function Verdicts({ t }: { t: Trade }) {
         </span>
         ;{" "}
         <span className={cn("font-semibold tabular-nums", tone(g.pointsGained))}>{signed(g.pointsGained)} points</span>
-        {spanLabel(t) && ` (${spanLabel(t)})`}.{g.mixedSignals && " Value and points disagree; value decides."}
+        {spanLabel(t) && ` (${spanLabel(t)})`}. Who won is the point gap. FantasyCalc value is context and does not pick the side.
         {t.take && " The value grade was not recomputed."}
       </p>
       {t.take && <p className="mt-1 leading-snug">{t.take.summary}</p>}
@@ -378,7 +379,7 @@ export function ValuesCredit({ className }: { className?: string }) {
       <a href="https://www.fantasycalc.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-turf hover:underline">
         Values: FantasyCalc redraft{VALUES_FETCHED && `, fetched ${longDate(VALUES_FETCHED)}`}
       </a>
-      . Value matters more than points, and early trades are low confidence.
+      . Shown as context. Who won is the post-trade points, and early trades are a short sample.
     </p>
   );
 }
@@ -676,10 +677,8 @@ export function VerdictKey() {
   return (
     <Card title="How the verdicts work">
       <p className="text-sm leading-relaxed text-slate-600">
-        Each side is paying off, even or backfiring, judged on two things. <strong className="font-semibold text-slate-700">Value edge</strong>: the FantasyCalc
-        rest-of-season value of the players it got that are still on the team (or were flipped in a later trade), minus the value of the players it sent. Released players
-        count 0, and within ±10% is even. <strong className="font-semibold text-slate-700">Points</strong>: every point the new players scored for it, started or benched,
-        minus what the players it sent scored for the partner over the same weeks. Within ±10 is even. When the two disagree, value wins.
+        Each side is paying off, even, or backfiring on points: every point the new players scored for that team, started or benched, minus the same total for the partner.
+        Within ±10 is even. FantasyCalc value is still shown when the file has it. It does not pick the winner. A stored points-gained figure that lagged the box scores is not used.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
         FantasyCalc only publishes current values, so value since the trade is approximated from its 30-day trend for the Sep 28 trades. The later trades show &quot;value at
@@ -687,7 +686,7 @@ export function VerdictKey() {
         labelled and left out.
       </p>
       <p className="mt-2 text-sm leading-relaxed text-slate-600">
-        Confidence follows the weeks of data since the deal ({confidenceScale().join(" · ")}). Only player trades are listed; draft-pick-only swaps are counted but left out.
+        Confidence follows the weeks counted since the deal ({confidenceScale().join(" · ")}). Draft-pick swaps are listed and left ungraded.
       </p>
       {PAST && (
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
@@ -801,7 +800,7 @@ function SeasonBlock({
         <span className="font-display text-lg leading-tight font-bold text-navy">{season} season</span>
         <span className="flex min-w-0 items-center gap-2 text-xs text-slate-600">
           <span className="text-right tabular-nums">
-            {count} player {count === 1 ? "trade" : "trades"}
+            {count} {count === 1 ? "trade" : "trades"}
             {netLabel && (
               <>
                 {" · "}
@@ -894,7 +893,7 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
         <Partner fav={s.favorite} />
       </Card>
 
-      <Card title={`${TRADE_SEASON} season`} action="long-term value">
+      <Card title={`${TRADE_SEASON} season`} action="points since the trade">
         <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3">
           <Stat label="Player trades" value={s.current.length} sub={verdictsText(s.verdicts) ?? `of ${CURRENT.length} in the league`} />
           <Stat label="Offers sent" value={s.offersSent} />
@@ -915,13 +914,13 @@ export function TeamTradesSection({ teamId }: { teamId: number }) {
         <p className="mt-3 text-xs text-slate-600">Offer counts only; the contents of pending or declined offers stay private.</p>
         {swaps > 0 && (
           <p className="mt-1 text-xs text-slate-600">
-            Plus {swaps === 1 ? "one draft-pick-only swap" : `${swaps} draft-pick-only swaps`}, not listed here.
+            Plus {swaps === 1 ? "one draft-pick swap" : `${swaps} draft-pick swaps`} in the list. No player points to grade.
           </p>
         )}
         {s.netValue != null && <ValuesCredit className="mt-1" />}
       </Card>
 
-      <TradeSeasons trades={s.trades} focus={teamId} empty={`No player trades for ${team(teamId).name} on record.`} />
+      <TradeSeasons trades={completedFor(teamId)} focus={teamId} empty={`No completed trades for ${team(teamId).name} on record.`} />
       <Link href="/trades" className="text-sm font-semibold text-turf hover:underline">
         All trades, {SEASONS_LABEL} →
       </Link>
