@@ -1,7 +1,7 @@
 {
   "title": "Most points by one team in a single week (regular season), all time",
   "league": "Chicken (ESPN 12115010)",
-  "method": "Regular season only: weeks 1-13 (2020), 1-14 (2021-25), 2026 weeks 1-8 final. The 179.26 score is the final Week 8 total from the Nov 3 production scoreboard. Earlier rows: data/league-h2h-history.json (Flaim get_matchups), names per lib/names.ts.",
+  "method": "Regular season only: weeks 1-13 (2020), 1-14 (2021-25), 2026 weeks 1-8 final. The 179.26 score is the final Week 8 total from the Nov 3 production scoreboard. Earlier rows: data/league-h2h-history.json (Flaim get_matchups), names per lib/names.ts. Week 9 is in progress as of 2026-11-05. The high live total is 31.68, below the 172.36 cutoff, so pending stays empty.",
   "boundary": {
     "twentieth": 172.36,
     "twentyFirst": 171.92,

@@ -2,13 +2,13 @@
  "scope": "2020-2026. 2026 from ESPN transactions; 2020-2025 rebuilt from weekly roster snapshots (player-for-player trades only).",
  "meta": {
   "generatedAt": "2026-10-29T02:18:23-04:00",
-  "pointsThrough": "Player points on 2026 accepted trades run through Week 8 box scores (full week, 2026-11-04 pull). Per-game rates, FantasyCalc values, pointsGained, and value verdicts were not recomputed.",
+  "pointsThrough": "Player points on 2026 accepted trades run through Week 8 box scores (full week). Week 9 is in progress as of 2026-11-05 and those points are not in these rows. Per-game rates, FantasyCalc values, pointsGained, and value verdicts were not recomputed.",
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "timezone": "America/New_York",
   "source": "Flaim Fantasy (ESPN): get_transactions (trade, trade_proposal, trade_decline, trade_veto, trade_uphold), get_roster week snapshots, get_draft 2026, get_matchups player detail weeks 4-7",
   "coverage": {
-   "2026": "weeks 0-8, every trade lifecycle type; truncated=false on every call",
+   "2026": "accepted trades through week 8; the 2026-11-05 pending proposal between teams 7 and 11 is counted and not stored as a trade",
    "2020-2025": "player trades rebuilt from weekly roster snapshots; see league-trades-history.json meta.method"
   },
   "method": [
@@ -17,12 +17,13 @@
    "trade_veto rows give one team id per row. ESPN does not say whether that is the voter, so these are labelled veto votes logged. Every trade that drew veto rows still went through, except possibly the unmatched accept rows.",
    "Display names follow league-h2h-history.json (teamIndex and seasonNames aliases). Raw ESPN team names are not stored.",
    "2026-10-31: Josh Jacobs' Thursday week-8 total (23.2, full PPR, started) was added to trade 2026-T6 only. The value verdict was not recomputed. Pending offers are not stored on accepted trades and are never rendered.",
-   "2026-11-04: Week 8 player points from the five matchup box scores were added to 2026 accepted trades where the received player was on the new team's week 8 roster. Josh Jacobs' Thursday-only 23.2 line was replaced with his full week 8 total. pointsGained, ppg rates, and FantasyCalc verdicts were left as they were."
+   "2026-11-04: Week 8 player points from the five matchup box scores were added to 2026 accepted trades where the received player was on the new team's week 8 roster. Josh Jacobs' Thursday-only 23.2 line was replaced with his full week 8 total. pointsGained, ppg rates, and FantasyCalc verdicts were left as they were.",
+   "2026-11-05: Week 9 is in progress, so Thursday points were not added to accepted trades. A pending proposal from Maye i give you a blowj0b to Kabul FC is not a completed trade and is not stored. The offer count goes up by one."
   ],
   "counts": {
    "acceptedTrades": 7,
-   "uniqueProposals": 93,
-   "rawProposalRows": 123,
+   "uniqueProposals": 94,
+   "rawProposalRows": 124,
    "declines": 61,
    "vetoVoteRows": 13,
    "unmatchedAcceptRows": 1
@@ -42,7 +43,7 @@
    "evenUnder": 10,
    "lopsidedFrom": 75
   },
-  "updatedAt": "2026-11-04T10:20:00-05:00"
+  "updatedAt": "2026-11-05T23:58:00-05:00"
  },
  "tradesPerSeason": {
   "2020": 27,
@@ -20461,7 +20462,7 @@
          "valueAtTradeBasis": "unavailable: FantasyCalc permits only /values/current, with no history endpoint. value30DaysAgo (~2026-09-29) predates this 2026-10-14 trade, so it is context only.",
          "changeSinceTrade": null
         },
-        "note": "Post-trade tally is 43.3: 20.1 in week 7 plus 23.2 on Thursday of week 8. He was out in week 6, so that is 2 games played for the new team. ESPN season line before Thursday: 43.3 points, 21.65 per game, about 2 games. One Thursday does not regrade the deal."
+        "note": "Post-trade tally is 43.3: 20.1 in week 7 plus 23.2 in week 8. The week 8 box score is 23.2, the same total as the Thursday line, and week 8 is final. He was out in week 6, so that is 2 games played for the new team. pointsGained and the value verdict were not recomputed."
        },
        {
         "name": "Cam Skattebo",
@@ -20907,11 +20908,8 @@
     }
    },
    "droppedByTeamId": 7,
-   "spanNote": "weeks 6\u20137, plus Jacobs' Thursday in week 8",
-   "week8Take": {
-    "summary": "Not settled. Through week 7 the two sides were almost even on points, and the value grade is still low confidence. Thursday added 23.2 from Josh Jacobs, started, which takes his post-trade total to 43.3 over the two games he has played for his new team (he was out in week 6). ESPN had him at 43.3 points on the season before Thursday, 21.65 a game across about two games, so that rate is a short sample. Skattebo 70.4 (10.06), Moore 36.3 (9.07), Metcalf 76.5 (10.93) and Brown 74.8 (12.47) are season lines before this week. They did not play Thursday. KC Concepcion was dropped in the deal and does not count for either side.",
-    "roast": "Jacobs hung 23.2 on Thursday. A two-game pace is a tease, not a coronation."
-   }
+   "spanNote": null,
+   "week8Take": null
   },
   {
    "id": "2026-T7",

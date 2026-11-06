@@ -1,0 +1,742 @@
+{
+  "week": 9,
+  "asOf": "2026-11-05T23:58:00-05:00",
+  "teams": [
+    {
+      "teamId": 1,
+      "projectedRank": 1,
+      "playoffOdds": 0.9996,
+      "powerRank": 2
+    },
+    {
+      "teamId": 3,
+      "projectedRank": 2,
+      "playoffOdds": 0.9638,
+      "powerRank": 1
+    },
+    {
+      "teamId": 2,
+      "projectedRank": 3,
+      "playoffOdds": 0.5359,
+      "powerRank": 4
+    },
+    {
+      "teamId": 8,
+      "projectedRank": 4,
+      "playoffOdds": 0.4828,
+      "powerRank": 10
+    },
+    {
+      "teamId": 7,
+      "projectedRank": 5,
+      "playoffOdds": 0.3446,
+      "powerRank": 5
+    },
+    {
+      "teamId": 5,
+      "projectedRank": 6,
+      "playoffOdds": 0.3328,
+      "powerRank": 3
+    },
+    {
+      "teamId": 10,
+      "projectedRank": 7,
+      "playoffOdds": 0.2414,
+      "powerRank": 6
+    },
+    {
+      "teamId": 4,
+      "projectedRank": 8,
+      "playoffOdds": 0.0835,
+      "powerRank": 8
+    },
+    {
+      "teamId": 11,
+      "projectedRank": 9,
+      "playoffOdds": 0.0158,
+      "powerRank": 9
+    },
+    {
+      "teamId": 6,
+      "projectedRank": 10,
+      "playoffOdds": 0,
+      "powerRank": 7
+    }
+  ],
+  "results": [
+    {
+      "week": 1,
+      "homeId": 11,
+      "awayId": 1,
+      "winnerId": 1
+    },
+    {
+      "week": 1,
+      "homeId": 7,
+      "awayId": 4,
+      "winnerId": 4
+    },
+    {
+      "week": 1,
+      "homeId": 10,
+      "awayId": 2,
+      "winnerId": 2
+    },
+    {
+      "week": 1,
+      "homeId": 8,
+      "awayId": 3,
+      "winnerId": 3
+    },
+    {
+      "week": 1,
+      "homeId": 5,
+      "awayId": 6,
+      "winnerId": 5
+    },
+    {
+      "week": 2,
+      "homeId": 1,
+      "awayId": 10,
+      "winnerId": 10
+    },
+    {
+      "week": 2,
+      "homeId": 8,
+      "awayId": 11,
+      "winnerId": 8
+    },
+    {
+      "week": 2,
+      "homeId": 3,
+      "awayId": 6,
+      "winnerId": 6
+    },
+    {
+      "week": 2,
+      "homeId": 5,
+      "awayId": 4,
+      "winnerId": 5
+    },
+    {
+      "week": 2,
+      "homeId": 7,
+      "awayId": 2,
+      "winnerId": 2
+    },
+    {
+      "week": 3,
+      "homeId": 8,
+      "awayId": 1,
+      "winnerId": 1
+    },
+    {
+      "week": 3,
+      "homeId": 10,
+      "awayId": 7,
+      "winnerId": 10
+    },
+    {
+      "week": 3,
+      "homeId": 6,
+      "awayId": 11,
+      "winnerId": 11
+    },
+    {
+      "week": 3,
+      "homeId": 2,
+      "awayId": 5,
+      "winnerId": 2
+    },
+    {
+      "week": 3,
+      "homeId": 3,
+      "awayId": 4,
+      "winnerId": 4
+    },
+    {
+      "week": 4,
+      "homeId": 6,
+      "awayId": 8,
+      "winnerId": 8
+    },
+    {
+      "week": 4,
+      "homeId": 11,
+      "awayId": 4,
+      "winnerId": 11
+    },
+    {
+      "week": 4,
+      "homeId": 10,
+      "awayId": 5,
+      "winnerId": 10
+    },
+    {
+      "week": 4,
+      "homeId": 7,
+      "awayId": 1,
+      "winnerId": 1
+    },
+    {
+      "week": 4,
+      "homeId": 3,
+      "awayId": 2,
+      "winnerId": 3
+    },
+    {
+      "week": 5,
+      "homeId": 7,
+      "awayId": 5,
+      "winnerId": 7
+    },
+    {
+      "week": 5,
+      "homeId": 10,
+      "awayId": 3,
+      "winnerId": 3
+    },
+    {
+      "week": 5,
+      "homeId": 8,
+      "awayId": 4,
+      "winnerId": 8
+    },
+    {
+      "week": 5,
+      "homeId": 6,
+      "awayId": 1,
+      "winnerId": 1
+    },
+    {
+      "week": 5,
+      "homeId": 11,
+      "awayId": 2,
+      "winnerId": 2
+    },
+    {
+      "week": 6,
+      "homeId": 5,
+      "awayId": 1,
+      "winnerId": 1
+    },
+    {
+      "week": 6,
+      "homeId": 2,
+      "awayId": 8,
+      "winnerId": 8
+    },
+    {
+      "week": 6,
+      "homeId": 4,
+      "awayId": 6,
+      "winnerId": 4
+    },
+    {
+      "week": 6,
+      "homeId": 3,
+      "awayId": 7,
+      "winnerId": 3
+    },
+    {
+      "week": 6,
+      "homeId": 10,
+      "awayId": 11,
+      "winnerId": 11
+    },
+    {
+      "week": 7,
+      "homeId": 3,
+      "awayId": 5,
+      "winnerId": 5
+    },
+    {
+      "week": 7,
+      "homeId": 6,
+      "awayId": 2,
+      "winnerId": 6
+    },
+    {
+      "week": 7,
+      "homeId": 8,
+      "awayId": 10,
+      "winnerId": 8
+    },
+    {
+      "week": 7,
+      "homeId": 11,
+      "awayId": 7,
+      "winnerId": 7
+    },
+    {
+      "week": 7,
+      "homeId": 1,
+      "awayId": 4,
+      "winnerId": 1
+    },
+    {
+      "week": 8,
+      "homeId": 11,
+      "awayId": 5,
+      "winnerId": 11
+    },
+    {
+      "week": 8,
+      "homeId": 10,
+      "awayId": 6,
+      "winnerId": 10
+    },
+    {
+      "week": 8,
+      "homeId": 4,
+      "awayId": 2,
+      "winnerId": 4
+    },
+    {
+      "week": 8,
+      "homeId": 3,
+      "awayId": 1,
+      "winnerId": 1
+    },
+    {
+      "week": 8,
+      "homeId": 7,
+      "awayId": 8,
+      "winnerId": 7
+    }
+  ],
+  "adds": [
+    {
+      "teamId": 3,
+      "date": "2026-11-05",
+      "type": "add",
+      "added": [
+        "Malik Willis (QB, MIA)"
+      ],
+      "dropped": [
+        "Chris Rodriguez Jr. (RB, JAX)"
+      ]
+    },
+    {
+      "teamId": 8,
+      "date": "2026-11-05",
+      "type": "add",
+      "added": [
+        "Tyler Bass (K, BUF)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 8,
+      "date": "2026-11-05",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Tyler Loop (K, BAL)"
+      ]
+    },
+    {
+      "teamId": 1,
+      "date": "2026-11-04",
+      "type": "add",
+      "added": [
+        "Keenan Allen (WR, IND)"
+      ],
+      "dropped": [
+        "Kendre Miller (RB, NO)"
+      ]
+    },
+    {
+      "teamId": 1,
+      "date": "2026-11-04",
+      "type": "waiver",
+      "added": [
+        "Bears D/ST (D/ST, CHI)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-04",
+      "type": "add",
+      "added": [
+        "Brandon Aiyuk (WR, SF)"
+      ],
+      "dropped": [
+        "Keon Coleman (WR, BUF)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-04",
+      "type": "waiver",
+      "added": [
+        "Treylon Burks (WR, WSH)"
+      ],
+      "dropped": [
+        "Kenyon Sadiq (TE, NYJ)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-04",
+      "type": "waiver",
+      "added": [
+        "Cairo Santos (K, CHI)"
+      ],
+      "dropped": [
+        "Chris Boswell (K, PIT)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-04",
+      "type": "waiver",
+      "added": [
+        "Chris Rodriguez Jr. (RB, JAX)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-04",
+      "type": "waiver",
+      "added": [
+        "Broncos D/ST (D/ST, DEN)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-04",
+      "type": "add",
+      "added": [
+        "Adonai Mitchell (WR, NYJ)"
+      ],
+      "dropped": [
+        "Jordan Mason (RB, MIN)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-04",
+      "type": "add",
+      "added": [
+        "Giants D/ST (D/ST, NYG)"
+      ],
+      "dropped": [
+        "Bengals D/ST (D/ST, CIN)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-04",
+      "type": "waiver",
+      "added": [
+        "Kaelon Black (RB, SF)"
+      ],
+      "dropped": [
+        "Kyler Murray (QB, MIN)"
+      ]
+    },
+    {
+      "teamId": 5,
+      "date": "2026-11-04",
+      "type": "waiver",
+      "added": [
+        "Tyler Allgeier (RB, ARI)"
+      ],
+      "dropped": [
+        "Bo Nix (QB, DEN)"
+      ]
+    },
+    {
+      "teamId": 7,
+      "date": "2026-11-04",
+      "type": "waiver",
+      "added": [
+        "Kirk Cousins (QB, LV)"
+      ],
+      "dropped": [
+        "Patriots D/ST (D/ST, NE)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-03",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Chase McLaughlin (K, TB)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-03",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Lamar Jackson (QB, BAL)"
+      ]
+    },
+    {
+      "teamId": 7,
+      "date": "2026-11-03",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Omar Cooper Jr. (WR, NYJ)"
+      ]
+    },
+    {
+      "teamId": 6,
+      "date": "2026-11-01",
+      "type": "add",
+      "added": [
+        "Khalil Shakir (WR, BUF)"
+      ],
+      "dropped": [
+        "Emanuel Wilson (RB, SEA)"
+      ]
+    },
+    {
+      "teamId": 6,
+      "date": "2026-11-01",
+      "type": "add",
+      "added": [
+        "Chris Godwin Jr. (WR, TB)"
+      ],
+      "dropped": [
+        "Pat Freiermuth (TE, PIT)"
+      ]
+    },
+    {
+      "teamId": 1,
+      "date": "2026-10-31",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "RJ Harvey (RB, DEN)"
+      ]
+    },
+    {
+      "teamId": 1,
+      "date": "2026-10-31",
+      "type": "add",
+      "added": [
+        "Seth McGowan (RB, IND)"
+      ],
+      "dropped": [
+        "Devaughn Vele (WR, NO)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-10-31",
+      "type": "add",
+      "added": [
+        "DeMario Douglas (WR, NE)"
+      ],
+      "dropped": [
+        "Bears D/ST (D/ST, CHI)"
+      ]
+    },
+    {
+      "teamId": 5,
+      "date": "2026-10-30",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Terry McLaurin (WR, WSH)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-10-29",
+      "type": "waiver",
+      "added": [
+        "Marvin Harrison Jr. (WR, HOU)"
+      ],
+      "dropped": [
+        "Dontayvion Wicks (WR, PHI)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-10-29",
+      "type": "waiver",
+      "added": [
+        "C.J. Stroud (QB, HOU)"
+      ],
+      "dropped": [
+        "Kirk Cousins (QB, LV)"
+      ]
+    },
+    {
+      "teamId": 1,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "Jonah Coleman (RB, DEN)"
+      ],
+      "dropped": [
+        "C.J. Stroud (QB, HOU)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-10-28",
+      "type": "add",
+      "added": [
+        "Josh Downs (WR, IND)"
+      ],
+      "dropped": [
+        "Christian Kirk (WR, SF)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "Chase McLaughlin (K, TB)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 4,
+      "date": "2026-10-28",
+      "type": "add",
+      "added": [
+        "Bengals D/ST (D/ST, CIN)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 4,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "Rachaad White (RB, WSH)"
+      ],
+      "dropped": [
+        "Marvin Harrison Jr. (WR, HOU)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-10-28",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Aaron Rodgers (QB, PIT)"
+      ]
+    },
+    {
+      "teamId": 5,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "Jake Bates (K, DET)"
+      ],
+      "dropped": [
+        "Eddy Pineiro (K, SF)"
+      ]
+    },
+    {
+      "teamId": 5,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "Jaguars D/ST (D/ST, JAX)"
+      ],
+      "dropped": [
+        "Titans D/ST (D/ST, TEN)"
+      ]
+    },
+    {
+      "teamId": 5,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "Tre Tucker (WR, LV)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 6,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "KC Concepcion (WR, CLE)"
+      ],
+      "dropped": [
+        "MarShawn Lloyd (RB, GB)"
+      ]
+    },
+    {
+      "teamId": 7,
+      "date": "2026-10-28",
+      "type": "add",
+      "added": [
+        "Matt Gay (K, LV)"
+      ],
+      "dropped": [
+        "Harrison Butker (K, KC)"
+      ]
+    },
+    {
+      "teamId": 7,
+      "date": "2026-10-28",
+      "type": "add",
+      "added": [
+        "Patriots D/ST (D/ST, NE)"
+      ],
+      "dropped": [
+        "Germie Bernard (WR, PIT)"
+      ]
+    },
+    {
+      "teamId": 7,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "Omar Cooper Jr. (WR, NYJ)"
+      ],
+      "dropped": [
+        "Chiefs D/ST (D/ST, KC)"
+      ]
+    },
+    {
+      "teamId": 8,
+      "date": "2026-10-28",
+      "type": "add",
+      "added": [
+        "Commanders D/ST (D/ST, WSH)"
+      ],
+      "dropped": [
+        "Konata Mumpfield (WR, LAR)"
+      ]
+    },
+    {
+      "teamId": 8,
+      "date": "2026-10-28",
+      "type": "waiver",
+      "added": [
+        "Brenton Strange (TE, JAX)"
+      ],
+      "dropped": [
+        "Juwan Johnson (TE, NO)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-10-27",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "DeMario Douglas (WR, NE)"
+      ]
+    }
+  ]
+}
