@@ -52,7 +52,8 @@ test("the remaining path skips counted week 8 and ends at 9-5", () => {
   assert.equal(path.at(-1)!.wins, 9);
   assert.equal(path.at(-1)!.losses, 5);
   assert.equal(path.length, 7);
-  assert.ok(chance > 0.035 && chance < 0.09, `win-all ${chance}`);
+  // Thursday's partial Week 9 was about 5.8%. After the Sunday slate, with Monday still out, it is about 9.7%.
+  assert.ok(chance > 0.035 && chance < 0.11, `win-all ${chance}`);
 
   const eight = at(8);
   const seven = at(7);
