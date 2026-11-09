@@ -3,7 +3,7 @@
   "playoffSpots": 4,
   "regularSeasonWeeks": 14,
   "nonByeEspn": 130.2,
-  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 finals as of 2026-11-03T09:09:25-05:00 are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 9 projections and current points are the 2026-11-05 Thursday matchup pull. Week 9 is in progress and is not counted. Weeks 10-14 were not re-pulled.",
+  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 finals as of 2026-11-03T09:09:25-05:00 are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 9 projections and current points are the 2026-11-08 Sunday matchup pull (Monday night still to play). Week 9 is in progress and is not counted. Weeks 10-14 were not re-pulled.",
   "biasNote": "Each other team's weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss.",
   "presets": [
     { "shift": -20, "name": "Season" },
@@ -148,46 +148,46 @@
       "week": 9,
       "homeId": 7,
       "awayId": 6,
-      "homeProj": 130.81,
-      "awayProj": 123.65,
-      "homeCurrent": 0,
-      "awayCurrent": 0
+      "homeProj": 129.06,
+      "awayProj": 93.6,
+      "homeCurrent": 129.06,
+      "awayCurrent": 93.6
     },
     {
       "week": 9,
       "homeId": 8,
       "awayId": 5,
-      "homeProj": 109.20,
-      "awayProj": 111.84,
-      "homeCurrent": 5.3,
-      "awayCurrent": 31.68
+      "homeProj": 98.33,
+      "awayProj": 127.52,
+      "homeCurrent": 87.8,
+      "awayCurrent": 107.58
     },
     {
       "week": 9,
       "homeId": 3,
       "awayId": 11,
-      "homeProj": 124.93,
-      "awayProj": 107.22,
-      "homeCurrent": 0,
-      "awayCurrent": 8.9
+      "homeProj": 110.32,
+      "awayProj": 101.28,
+      "homeCurrent": 110.32,
+      "awayCurrent": 101.28
     },
     {
       "week": 9,
       "homeId": 1,
       "awayId": 2,
-      "homeProj": 131.43,
-      "awayProj": 130.43,
-      "homeCurrent": 13.58,
-      "awayCurrent": 0
+      "homeProj": 153.12,
+      "awayProj": 104.32,
+      "homeCurrent": 142.38,
+      "awayCurrent": 104.32
     },
     {
       "week": 9,
       "homeId": 4,
       "awayId": 10,
-      "homeProj": 129.37,
-      "awayProj": 133.47,
-      "homeCurrent": 0,
-      "awayCurrent": 0
+      "homeProj": 130.27,
+      "awayProj": 131.74,
+      "homeCurrent": 119.58,
+      "awayCurrent": 94.94
     },
     {
       "week": 10,

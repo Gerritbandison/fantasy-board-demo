@@ -11,7 +11,7 @@
    2025
   ],
   "seasonsMissing": [],
-  "note": "2026 playoffs not yet played. Team ids are ESPN slots, stable 2020-2025; owners are CURRENT owners per slot (per-season owner history not in data). Two-week playoff matchups count as one game. Winners-bracket = WINNERS_BRACKET only; WINNERS_CONSOLATION_LADDER (3rd place) and LOSERS_CONSOLATION_LADDER are consolation.",
+  "note": "2026 playoffs not yet played. Team ids are ESPN slots, stable 2020-2025; owners are CURRENT owners per slot (per-season owner history not in data). Two-week playoff matchups count as one game. Winners-bracket = WINNERS_BRACKET only; WINNERS_CONSOLATION_LADDER (3rd place) and LOSERS_CONSOLATION_LADDER are consolation. As of 2026-11-08, week 9 is in progress and the 2026 playoffs have not been played.",
   "winnersGames": 18,
   "consolationGames": 42
  },

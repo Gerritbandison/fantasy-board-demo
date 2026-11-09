@@ -1,59 +1,59 @@
 {
   "week": 9,
-  "asOf": "2026-11-05T23:58:00-05:00",
+  "asOf": "2026-11-08T23:40:00-05:00",
   "teams": [
     {
       "teamId": 1,
       "projectedRank": 1,
-      "playoffOdds": 0.9996,
+      "playoffOdds": 1,
       "powerRank": 2
     },
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.9638,
+      "playoffOdds": 0.9749,
       "powerRank": 1
     },
     {
-      "teamId": 2,
+      "teamId": 5,
       "projectedRank": 3,
-      "playoffOdds": 0.5359,
+      "playoffOdds": 0.498,
+      "powerRank": 3
+    },
+    {
+      "teamId": 7,
+      "projectedRank": 4,
+      "playoffOdds": 0.4858,
+      "powerRank": 5
+    },
+    {
+      "teamId": 2,
+      "projectedRank": 5,
+      "playoffOdds": 0.3861,
       "powerRank": 4
     },
     {
       "teamId": 8,
-      "projectedRank": 4,
-      "playoffOdds": 0.4828,
-      "powerRank": 10
-    },
-    {
-      "teamId": 7,
-      "projectedRank": 5,
-      "playoffOdds": 0.3446,
-      "powerRank": 5
-    },
-    {
-      "teamId": 5,
       "projectedRank": 6,
-      "playoffOdds": 0.3328,
-      "powerRank": 3
+      "playoffOdds": 0.3033,
+      "powerRank": 10
     },
     {
       "teamId": 10,
       "projectedRank": 7,
-      "playoffOdds": 0.2414,
+      "playoffOdds": 0.2506,
       "powerRank": 6
     },
     {
       "teamId": 4,
       "projectedRank": 8,
-      "playoffOdds": 0.0835,
+      "playoffOdds": 0.0889,
       "powerRank": 8
     },
     {
       "teamId": 11,
       "projectedRank": 9,
-      "playoffOdds": 0.0158,
+      "playoffOdds": 0.0125,
       "powerRank": 9
     },
     {
@@ -307,6 +307,44 @@
   ],
   "adds": [
     {
+      "teamId": 1,
+      "date": "2026-11-06",
+      "type": "add",
+      "added": [
+        "Devin Singletary (RB, NYG)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 1,
+      "date": "2026-11-06",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "TreVeyon Henderson (RB, NE)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-06",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Dameon Pierce (RB, PHI)"
+      ]
+    },
+    {
+      "teamId": 7,
+      "date": "2026-11-06",
+      "type": "add",
+      "added": [
+        "Bills D/ST (D/ST, BUF)"
+      ],
+      "dropped": [
+        "Kirk Cousins (QB, LV)"
+      ]
+    },
+    {
       "teamId": 3,
       "date": "2026-11-05",
       "type": "add",
@@ -343,7 +381,7 @@
         "Keenan Allen (WR, IND)"
       ],
       "dropped": [
-        "Kendre Miller (RB, NO)"
+        "Kendre Miller (RB, FA)"
       ]
     },
     {
