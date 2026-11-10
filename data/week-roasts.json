@@ -1,62 +1,77 @@
 {
-  "week": 8,
-  "dataPulledAt": "2026-11-03T09:09:25-05:00",
-  "note": "Approved Week 8 roasts. 97.66 replaces a rounded 97, the Bibi's margin is 31.7, and Maye was favored by 6.9. Future weeks come from lib/commentary.ts.",
+  "week": 9,
+  "dataPulledAt": "2026-11-10T08:50:00-05:00",
+  "note": "Week 9 roasts from the final scoreboard. Numbers match schedule.week9. Drafted with lib/commentary.ts.",
   "matchups": [
     {
-      "matchupId": "2026-mp08-11v5",
-      "homeTeamId": 11,
-      "awayTeamId": 5,
-      "homePoints": 114.92,
-      "awayPoints": 97.66,
-      "headline": "Kabul FC 114.92 – Easy Peasy Lemon Squeezy 97.66",
-      "roast": "ESPN had Easy Peasy as a 23-point favorite. They scored 97.66.\nThat's not a bad week. That's the kind of collapse that makes people wonder if you're actually managing the team or just letting it sit there. Kabul FC didn't do anything special and still walked away with the win. Easy Peasy had the numbers and still looked like a team that doesn't know what it's doing.",
-      "projection": { "home": 115.27, "away": 138.5 },
-      "tag": "UPSET ALERT: Easy Peasy was a 23-point favorite and scored 97.66."
-    },
-    {
-      "matchupId": "2026-mp08-10v6",
-      "homeTeamId": 10,
-      "awayTeamId": 6,
-      "homePoints": 128.48,
-      "awayPoints": 95.1,
-      "headline": "Sandusky's Soldiers 128.48 – Smert Fellas 95.1",
-      "roast": "2-6 and 95 points.\nAt this point the record isn't unlucky anymore. Sandusky's beat them by 33 without needing a career week. Smert Fellas keep putting up scores that belong in the bottom of the league, and the name is starting to feel like a self-own. If the next few weeks look like this, the season's already over.",
-      "projection": { "home": 130.11, "away": 109.5 },
-      "tag": "LOCK: 2-6 and 95 points. The margin was 33.4."
-    },
-    {
-      "matchupId": "2026-mp08-4v2",
-      "homeTeamId": 4,
-      "awayTeamId": 2,
-      "homePoints": 120.64,
-      "awayPoints": 103.68,
-      "headline": "All Heart 120.64 – Jahmyr I Go Again 103.68",
-      "roast": "Jahmyr was projected to win by 20 and lost by 17.\nBoth teams are still 4-4, so the standings didn't move, but the gap between what Jahmyr was supposed to do and what they actually did is ugly. All Heart was the lower projection and still looked like the better team. Jahmyr got the favorable number and still got outplayed.",
-      "projection": { "home": 108.58, "away": 128.67 },
-      "tag": "UPSET ALERT: Jahmyr was favored by 20.1 and lost by 17.0."
-    },
-    {
-      "matchupId": "2026-mp08-3v1",
-      "homeTeamId": 3,
-      "awayTeamId": 1,
-      "homePoints": 116.1,
-      "awayPoints": 147.78,
-      "headline": "Bibi's Boys 147.78 – Chewy's Warriors 116.1",
-      "roast": "Chewy's was the slight favorite. Bibi's won by 31.7.\n7-1 teams don't usually need gifts, but Chewy's handed them one anyway. 116 points against a team that scored 148 is just getting run over. The projection thought this would be close. The actual game said Chewy's wasn't in it.",
-      "projection": { "home": 137.72, "away": 131.05 },
-      "tag": "UPSET ALERT: Chewy's was favored by 6.7. Bibi's won by 31.7."
-    },
-    {
-      "matchupId": "2026-mp08-7v8",
+      "matchupId": "2026-mp09-7v6",
       "homeTeamId": 7,
-      "awayTeamId": 8,
-      "homePoints": 179.26,
-      "awayPoints": 89.36,
-      "headline": "Maye i give you a blowj0b 179.26 – Dimes McSorley 89.36",
-      "roast": "179 to 89.\nDimes was 5-3 and still walked into one of the biggest losses of the week. Maye was favored by 6.9 and put up a score that made the rest of the league look small. Dimes is still above .500, but this one was a public reminder that the floor is a lot lower than the record suggests. 89 points against that is just getting embarrassed.",
-      "projection": { "home": 128.52, "away": 121.66 },
-      "tag": "LOCK: 179.26 to 89.36. Maye was favored by 6.9 and won by 89.9."
+      "awayTeamId": 6,
+      "homePoints": 129.06,
+      "awayPoints": 93.6,
+      "headline": "Maye i give you a blowj0b 129.06 – Smert Fellas 93.6",
+      "roast": "Smert Fellas was favored by 0.6, 129.59 to 129.01. They scored 93.6.\nMaye i give you a blowj0b won 129.06–93.6. The number said Smert Fellas. The score said otherwise.",
+      "projection": {
+        "home": 129.01,
+        "away": 129.59
+      },
+      "tag": "UPSET ALERT: Smert Fellas was favored by 0.6 and lost by 35.5."
+    },
+    {
+      "matchupId": "2026-mp09-8v5",
+      "homeTeamId": 8,
+      "awayTeamId": 5,
+      "homePoints": 100.8,
+      "awayPoints": 120.44,
+      "headline": "Dimes McSorley 100.8 – Easy Peasy Lemon Squeezy 120.44",
+      "roast": "120.44–100.8.\nEasy Peasy Lemon Squeezy was favored by 20.2. The margin was 19.6.",
+      "projection": {
+        "home": 104.09,
+        "away": 124.33
+      },
+      "tag": "NOTE: Easy Peasy Lemon Squeezy was favored by 20.2 and won by 19.6."
+    },
+    {
+      "matchupId": "2026-mp09-3v11",
+      "homeTeamId": 3,
+      "awayTeamId": 11,
+      "homePoints": 110.32,
+      "awayPoints": 101.28,
+      "headline": "Chewy's Warriors 110.32 – Kabul FC 101.28",
+      "roast": "110.32–101.28.\nChewy's Warriors was favored by 0.3. The margin was 9.0.",
+      "projection": {
+        "home": 125.26,
+        "away": 124.94
+      },
+      "tag": "NOTE: Chewy's Warriors was favored by 0.3 and won by 9.0."
+    },
+    {
+      "matchupId": "2026-mp09-1v2",
+      "homeTeamId": 1,
+      "awayTeamId": 2,
+      "homePoints": 151.38,
+      "awayPoints": 104.32,
+      "headline": "Bibi's Boys 151.38 – Jahmyr I Go Again 104.32",
+      "roast": "151.38 to 104.32.\nJahmyr I Go Again lost by 47.1. Bibi's Boys was favored by 8.5 and did not need a close game.",
+      "projection": {
+        "home": 139.93,
+        "away": 131.45
+      },
+      "tag": "LOCK: Bibi's Boys was favored by 8.5 and won by 47.1."
+    },
+    {
+      "matchupId": "2026-mp09-4v10",
+      "homeTeamId": 4,
+      "awayTeamId": 10,
+      "homePoints": 126.88,
+      "awayPoints": 120.44,
+      "headline": "All Heart 126.88 – Sandusky's Soldiers 120.44",
+      "roast": "All Heart 126.88, Sandusky's Soldiers 120.44.\nSandusky's Soldiers was favored by 6.7 and lost. They finished 13.0 below the projection. The lower projection won.",
+      "projection": {
+        "home": 126.71,
+        "away": 133.41
+      },
+      "tag": "UPSET ALERT: Sandusky's Soldiers was favored by 6.7 and lost by 6.4."
     }
   ]
 }
