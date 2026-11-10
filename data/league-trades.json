@@ -2,13 +2,13 @@
  "scope": "2020-2026. 2026 from ESPN transactions; 2020-2025 rebuilt from weekly roster snapshots (player-for-player trades only).",
  "meta": {
   "generatedAt": "2026-10-29T02:18:23-04:00",
-  "pointsThrough": "Player points on 2026 accepted trades run through Week 8 box scores (full week). Week 9 is in progress as of 2026-11-05 and those points are not in these rows. Per-game rates, FantasyCalc values, pointsGained, and value verdicts were not recomputed.",
+  "pointsThrough": "Player points on 2026 accepted trades run through Week 8 box scores (full week). Week 9 is in progress as of 2026-11-10 (Monday night is in the score, and the week is not final) and those points are not in these rows. pointsGained was recomputed from each side's totalPointsForNewTeam and did not change. Per-game rates, FantasyCalc values, and value verdicts were not recomputed.",
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "timezone": "America/New_York",
   "source": "Flaim Fantasy (ESPN): get_transactions (trade, trade_proposal, trade_decline, trade_veto, trade_uphold), get_roster week snapshots, get_draft 2026, get_matchups player detail weeks 4-7",
   "coverage": {
-   "2026": "accepted trades through week 8; the 2026-11-05 pending proposal between teams 7 and 11 is counted and not stored as a trade",
+   "2026": "accepted trades through week 8; Week 9 points are not included. The 2026-11-05 proposal between teams 7 and 11, the 2026-11-06 canceled proposal between teams 1 and 3, and the 2026-11-07 canceled row of the same teams 7 and 11 offer are counts only and are not stored as trades",
    "2020-2025": "player trades rebuilt from weekly roster snapshots; see league-trades-history.json meta.method"
   },
   "method": [
@@ -18,17 +18,19 @@
    "Display names follow league-h2h-history.json (teamIndex and seasonNames aliases). Raw ESPN team names are not stored.",
    "2026-10-31: Josh Jacobs' Thursday week-8 total (23.2, full PPR, started) was added to trade 2026-T6 only. The value verdict was not recomputed. Pending offers are not stored on accepted trades and are never rendered.",
    "2026-11-04: Week 8 player points from the five matchup box scores were added to 2026 accepted trades where the received player was on the new team's week 8 roster. Josh Jacobs' Thursday-only 23.2 line was replaced with his full week 8 total. pointsGained, ppg rates, and FantasyCalc verdicts were left as they were.",
-   "2026-11-05: Week 9 is in progress, so Thursday points were not added to accepted trades. A pending proposal from Maye i give you a blowj0b to Kabul FC is not a completed trade and is not stored. The offer count goes up by one."
+   "2026-11-05: Week 9 is in progress, so Thursday points were not added to accepted trades. A pending proposal from Maye i give you a blowj0b to Kabul FC is not a completed trade and is not stored. The offer count goes up by one.",
+   "2026-11-08: Week 9 is in progress (Sunday slate in, Monday night still to play), so those points were not added to accepted trades. pointsGained was recomputed from the two sides' totalPointsForNewTeam through week 8. A canceled proposal from Bibi's Boys to Chewy's Warriors is a new offer and is counted, not stored. The canceled Maye i give you a blowj0b / Kabul FC row is the same offer already counted on 2026-11-05, so unique proposals go up by one and raw proposal rows go up by two. No completed trade.",
+   "2026-11-10: Week 9 Monday night is in the score and the week is not final, so those points were not added to accepted trades. pointsGained was recomputed from the two sides' totalPointsForNewTeam through week 8 and did not change. No new completed trade, proposal, decline, or veto since the Sunday pull."
   ],
   "counts": {
    "acceptedTrades": 7,
-   "uniqueProposals": 94,
-   "rawProposalRows": 124,
+   "uniqueProposals": 95,
+   "rawProposalRows": 126,
    "declines": 61,
    "vetoVoteRows": 13,
    "unmatchedAcceptRows": 1
   },
-  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 8. Week 8 box-score points are in whoWonIt and on each received player's weeksAfter. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed from those week 8 points. We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (\u00b110% band) and the points gained (\u00b110 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
+  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 8. Week 8 box-score points are in whoWonIt and on each received player's weeksAfter. Per-game rates, FantasyCalc values, and the value verdict were not recomputed from those week 8 points. pointsGained was recomputed from the two sides' week-8 totals on 2026-11-10. We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (\u00b110% band) and the points gained (\u00b110 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
   "pastSeasons": {
    "source": "Flaim Fantasy (ESPN) get_matchups detail=players for each matchup in weeks 1-13 (2020) / 1-14 (2021-2025); ESPN public players_wl for positions.",
    "whyNotTransactions": "ESPN transactions for past seasons are unavailable: Flaim get_transactions returns ESPN_SEASON_NOT_SUPPORTED, and ESPN direct API returns 401 AUTH_LEAGUE_NOT_VISIBLE (private league, needs login cookies, which were not used).",
@@ -43,7 +45,7 @@
    "evenUnder": 10,
    "lopsidedFrom": 75
   },
-  "updatedAt": "2026-11-05T23:58:00-05:00"
+  "updatedAt": "2026-11-10T00:00:00-05:00"
  },
  "tradesPerSeason": {
   "2020": 27,
@@ -17710,7 +17712,7 @@
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
     "lastFinalWeek": 8,
-    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. pointsGained was recomputed from those totals on 2026-11-10. Per-game rates, FantasyCalc values, and the value verdict were not recomputed: this pull has no new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      4,
      5,
@@ -17735,7 +17737,7 @@
       },
       "pointsReceived": 100.2,
       "pointsSentAway": 80.7,
-      "pointsGained": 15.2,
+      "pointsGained": 19.5,
       "ppgTrendReceived": 6.19,
       "ppgTrendSent": 4.26,
       "received": [
@@ -18002,7 +18004,7 @@
         "signal": 0
        },
        "pointsSignal": {
-        "pointsGained": 15.2,
+        "pointsGained": 19.5,
         "signal": 1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
@@ -18024,7 +18026,7 @@
       },
       "pointsReceived": 80.7,
       "pointsSentAway": 100.2,
-      "pointsGained": -15.2,
+      "pointsGained": -19.5,
       "ppgTrendReceived": 4.26,
       "ppgTrendSent": 6.19,
       "received": [
@@ -18291,7 +18293,7 @@
         "signal": 0
        },
        "pointsSignal": {
-        "pointsGained": -15.2,
+        "pointsGained": -19.5,
         "signal": -1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
@@ -18476,7 +18478,7 @@
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
     "lastFinalWeek": 8,
-    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. pointsGained was recomputed from those totals on 2026-11-10. Per-game rates, FantasyCalc values, and the value verdict were not recomputed: this pull has no new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      4,
      5,
@@ -18501,7 +18503,7 @@
       },
       "pointsReceived": 80.5,
       "pointsSentAway": 98.9,
-      "pointsGained": -35.7,
+      "pointsGained": -18.4,
       "ppgTrendReceived": -1.88,
       "ppgTrendSent": 17.53,
       "received": [
@@ -18762,7 +18764,7 @@
         "signal": 0
        },
        "pointsSignal": {
-        "pointsGained": -35.7,
+        "pointsGained": -18.4,
         "signal": -1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
@@ -18784,7 +18786,7 @@
       },
       "pointsReceived": 98.9,
       "pointsSentAway": 80.5,
-      "pointsGained": 35.7,
+      "pointsGained": 18.4,
       "ppgTrendReceived": 17.53,
       "ppgTrendSent": -1.88,
       "received": [
@@ -19045,7 +19047,7 @@
         "signal": 0
        },
        "pointsSignal": {
-        "pointsGained": 35.7,
+        "pointsGained": 18.4,
         "signal": 1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
@@ -19177,7 +19179,7 @@
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
     "lastFinalWeek": 8,
-    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. pointsGained was recomputed from those totals on 2026-11-10. Per-game rates, FantasyCalc values, and the value verdict were not recomputed: this pull has no new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      5,
      6,
@@ -19201,7 +19203,7 @@
       },
       "pointsReceived": 0.0,
       "pointsSentAway": 60.6,
-      "pointsGained": -47.3,
+      "pointsGained": -60.6,
       "ppgTrendReceived": 0,
       "ppgTrendSent": 10.22,
       "received": [
@@ -19376,7 +19378,7 @@
         "signal": -1
        },
        "pointsSignal": {
-        "pointsGained": -47.3,
+        "pointsGained": -60.6,
         "signal": -1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
@@ -19398,7 +19400,7 @@
       },
       "pointsReceived": 60.6,
       "pointsSentAway": 0.0,
-      "pointsGained": 47.3,
+      "pointsGained": 60.6,
       "ppgTrendReceived": 10.22,
       "ppgTrendSent": 0,
       "received": [
@@ -19579,7 +19581,7 @@
         "signal": 1
        },
        "pointsSignal": {
-        "pointsGained": 47.3,
+        "pointsGained": 60.6,
         "signal": 1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
@@ -19815,7 +19817,7 @@
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
     "lastFinalWeek": 8,
-    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. pointsGained was recomputed from those totals on 2026-11-10. Per-game rates, FantasyCalc values, and the value verdict were not recomputed: this pull has no new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      6,
      7,
@@ -19838,7 +19840,7 @@
       },
       "pointsReceived": 55.2,
       "pointsSentAway": 79.0,
-      "pointsGained": -24.7,
+      "pointsGained": -23.8,
       "ppgTrendReceived": 10.22,
       "ppgTrendSent": 8.84,
       "received": [
@@ -20351,7 +20353,7 @@
         "signal": -1
        },
        "pointsSignal": {
-        "pointsGained": -24.7,
+        "pointsGained": -23.8,
         "signal": -1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
@@ -20373,7 +20375,7 @@
       },
       "pointsReceived": 79.0,
       "pointsSentAway": 55.2,
-      "pointsGained": 24.7,
+      "pointsGained": 23.8,
       "ppgTrendReceived": 8.84,
       "ppgTrendSent": 10.22,
       "received": [
@@ -20893,7 +20895,7 @@
         "signal": 1
        },
        "pointsSignal": {
-        "pointsGained": 24.7,
+        "pointsGained": 23.8,
         "signal": 1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
@@ -21073,7 +21075,7 @@
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
     "lastFinalWeek": 8,
-    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, pointsGained, and the value verdict were not recomputed: this pull has the week 8 points, not a new value board or a bye/injury label for a zero.",
+    "week8": "Week 8 box-score points are on each received player's weeksAfter and on whoWonIt. pointsGained was recomputed from those totals on 2026-11-10. Per-game rates, FantasyCalc values, and the value verdict were not recomputed: this pull has no new value board or a bye/injury label for a zero.",
     "weeksAfterTrade": [
      7,
      8
@@ -21095,7 +21097,7 @@
       },
       "pointsReceived": 30.3,
       "pointsSentAway": 41.4,
-      "pointsGained": 3.1,
+      "pointsGained": -11.1,
       "ppgTrendReceived": 12.14,
       "ppgTrendSent": -9.13,
       "received": [
@@ -21426,8 +21428,8 @@
         "signal": -1
        },
        "pointsSignal": {
-        "pointsGained": 3.1,
-        "signal": 0
+        "pointsGained": -11.1,
+        "signal": -1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
@@ -21448,7 +21450,7 @@
       },
       "pointsReceived": 41.4,
       "pointsSentAway": 30.3,
-      "pointsGained": -3.1,
+      "pointsGained": 11.1,
       "ppgTrendReceived": -9.13,
       "ppgTrendSent": 12.14,
       "received": [
@@ -21779,8 +21781,8 @@
         "signal": 1
        },
        "pointsSignal": {
-        "pointsGained": -3.1,
-        "signal": 0
+        "pointsGained": 11.1,
+        "signal": 1
        },
        "rule": "Value edge = FantasyCalc value now of received players kept (still on the team, or flipped in a later trade) minus value now of players sent (\u00b110% band = even). Points = all points received players scored for this team minus all points sent players scored for the partner over the same weeks (\u00b110 band = even). If the two signals conflict, rest-of-season value decides, because the grade is about long-term value."
       }
