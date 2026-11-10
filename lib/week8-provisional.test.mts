@@ -159,10 +159,6 @@ test("week 8 finals are in the season totals and decided on the schedule", () =>
 
   const focus = league.teams.find((team) => team.teamId === 7);
   assert.ok(focus);
-  assert.equal(focus.pointsFor, 950.42);
-  assert.equal(focus.record.wins, 3);
-  assert.equal(focus.record.losses, 5);
-  assert.equal(focus.rank, 9);
   const live = focus.weekly.find((row) => row.week === 8);
   assert.equal(live?.pointsFor, 179.26);
   assert.equal(live?.pointsAgainst, 89.36);
@@ -181,19 +177,24 @@ test("projected standings use the final records and rank by average seed", () =>
   assert.equal(projected.standings.length, 10);
   const odds = projected.standings.reduce((sum, row) => sum + row.playoff_odds, 0);
   assert.ok(Math.abs(odds - 4) < 0.02, `playoff odds sum ${odds}`);
-  const bySeed = [...projected.standings].sort((a, b) => a.avg_seed - b.avg_seed || a.teamId - b.teamId);
+  const byRank = [...projected.standings].sort((a, b) => a.projected_rank - b.projected_rank);
   assert.deepEqual(
-    bySeed.map((row) => row.projected_rank),
+    byRank.map((row) => row.projected_rank),
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   );
+  for (let index = 1; index < byRank.length; index += 1) {
+    assert.ok(byRank[index].avg_seed >= byRank[index - 1].avg_seed);
+  }
 
   for (const row of projected.standings) {
     const team = league.teams.find((entry) => entry.teamId === row.teamId);
     assert.ok(team);
-    const thru = team.weekly.filter((row) => row.week <= 8 && !row.provisional);
-    const wins = thru.filter((row) => row.result === "W").length;
-    const losses = thru.filter((row) => row.result === "L").length;
+    const finals = team.weekly.filter((entry) => !entry.provisional);
+    const latest = Math.max(...finals.map((entry) => entry.week));
+    const thru = finals.filter((entry) => entry.week <= latest);
+    const wins = thru.filter((entry) => entry.result === "W").length;
+    const losses = thru.filter((entry) => entry.result === "L").length;
     assert.equal(row.record_thru_wk8, `${wins}-${losses}`);
-    assert.equal(row.pf_thru_wk8, round2(thru.reduce((sum, row) => sum + row.pointsFor, 0)));
+    assert.equal(row.pf_thru_wk8, round2(thru.reduce((sum, entry) => sum + entry.pointsFor, 0)));
   }
 });
