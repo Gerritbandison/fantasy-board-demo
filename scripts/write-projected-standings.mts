@@ -12,8 +12,9 @@ const league = JSON.parse(readFileSync("data/league-all-teams.json", "utf8")) as
 };
 const summary = simulate(model, { n: SIM_COUNT, seed: 7, shift: 0 });
 const byId = new Map(league.teams.map((team) => [team.teamId, team]));
-const standings = summary.teams
-  .map((row) => {
+const standings = [...summary.teams]
+  .sort((a, b) => a.avgSeed - b.avgSeed || a.id - b.id)
+  .map((row, index) => {
     const team = byId.get(row.id);
     if (!team) throw new Error(`missing team ${row.id}`);
     return {
@@ -26,13 +27,9 @@ const standings = summary.teams
       playoff_odds: round(row.odds, 4),
       top_seed_odds: round(row.topSeedOdds, 4),
       avg_seed: round(row.avgSeed, 2),
-      projected_rank: 0,
+      projected_rank: index + 1,
     };
-  })
-  .sort((a, b) => a.avg_seed - b.avg_seed || a.teamId - b.teamId);
-standings.forEach((row, index) => {
-  row.projected_rank = index + 1;
-});
+  });
 
 const file = {
   asOf: "Nov 3, 2026, Week 8 final",

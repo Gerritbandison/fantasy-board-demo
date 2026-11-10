@@ -45,10 +45,10 @@ export interface ProjectedRow {
 }
 
 export const PROJECTED_STANDINGS: ProjectedRow[] = [...file.standings]
-  .sort((a, b) => a.avg_seed - b.avg_seed || a.teamId - b.teamId)
-  .map((row, index) => ({
+  .sort((a, b) => a.projected_rank - b.projected_rank || a.teamId - b.teamId)
+  .map((row) => ({
     teamId: row.teamId,
-    rank: index + 1,
+    rank: row.projected_rank,
     record: row.record_thru_wk8,
     pointsFor: row.pf_thru_wk8,
     expectedWins: row.exp_final_wins,

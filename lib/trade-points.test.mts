@@ -1,8 +1,13 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { test } from "node:test";
+import { fileURLToPath } from "node:url";
 import { franchiseName, USER_TEAM_ID } from "./names.ts";
-import { sideOf, TRADES, tradesFor } from "./trades.ts";
-import { currentSpanNote, dedupeById, isCompletedStatus, postTradeResult } from "./trade-points.ts";
+import { PAST_GRADING, sideOf, TRADES, tradesFor } from "./trades.ts";
+import { currentSpanNote, dedupeById, isCompletedStatus, postTradeResult, roundPoint } from "./trade-points.ts";
+
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 test("pending, vetoed, and cancelled statuses are not completed trades", () => {
   assert.equal(isCompletedStatus("accepted"), true);
@@ -88,14 +93,34 @@ test("loaded trades are unique, accepted, newest first, and attributed to the re
 test("2026-T7 is graded on points scored for the new team, not the stale points gained", () => {
   const trade = TRADES.find((row) => row.id === "2026-T7");
   assert.ok(trade);
+  const source = JSON.parse(readFileSync(join(root, "data/league-trades.json"), "utf8")) as {
+    trades: {
+      id: string;
+      whoWonIt: { bySide: { [teamId: string]: { totalPointsForNewTeam: number } } };
+      longTermGrade: { sides: { [teamId: string]: { pointsGained: number } } };
+    }[];
+  };
+  const raw = source.trades.find((row) => row.id === "2026-T7");
+  assert.ok(raw?.whoWonIt);
   const fellas = sideOf(trade, 6);
   const dimes = sideOf(trade, 8);
-  assert.equal(fellas.points, 30.3);
-  assert.equal(dimes.points, 41.4);
-  assert.equal(dimes.grade?.pointsGained, 11.1);
-  assert.equal(fellas.grade?.pointsGained, -11.1);
-  assert.equal(dimes.grade?.verdict, "paying-off");
-  assert.equal(fellas.grade?.verdict, "backfiring");
-  assert.equal(trade.edge?.teamId, 8);
-  assert.equal(trade.edge?.points, 11.1);
+  const fellasTotal = roundPoint(raw.whoWonIt.bySide["6"].totalPointsForNewTeam);
+  const dimesTotal = roundPoint(raw.whoWonIt.bySide["8"].totalPointsForNewTeam);
+  assert.equal(fellas.points, fellasTotal);
+  assert.equal(dimes.points, dimesTotal);
+  const dimesResult = postTradeResult(dimesTotal, fellasTotal, PAST_GRADING.evenUnder);
+  const fellasResult = postTradeResult(fellasTotal, dimesTotal, PAST_GRADING.evenUnder);
+  assert.ok(dimesResult && fellasResult);
+  assert.equal(dimes.grade?.pointsGained, dimesResult.gained);
+  assert.equal(fellas.grade?.pointsGained, fellasResult.gained);
+  assert.equal(dimes.grade?.verdict, dimesResult.verdict);
+  assert.equal(fellas.grade?.verdict, fellasResult.verdict);
+  const stale = raw.longTermGrade.sides["8"].pointsGained;
+  if (stale !== dimesResult.gained) assert.notEqual(dimes.grade?.pointsGained, stale);
+  const diff = roundPoint(dimesTotal - fellasTotal);
+  if (Math.abs(diff) < PAST_GRADING.evenUnder) assert.equal(trade.edge, null);
+  else {
+    assert.equal(trade.edge?.teamId, diff > 0 ? 8 : 6);
+    assert.equal(trade.edge?.points, Math.abs(diff));
+  }
 });

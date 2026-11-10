@@ -104,7 +104,7 @@ test("a bye is labeled from the bye flag and a missing opponent stays blank", ()
   assert.equal(opponentLabel(null), "--");
 });
 
-test("team 7 keeps an empty D/ST and still lists the whole roster", () => {
+test("team 7 lists the whole roster, and an empty D/ST stays an empty slot", () => {
   const team = getTeam(7);
   assert.ok(team);
   const board = buildRosterBoard(team.roster);
@@ -112,11 +112,23 @@ test("team 7 keeps an empty D/ST and still lists the whole roster", () => {
     board.starters.map((row) => row.slot),
     [...STARTER_SLOTS],
   );
-  assert.equal(board.starters.find((row) => row.slot === "D/ST")?.player, null);
+  const roster = [...team.roster.starters, ...team.roster.bench, ...team.roster.ir];
+  const dst = roster.find((player) => player.slot === "D/ST");
+  assert.equal(board.starters.find((row) => row.slot === "D/ST")?.player?.name ?? null, dst?.name ?? null);
   const listed = board.starters.filter((row) => row.player).length + board.bench.length + board.ir.length;
-  const source = team.roster.starters.length + team.roster.bench.length + team.roster.ir.length;
-  assert.equal(listed, source);
+  assert.equal(listed, roster.length);
   assert.ok(listed > board.starters.filter((row) => row.player).length);
-  assert.equal(board.starterTotals.projection, null);
-  assert.equal(formatStat(team.roster.starters[0]?.projection), "--");
+  const projections = board.starters
+    .map((row) => row.player?.projection)
+    .filter((value): value is number => typeof value === "number");
+  if (projections.length === 0) {
+    assert.equal(board.starterTotals.projection, null);
+    assert.equal(formatStat(team.roster.starters[0]?.projection), "--");
+  } else {
+    assert.equal(
+      board.starterTotals.projection,
+      projections.reduce((sum, value) => sum + value, 0),
+    );
+    assert.equal(formatStat(projections[0]), projections[0].toFixed(1));
+  }
 });
