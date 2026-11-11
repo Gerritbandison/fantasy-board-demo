@@ -1,6 +1,6 @@
 {
   "week": 10,
-  "asOf": "2026-11-10T08:50:00-05:00",
+  "asOf": "2026-11-11T10:14:00-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,49 +11,49 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.9864,
+      "playoffOdds": 0.9703,
       "powerRank": 2
     },
     {
       "teamId": 2,
       "projectedRank": 3,
-      "playoffOdds": 0.4514,
+      "playoffOdds": 0.473,
       "powerRank": 4
     },
     {
       "teamId": 5,
       "projectedRank": 4,
-      "playoffOdds": 0.473,
+      "playoffOdds": 0.4453,
       "powerRank": 3
     },
     {
-      "teamId": 7,
+      "teamId": 8,
       "projectedRank": 5,
-      "playoffOdds": 0.4171,
-      "powerRank": 5
+      "playoffOdds": 0.3974,
+      "powerRank": 10
     },
     {
-      "teamId": 8,
+      "teamId": 7,
       "projectedRank": 6,
-      "playoffOdds": 0.3154,
-      "powerRank": 10
+      "playoffOdds": 0.3941,
+      "powerRank": 5
     },
     {
       "teamId": 4,
       "projectedRank": 7,
-      "playoffOdds": 0.2428,
+      "playoffOdds": 0.2306,
       "powerRank": 7
     },
     {
       "teamId": 10,
       "projectedRank": 8,
-      "playoffOdds": 0.1075,
+      "playoffOdds": 0.0835,
       "powerRank": 6
     },
     {
       "teamId": 11,
       "projectedRank": 9,
-      "playoffOdds": 0.0065,
+      "playoffOdds": 0.0059,
       "powerRank": 9
     },
     {
@@ -338,6 +338,55 @@
   "adds": [
     {
       "teamId": 1,
+      "date": "2026-11-11",
+      "type": "waiver",
+      "added": [
+        "Tank Dell (WR, HOU)"
+      ],
+      "dropped": [
+        "Brian Thomas Jr. (WR, JAX)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-11",
+      "type": "waiver",
+      "added": [
+        "Chris Boswell (K, PIT)"
+      ],
+      "dropped": [
+        "Cairo Santos (K, CHI)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-11",
+      "type": "waiver",
+      "added": [
+        "Corey Kiner (RB, NE)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 7,
+      "date": "2026-11-11",
+      "type": "waiver",
+      "added": [
+        "Wan'Dale Robinson (WR, TEN)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-10",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Malik Willis (QB, MIA)"
+      ]
+    },
+    {
+      "teamId": 1,
       "date": "2026-11-06",
       "type": "add",
       "added": [
@@ -371,7 +420,7 @@
         "Bills D/ST (D/ST, BUF)"
       ],
       "dropped": [
-        "Kirk Cousins (QB, LV)"
+        "Kirk Cousins (QB, MIN)"
       ]
     },
     {
@@ -408,21 +457,10 @@
       "date": "2026-11-04",
       "type": "add",
       "added": [
-        "Keenan Allen (WR, IND)"
+        "Keenan Allen (WR, SF)"
       ],
       "dropped": [
         "Kendre Miller (RB, FA)"
-      ]
-    },
-    {
-      "teamId": 1,
-      "date": "2026-11-04",
-      "type": "add",
-      "added": [
-        "Keenan Allen (WR, IND)"
-      ],
-      "dropped": [
-        "Kendre Miller (RB, NO)"
       ]
     },
     {
@@ -534,7 +572,7 @@
       "date": "2026-11-04",
       "type": "waiver",
       "added": [
-        "Kirk Cousins (QB, LV)"
+        "Kirk Cousins (QB, MIN)"
       ],
       "dropped": [
         "Patriots D/ST (D/ST, NE)"

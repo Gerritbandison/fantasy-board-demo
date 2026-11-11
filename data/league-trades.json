@@ -2,7 +2,7 @@
  "scope": "2020-2026. 2026 from ESPN transactions; 2020-2025 rebuilt from weekly roster snapshots (player-for-player trades only).",
  "meta": {
   "generatedAt": "2026-10-29T02:18:23-04:00",
-  "pointsThrough": "Player points on 2026 accepted trades run through Week 9 box scores (full week). Week 10 has not started as of 2026-11-10 and those points are not in these rows. Per-game rates, FantasyCalc values, and value verdicts were not recomputed. pointsGained was recomputed from the two sides' totalPointsForNewTeam.",
+  "pointsThrough": "Player points on 2026 accepted trades run through Week 9 box scores (full week). Week 10 has not started as of 2026-11-11 and those points are not in these rows. Per-game rates, FantasyCalc values, and value verdicts were not recomputed. pointsGained was recomputed from the two sides' totalPointsForNewTeam.",
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "timezone": "America/New_York",
@@ -19,7 +19,8 @@
    "2026-10-31: Josh Jacobs' Thursday week-8 total (23.2, full PPR, started) was added to trade 2026-T6 only. The value verdict was not recomputed. Pending offers are not stored on accepted trades and are never rendered.",
    "2026-11-04: Week 8 player points from the five matchup box scores were added to 2026 accepted trades where the received player was on the new team's week 8 roster. Josh Jacobs' Thursday-only 23.2 line was replaced with his full week 8 total. pointsGained, ppg rates, and FantasyCalc verdicts were left as they were.",
    "2026-11-05: Week 9 is in progress, so Thursday points were not added to accepted trades. A pending proposal from Maye i give you a blowj0b to Kabul FC is not a completed trade and is not stored. The offer count goes up by one.",
-   "2026-11-10: Week 9 player points from the five final box scores were added to 2026 accepted trades where the received player was on the new team's week 9 roster. pointsGained was recomputed from the two sides' totalPointsForNewTeam. Per-game rates and FantasyCalc values were not recomputed. No completed trade was added. The pending proposal between teams 7 and 11 was canceled on Nov 7 and is not stored."  ],
+   "2026-11-10: Week 9 player points from the five final box scores were added to 2026 accepted trades where the received player was on the new team's week 9 roster. pointsGained was recomputed from the two sides' totalPointsForNewTeam. Per-game rates and FantasyCalc values were not recomputed. No completed trade was added. The pending proposal between teams 7 and 11 was canceled on Nov 7 and is not stored.",
+   "2026-11-11: Week 10 has not started, so no Week 10 points were added. The trade pull for weeks 9 and 10 returned 0 rows. pointsGained was left as recomputed on Nov 10."  ],
   "counts": {
    "acceptedTrades": 7,
    "uniqueProposals": 94,
@@ -43,7 +44,7 @@
    "evenUnder": 10,
    "lopsidedFrom": 75
   },
-  "updatedAt": "2026-11-10T08:50:00-05:00"
+  "updatedAt": "2026-11-11T10:14:00-05:00"
  },
  "tradesPerSeason": {
   "2020": 27,

@@ -3,7 +3,7 @@
   "playoffSpots": 4,
   "regularSeasonWeeks": 14,
   "nonByeEspn": 130.2,
-  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 and Week 9 finals are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 10 projections are the 2026-11-10 matchup pull. Week 10 has not started and is not counted. Weeks 11-14 were not re-pulled.",
+  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 and Week 9 finals are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 10 projections are the 2026-11-11 matchup pull. Week 10 has not started and is not counted. Weeks 11-14 were not re-pulled.",
   "biasNote": "Each other team's weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss.",
   "presets": [
     { "shift": -20, "name": "Season" },
@@ -198,31 +198,31 @@
       "week": 10,
       "homeId": 10,
       "awayId": 2,
-      "homeProj": 103.58,
-      "awayProj": 120.82,
+      "homeProj": 104.15,
+      "awayProj": 131.05,
       "counted": false
     },
     {
       "week": 10,
       "homeId": 1,
       "awayId": 11,
-      "homeProj": 126.15,
-      "awayProj": 112.46,
+      "homeProj": 123.65,
+      "awayProj": 111.02,
       "counted": false
     },
     {
       "week": 10,
       "homeId": 6,
       "awayId": 5,
-      "homeProj": 102.3,
-      "awayProj": 128.89,
+      "homeProj": 102.4,
+      "awayProj": 127.75,
       "counted": false
     },
     {
       "week": 10,
       "homeId": 7,
       "awayId": 4,
-      "homeProj": 121.64,
+      "homeProj": 121.4,
       "awayProj": 123.3,
       "counted": false
     },
@@ -230,8 +230,8 @@
       "week": 10,
       "homeId": 3,
       "awayId": 8,
-      "homeProj": 133.7,
-      "awayProj": 89.08,
+      "homeProj": 133.53,
+      "awayProj": 115.1,
       "counted": false
     },
     {
