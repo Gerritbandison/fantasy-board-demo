@@ -39,8 +39,9 @@ test("the remaining path skips counted week 8 and ends at 9-5", () => {
   const chance = winOutChance(model, 0);
   const at = (wins: number) => base.byWins.find((row) => row.wins === wins);
 
-  assert.ok(base.focusOdds > 0.28 && base.focusOdds < 0.5, `baseline ${base.focusOdds}`);
-  assert.ok(path[0].odds > 0.28 && path[0].odds < 0.5, `path start ${path[0].odds}`);
+  // Thursday's model is about 34.8%. After Monday night, with every Week 9 projection equal to the live score, the same runs are about 50.3% and the path starts at about 50.1%.
+  assert.ok(base.focusOdds > 0.28 && base.focusOdds < 0.55, `baseline ${base.focusOdds}`);
+  assert.ok(path[0].odds > 0.28 && path[0].odds < 0.55, `path start ${path[0].odds}`);
   assert.equal(path[0].week, null);
   assert.equal(path[0].wins, 3);
   assert.equal(path[0].losses, 5);
