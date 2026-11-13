@@ -38,7 +38,7 @@ export function TvModeButton() {
     <button
       type="button"
       onClick={toggle}
-      className="hidden h-9 shrink-0 items-center gap-2 rounded-full bg-white px-3.5 text-sm font-semibold text-navy shadow-sm ring-1 ring-line transition-colors hover:bg-slate-50 lg:inline-flex"
+      className="hidden h-9 shrink-0 cursor-pointer items-center gap-2 rounded-lg bg-white px-3.5 text-xs font-bold tracking-wide text-navy uppercase shadow-xs ring-1 ring-line transition-colors hover:bg-surface-subtle hover:ring-line-strong lg:inline-flex"
     >
       <FrameIcon exit={isFull} />
       {isFull ? "Exit TV mode" : "TV mode"}

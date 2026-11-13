@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { cx } from "@/lib/cx";
 
 function initials(name: string) {
   const parts = name.replace(/[^A-Za-z0-9 ]/g, " ").split(/\s+/).filter(Boolean);
@@ -10,12 +11,20 @@ function initials(name: string) {
 }
 
 /** ESPN headshot when the roster file has a numeric athlete id. Anything else is initials. */
-export function PlayerHeadshot({ id, name }: { id?: string; name: string }) {
+export function PlayerHeadshot({ id, name, size = "md" }: { id?: string; name: string; size?: "sm" | "md" }) {
   const [failed, setFailed] = useState(false);
   const numeric = id != null && /^\d+$/.test(id);
+  const dims = size === "sm" ? "size-8 text-[11px]" : "size-9 text-xs";
+  const px = size === "sm" ? 32 : 36;
   if (!numeric || failed) {
     return (
-      <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-slate-200 font-display text-xs font-bold text-navy" aria-hidden>
+      <span
+        className={cx(
+          "inline-flex shrink-0 items-center justify-center rounded-full bg-surface-muted font-display font-bold text-navy ring-1 ring-line ring-inset",
+          dims,
+        )}
+        aria-hidden
+      >
         {initials(name)}
       </span>
     );
@@ -26,9 +35,9 @@ export function PlayerHeadshot({ id, name }: { id?: string; name: string }) {
     <img
       src={`https://a.espncdn.com/i/headshots/nfl/players/full/${id}.png`}
       alt=""
-      width={36}
-      height={36}
-      className="size-9 shrink-0 rounded-full bg-slate-100 object-cover"
+      width={px}
+      height={px}
+      className={cx("shrink-0 rounded-full bg-surface-subtle object-cover ring-1 ring-line", dims)}
       onError={() => setFailed(true)}
     />
   );

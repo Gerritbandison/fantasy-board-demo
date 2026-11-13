@@ -28,61 +28,75 @@ export default function HistoryPage() {
   return (
     <>
       <PageHeader eyebrow={`League history · ${first}–${last}`} title="Chicken history">
-        <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">
+        <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-slate-600">
           {CHAMPIONS.length} title games on record, {champIds.size} different champions
-          {multi.length ? `. ${multi.map((r) => `${r.team.name} (${r.titleYears.join(", ")})`).join(" and ")} ${multi.length === 1 ? "is the only franchise" : "are the only franchises"} with more than one title.` : "."}
+          {multi.length
+            ? `. ${multi.map((r) => `${r.team.name} (${r.titleYears.join(", ")})`).join(" and ")} ${multi.length === 1 ? "is the only franchise" : "are the only franchises"} with more than one title.`
+            : "."}
         </p>
       </PageHeader>
 
-      <Link
-        href="/trades"
-        className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line transition-colors hover:bg-slate-50 sm:px-5"
-      >
-        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold-light text-amber-700">
-          <ArrowLeftRight className="size-5" />
-        </span>
-        <span className="min-w-0 flex-1">
-          <span className="block font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">Trade desk</span>
-          <span className="block text-sm leading-snug text-slate-600">
-            {TRADES.length} player trades, {SEASONS_LABEL}, by season, with all-time sharks, suckers and heists
+      <div className="grid gap-3 sm:grid-cols-3">
+        <Link
+          href="/trades"
+          className="group flex items-start gap-3 rounded-2xl bg-white p-4 shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line transition-all hover:ring-line-strong hover:shadow-xs"
+        >
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gold-light text-gold-ink ring-1 ring-gold-border ring-inset">
+            <ArrowLeftRight className="size-4" aria-hidden />
           </span>
-        </span>
-        <ChevronRight className="size-5 shrink-0 text-slate-600" />
-      </Link>
+          <span className="min-w-0 flex-1">
+            <span className="flex items-center justify-between gap-1 font-display text-base leading-tight font-bold tracking-wide text-navy uppercase">
+              <span>Trade desk</span>
+              <ChevronRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5" aria-hidden />
+            </span>
+            <span className="mt-1 block text-xs leading-snug text-slate-600">
+              {TRADES.length} player trades ({SEASONS_LABEL}), sharks, suckers, and heists
+            </span>
+          </span>
+        </Link>
 
-      <a
-        href="#biggest-wins"
-        className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line transition-colors hover:bg-slate-50 sm:px-5"
-      >
-        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold-light text-amber-700">
-          <Flame className="size-5" aria-hidden />
-        </span>
-        <span className="min-w-0 flex-1">
-          <span className="block font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">Top 10 biggest wins</span>
-          <span className="block text-sm leading-snug text-slate-600">Single-week regular-season margins, 2020 through this season</span>
-        </span>
-        <ChevronRight className="size-5 shrink-0 text-slate-600" />
-      </a>
+        <a
+          href="#biggest-wins"
+          className="group flex items-start gap-3 rounded-2xl bg-white p-4 shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line transition-all hover:ring-line-strong hover:shadow-xs"
+        >
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-turf-light text-turf-dark ring-1 ring-turf-border ring-inset">
+            <Flame className="size-4" aria-hidden />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="flex items-center justify-between gap-1 font-display text-base leading-tight font-bold tracking-wide text-navy uppercase">
+              <span>Top 10 biggest wins</span>
+              <ChevronRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5" aria-hidden />
+            </span>
+            <span className="mt-1 block text-xs leading-snug text-slate-600">
+              Largest single-week regular-season margins since 2020
+            </span>
+          </span>
+        </a>
 
-      <a
-        href="#high-scores"
-        className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line transition-colors hover:bg-slate-50 sm:px-5"
-      >
-        <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-gold-light text-amber-700">
-          <Trophy className="size-5" aria-hidden />
-        </span>
-        <span className="min-w-0 flex-1">
-          <span className="block font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">Top 20 most points</span>
-          <span className="block text-sm leading-snug text-slate-600">Highest single-week scores, regular season only</span>
-        </span>
-        <ChevronRight className="size-5 shrink-0 text-slate-600" />
-      </a>
+        <a
+          href="#high-scores"
+          className="group flex items-start gap-3 rounded-2xl bg-white p-4 shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line transition-all hover:ring-line-strong hover:shadow-xs"
+        >
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gold-light text-gold-ink ring-1 ring-gold-border ring-inset">
+            <Trophy className="size-4" aria-hidden />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="flex items-center justify-between gap-1 font-display text-base leading-tight font-bold tracking-wide text-navy uppercase">
+              <span>Top 20 most points</span>
+              <ChevronRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5" aria-hidden />
+            </span>
+            <span className="mt-1 block text-xs leading-snug text-slate-600">
+              Highest single-week regular-season scores on record
+            </span>
+          </span>
+        </a>
+      </div>
 
-      <section className="overflow-hidden rounded-2xl bg-navy yard-lines p-4 text-white shadow-lg shadow-navy/15 sm:p-5">
-        <p className="flex items-center gap-1.5 text-xs font-bold tracking-wider text-gold uppercase">
-          <Trophy className="size-3.5" /> League pattern
+      <section className="overflow-hidden rounded-2xl bg-navy yard-lines p-5 text-white shadow-[0_6px_20px_rgba(12,25,44,0.16)] ring-1 ring-navy-3 sm:p-6">
+        <p className="flex items-center gap-1.5 font-display text-xs font-bold tracking-[0.12em] text-gold uppercase">
+          <Trophy className="size-3.5" aria-hidden /> Championship seed pattern
         </p>
-        <p className="mt-1 font-display text-3xl leading-tight font-extrabold">
+        <p className="mt-1 font-display text-3xl leading-tight font-extrabold sm:text-4xl">
           {seeds.modeCount} of {seeds.total} champions were the {ordinal(seeds.modeSeed)} seed
         </p>
         <p className="mt-2 text-[15px] leading-relaxed text-white/80">
@@ -92,61 +106,74 @@ export default function HistoryPage() {
         </p>
         <ol className="mt-4 grid grid-cols-3 gap-2 sm:grid-cols-6">
           {chronological.map((c) => (
-            <li key={c.season} className="min-w-0 rounded-xl bg-white/10 px-1 py-2 text-center ring-1 ring-white/10">
-              <p className="text-xs font-semibold text-white/85">{c.season}</p>
-              <p className="font-display text-2xl leading-none font-extrabold text-gold">{c.championSeed != null ? `#${c.championSeed}` : "—"}</p>
-              <p className="mt-1 truncate px-1 text-xs text-white/80">{team(c.championId).abbrev}</p>
+            <li key={c.season} className="min-w-0 rounded-xl bg-white/[0.07] px-2 py-2.5 text-center ring-1 ring-white/10">
+              <p className="text-xs font-semibold text-white/75 tabular-nums">{c.season}</p>
+              <p className="mt-0.5 font-display text-2xl leading-none font-extrabold text-gold tabular-nums">
+                {c.championSeed != null ? `#${c.championSeed}` : "—"}
+              </p>
+              <p className="mt-1 truncate text-xs font-bold tracking-wide text-white/90">{team(c.championId).abbrev}</p>
             </li>
           ))}
         </ol>
-        <p className="mt-2 text-xs text-white/85">Champion&apos;s regular-season seed, labelled with the franchise&apos;s current abbreviation.</p>
+        <p className="mt-2.5 text-xs text-white/75">Champion&apos;s regular-season seed, labelled with the franchise&apos;s current abbreviation.</p>
       </section>
 
-      <SectionHeading title="Title timeline" />
-      <ol className="relative grid gap-4 pl-7 before:absolute before:inset-y-3 before:left-[11px] before:w-0.5 before:rounded-full before:bg-line lg:grid-cols-2 lg:gap-5 lg:pl-0 lg:before:hidden">
+      <SectionHeading title="Title timeline" action={`${CHAMPIONS.length} seasons`} />
+      <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {CHAMPIONS.map((c) => {
           const champ = team(c.championId);
           const ru = c.runnerUpId != null ? team(c.runnerUpId) : undefined;
           return (
-            <li key={c.season} className="relative">
-              <span className="absolute top-5 -left-7 flex size-6 items-center justify-center rounded-full bg-gold-ink text-white ring-4 ring-field lg:hidden" aria-hidden>
-                <Trophy className="size-3.5" />
-              </span>
-              <Card as="article" accent={champ.color}>
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="font-display text-3xl leading-none font-extrabold text-navy">{c.season}</p>
-                    <p className="mt-0.5 text-xs font-semibold tracking-wider text-slate-600 uppercase">Champion{c.championSeed != null ? ` · ${ordinal(c.championSeed)} seed` : ""}</p>
-                  </div>
-                  <Trophy className="size-8 shrink-0 text-gold-ink" aria-hidden />
+            <Card key={c.season} as="li" accent={champ.color} bodyClassName="flex h-full flex-col">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <span className="rounded-md bg-navy px-2 py-0.5 font-display text-lg font-extrabold text-white tabular-nums">{c.season}</span>
+                  <span className="text-xs font-bold tracking-wider text-slate-600 uppercase">
+                    {c.championSeed != null ? `${ordinal(c.championSeed)} seed` : "Champion"}
+                  </span>
                 </div>
-                <div className="mt-3 flex items-center gap-3">
-                  <TeamAvatar teamId={champ.id} />
-                  <div className="min-w-0">
-                    <p className="font-display text-2xl leading-tight font-bold break-words text-navy">{c.championName}</p>
-                    {c.championName !== champ.name && (
-                      <Link href={teamPath(champ.id)} className="text-xs font-semibold text-turf hover:underline">
-                        Now {champ.name}
-                      </Link>
-                    )}
-                  </div>
+                <span className="flex size-8 items-center justify-center rounded-lg bg-gold-light text-gold-ink ring-1 ring-gold-border ring-inset" aria-hidden>
+                  <Trophy className="size-4" />
+                </span>
+              </div>
+
+              <div className="mt-3.5 flex items-center gap-3">
+                <TeamAvatar teamId={champ.id} />
+                <div className="min-w-0">
+                  <p className="font-display text-xl leading-tight font-bold break-words text-navy">{c.championName}</p>
+                  {c.championName !== champ.name ? (
+                    <Link href={teamPath(champ.id)} className="mt-0.5 block text-xs font-semibold text-turf hover:underline">
+                      Now {champ.name}
+                    </Link>
+                  ) : (
+                    <Link href={teamPath(champ.id)} className="mt-0.5 block text-xs font-medium text-slate-600 hover:underline">
+                      Franchise profile →
+                    </Link>
+                  )}
                 </div>
-                {ru && (
-                  <div className="mt-3 flex items-start gap-3 border-t border-line pt-3 text-sm text-slate-600">
-                    <TeamAvatar teamId={ru.id} size="sm" className="mx-1.5" />
-                    <span className="min-w-0">
-                      <span className="text-slate-600">Runner-up{c.runnerUpSeed != null ? ` (${ordinal(c.runnerUpSeed)} seed)` : ""}: </span>
-                      <span className="font-semibold break-words text-slate-700">{c.runnerUpName}</span>
+              </div>
+
+              {ru && (
+                <div className="mt-auto pt-3.5">
+                  <div className="flex items-center gap-2.5 rounded-xl bg-surface-subtle px-3 py-2 text-xs text-slate-600 ring-1 ring-line/80">
+                    <TeamAvatar teamId={ru.id} size="xs" />
+                    <div className="min-w-0">
+                      <p className="leading-snug">
+                        <span className="font-bold tracking-wide text-slate-500 uppercase">
+                          Runner-up{c.runnerUpSeed != null ? ` · #${c.runnerUpSeed}` : ""}:{" "}
+                        </span>
+                        <span className="font-semibold break-words text-navy">{c.runnerUpName}</span>
+                      </p>
                       {c.runnerUpName !== ru.name && (
-                        <Link href={teamPath(ru.id)} className="block text-xs font-semibold text-turf hover:underline">
+                        <Link href={teamPath(ru.id)} className="font-semibold text-turf hover:underline">
                           Now {ru.name}
                         </Link>
                       )}
-                    </span>
+                    </div>
                   </div>
-                )}
-              </Card>
-            </li>
+                </div>
+              )}
+            </Card>
           );
         })}
       </ol>
@@ -155,7 +182,7 @@ export default function HistoryPage() {
       <Card bodyClassName="p-0 sm:p-0">
         <ol className="divide-y divide-line">
           {board.map((r) => (
-            <li key={r.team.id} className="flex items-start gap-3 px-4 py-3 sm:px-5">
+            <li key={r.team.id} className="flex items-start gap-3.5 px-4 py-3.5 transition-colors hover:bg-surface-subtle/50 sm:px-5">
               <TeamAvatar teamId={r.team.id} />
               <div className="min-w-0 flex-1">
                 <Link href={teamPath(r.team.id)} className="leading-tight font-semibold break-words text-navy hover:underline">
@@ -171,7 +198,7 @@ export default function HistoryPage() {
                     .join(" · ")}
                 </p>
                 {(r.titleYears.length > 0 || r.runnerUpYears.length > 0) && (
-                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                  <div className="mt-2 flex flex-wrap gap-1.5">
                     {r.titleYears.map((y) => (
                       <Pill key={`t${y}`} tone="gold">
                         <Trophy className="size-3" /> {y}
@@ -186,8 +213,10 @@ export default function HistoryPage() {
                 )}
               </div>
               <div className="shrink-0 text-right">
-                <p className={cn("font-display text-3xl leading-none font-extrabold tabular-nums", r.titles ? "text-gold-ink" : "text-slate-600")}>{r.titles}</p>
-                <p className="text-xs font-semibold tracking-wider text-slate-600 uppercase">title{r.titles === 1 ? "" : "s"}</p>
+                <p className={cn("font-display text-3xl leading-none font-extrabold tabular-nums", r.titles ? "text-gold-ink" : "text-slate-400")}>
+                  {r.titles}
+                </p>
+                <p className="mt-0.5 text-[10px] font-bold tracking-wider text-slate-500 uppercase">title{r.titles === 1 ? "" : "s"}</p>
               </div>
             </li>
           ))}
@@ -195,15 +224,15 @@ export default function HistoryPage() {
       </Card>
 
       <SectionHeading title="Finishes by season" />
-      <Card bodyClassName="p-3 sm:p-5">
+      <Card bodyClassName="p-3.5 sm:p-5">
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[17rem] border-separate border-spacing-1 text-center text-sm">
+          <table className="w-full min-w-[18rem] border-separate border-spacing-1 text-center text-sm">
             <thead>
               <tr>
-                <th className="text-left text-xs font-bold tracking-wider text-slate-600 uppercase">Team</th>
+                <th className="pb-1 text-left text-[11px] font-bold tracking-wider text-slate-600 uppercase">Team</th>
                 {SEASONS_WITH_HISTORY.map((y) => (
-                  <th key={y} className="text-xs font-semibold text-slate-600">
-                    {String(y).slice(2)}
+                  <th key={y} className="pb-1 font-display text-xs font-bold text-slate-600 tabular-nums">
+                    &apos;{String(y).slice(2)}
                   </th>
                 ))}
               </tr>
@@ -211,9 +240,9 @@ export default function HistoryPage() {
             <tbody>
               {STANDINGS.map((t) => (
                 <tr key={t.id}>
-                  <th scope="row" className="text-left">
-                    <Link href={teamPath(t.id)} className="flex items-center gap-1.5" title={t.name}>
-                      <TeamAvatar teamId={t.id} size="sm" className="size-6 text-xs" />
+                  <th scope="row" className="pr-2 text-left">
+                    <Link href={teamPath(t.id)} className="flex items-center gap-2 hover:underline" title={t.name}>
+                      <TeamAvatar teamId={t.id} size="xs" />
                       <span className="hidden truncate text-xs font-semibold text-navy sm:inline">{t.name}</span>
                     </Link>
                   </th>
@@ -225,8 +254,14 @@ export default function HistoryPage() {
                         key={y}
                         title={s ? `${y}: ${s.name}, ${formatRecord(s)}${s.finish != null ? `, finished ${ordinal(s.finish)}` : ""}` : undefined}
                         className={cn(
-                          "h-8 rounded-md font-display text-sm font-bold tabular-nums",
-                          s?.champion ? "bg-gold-ink text-white" : ru ? "bg-slate-300 text-slate-800" : s?.finish != null && s.finish <= 4 ? "bg-turf-light text-turf-dark" : "bg-slate-50 text-slate-600",
+                          "h-8 rounded-md font-display text-sm font-bold tabular-nums ring-1 ring-inset",
+                          s?.champion
+                            ? "bg-gold-ink text-white ring-gold-ink"
+                            : ru
+                              ? "bg-slate-200 text-navy ring-slate-300"
+                              : s?.finish != null && s.finish <= 4
+                                ? "bg-turf-light text-turf-dark ring-turf-border"
+                                : "bg-surface-subtle text-slate-600 ring-line/80",
                         )}
                       >
                         {s?.finish ?? "—"}
@@ -238,17 +273,17 @@ export default function HistoryPage() {
             </tbody>
           </table>
         </div>
-        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-600">
-          <span className="flex items-center gap-1.5">
-            <span className="size-3 rounded bg-gold" /> Champion
+        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-line pt-3 text-xs text-slate-600">
+          <span className="flex items-center gap-1.5 font-medium">
+            <span className="size-3 rounded bg-gold-ink" /> Champion
           </span>
-          <span className="flex items-center gap-1.5">
-            <span className="size-3 rounded bg-slate-300" /> Runner-up
+          <span className="flex items-center gap-1.5 font-medium">
+            <span className="size-3 rounded bg-slate-200 ring-1 ring-slate-300 ring-inset" /> Runner-up
           </span>
-          <span className="flex items-center gap-1.5">
-            <span className="size-3 rounded bg-turf-light" /> Top 4 finish
+          <span className="flex items-center gap-1.5 font-medium">
+            <span className="size-3 rounded bg-turf-light ring-1 ring-turf-border ring-inset" /> Top 4 finish
           </span>
-          <span>Numbers are final rank.</span>
+          <span>Numbers indicate final standing.</span>
         </div>
       </Card>
 

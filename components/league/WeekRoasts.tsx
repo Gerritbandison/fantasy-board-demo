@@ -2,9 +2,9 @@ import { WEEK_ROASTS, type RoastMatchup, type RoastTag } from "@/lib/roasts";
 import { cn } from "@/lib/utils";
 
 const TAG_TONE: { [kind in RoastTag["kind"]]: string } = {
-  lock: "bg-turf-light text-turf-dark ring-green-200",
-  upset: "bg-gold-light text-gold-ink ring-amber-200",
-  note: "bg-slate-100 text-slate-700 ring-slate-200",
+  lock: "bg-turf-light text-turf-dark ring-turf-border",
+  upset: "bg-gold-light text-gold-ink ring-gold-border",
+  note: "bg-surface-muted text-slate-700 ring-line",
 };
 
 function pulledLabel(iso: string) {
@@ -22,9 +22,11 @@ function pulledLabel(iso: string) {
 
 function TagBadge({ tag }: { tag: RoastTag }) {
   return (
-    <p className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-      <span className={cn("inline-flex min-h-6 items-center rounded-full px-2.5 text-xs font-bold ring-1 ring-inset", TAG_TONE[tag.kind])}>{tag.label}</span>
-      {tag.detail ? <span className="min-w-0 text-sm leading-snug text-slate-700">{tag.detail}</span> : null}
+    <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+      <span className={cn("inline-flex h-5.5 items-center rounded-md px-2 text-[11px] font-bold tracking-wider uppercase ring-1 ring-inset", TAG_TONE[tag.kind])}>
+        {tag.label}
+      </span>
+      {tag.detail ? <span className="min-w-0 text-xs leading-snug font-medium text-slate-700">{tag.detail}</span> : null}
     </p>
   );
 }
@@ -37,11 +39,11 @@ export function roastPulledLabel() {
 /** Roast copy for a game that already shows its score. The score rows stay on the scoreboard. */
 export function RoastCopy({ roast }: { roast: RoastMatchup }) {
   return (
-    <div className="mt-4 border-t border-line pt-3">
-      <h3 className="font-display text-xl leading-tight font-bold text-navy">{roast.headline}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-slate-700">{roast.roast}</p>
-      <p className="mt-3 text-sm leading-snug font-semibold text-navy">{roast.projectionLine}</p>
-      <div className="mt-3">
+    <div className="mt-3.5 border-t border-line pt-3.5">
+      <h3 className="font-display text-lg leading-snug font-bold text-navy sm:text-xl">{roast.headline}</h3>
+      <p className="mt-1.5 text-sm leading-relaxed text-slate-700">{roast.roast}</p>
+      <div className="mt-3 flex flex-col gap-2 rounded-xl bg-surface-subtle px-3 py-2.5 ring-1 ring-line/80">
+        <p className="text-xs leading-snug font-semibold text-navy tabular-nums">{roast.projectionLine}</p>
         <TagBadge tag={roast.tag} />
       </div>
     </div>

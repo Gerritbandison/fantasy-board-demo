@@ -12,7 +12,7 @@ const barlow = Barlow({
 const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow-condensed",
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["600", "700", "800"],
 });
 
 const title = `Chicken League · Week ${LEAGUE.week}`;
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0f1e36",
+  themeColor: "#0c192c",
   viewportFit: "cover",
   colorScheme: "light",
 };
@@ -45,7 +45,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${barlow.variable} ${barlowCondensed.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-field text-slate-800">{children}</body>
+      <body className="flex min-h-full flex-col bg-field text-slate-800 selection:bg-turf-light selection:text-navy">{children}</body>
     </html>
   );
 }

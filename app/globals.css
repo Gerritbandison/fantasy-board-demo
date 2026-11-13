@@ -3,18 +3,36 @@
 @theme {
   --breakpoint-tv: 160rem;
 
-  /* Chicken League palette. gold is for navy surfaces; gold-ink is for text on white. */
-  --color-navy: #0f1e36;
-  --color-navy-2: #18304f;
+  /* Chicken League design tokens — Fieldhouse Press Box palette */
+  --color-navy: #0c192c;
+  --color-navy-2: #152946;
+  --color-navy-3: #213c63;
+
+  --color-field: #f3f5f1;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f8faf7;
+  --color-surface-muted: #edf1eb;
+
+  --color-line: #dce2da;
+  --color-line-strong: #c3cdc1;
+
   --color-turf: #15803d;
-  --color-turf-dark: #166534;
+  --color-turf-dark: #14532d;
   --color-turf-light: #dcfce7;
-  --color-gold: #d99a06;
-  --color-gold-ink: #92400e;
+  --color-turf-border: #bbf7d0;
+
+  --color-gold: #e09f1f;
+  --color-gold-ink: #854d0e;
   --color-gold-light: #fef3c7;
-  --color-field: #f2f4f0;
-  --color-line: #e2e7e1;
+  --color-gold-border: #fde68a;
+
   --color-loss: #b91c1c;
+  --color-loss-light: #fef2f2;
+  --color-loss-border: #fecaca;
+
+  --color-warn: #b45309;
+  --color-warn-light: #fffbeb;
+  --color-warn-border: #fde68a;
 
   --font-sans: var(--font-barlow);
   --font-display: var(--font-barlow-condensed);
@@ -24,6 +42,7 @@
 html {
   font-family: var(--font-sans), sans-serif;
   color-scheme: light;
+  text-rendering: optimizeLegibility;
 }
 
 body {
@@ -36,8 +55,8 @@ body {
 }
 
 :focus-visible {
-  outline: 3px solid var(--color-turf);
-  outline-offset: 3px;
+  outline: 2.5px solid var(--color-turf);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -55,9 +74,13 @@ body {
   }
 }
 
-/* Subtle yard-line stripes behind the app header. */
+/* Subtle press-box yard-line stripes on dark scoreboard surfaces. */
 @utility yard-lines {
-  background-image: repeating-linear-gradient(90deg, color-mix(in oklab, white 7%, transparent) 0 1px, transparent 1px 48px);
+  background-image: repeating-linear-gradient(
+    90deg,
+    color-mix(in oklab, white 4.5%, transparent) 0 1px,
+    transparent 1px 56px
+  );
 }
 
 html[data-tv] .app-chrome {

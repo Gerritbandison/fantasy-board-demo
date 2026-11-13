@@ -41,8 +41,11 @@ export function TeamSectionNav({ id }: { id: number }) {
   }, [active]);
 
   return (
-    <div className="sticky top-[calc(3.5rem+env(safe-area-inset-top))] z-20 -mr-[max(1rem,env(safe-area-inset-right))] -ml-[max(1rem,env(safe-area-inset-left))] bg-field/95 py-2 pr-[max(1rem,env(safe-area-inset-right))] pl-[max(1rem,env(safe-area-inset-left))] backdrop-blur-md">
-      <div ref={list} className="flex gap-1 overflow-x-auto rounded-full bg-white p-1 shadow-sm ring-1 ring-line [scrollbar-width:thin]">
+    <nav
+      aria-label="Team sections"
+      className="sticky top-[calc(3.75rem+env(safe-area-inset-top))] z-20 -mr-[max(1rem,env(safe-area-inset-right))] -ml-[max(1rem,env(safe-area-inset-left))] bg-field/95 py-2 pr-[max(1rem,env(safe-area-inset-right))] pl-[max(1rem,env(safe-area-inset-left))]"
+    >
+      <div ref={list} className="flex gap-1 overflow-x-auto rounded-xl bg-surface-muted p-1 shadow-xs ring-1 ring-line [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {TABS.map((tab) => {
           const on = tab.id === active;
           return (
@@ -52,8 +55,8 @@ export function TeamSectionNav({ id }: { id: number }) {
               data-tab={tab.id}
               aria-current={on ? "page" : undefined}
               className={cx(
-                "flex h-9 flex-1 shrink-0 items-center justify-center rounded-full px-3 text-sm font-semibold whitespace-nowrap transition-colors",
-                on ? "bg-navy text-white shadow-sm" : "text-slate-600 hover:bg-slate-100 hover:text-navy",
+                "flex h-9 flex-1 shrink-0 items-center justify-center rounded-lg px-3.5 text-sm font-semibold whitespace-nowrap transition-colors",
+                on ? "bg-navy text-white shadow-xs" : "text-slate-600 hover:bg-white/70 hover:text-navy",
               )}
             >
               {tab.label}
@@ -62,6 +65,6 @@ export function TeamSectionNav({ id }: { id: number }) {
           );
         })}
       </div>
-    </div>
+    </nav>
   );
 }

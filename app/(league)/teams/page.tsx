@@ -16,12 +16,19 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <PageHeader eyebrow={`${LEAGUE.size} teams · ${LEAGUE.season} season`} title="Teams">
-        <p className="mt-2 max-w-2xl text-[15px] leading-snug text-slate-600">Every franchise in Chicken, in standings order. Tap a team for its schedule, roster, moves, and history.</p>
-        <ProvisionalNote className="mt-2 text-sm font-semibold text-amber-800" />
-        <div className="mt-4">
-          <TeamsTabs active="teams" />
-        </div>
+      <PageHeader
+        eyebrow={`${LEAGUE.size} teams · ${LEAGUE.season} season`}
+        title="Teams"
+        action={<TeamsTabs active="teams" />}
+      >
+        <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-slate-600">
+          Every franchise in Chicken, in standings order. Open any franchise for its schedule, lineup, trade ledger, head-to-head series, and history.
+        </p>
+        {LEAGUE.provisionalLabel && (
+          <div className="mt-3">
+            <ProvisionalNote />
+          </div>
+        )}
         <FindNav />
       </PageHeader>
 
@@ -32,63 +39,92 @@ export default function HomePage() {
           const proj = m ? (m.left.teamId === t.id ? m.left.projected : m.right.projected) : undefined;
           const s = teamStats(t);
           return (
-            <Card key={t.id} as="li" accent={t.color} className="transition-shadow hover:shadow-md">
-              <Link href={teamPath(t.id)} className="block">
+            <Card
+              key={t.id}
+              as="li"
+              accent={t.color}
+              bodyClassName="flex h-full flex-col"
+              className="transition-all hover:shadow-[0_4px_14px_rgba(12,25,44,0.08)] hover:ring-line-strong"
+            >
+              <Link href={teamPath(t.id)} className="group flex flex-1 flex-col">
                 <div className="flex items-start gap-3">
                   <TeamAvatar teamId={t.id} size="lg" />
                   <div className="min-w-0 flex-1">
-                    <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">{ordinal(t.rank)} place</p>
-                    <p className="font-display text-xl leading-tight font-bold break-words text-navy">{t.name}</p>
-                    {t.owner && <p className="text-xs text-slate-600">{t.owner}</p>}
+                    <p className="font-display text-xs font-bold tracking-[0.1em] text-slate-500 uppercase">{ordinal(t.rank)} place</p>
+                    <p className="mt-0.5 font-display text-xl leading-tight font-bold break-words text-navy group-hover:underline">{t.name}</p>
+                    {t.owner && <p className="mt-0.5 text-xs font-medium text-slate-600">{t.owner}</p>}
                   </div>
                   {t.history.titles > 0 && (
-                    <span className="flex shrink-0 items-center gap-0.5 font-display text-lg font-bold text-gold-ink" title={`Titles: ${t.history.titleYears.join(", ")}`}>
-                      <Trophy className="size-4" aria-hidden />
-                      {t.history.titles > 1 ? `×${t.history.titles}` : ""}
-                    </span>
+                    <Pill tone="gold" className="shrink-0">
+                      <Trophy className="size-3" aria-hidden />
+                      <span title={`Titles: ${t.history.titleYears.join(", ")}`}>
+                        {t.history.titles > 1 ? `${t.history.titles}×` : t.history.titleYears[0]}
+                      </span>
+                    </Pill>
                   )}
                 </div>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  <Pill tone="navy">{formatRecord(t)}</Pill>
-                  <Pill>
-                    {t.pointsFor.toFixed(1)} PF · #{pfRank(t.id)}
-                  </Pill>
-                  <Pill tone="sky">Power #{powerRank(t.id)}</Pill>
-                  <LuckBadge row={luck(t.id)} />
-                </div>
-                <div className="mt-3 flex items-center justify-between gap-3 border-t border-line pt-3">
-                  <div className="min-w-0 text-xs text-slate-600">
-                    {oppId != null && m && (
-                      <p className="break-words">
-                        Wk {LEAGUE.week} vs <span className="font-semibold text-slate-700">{team(oppId).name}</span>
-                        {m.state !== "projected" ? (
-                          <>
-                            {" "}
-                            · {formatPoints(m.left.teamId === t.id ? (m.left.points ?? 0) : (m.right.points ?? 0))}
-                            {proj != null && <> [{proj.toFixed(1)}]</>}
-                          </>
-                        ) : (
-                          proj != null && <> · proj {proj.toFixed(1)}</>
-                        )}
-                      </p>
-                    )}
-                    <p>
-                      Avg {s.avg.toFixed(1)} · last 3 {s.last3.toFixed(1)}
+
+                <div className="mt-3.5 grid grid-cols-3 gap-2 rounded-xl bg-surface-subtle p-2.5 ring-1 ring-line/80">
+                  <div>
+                    <p className="text-[10px] font-bold tracking-wider text-slate-500 uppercase">Record</p>
+                    <p className="font-display text-lg leading-tight font-extrabold text-navy tabular-nums">{formatRecord(t)}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold tracking-wider text-slate-500 uppercase">Points</p>
+                    <p className="font-display text-lg leading-tight font-bold text-navy tabular-nums">
+                      {t.pointsFor.toFixed(0)} <span className="font-sans text-[11px] font-semibold text-slate-500">#{pfRank(t.id)}</span>
                     </p>
                   </div>
-                  <MiniTrail team={t} />
+                  <div>
+                    <p className="text-[10px] font-bold tracking-wider text-slate-500 uppercase">Power</p>
+                    <p className="font-display text-lg leading-tight font-bold text-navy tabular-nums">#{powerRank(t.id)}</p>
+                  </div>
+                </div>
+
+                <div className="mt-2.5 flex items-center justify-between gap-2">
+                  <LuckBadge row={luck(t.id)} />
+                  <span className="text-xs font-medium text-slate-600 tabular-nums">
+                    Avg {s.avg.toFixed(1)} · L3 {s.last3.toFixed(1)}
+                  </span>
+                </div>
+
+                <div className="mt-auto pt-3">
+                  <div className="flex items-center justify-between gap-3 border-t border-line pt-3">
+                    <div className="min-w-0 text-xs text-slate-600">
+                      {oppId != null && m && (
+                        <p className="leading-snug break-words">
+                          <span className="font-bold tracking-wide text-slate-500 uppercase">Wk {LEAGUE.week}</span> vs{" "}
+                          <span className="font-semibold text-navy">{team(oppId).name}</span>
+                          {m.state !== "projected" ? (
+                            <span className="block font-semibold text-slate-700 tabular-nums">
+                              {formatPoints(m.left.teamId === t.id ? (m.left.points ?? 0) : (m.right.points ?? 0))}
+                              {proj != null && <span className="font-normal text-slate-500"> [{proj.toFixed(1)}]</span>}
+                            </span>
+                          ) : (
+                            proj != null && <span className="block tabular-nums">proj {proj.toFixed(1)}</span>
+                          )}
+                        </p>
+                      )}
+                    </div>
+                    <MiniTrail team={t} />
+                  </div>
                 </div>
               </Link>
+
               {t.isUser && (
-                <Link href="/playoffs" className="mt-3 inline-flex h-11 items-center border-t border-line pt-3 text-sm font-semibold text-turf hover:underline">
-                  Playoff simulator →
+                <Link
+                  href="/playoffs"
+                  className="mt-3 flex h-9 items-center justify-between rounded-lg bg-turf-light/70 px-3 text-xs font-bold tracking-wide text-turf-dark uppercase ring-1 ring-turf-border transition-colors hover:bg-turf-light"
+                >
+                  <span>Playoff simulator</span>
+                  <span aria-hidden>→</span>
                 </Link>
               )}
             </Card>
           );
         })}
       </ul>
-      <p className="text-xs text-slate-600">Dashed line in each trend: the weekly league average.</p>
+      <p className="text-xs text-slate-600">Dashed line in each sparkline marks the weekly league scoring average.</p>
     </>
   );
 }
