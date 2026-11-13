@@ -39,9 +39,9 @@ test("the remaining path skips counted week 8 and ends at 9-5", () => {
   const chance = winOutChance(model, 0);
   const at = (wins: number) => base.byWins.find((row) => row.wins === wins);
 
-  // Thursday's model is about 34.8%. After Monday night, with every Week 9 projection equal to the live score, the same runs are about 50.3% and the path starts at about 50.1%.
-  assert.ok(base.focusOdds > 0.28 && base.focusOdds < 0.55, `baseline ${base.focusOdds}`);
-  assert.ok(path[0].odds > 0.28 && path[0].odds < 0.55, `path start ${path[0].odds}`);
+  // Thursday of Week 9 was about 34.8%. After Monday night, with every Week 9 projection equal to the live score, the same runs are about 50.3% and the path starts at about 50.1%. Thursday of Week 10, with the live score in the noise, is about 54.5% and the path starts at about 56.0%.
+  assert.ok(base.focusOdds > 0.28 && base.focusOdds < 0.62, `baseline ${base.focusOdds}`);
+  assert.ok(path[0].odds > 0.28 && path[0].odds < 0.62, `path start ${path[0].odds}`);
   assert.equal(path[0].week, null);
   assert.equal(path[0].wins, 3);
   assert.equal(path[0].losses, 5);
@@ -53,8 +53,8 @@ test("the remaining path skips counted week 8 and ends at 9-5", () => {
   assert.equal(path.at(-1)!.wins, 9);
   assert.equal(path.at(-1)!.losses, 5);
   assert.equal(path.length, 7);
-  // Thursday's partial Week 9 was about 5.8%. After the Sunday slate, with Monday still out, it is about 9.7%.
-  assert.ok(chance > 0.035 && chance < 0.11, `win-all ${chance}`);
+  // Thursday's partial Week 9 was about 5.8%. After the Sunday slate, with Monday still out, it is about 9.7%. Thursday of Week 10 is about 11.1%.
+  assert.ok(chance > 0.035 && chance < 0.14, `win-all ${chance}`);
 
   const eight = at(8);
   const seven = at(7);
