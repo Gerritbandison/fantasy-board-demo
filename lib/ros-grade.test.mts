@@ -5,6 +5,7 @@ import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 import type { SimModel } from "./playoff-sim.ts";
 import { buildRosterGrade, type ByeFile, type GradePlayer, type RosterPlayer, type RosterReport } from "./ros-grade.ts";
+import { rosterOutlookFor } from "./ros.ts";
 
 const dir = dirname(fileURLToPath(import.meta.url));
 const read = (name: string) => JSON.parse(readFileSync(join(dir, "../data", name), "utf8"));
@@ -407,4 +408,35 @@ test("moving a starter to the bench and dropping the defense still grades the re
   assert.ok(Math.abs((moved.ppg ?? 0) - total / vals.length) < 1e-9);
   assert.match(rb.reason, new RegExp(`on bye in Week ${model.currentWeek}`));
   assert.ok(report.suggestions.some((line) => line.includes(starter.name) && line.includes(`Week ${model.currentWeek}`)));
+});
+
+test("rosterOutlookFor grades all 10 teams with distinct ROS ranks and team-scoped schedules", () => {
+  const model = read("playoff-model.json") as SimModel;
+  const teamIds = model.teams.map((t) => t.id);
+  assert.equal(teamIds.length, 10);
+
+  const ranks = new Set<number>();
+  for (const id of teamIds) {
+    const report = rosterOutlookFor(id);
+    assert.ok(report, `missing report for team ${id}`);
+    assert.ok(report.rank >= 1 && report.rank <= 10, `invalid rank ${report.rank} for team ${id}`);
+    ranks.add(report.rank);
+    assert.notEqual(report.letter, "—");
+    assert.ok(report.ppg != null && report.ppg > 80);
+    assert.ok(report.positions.length >= 5, `team ${id} positions ${report.positions.length}`);
+    assert.ok(report.weeks.length > 0, `team ${id} missing remaining weeks`);
+
+    for (const wk of report.weeks) {
+      assert.notEqual(wk.opponentId, id);
+      const game = model.games.find(
+        (g) => g.week === wk.week && ((g.homeId === id && g.awayId === wk.opponentId) || (g.awayId === id && g.homeId === wk.opponentId)),
+      );
+      assert.ok(game, `team ${id} week ${wk.week} opponent ${wk.opponentId} not found in model`);
+      assert.equal(wk.home, game.homeId === id);
+      assert.equal(wk.proj, game.homeId === id ? game.homeProj : game.awayProj);
+      assert.equal(wk.oppProj, game.homeId === id ? game.awayProj : game.homeProj);
+      assert.ok(wk.winProb > 0 && wk.winProb < 1);
+    }
+  }
+  assert.equal(ranks.size, 10);
 });

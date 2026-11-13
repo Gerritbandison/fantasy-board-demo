@@ -7,6 +7,7 @@ import { TeamsTabs } from "@/components/league/TeamsTabs";
 import { FindNav } from "@/components/league/FindNav";
 import { ProvisionalNote } from "@/components/league/ProvisionalNote";
 import { formatPoints, formatRecord, LEAGUE, matchupFor, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
+import { rosterOutlookFor } from "@/lib/ros";
 import { luck, pfRank, powerRank, teamStats } from "@/lib/stats";
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function HomePage() {
           const oppId = m ? (m.left.teamId === t.id ? m.right.teamId : m.left.teamId) : undefined;
           const proj = m ? (m.left.teamId === t.id ? m.left.projected : m.right.projected) : undefined;
           const s = teamStats(t);
+          const ros = rosterOutlookFor(t.id);
           return (
             <Card
               key={t.id}
@@ -82,8 +84,25 @@ export default function HomePage() {
                 </div>
 
                 <div className="mt-2.5 flex items-center justify-between gap-2">
-                  <LuckBadge row={luck(t.id)} />
-                  <span className="text-xs font-medium text-slate-600 tabular-nums">
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    <LuckBadge row={luck(t.id)} />
+                    {ros && ros.letter !== "—" && (
+                      <Pill
+                        tone={
+                          ros.letter.startsWith("A")
+                            ? "turf"
+                            : ros.letter.startsWith("B")
+                              ? "sky"
+                              : ros.letter.startsWith("C")
+                                ? "gold"
+                                : "loss"
+                        }
+                      >
+                        ROS {ros.letter}
+                      </Pill>
+                    )}
+                  </div>
+                  <span className="shrink-0 text-xs font-medium text-slate-600 tabular-nums">
                     Avg {s.avg.toFixed(1)} · L3 {s.last3.toFixed(1)}
                   </span>
                 </div>

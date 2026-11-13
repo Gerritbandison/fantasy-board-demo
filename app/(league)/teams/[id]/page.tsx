@@ -157,7 +157,7 @@ export default async function TeamPage({ params }: PageProps<"/teams/[id]">) {
             </p>
           </Card>
 
-          {t.isUser && <RosterOutlook />}
+          <RosterOutlook teamId={t.id} />
 
           <Card title="Season results" bodyClassName="p-0 sm:p-0" className="overflow-hidden">
             <table className="w-full table-fixed text-sm">
