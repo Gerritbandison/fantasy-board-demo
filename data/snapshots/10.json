@@ -1,6 +1,6 @@
 {
   "week": 10,
-  "asOf": "2026-11-11T10:14:00-05:00",
+  "asOf": "2026-11-13T00:10:00-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,43 +11,43 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.9703,
+      "playoffOdds": 0.9771,
       "powerRank": 2
     },
     {
-      "teamId": 2,
+      "teamId": 7,
       "projectedRank": 3,
-      "playoffOdds": 0.473,
-      "powerRank": 4
+      "playoffOdds": 0.5436,
+      "powerRank": 5
     },
     {
       "teamId": 5,
       "projectedRank": 4,
-      "playoffOdds": 0.4453,
+      "playoffOdds": 0.4309,
       "powerRank": 3
     },
     {
       "teamId": 8,
       "projectedRank": 5,
-      "playoffOdds": 0.3974,
+      "playoffOdds": 0.3858,
       "powerRank": 10
     },
     {
-      "teamId": 7,
+      "teamId": 2,
       "projectedRank": 6,
-      "playoffOdds": 0.3941,
-      "powerRank": 5
+      "playoffOdds": 0.4041,
+      "powerRank": 4
     },
     {
       "teamId": 4,
       "projectedRank": 7,
-      "playoffOdds": 0.2306,
+      "playoffOdds": 0.1246,
       "powerRank": 7
     },
     {
       "teamId": 10,
       "projectedRank": 8,
-      "playoffOdds": 0.0835,
+      "playoffOdds": 0.128,
       "powerRank": 6
     },
     {
@@ -339,6 +339,24 @@
     {
       "teamId": 1,
       "date": "2026-11-11",
+      "type": "add",
+      "added": [
+        "Jordan Mason (RB, MIN)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 1,
+      "date": "2026-11-11",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Seth McGowan (RB, IND)"
+      ]
+    },
+    {
+      "teamId": 1,
+      "date": "2026-11-11",
       "type": "waiver",
       "added": [
         "Tank Dell (WR, HOU)"
@@ -368,6 +386,28 @@
       "dropped": []
     },
     {
+      "teamId": 4,
+      "date": "2026-11-11",
+      "type": "add",
+      "added": [
+        "Kirk Cousins (QB, MIN)"
+      ],
+      "dropped": [
+        "Adonai Mitchell (WR, NYJ)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-11",
+      "type": "add",
+      "added": [
+        "Ravens D/ST (D/ST, BAL)"
+      ],
+      "dropped": [
+        "Giants D/ST (D/ST, NYG)"
+      ]
+    },
+    {
       "teamId": 7,
       "date": "2026-11-11",
       "type": "waiver",
@@ -375,6 +415,17 @@
         "Wan'Dale Robinson (WR, TEN)"
       ],
       "dropped": []
+    },
+    {
+      "teamId": 10,
+      "date": "2026-11-11",
+      "type": "add",
+      "added": [
+        "Audric Estime (RB, NO)"
+      ],
+      "dropped": [
+        "Roschon Johnson (RB, CHI)"
+      ]
     },
     {
       "teamId": 3,

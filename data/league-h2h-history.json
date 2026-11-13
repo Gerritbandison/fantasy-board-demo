@@ -5,8 +5,8 @@
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "scope": "all-time (2020–2026)",
-  "scopeLabel": "All-time: 2020 through 2026 week 9. Week 10 has not started and is not in this file.",
-  "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json; 2026 week 8 finals from matchups-w8 on 2026-11-04; 2026 week 9 finals from matchups-w9 on 2026-11-10",
+  "scopeLabel": "All-time: 2020 through 2026 week 9. Week 10 is in progress and is not in this file.",
+  "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json; 2026 week 8 finals from matchups-w8 on 2026-11-04; 2026 week 9 finals from matchups-w9 on 2026-11-10; 2026 week 10 was live on 2026-11-13 and is not included",
   "seasonsCovered": [
    2020,
    2021,
@@ -33,7 +33,7 @@
    "regularSeasonWeeks": {
     "2020": 13,
     "2021-2025": 14,
-    "2026": "weeks 1-9 final in this file; week 10 not started, not included"
+    "2026": "weeks 1-9 final in this file; week 10 in progress, not included"
    },
    "playoffs": "4-team winners bracket, two rounds. Semifinals are always two-week matchups (totals = sum of two weeks). Finals were two-week in 2020-2023 and single-week (week 17) in 2024-2025. Consolation ladders follow the same format. See each game scoringPeriods/twoWeekMatchup."
   },
@@ -45,7 +45,8 @@
    "Points per week (pointsPerWeek) averages every individual weekly score including each leg of two-week playoff matchups.",
    "2026 week 8 finals from matchups-w8 (2026-11-04) are included.",
    "No ties occurred in any game.",
-   "2026-11-05: Week 9 is in progress (Thursday scores only). Finals in this file still stop at week 8."
+   "2026-11-05: Week 9 is in progress (Thursday scores only). Finals in this file still stop at week 8.",
+   "2026-11-13: Week 10 is in progress (Thursday scores only). Finals in this file still stop at week 9."
   ],
   "championshipCheck": [
    {

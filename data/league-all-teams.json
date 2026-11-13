@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generatedAt": "2026-11-11T10:14:00-05:00",
+    "generatedAt": "2026-11-13T00:10:00-05:00",
     "source": "Flaim Fantasy (ESPN)",
     "leagueId": "12115010",
     "season": 2026,
@@ -19,16 +19,17 @@
       "2026-11-04: schedule.completed is weeks 1-8 final so the record book keeps week 8 after the scoreboard moves to week 9. schedule.week8 stays the final box. schedule.week9 is the current, not-started slate.",
       "2026-11-05T23:58:00-05:00. Thursday night pull. Week 9 is in progress and only Thursday games have scored. Live scores: Dimes McSorley 5.3 vs Easy Peasy Lemon Squeezy 31.68; Chewy's Warriors 0 vs Kabul FC 8.9; Bibi's Boys 13.58 vs Jahmyr I Go Again 0; Maye i give you a blowj0b 0 vs Smert Fellas 0; All Heart 0 vs Sandusky's Soldiers 0. Every week 9 winner is UNDECIDED. Wins, losses, points for, and points against stay at the week 8 finals. Rosters, injury tags, lineup slots, and complete week 8-9 adds, drops, and waivers match this pull. A pending trade proposal between Maye i give you a blowj0b and Kabul FC is not a completed trade and is not stored.",
       "2026-11-10T08:50:00-05:00. Tuesday pull. Week 9 is final: Maye i give you a blowj0b 129.06 def Smert Fellas 93.6; Easy Peasy Lemon Squeezy 120.44 def Dimes McSorley 100.8; Chewy's Warriors 110.32 def Kabul FC 101.28; Bibi's Boys 151.38 def Jahmyr I Go Again 104.32; All Heart 126.88 def Sandusky's Soldiers 120.44. Records, points, and weekly rows include those finals. Week 10 has not started (every score 0, winner UNDECIDED). schedule.completed includes week 9. schedule.week9 stays the final box. schedule.week10 is the current slate. Completed adds and drops through Nov 6 match this pull. The Nov 7 cancellation of the pending proposal between Maye i give you a blowj0b and Kabul FC is not a completed trade and is not stored.",
-      "2026-11-11T10:14:00-05:00. Wednesday post-waivers pull, about 10:14 AM ET. Week 10 has not started (Thursday kickoff is Nov 12). Every Week 10 score is 0 and every winner is UNDECIDED. Records, points for, points against, ranks, and weekly results through Week 9 are unchanged. Week 10 projections from this pull: Sandusky's Soldiers 104.15 vs Jahmyr I Go Again 131.05; Bibi's Boys 123.65 vs Kabul FC 111.02; Smert Fellas 102.4 vs Easy Peasy Lemon Squeezy 127.75; Maye i give you a blowj0b 121.4 vs All Heart 123.3; Chewy's Warriors 133.53 vs Dimes McSorley 115.1. Completed Week 10 moves: Chewy's Warriors dropped Malik Willis (QB, MIA) on Nov 10 and added Corey Kiner (RB, NE); Bibi's Boys added Tank Dell (WR, HOU) and dropped Brian Thomas Jr. (WR, JAX); Jahmyr I Go Again added Chris Boswell (K, PIT) and dropped Cairo Santos (K, CHI); Maye i give you a blowj0b added Wan'Dale Robinson (WR, TEN) and moved Josh Jacobs (RB, GB) from the bench to IR. Dimes McSorley benched 49ers D/ST, started Commanders D/ST, moved George Pickens to FLEX, and moved Garrett Wilson to WR. Injury tags that changed: Treylon Burks, David Montgomery, A.J. Brown, Deebo Samuel Sr., George Pickens, Garrett Wilson, Carnell Tate, and Mike Evans from Out to Questionable; Rhamondre Stevenson from Questionable to Doubtful; Michael Wilson from Out to IR while still in the FLEX slot. Failed, canceled, and pending claims are not stored. No trades. Waiver priority in the standings pull: Smert Fellas 1, Kabul FC 2, Sandusky's Soldiers 3, Easy Peasy Lemon Squeezy 4, Dimes McSorley 5, All Heart 6, Maye i give you a blowj0b 7, Jahmyr I Go Again 8, Chewy's Warriors 9, Bibi's Boys 10. Bye weeks were kept from the previous file when the player was already in it. New players have no bye in this pull. Roster NFL teams in this pull: Keenan Allen SF, Josh Downs KC. Brandon Aiyuk and Tyreek Hill have no Week 10 projection in the player detail, so that field is left off."
+      "2026-11-11T10:14:00-05:00. Wednesday post-waivers pull, about 10:14 AM ET. Week 10 has not started (Thursday kickoff is Nov 12). Every Week 10 score is 0 and every winner is UNDECIDED. Records, points for, points against, ranks, and weekly results through Week 9 are unchanged. Week 10 projections from this pull: Sandusky's Soldiers 104.15 vs Jahmyr I Go Again 131.05; Bibi's Boys 123.65 vs Kabul FC 111.02; Smert Fellas 102.4 vs Easy Peasy Lemon Squeezy 127.75; Maye i give you a blowj0b 121.4 vs All Heart 123.3; Chewy's Warriors 133.53 vs Dimes McSorley 115.1. Completed Week 10 moves: Chewy's Warriors dropped Malik Willis (QB, MIA) on Nov 10 and added Corey Kiner (RB, NE); Bibi's Boys added Tank Dell (WR, HOU) and dropped Brian Thomas Jr. (WR, JAX); Jahmyr I Go Again added Chris Boswell (K, PIT) and dropped Cairo Santos (K, CHI); Maye i give you a blowj0b added Wan'Dale Robinson (WR, TEN) and moved Josh Jacobs (RB, GB) from the bench to IR. Dimes McSorley benched 49ers D/ST, started Commanders D/ST, moved George Pickens to FLEX, and moved Garrett Wilson to WR. Injury tags that changed: Treylon Burks, David Montgomery, A.J. Brown, Deebo Samuel Sr., George Pickens, Garrett Wilson, Carnell Tate, and Mike Evans from Out to Questionable; Rhamondre Stevenson from Questionable to Doubtful; Michael Wilson from Out to IR while still in the FLEX slot. Failed, canceled, and pending claims are not stored. No trades. Waiver priority in the standings pull: Smert Fellas 1, Kabul FC 2, Sandusky's Soldiers 3, Easy Peasy Lemon Squeezy 4, Dimes McSorley 5, All Heart 6, Maye i give you a blowj0b 7, Jahmyr I Go Again 8, Chewy's Warriors 9, Bibi's Boys 10. Bye weeks were kept from the previous file when the player was already in it. New players have no bye in this pull. Roster NFL teams in this pull: Keenan Allen SF, Josh Downs KC. Brandon Aiyuk and Tyreek Hill have no Week 10 projection in the player detail, so that field is left off.",
+      "2026-11-13T00:10:00-05:00. Thursday night pull, about 12:10 AM ET. Week 10 is in progress and only Thursday games have scored. Live scores: Sandusky's Soldiers 0 vs Jahmyr I Go Again 0; Bibi's Boys 0 vs Kabul FC 2; Smert Fellas 7.4 vs Easy Peasy Lemon Squeezy 0; Maye i give you a blowj0b 54.9 vs All Heart 6.2; Chewy's Warriors 0 vs Dimes McSorley 4. Every Week 10 winner is UNDECIDED. Wins, losses, points for, points against, ranks, and weekly results stay at the Week 9 finals. Week 10 projections from this pull: Sandusky's Soldiers 123.84 vs Jahmyr I Go Again 131.06; Bibi's Boys 128.32 vs Kabul FC 116.27; Smert Fellas 103.83 vs Easy Peasy Lemon Squeezy 127.24; Maye i give you a blowj0b 150.21 vs All Heart 120.22; Chewy's Warriors 133.49 vs Dimes McSorley 112.08. Thursday points on the scoreboard: Isaiah Likely 27.7 and Cam Skattebo 27.2 for Maye i give you a blowj0b; Malik Nabers 7.4 for Smert Fellas; Rachaad White 6.2 for All Heart; Commanders D/ST 4 for Dimes McSorley; Dominic Zvada 2 for Kabul FC. Completed moves since the Nov 11 pull: Bibi's Boys added Jordan Mason (RB, MIN) and dropped Seth McGowan (RB, IND), and moved Alvin Kamara (RB, NO) into the RB slot McGowan left; All Heart added Kirk Cousins (QB, MIN) and dropped Adonai Mitchell (WR, NYJ), added Ravens D/ST (D/ST, BAL) and dropped Giants D/ST (D/ST, NYG), benched Travis Kelce and Jameson Williams, and started T.J. Hockenson, Rachaad White, and Chase Brown at FLEX; Sandusky's Soldiers added Audric Estime (RB, NO) at FLEX and dropped Roschon Johnson (RB, CHI), benched Colston Loveland and Michael Wilson, and started Tucker Kraft. Other starter swaps: Smert Fellas benched D'Andre Swift, started Woody Marks at RB, and started KC Concepcion at FLEX; Maye i give you a blowj0b started Cam Skattebo and A.J. Brown and benched Tony Pollard and Denzel Boston; Dimes McSorley started Deebo Samuel Sr. and benched George Pickens; Kabul FC started Bhayshul Tuten at RB, Jakobi Meyers at WR, Ashton Jeanty at FLEX, and Dominic Zvada at K, and benched Jaylen Waddle and Cameron Dicker. Injury tags that changed: Amon-Ra St. Brown, Marvin Harrison Jr., T.J. Hockenson, Hunter Henry, Dalton Kincaid, Woody Marks, Harold Fannin Jr., Tony Pollard, Denzel Boston, Bhayshul Tuten, and Jakobi Meyers to Questionable; Rhamondre Stevenson from Doubtful to Questionable; Treylon Burks, Patrick Mahomes, and Xavier Worthy cleared; Cam Skattebo from Out to active and into the lineup; Puka Nacua from Doubtful to IR, still on the bench. Failed, canceled, and pending claims are not stored. No trades. ESPN currentProjectedRank moved Easy Peasy Lemon Squeezy from 7 to 6 and Sandusky's Soldiers from 6 to 7. Bye weeks were kept from the previous file when the player was already in it. New players have no bye in this pull. Brandon Aiyuk and Tyreek Hill have no Week 10 projection in the player detail, so that field is left off."
     ],
     "displayPolicy": "Team 7 shows its ESPN name and ESPN abbreviation. Other teams use their clean display names.",
-    "updatedAt": "2026-11-11T10:14:00-05:00",
-    "pulledAt": "2026-11-11T10:14:00-05:00",
+    "updatedAt": "2026-11-13T00:10:00-05:00",
+    "pulledAt": "2026-11-13T00:10:00-05:00",
     "weekInProgress": {
       "week": 10,
       "final": false,
-      "label": "Week 10 not started",
-      "asOf": "2026-11-11T10:14:00-05:00"
+      "label": "Week 10 in progress",
+      "asOf": "2026-11-13T00:10:00-05:00"
     }
   },
   "league": {
@@ -1322,61 +1323,61 @@
         "week": 10,
         "homeTeamId": 10,
         "awayTeamId": 2,
-        "homeProjected": 104.15,
-        "awayProjected": 131.05,
-        "homeCurrentPoints": 0,
-        "awayCurrentPoints": 0,
+        "homeProjected": 123.84,
+        "awayProjected": 131.06,
+        "homeCurrentPoints": 0.0,
+        "awayCurrentPoints": 0.0,
         "winner": "UNDECIDED",
         "margin": null,
-        "status": "not-started"
+        "status": "in-progress"
       },
       {
         "week": 10,
         "homeTeamId": 1,
         "awayTeamId": 11,
-        "homeProjected": 123.65,
-        "awayProjected": 111.02,
-        "homeCurrentPoints": 0,
-        "awayCurrentPoints": 0,
+        "homeProjected": 128.32,
+        "awayProjected": 116.27,
+        "homeCurrentPoints": 0.0,
+        "awayCurrentPoints": 2.0,
         "winner": "UNDECIDED",
         "margin": null,
-        "status": "not-started"
+        "status": "in-progress"
       },
       {
         "week": 10,
         "homeTeamId": 6,
         "awayTeamId": 5,
-        "homeProjected": 102.4,
-        "awayProjected": 127.75,
-        "homeCurrentPoints": 0,
-        "awayCurrentPoints": 0,
+        "homeProjected": 103.83,
+        "awayProjected": 127.24,
+        "homeCurrentPoints": 7.4,
+        "awayCurrentPoints": 0.0,
         "winner": "UNDECIDED",
         "margin": null,
-        "status": "not-started"
+        "status": "in-progress"
       },
       {
         "week": 10,
         "homeTeamId": 7,
         "awayTeamId": 4,
-        "homeProjected": 121.4,
-        "awayProjected": 123.3,
-        "homeCurrentPoints": 0,
-        "awayCurrentPoints": 0,
+        "homeProjected": 150.21,
+        "awayProjected": 120.22,
+        "homeCurrentPoints": 54.9,
+        "awayCurrentPoints": 6.2,
         "winner": "UNDECIDED",
         "margin": null,
-        "status": "not-started"
+        "status": "in-progress"
       },
       {
         "week": 10,
         "homeTeamId": 3,
         "awayTeamId": 8,
-        "homeProjected": 133.53,
-        "awayProjected": 115.1,
-        "homeCurrentPoints": 0,
-        "awayCurrentPoints": 0,
+        "homeProjected": 133.49,
+        "awayProjected": 112.08,
+        "homeCurrentPoints": 0.0,
+        "awayCurrentPoints": 4.0,
         "winner": "UNDECIDED",
         "margin": null,
-        "status": "not-started"
+        "status": "in-progress"
       }
     ]
   },
@@ -1471,8 +1472,8 @@
     "date_bounds_kind": "unavailable",
     "timezone": "America/New_York",
     "returned_rows": 64,
-    "stored_complete_add_drop_waiver": 51,
-    "note": "Complete add, drop, and waiver rows. Weeks 9 and 10 are the Nov 11 default-window pull (64 rows, including failed, canceled, and pending, which are not stored). Week 9 labels match that pull: Keenan Allen is WR, SF; Kendre Miller is RB, FA; Kirk Cousins is QB, MIN. The extra Nov 4 row that dropped Kendre Miller (RB, NO) is not in this pull and is not stored. Week 8 rows stay from the Nov 10 file because this pull does not include week 8. No completed trade."
+    "stored_complete_add_drop_waiver": 56,
+    "note": "Complete add, drop, and waiver rows. Weeks 9 and 10 are the Nov 11 default-window pull (64 rows, including failed, canceled, and pending, which are not stored). Week 9 labels match that pull: Keenan Allen is WR, SF; Kendre Miller is RB, FA; Kirk Cousins is QB, MIN. The extra Nov 4 row that dropped Kendre Miller (RB, NO) is not in this pull and is not stored. Week 8 rows stay from the Nov 10 file because this pull does not include week 8. No completed trade. The Nov 13 week-10 pull returned 18 rows. Five new complete moves since Nov 11 are stored: Bibi's Boys added Jordan Mason (RB, MIN) and dropped Seth McGowan (RB, IND); All Heart added Kirk Cousins (QB, MIN), dropping Adonai Mitchell (WR, NYJ), and added Ravens D/ST (D/ST, BAL), dropping Giants D/ST (D/ST, NYG); Sandusky's Soldiers added Audric Estime (RB, NO), dropping Roschon Johnson (RB, CHI). Failed, canceled, and pending claims are not stored. No completed trade."
   },
   "teams": [
     {
@@ -1609,51 +1610,6 @@
       "roster": {
         "starters": [
           {
-            "name": "Ja'Marr Chase",
-            "position": "WR",
-            "nflTeam": "CIN",
-            "lineupSlot": "WR",
-            "injuryStatus": null,
-            "byeWeek": 6,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.91,
-            "keeperValueRound": 1,
-            "playerId": 4362628,
-            "percentStarted": 97.72,
-            "score": 0.0,
-            "projection": 22.92
-          },
-          {
-            "name": "Brock Bowers",
-            "position": "TE",
-            "nflTeam": "LV",
-            "lineupSlot": "TE",
-            "injuryStatus": null,
-            "byeWeek": 13,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.87,
-            "keeperValueRound": 2,
-            "playerId": 4432665,
-            "percentStarted": 97.66,
-            "score": 0.0,
-            "projection": 15.39
-          },
-          {
-            "name": "Amon-Ra St. Brown",
-            "position": "WR",
-            "nflTeam": "DET",
-            "lineupSlot": "WR",
-            "injuryStatus": null,
-            "byeWeek": 6,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.91,
-            "keeperValueRound": 3,
-            "playerId": 4374302,
-            "percentStarted": 96.78,
-            "score": 0.0,
-            "projection": 20.35
-          },
-          {
             "name": "Trevor Lawrence",
             "position": "QB",
             "nflTeam": "JAX",
@@ -1661,10 +1617,10 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 93.73,
+            "percentOwnedEspnWide": 94.53,
             "keeperValueRound": 0,
             "playerId": 4360310,
-            "percentStarted": 67.48,
+            "percentStarted": 70.94,
             "score": 0.0,
             "projection": 21.46
           },
@@ -1676,12 +1632,86 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 78.42,
+            "percentOwnedEspnWide": 83.86,
             "keeperValueRound": 12,
             "playerId": 4426385,
-            "percentStarted": 44.62,
-            "score": 0,
+            "percentStarted": 60.07,
+            "score": 0.0,
             "projection": 14.53
+          },
+          {
+            "name": "Alvin Kamara",
+            "position": "RB",
+            "nflTeam": "NO",
+            "lineupSlot": "RB",
+            "injuryStatus": null,
+            "byeWeek": 8,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 63.36,
+            "keeperValueRound": 4,
+            "playerId": 3054850,
+            "percentStarted": 27.92,
+            "score": 0.0,
+            "projection": 10.25
+          },
+          {
+            "name": "Ja'Marr Chase",
+            "position": "WR",
+            "nflTeam": "CIN",
+            "lineupSlot": "WR",
+            "injuryStatus": null,
+            "byeWeek": 6,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.92,
+            "keeperValueRound": 1,
+            "playerId": 4362628,
+            "percentStarted": 97.96,
+            "score": 0.0,
+            "projection": 22.92
+          },
+          {
+            "name": "Amon-Ra St. Brown",
+            "position": "WR",
+            "nflTeam": "DET",
+            "lineupSlot": "WR",
+            "injuryStatus": "Questionable",
+            "byeWeek": 6,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.91,
+            "keeperValueRound": 3,
+            "playerId": 4374302,
+            "percentStarted": 96.95,
+            "score": 0.0,
+            "projection": 20.35
+          },
+          {
+            "name": "Brock Bowers",
+            "position": "TE",
+            "nflTeam": "LV",
+            "lineupSlot": "TE",
+            "injuryStatus": null,
+            "byeWeek": 13,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.88,
+            "keeperValueRound": 2,
+            "playerId": 4432665,
+            "percentStarted": 97.61,
+            "score": 0.0,
+            "projection": 15.39
+          },
+          {
+            "name": "Keenan Allen",
+            "position": "WR",
+            "nflTeam": "SF",
+            "lineupSlot": "FLEX",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 51.7,
+            "keeperValueRound": 0,
+            "playerId": 15818,
+            "percentStarted": 20.96,
+            "score": 0.0,
+            "projection": 8.69
           },
           {
             "name": "Steelers D/ST",
@@ -1691,12 +1721,12 @@
             "injuryStatus": null,
             "byeWeek": 9,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 81.03,
+            "percentOwnedEspnWide": 81.49,
             "keeperValueRound": 0,
             "playerId": -16023,
-            "percentStarted": 36.45,
+            "percentStarted": 45.29,
             "score": 0.0,
-            "projection": 5.38
+            "projection": 5.32
           },
           {
             "name": "Will Reichard",
@@ -1706,41 +1736,12 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 90.38,
+            "percentOwnedEspnWide": 89.07,
             "keeperValueRound": 0,
             "playerId": 4567104,
-            "percentStarted": 83.25,
+            "percentStarted": 80.44,
             "score": 0.0,
             "projection": 9.41
-          },
-          {
-            "name": "Seth McGowan",
-            "position": "RB",
-            "nflTeam": "IND",
-            "lineupSlot": "RB",
-            "injuryStatus": null,
-            "byeWeek": 13,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 15.81,
-            "keeperValueRound": 0,
-            "playerId": 4686468,
-            "percentStarted": 1.79,
-            "score": 0.0,
-            "projection": 5.53
-          },
-          {
-            "name": "Keenan Allen",
-            "position": "WR",
-            "nflTeam": "SF",
-            "lineupSlot": "FLEX",
-            "injuryStatus": null,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 49.67,
-            "keeperValueRound": 0,
-            "playerId": 15818,
-            "percentStarted": 20.89,
-            "score": 0.0,
-            "projection": 8.69
           }
         ],
         "bench": [
@@ -1752,12 +1753,12 @@
             "injuryStatus": "Questionable",
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 93.45,
+            "percentOwnedEspnWide": 93.36,
             "keeperValueRound": 0,
             "playerId": 4685278,
-            "percentStarted": 36.32,
+            "percentStarted": 15.18,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Jayden Daniels",
@@ -1767,27 +1768,12 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 94.95,
+            "percentOwnedEspnWide": 94.88,
             "keeperValueRound": 4,
             "playerId": 4426348,
-            "percentStarted": 66,
-            "score": 0.0,
-            "projection": 18.66
-          },
-          {
-            "name": "Alvin Kamara",
-            "position": "RB",
-            "nflTeam": "NO",
-            "lineupSlot": "Bench",
-            "injuryStatus": null,
-            "byeWeek": 8,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 62.87,
-            "keeperValueRound": 4,
-            "playerId": 3054850,
-            "percentStarted": 26.84,
-            "score": 0.0,
-            "projection": 10.25
+            "percentStarted": 64.8,
+            "score": 20.76,
+            "projection": 17.67
           },
           {
             "name": "Jonah Coleman",
@@ -1797,12 +1783,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 82.07,
+            "percentOwnedEspnWide": 81.76,
             "keeperValueRound": 0,
             "playerId": 4702555,
-            "percentStarted": 22.57,
+            "percentStarted": 5.83,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Bears D/ST",
@@ -1811,12 +1797,12 @@
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 54.08,
+            "percentOwnedEspnWide": 44.01,
             "keeperValueRound": 0,
             "playerId": -16003,
-            "percentStarted": 34.48,
+            "percentStarted": 11.18,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Devin Singletary",
@@ -1825,12 +1811,12 @@
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 34.62,
+            "percentOwnedEspnWide": 28.22,
             "keeperValueRound": 0,
             "playerId": 4040761,
-            "percentStarted": 16.53,
-            "score": 0.0,
-            "projection": 7.45
+            "percentStarted": 8.95,
+            "score": 0.3,
+            "projection": 7.38
           },
           {
             "name": "Tank Dell",
@@ -1839,12 +1825,26 @@
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 46,
+            "percentOwnedEspnWide": 55.17,
             "keeperValueRound": 0,
             "playerId": 4366031,
-            "percentStarted": 9.12,
+            "percentStarted": 16.12,
             "score": 0.0,
             "projection": 8.39
+          },
+          {
+            "name": "Jordan Mason",
+            "position": "RB",
+            "nflTeam": "MIN",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 57.12,
+            "keeperValueRound": 0,
+            "playerId": 4360569,
+            "percentStarted": 15.27,
+            "score": 0.0,
+            "projection": 9.15
           }
         ],
         "ir": [
@@ -1856,16 +1856,36 @@
             "injuryStatus": "IR",
             "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 81.03,
+            "percentOwnedEspnWide": 80.67,
             "keeperValueRound": 11,
             "playerId": 4239996,
-            "percentStarted": 8.53,
+            "percentStarted": 8.51,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           }
         ]
       },
       "recentTransactions": [
+        {
+          "date": "2026-11-11",
+          "week": 10,
+          "type": "add",
+          "added": [
+            "Jordan Mason (RB, MIN)"
+          ],
+          "dropped": [],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-11-11",
+          "week": 10,
+          "type": "drop",
+          "added": [],
+          "dropped": [
+            "Seth McGowan (RB, IND)"
+          ],
+          "faabBid": 0
+        },
         {
           "date": "2026-11-11",
           "week": 10,
@@ -2076,12 +2096,12 @@
       "week10": {
         "opponentTeamId": 11,
         "homeAway": "home",
-        "projected": 123.65,
-        "opponentProjected": 111.02,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 128.32,
+        "opponentProjected": 116.27,
+        "currentPoints": 0.0,
+        "status": "in-progress",
+        "opponentCurrentPoints": 2.0,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -2218,6 +2238,21 @@
       "roster": {
         "starters": [
           {
+            "name": "Matthew Stafford",
+            "position": "QB",
+            "nflTeam": "LAR",
+            "lineupSlot": "QB",
+            "injuryStatus": null,
+            "byeWeek": 11,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 88.3,
+            "keeperValueRound": 0,
+            "playerId": 12483,
+            "percentStarted": 44.72,
+            "score": 0.0,
+            "projection": 16.98
+          },
+          {
             "name": "Jahmyr Gibbs",
             "position": "RB",
             "nflTeam": "DET",
@@ -2225,10 +2260,10 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.93,
+            "percentOwnedEspnWide": 99.94,
             "keeperValueRound": 1,
             "playerId": 4429795,
-            "percentStarted": 98.52,
+            "percentStarted": 98.69,
             "score": 0.0,
             "projection": 23.86
           },
@@ -2240,12 +2275,12 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.9,
+            "percentOwnedEspnWide": 99.91,
             "keeperValueRound": 2,
             "playerId": 4430807,
-            "percentStarted": 99.38,
+            "percentStarted": 99.39,
             "score": 0.0,
-            "projection": 18.63
+            "projection": 18.62
           },
           {
             "name": "Nico Collins",
@@ -2255,27 +2290,12 @@
             "injuryStatus": null,
             "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 98.84,
+            "percentOwnedEspnWide": 98.86,
             "keeperValueRound": 3,
             "playerId": 4258173,
-            "percentStarted": 78.83,
+            "percentStarted": 81.35,
             "score": 0.0,
             "projection": 13.17
-          },
-          {
-            "name": "Kyren Williams",
-            "position": "RB",
-            "nflTeam": "LAR",
-            "lineupSlot": "FLEX",
-            "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.55,
-            "keeperValueRound": 3,
-            "playerId": 4430737,
-            "percentStarted": 94.87,
-            "score": 0.0,
-            "projection": 18.65
           },
           {
             "name": "Ladd McConkey",
@@ -2285,12 +2305,12 @@
             "injuryStatus": "Questionable",
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 83.84,
+            "percentOwnedEspnWide": 82.61,
             "keeperValueRound": 4,
             "playerId": 4612826,
-            "percentStarted": 32.63,
+            "percentStarted": 27.83,
             "score": 0.0,
-            "projection": 10.43
+            "projection": 10.44
           },
           {
             "name": "Tyler Warren",
@@ -2300,27 +2320,27 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 96.37,
+            "percentOwnedEspnWide": 96.49,
             "keeperValueRound": 10,
             "playerId": 4431459,
-            "percentStarted": 76.28,
+            "percentStarted": 77.42,
             "score": 0.0,
-            "projection": 10.56
+            "projection": 10.59
           },
           {
-            "name": "Matthew Stafford",
-            "position": "QB",
+            "name": "Kyren Williams",
+            "position": "RB",
             "nflTeam": "LAR",
-            "lineupSlot": "QB",
+            "lineupSlot": "FLEX",
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 88.99,
-            "keeperValueRound": 0,
-            "playerId": 12483,
-            "percentStarted": 45.14,
+            "percentOwnedEspnWide": 99.57,
+            "keeperValueRound": 3,
+            "playerId": 4430737,
+            "percentStarted": 95.46,
             "score": 0.0,
-            "projection": 16.98
+            "projection": 18.63
           },
           {
             "name": "Rams D/ST",
@@ -2330,10 +2350,10 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 89.14,
+            "percentOwnedEspnWide": 93.87,
             "keeperValueRound": 0,
             "playerId": -16014,
-            "percentStarted": 77.34,
+            "percentStarted": 86.76,
             "score": 0.0,
             "projection": 8.26
           },
@@ -2344,10 +2364,10 @@
             "lineupSlot": "K",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 48.33,
+            "percentOwnedEspnWide": 56.81,
             "keeperValueRound": 0,
             "playerId": 17372,
-            "percentStarted": 23.88,
+            "percentStarted": 40.5,
             "score": 0.0,
             "projection": 10.5
           }
@@ -2361,12 +2381,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 84.36,
+            "percentOwnedEspnWide": 84.21,
             "keeperValueRound": 8,
             "playerId": 4431299,
-            "percentStarted": 21.9,
+            "percentStarted": 11.19,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "J.K. Dobbins",
@@ -2376,12 +2396,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 66.94,
+            "percentOwnedEspnWide": 63.69,
             "keeperValueRound": 9,
             "playerId": 4241985,
-            "percentStarted": 12.84,
+            "percentStarted": 6.85,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Tyler Shough",
@@ -2391,12 +2411,12 @@
             "injuryStatus": null,
             "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 67.19,
+            "percentOwnedEspnWide": 69.73,
             "keeperValueRound": 0,
             "playerId": 4360689,
-            "percentStarted": 23.16,
+            "percentStarted": 30.41,
             "score": 0.0,
-            "projection": 17.3
+            "projection": 17.35
           },
           {
             "name": "Josh Downs",
@@ -2406,25 +2426,25 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 68.15,
+            "percentOwnedEspnWide": 72.1,
             "keeperValueRound": 0,
             "playerId": 4688813,
-            "percentStarted": 15,
+            "percentStarted": 20.05,
             "score": 0.0,
-            "projection": 9.14
+            "projection": 9.16
           },
           {
             "name": "Marvin Harrison Jr.",
             "position": "WR",
             "nflTeam": "HOU",
             "lineupSlot": "Bench",
-            "injuryStatus": null,
+            "injuryStatus": "Questionable",
             "byeWeek": 8,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 60.89,
+            "percentOwnedEspnWide": 57.53,
             "keeperValueRound": 5,
             "playerId": 4432708,
-            "percentStarted": 7.51,
+            "percentStarted": 6.17,
             "score": 0.0,
             "projection": 5.98
           },
@@ -2433,14 +2453,14 @@
             "position": "WR",
             "nflTeam": "WSH",
             "lineupSlot": "Bench",
-            "injuryStatus": "Questionable",
+            "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 8.67,
+            "percentOwnedEspnWide": 8.12,
             "keeperValueRound": 0,
             "playerId": 4567156,
-            "percentStarted": 1.22,
-            "score": 0.0,
-            "projection": 9.28
+            "percentStarted": 1.31,
+            "score": 4.7,
+            "projection": 8.91
           },
           {
             "name": "Brandon Aiyuk",
@@ -2449,10 +2469,10 @@
             "lineupSlot": "Bench",
             "injuryStatus": "Out",
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 10.52,
+            "percentOwnedEspnWide": 9.41,
             "keeperValueRound": 0,
             "playerId": 4360438,
-            "percentStarted": 0.04,
+            "percentStarted": 0.03,
             "score": 0.0
           }
         ],
@@ -2465,12 +2485,12 @@
             "injuryStatus": "IR",
             "byeWeek": 13,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 46.52,
+            "percentOwnedEspnWide": 45.01,
             "keeperValueRound": 0,
             "playerId": 4360078,
-            "percentStarted": 0.55,
+            "percentStarted": 0.54,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           }
         ]
       },
@@ -2667,12 +2687,12 @@
       "week10": {
         "opponentTeamId": 10,
         "homeAway": "away",
-        "projected": 131.05,
-        "opponentProjected": 104.15,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 131.06,
+        "opponentProjected": 123.84,
+        "currentPoints": 0.0,
+        "status": "in-progress",
+        "opponentCurrentPoints": 0.0,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -2809,19 +2829,19 @@
       "roster": {
         "starters": [
           {
-            "name": "Jaxon Smith-Njigba",
-            "position": "WR",
-            "nflTeam": "SEA",
-            "lineupSlot": "WR",
+            "name": "C.J. Stroud",
+            "position": "QB",
+            "nflTeam": "HOU",
+            "lineupSlot": "QB",
             "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.91,
-            "keeperValueRound": 3,
-            "playerId": 4430878,
-            "percentStarted": 99.62,
+            "byeWeek": 8,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 79.26,
+            "keeperValueRound": 0,
+            "playerId": 4432577,
+            "percentStarted": 45.27,
             "score": 0.0,
-            "projection": 22.3
+            "projection": 18.28
           },
           {
             "name": "Kenneth Walker III",
@@ -2834,9 +2854,39 @@
             "percentOwnedEspnWide": 99.88,
             "keeperValueRound": 0,
             "playerId": 4567048,
-            "percentStarted": 98.28,
+            "percentStarted": 98.4,
             "score": 0.0,
-            "projection": 26.11
+            "projection": 26.13
+          },
+          {
+            "name": "Jaylen Warren",
+            "position": "RB",
+            "nflTeam": "PIT",
+            "lineupSlot": "RB",
+            "injuryStatus": null,
+            "byeWeek": 9,
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 96.63,
+            "keeperValueRound": 9,
+            "playerId": 4569987,
+            "percentStarted": 72.49,
+            "score": 0.0,
+            "projection": 15.55
+          },
+          {
+            "name": "Jaxon Smith-Njigba",
+            "position": "WR",
+            "nflTeam": "SEA",
+            "lineupSlot": "WR",
+            "injuryStatus": null,
+            "byeWeek": 11,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.92,
+            "keeperValueRound": 3,
+            "playerId": 4430878,
+            "percentStarted": 99.72,
+            "score": 0.0,
+            "projection": 22.3
           },
           {
             "name": "Tetairoa McMillan",
@@ -2846,10 +2896,10 @@
             "injuryStatus": null,
             "byeWeek": 5,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 98.46,
+            "percentOwnedEspnWide": 98.6,
             "keeperValueRound": 7,
             "playerId": 4685472,
-            "percentStarted": 84.85,
+            "percentStarted": 88.47,
             "score": 0.0,
             "projection": 16.06
           },
@@ -2861,57 +2911,12 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 96.41,
+            "percentOwnedEspnWide": 96.44,
             "keeperValueRound": 6,
             "playerId": 4430027,
-            "percentStarted": 79.37,
+            "percentStarted": 79.11,
             "score": 0.0,
             "projection": 11.44
-          },
-          {
-            "name": "Ka'imi Fairbairn",
-            "position": "K",
-            "nflTeam": "HOU",
-            "lineupSlot": "K",
-            "injuryStatus": null,
-            "byeWeek": 8,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 84.82,
-            "keeperValueRound": 0,
-            "playerId": 2971573,
-            "percentStarted": 67.13,
-            "score": 0.0,
-            "projection": 10.02
-          },
-          {
-            "name": "Jaylen Warren",
-            "position": "RB",
-            "nflTeam": "PIT",
-            "lineupSlot": "RB",
-            "injuryStatus": null,
-            "byeWeek": 9,
-            "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 96.34,
-            "keeperValueRound": 9,
-            "playerId": 4569987,
-            "percentStarted": 47.65,
-            "score": 0.0,
-            "projection": 15.55
-          },
-          {
-            "name": "Vikings D/ST",
-            "position": "D/ST",
-            "nflTeam": "MIN",
-            "lineupSlot": "D/ST",
-            "injuryStatus": null,
-            "byeWeek": 6,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 84.05,
-            "keeperValueRound": 0,
-            "playerId": -16016,
-            "percentStarted": 51.16,
-            "score": 0.0,
-            "projection": 5.19
           },
           {
             "name": "Jordyn Tyson",
@@ -2921,27 +2926,42 @@
             "injuryStatus": null,
             "byeWeek": 8,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 40.18,
+            "percentOwnedEspnWide": 41.75,
             "keeperValueRound": 0,
             "playerId": 4880281,
-            "percentStarted": 5.22,
+            "percentStarted": 7.56,
             "score": 0.0,
-            "projection": 8.58
+            "projection": 8.59
           },
           {
-            "name": "C.J. Stroud",
-            "position": "QB",
+            "name": "Vikings D/ST",
+            "position": "D/ST",
+            "nflTeam": "MIN",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "byeWeek": 6,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 84.99,
+            "keeperValueRound": 0,
+            "playerId": -16016,
+            "percentStarted": 53.61,
+            "score": 0.0,
+            "projection": 5.13
+          },
+          {
+            "name": "Ka'imi Fairbairn",
+            "position": "K",
             "nflTeam": "HOU",
-            "lineupSlot": "QB",
+            "lineupSlot": "K",
             "injuryStatus": null,
             "byeWeek": 8,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 75.53,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 86.7,
             "keeperValueRound": 0,
-            "playerId": 4432577,
-            "percentStarted": 35.97,
+            "playerId": 2971573,
+            "percentStarted": 71.92,
             "score": 0.0,
-            "projection": 18.28
+            "projection": 10.02
           }
         ],
         "bench": [
@@ -2953,12 +2973,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 93.09,
+            "percentOwnedEspnWide": 92.69,
             "keeperValueRound": 8,
             "playerId": 4567750,
-            "percentStarted": 25.08,
+            "percentStarted": 14.86,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Kyle Monangai",
@@ -2968,12 +2988,12 @@
             "injuryStatus": "Out",
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 72.71,
+            "percentOwnedEspnWide": 71.67,
             "keeperValueRound": 0,
             "playerId": 4608686,
-            "percentStarted": 1.94,
+            "percentStarted": 1.52,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Dallas Goedert",
@@ -2983,12 +3003,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 78.1,
+            "percentOwnedEspnWide": 75.85,
             "keeperValueRound": 12,
             "playerId": 3121023,
-            "percentStarted": 25.5,
+            "percentStarted": 12.53,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Emmett Johnson",
@@ -2998,12 +3018,12 @@
             "injuryStatus": null,
             "byeWeek": 5,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 23.17,
+            "percentOwnedEspnWide": 23.16,
             "keeperValueRound": 0,
             "playerId": 4832955,
-            "percentStarted": 4.47,
+            "percentStarted": 4.26,
             "score": 0.0,
-            "projection": 6.41
+            "projection": 6.43
           },
           {
             "name": "Braelon Allen",
@@ -3013,10 +3033,10 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 79.48,
+            "percentOwnedEspnWide": 76.94,
             "keeperValueRound": 0,
             "playerId": 4685247,
-            "percentStarted": 25.49,
+            "percentStarted": 21.23,
             "score": 0.0,
             "projection": 7.86
           },
@@ -3027,12 +3047,12 @@
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 81.79,
+            "percentOwnedEspnWide": 74.66,
             "keeperValueRound": 0,
             "playerId": -16007,
-            "percentStarted": 57.66,
+            "percentStarted": 30.26,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Corey Kiner",
@@ -3041,12 +3061,12 @@
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 27.9,
+            "percentOwnedEspnWide": 40.68,
             "keeperValueRound": 0,
             "playerId": 4431431,
-            "percentStarted": 9.63,
+            "percentStarted": 20.03,
             "score": 0.0,
-            "projection": 10.31
+            "projection": 6.55
           }
         ],
         "ir": [
@@ -3058,12 +3078,12 @@
             "injuryStatus": "IR",
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 28.26,
+            "percentOwnedEspnWide": 27.59,
             "keeperValueRound": 2,
             "playerId": 4429160,
-            "percentStarted": 10.28,
+            "percentStarted": 10.19,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           }
         ]
       },
@@ -3291,12 +3311,12 @@
       "week10": {
         "opponentTeamId": 8,
         "homeAway": "home",
-        "projected": 133.53,
-        "opponentProjected": 115.1,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 133.49,
+        "opponentProjected": 112.08,
+        "currentPoints": 0.0,
+        "status": "in-progress",
+        "opponentCurrentPoints": 4.0,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -3433,6 +3453,21 @@
       "roster": {
         "starters": [
           {
+            "name": "Patrick Mahomes",
+            "position": "QB",
+            "nflTeam": "KC",
+            "lineupSlot": "QB",
+            "injuryStatus": null,
+            "byeWeek": 5,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.1,
+            "keeperValueRound": 0,
+            "playerId": 3139477,
+            "percentStarted": 45.67,
+            "score": 0.0,
+            "projection": 17.52
+          },
+          {
             "name": "Christian McCaffrey",
             "position": "RB",
             "nflTeam": "SF",
@@ -3440,12 +3475,27 @@
             "injuryStatus": null,
             "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.9,
+            "percentOwnedEspnWide": 99.91,
             "keeperValueRound": 3,
             "playerId": 3117251,
-            "percentStarted": 93.8,
+            "percentStarted": 95.99,
             "score": 0.0,
             "projection": 21.75
+          },
+          {
+            "name": "Rachaad White",
+            "position": "RB",
+            "nflTeam": "WSH",
+            "lineupSlot": "RB",
+            "injuryStatus": null,
+            "byeWeek": 7,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 76.4,
+            "keeperValueRound": 14,
+            "playerId": 4697815,
+            "percentStarted": 36.21,
+            "score": 6.2,
+            "projection": 10.85
           },
           {
             "name": "Chris Olave",
@@ -3455,72 +3505,12 @@
             "injuryStatus": null,
             "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.36,
+            "percentOwnedEspnWide": 99.4,
             "keeperValueRound": 7,
             "playerId": 4361370,
-            "percentStarted": 83.79,
+            "percentStarted": 87.81,
             "score": 0.0,
-            "projection": 15.8
-          },
-          {
-            "name": "Travis Kelce",
-            "position": "TE",
-            "nflTeam": "KC",
-            "lineupSlot": "TE",
-            "injuryStatus": null,
-            "byeWeek": 5,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 92.88,
-            "keeperValueRound": 7,
-            "playerId": 15847,
-            "percentStarted": 63.73,
-            "score": 0.0,
-            "projection": 11.17
-          },
-          {
-            "name": "Brandon Aubrey",
-            "position": "K",
-            "nflTeam": "DAL",
-            "lineupSlot": "K",
-            "injuryStatus": null,
-            "byeWeek": 14,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 97.79,
-            "keeperValueRound": 0,
-            "playerId": 3953687,
-            "percentStarted": 95.02,
-            "score": 0.0,
-            "projection": 10.47
-          },
-          {
-            "name": "Patrick Mahomes",
-            "position": "QB",
-            "nflTeam": "KC",
-            "lineupSlot": "QB",
-            "injuryStatus": "Questionable",
-            "byeWeek": 5,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 92.29,
-            "keeperValueRound": 0,
-            "playerId": 3139477,
-            "percentStarted": 46.27,
-            "score": 0.0,
-            "projection": 17.53
-          },
-          {
-            "name": "Jameson Williams",
-            "position": "WR",
-            "nflTeam": "DET",
-            "lineupSlot": "FLEX",
-            "injuryStatus": null,
-            "byeWeek": 6,
-            "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 93.65,
-            "keeperValueRound": 7,
-            "playerId": 4426388,
-            "percentStarted": 69.29,
-            "score": 0.0,
-            "projection": 12.09
+            "projection": 15.81
           },
           {
             "name": "Christian Watson",
@@ -3530,44 +3520,89 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 97.39,
+            "percentOwnedEspnWide": 97.63,
             "keeperValueRound": 0,
             "playerId": 4248528,
-            "percentStarted": 82.38,
+            "percentStarted": 84.22,
             "score": 0.0,
             "projection": 15.7
+          },
+          {
+            "name": "T.J. Hockenson",
+            "position": "TE",
+            "nflTeam": "MIN",
+            "lineupSlot": "TE",
+            "injuryStatus": "Questionable",
+            "byeWeek": 6,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 82.19,
+            "keeperValueRound": 0,
+            "playerId": 4036133,
+            "percentStarted": 45.81,
+            "score": 0.0,
+            "projection": 11.53
           },
           {
             "name": "Chase Brown",
             "position": "RB",
             "nflTeam": "CIN",
-            "lineupSlot": "RB",
+            "lineupSlot": "FLEX",
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 98.74,
+            "percentOwnedEspnWide": 98.67,
             "keeperValueRound": 3,
             "playerId": 4362238,
-            "percentStarted": 86.34,
+            "percentStarted": 84.48,
             "score": 0.0,
             "projection": 13.53
           },
           {
-            "name": "Giants D/ST",
+            "name": "Ravens D/ST",
             "position": "D/ST",
-            "nflTeam": "NYG",
+            "nflTeam": "BAL",
             "lineupSlot": "D/ST",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 40.25,
+            "percentOwnedEspnWide": 80.38,
             "keeperValueRound": 0,
-            "playerId": -16019,
-            "percentStarted": 35.9,
+            "playerId": -16033,
+            "percentStarted": 72.11,
             "score": 0.0,
-            "projection": 5.27
+            "projection": 7.71
+          },
+          {
+            "name": "Brandon Aubrey",
+            "position": "K",
+            "nflTeam": "DAL",
+            "lineupSlot": "K",
+            "injuryStatus": null,
+            "byeWeek": 14,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 97.72,
+            "keeperValueRound": 0,
+            "playerId": 3953687,
+            "percentStarted": 94.66,
+            "score": 0.0,
+            "projection": 10.47
           }
         ],
         "bench": [
+          {
+            "name": "Travis Kelce",
+            "position": "TE",
+            "nflTeam": "KC",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "byeWeek": 5,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 93.57,
+            "keeperValueRound": 7,
+            "playerId": 15847,
+            "percentStarted": 69.91,
+            "score": 0.0,
+            "projection": 11.16
+          },
           {
             "name": "Jordan Addison",
             "position": "WR",
@@ -3576,27 +3611,27 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 73.02,
+            "percentOwnedEspnWide": 75.19,
             "keeperValueRound": 10,
             "playerId": 4429205,
-            "percentStarted": 26.85,
+            "percentStarted": 31.12,
             "score": 0.0,
             "projection": 10.67
           },
           {
-            "name": "T.J. Hockenson",
-            "position": "TE",
-            "nflTeam": "MIN",
+            "name": "Jameson Williams",
+            "position": "WR",
+            "nflTeam": "DET",
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "byeWeek": 6,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 81.27,
-            "keeperValueRound": 0,
-            "playerId": 4036133,
-            "percentStarted": 43.98,
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 93.83,
+            "keeperValueRound": 7,
+            "playerId": 4426388,
+            "percentStarted": 68.83,
             "score": 0.0,
-            "projection": 11.53
+            "projection": 12.09
           },
           {
             "name": "DK Metcalf",
@@ -3606,27 +3641,12 @@
             "injuryStatus": null,
             "byeWeek": 9,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 87.59,
+            "percentOwnedEspnWide": 88.13,
             "keeperValueRound": 5,
             "playerId": 4047650,
-            "percentStarted": 23.38,
+            "percentStarted": 37.06,
             "score": 0.0,
             "projection": 11.17
-          },
-          {
-            "name": "Rachaad White",
-            "position": "RB",
-            "nflTeam": "WSH",
-            "lineupSlot": "Bench",
-            "injuryStatus": null,
-            "byeWeek": 7,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 76.32,
-            "keeperValueRound": 14,
-            "playerId": 4697815,
-            "percentStarted": 35.74,
-            "score": 0.0,
-            "projection": 10.85
           },
           {
             "name": "DeMario Douglas",
@@ -3636,12 +3656,12 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 65.24,
+            "percentOwnedEspnWide": 71.72,
             "keeperValueRound": 0,
             "playerId": 4427095,
-            "percentStarted": 41.52,
+            "percentStarted": 50.26,
             "score": 0.0,
-            "projection": 12.01
+            "projection": 10.03
           },
           {
             "name": "Kaelon Black",
@@ -3650,31 +3670,55 @@
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 35.68,
+            "percentOwnedEspnWide": 35.25,
             "keeperValueRound": 0,
             "playerId": 4696044,
-            "percentStarted": 8.95,
+            "percentStarted": 8.1,
             "score": 0.0,
             "projection": 7.59
           },
           {
-            "name": "Adonai Mitchell",
-            "position": "WR",
-            "nflTeam": "NYJ",
+            "name": "Kirk Cousins",
+            "position": "QB",
+            "nflTeam": "MIN",
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 38.77,
+            "percentOwnedEspnWide": 63.83,
             "keeperValueRound": 0,
-            "playerId": 4597500,
-            "percentStarted": 16.29,
+            "playerId": 14880,
+            "percentStarted": 23.95,
             "score": 0.0,
-            "projection": 10.34
+            "projection": 12.98
           }
         ],
         "ir": []
       },
       "recentTransactions": [
+        {
+          "date": "2026-11-11",
+          "week": 10,
+          "type": "add",
+          "added": [
+            "Kirk Cousins (QB, MIN)"
+          ],
+          "dropped": [
+            "Adonai Mitchell (WR, NYJ)"
+          ],
+          "faabBid": 0
+        },
+        {
+          "date": "2026-11-11",
+          "week": 10,
+          "type": "add",
+          "added": [
+            "Ravens D/ST (D/ST, BAL)"
+          ],
+          "dropped": [
+            "Giants D/ST (D/ST, NYG)"
+          ],
+          "faabBid": 0
+        },
         {
           "date": "2026-11-06",
           "week": 9,
@@ -3884,12 +3928,12 @@
       "week10": {
         "opponentTeamId": 7,
         "homeAway": "away",
-        "projected": 123.3,
-        "opponentProjected": 121.4,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 120.22,
+        "opponentProjected": 150.21,
+        "currentPoints": 6.2,
+        "status": "in-progress",
+        "opponentCurrentPoints": 54.9,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -3912,7 +3956,7 @@
       "pointsAgainst": 1144,
       "rank": 6,
       "playoffSeed": 6,
-      "currentProjectedRank": 7,
+      "currentProjectedRank": 6,
       "draftDayProjectedRank": 7,
       "weekly": [
         {
@@ -4033,27 +4077,12 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.9,
+            "percentOwnedEspnWide": 99.92,
             "keeperValueRound": 1,
             "playerId": 3918298,
-            "percentStarted": 92.93,
+            "percentStarted": 95.66,
             "score": 0.0,
             "projection": 24.31
-          },
-          {
-            "name": "Drake London",
-            "position": "WR",
-            "nflTeam": "ATL",
-            "lineupSlot": "FLEX",
-            "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.55,
-            "keeperValueRound": 2,
-            "playerId": 4426502,
-            "percentStarted": 94.03,
-            "score": 0.0,
-            "projection": 14.82
           },
           {
             "name": "Derrick Henry",
@@ -4063,12 +4092,12 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.73,
+            "percentOwnedEspnWide": 99.75,
             "keeperValueRound": 3,
             "playerId": 3043078,
-            "percentStarted": 95.05,
-            "score": 0,
-            "projection": 18.18
+            "percentStarted": 96.52,
+            "score": 0.0,
+            "projection": 18.19
           },
           {
             "name": "Javonte Williams",
@@ -4081,9 +4110,9 @@
             "percentOwnedEspnWide": 99.44,
             "keeperValueRound": 11,
             "playerId": 4361579,
-            "percentStarted": 94.38,
+            "percentStarted": 93.39,
             "score": 0.0,
-            "projection": 14.83
+            "projection": 14.86
           },
           {
             "name": "Tee Higgins",
@@ -4093,10 +4122,10 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 98.41,
+            "percentOwnedEspnWide": 98.61,
             "keeperValueRound": 4,
             "playerId": 4239993,
-            "percentStarted": 89.84,
+            "percentStarted": 90.72,
             "score": 0.0,
             "projection": 16.16
           },
@@ -4108,11 +4137,11 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 96.03,
+            "percentOwnedEspnWide": 96.3,
             "keeperValueRound": 0,
             "playerId": 4432620,
-            "percentStarted": 72.83,
-            "score": 0,
+            "percentStarted": 76.49,
+            "score": 0.0,
             "projection": 14.39
           },
           {
@@ -4120,15 +4149,30 @@
             "position": "TE",
             "nflTeam": "NE",
             "lineupSlot": "TE",
-            "injuryStatus": null,
+            "injuryStatus": "Questionable",
             "byeWeek": 11,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 61.8,
+            "percentOwnedEspnWide": 61.61,
             "keeperValueRound": 0,
             "playerId": 3046439,
-            "percentStarted": 18.87,
+            "percentStarted": 22.13,
             "score": 0.0,
-            "projection": 9.33
+            "projection": 8.77
+          },
+          {
+            "name": "Drake London",
+            "position": "WR",
+            "nflTeam": "ATL",
+            "lineupSlot": "FLEX",
+            "injuryStatus": null,
+            "byeWeek": 11,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.53,
+            "keeperValueRound": 2,
+            "playerId": 4426502,
+            "percentStarted": 92.83,
+            "score": 0.0,
+            "projection": 14.83
           },
           {
             "name": "Jaguars D/ST",
@@ -4138,11 +4182,11 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 88.59,
+            "percentOwnedEspnWide": 89.23,
             "keeperValueRound": 0,
             "playerId": -16030,
-            "percentStarted": 82.01,
-            "score": 0,
+            "percentStarted": 81.5,
+            "score": 0.0,
             "projection": 6.41
           },
           {
@@ -4153,10 +4197,10 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 53.22,
+            "percentOwnedEspnWide": 54.52,
             "keeperValueRound": 0,
             "playerId": 4689936,
-            "percentStarted": 44.79,
+            "percentStarted": 46.45,
             "score": 0.0,
             "projection": 9.32
           }
@@ -4170,27 +4214,27 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 59.07,
+            "percentOwnedEspnWide": 58.14,
             "keeperValueRound": 0,
             "playerId": 3128429,
-            "percentStarted": 11.49,
+            "percentStarted": 6.5,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Rhamondre Stevenson",
             "position": "RB",
             "nflTeam": "NE",
             "lineupSlot": "Bench",
-            "injuryStatus": "Doubtful",
+            "injuryStatus": "Questionable",
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 91.66,
+            "percentOwnedEspnWide": 90.85,
             "keeperValueRound": 10,
             "playerId": 4569173,
-            "percentStarted": 42.75,
+            "percentStarted": 28.59,
             "score": 0.0,
-            "projection": 0
+            "projection": 12.9
           },
           {
             "name": "Stefon Diggs",
@@ -4200,12 +4244,12 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 86.55,
+            "percentOwnedEspnWide": 86.3,
             "keeperValueRound": 8,
             "playerId": 2976212,
-            "percentStarted": 47.36,
-            "score": 0.0,
-            "projection": 10.75
+            "percentStarted": 45.25,
+            "score": 20.3,
+            "projection": 10.27
           },
           {
             "name": "Makai Lemon",
@@ -4215,25 +4259,25 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 53.34,
+            "percentOwnedEspnWide": 51.53,
             "keeperValueRound": 0,
             "playerId": 4870795,
-            "percentStarted": 10.57,
+            "percentStarted": 4.29,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Dalton Kincaid",
             "position": "TE",
             "nflTeam": "BUF",
             "lineupSlot": "Bench",
-            "injuryStatus": null,
+            "injuryStatus": "Questionable",
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 77.74,
+            "percentOwnedEspnWide": 77.6,
             "keeperValueRound": 0,
             "playerId": 4385690,
-            "percentStarted": 28.59,
+            "percentStarted": 30.17,
             "score": 0.0,
             "projection": 8.85
           },
@@ -4245,10 +4289,10 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 64.5,
+            "percentOwnedEspnWide": 62.06,
             "keeperValueRound": 0,
             "playerId": 4428718,
-            "percentStarted": 19.94,
+            "percentStarted": 17.28,
             "score": 0.0,
             "projection": 8.41
           },
@@ -4259,10 +4303,10 @@
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 68.06,
+            "percentOwnedEspnWide": 66.7,
             "keeperValueRound": 0,
             "playerId": 4373626,
-            "percentStarted": 33.3,
+            "percentStarted": 28.63,
             "score": 0.0,
             "projection": 8.73
           }
@@ -4448,12 +4492,12 @@
       "week10": {
         "opponentTeamId": 6,
         "homeAway": "away",
-        "projected": 127.75,
-        "opponentProjected": 102.4,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 127.24,
+        "opponentProjected": 103.83,
+        "currentPoints": 0.0,
+        "status": "in-progress",
+        "opponentCurrentPoints": 7.4,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -4590,6 +4634,51 @@
       "roster": {
         "starters": [
           {
+            "name": "Dak Prescott",
+            "position": "QB",
+            "nflTeam": "DAL",
+            "lineupSlot": "QB",
+            "injuryStatus": null,
+            "byeWeek": 14,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.35,
+            "keeperValueRound": 14,
+            "playerId": 2577417,
+            "percentStarted": 57.85,
+            "score": 0.0,
+            "projection": 16.55
+          },
+          {
+            "name": "Woody Marks",
+            "position": "RB",
+            "nflTeam": "HOU",
+            "lineupSlot": "RB",
+            "injuryStatus": "Questionable",
+            "byeWeek": 8,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 81.1,
+            "keeperValueRound": 0,
+            "playerId": 4429059,
+            "percentStarted": 50.17,
+            "score": 0.0,
+            "projection": 13.92
+          },
+          {
+            "name": "Quinshon Judkins",
+            "position": "RB",
+            "nflTeam": "CLE",
+            "lineupSlot": "RB",
+            "injuryStatus": null,
+            "byeWeek": 11,
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 93.68,
+            "keeperValueRound": 10,
+            "playerId": 4685702,
+            "percentStarted": 66.69,
+            "score": 0.0,
+            "projection": 11.79
+          },
+          {
             "name": "CeeDee Lamb",
             "position": "WR",
             "nflTeam": "DAL",
@@ -4600,69 +4689,9 @@
             "percentOwnedEspnWide": 99.91,
             "keeperValueRound": 1,
             "playerId": 4241389,
-            "percentStarted": 99.38,
+            "percentStarted": 99.44,
             "score": 0.0,
-            "projection": 20.86
-          },
-          {
-            "name": "D'Andre Swift",
-            "position": "RB",
-            "nflTeam": "CHI",
-            "lineupSlot": "RB",
-            "injuryStatus": null,
-            "byeWeek": 10,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 97.75,
-            "keeperValueRound": 0,
-            "playerId": 4259545,
-            "percentStarted": 51.42,
-            "score": 0.0,
-            "projection": 0
-          },
-          {
-            "name": "Dak Prescott",
-            "position": "QB",
-            "nflTeam": "DAL",
-            "lineupSlot": "QB",
-            "injuryStatus": null,
-            "byeWeek": 14,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 92.62,
-            "keeperValueRound": 14,
-            "playerId": 2577417,
-            "percentStarted": 62.51,
-            "score": 0.0,
-            "projection": 16.55
-          },
-          {
-            "name": "Kyle Pitts Sr.",
-            "position": "TE",
-            "nflTeam": "ATL",
-            "lineupSlot": "TE",
-            "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 83.11,
-            "keeperValueRound": 0,
-            "playerId": 4360248,
-            "percentStarted": 54.06,
-            "score": 0.0,
-            "projection": 9.16
-          },
-          {
-            "name": "Woody Marks",
-            "position": "RB",
-            "nflTeam": "HOU",
-            "lineupSlot": "FLEX",
-            "injuryStatus": null,
-            "byeWeek": 8,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 80.39,
-            "keeperValueRound": 0,
-            "playerId": 4429059,
-            "percentStarted": 49.92,
-            "score": 0.0,
-            "projection": 13.92
+            "projection": 20.93
           },
           {
             "name": "Malik Nabers",
@@ -4672,42 +4701,42 @@
             "injuryStatus": null,
             "byeWeek": 8,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 99.41,
+            "percentOwnedEspnWide": 99.45,
             "keeperValueRound": 1,
             "playerId": 4595348,
-            "percentStarted": 88.04,
-            "score": 0.0,
-            "projection": 16.41
+            "percentStarted": 90.22,
+            "score": 7.4,
+            "projection": 16.07
           },
           {
-            "name": "Jason Myers",
-            "position": "K",
-            "nflTeam": "SEA",
-            "lineupSlot": "K",
+            "name": "Kyle Pitts Sr.",
+            "position": "TE",
+            "nflTeam": "ATL",
+            "lineupSlot": "TE",
+            "injuryStatus": null,
+            "byeWeek": 11,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 82.24,
+            "keeperValueRound": 0,
+            "playerId": 4360248,
+            "percentStarted": 52.48,
+            "score": 0.0,
+            "projection": 9.16
+          },
+          {
+            "name": "KC Concepcion",
+            "position": "WR",
+            "nflTeam": "CLE",
+            "lineupSlot": "FLEX",
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 88.1,
+            "percentOwnedEspnWide": 67.76,
             "keeperValueRound": 0,
-            "playerId": 2473037,
-            "percentStarted": 82.84,
+            "playerId": 4870653,
+            "percentStarted": 35.51,
             "score": 0.0,
-            "projection": 9.04
-          },
-          {
-            "name": "Quinshon Judkins",
-            "position": "RB",
-            "nflTeam": "CLE",
-            "lineupSlot": "RB",
-            "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 93.79,
-            "keeperValueRound": 10,
-            "playerId": 4685702,
-            "percentStarted": 69.7,
-            "score": 0.0,
-            "projection": 11.79
+            "projection": 10.61
           },
           {
             "name": "Panthers D/ST",
@@ -4717,12 +4746,27 @@
             "injuryStatus": null,
             "byeWeek": 5,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 8.15,
+            "percentOwnedEspnWide": 7.53,
             "keeperValueRound": 0,
             "playerId": -16029,
-            "percentStarted": 5.05,
+            "percentStarted": 4.8,
             "score": 0.0,
-            "projection": 4.67
+            "projection": 4.44
+          },
+          {
+            "name": "Jason Myers",
+            "position": "K",
+            "nflTeam": "SEA",
+            "lineupSlot": "K",
+            "injuryStatus": null,
+            "byeWeek": 11,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 86.73,
+            "keeperValueRound": 0,
+            "playerId": 2473037,
+            "percentStarted": 80.57,
+            "score": 0.0,
+            "projection": 9.04
           }
         ],
         "bench": [
@@ -4734,12 +4778,27 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 83.89,
+            "percentOwnedEspnWide": 82.65,
             "keeperValueRound": 3,
             "playerId": 4685382,
-            "percentStarted": 32.55,
+            "percentStarted": 31.99,
             "score": 0.0,
             "projection": 7.88
+          },
+          {
+            "name": "D'Andre Swift",
+            "position": "RB",
+            "nflTeam": "CHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "byeWeek": 10,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 97.65,
+            "keeperValueRound": 0,
+            "playerId": 4259545,
+            "percentStarted": 22.64,
+            "score": 0.0,
+            "projection": 0.0
           },
           {
             "name": "David Montgomery",
@@ -4749,12 +4808,12 @@
             "injuryStatus": "Questionable",
             "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 75.05,
+            "percentOwnedEspnWide": 73.87,
             "keeperValueRound": 7,
             "playerId": 4035538,
-            "percentStarted": 6.67,
+            "percentStarted": 6.6,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Mark Andrews",
@@ -4764,12 +4823,12 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 58.45,
+            "percentOwnedEspnWide": 55.7,
             "keeperValueRound": 9,
             "playerId": 3116365,
-            "percentStarted": 17.21,
-            "score": 0,
-            "projection": 6.9
+            "percentStarted": 16.49,
+            "score": 0.0,
+            "projection": 6.89
           },
           {
             "name": "DeVonta Smith",
@@ -4779,27 +4838,12 @@
             "injuryStatus": "Out",
             "byeWeek": 10,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 94.88,
+            "percentOwnedEspnWide": 94.11,
             "keeperValueRound": 6,
             "playerId": 4241478,
-            "percentStarted": 11.12,
+            "percentStarted": 10.48,
             "score": 0.0,
-            "projection": 0
-          },
-          {
-            "name": "KC Concepcion",
-            "position": "WR",
-            "nflTeam": "CLE",
-            "lineupSlot": "Bench",
-            "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 64.42,
-            "keeperValueRound": 0,
-            "playerId": 4870653,
-            "percentStarted": 30.64,
-            "score": 0.0,
-            "projection": 10.61
+            "projection": 0.0
           },
           {
             "name": "Chris Godwin Jr.",
@@ -4809,12 +4853,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 46.62,
+            "percentOwnedEspnWide": 43.94,
             "keeperValueRound": 0,
             "playerId": 3116165,
-            "percentStarted": 6.36,
+            "percentStarted": 3.41,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Khalil Shakir",
@@ -4824,10 +4868,10 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 60.81,
+            "percentOwnedEspnWide": 62.97,
             "keeperValueRound": 0,
             "playerId": 4373678,
-            "percentStarted": 17.59,
+            "percentStarted": 22.72,
             "score": 0.0,
             "projection": 10.17
           }
@@ -4995,12 +5039,12 @@
       "week10": {
         "opponentTeamId": 5,
         "homeAway": "home",
-        "projected": 102.4,
-        "opponentProjected": 127.75,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 103.83,
+        "opponentProjected": 127.24,
+        "currentPoints": 7.4,
+        "status": "in-progress",
+        "opponentCurrentPoints": 0.0,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -5144,72 +5188,12 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 98.94,
+            "percentOwnedEspnWide": 98.98,
             "keeperValueRound": 11,
             "playerId": 4431452,
-            "percentStarted": 85.8,
+            "percentStarted": 87.05,
             "score": 0.0,
-            "projection": 21.98
-          },
-          {
-            "name": "Tony Pollard",
-            "position": "RB",
-            "nflTeam": "TEN",
-            "lineupSlot": "RB",
-            "injuryStatus": null,
-            "byeWeek": 9,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 90.31,
-            "keeperValueRound": 7,
-            "playerId": 3916148,
-            "percentStarted": 36.28,
-            "score": 0.0,
-            "projection": 13.44
-          },
-          {
-            "name": "Isaiah Likely",
-            "position": "TE",
-            "nflTeam": "NYG",
-            "lineupSlot": "TE",
-            "injuryStatus": null,
-            "byeWeek": 8,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 95.9,
-            "keeperValueRound": 0,
-            "playerId": 4361050,
-            "percentStarted": 71.46,
-            "score": 0.0,
-            "projection": 12.45
-          },
-          {
-            "name": "Matthew Golden",
-            "position": "WR",
-            "nflTeam": "GB",
-            "lineupSlot": "WR",
-            "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 96.59,
-            "keeperValueRound": 0,
-            "playerId": 4701936,
-            "percentStarted": 84.67,
-            "score": 0.0,
-            "projection": 17.22
-          },
-          {
-            "name": "Denzel Boston",
-            "position": "WR",
-            "nflTeam": "CLE",
-            "lineupSlot": "FLEX",
-            "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 80.76,
-            "keeperValueRound": 0,
-            "playerId": 4832800,
-            "percentStarted": 47.41,
-            "score": 0.0,
-            "projection": 12.72
+            "projection": 21.95
           },
           {
             "name": "Ollie Gordon II",
@@ -5219,12 +5203,42 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 88.93,
+            "percentOwnedEspnWide": 90.23,
             "keeperValueRound": 0,
             "playerId": 4711533,
-            "percentStarted": 76.38,
+            "percentStarted": 80.05,
             "score": 0.0,
             "projection": 15.7
+          },
+          {
+            "name": "Cam Skattebo",
+            "position": "RB",
+            "nflTeam": "NYG",
+            "lineupSlot": "RB",
+            "injuryStatus": null,
+            "byeWeek": 8,
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 92.09,
+            "keeperValueRound": 0,
+            "playerId": 4696981,
+            "percentStarted": 43.78,
+            "score": 27.2,
+            "projection": 11.52
+          },
+          {
+            "name": "Matthew Golden",
+            "position": "WR",
+            "nflTeam": "GB",
+            "lineupSlot": "WR",
+            "injuryStatus": null,
+            "byeWeek": 11,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 97.15,
+            "keeperValueRound": 0,
+            "playerId": 4701936,
+            "percentStarted": 86.2,
+            "score": 0.0,
+            "projection": 17.22
           },
           {
             "name": "DJ Moore",
@@ -5234,12 +5248,56 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 92.18,
+            "percentOwnedEspnWide": 92.95,
             "keeperValueRound": 6,
             "playerId": 3915416,
-            "percentStarted": 58.36,
+            "percentStarted": 64.75,
             "score": 0.0,
             "projection": 13.34
+          },
+          {
+            "name": "Isaiah Likely",
+            "position": "TE",
+            "nflTeam": "NYG",
+            "lineupSlot": "TE",
+            "injuryStatus": null,
+            "byeWeek": 8,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 96.32,
+            "keeperValueRound": 0,
+            "playerId": 4361050,
+            "percentStarted": 76.99,
+            "score": 27.7,
+            "projection": 12.21
+          },
+          {
+            "name": "A.J. Brown",
+            "position": "WR",
+            "nflTeam": "NE",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Questionable",
+            "byeWeek": 11,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.13,
+            "keeperValueRound": 1,
+            "playerId": 4047646,
+            "percentStarted": 19.91,
+            "score": 0.0,
+            "projection": 12.56
+          },
+          {
+            "name": "Bills D/ST",
+            "position": "D/ST",
+            "nflTeam": "BUF",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 56.07,
+            "keeperValueRound": 0,
+            "playerId": -16002,
+            "percentStarted": 51.25,
+            "score": 0.0,
+            "projection": 6.22
           },
           {
             "name": "Matt Gay",
@@ -5249,26 +5307,12 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 54.9,
+            "percentOwnedEspnWide": 51.66,
             "keeperValueRound": 0,
             "playerId": 4249087,
-            "percentStarted": 49.19,
+            "percentStarted": 45.38,
             "score": 0.0,
             "projection": 8.33
-          },
-          {
-            "name": "Bills D/ST",
-            "position": "D/ST",
-            "nflTeam": "BUF",
-            "lineupSlot": "D/ST",
-            "injuryStatus": null,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 40.55,
-            "keeperValueRound": 0,
-            "playerId": -16002,
-            "percentStarted": 34.9,
-            "score": 0,
-            "projection": 6.22
           }
         ],
         "bench": [
@@ -5277,30 +5321,15 @@
             "position": "WR",
             "nflTeam": "LAR",
             "lineupSlot": "Bench",
-            "injuryStatus": "Doubtful",
+            "injuryStatus": "IR",
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.62,
+            "percentOwnedEspnWide": 99.08,
             "keeperValueRound": 1,
             "playerId": 4426515,
-            "percentStarted": 59.71,
+            "percentStarted": 28.93,
             "score": 0.0,
-            "projection": 0
-          },
-          {
-            "name": "A.J. Brown",
-            "position": "WR",
-            "nflTeam": "NE",
-            "lineupSlot": "Bench",
-            "injuryStatus": "Questionable",
-            "byeWeek": 11,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 92.39,
-            "keeperValueRound": 1,
-            "playerId": 4047646,
-            "percentStarted": 12.56,
-            "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Jadarian Price",
@@ -5310,10 +5339,10 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 76.38,
+            "percentOwnedEspnWide": 80.09,
             "keeperValueRound": 0,
             "playerId": 4685512,
-            "percentStarted": 32.51,
+            "percentStarted": 40.9,
             "score": 0.0,
             "projection": 11.87
           },
@@ -5322,15 +5351,45 @@
             "position": "TE",
             "nflTeam": "CLE",
             "lineupSlot": "Bench",
-            "injuryStatus": null,
+            "injuryStatus": "Questionable",
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 90.21,
+            "percentOwnedEspnWide": 90.29,
             "keeperValueRound": 0,
             "playerId": 5083076,
-            "percentStarted": 70.07,
+            "percentStarted": 67.46,
             "score": 0.0,
             "projection": 10.08
+          },
+          {
+            "name": "Tony Pollard",
+            "position": "RB",
+            "nflTeam": "TEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "byeWeek": 9,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 90.85,
+            "keeperValueRound": 7,
+            "playerId": 3916148,
+            "percentStarted": 54.85,
+            "score": 0.0,
+            "projection": 13.44
+          },
+          {
+            "name": "Denzel Boston",
+            "position": "WR",
+            "nflTeam": "CLE",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "byeWeek": 11,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 81.75,
+            "keeperValueRound": 0,
+            "playerId": 4832800,
+            "percentStarted": 49.31,
+            "score": 0.0,
+            "projection": 12.72
           },
           {
             "name": "Malik Washington",
@@ -5340,27 +5399,12 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 36.92,
+            "percentOwnedEspnWide": 34.86,
             "keeperValueRound": 0,
             "playerId": 4569603,
-            "percentStarted": 13.76,
+            "percentStarted": 12.04,
             "score": 0.0,
             "projection": 9.06
-          },
-          {
-            "name": "Cam Skattebo",
-            "position": "RB",
-            "nflTeam": "NYG",
-            "lineupSlot": "Bench",
-            "injuryStatus": "Out",
-            "byeWeek": 8,
-            "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 92.18,
-            "keeperValueRound": 0,
-            "playerId": 4696981,
-            "percentStarted": 29.38,
-            "score": 0.0,
-            "projection": 11.57
           },
           {
             "name": "Wan'Dale Robinson",
@@ -5369,10 +5413,10 @@
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 52.46,
+            "percentOwnedEspnWide": 52.47,
             "keeperValueRound": 0,
             "playerId": 4569587,
-            "percentStarted": 5.11,
+            "percentStarted": 8.32,
             "score": 0.0,
             "projection": 8.86
           }
@@ -5386,12 +5430,12 @@
             "injuryStatus": "Out",
             "byeWeek": 11,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 93.43,
+            "percentOwnedEspnWide": 92.38,
             "keeperValueRound": 2,
             "playerId": 4047365,
-            "percentStarted": 38.34,
+            "percentStarted": 15.05,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           }
         ]
       },
@@ -5597,12 +5641,12 @@
       "week10": {
         "opponentTeamId": 4,
         "homeAway": "home",
-        "projected": 121.4,
-        "opponentProjected": 123.3,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 150.21,
+        "opponentProjected": 120.22,
+        "currentPoints": 54.9,
+        "status": "in-progress",
+        "opponentCurrentPoints": 6.2,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -5739,19 +5783,19 @@
       "roster": {
         "starters": [
           {
-            "name": "Zay Flowers",
-            "position": "WR",
-            "nflTeam": "BAL",
-            "lineupSlot": "WR",
+            "name": "Bryce Young",
+            "position": "QB",
+            "nflTeam": "CAR",
+            "lineupSlot": "QB",
             "injuryStatus": null,
-            "byeWeek": 13,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.06,
-            "keeperValueRound": 5,
-            "playerId": 4429615,
-            "percentStarted": 83.05,
+            "byeWeek": 5,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 80.41,
+            "keeperValueRound": 0,
+            "playerId": 4685720,
+            "percentStarted": 44.42,
             "score": 0.0,
-            "projection": 14.6
+            "projection": 18.8
           },
           {
             "name": "Breece Hall",
@@ -5761,42 +5805,12 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 95.71,
+            "percentOwnedEspnWide": 95.92,
             "keeperValueRound": 6,
             "playerId": 4427366,
-            "percentStarted": 58.1,
-            "score": 0,
+            "percentStarted": 67.02,
+            "score": 0.0,
             "projection": 12.13
-          },
-          {
-            "name": "George Kittle",
-            "position": "TE",
-            "nflTeam": "SF",
-            "lineupSlot": "TE",
-            "injuryStatus": null,
-            "byeWeek": 8,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 98.63,
-            "keeperValueRound": 5,
-            "playerId": 3040151,
-            "percentStarted": 86.99,
-            "score": 0.0,
-            "projection": 15.35
-          },
-          {
-            "name": "Bryce Young",
-            "position": "QB",
-            "nflTeam": "CAR",
-            "lineupSlot": "QB",
-            "injuryStatus": null,
-            "byeWeek": 5,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 76.8,
-            "keeperValueRound": 0,
-            "playerId": 4685720,
-            "percentStarted": 33.31,
-            "score": 0.0,
-            "projection": 18.8
           },
           {
             "name": "Blake Corum",
@@ -5806,27 +5820,27 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 81.15,
+            "percentOwnedEspnWide": 82.88,
             "keeperValueRound": 0,
             "playerId": 4429096,
-            "percentStarted": 41.85,
+            "percentStarted": 49.2,
             "score": 0.0,
-            "projection": 11.59
+            "projection": 11.58
           },
           {
-            "name": "George Pickens",
+            "name": "Zay Flowers",
             "position": "WR",
-            "nflTeam": "DAL",
-            "lineupSlot": "FLEX",
-            "injuryStatus": "Questionable",
-            "byeWeek": 14,
-            "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 98.17,
-            "keeperValueRound": 7,
-            "playerId": 4426354,
-            "percentStarted": 53.72,
+            "nflTeam": "BAL",
+            "lineupSlot": "WR",
+            "injuryStatus": null,
+            "byeWeek": 13,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.05,
+            "keeperValueRound": 5,
+            "playerId": 4429615,
+            "percentStarted": 85.4,
             "score": 0.0,
-            "projection": 12.27
+            "projection": 14.59
           },
           {
             "name": "Garrett Wilson",
@@ -5836,12 +5850,42 @@
             "injuryStatus": "Questionable",
             "byeWeek": 13,
             "acquisitionType": "TRADE",
-            "percentOwnedEspnWide": 97.57,
+            "percentOwnedEspnWide": 97.5,
             "keeperValueRound": 5,
             "playerId": 4569618,
-            "percentStarted": 45.4,
+            "percentStarted": 54.01,
             "score": 0.0,
             "projection": 12.71
+          },
+          {
+            "name": "George Kittle",
+            "position": "TE",
+            "nflTeam": "SF",
+            "lineupSlot": "TE",
+            "injuryStatus": null,
+            "byeWeek": 8,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 98.78,
+            "keeperValueRound": 5,
+            "playerId": 3040151,
+            "percentStarted": 89.49,
+            "score": 0.0,
+            "projection": 15.35
+          },
+          {
+            "name": "Deebo Samuel Sr.",
+            "position": "WR",
+            "nflTeam": "SF",
+            "lineupSlot": "FLEX",
+            "injuryStatus": "Questionable",
+            "byeWeek": 8,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 77.4,
+            "keeperValueRound": 11,
+            "playerId": 3126486,
+            "percentStarted": 19,
+            "score": 0.0,
+            "projection": 11.7
           },
           {
             "name": "Commanders D/ST",
@@ -5851,12 +5895,12 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 18.58,
+            "percentOwnedEspnWide": 28.31,
             "keeperValueRound": 0,
             "playerId": -16028,
-            "percentStarted": 12.72,
-            "score": 0.0,
-            "projection": 6.43
+            "percentStarted": 23.49,
+            "score": 4.0,
+            "projection": 6.74
           },
           {
             "name": "Tyler Bass",
@@ -5865,10 +5909,10 @@
             "lineupSlot": "K",
             "injuryStatus": null,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 78.9,
+            "percentOwnedEspnWide": 81.94,
             "keeperValueRound": 0,
             "playerId": 3917232,
-            "percentStarted": 74.38,
+            "percentStarted": 78.13,
             "score": 0.0,
             "projection": 11.23
           }
@@ -5882,12 +5926,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 97.36,
+            "percentOwnedEspnWide": 97.11,
             "keeperValueRound": 1,
             "playerId": 3929630,
-            "percentStarted": 44.26,
+            "percentStarted": 22.71,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Bucky Irving",
@@ -5897,12 +5941,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 97.95,
+            "percentOwnedEspnWide": 97.91,
             "keeperValueRound": 2,
             "playerId": 4596448,
-            "percentStarted": 51.69,
+            "percentStarted": 23.73,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Aaron Jones Sr.",
@@ -5912,27 +5956,12 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 83.66,
+            "percentOwnedEspnWide": 82.6,
             "keeperValueRound": 7,
             "playerId": 3042519,
-            "percentStarted": 24.34,
+            "percentStarted": 25.67,
             "score": 0.0,
             "projection": 8.46
-          },
-          {
-            "name": "Deebo Samuel Sr.",
-            "position": "WR",
-            "nflTeam": "SF",
-            "lineupSlot": "Bench",
-            "injuryStatus": "Questionable",
-            "byeWeek": 8,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 75.96,
-            "keeperValueRound": 11,
-            "playerId": 3126486,
-            "percentStarted": 12.49,
-            "score": 0.0,
-            "projection": 11.7
           },
           {
             "name": "49ers D/ST",
@@ -5942,10 +5971,10 @@
             "injuryStatus": null,
             "byeWeek": 8,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 39.27,
+            "percentOwnedEspnWide": 41.36,
             "keeperValueRound": 0,
             "playerId": -16025,
-            "percentStarted": 22.25,
+            "percentStarted": 24.62,
             "score": 0.0,
             "projection": 4.49
           },
@@ -5957,12 +5986,27 @@
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 91.01,
+            "percentOwnedEspnWide": 90.1,
             "keeperValueRound": 14,
             "playerId": 3046779,
-            "percentStarted": 50.88,
+            "percentStarted": 45.28,
             "score": 0.0,
-            "projection": 17.31
+            "projection": 17.29
+          },
+          {
+            "name": "George Pickens",
+            "position": "WR",
+            "nflTeam": "DAL",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "byeWeek": 14,
+            "acquisitionType": "TRADE",
+            "percentOwnedEspnWide": 98.04,
+            "keeperValueRound": 7,
+            "playerId": 4426354,
+            "percentStarted": 55.89,
+            "score": 0.0,
+            "projection": 12.3
           },
           {
             "name": "Brenton Strange",
@@ -5972,11 +6016,11 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 48.49,
+            "percentOwnedEspnWide": 51.18,
             "keeperValueRound": 0,
             "playerId": 4430539,
-            "percentStarted": 21.69,
-            "score": 0,
+            "percentStarted": 26.4,
+            "score": 0.0,
             "projection": 9.58
           }
         ],
@@ -5988,10 +6032,10 @@
             "lineupSlot": "IR",
             "injuryStatus": "Questionable",
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 18.12,
+            "percentOwnedEspnWide": 16.93,
             "keeperValueRound": 2,
             "playerId": 3116406,
-            "percentStarted": 0.08,
+            "percentStarted": 0.07,
             "score": 0.0
           }
         ]
@@ -6159,12 +6203,12 @@
       "week10": {
         "opponentTeamId": 3,
         "homeAway": "away",
-        "projected": 115.1,
-        "opponentProjected": 133.53,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 112.08,
+        "opponentProjected": 133.49,
+        "currentPoints": 4.0,
+        "status": "in-progress",
+        "opponentCurrentPoints": 0.0,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -6187,7 +6231,7 @@
       "pointsAgainst": 1122.16,
       "rank": 8,
       "playoffSeed": 8,
-      "currentProjectedRank": 6,
+      "currentProjectedRank": 7,
       "draftDayProjectedRank": 5,
       "weekly": [
         {
@@ -6301,6 +6345,21 @@
       "roster": {
         "starters": [
           {
+            "name": "Joe Burrow",
+            "position": "QB",
+            "nflTeam": "CIN",
+            "lineupSlot": "QB",
+            "injuryStatus": null,
+            "byeWeek": 6,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.27,
+            "keeperValueRound": 0,
+            "playerId": 3915511,
+            "percentStarted": 86.85,
+            "score": 0.0,
+            "projection": 19.03
+          },
+          {
             "name": "James Cook III",
             "position": "RB",
             "nflTeam": "BUF",
@@ -6308,27 +6367,12 @@
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.89,
+            "percentOwnedEspnWide": 99.9,
             "keeperValueRound": 4,
             "playerId": 4379399,
-            "percentStarted": 96.35,
+            "percentStarted": 97.12,
             "score": 0.0,
             "projection": 20.54
-          },
-          {
-            "name": "Justin Jefferson",
-            "position": "WR",
-            "nflTeam": "MIN",
-            "lineupSlot": "WR",
-            "injuryStatus": null,
-            "byeWeek": 6,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.8,
-            "keeperValueRound": 2,
-            "playerId": 4262921,
-            "percentStarted": 95.25,
-            "score": 0.0,
-            "projection": 17.48
           },
           {
             "name": "Jonathan Taylor",
@@ -6338,72 +6382,27 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.86,
+            "percentOwnedEspnWide": 99.87,
             "keeperValueRound": 3,
             "playerId": 4242335,
-            "percentStarted": 98.26,
+            "percentStarted": 98.33,
             "score": 0.0,
-            "projection": 17.83
+            "projection": 17.85
           },
           {
-            "name": "Colston Loveland",
-            "position": "TE",
-            "nflTeam": "CHI",
-            "lineupSlot": "TE",
-            "injuryStatus": null,
-            "byeWeek": 10,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 95.87,
-            "keeperValueRound": 0,
-            "playerId": 4723086,
-            "percentStarted": 55.87,
-            "score": 0.0,
-            "projection": 0
-          },
-          {
-            "name": "Joe Burrow",
-            "position": "QB",
-            "nflTeam": "CIN",
-            "lineupSlot": "QB",
+            "name": "Justin Jefferson",
+            "position": "WR",
+            "nflTeam": "MIN",
+            "lineupSlot": "WR",
             "injuryStatus": null,
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.23,
-            "keeperValueRound": 0,
-            "playerId": 3915511,
-            "percentStarted": 88.31,
+            "percentOwnedEspnWide": 99.82,
+            "keeperValueRound": 2,
+            "playerId": 4262921,
+            "percentStarted": 95.95,
             "score": 0.0,
-            "projection": 19.03
-          },
-          {
-            "name": "Michael Wilson",
-            "position": "WR",
-            "nflTeam": "ARI",
-            "lineupSlot": "FLEX",
-            "injuryStatus": "IR",
-            "byeWeek": 14,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 65.39,
-            "keeperValueRound": 0,
-            "playerId": 4360761,
-            "percentStarted": 25.4,
-            "score": 0.0,
-            "projection": 0
-          },
-          {
-            "name": "Texans D/ST",
-            "position": "D/ST",
-            "nflTeam": "HOU",
-            "lineupSlot": "D/ST",
-            "injuryStatus": null,
-            "byeWeek": 8,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 91.15,
-            "keeperValueRound": 10,
-            "playerId": -16034,
-            "percentStarted": 76.41,
-            "score": 0.0,
-            "projection": 7.34
+            "projection": 17.48
           },
           {
             "name": "Jalen Coker",
@@ -6413,12 +6412,56 @@
             "injuryStatus": null,
             "byeWeek": 5,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 88.08,
+            "percentOwnedEspnWide": 87.84,
             "keeperValueRound": 0,
             "playerId": 4695883,
-            "percentStarted": 44.88,
+            "percentStarted": 45.76,
             "score": 0.0,
             "projection": 11.3
+          },
+          {
+            "name": "Tucker Kraft",
+            "position": "TE",
+            "nflTeam": "GB",
+            "lineupSlot": "TE",
+            "injuryStatus": null,
+            "byeWeek": 11,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 91.81,
+            "keeperValueRound": 0,
+            "playerId": 4572680,
+            "percentStarted": 61.5,
+            "score": 0.0,
+            "projection": 9.4
+          },
+          {
+            "name": "Audric Estime",
+            "position": "RB",
+            "nflTeam": "NO",
+            "lineupSlot": "FLEX",
+            "injuryStatus": null,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 54.15,
+            "keeperValueRound": 0,
+            "playerId": 4569682,
+            "percentStarted": 36.13,
+            "score": 0.0,
+            "projection": 10.33
+          },
+          {
+            "name": "Texans D/ST",
+            "position": "D/ST",
+            "nflTeam": "HOU",
+            "lineupSlot": "D/ST",
+            "injuryStatus": null,
+            "byeWeek": 8,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 92.48,
+            "keeperValueRound": 10,
+            "playerId": -16034,
+            "percentStarted": 79.68,
+            "score": 0.0,
+            "projection": 7.28
           },
           {
             "name": "Spencer Shrader",
@@ -6428,15 +6471,30 @@
             "injuryStatus": null,
             "byeWeek": 13,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 85.35,
+            "percentOwnedEspnWide": 87.21,
             "keeperValueRound": 0,
             "playerId": 4571557,
-            "percentStarted": 81.62,
+            "percentStarted": 84.21,
             "score": 0.0,
             "projection": 10.63
           }
         ],
         "bench": [
+          {
+            "name": "Colston Loveland",
+            "position": "TE",
+            "nflTeam": "CHI",
+            "lineupSlot": "Bench",
+            "injuryStatus": null,
+            "byeWeek": 10,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 95.23,
+            "keeperValueRound": 0,
+            "playerId": 4723086,
+            "percentStarted": 28.48,
+            "score": 0.0,
+            "projection": 0.0
+          },
           {
             "name": "Davante Adams",
             "position": "WR",
@@ -6445,12 +6503,12 @@
             "injuryStatus": "IR",
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 89.98,
+            "percentOwnedEspnWide": 90.16,
             "keeperValueRound": 4,
             "playerId": 16800,
-            "percentStarted": 9.26,
+            "percentStarted": 9.03,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Carnell Tate",
@@ -6460,12 +6518,27 @@
             "injuryStatus": "Questionable",
             "byeWeek": 9,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 83.39,
+            "percentOwnedEspnWide": 84.2,
             "keeperValueRound": 0,
             "playerId": 4871023,
-            "percentStarted": 17.27,
+            "percentStarted": 24.62,
             "score": 0.0,
             "projection": 12.23
+          },
+          {
+            "name": "Michael Wilson",
+            "position": "WR",
+            "nflTeam": "ARI",
+            "lineupSlot": "Bench",
+            "injuryStatus": "IR",
+            "byeWeek": 14,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 52.11,
+            "keeperValueRound": 0,
+            "playerId": 4360761,
+            "percentStarted": 10.97,
+            "score": 0.0,
+            "projection": 0.0
           },
           {
             "name": "Rico Dowdle",
@@ -6475,10 +6548,10 @@
             "injuryStatus": null,
             "byeWeek": 9,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 63.95,
+            "percentOwnedEspnWide": 66.38,
             "keeperValueRound": 0,
             "playerId": 4038815,
-            "percentStarted": 12.82,
+            "percentStarted": 21.64,
             "score": 0.0,
             "projection": 9.78
           },
@@ -6490,27 +6563,12 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 90.04,
+            "percentOwnedEspnWide": 89.75,
             "keeperValueRound": 0,
             "playerId": 4431611,
-            "percentStarted": 27.53,
+            "percentStarted": 11.49,
             "score": 0.0,
-            "projection": 0
-          },
-          {
-            "name": "Tucker Kraft",
-            "position": "TE",
-            "nflTeam": "GB",
-            "lineupSlot": "Bench",
-            "injuryStatus": null,
-            "byeWeek": 11,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 92.11,
-            "keeperValueRound": 0,
-            "playerId": 4572680,
-            "percentStarted": 64.74,
-            "score": 0.0,
-            "projection": 9.4
+            "projection": 0.0
           },
           {
             "name": "Seahawks D/ST",
@@ -6520,27 +6578,12 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 97.33,
+            "percentOwnedEspnWide": 97.61,
             "keeperValueRound": 0,
             "playerId": -16026,
-            "percentStarted": 90.79,
+            "percentStarted": 91.45,
             "score": 0.0,
-            "projection": 7.11
-          },
-          {
-            "name": "Roschon Johnson",
-            "position": "RB",
-            "nflTeam": "CHI",
-            "lineupSlot": "Bench",
-            "injuryStatus": null,
-            "byeWeek": 10,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 6.51,
-            "keeperValueRound": 0,
-            "playerId": 4426386,
-            "percentStarted": 1.03,
-            "score": 0.0,
-            "projection": 0
+            "projection": 7.05
           }
         ],
         "ir": [
@@ -6552,16 +6595,29 @@
             "injuryStatus": "IR",
             "byeWeek": 6,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 13.97,
+            "percentOwnedEspnWide": 13.56,
             "keeperValueRound": 8,
             "playerId": 4361529,
             "percentStarted": 0.2,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           }
         ]
       },
-      "recentTransactions": [],
+      "recentTransactions": [
+        {
+          "date": "2026-11-11",
+          "week": 10,
+          "type": "add",
+          "added": [
+            "Audric Estime (RB, NO)"
+          ],
+          "dropped": [
+            "Roschon Johnson (RB, CHI)"
+          ],
+          "faabBid": 0
+        }
+      ],
       "history": {
         "seasons": [
           {
@@ -6683,12 +6739,12 @@
       "week10": {
         "opponentTeamId": 2,
         "homeAway": "home",
-        "projected": 104.15,
-        "opponentProjected": 131.05,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 123.84,
+        "opponentProjected": 131.06,
+        "currentPoints": 0.0,
+        "status": "in-progress",
+        "opponentCurrentPoints": 0.0,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     },
     {
@@ -6825,77 +6881,32 @@
       "roster": {
         "starters": [
           {
-            "name": "Ashton Jeanty",
-            "position": "RB",
-            "nflTeam": "LV",
-            "lineupSlot": "RB",
+            "name": "Brock Purdy",
+            "position": "QB",
+            "nflTeam": "SF",
+            "lineupSlot": "QB",
             "injuryStatus": null,
-            "byeWeek": 13,
+            "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.32,
-            "keeperValueRound": 1,
-            "playerId": 4890973,
-            "percentStarted": 86.65,
+            "percentOwnedEspnWide": 98.87,
+            "keeperValueRound": 0,
+            "playerId": 4361741,
+            "percentStarted": 74.95,
             "score": 0.0,
-            "projection": 13.57
-          },
-          {
-            "name": "Trey McBride",
-            "position": "TE",
-            "nflTeam": "ARI",
-            "lineupSlot": "TE",
-            "injuryStatus": null,
-            "byeWeek": 14,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 99.86,
-            "keeperValueRound": 4,
-            "playerId": 4361307,
-            "percentStarted": 98.14,
-            "score": 0.0,
-            "projection": 14.08
-          },
-          {
-            "name": "Rashee Rice",
-            "position": "WR",
-            "nflTeam": "KC",
-            "lineupSlot": "WR",
-            "injuryStatus": null,
-            "byeWeek": 5,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 95.97,
-            "keeperValueRound": 5,
-            "playerId": 4428331,
-            "percentStarted": 72.74,
-            "score": 0.0,
-            "projection": 12.85
-          },
-          {
-            "name": "Jaylen Waddle",
-            "position": "WR",
-            "nflTeam": "DEN",
-            "lineupSlot": "WR",
-            "injuryStatus": "Questionable",
-            "byeWeek": 10,
-            "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 85.61,
-            "keeperValueRound": 6,
-            "playerId": 4372016,
-            "percentStarted": 27.02,
-            "score": 0,
-            "projection": 0
+            "projection": 20.73
           },
           {
             "name": "Bhayshul Tuten",
             "position": "RB",
             "nflTeam": "JAX",
-            "lineupSlot": "FLEX",
-            "injuryStatus": null,
+            "lineupSlot": "RB",
+            "injuryStatus": "Questionable",
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 94.82,
+            "percentOwnedEspnWide": 95.36,
             "keeperValueRound": 0,
             "playerId": 4882093,
-            "percentStarted": 76.68,
+            "percentStarted": 79.04,
             "score": 0.0,
             "projection": 17.26
           },
@@ -6907,42 +6918,72 @@
             "injuryStatus": null,
             "byeWeek": 5,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 96.9,
+            "percentOwnedEspnWide": 97.45,
             "keeperValueRound": 0,
             "playerId": 4241416,
-            "percentStarted": 86.42,
+            "percentStarted": 88.12,
             "score": 0.0,
             "projection": 20.01
           },
           {
-            "name": "Cameron Dicker",
-            "position": "K",
-            "nflTeam": "LAC",
-            "lineupSlot": "K",
+            "name": "Rashee Rice",
+            "position": "WR",
+            "nflTeam": "KC",
+            "lineupSlot": "WR",
             "injuryStatus": null,
-            "byeWeek": 7,
+            "byeWeek": 5,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 41.84,
-            "keeperValueRound": 14,
-            "playerId": 4362081,
-            "percentStarted": 30.43,
+            "percentOwnedEspnWide": 96.13,
+            "keeperValueRound": 5,
+            "playerId": 4428331,
+            "percentStarted": 74.47,
             "score": 0.0,
-            "projection": 8.29
+            "projection": 12.83
           },
           {
-            "name": "Brock Purdy",
-            "position": "QB",
-            "nflTeam": "SF",
-            "lineupSlot": "QB",
-            "injuryStatus": null,
-            "byeWeek": 8,
+            "name": "Jakobi Meyers",
+            "position": "WR",
+            "nflTeam": "JAX",
+            "lineupSlot": "WR",
+            "injuryStatus": "Questionable",
+            "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 98.77,
+            "percentOwnedEspnWide": 73.02,
             "keeperValueRound": 0,
-            "playerId": 4361741,
-            "percentStarted": 73.81,
+            "playerId": 3916433,
+            "percentStarted": 29.84,
             "score": 0.0,
-            "projection": 20.73
+            "projection": 11.62
+          },
+          {
+            "name": "Trey McBride",
+            "position": "TE",
+            "nflTeam": "ARI",
+            "lineupSlot": "TE",
+            "injuryStatus": null,
+            "byeWeek": 14,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.87,
+            "keeperValueRound": 4,
+            "playerId": 4361307,
+            "percentStarted": 98.07,
+            "score": 0.0,
+            "projection": 14.08
+          },
+          {
+            "name": "Ashton Jeanty",
+            "position": "RB",
+            "nflTeam": "LV",
+            "lineupSlot": "FLEX",
+            "injuryStatus": null,
+            "byeWeek": 13,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 99.25,
+            "keeperValueRound": 1,
+            "playerId": 4890973,
+            "percentStarted": 85.55,
+            "score": 0.0,
+            "projection": 13.57
           },
           {
             "name": "Browns D/ST",
@@ -6952,12 +6993,27 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 49.18,
+            "percentOwnedEspnWide": 44.63,
             "keeperValueRound": 0,
             "playerId": -16005,
-            "percentStarted": 41.77,
+            "percentStarted": 36.32,
             "score": 0.0,
-            "projection": 4.24
+            "projection": 4.18
+          },
+          {
+            "name": "Dominic Zvada",
+            "position": "K",
+            "nflTeam": "NYG",
+            "lineupSlot": "K",
+            "injuryStatus": null,
+            "byeWeek": 8,
+            "acquisitionType": "ADD",
+            "percentOwnedEspnWide": 46.04,
+            "keeperValueRound": 0,
+            "playerId": 5082424,
+            "percentStarted": 39.56,
+            "score": 2.0,
+            "projection": 8.22
           }
         ],
         "bench": [
@@ -6969,12 +7025,27 @@
             "injuryStatus": "IR",
             "byeWeek": 14,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 86.27,
+            "percentOwnedEspnWide": 84.61,
             "keeperValueRound": 0,
             "playerId": 4870808,
-            "percentStarted": 15.74,
+            "percentStarted": 15.01,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
+          },
+          {
+            "name": "Jaylen Waddle",
+            "position": "WR",
+            "nflTeam": "DEN",
+            "lineupSlot": "Bench",
+            "injuryStatus": "Questionable",
+            "byeWeek": 10,
+            "acquisitionType": "DRAFT",
+            "percentOwnedEspnWide": 83.76,
+            "keeperValueRound": 6,
+            "playerId": 4372016,
+            "percentStarted": 14.06,
+            "score": 0.0,
+            "projection": 0.0
           },
           {
             "name": "Mike Evans",
@@ -6984,12 +7055,12 @@
             "injuryStatus": "Questionable",
             "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 92.68,
+            "percentOwnedEspnWide": 92.4,
             "keeperValueRound": 5,
             "playerId": 16737,
-            "percentStarted": 7.98,
+            "percentStarted": 6.4,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
             "name": "Kenny Gainwell",
@@ -6999,27 +7070,27 @@
             "injuryStatus": null,
             "byeWeek": 10,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 51.56,
+            "percentOwnedEspnWide": 50.5,
             "keeperValueRound": 0,
             "playerId": 4371733,
-            "percentStarted": 8.75,
+            "percentStarted": 4.78,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           },
           {
-            "name": "Jakobi Meyers",
-            "position": "WR",
-            "nflTeam": "JAX",
+            "name": "Cameron Dicker",
+            "position": "K",
+            "nflTeam": "LAC",
             "lineupSlot": "Bench",
             "injuryStatus": null,
             "byeWeek": 7,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 71.22,
-            "keeperValueRound": 0,
-            "playerId": 3916433,
-            "percentStarted": 25.17,
-            "score": 0,
-            "projection": 11.62
+            "percentOwnedEspnWide": 41.56,
+            "keeperValueRound": 14,
+            "playerId": 4362081,
+            "percentStarted": 30.47,
+            "score": 0.0,
+            "projection": 8.29
           },
           {
             "name": "Jordan Love",
@@ -7029,10 +7100,10 @@
             "injuryStatus": null,
             "byeWeek": 11,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 91.09,
+            "percentOwnedEspnWide": 91.6,
             "keeperValueRound": 0,
             "playerId": 4036378,
-            "percentStarted": 47.52,
+            "percentStarted": 47.23,
             "score": 0.0,
             "projection": 16.02
           },
@@ -7041,30 +7112,15 @@
             "position": "WR",
             "nflTeam": "KC",
             "lineupSlot": "Bench",
-            "injuryStatus": "Questionable",
+            "injuryStatus": null,
             "byeWeek": 5,
             "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 65.68,
+            "percentOwnedEspnWide": 63.61,
             "keeperValueRound": 5,
             "playerId": 4683062,
-            "percentStarted": 16.66,
+            "percentStarted": 14.44,
             "score": 0.0,
-            "projection": 8.27
-          },
-          {
-            "name": "Dominic Zvada",
-            "position": "K",
-            "nflTeam": "NYG",
-            "lineupSlot": "Bench",
-            "injuryStatus": null,
-            "byeWeek": 8,
-            "acquisitionType": "ADD",
-            "percentOwnedEspnWide": 41.73,
-            "keeperValueRound": 0,
-            "playerId": 5082424,
-            "percentStarted": 34.77,
-            "score": 0.0,
-            "projection": 10.83
+            "projection": 8.31
           }
         ],
         "ir": [
@@ -7076,12 +7132,12 @@
             "injuryStatus": "IR",
             "byeWeek": 8,
             "acquisitionType": "DRAFT",
-            "percentOwnedEspnWide": 20.91,
+            "percentOwnedEspnWide": 20.56,
             "keeperValueRound": 0,
             "playerId": 4689114,
-            "percentStarted": 6.38,
+            "percentStarted": 6.33,
             "score": 0.0,
-            "projection": 0
+            "projection": 0.0
           }
         ]
       },
@@ -7201,12 +7257,12 @@
       "week10": {
         "opponentTeamId": 1,
         "homeAway": "away",
-        "projected": 111.02,
-        "opponentProjected": 123.65,
-        "currentPoints": 0,
-        "status": "not-started",
-        "opponentCurrentPoints": 0,
-        "asOf": "2026-11-11T10:14:00-05:00"
+        "projected": 116.27,
+        "opponentProjected": 128.32,
+        "currentPoints": 2.0,
+        "status": "in-progress",
+        "opponentCurrentPoints": 0.0,
+        "asOf": "2026-11-13T00:10:00-05:00"
       }
     }
   ]
