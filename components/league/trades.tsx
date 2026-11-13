@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ClosedSeasons } from "./ClosedSeasons";
 import {
   ArrowDownRight,
   ArrowLeftRight,
@@ -69,7 +68,7 @@ const signedValue = (v: number) => `${sign(v)}${tv(v)}`;
 const signedPct = (v: number) => `${sign(v)}${Math.abs(v)}%`;
 const tone = (v: number) => (v > 0 ? "text-turf" : v < 0 ? "text-loss" : "text-slate-700");
 /** A team page opened on its Trades tab. */
-const tradesPath = (id: number) => `${teamPath(id)}#trades`;
+const tradesPath = (id: number) => `${teamPath(id)}/trades`;
 const names = (ids: number[]) => ids.map((id) => team(id).name).join(" & ");
 const weeksText = (span: [number, number]) => (span[0] === span[1] ? `week ${span[0]}` : `weeks ${span[0]}–${span[1]}`);
 const capitalize = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
@@ -761,46 +760,32 @@ function RebuiltNote() {
   );
 }
 
-/** Player trades grouped by season, newest first. The current season is in the first HTML. Earlier seasons load when opened. */
+/** Player trades grouped by season, newest first. Current season opens by default; earlier seasons stay collapsed in native <details>. */
 export function TradeSeasons({ trades, focus, empty }: { trades: Trade[]; focus?: number; empty?: string }) {
   const groups = bySeason(trades);
   const net = focus != null ? new Map(teamTrades(focus).allTime.bySeason.map((r) => [r.season, r.netPoints])) : null;
-  const current = groups.filter((g) => g.season === TRADE_SEASON);
-  const past = groups.filter((g) => g.season !== TRADE_SEASON);
-  const pastRows = past.map((g) => {
-    const n = net?.get(g.season) ?? null;
-    return {
-      season: g.season,
-      count: g.trades.length,
-      netLabel: n == null ? null : `${signed(n)} pts`,
-      netClass: n == null ? "" : tone(n),
-    };
-  });
   return (
     <div className="grid gap-3">
       {groups.length ? (
-        <>
-          {current.map((g) => {
-            const n = net?.get(g.season) ?? null;
-            return (
-              <SeasonBlock
-                key={g.season}
-                season={g.season}
-                count={g.trades.length}
-                netLabel={n == null ? null : `${signed(n)} pts`}
-                netClass={n == null ? "" : tone(n)}
-                open
-              >
-                <ul className="mt-3 mb-2 grid gap-4 lg:grid-cols-2">
-                  {g.trades.map((t) => (
-                    <TradeCard key={t.id} t={t} focus={focus} />
-                  ))}
-                </ul>
-              </SeasonBlock>
-            );
-          })}
-          {pastRows.length > 0 && <ClosedSeasons seasons={pastRows} focus={focus} />}
-        </>
+        groups.map((g) => {
+          const n = net?.get(g.season) ?? null;
+          return (
+            <SeasonBlock
+              key={g.season}
+              season={g.season}
+              count={g.trades.length}
+              netLabel={n == null ? null : `${signed(n)} pts`}
+              netClass={n == null ? "" : tone(n)}
+              open={g.season === TRADE_SEASON}
+            >
+              <ul className="mt-3 mb-2 grid gap-4 lg:grid-cols-2">
+                {g.trades.map((t) => (
+                  <TradeCard key={t.id} t={t} focus={focus} />
+                ))}
+              </ul>
+            </SeasonBlock>
+          );
+        })
       ) : (
         <Card>
           <p className="text-sm text-slate-600">{empty}</p>

@@ -8,7 +8,7 @@ export function TeamsTabs({ active }: { active: "teams" | "standings" }) {
     { key: "standings", href: "/standings", label: "Standings" },
   ] as const;
   return (
-    <nav aria-label="Teams views" className="inline-flex rounded-xl bg-surface-muted p-1 ring-1 ring-line">
+    <nav aria-label="Teams views" className="inline-flex rounded-xl bg-surface-muted p-1 ring-1 ring-line md:hidden">
       {tabs.map((t) => (
         <Link
           key={t.key}

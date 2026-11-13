@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ScoreReadout, StateBadge } from "@/components/league/bits";
 import { ProvisionalNote } from "@/components/league/ProvisionalNote";
-import { Card, LuckBadge, PageHeader, Pill, RangeBar, RankBadge, ResultChip, SectionHeading, TeamAvatar } from "@/components/league/ui";
+import { Card, PageHeader, Pill, RangeBar, RankBadge, ResultChip, SectionHeading, TeamAvatar } from "@/components/league/ui";
 import { cn } from "@/lib/utils";
 import { slateRead } from "@/lib/commentary";
 import { scoreEmphasis } from "@/lib/score-display";
@@ -23,7 +23,7 @@ import {
 } from "@/lib/league";
 import { liveBoard } from "@/lib/live-board";
 import { diffSnapshot } from "@/lib/snapshot";
-import { loadLatestSnapshot } from "@/lib/snapshot-store";
+import { loadPriorSnapshot } from "@/lib/snapshot-store";
 import { recordBookLabel } from "@/lib/week-state";
 import { matchupFacts } from "@/lib/preview";
 import {
@@ -36,7 +36,6 @@ import {
   consistencyTable,
   H2H,
   LEAGUE_AVG,
-  luck,
   luckTable,
   powerRankings,
   scheduleTable,
@@ -56,7 +55,7 @@ const LUCK_SPAN = 5;
 export default function InsightsPage() {
   const week = LEAGUE.week;
   const power = powerRankings();
-  const snapshot = diffSnapshot(loadLatestSnapshot(), liveBoard());
+  const snapshot = diffSnapshot(loadPriorSnapshot(LEAGUE.week, LEAGUE.generatedAt), liveBoard());
   const powerMove = snapshot.available ? new Map(snapshot.odds.map((row) => [row.teamId, row.powerDelta])) : null;
   const luckRows = luckTable();
   const byPf = [...TEAMS].sort((a, b) => b.pointsFor - a.pointsFor);
@@ -428,19 +427,6 @@ export default function InsightsPage() {
           Read across: each row is a team&apos;s result against the column team, both in standings order. Blank squares haven&apos;t played yet in {LEAGUE.season}.
         </p>
       </Card>
-
-      <ul className="grid gap-x-4 gap-y-1.5 rounded-2xl bg-surface-subtle p-4 text-xs text-slate-600 ring-1 ring-line sm:grid-cols-2">
-        {STANDINGS.map((t) => (
-          <li key={t.id} className="flex items-center gap-2">
-            <TeamAvatar teamId={t.id} size="xs" />
-            <span className="w-8 font-display font-bold text-navy">{t.abbrev}</span>
-            <Link href={teamPath(t.id)} className="min-w-0 flex-1 truncate font-medium text-slate-700 hover:underline">
-              {t.name}
-            </Link>
-            <LuckBadge row={luck(t.id)} compact />
-          </li>
-        ))}
-      </ul>
     </>
   );
 }
