@@ -59,6 +59,7 @@ export interface RosterReport {
   rank: number;
   field: number;
   ppg: number | null;
+  sampleLabel: string;
   summary: string;
   positions: PosGrade[];
   weeks: WeekOutlook[];
@@ -246,7 +247,8 @@ function starterSentence(row: Scored, fact: GradePlayer, group: SlotGroup, label
   const bye = byeWeeks.length ? ` On bye in ${weekList(byeWeeks)}.` : "";
   if (fact.rank == null || fact.field == null || fact.ppg == null || fact.total == null) {
     if (fact.weeks > 0 && fact.ppg != null && fact.total != null) {
-      return `${row.name} scored ${one(fact.ppg)} points per game over ${fact.weeks} scoring lines in this file (${one(fact.total)} points)${injury}. The full ${label} sample is missing, so there is no rank.`;
+      const lines = fact.weeks === 1 ? "1 scoring line" : `${fact.weeks} scoring lines`;
+      return `${row.name} scored ${one(fact.ppg)} points per game over ${lines} in this file (${one(fact.total)} points)${injury}. The full ${label} sample is missing, so there is no rank.`;
     }
     return `${row.name} has no ${label} scoring line in this file${injury}.`;
   }
@@ -275,14 +277,16 @@ export function buildRosterGrade(
   points: Record<string, Record<string, number>>,
   model: SimModel,
   byes: ByeFile,
-  focusTeamId = "7",
+  focusTeamId = String(model.focusId),
 ): RosterReport {
+  const targetId = Number(focusTeamId);
+  const scopedModel: SimModel = Number.isFinite(targetId) ? { ...model, focusId: targetId } : model;
   const scored = scoreAll(rosters, points);
   const focus = scored.filter((row) => row.teamId === focusTeamId);
   const names = new Set(focus.map((row) => row.name));
   const weeks = sampleWeeks(points);
   const label = sampleLabel(weeks);
-  const currentWeek = model.currentWeek ?? null;
+  const currentWeek = scopedModel.currentWeek ?? null;
   const currentBye = new Set(currentWeek == null ? [] : rosterByeNames(byes, String(currentWeek), names));
   const positions: PosGrade[] = [];
   const byeBenchIds = new Set<string>();
@@ -341,9 +345,9 @@ export function buildRosterGrade(
     });
   }
 
-  const firstOpen = model.currentWeek == null ? 9 : model.currentWeekFinal === false ? model.currentWeek : model.currentWeek + 1;
+  const firstOpen = scopedModel.currentWeek == null ? 9 : scopedModel.currentWeekFinal === false ? scopedModel.currentWeek : scopedModel.currentWeek + 1;
   const ros = new Map<number, { sum: number; n: number }>();
-  for (const game of model.games) {
+  for (const game of scopedModel.games) {
     if (game.week < firstOpen) continue;
     for (const [id, proj] of [
       [game.homeId, game.homeProj],
@@ -358,14 +362,14 @@ export function buildRosterGrade(
   const rosRows = [...ros.entries()]
     .map(([id, row]) => ({ id, ppg: row.n ? row.sum / row.n : 0 }))
     .sort((a, b) => b.ppg - a.ppg || a.id - b.id);
-  const rosIndex = rosRows.findIndex((row) => row.id === model.focusId);
+  const rosIndex = rosRows.findIndex((row) => row.id === scopedModel.focusId);
   const rosRank = rosIndex + 1;
   const rosPpg = rosIndex >= 0 ? Math.round(rosRows[rosIndex].ppg * 10) / 10 : null;
   const letter = rosIndex >= 0 ? (TEAM_GRADE[rosIndex] ?? "D") : "—";
 
-  const outlook = model.games
-    .filter((game) => game.week >= firstOpen && (game.homeId === model.focusId || game.awayId === model.focusId))
-    .map((game) => weekOutlook(model, game, byes, names))
+  const outlook = scopedModel.games
+    .filter((game) => game.week >= firstOpen && (game.homeId === scopedModel.focusId || game.awayId === scopedModel.focusId))
+    .map((game) => weekOutlook(scopedModel, game, byes, names))
     .sort((a, b) => a.week - b.week);
   const span =
     outlook.length === 0
@@ -393,6 +397,7 @@ export function buildRosterGrade(
     rank: rosIndex >= 0 ? rosRank : 0,
     field: rosRows.length,
     ppg: rosPpg,
+    sampleLabel: label,
     summary:
       rosPpg == null
         ? "No rest-of-season team projection is in the playoff model."
