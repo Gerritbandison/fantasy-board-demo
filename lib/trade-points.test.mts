@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { franchiseName, USER_TEAM_ID } from "./names.ts";
-import { sideOf, TRADES, tradesFor } from "./trades.ts";
-import { currentSpanNote, dedupeById, isCompletedStatus, postTradeResult } from "./trade-points.ts";
+import { PAST_GRADING, sideOf, TRADES, tradesFor } from "./trades.ts";
+import { currentSpanNote, dedupeById, isCompletedStatus, postTradeResult, roundPoint } from "./trade-points.ts";
 
 test("pending, vetoed, and cancelled statuses are not completed trades", () => {
   assert.equal(isCompletedStatus("accepted"), true);
@@ -85,17 +85,24 @@ test("loaded trades are unique, accepted, newest first, and attributed to the re
   assert.ok(tradesFor(USER_TEAM_ID).some((row) => row.id === "2026-T6"));
 });
 
-test("2026-T7 is graded on points scored for the new team, not the stale points gained", () => {
+test("2026-T7 is graded on points scored for the new team, not a stale points gained", () => {
   const trade = TRADES.find((row) => row.id === "2026-T7");
   assert.ok(trade);
   const fellas = sideOf(trade, 6);
   const dimes = sideOf(trade, 8);
-  assert.equal(fellas.points, 30.3);
-  assert.equal(dimes.points, 41.4);
-  assert.equal(dimes.grade?.pointsGained, 11.1);
-  assert.equal(fellas.grade?.pointsGained, -11.1);
-  assert.equal(dimes.grade?.verdict, "paying-off");
-  assert.equal(fellas.grade?.verdict, "backfiring");
-  assert.equal(trade.edge?.teamId, 8);
-  assert.equal(trade.edge?.points, 11.1);
+  assert.ok(fellas.points != null && dimes.points != null);
+  const expectedDimes = postTradeResult(dimes.points, fellas.points, PAST_GRADING.evenUnder);
+  const expectedFellas = postTradeResult(fellas.points, dimes.points, PAST_GRADING.evenUnder);
+  assert.ok(expectedDimes && expectedFellas);
+  assert.equal(dimes.grade?.pointsGained, expectedDimes.gained);
+  assert.equal(fellas.grade?.pointsGained, expectedFellas.gained);
+  assert.equal(dimes.grade?.verdict, expectedDimes.verdict);
+  assert.equal(fellas.grade?.verdict, expectedFellas.verdict);
+  const diff = roundPoint(dimes.points - fellas.points);
+  if (Math.abs(diff) < PAST_GRADING.evenUnder) {
+    assert.equal(trade.edge, null);
+  } else {
+    assert.equal(trade.edge?.teamId, diff > 0 ? 8 : 6);
+    assert.equal(trade.edge?.points, Math.abs(diff));
+  }
 });

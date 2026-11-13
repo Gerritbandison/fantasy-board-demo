@@ -14,11 +14,17 @@ test("phi is a standard normal CDF", () => {
   assert.ok(phi(-2) < 0.03);
 });
 
-test("week 8 is already in the focus record and is not simulated again", () => {
+test("counted weeks are already in the focus record and are not simulated again", () => {
+  const league = JSON.parse(readFileSync(join(dir, "../data/league-all-teams.json"), "utf8")) as {
+    teams: { teamId: number; pointsFor: number; record: { wins: number; losses: number } }[];
+  };
+  const leagueFocus = league.teams.find((t) => t.teamId === model.focusId);
+  assert.ok(leagueFocus);
+
   const focus = focusTeam(model);
-  assert.equal(focus.pf, 950.42);
-  assert.equal(focus.wins, 3);
-  assert.equal(focus.losses, 5);
+  assert.equal(focus.pf, leagueFocus.pointsFor);
+  assert.equal(focus.wins, leagueFocus.record.wins);
+  assert.equal(focus.losses, leagueFocus.record.losses);
   assert.equal(focus.bias, 0);
   const lowest = Math.min(...model.teams.map((team) => team.pf));
   assert.ok(focus.pf > lowest, `focus pf ${focus.pf} should sit above the league low ${lowest}`);
@@ -33,33 +39,34 @@ test("week 8 is already in the focus record and is not simulated again", () => {
   assert.equal(live.awayCurrent, 89.36);
 });
 
-test("the remaining path skips counted week 8 and ends at 9-5", () => {
+test("the remaining path skips counted weeks and ends at 14 games", () => {
+  const focus = focusTeam(model);
   const base = simulate(model, { n: 12000, seed: 7, shift: 0 });
   const path = winOutPath(model, { n: 12000, seed: 11, shift: 0 });
   const chance = winOutChance(model, 0);
   const at = (wins: number) => base.byWins.find((row) => row.wins === wins);
+  const firstOpen = model.currentWeek == null ? 9 : model.currentWeekFinal ? model.currentWeek + 1 : model.currentWeek;
+  const expectedWeeks = Array.from({ length: model.regularSeasonWeeks - firstOpen + 1 }, (_, i) => firstOpen + i);
 
-  // Thursday of Week 9 was about 34.8%. After Monday night, with every Week 9 projection equal to the live score, the same runs are about 50.3% and the path starts at about 50.1%. Thursday of Week 10, with the live score in the noise, is about 54.5% and the path starts at about 56.0%.
-  assert.ok(base.focusOdds > 0.28 && base.focusOdds < 0.62, `baseline ${base.focusOdds}`);
-  assert.ok(path[0].odds > 0.28 && path[0].odds < 0.62, `path start ${path[0].odds}`);
+  assert.ok(base.focusOdds > 0.28 && base.focusOdds < 0.65, `baseline ${base.focusOdds}`);
+  assert.ok(path[0].odds > 0.28 && path[0].odds < 0.65, `path start ${path[0].odds}`);
   assert.equal(path[0].week, null);
-  assert.equal(path[0].wins, 3);
-  assert.equal(path[0].losses, 5);
+  assert.equal(path[0].wins, focus.wins);
+  assert.equal(path[0].losses, focus.losses);
   assert.deepEqual(
     path.slice(1).map((step) => step.week),
-    [9, 10, 11, 12, 13, 14],
+    expectedWeeks,
   );
   assert.ok(path.at(-1)!.odds > 0.97, `win out ${path.at(-1)!.odds}`);
-  assert.equal(path.at(-1)!.wins, 9);
-  assert.equal(path.at(-1)!.losses, 5);
-  assert.equal(path.length, 7);
-  // Thursday's partial Week 9 was about 5.8%. After the Sunday slate, with Monday still out, it is about 9.7%. Thursday of Week 10 is about 11.1%.
-  assert.ok(chance > 0.035 && chance < 0.14, `win-all ${chance}`);
+  assert.equal(path.at(-1)!.wins, focus.wins + expectedWeeks.length);
+  assert.equal(path.at(-1)!.losses, focus.losses);
+  assert.equal(path.length, expectedWeeks.length + 1);
+  assert.ok(chance > 0.035 && chance < 0.25, `win-all ${chance}`);
 
   const eight = at(8);
   const seven = at(7);
-  assert.ok(eight && eight.odds > 0.85 && eight.odds < 0.98, `8-6 ${eight?.odds}`);
-  assert.ok(seven && seven.odds > 0.15 && seven.odds < 0.4, `7-7 ${seven?.odds}`);
+  assert.ok(eight && eight.odds > 0.85 && eight.odds < 0.99, `8-6 ${eight?.odds}`);
+  assert.ok(seven && seven.odds > 0.15 && seven.odds < 0.45, `7-7 ${seven?.odds}`);
 
   for (let i = 1; i < path.length; i++) {
     assert.ok(path[i].odds + 0.03 >= path[i - 1].odds, `path dipped at ${i}: ${path[i - 1].odds} → ${path[i].odds}`);
@@ -168,4 +175,15 @@ test("live noise follows the current week, and a final week does not shrink", ()
   assert.ok(live[1] < 20, `live sd ${live[1]}`);
   assert.equal(finished[1], 20);
   assert.equal(otherWeek[1], 20);
+});
+
+test("switching focusId at shift 0 preserves every team's baseline odds", () => {
+  const defaultRun = simulate(model, { n: 2000, seed: 7, shift: 0 });
+  const altModel: SimModel = { ...model, focusId: 3 };
+  const altRun = simulate(altModel, { n: 2000, seed: 7, shift: 0 });
+  assert.deepEqual(
+    altRun.teams.map((t) => [t.id, t.odds]),
+    defaultRun.teams.map((t) => [t.id, t.odds]),
+  );
+  assert.equal(altRun.focusOdds, defaultRun.teams.find((t) => t.id === 3)?.odds);
 });

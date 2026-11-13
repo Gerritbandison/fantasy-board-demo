@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { diffSnapshot, latestSnapshotName, snapshotWeekFromName, type SnapshotCurrent, type SnapshotFile } from "./snapshot.ts";
+import { priorSnapshotName, snapshotWeekFromName, latestSnapshotName, diffSnapshot, type SnapshotCurrent, type SnapshotFile } from "./snapshot.ts";
 
 const prior: SnapshotFile = {
   week: 7,
@@ -76,4 +76,6 @@ test("snapshot file names are the week number", () => {
   assert.equal(snapshotWeekFromName("week-8.json"), null);
   assert.equal(latestSnapshotName(["7.json", "notes.txt", "8.json"]), "8.json");
   assert.equal(latestSnapshotName(["manifest.json"]), null);
+  assert.equal(priorSnapshotName(["9.json", "10.json"], 10), "9.json");
+  assert.equal(priorSnapshotName(["9.json"], 9), "9.json");
 });

@@ -84,6 +84,20 @@ export function latestSnapshotName(names: string[]) {
 }
 
 /**
+ * Snapshot to diff the live board against: prefers the newest snapshot before `currentWeek`
+ * so a snapshot written at the end of `currentWeek`'s refresh does not diff the board against itself.
+ * Falls back to `currentWeek`'s file only when no earlier week snapshot exists.
+ */
+export function priorSnapshotName(names: string[], currentWeek: number) {
+  const ranked = names
+    .map((name) => ({ name, week: snapshotWeekFromName(name) }))
+    .filter((row): row is { name: string; week: number } => row.week != null)
+    .sort((a, b) => b.week - a.week);
+  const earlier = ranked.find((row) => row.week < currentWeek);
+  return (earlier ?? ranked[0])?.name ?? null;
+}
+
+/**
  * Compare the live board with the newest snapshot.
  * No snapshot means no movement: nothing is treated as new.
  */

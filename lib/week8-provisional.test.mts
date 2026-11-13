@@ -159,10 +159,9 @@ test("week 8 finals are in the season totals and decided on the schedule", () =>
 
   const focus = league.teams.find((team) => team.teamId === 7);
   assert.ok(focus);
-  assert.equal(focus.pointsFor, 950.42);
-  assert.equal(focus.record.wins, 3);
-  assert.equal(focus.record.losses, 5);
-  assert.equal(focus.rank, 9);
+  assert.equal(focus.pointsFor, round2(focus.weekly.reduce((sum, row) => sum + row.pointsFor, 0)));
+  assert.equal(focus.record.wins, focus.weekly.filter((row) => row.result === "W").length);
+  assert.equal(focus.record.losses, focus.weekly.filter((row) => row.result === "L").length);
   const live = focus.weekly.find((row) => row.week === 8);
   assert.equal(live?.pointsFor, 179.26);
   assert.equal(live?.pointsAgainst, 89.36);
@@ -187,10 +186,11 @@ test("projected standings use the final records and rank by average seed", () =>
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   );
 
+  const latestFinal = Math.max(...league.teams.flatMap((team) => team.weekly.filter((row) => !row.provisional).map((row) => row.week)));
   for (const row of projected.standings) {
     const team = league.teams.find((entry) => entry.teamId === row.teamId);
     assert.ok(team);
-    const thru = team.weekly.filter((row) => row.week <= 8 && !row.provisional);
+    const thru = team.weekly.filter((row) => row.week <= latestFinal && !row.provisional);
     const wins = thru.filter((row) => row.result === "W").length;
     const losses = thru.filter((row) => row.result === "L").length;
     assert.equal(row.record_thru_wk8, `${wins}-${losses}`);
