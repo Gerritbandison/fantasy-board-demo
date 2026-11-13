@@ -1,8 +1,8 @@
 {
   "title": "Biggest regular-season wins (single week), all time",
   "league": "Chicken (ESPN 12115010)",
-  "generatedAt": "2026-11-10T08:50:00-05:00",
-  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-9. The 89.90 Week 8 margin is the final score from the Nov 3 production scoreboard. Week 9 finals are in the Nov 10 pull. The largest Week 9 margin is 47.06 (Bibi's Boys 151.38, Jahmyr I Go Again 104.32), below the 80.30 cutoff, so the top 10 is unchanged and pending stays empty.",
+  "generatedAt": "2026-11-13T00:10:00-05:00",
+  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-9. The 89.90 Week 8 margin is the final score from the Nov 3 production scoreboard. Week 9 finals are in the Nov 10 pull. The largest Week 9 margin is 47.06 (Bibi's Boys 151.38, Jahmyr I Go Again 104.32), below the 80.30 cutoff, so the top 10 is unchanged and pending stays empty. Week 10 is in progress as of 2026-11-13. The largest live margin is 48.7 (Maye i give you a blowj0b 54.9, All Heart 6.2), below the 80.30 cutoff, so pending stays empty and the ranking is unchanged.",
   "regularSeasonWeeks": {
     "2020": 13,
     "2021": 14,
@@ -38,7 +38,8 @@
     "Source: data/league-h2h-history.json (Flaim get_matchups, generated Oct 29) re-verified live via Flaim for every top-10 week on Nov 2.",
     "2026-11-03: the final Week 8 margin 89.90 (team 7 over team 8, 179.26-89.36) is rank 4. The previous rank 10 (2020 week 8, margin 80.14) dropped out. The other four Week 8 finals are below the cutoff.",
     "2026-11-05: Week 9 is in progress (Thursday scores only). No live margin is near the top 10, so pending stays empty and the ranking is unchanged.",
-    "2026-11-10: Week 9 is final. No Week 9 margin reaches the 80.30 cutoff. The largest is 47.06. Pending stays empty and the ranking is unchanged."
+    "2026-11-10: Week 9 is final. No Week 9 margin reaches the 80.30 cutoff. The largest is 47.06. Pending stays empty and the ranking is unchanged.",
+    "2026-11-13: Week 10 is in progress (Thursday scores only). The largest live margin is 48.7. No live margin is near the top 10, so pending stays empty and the ranking is unchanged."
   ],
   "top10": [
     {
