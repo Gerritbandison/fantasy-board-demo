@@ -163,7 +163,7 @@ export function sideDist(model: SimModel, game: SimGame, side: "home" | "away", 
   const proj = side === "home" ? game.homeProj : game.awayProj;
   const cur = side === "home" ? game.homeCurrent : game.awayCurrent;
   const team = teamOf(model, id);
-  const adj = id === model.focusId ? shift : team.bias;
+  const adj = id === model.focusId ? team.bias + shift : team.bias;
   const live =
     model.currentWeek != null &&
     game.week === model.currentWeek &&
@@ -192,7 +192,8 @@ export function focusSchedule(model: SimModel, shift: number): ScheduleRow[] {
     if (!home && !away) return;
     const [mm, ms] = sideDist(model, game, home ? "home" : "away", shift);
     const [om, os] = sideDist(model, game, home ? "away" : "home", shift);
-    const myEspn = (home ? game.homeProj : game.awayProj) + shift;
+    const focus = teamOf(model, model.focusId);
+    const myEspn = (home ? game.homeProj : game.awayProj) + focus.bias + shift;
     const oppEspn = home ? game.awayProj : game.homeProj;
     const opp = teamOf(model, home ? game.awayId : game.homeId);
     rows.push({

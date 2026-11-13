@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { draftRoastCard, type GameInput, type SideInput } from "../lib/commentary.ts";
+import { franchiseName } from "../lib/names.ts";
 
 interface Weekly {
   week: number;
@@ -9,7 +10,7 @@ interface Weekly {
 interface TeamRow {
   teamId: number;
   displayName: string;
-  espnName?: string;
+  espnName?: string | null;
   record: { wins: number; losses: number };
   weekly: Weekly[];
 }
@@ -17,6 +18,8 @@ interface GameRow {
   week?: number;
   homeTeamId: number;
   awayTeamId: number;
+  homeScore?: number;
+  awayScore?: number;
   homeProjected?: number;
   awayProjected?: number;
   homeCurrentPoints?: number;
@@ -25,13 +28,15 @@ interface GameRow {
 interface LeagueFile {
   meta: { currentWeek: number; weekInProgress?: { final?: boolean; asOf?: string } };
   teams: TeamRow[];
-  schedule: { week8?: GameRow[]; weeks1to7?: { games: GameRow[] }[] };
+  schedule: { completed?: GameRow[]; weeks1to7?: GameRow[] } & { [key: string]: unknown };
 }
 
 const league = JSON.parse(readFileSync("data/league-all-teams.json", "utf8")) as LeagueFile;
-const week = league.meta.currentWeek;
+const weekArg = process.argv.find((arg) => arg.startsWith("--week="));
+const week = weekArg ? Number(weekArg.slice("--week=".length)) : league.meta.currentWeek;
+
 const names = new Map(
-  league.teams.map((team) => [team.teamId, team.teamId === 7 && team.espnName ? team.espnName : team.displayName]),
+  league.teams.map((team) => [team.teamId, franchiseName(team.teamId, team.displayName, team.espnName)]),
 );
 
 function streak(team: TeamRow) {
@@ -57,25 +62,30 @@ function side(teamId: number, points: number, projected: number | undefined): Si
   };
 }
 
-const games =
-  week === 8
-    ? (league.schedule.week8 ?? [])
-    : (league.schedule.weeks1to7?.find((row) => row.games.some((game) => game.week === week))?.games.filter((game) => game.week === week) ?? []);
+const weekKeyGames = league.schedule[`week${week}`];
+const completedPool = [...(league.schedule.completed ?? []), ...(league.schedule.weeks1to7 ?? [])];
+const games: GameRow[] = Array.isArray(weekKeyGames)
+  ? (weekKeyGames as GameRow[])
+  : completedPool.filter((game) => game.week === week);
+
+const isLive = week === league.meta.currentWeek && league.meta.weekInProgress?.final === false;
 
 const matchups = games.map((game) => {
+  const homePts = game.homeCurrentPoints ?? game.homeScore ?? 0;
+  const awayPts = game.awayCurrentPoints ?? game.awayScore ?? 0;
   const input: GameInput = {
-    state: league.meta.weekInProgress?.final === false ? "live" : "final",
+    state: isLive ? "live" : "final",
     seed: week * 100 + game.homeTeamId * 10 + game.awayTeamId,
-    left: side(game.homeTeamId, game.homeCurrentPoints ?? 0, game.homeProjected),
-    right: side(game.awayTeamId, game.awayCurrentPoints ?? 0, game.awayProjected),
+    left: side(game.homeTeamId, homePts, game.homeProjected),
+    right: side(game.awayTeamId, awayPts, game.awayProjected),
   };
   const card = draftRoastCard(input);
   return {
     matchupId: `${week}-${game.homeTeamId}v${game.awayTeamId}`,
     homeTeamId: game.homeTeamId,
     awayTeamId: game.awayTeamId,
-    homePoints: game.homeCurrentPoints ?? 0,
-    awayPoints: game.awayCurrentPoints ?? 0,
+    homePoints: homePts,
+    awayPoints: awayPts,
     headline: card.headline,
     roast: card.roast,
     projection: { home: game.homeProjected ?? null, away: game.awayProjected ?? null },

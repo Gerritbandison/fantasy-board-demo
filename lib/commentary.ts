@@ -63,9 +63,9 @@ function read(game: GameInput) {
   };
 }
 
-/** Which cut the week earns. Final and live games use the score; a game that has not started does not. */
+/** Which cut the week earns. Final and live games use the score; a game that has not started or is tied does not. */
 export function classifyGame(game: GameInput): CommentaryBranch {
-  if (game.state === "projected") return "result";
+  if (game.state === "projected" || game.left.points === game.right.points) return "result";
   const { winner, favorite, loser, margin } = read(game);
   const miss = (favorite.projected ?? 0) - favorite.points;
   if (favorite !== winner && miss >= 15) return "projection-collapse";
@@ -81,11 +81,8 @@ export function classifyGame(game: GameInput): CommentaryBranch {
 export function resultCallout(game: GameInput) {
   const { favorite, dog, winner, projMargin, margin, hasProjection } = read(game);
   if (!hasProjection) return `${winner.name} won by ${one(margin)}.`;
-  if (game.state === "projected") {
+  if (game.state === "projected" || game.state === "live") {
     return `${favorite.name} is favored by ${one(projMargin)}, ${points(favorite.projected ?? 0)} to ${points(dog.projected ?? 0)}.`;
-  }
-  if (game.state === "live") {
-    return `${favorite.name} is favored by ${one(projMargin)}. The bracket stays only while that projection is still above the points already scored.`;
   }
   if (favorite === winner) return `${favorite.name} was favored by ${one(projMargin)} and won by ${one(margin)}.`;
   return `${favorite.name} was favored by ${one(projMargin)} and lost by ${one(margin)}.`;

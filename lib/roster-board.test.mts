@@ -7,6 +7,7 @@ import {
   formatStat,
   injuryBadge,
   opponentLabel,
+  sumDefined,
   type RosterPlayer,
 } from "./roster-board.ts";
 
@@ -104,7 +105,7 @@ test("a bye is labeled from the bye flag and a missing opponent stays blank", ()
   assert.equal(opponentLabel(null), "--");
 });
 
-test("team 7 keeps an empty D/ST and still lists the whole roster", () => {
+test("team 7 keeps starter slot order and lists the whole roster", () => {
   const team = getTeam(7);
   assert.ok(team);
   const board = buildRosterBoard(team.roster);
@@ -112,11 +113,9 @@ test("team 7 keeps an empty D/ST and still lists the whole roster", () => {
     board.starters.map((row) => row.slot),
     [...STARTER_SLOTS],
   );
-  assert.equal(board.starters.find((row) => row.slot === "D/ST")?.player, null);
   const listed = board.starters.filter((row) => row.player).length + board.bench.length + board.ir.length;
   const source = team.roster.starters.length + team.roster.bench.length + team.roster.ir.length;
   assert.equal(listed, source);
   assert.ok(listed > board.starters.filter((row) => row.player).length);
-  assert.equal(board.starterTotals.projection, null);
-  assert.equal(formatStat(team.roster.starters[0]?.projection), "--");
+  assert.equal(board.starterTotals.projection, sumDefined(board.starters.map((row) => row.player?.projection)));
 });

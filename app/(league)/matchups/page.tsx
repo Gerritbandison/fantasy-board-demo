@@ -71,7 +71,7 @@ function GameList({ games, linked }: { games: Matchup[]; linked: boolean }) {
               <span className="font-display tracking-[0.1em] text-slate-600 uppercase">Week {m.week}</span>
               <span className="flex items-center gap-1.5">
                 {mine && <Pill tone="turf">Your game</Pill>}
-                <StateBadge state={m.state} />
+                {(linked || m.state !== "projected") && <StateBadge state={m.state} />}
               </span>
             </div>
 

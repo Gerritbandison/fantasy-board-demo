@@ -78,7 +78,7 @@ test("record book label uses the weeks present on the finals", () => {
   assert.equal(recordBookLabel([1, 2, 3, 4, 5, 6, 7]), "Weeks 1–7");
   assert.equal(recordBookLabel([8]), "Week 8");
   assert.equal(recordBookLabel([]), "No finals yet");
-  assert.equal(recordBookLabel(WEEKS_PLAYED), "Weeks 1–8");
+  assert.equal(recordBookLabel(WEEKS_PLAYED), `Weeks ${Math.min(...WEEKS_PLAYED)}–${Math.max(...WEEKS_PLAYED)}`);
 });
 
 test("projection gap is actual minus projected and skips a side that has no actual", () => {

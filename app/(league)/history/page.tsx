@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeftRight, ChevronRight, Flame, Medal, Trophy } from "lucide-react";
+import { ArrowLeftRight, Medal, Trophy } from "lucide-react";
 import { BiggestWins } from "@/components/league/biggest-wins";
 import { HighScores } from "@/components/league/high-scores";
 import { HallOfFameAndShame } from "@/components/league/h2h";
@@ -8,7 +8,7 @@ import { Card, PageHeader, Pill, SectionHeading, TeamAvatar } from "@/components
 import { cn } from "@/lib/utils";
 import { CHAMPIONS, formatRecord, ordinal, STANDINGS, team, teamPath } from "@/lib/league";
 import { championSeedSummary, SEASONS_WITH_HISTORY, titleBoard } from "@/lib/stats";
-import { SEASONS_LABEL, TRADES } from "@/lib/trades";
+import { TRADES } from "@/lib/trades";
 
 export const metadata: Metadata = {
   title: "History",
@@ -34,63 +34,32 @@ export default function HistoryPage() {
             ? `. ${multi.map((r) => `${r.team.name} (${r.titleYears.join(", ")})`).join(" and ")} ${multi.length === 1 ? "is the only franchise" : "are the only franchises"} with more than one title.`
             : "."}
         </p>
+
+        <nav aria-label="History sections" className="mt-4 flex flex-wrap items-center gap-1.5">
+          {[
+            { href: "#timeline", label: "Title timeline" },
+            { href: "#awards", label: "Trophy case" },
+            { href: "#biggest-wins", label: "Top 10 wins" },
+            { href: "#high-scores", label: "Top 20 scores" },
+            { href: "#rivalries", label: "Rivalries" },
+          ].map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="inline-flex h-8 items-center rounded-lg bg-white px-3 text-xs font-semibold text-navy ring-1 ring-line transition-colors hover:bg-surface-subtle hover:ring-line-strong"
+            >
+              {item.label}
+            </a>
+          ))}
+          <Link
+            href="/trades"
+            className="inline-flex h-8 items-center gap-1.5 rounded-lg bg-gold-light/80 px-3 text-xs font-bold text-gold-ink ring-1 ring-gold-border transition-colors hover:bg-gold-light"
+          >
+            <ArrowLeftRight className="size-3.5" aria-hidden />
+            <span>Trade desk ({TRADES.length}) →</span>
+          </Link>
+        </nav>
       </PageHeader>
-
-      <div className="grid gap-3 sm:grid-cols-3">
-        <Link
-          href="/trades"
-          className="group flex items-start gap-3 rounded-2xl bg-white p-4 shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line transition-all hover:ring-line-strong hover:shadow-xs"
-        >
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gold-light text-gold-ink ring-1 ring-gold-border ring-inset">
-            <ArrowLeftRight className="size-4" aria-hidden />
-          </span>
-          <span className="min-w-0 flex-1">
-            <span className="flex items-center justify-between gap-1 font-display text-base leading-tight font-bold tracking-wide text-navy uppercase">
-              <span>Trade desk</span>
-              <ChevronRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5" aria-hidden />
-            </span>
-            <span className="mt-1 block text-xs leading-snug text-slate-600">
-              {TRADES.length} player trades ({SEASONS_LABEL}), sharks, suckers, and heists
-            </span>
-          </span>
-        </Link>
-
-        <a
-          href="#biggest-wins"
-          className="group flex items-start gap-3 rounded-2xl bg-white p-4 shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line transition-all hover:ring-line-strong hover:shadow-xs"
-        >
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-turf-light text-turf-dark ring-1 ring-turf-border ring-inset">
-            <Flame className="size-4" aria-hidden />
-          </span>
-          <span className="min-w-0 flex-1">
-            <span className="flex items-center justify-between gap-1 font-display text-base leading-tight font-bold tracking-wide text-navy uppercase">
-              <span>Top 10 biggest wins</span>
-              <ChevronRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5" aria-hidden />
-            </span>
-            <span className="mt-1 block text-xs leading-snug text-slate-600">
-              Largest single-week regular-season margins since 2020
-            </span>
-          </span>
-        </a>
-
-        <a
-          href="#high-scores"
-          className="group flex items-start gap-3 rounded-2xl bg-white p-4 shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line transition-all hover:ring-line-strong hover:shadow-xs"
-        >
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-gold-light text-gold-ink ring-1 ring-gold-border ring-inset">
-            <Trophy className="size-4" aria-hidden />
-          </span>
-          <span className="min-w-0 flex-1">
-            <span className="flex items-center justify-between gap-1 font-display text-base leading-tight font-bold tracking-wide text-navy uppercase">
-              <span>Top 20 most points</span>
-              <ChevronRight className="size-4 shrink-0 text-slate-400 transition-transform group-hover:translate-x-0.5" aria-hidden />
-            </span>
-            <span className="mt-1 block text-xs leading-snug text-slate-600">
-              Highest single-week regular-season scores on record
-            </span>
-          </span>
-        </a>
-      </div>
 
       <section className="overflow-hidden rounded-2xl bg-navy yard-lines p-5 text-white shadow-[0_6px_20px_rgba(12,25,44,0.16)] ring-1 ring-navy-3 sm:p-6">
         <p className="flex items-center gap-1.5 font-display text-xs font-bold tracking-[0.12em] text-gold uppercase">
@@ -118,7 +87,7 @@ export default function HistoryPage() {
         <p className="mt-2.5 text-xs text-white/75">Champion&apos;s regular-season seed, labelled with the franchise&apos;s current abbreviation.</p>
       </section>
 
-      <SectionHeading title="Title timeline" action={`${CHAMPIONS.length} seasons`} />
+      <SectionHeading id="timeline" title="Title timeline" action={`${CHAMPIONS.length} seasons`} />
       <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {CHAMPIONS.map((c) => {
           const champ = team(c.championId);
@@ -292,10 +261,6 @@ export default function HistoryPage() {
       <HighScores />
 
       <HallOfFameAndShame />
-
-      <p className="text-xs leading-relaxed text-slate-600">
-        Franchises are tracked by ESPN team slot across seasons, so a franchise&apos;s owner may have changed over the years. Season names are shown as they were that year. Open any team for its full season-by-season record.
-      </p>
     </>
   );
 }

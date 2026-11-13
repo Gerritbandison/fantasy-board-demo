@@ -130,6 +130,18 @@ test("a game that has not started states the favorite and the two projections", 
   assert.doesNotMatch(line, /projected final by/);
 });
 
+test("a live 0-0 game is not classified as an upset and carries no bracket instructions", () => {
+  const game = base({
+    state: "live",
+    left: { name: "Underdog", points: 0, projected: 112.0, wins: 4, losses: 5, lossesInARow: 0 },
+    right: { name: "Favorite", points: 0, projected: 133.5, wins: 5, losses: 4, lossesInARow: 0 },
+  });
+  assert.equal(classifyGame(game), "result");
+  const line = resultCallout(game);
+  assert.match(line, /Favorite is favored by 21\.5, 133\.5 to 112/);
+  assert.doesNotMatch(line, /bracket stays only/);
+});
+
 test("generated lines stay on the performance and carry no emoji", () => {
   const samples = [
     gameCommentary(base()).lines.join(" "),
