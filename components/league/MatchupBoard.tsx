@@ -6,6 +6,8 @@ import {
   formatRecord,
   isFlagged,
   LEAGUE,
+  MATCHUPS,
+  matchupPath,
   ordinal,
   team,
   teamPath,
@@ -34,10 +36,38 @@ export function MatchupBoard({ matchup }: { matchup: Matchup }) {
 
   return (
     <>
-      <div className="flex flex-col gap-2">
-        <Link href="/matchups" className="inline-flex items-center gap-1 self-start text-xs font-bold tracking-wide text-turf uppercase hover:underline">
-          ← Week {LEAGUE.week} scores
-        </Link>
+      <div className="flex flex-col gap-3">
+        {MATCHUPS.length > 1 && (
+          <nav aria-label={`Week ${LEAGUE.week} matchups`} className="flex items-center gap-1.5 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {MATCHUPS.map((item) => {
+              const on = item.slug === matchup.slug;
+              const lTeam = team(item.left.teamId);
+              const rTeam = team(item.right.teamId);
+              const lVal = item.state === "projected" ? item.left.projected?.toFixed(0) : formatPoints(item.left.points ?? 0);
+              const rVal = item.state === "projected" ? item.right.projected?.toFixed(0) : formatPoints(item.right.points ?? 0);
+              return (
+                <Link
+                  key={item.slug}
+                  href={matchupPath(item)}
+                  aria-current={on ? "page" : undefined}
+                  className={cn(
+                    "inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg px-2.5 text-xs font-semibold tabular-nums transition-colors",
+                    on
+                      ? "bg-navy text-white shadow-xs"
+                      : "bg-white text-navy ring-1 ring-line hover:bg-surface-subtle hover:ring-line-strong",
+                  )}
+                >
+                  <span className="font-display font-bold">{lTeam.abbrev}</span>
+                  <span>{lVal ?? "—"}</span>
+                  <span className={on ? "text-white/50" : "text-slate-400"}>·</span>
+                  <span className="font-display font-bold">{rTeam.abbrev}</span>
+                  <span>{rVal ?? "—"}</span>
+                </Link>
+              );
+            })}
+          </nav>
+        )}
+
         <PageHeader
           eyebrow={`Week ${LEAGUE.week} matchup`}
           title={
