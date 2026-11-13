@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { BottomNavLink, TopNavLink } from "./NavLink";
 
-/** Same strokes as the Lucide icons this bar used, drawn here so the icon library stays off the client. */
+/** Crisp inline strokes so the icon library stays off the client bundle. */
 function NavIcon({ className, children }: { className?: string; children: ReactNode }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -50,6 +50,17 @@ function SwordsIcon({ className }: { className?: string }) {
   );
 }
 
+function WireIcon({ className }: { className?: string }) {
+  return (
+    <NavIcon className={className}>
+      <path d="M16 3h5v5" />
+      <path d="M8 21H3v-5" />
+      <path d="M21 3 13.5 10.5" />
+      <path d="M3 21l7.5-7.5" />
+    </NavIcon>
+  );
+}
+
 function ChartIcon({ className }: { className?: string }) {
   return (
     <NavIcon className={className}>
@@ -85,41 +96,44 @@ function TrophyIcon({ className }: { className?: string }) {
   );
 }
 
-/** `also`: extra paths that light up the item; `phoneAlso` only applies in the bottom bar, where Standings and Trades have no tab of their own. */
+/** `also`: extra paths that light up the item; `phoneAlso` only applies in the bottom bar. */
 const NAV: { href: string; label: string; icon: typeof UsersIcon; phone: boolean; also?: string[]; phoneAlso?: string[] }[] = [
   { href: "/matchups", label: "Scores", icon: SwordsIcon, phone: true },
-  { href: "/teams", label: "Teams", icon: UsersIcon, phone: true, phoneAlso: ["/standings"] },
+  { href: "/teams", label: "Teams", icon: UsersIcon, phone: true, phoneAlso: ["/standings", "/moves", "/playoffs"] },
   { href: "/standings", label: "Standings", icon: ListIcon, phone: false },
+  { href: "/moves", label: "Waivers", icon: WireIcon, phone: false },
   { href: "/insights", label: "Insights", icon: ChartIcon, phone: true },
   { href: "/trades", label: "Trades", icon: SwapIcon, phone: false },
   { href: "/history", label: "History", icon: TrophyIcon, phone: true, phoneAlso: ["/trades"] },
 ];
 
-function Football({ className }: { className?: string }) {
+function FootballCrest({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" className={className} aria-hidden>
-      <ellipse cx="16" cy="16" rx="13" ry="8.5" transform="rotate(-35 16 16)" fill="#8b4513" />
-      <ellipse cx="16" cy="16" rx="13" ry="8.5" transform="rotate(-35 16 16)" fill="none" stroke="#5c2d0c" strokeWidth="1" />
-      <path d="M11.5 20.5 20.5 11.5" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
+      <ellipse cx="16" cy="16" rx="12.5" ry="8" transform="rotate(-35 16 16)" fill="#b45309" stroke="#f59e0b" strokeWidth="1.2" />
+      <path d="M11.6 20.4 20.4 11.6" stroke="white" strokeWidth="1.7" strokeLinecap="round" />
       {[0, 1, 2, 3].map((i) => (
-        <path key={i} d={`M${12.6 + i * 2.1} ${17.2 + i * -2.1} l2.2 2.2`} stroke="white" strokeWidth="1.3" strokeLinecap="round" />
+        <path key={i} d={`M${12.7 + i * 2.05} ${17.1 + i * -2.05} l2.2 2.2`} stroke="white" strokeWidth="1.35" strokeLinecap="round" />
       ))}
     </svg>
   );
 }
 
-export function TopBar({ week, season }: { week: number; season: number }) {
+export function TopBar({ week, season, live = false }: { week: number; season: number; live?: boolean }) {
   return (
-    <header className="app-chrome sticky top-0 z-30 bg-navy yard-lines pt-[env(safe-area-inset-top)] text-white shadow-[0_2px_10px_rgba(15,30,54,0.25)]">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-3 pr-[max(1rem,env(safe-area-inset-right))] pl-[max(1rem,env(safe-area-inset-left))]">
-        <Link href="/matchups" className="flex min-w-0 items-center gap-2.5">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
-            <Football className="size-7" />
+    <header className="app-chrome sticky top-0 z-30 border-b border-white/10 bg-navy yard-lines pt-[env(safe-area-inset-top)] text-white shadow-[0_1px_8px_rgba(12,25,44,0.22)]">
+      <div className="mx-auto flex h-15 w-full max-w-6xl items-center justify-between gap-3 pr-[max(1rem,env(safe-area-inset-right))] pl-[max(1rem,env(safe-area-inset-left))]">
+        <Link href="/matchups" className="group flex min-w-0 items-center gap-2.5 rounded-lg py-1">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-navy-2 ring-1 ring-white/15 transition-colors group-hover:ring-gold/50">
+            <FootballCrest className="size-6" />
           </span>
           <span className="min-w-0 leading-none">
-            <span className="block truncate font-display text-xl font-bold tracking-wide">Chicken League</span>
-            <span className="mt-0.5 block text-xs font-medium text-white/80">
-              Week {week} · {season} season
+            <span className="block truncate font-display text-[1.3rem] font-extrabold tracking-[0.03em] uppercase">Chicken League</span>
+            <span className="mt-0.5 flex items-center gap-1.5 text-xs font-medium text-white/75">
+              {live && <span className="size-1.5 shrink-0 rounded-full bg-emerald-400" aria-hidden />}
+              <span>
+                Week {week} · {season}
+              </span>
             </span>
           </span>
         </Link>
@@ -127,13 +141,16 @@ export function TopBar({ week, season }: { week: number; season: number }) {
         <nav aria-label="Primary" className="hidden items-center gap-0.5 md:flex lg:gap-1">
           {NAV.map((item) => (
             <TopNavLink key={item.href} href={item.href} also={item.also}>
-              <item.icon className="size-4 max-lg:hidden" aria-hidden />
+              <item.icon className="size-3.5 opacity-80 max-lg:hidden" aria-hidden />
               {item.label}
             </TopNavLink>
           ))}
         </nav>
 
-        <span className="shrink-0 rounded-full bg-turf px-2.5 py-1 text-xs font-bold tracking-wide uppercase md:hidden">Wk {week}</span>
+        <span className="inline-flex shrink-0 items-center gap-1.5 rounded-md bg-navy-2 px-2.5 py-1 font-display text-xs font-bold tracking-wider text-white uppercase ring-1 ring-white/15 md:hidden">
+          {live && <span className="size-1.5 rounded-full bg-emerald-400" aria-hidden />}
+          Wk {week}
+        </span>
       </div>
     </header>
   );
@@ -143,12 +160,17 @@ export function BottomNav() {
   return (
     <nav
       aria-label="Primary"
-      className="app-chrome fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white/95 pb-[env(safe-area-inset-bottom)] shadow-[0_-2px_12px_rgba(15,30,54,0.06)] backdrop-blur-md md:hidden"
+      className="app-chrome fixed inset-x-0 bottom-0 z-30 border-t border-line bg-white pb-[env(safe-area-inset-bottom)] shadow-[0_-2px_10px_rgba(12,25,44,0.06)] md:hidden"
     >
       <ul className="mx-auto grid max-w-lg grid-cols-4 pr-[env(safe-area-inset-right)] pl-[env(safe-area-inset-left)]">
         {NAV.filter((item) => item.phone).map((item) => (
           <li key={item.href}>
-            <BottomNavLink href={item.href} also={[...(item.also ?? []), ...(item.phoneAlso ?? [])]} label={item.label} icon={<item.icon className="size-[22px]" aria-hidden />} />
+            <BottomNavLink
+              href={item.href}
+              also={[...(item.also ?? []), ...(item.phoneAlso ?? [])]}
+              label={item.label}
+              icon={<item.icon className="size-5" aria-hidden />}
+            />
           </li>
         ))}
       </ul>

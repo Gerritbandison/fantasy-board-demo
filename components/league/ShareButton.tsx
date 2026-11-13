@@ -24,8 +24,12 @@ export function ShareButton({ title, text }: { title: string; text: string }) {
   }
 
   return (
-    <button type="button" onClick={() => void share()} className="inline-flex h-11 items-center rounded-full bg-turf px-4 text-sm font-semibold text-white hover:bg-turf-dark">
-      {copied ? "Link copied" : "Share this card"}
+    <button
+      type="button"
+      onClick={() => void share()}
+      className="inline-flex h-11 cursor-pointer items-center justify-center gap-2 self-start rounded-xl bg-turf px-5 text-sm font-semibold text-white shadow-xs transition-colors hover:bg-turf-dark"
+    >
+      {copied ? "Link copied to clipboard" : "Share this card"}
     </button>
   );
 }

@@ -22,8 +22,8 @@ export function TopNavLink({ href, also = [], children }: { href: string; also?:
       href={href}
       aria-current={on ? "page" : undefined}
       className={cx(
-        "flex h-9 items-center gap-1.5 rounded-full px-2.5 text-sm font-semibold transition-colors lg:px-3.5",
-        on ? "bg-white text-navy" : "text-white/75 hover:bg-white/10 hover:text-white",
+        "flex h-9 items-center gap-1.5 rounded-lg px-2.5 text-sm font-semibold transition-colors lg:px-3",
+        on ? "bg-white text-navy shadow-xs" : "text-white/80 hover:bg-white/10 hover:text-white",
       )}
     >
       {children}
@@ -31,7 +31,7 @@ export function TopNavLink({ href, also = [], children }: { href: string; also?:
   );
 }
 
-/** Phone tab. The icon is server-rendered; the active stroke is a CSS override. */
+/** Phone tab. The icon is server-rendered; the active state highlights with a crisp capsule. */
 export function BottomNavLink({ href, also = [], label, icon }: { href: string; also?: string[]; label: string; icon: ReactNode }) {
   const pathname = usePathname();
   const on = active(pathname, href, also);
@@ -40,13 +40,14 @@ export function BottomNavLink({ href, also = [], label, icon }: { href: string; 
       href={href}
       aria-current={on ? "page" : undefined}
       className={cx(
-        "relative flex h-16 flex-col items-center justify-center gap-1 text-xs font-semibold transition-colors",
-        on ? "text-turf [&_svg]:stroke-[2.25]" : "text-slate-600 active:text-navy",
+        "relative flex h-15 flex-col items-center justify-center gap-0.5 text-[11px] font-bold tracking-wide transition-colors",
+        on ? "text-turf-dark [&_svg]:stroke-[2.25]" : "text-slate-600 hover:text-navy active:text-navy",
       )}
     >
-      {on && <span className="absolute inset-x-5 top-0 h-[3px] rounded-b-full bg-turf" />}
-      {icon}
-      {label}
+      <span className={cx("flex h-7 w-12 items-center justify-center rounded-full transition-colors", on ? "bg-turf-light text-turf-dark" : "text-slate-600")}>
+        {icon}
+      </span>
+      <span>{label}</span>
     </Link>
   );
 }

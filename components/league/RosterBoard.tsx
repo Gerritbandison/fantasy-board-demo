@@ -1,5 +1,5 @@
 import { PlayerHeadshot } from "@/components/league/PlayerHeadshot";
-import { SlotChip, StatusChip } from "@/components/league/bits";
+import { ByeChip, SlotChip, StatusChip } from "@/components/league/bits";
 import { Card } from "@/components/league/ui";
 import type { Player } from "@/lib/league";
 import {
@@ -10,6 +10,7 @@ import {
   type RosterPlayer,
   type StatTotals,
 } from "@/lib/roster-board";
+import { cn } from "@/lib/utils";
 
 function asRoster(player: Player): RosterPlayer {
   return player;
@@ -22,14 +23,15 @@ function cell(player: RosterPlayer | null, pick: (player: RosterPlayer) => strin
 
 function PlayerFace({ player }: { player: RosterPlayer }) {
   return (
-    <div className="flex min-w-0 items-center gap-2">
+    <div className="flex min-w-0 items-center gap-2.5">
       <PlayerHeadshot id={player.playerId} name={player.name} />
       <div className="min-w-0">
-        <p className="flex flex-wrap items-center gap-1 leading-tight">
+        <p className="flex flex-wrap items-center gap-1.5 leading-tight">
           <span className="font-semibold break-words text-navy">{player.name}</span>
           <StatusChip status={player.status} />
+          <ByeChip onBye={player.onBye} />
         </p>
-        <p className="text-xs text-slate-600">
+        <p className="mt-0.5 text-xs font-medium text-slate-600">
           {[player.nflTeam, player.position].filter(Boolean).join(" · ") || "--"}
         </p>
       </div>
@@ -37,11 +39,11 @@ function PlayerFace({ player }: { player: RosterPlayer }) {
   );
 }
 
-const STATS: { key: string; label: string; value: (player: RosterPlayer | null) => string; total?: (totals: StatTotals) => string }[] = [
+const STATS: { key: string; label: string; highlight?: boolean; value: (player: RosterPlayer | null) => string; total?: (totals: StatTotals) => string }[] = [
   { key: "opp", label: "Opp", value: (player) => opponentLabel(player) },
   { key: "status", label: "Status", value: (player) => gameStatusLabel(player) },
   { key: "proj", label: "Proj", value: (player) => cell(player, (p) => formatStat(p.projection)), total: (t) => formatStat(t.projection) },
-  { key: "score", label: "Score", value: (player) => cell(player, (p) => formatStat(p.score)), total: (t) => formatStat(t.score) },
+  { key: "score", label: "Score", highlight: true, value: (player) => cell(player, (p) => formatStat(p.score)), total: (t) => formatStat(t.score) },
   { key: "oprk", label: "OPRK", value: (player) => cell(player, (p) => formatStat(p.opponentRank, 0)) },
   { key: "start", label: "%Start", value: (player) => cell(player, (p) => formatStat(p.percentStarted)) },
   { key: "rost", label: "%Rost", value: (player) => cell(player, (p) => formatStat(p.percentRostered)) },
@@ -51,37 +53,61 @@ const STATS: { key: string; label: string; value: (player: RosterPlayer | null) 
   { key: "last", label: "Last", value: (player) => cell(player, (p) => formatStat(p.lastPoints)), total: (t) => formatStat(t.lastPoints) },
 ];
 
+const SECONDARY_PHONE_STATS = STATS.filter((s) => s.key !== "score" && s.key !== "proj");
+
 function PhoneRow({ slot, player }: { slot: string; player: RosterPlayer | null }) {
+  const scoreVal = STATS.find((s) => s.key === "score")!.value(player);
+  const projVal = STATS.find((s) => s.key === "proj")!.value(player);
+
   return (
     <li className="rounded-xl bg-white p-3 ring-1 ring-line">
-      <div className="flex items-center gap-2">
-        <SlotChip slot={slot} />
-        {player ? <PlayerFace player={player} /> : <span className="text-sm font-semibold text-slate-500">Empty</span>}
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2.5">
+          <SlotChip slot={slot} />
+          {player ? <PlayerFace player={player} /> : <span className="text-sm font-medium text-slate-400">Empty slot</span>}
+        </div>
+        <div className="shrink-0 text-right tabular-nums">
+          <p className={cn("font-display text-xl leading-none font-bold", scoreVal === "--" ? "text-slate-400" : "text-navy")}>
+            {scoreVal}
+          </p>
+          <p className="mt-0.5 text-[11px] font-medium text-slate-500">Proj {projVal}</p>
+        </div>
       </div>
-      <dl className="mt-2 grid grid-cols-3 gap-x-2 gap-y-1">
-        {STATS.map((stat) => (
-          <div key={stat.key}>
-            <dt className="text-[10px] font-bold tracking-wide text-slate-500 uppercase">{stat.label}</dt>
-            <dd className="text-sm font-semibold text-navy tabular-nums">{stat.value(player)}</dd>
-          </div>
-        ))}
-      </dl>
+
+      {player && (
+        <dl className="mt-2.5 grid grid-cols-5 gap-x-2 gap-y-1.5 border-t border-line/70 pt-2">
+          {SECONDARY_PHONE_STATS.map((stat) => {
+            const val = stat.value(player);
+            return (
+              <div key={stat.key} className="min-w-0">
+                <dt className="text-[10px] font-bold tracking-wide text-slate-500 uppercase">{stat.label}</dt>
+                <dd className={cn("truncate text-xs tabular-nums", val === "--" ? "text-slate-400" : "font-semibold text-navy")}>{val}</dd>
+              </div>
+            );
+          })}
+        </dl>
+      )}
     </li>
   );
 }
 
 function PhoneTotals({ label, totals }: { label: string; totals: StatTotals }) {
   return (
-    <li className="rounded-xl bg-slate-50 p-3 ring-1 ring-line">
-      <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">{label} totals</p>
-      <dl className="mt-2 grid grid-cols-3 gap-x-2 gap-y-1">
-        {STATS.filter((stat) => stat.total).map((stat) => (
-          <div key={stat.key}>
-            <dt className="text-[10px] font-bold tracking-wide text-slate-500 uppercase">{stat.label}</dt>
-            <dd className="text-sm font-semibold text-navy tabular-nums">{stat.total!(totals)}</dd>
-          </div>
-        ))}
-      </dl>
+    <li className="rounded-xl bg-surface-subtle px-3.5 py-2.5 ring-1 ring-line">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="font-display text-xs font-bold tracking-wider text-navy uppercase">{label} totals</p>
+        <dl className="flex flex-wrap items-center gap-4">
+          {STATS.filter((stat) => stat.total).map((stat) => {
+            const val = stat.total!(totals);
+            return (
+              <div key={stat.key} className="text-right">
+                <dt className="text-[10px] font-bold tracking-wide text-slate-500 uppercase">{stat.label}</dt>
+                <dd className={cn("font-display text-base leading-tight font-bold tabular-nums", val === "--" ? "text-slate-400" : "text-navy")}>{val}</dd>
+              </div>
+            );
+          })}
+        </dl>
+      </div>
     </li>
   );
 }
@@ -90,42 +116,63 @@ function TableSection({
   title,
   rows,
   totals,
+  primary = false,
 }: {
   title: string;
   rows: { slot: string; player: RosterPlayer | null; key: string }[];
   totals: StatTotals | null;
+  primary?: boolean;
 }) {
   return (
     <>
-      <tr className="bg-navy text-white">
-        <th colSpan={13} className="px-3 py-2 text-left font-display text-sm tracking-wider uppercase">
+      <tr className={primary ? "bg-navy text-white" : "bg-navy-2 text-white"}>
+        <th colSpan={13} className="px-4 py-2 text-left font-display text-xs font-bold tracking-[0.1em] uppercase">
           {title}
         </th>
       </tr>
       {rows.map((row) => (
-        <tr key={row.key} className="border-b border-line">
-          <th className="sticky left-0 z-10 bg-white px-2 py-2 text-left font-normal">
+        <tr key={row.key} className="group border-b border-line transition-colors hover:bg-surface-subtle/70">
+          <th className="sticky left-0 z-10 bg-white px-3 py-2.5 text-left font-normal group-hover:bg-surface-subtle">
             <SlotChip slot={row.slot} />
           </th>
-          <td className="sticky left-14 z-10 min-w-52 bg-white px-2 py-2">
-            {row.player ? <PlayerFace player={row.player} /> : <span className="text-sm font-semibold text-slate-500">Empty</span>}
+          <td className="sticky left-16 z-10 min-w-56 bg-white px-2.5 py-2.5 group-hover:bg-surface-subtle">
+            {row.player ? <PlayerFace player={row.player} /> : <span className="text-sm font-medium text-slate-400">Empty slot</span>}
           </td>
-          {STATS.map((stat) => (
-            <td key={stat.key} className="px-2 py-2 text-right font-semibold text-navy tabular-nums whitespace-nowrap">
-              {stat.value(row.player)}
-            </td>
-          ))}
+          {STATS.map((stat) => {
+            const val = stat.value(row.player);
+            return (
+              <td
+                key={stat.key}
+                className={cn(
+                  "px-2.5 py-2.5 text-right tabular-nums whitespace-nowrap",
+                  stat.highlight && "bg-surface-subtle/50",
+                  val === "--" ? "font-normal text-slate-400" : stat.highlight ? "font-display text-base font-bold text-navy" : "font-semibold text-navy",
+                )}
+              >
+                {val}
+              </td>
+            );
+          })}
         </tr>
       ))}
       {totals && (
-        <tr className="border-b border-line bg-slate-50 font-bold">
-          <th className="sticky left-0 z-10 bg-slate-50 px-2 py-2 text-left text-xs tracking-wider text-slate-600 uppercase">Totals</th>
-          <td className="sticky left-14 z-10 bg-slate-50" />
-          {STATS.map((stat) => (
-            <td key={stat.key} className="px-2 py-2 text-right text-navy tabular-nums">
-              {stat.total ? stat.total(totals) : "--"}
-            </td>
-          ))}
+        <tr className="border-b border-line bg-surface-subtle font-bold">
+          <th className="sticky left-0 z-10 bg-surface-subtle px-3 py-2.5 text-left font-display text-xs tracking-wider text-slate-600 uppercase">Totals</th>
+          <td className="sticky left-16 z-10 bg-surface-subtle" />
+          {STATS.map((stat) => {
+            const val = stat.total ? stat.total(totals) : "--";
+            return (
+              <td
+                key={stat.key}
+                className={cn(
+                  "px-2.5 py-2.5 text-right tabular-nums",
+                  val === "--" ? "font-normal text-slate-400" : "font-display text-base font-bold text-navy",
+                )}
+              >
+                {val}
+              </td>
+            );
+          })}
         </tr>
       )}
     </>
@@ -154,63 +201,88 @@ export function RosterBoard({
 
   return (
     <Card title="Lineup" action={weekLabel ?? `Week ${week}`} bodyClassName="p-0 sm:p-0">
-      <p className="px-4 pt-1 text-sm text-slate-600 sm:px-5">
+      <p className="border-b border-line/70 px-4 py-2.5 text-xs font-medium text-slate-600 sm:px-5">
         Week {week}
         {weekLabel ? ` · ${weekLabel}` : ""}. One current roster is stored, so this is the latest lineup.
       </p>
-      <div className="mt-3 grid gap-2 px-3 pb-3 md:hidden">
-        <p className="px-1 text-xs font-bold tracking-wider text-slate-600 uppercase">Starters</p>
+
+      <div className="grid gap-2.5 bg-surface-subtle/45 px-3 py-3 md:hidden">
+        <p className="px-1 font-display text-xs font-bold tracking-[0.1em] text-navy uppercase">Starters</p>
         <ul className="grid gap-2">
           {starterRows.map((row) => (
             <PhoneRow key={row.key} slot={row.slot} player={row.player} />
           ))}
           <PhoneTotals label="Starters" totals={board.starterTotals} />
         </ul>
-        <p className="px-1 pt-2 text-xs font-bold tracking-wider text-slate-600 uppercase">Bench</p>
+
+        <p className="px-1 pt-2 font-display text-xs font-bold tracking-[0.1em] text-navy uppercase">Bench</p>
         <ul className="grid gap-2">
           {benchRows.map((row) => (
             <PhoneRow key={row.key} slot={row.player.position} player={row.player} />
           ))}
           <PhoneTotals label="Bench" totals={board.benchTotals} />
         </ul>
-        <p className="px-1 pt-2 text-xs font-bold tracking-wider text-slate-600 uppercase">IR</p>
+
+        <p className="px-1 pt-2 font-display text-xs font-bold tracking-[0.1em] text-navy uppercase">Injured reserve</p>
         <ul className="grid gap-2">
           {irRows.map((row) => (
             <PhoneRow key={row.key} slot="IR" player={row.player} />
           ))}
         </ul>
       </div>
-      <div className="mt-3 hidden overflow-x-auto md:block">
-        <table className="w-full min-w-[980px] border-collapse text-sm">
+
+      <div className="hidden overflow-x-auto md:block">
+        <table className="w-full min-w-[960px] border-collapse text-sm">
           <thead>
-            <tr className="border-y border-line bg-slate-50 text-xs tracking-wider text-slate-600 uppercase">
-              <th rowSpan={2} className="sticky left-0 z-20 bg-slate-50 px-2 py-2 text-left">Slot</th>
-              <th rowSpan={2} className="sticky left-14 z-20 min-w-52 bg-slate-50 px-2 py-2 text-left">Player</th>
-              <th rowSpan={2} className="px-2 py-2 text-right">Opp</th>
-              <th rowSpan={2} className="px-2 py-2 text-right">Status</th>
-              <th rowSpan={2} className="px-2 py-2 text-right">Proj</th>
-              <th rowSpan={2} className="px-2 py-2 text-right">Score</th>
-              <th rowSpan={2} className="px-2 py-2 text-right">OPRK</th>
-              <th rowSpan={2} className="px-2 py-2 text-right">%Start</th>
-              <th rowSpan={2} className="px-2 py-2 text-right">%Rost</th>
-              <th colSpan={4} className="px-2 py-1 text-center">{season} season</th>
+            <tr className="border-b border-line bg-surface-subtle text-[11px] font-bold tracking-wider text-slate-600 uppercase">
+              <th rowSpan={2} className="sticky left-0 z-20 bg-surface-subtle px-3 py-2 text-left">
+                Slot
+              </th>
+              <th rowSpan={2} className="sticky left-16 z-20 min-w-56 bg-surface-subtle px-2.5 py-2 text-left">
+                Player
+              </th>
+              <th rowSpan={2} className="px-2.5 py-2 text-right">
+                Opp
+              </th>
+              <th rowSpan={2} className="px-2.5 py-2 text-right">
+                Status
+              </th>
+              <th rowSpan={2} className="px-2.5 py-2 text-right">
+                Proj
+              </th>
+              <th rowSpan={2} className="bg-surface-muted/60 px-2.5 py-2 text-right text-navy">
+                Score
+              </th>
+              <th rowSpan={2} className="px-2.5 py-2 text-right">
+                OPRK
+              </th>
+              <th rowSpan={2} className="px-2.5 py-2 text-right">
+                %Start
+              </th>
+              <th rowSpan={2} className="px-2.5 py-2 text-right">
+                %Rost
+              </th>
+              <th colSpan={4} className="border-b border-line/80 px-2.5 py-1.5 text-center text-navy">
+                {season} season
+              </th>
             </tr>
-            <tr className="border-b border-line bg-slate-50 text-xs tracking-wider text-slate-600 uppercase">
-              <th className="px-2 py-1 text-right">PRK</th>
-              <th className="px-2 py-1 text-right">FPTS</th>
-              <th className="px-2 py-1 text-right">AVG</th>
-              <th className="px-2 py-1 text-right">Last</th>
+            <tr className="border-b border-line bg-surface-subtle text-[11px] font-bold tracking-wider text-slate-600 uppercase">
+              <th className="px-2.5 py-1.5 text-right">PRK</th>
+              <th className="px-2.5 py-1.5 text-right">FPTS</th>
+              <th className="px-2.5 py-1.5 text-right">AVG</th>
+              <th className="px-2.5 py-1.5 text-right">Last</th>
             </tr>
           </thead>
           <tbody>
-            <TableSection title="Starters" rows={starterRows} totals={board.starterTotals} />
+            <TableSection title="Starters" rows={starterRows} totals={board.starterTotals} primary />
             <TableSection title="Bench" rows={benchRows} totals={board.benchTotals} />
-            <TableSection title="IR" rows={irRows} totals={null} />
+            <TableSection title="Injured reserve" rows={irRows} totals={null} />
           </tbody>
         </table>
       </div>
-      <p className="px-4 py-3 text-xs leading-relaxed text-slate-600 sm:px-5">
-        % rostered is the ESPN-wide rate on the roster pull. Opponent, kickoff, projection, score, OPRK, % started, and season rank, points, average, and last game are not in this pull, so those cells are --.
+
+      <p className="bg-surface-subtle/50 px-4 py-3 text-xs leading-relaxed text-slate-600 sm:px-5">
+        % rostered is the ESPN-wide rate on the roster pull. Cells marked <span className="font-mono text-slate-500">--</span> are not included in this snapshot.
       </p>
     </Card>
   );

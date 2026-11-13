@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { Fragment, useMemo, useState, type ReactNode } from "react";
+import { ChevronDown } from "lucide-react";
 import { PLAYOFF_MODEL } from "@/lib/playoff-data";
 import { SIM_COUNT, focusSchedule, formatPct, simulate, winOutChance, winOutPath } from "@/lib/playoff-sim";
 import { cx } from "@/lib/cx";
@@ -70,6 +71,7 @@ export function PlayoffSimulator({
   const winOutRecord = path[path.length - 1];
   const pfOrder = [...PLAYOFF_MODEL.teams].sort((a, b) => b.pf - a.pf);
   const pfPlace = pfOrder.findIndex((team) => team.id === PLAYOFF_MODEL.focusId) + 1;
+  const lockedCount = Object.keys(scenarioForced).length;
 
   function setPick(gameIndex: number, pick: "W" | "L" | "auto") {
     setMayePick((prev) => {
@@ -102,97 +104,144 @@ export function PlayoffSimulator({
   const seven = at(7);
 
   return (
-    <div className="grid gap-5">
+    <div className="grid gap-6">
       <p className="sr-only" aria-live="polite">
         {focusName} playoff odds for this scenario: {formatPct(scenario.focusOdds, 1)}. {SIM_COUNT.toLocaleString("en-US")} simulations.
       </p>
 
-      <Panel title="Scenario">
-        <p className="text-sm leading-snug text-slate-600">
-          Same model as the standings table. That table is this scenario at the ESPN setting with nothing locked. Moving the slider or locking a game changes the odds below. {SIM_COUNT.toLocaleString("en-US")} seeded simulations. Top 4 of 10. Regular season ends Week 14. A tie adds no win. Tiebreak is record, then points for.
+      <Panel title="Scenario controls" action={`${SIM_COUNT.toLocaleString("en-US")} sims`}>
+        <p className="text-sm leading-relaxed text-slate-600">
+          Same Monte Carlo model as the projected standings above. Adjust the weekly scoring baseline or lock individual game outcomes to test paths into the top 4. Regular season ends Week 14; tiebreak is record, then points for.
         </p>
-        <div className="mt-4 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          <Stat label="This scenario" value={formatPct(scenario.focusOdds, 1)} sub={Object.keys(scenarioForced).length ? "With results locked" : "Nothing locked"} />
-          <Stat label="Every game modeled" value={formatPct(baseline.focusOdds, 1)} sub="No results locked" />
-          <Stat label="Win out" value={formatPct(winOutRecord?.odds ?? 0, 1)} sub={winOutRecord ? `${winOutRecord.wins}-${winOutRecord.losses}, other locks kept` : "Other locks kept"} />
-          <Stat label={`Win all ${remaining.length}`} value={formatPct(winAll, 1)} sub="Product of the remaining game odds" />
+
+        <div className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <KpiBox
+            label="This scenario"
+            value={formatPct(scenario.focusOdds, 1)}
+            sub={lockedCount ? `${lockedCount} ${lockedCount === 1 ? "game" : "games"} locked` : "Nothing locked"}
+            highlight
+          />
+          <KpiBox label="Every game modeled" value={formatPct(baseline.focusOdds, 1)} sub="No results locked" />
+          <KpiBox
+            label="Win out"
+            value={formatPct(winOutRecord?.odds ?? 0, 1)}
+            sub={winOutRecord ? `${winOutRecord.wins}-${winOutRecord.losses}, other locks kept` : "Other locks kept"}
+          />
+          <KpiBox label={`Win all ${remaining.length}`} value={formatPct(winAll, 1)} sub="Product of remaining odds" />
         </div>
 
-        <label htmlFor="strength" className="mt-5 block text-sm text-slate-600">
-          Non-bye projection for {focusName}: <span className="font-semibold text-navy tabular-nums">{mean.toFixed(1)}</span>
-          {shift === 0 ? " (ESPN)" : ` (${shift > 0 ? "+" : "−"}${Math.abs(shift)} vs ESPN)`}
-        </label>
-        <input
-          id="strength"
-          type="range"
-          min={-25}
-          max={25}
-          step={1}
-          value={shift}
-          onChange={(event) => setShift(Number(event.target.value))}
-          aria-valuemin={-25}
-          aria-valuemax={25}
-          aria-valuenow={shift}
-          aria-valuetext={`${mean.toFixed(1)} projected points in non-bye weeks`}
-          className="mt-2 h-11 w-full accent-turf"
-        />
-        <div className="mt-3 flex flex-wrap gap-2">
-          {PRESET_SHIFTS.map((preset) => (
-            <button
-              key={preset.name}
-              type="button"
-              aria-pressed={shift === preset.shift}
-              onClick={() => setShift(preset.shift)}
-              className={cx(
-                "min-h-11 rounded-full px-3 text-sm font-semibold",
-                shift === preset.shift ? "bg-navy text-white" : "bg-white text-navy ring-1 ring-line",
-              )}
-            >
-              {preset.name} {(PLAYOFF_MODEL.nonByeEspn + preset.shift).toFixed(1)}
-            </button>
-          ))}
-          <button type="button" onClick={winOut} className="min-h-11 rounded-full bg-turf px-3 text-sm font-semibold text-white hover:bg-turf-dark">
-            Win out
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              setMayePick({});
-              setForced({});
-            }}
-            className="min-h-11 rounded-full bg-white px-3 text-sm font-semibold text-navy ring-1 ring-line"
-          >
-            Clear locks
-          </button>
-        </div>
-      </Panel>
-
-      <Panel title="Win out">
-        <p className="text-sm leading-snug text-slate-600">
-          Playoff odds if {focusName} wins each remaining game, one week at a time. Games after that win are still simulated. Locked results in other games stay locked.
-        </p>
-        <ol className="mt-4 grid gap-2" aria-label="Playoff odds if each remaining game is a win">
-          {path.map((step) => (
-            <li key={step.week ?? "now"} className="grid grid-cols-[4.75rem_minmax(0,1fr)_3.4rem] items-center gap-2">
-              <span className="text-xs leading-tight font-bold text-slate-600">
-                <span className="block text-navy">{step.week == null ? "Now" : `Wk ${step.week}`}</span>
-                {step.wins}-{step.losses}
-              </span>
-              <div
-                className="h-3 overflow-hidden rounded-full bg-slate-100"
-                role="img"
-                aria-label={`${step.wins}-${step.losses}, ${formatPct(step.odds, 1)} playoff odds`}
+        <div className="mt-5 rounded-xl bg-surface-subtle p-4 ring-1 ring-line/90">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <label htmlFor="strength" className="text-sm font-semibold text-navy">
+              Non-bye weekly projection for {focusName}
+            </label>
+            <span className="font-display text-xl font-bold text-navy tabular-nums">
+              {mean.toFixed(1)} <span className="font-sans text-xs font-semibold text-slate-600">{shift === 0 ? "(ESPN)" : `(${shift > 0 ? "+" : "−"}${Math.abs(shift)} vs ESPN)`}</span>
+            </span>
+          </div>
+          <input
+            id="strength"
+            type="range"
+            min={-25}
+            max={25}
+            step={1}
+            value={shift}
+            onChange={(event) => setShift(Number(event.target.value))}
+            aria-valuemin={-25}
+            aria-valuemax={25}
+            aria-valuenow={shift}
+            aria-valuetext={`${mean.toFixed(1)} projected points in non-bye weeks`}
+            className="mt-2.5 h-8 w-full cursor-pointer accent-turf"
+          />
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+            <div className="flex flex-wrap gap-1.5">
+              {PRESET_SHIFTS.map((preset) => (
+                <button
+                  key={preset.name}
+                  type="button"
+                  aria-pressed={shift === preset.shift}
+                  onClick={() => setShift(preset.shift)}
+                  className={cx(
+                    "min-h-9 cursor-pointer rounded-lg px-3 text-xs font-bold tracking-wide transition-colors",
+                    shift === preset.shift ? "bg-navy text-white shadow-xs" : "bg-white text-navy ring-1 ring-line hover:bg-surface-muted",
+                  )}
+                >
+                  {preset.name} · {(PLAYOFF_MODEL.nonByeEspn + preset.shift).toFixed(1)}
+                </button>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-1.5">
+              <button
+                type="button"
+                onClick={winOut}
+                className="min-h-9 cursor-pointer rounded-lg bg-turf px-3.5 text-xs font-bold tracking-wide text-white uppercase transition-colors hover:bg-turf-dark"
               >
-                <div className="h-full rounded-full bg-turf" style={{ width: `${Math.max(2, step.odds * 100)}%` }} />
-              </div>
-              <span className="text-right font-display text-lg font-bold text-navy tabular-nums">{formatPct(step.odds, 1)}</span>
-            </li>
-          ))}
-        </ol>
+                Win out
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMayePick({});
+                  setForced({});
+                }}
+                className="min-h-9 cursor-pointer rounded-lg bg-white px-3 text-xs font-bold tracking-wide text-slate-700 ring-1 ring-line transition-colors hover:bg-surface-muted"
+              >
+                Clear locks
+              </button>
+            </div>
+          </div>
+        </div>
       </Panel>
 
-      <Panel title={`${focusName} games`}>
-        <ul className="grid gap-3">
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Panel title="Win-out runway" action="Week by week">
+          <p className="text-sm leading-snug text-slate-600">
+            Playoff odds if {focusName} wins each remaining game in sequence while subsequent weeks are still simulated.
+          </p>
+          <ol className="mt-4 grid gap-2.5" aria-label="Playoff odds if each remaining game is a win">
+            {path.map((step) => (
+              <li key={step.week ?? "now"} className="grid grid-cols-[4.75rem_minmax(0,1fr)_3.6rem] items-center gap-2.5">
+                <span className="text-xs leading-tight font-semibold text-slate-600 tabular-nums">
+                  <span className="block font-bold text-navy">{step.week == null ? "Current" : `Week ${step.week}`}</span>
+                  {step.wins}-{step.losses}
+                </span>
+                <div
+                  className="h-3 overflow-hidden rounded-full bg-surface-muted ring-1 ring-line/60 ring-inset"
+                  role="img"
+                  aria-label={`${step.wins}-${step.losses}, ${formatPct(step.odds, 1)} playoff odds`}
+                >
+                  <div className="h-full rounded-full bg-turf transition-[width]" style={{ width: `${Math.max(2, step.odds * 100)}%` }} />
+                </div>
+                <span className="text-right font-display text-lg font-bold text-navy tabular-nums">{formatPct(step.odds, 1)}</span>
+              </li>
+            ))}
+          </ol>
+        </Panel>
+
+        <Panel title="What record gets in" action="Baseline distribution">
+          <p className="text-sm leading-snug text-slate-600">
+            Final record distribution with nothing locked. {eight ? `8-6 gets in ${formatPct(eight.odds, 1)} of the time. ` : ""}
+            {seven ? `7-7 gets in ${formatPct(seven.odds, 1)}.` : ""}
+          </p>
+          <ul className="mt-4 divide-y divide-line">
+            {baseline.byWins.map((row) => (
+              <li key={row.wins} className="grid grid-cols-[3.5rem_minmax(0,1fr)_5.5rem_3.5rem] items-center gap-2.5 py-2 text-sm">
+                <span className="font-display text-base font-bold text-navy tabular-nums">
+                  {row.wins}-{PLAYOFF_MODEL.regularSeasonWeeks - row.wins}
+                </span>
+                <div className="h-2 overflow-hidden rounded-full bg-surface-muted" aria-hidden>
+                  <div className="h-full rounded-full bg-navy/75" style={{ width: `${Math.max(2, row.odds * 100)}%` }} />
+                </div>
+                <span className="text-right text-xs text-slate-600 tabular-nums">{formatPct(row.share)} of sims</span>
+                <span className="text-right font-display text-lg font-bold text-navy tabular-nums">{formatPct(row.odds)}</span>
+              </li>
+            ))}
+          </ul>
+        </Panel>
+      </div>
+
+      <Panel title={`${focusName} schedule`} action="Lock W / L">
+        <ul className="grid gap-2.5">
           {schedule.map((row) => {
             const game = PLAYOFF_MODEL.games[row.gameIndex];
             const pick = mayePick[row.gameIndex] ?? "auto";
@@ -200,26 +249,41 @@ export function PlayoffSimulator({
             const liveFor = game.homeId === PLAYOFF_MODEL.focusId ? game.homeCurrent : game.awayCurrent;
             const liveAgainst = game.homeId === PLAYOFF_MODEL.focusId ? game.awayCurrent : game.homeCurrent;
             return (
-              <li key={row.gameIndex} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
-                <div className="flex flex-wrap items-start justify-between gap-2">
-                  <div className="min-w-0">
-                    <p className="text-sm font-bold text-navy">
-                      Week {row.week}
-                      {row.counted ? (weekFinal && row.week === currentWeek ? " · final" : " · in the record") : row.live ? " · live" : ""} {row.home ? "vs" : "@"} {opp}
-                    </p>
-                    {row.counted ? (
-                      <p className="text-xs text-slate-600 tabular-nums">
-                        {liveFor != null && liveAgainst != null ? `${points(liveFor)}–${points(liveAgainst)}. ` : ""}
-                        {weekFinal && row.week === currentWeek ? `Week ${row.week} is final.` : `Provisional, Week ${row.week} not final.`} This result is already in the record.
-                      </p>
-                    ) : (
-                      <p className="text-xs text-slate-600 tabular-nums">
-                        Proj {row.focusProj.toFixed(1)}–{row.oppProj.toFixed(1)} · margin {signed(row.margin)} · win {formatPct(row.winProb)}
-                      </p>
+              <li
+                key={row.gameIndex}
+                className={cx(
+                  "flex flex-wrap items-center justify-between gap-3 rounded-xl p-3 ring-1",
+                  row.counted ? "bg-surface-subtle/70 ring-line/70" : "bg-surface-subtle ring-line",
+                )}
+              >
+                <div className="min-w-0 flex-1">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded bg-navy px-1.5 py-0.5 font-display text-xs font-bold tracking-wider text-white uppercase">
+                      Wk {row.week}
+                    </span>
+                    <span className="text-sm font-bold text-navy">
+                      {row.home ? "vs" : "@"} {opp}
+                    </span>
+                    {row.counted && (
+                      <span className="rounded bg-warn-light px-1.5 py-0.5 text-[11px] font-semibold text-warn ring-1 ring-warn-border ring-inset">
+                        {weekFinal && row.week === currentWeek ? "Final" : "In record"}
+                      </span>
                     )}
                   </div>
-                  {row.counted ? null : (
-                  <div className="flex gap-1" role="group" aria-label={`Week ${row.week} result versus ${opp}`}>
+                  {row.counted ? (
+                    <p className="mt-1 text-xs text-slate-600 tabular-nums">
+                      {liveFor != null && liveAgainst != null ? `${points(liveFor)}–${points(liveAgainst)}. ` : ""}
+                      {weekFinal && row.week === currentWeek ? `Week ${row.week} is final.` : `Provisional, Week ${row.week} not final.`} Counted in current record.
+                    </p>
+                  ) : (
+                    <p className="mt-1 text-xs text-slate-600 tabular-nums">
+                      Proj {row.focusProj.toFixed(1)}–{row.oppProj.toFixed(1)} · margin {signed(row.margin)} · win {formatPct(row.winProb)}
+                    </p>
+                  )}
+                </div>
+
+                {row.counted ? null : (
+                  <div className="inline-flex rounded-lg bg-surface-muted p-1 ring-1 ring-line" role="group" aria-label={`Week ${row.week} result versus ${opp}`}>
                     {(
                       [
                         ["auto", "Auto"],
@@ -233,124 +297,128 @@ export function PlayoffSimulator({
                         aria-pressed={pick === value}
                         onClick={() => setPick(row.gameIndex, value)}
                         className={cx(
-                          "min-h-11 min-w-11 rounded-full px-3 text-sm font-bold",
+                          "min-h-8 min-w-11 cursor-pointer rounded-md px-2.5 text-xs font-bold transition-colors",
                           pick === value
                             ? value === "W"
-                              ? "bg-turf text-white"
+                              ? "bg-turf text-white shadow-xs"
                               : value === "L"
-                                ? "bg-loss text-white"
-                                : "bg-navy text-white"
-                            : "bg-white text-navy ring-1 ring-line",
+                                ? "bg-loss text-white shadow-xs"
+                                : "bg-navy text-white shadow-xs"
+                            : "text-slate-700 hover:text-navy",
                         )}
                       >
                         {label}
                       </button>
                     ))}
                   </div>
-                  )}
-                </div>
+                )}
               </li>
             );
           })}
         </ul>
       </Panel>
 
-      <Panel title="Root-for games">
-        <ul className="grid gap-3">
-          {PLAYOFF_MODEL.rootFor.map((root) => {
-            const gameIndex = PLAYOFF_MODEL.games.findIndex(
-              (game) => game.week === root.week && [game.homeId, game.awayId].includes(root.winnerId) && [game.homeId, game.awayId].includes(root.loserId),
-            );
-            const swing = scenario.swings.find((row) => row.gameIndex === gameIndex);
-            const locked = forced[gameIndex];
-            const counted = gameIndex >= 0 && PLAYOFF_MODEL.games[gameIndex]?.counted === true;
-            if (counted) return null;
-            return (
-              <li key={`${root.week}-${root.winnerId}`} className="rounded-xl bg-slate-50 p-3 ring-1 ring-slate-100">
-                <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">Week {root.week}</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {[root.winnerId, root.loserId].map((id) => (
-                    <button
-                      key={id}
-                      type="button"
-                      aria-pressed={locked === id}
-                      onClick={() => toggleForce(gameIndex, id)}
-                      className={cx(
-                        "min-h-11 rounded-full px-3 text-left text-sm font-semibold",
-                        locked === id ? "bg-navy text-white" : "bg-white text-navy ring-1 ring-line",
-                      )}
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Panel title="Root-for games" action="Key out-of-town swings">
+          <ul className="grid gap-2.5">
+            {PLAYOFF_MODEL.rootFor.map((root) => {
+              const gameIndex = PLAYOFF_MODEL.games.findIndex(
+                (game) => game.week === root.week && [game.homeId, game.awayId].includes(root.winnerId) && [game.homeId, game.awayId].includes(root.loserId),
+              );
+              const swing = scenario.swings.find((row) => row.gameIndex === gameIndex);
+              const locked = forced[gameIndex];
+              const counted = gameIndex >= 0 && PLAYOFF_MODEL.games[gameIndex]?.counted === true;
+              if (counted) return null;
+              return (
+                <li key={`${root.week}-${root.winnerId}`} className="rounded-xl bg-surface-subtle p-3 ring-1 ring-line">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-display text-xs font-bold tracking-wider text-slate-600 uppercase">Week {root.week}</span>
+                    {locked != null && <span className="text-[11px] font-bold text-turf-dark uppercase">Locked</span>}
+                  </div>
+                  <div className="mt-2 grid grid-cols-2 gap-2">
+                    {[root.winnerId, root.loserId].map((id, idx) => (
+                      <button
+                        key={id}
+                        type="button"
+                        aria-pressed={locked === id}
+                        onClick={() => toggleForce(gameIndex, id)}
+                        className={cx(
+                          "flex min-h-10 cursor-pointer items-center justify-between gap-1.5 rounded-lg px-3 py-1.5 text-left text-xs font-semibold transition-colors",
+                          locked === id
+                            ? "bg-navy text-white shadow-xs"
+                            : idx === 0
+                              ? "bg-white text-navy ring-1 ring-turf-border hover:bg-turf-light/30"
+                              : "bg-white text-navy ring-1 ring-line hover:bg-surface-muted",
+                        )}
+                      >
+                        <span className="truncate">{name(id)}</span>
+                        <span className="shrink-0 font-display font-bold opacity-75">{abbrev(id)}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <p className="mt-2 text-xs leading-snug text-slate-600 tabular-nums">
+                    {swing
+                      ? `${formatPct(swing.oddsIfWinner, 1)} if ${name(swing.winnerId)} wins · ${formatPct(swing.oddsIfLoser, 1)} if ${name(swing.loserId)} wins`
+                      : "Locked, so this game is already reflected in scenario odds."}
+                  </p>
+                </li>
+              );
+            })}
+          </ul>
+        </Panel>
+
+        <Panel title="Scenario playoff odds" action="All 10 teams">
+          <ol className="divide-y divide-line">
+            {ordered.map((row, idx) => {
+              const rec = modelTeam(row.id);
+              const mine = row.id === PLAYOFF_MODEL.focusId;
+              return (
+                <Fragment key={row.id}>
+                  <li className={cx("flex min-w-0 items-center gap-3 py-2.5 first:pt-0 last:pb-0", mine && "-mx-2 rounded-lg bg-turf-light/55 px-2")}>
+                    <span className="w-5 shrink-0 font-display text-sm font-bold text-slate-500 tabular-nums">{idx + 1}</span>
+                    <span
+                      className="inline-flex size-7 shrink-0 items-center justify-center rounded-full font-display text-[10px] font-bold text-white ring-1 ring-black/10 ring-inset"
+                      style={{ background: byId.get(row.id)?.color ?? "#64748b" }}
+                      aria-hidden
                     >
-                      {name(id)}
-                      <span className="ml-1 font-normal text-current/80">{abbrev(id)}</span>
-                    </button>
-                  ))}
-                </div>
-                <p className="mt-2 text-xs leading-snug text-slate-600">
-                  {swing
-                    ? `${formatPct(swing.oddsIfWinner, 1)} if ${name(swing.winnerId)} wins · ${formatPct(swing.oddsIfLoser, 1)} if ${name(swing.loserId)} wins`
-                    : "Locked, so this game is not in the swing."}
-                </p>
-              </li>
-            );
-          })}
-        </ul>
-      </Panel>
-
-      <Panel title="Playoff odds">
-        <ol className="grid gap-2">
-          {ordered.map((row) => {
-            const rec = modelTeam(row.id);
-            const mine = row.id === PLAYOFF_MODEL.focusId;
-            return (
-              <li key={row.id} className={cx("flex min-w-0 items-center gap-3 rounded-xl px-2 py-2", mine && "bg-turf-light")}>
-                <span
-                  className="inline-flex size-7 shrink-0 items-center justify-center rounded-full font-display text-[10px] font-bold text-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.18)]"
-                  style={{ background: byId.get(row.id)?.color ?? "#94a3b8" }}
-                  aria-hidden
-                >
-                  {abbrev(row.id)}
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-navy">{name(row.id)}</span>
-                  <span className="text-xs text-slate-600 tabular-nums">
-                    {rec ? `${rec.wins}-${rec.losses}` : ""} · {rec ? rec.pf.toFixed(2) : ""} PF · final {Math.round(row.avgPf)}
-                  </span>
-                </span>
-                <span className="font-display text-2xl font-bold text-navy tabular-nums">{formatPct(row.odds)}</span>
-              </li>
-            );
-          })}
-        </ol>
-      </Panel>
-
-      <Panel title="What record gets in">
-        <p className="text-sm leading-snug text-slate-600">
-          Final record if every remaining game is simulated and nothing is locked. {eight ? `8-6 gets in ${formatPct(eight.odds, 1)} of the time. ` : ""}
-          {seven ? `7-7 gets in ${formatPct(seven.odds, 1)}.` : ""} The win-out chart forces {focusName}&apos;s remaining games one week at a time.
-        </p>
-        <ul className="mt-3 divide-y divide-line">
-          {baseline.byWins.map((row) => (
-            <li key={row.wins} className="flex items-center justify-between gap-3 py-2 text-sm">
-              <span className="font-semibold text-navy tabular-nums">{row.wins}-{PLAYOFF_MODEL.regularSeasonWeeks - row.wins}</span>
-              <span className="text-slate-600 tabular-nums">{formatPct(row.share)} of sims</span>
-              <span className="font-display text-lg font-bold text-navy tabular-nums">{formatPct(row.odds)}</span>
-            </li>
-          ))}
-        </ul>
-      </Panel>
+                      {abbrev(row.id)}
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block truncate text-sm font-semibold text-navy">{name(row.id)}</span>
+                      <span className="text-xs text-slate-600 tabular-nums">
+                        {rec ? `${rec.wins}-${rec.losses}` : ""} · {rec ? rec.pf.toFixed(1) : ""} PF · proj {Math.round(row.avgPf)}
+                      </span>
+                    </span>
+                    <span className="font-display text-xl font-bold text-navy tabular-nums">{formatPct(row.odds)}</span>
+                  </li>
+                  {idx === 3 && (
+                    <li aria-hidden className="py-1 text-center text-[10px] font-bold tracking-[0.12em] text-turf-dark uppercase">
+                      — Top 4 cut line —
+                    </li>
+                  )}
+                </Fragment>
+              );
+            })}
+          </ol>
+        </Panel>
+      </div>
 
       <Panel title="Points-for tiebreaker">
-        <p className="text-sm leading-snug text-slate-600">
-          {focusName} has {modelTeam(PLAYOFF_MODEL.focusId)?.pf.toFixed(2)} points, {place(pfPlace)} in points for.{" "}
+        <p className="text-sm leading-relaxed text-slate-700">
+          {focusName} has <span className="font-semibold text-navy tabular-nums">{modelTeam(PLAYOFF_MODEL.focusId)?.pf.toFixed(2)}</span> points,{" "}
+          <span className="font-semibold text-navy">{place(pfPlace)}</span> in points for.{" "}
           {weekFinal ? `Week ${currentWeek} is final.` : `Provisional, Week ${currentWeek} not final.`} In this scenario,{" "}
-          {formatPct(scenario.pfDecidedRate, 1)} of sims are a wins tie on the 4/5 line that includes {focusName}
+          <span className="font-semibold text-navy tabular-nums">{formatPct(scenario.pfDecidedRate, 1)}</span> of sims end in a wins tie on the 4/5 cut line that includes {focusName}
           {scenario.pfDecidedRate > 0 ? `, and ${focusName} wins ${formatPct(scenario.pfWonRate, 1)} of those` : ""}.
         </p>
       </Panel>
 
-      <details className="rounded-2xl bg-white p-4 ring-1 ring-line sm:p-5">
-        <summary className="min-h-11 cursor-pointer font-display text-lg font-bold tracking-wide text-navy uppercase">Other games</summary>
-        <div className="mt-3 grid gap-3">
+      <details className="group overflow-hidden rounded-2xl bg-white shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line">
+        <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 bg-surface-subtle/75 px-4 py-3 sm:px-5 [&::-webkit-details-marker]:hidden">
+          <span className="font-display text-[1.1rem] font-bold tracking-[0.03em] text-navy uppercase">Lock other league games</span>
+          <ChevronDown className="size-4 text-slate-600 transition-transform group-open:rotate-180" aria-hidden />
+        </summary>
+        <div className="grid gap-4 border-t border-line/80 p-4 sm:p-5">
           {[...new Set(PLAYOFF_MODEL.games.map((game) => game.week))].sort((a, b) => a - b).map((week) => {
             const games = PLAYOFF_MODEL.games
               .map((game, gameIndex) => ({ game, gameIndex }))
@@ -358,10 +426,10 @@ export function PlayoffSimulator({
             if (!games.length) return null;
             return (
               <div key={week}>
-                <p className="text-xs font-bold tracking-wider text-slate-600 uppercase">Week {week}</p>
-                <ul className="mt-2 grid gap-2">
+                <p className="font-display text-xs font-bold tracking-wider text-slate-600 uppercase">Week {week}</p>
+                <ul className="mt-2 grid gap-2 sm:grid-cols-2">
                   {games.map(({ game, gameIndex }) => (
-                    <li key={gameIndex} className="flex flex-wrap items-center gap-2">
+                    <li key={gameIndex} className="grid grid-cols-2 gap-1.5 rounded-xl bg-surface-subtle p-1.5 ring-1 ring-line">
                       {[game.homeId, game.awayId].map((id) => (
                         <button
                           key={id}
@@ -370,8 +438,8 @@ export function PlayoffSimulator({
                           aria-label={`${name(id)} wins in week ${week}`}
                           onClick={() => toggleForce(gameIndex, id)}
                           className={cx(
-                            "min-h-11 rounded-full px-3 text-sm font-semibold",
-                            forced[gameIndex] === id ? "bg-navy text-white" : "bg-slate-50 text-navy ring-1 ring-line",
+                            "min-h-9 cursor-pointer truncate rounded-lg px-2.5 text-xs font-semibold transition-colors",
+                            forced[gameIndex] === id ? "bg-navy text-white shadow-xs" : "bg-white text-navy ring-1 ring-line hover:bg-surface-muted",
                           )}
                         >
                           <span className="sm:hidden">{abbrev(id)}</span>
@@ -387,14 +455,17 @@ export function PlayoffSimulator({
         </div>
       </details>
 
-      <details className="rounded-2xl bg-white p-4 ring-1 ring-line sm:p-5">
-        <summary className="min-h-11 cursor-pointer font-display text-lg font-bold tracking-wide text-navy uppercase">How the model works</summary>
-        <ul className="mt-3 grid gap-2 text-sm leading-snug text-slate-600">
+      <details className="group overflow-hidden rounded-2xl bg-white shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line">
+        <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 bg-surface-subtle/75 px-4 py-3 sm:px-5 [&::-webkit-details-marker]:hidden">
+          <span className="font-display text-[1.1rem] font-bold tracking-[0.03em] text-navy uppercase">How the model works</span>
+          <ChevronDown className="size-4 text-slate-600 transition-transform group-open:rotate-180" aria-hidden />
+        </summary>
+        <ul className="grid gap-2 border-t border-line/80 p-4 text-sm leading-relaxed text-slate-600 sm:p-5">
           <li>
-            Week {currentWeek} is already in the wins, losses, and points{weekFinal ? " and is final" : ", and it is still in progress"}. Later weeks are simulated. That score is not added a second time.
+            Week {currentWeek} is already in the wins, losses, and points{weekFinal ? " and is final" : ", and it is still in progress"}. Later weeks are simulated and are not double-counted.
           </li>
           <li>
-            {PLAYOFF_MODEL.biasNote ?? "Each other team's weekly mean is its ESPN projection plus half of its average miss."} {focusName} gets no penalty. The slider moves that team instead.
+            {PLAYOFF_MODEL.biasNote ?? "Each other team's weekly mean is its ESPN projection plus half of its average miss."} {focusName} gets no penalty; the slider shifts that team directly.
           </li>
           <li>Scores are normal draws using each team&apos;s weekly spread. The top 4 by wins, then points for, make the playoffs.</li>
         </ul>
@@ -409,23 +480,26 @@ function place(n: number) {
   return `${n}${suffix[(v - 20) % 10] || suffix[v] || suffix[0]}`;
 }
 
-function Panel({ title, children }: { title: string; children: ReactNode }) {
+function Panel({ title, action, children }: { title: string; action?: string; children: ReactNode }) {
   return (
-    <section className="relative overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line">
-      <header className="px-4 pt-4 sm:px-5">
-        <h2 className="min-w-0 font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">{title}</h2>
+    <section className="relative overflow-hidden rounded-2xl bg-white shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line">
+      <header className="flex items-center justify-between gap-3 border-b border-line/80 bg-surface-subtle/75 px-4 py-3 sm:px-5">
+        <h2 className="min-w-0 font-display text-[1.1rem] leading-tight font-bold tracking-[0.03em] text-navy uppercase">{title}</h2>
+        {action && <span className="shrink-0 text-xs font-semibold text-slate-600">{action}</span>}
       </header>
-      <div className="p-4 pt-3 sm:p-5 sm:pt-3">{children}</div>
+      <div className="p-4 sm:p-5">{children}</div>
     </section>
   );
 }
 
-function Stat({ label, value, sub }: { label: string; value: ReactNode; sub?: ReactNode }) {
+function KpiBox({ label, value, sub, highlight }: { label: string; value: ReactNode; sub?: ReactNode; highlight?: boolean }) {
   return (
-    <div className="min-w-0">
-      <p className="text-xs font-semibold tracking-wider text-slate-600 uppercase">{label}</p>
-      <p className="font-display text-2xl leading-tight font-bold text-navy tabular-nums">{value}</p>
-      {sub && <p className="text-xs leading-snug text-slate-600">{sub}</p>}
+    <div className={cx("min-w-0 rounded-xl p-3 ring-1", highlight ? "bg-turf-light/55 ring-turf-border" : "bg-surface-subtle ring-line/90")}>
+      <p className="text-[11px] font-bold tracking-[0.08em] text-slate-600 uppercase">{label}</p>
+      <p className={cx("mt-0.5 font-display text-2xl leading-tight font-extrabold tabular-nums sm:text-3xl", highlight ? "text-turf-dark" : "text-navy")}>
+        {value}
+      </p>
+      {sub && <p className="mt-0.5 text-xs leading-snug text-slate-600">{sub}</p>}
     </div>
   );
 }

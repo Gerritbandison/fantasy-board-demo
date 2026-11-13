@@ -21,24 +21,58 @@ export function Card({
   accent?: string;
 }) {
   return (
-    <Tag className={cn("relative overflow-hidden rounded-2xl bg-white shadow-[0_1px_2px_rgba(15,30,54,0.06)] ring-1 ring-line", className)}>
-      {accent && <span className="absolute inset-x-0 top-0 h-1" style={{ background: accent }} aria-hidden />}
+    <Tag
+      className={cn(
+        "relative overflow-hidden rounded-2xl bg-white shadow-[0_1px_3px_rgba(12,25,44,0.05)] ring-1 ring-line",
+        className,
+      )}
+    >
+      {accent && <span className="absolute inset-x-0 top-0 z-10 h-[3px]" style={{ background: accent }} aria-hidden />}
       {(title || action) && (
-        <header className="flex items-center justify-between gap-3 px-4 pt-4 sm:px-5">
-          {title && <h2 className="min-w-0 font-display text-lg leading-tight font-bold tracking-wide text-navy uppercase">{title}</h2>}
-          {action && <div className="shrink-0 text-sm text-slate-600">{action}</div>}
+        <header
+          className={cn(
+            "flex flex-wrap items-center justify-between gap-x-3 gap-y-1 border-b border-line/80 bg-surface-subtle/75 px-4 py-3 sm:px-5",
+            accent && "pt-3.5",
+          )}
+        >
+          {title && (
+            <h2 className="min-w-0 font-display text-[1.1rem] leading-tight font-bold tracking-[0.03em] text-navy uppercase">
+              {title}
+            </h2>
+          )}
+          {action && <div className="text-xs font-semibold text-slate-600">{action}</div>}
         </header>
       )}
-      <div className={cn("p-4 sm:p-5", (title || action) && "pt-3 sm:pt-3", bodyClassName)}>{children}</div>
+      <div className={cn("p-4 sm:p-5", !title && !action && accent && "pt-5", bodyClassName)}>{children}</div>
     </Tag>
   );
 }
 
-export function PageHeader({ eyebrow, title, children }: { eyebrow: string; title: React.ReactNode; children?: React.ReactNode }) {
+export function PageHeader({
+  eyebrow,
+  title,
+  action,
+  children,
+}: {
+  eyebrow: string;
+  title: React.ReactNode;
+  action?: React.ReactNode;
+  children?: React.ReactNode;
+}) {
   return (
     <div>
-      <p className="text-xs font-bold tracking-[0.14em] text-turf uppercase">{eyebrow}</p>
-      <h1 className="mt-1 font-display text-3xl leading-[1.05] font-extrabold break-words text-navy sm:text-4xl">{title}</h1>
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div className="min-w-0">
+          <p className="flex items-center gap-2 font-display text-xs font-bold tracking-[0.14em] text-turf uppercase">
+            <span className="h-2 w-2 rounded-[2px] bg-turf" aria-hidden />
+            <span>{eyebrow}</span>
+          </p>
+          <h1 className="mt-1.5 font-display text-3xl leading-[1.02] font-extrabold tracking-tight break-words text-navy sm:text-[2.5rem]">
+            {title}
+          </h1>
+        </div>
+        {action && <div className="shrink-0">{action}</div>}
+      </div>
       {children}
     </div>
   );
@@ -57,28 +91,38 @@ export function SectionHeading({
   headingId?: string;
 }) {
   return (
-    <div id={id} className="flex scroll-mt-28 items-end justify-between gap-3">
-      <h2 id={headingId} className="flex items-center gap-2 font-display text-xl font-bold tracking-wide text-navy uppercase">
-        <span className="h-5 w-1 rounded-full bg-turf" aria-hidden />
-        {title}
+    <div id={id} className="flex scroll-mt-28 items-center justify-between gap-3 pt-1">
+      <h2 id={headingId} className="flex items-center gap-2.5 font-display text-xl font-bold tracking-[0.03em] text-navy uppercase sm:text-[1.35rem]">
+        <span className="h-5 w-1 shrink-0 rounded-full bg-turf" aria-hidden />
+        <span>{title}</span>
       </h2>
-      {action && <div className="shrink-0 text-sm text-slate-600">{action}</div>}
+      <span className="hidden h-px flex-1 bg-line sm:block" aria-hidden />
+      {action && <div className="shrink-0 text-xs font-semibold tracking-wide text-slate-600 uppercase">{action}</div>}
     </div>
   );
 }
 
-export function TeamAvatar({ teamId, size = "md", className }: { teamId?: number; size?: "sm" | "md" | "lg"; className?: string }) {
+export function TeamAvatar({
+  teamId,
+  size = "md",
+  className,
+}: {
+  teamId?: number;
+  size?: "xs" | "sm" | "md" | "lg";
+  className?: string;
+}) {
   const t = teamId != null ? getTeam(teamId) : undefined;
   return (
     <span
       className={cn(
-        "inline-flex shrink-0 items-center justify-center rounded-full font-display font-bold text-white shadow-[inset_0_-2px_0_rgba(0,0,0,0.18)]",
-        size === "sm" && "size-7 text-[10px]",
+        "inline-flex shrink-0 items-center justify-center rounded-full font-display font-bold tracking-wide text-white ring-1 ring-black/10 ring-inset shadow-[inset_0_-1.5px_0_rgba(0,0,0,0.2)]",
+        size === "xs" && "size-6 text-[10px]",
+        size === "sm" && "size-8 text-[11px]",
         size === "md" && "size-10 text-xs",
-        size === "lg" && "size-14 text-base",
+        size === "lg" && "size-13 text-sm sm:size-14 sm:text-base",
         className,
       )}
-      style={{ background: t?.color ?? "#94a3b8" }}
+      style={{ background: t?.color ?? "#64748b" }}
       aria-hidden
     >
       {t?.abbrev ?? "?"}
@@ -86,13 +130,41 @@ export function TeamAvatar({ teamId, size = "md", className }: { teamId?: number
   );
 }
 
+export function RankBadge({
+  rank,
+  highlight,
+  className,
+}: {
+  rank: number;
+  highlight?: "gold" | "turf" | "plain";
+  className?: string;
+}) {
+  const tone =
+    highlight === "gold" || (highlight == null && rank === 1)
+      ? "bg-gold-light text-gold-ink ring-gold-border"
+      : highlight === "turf"
+        ? "bg-turf-light text-turf-dark ring-turf-border"
+        : "bg-surface-muted text-slate-700 ring-line";
+  return (
+    <span
+      className={cn(
+        "inline-flex size-7 shrink-0 items-center justify-center rounded-lg font-display text-sm font-bold tabular-nums ring-1 ring-inset",
+        tone,
+        className,
+      )}
+    >
+      {rank}
+    </span>
+  );
+}
+
 type PillTone = "turf" | "gold" | "loss" | "slate" | "sky" | "navy";
 
 const PILL: { [t in PillTone]: string } = {
-  turf: "bg-turf-light text-turf-dark ring-green-200",
-  gold: "bg-gold-light text-amber-800 ring-amber-200",
-  loss: "bg-red-50 text-red-700 ring-red-200",
-  slate: "bg-slate-100 text-slate-700 ring-slate-200",
+  turf: "bg-turf-light text-turf-dark ring-turf-border",
+  gold: "bg-gold-light text-gold-ink ring-gold-border",
+  loss: "bg-loss-light text-loss ring-loss-border",
+  slate: "bg-surface-muted text-slate-700 ring-line",
   sky: "bg-sky-50 text-sky-800 ring-sky-200",
   navy: "bg-navy text-white ring-navy",
 };
@@ -101,7 +173,7 @@ export function Pill({ tone = "slate", className, children }: { tone?: PillTone;
   return (
     <span
       className={cn(
-        "inline-flex h-6 items-center gap-1 rounded-full px-2.5 text-xs font-semibold whitespace-nowrap ring-1 ring-inset",
+        "inline-flex h-6 items-center gap-1 rounded-md px-2 text-xs font-semibold whitespace-nowrap ring-1 ring-inset",
         PILL[tone],
         className,
       )}
@@ -126,12 +198,20 @@ export function Stat({
 }) {
   return (
     <div className={cn("min-w-0", className)}>
-      <p className="text-xs font-semibold tracking-wider text-slate-600 uppercase">{label}</p>
-      <p className={cn("font-display text-2xl leading-tight font-bold text-navy tabular-nums", valueClassName)}>{value}</p>
-      {sub && <p className="text-xs leading-snug text-slate-600">{sub}</p>}
+      <p className="text-[11px] font-bold tracking-[0.08em] text-slate-600 uppercase">{label}</p>
+      <p className={cn("mt-0.5 font-display text-2xl leading-tight font-bold text-navy tabular-nums sm:text-[1.65rem]", valueClassName)}>
+        {value}
+      </p>
+      {sub && <p className="mt-0.5 text-xs leading-snug text-slate-600">{sub}</p>}
     </div>
   );
 }
+
+const LUCK_TONES: Record<Luck["label"], string> = {
+  lucky: "bg-gold-light text-gold-ink ring-gold-border",
+  even: "bg-surface-muted text-slate-700 ring-line",
+  unlucky: "bg-sky-50 text-sky-800 ring-sky-200",
+};
 
 /** `compact` drops the word label below `sm` (the delta and color carry it) for narrow table cells. */
 export function LuckBadge({ row, withRanks, compact }: { row: Luck; withRanks?: boolean; compact?: boolean }) {
@@ -140,15 +220,14 @@ export function LuckBadge({ row, withRanks, compact }: { row: Luck; withRanks?: 
   return (
     <span
       title={`Points-for rank ${row.pfRank}, standings rank ${row.recordRank}`}
-      className={cn("inline-flex h-6 items-center gap-1 rounded-full px-2 text-xs font-semibold whitespace-nowrap ring-1 ring-inset", l.tone)}
+      className={cn(
+        "inline-flex h-6 items-center gap-1 rounded-md px-2 text-xs font-semibold whitespace-nowrap ring-1 ring-inset",
+        LUCK_TONES[row.label],
+      )}
     >
       <span className={cn(compact && row.delta !== 0 && "max-sm:hidden")}>{l.text}</span>
-      {row.delta !== 0 && <span className="tabular-nums">{delta}</span>}
-      {withRanks && (
-        <span className="font-normal">
-          · PF #{row.pfRank}
-        </span>
-      )}
+      {row.delta !== 0 && <span className="font-bold tabular-nums">{delta}</span>}
+      {withRanks && <span className="font-medium opacity-85">· PF #{row.pfRank}</span>}
     </span>
   );
 }
@@ -157,8 +236,8 @@ export function ResultChip({ result, className }: { result: string; className?: 
   return (
     <span
       className={cn(
-        "inline-flex size-5 shrink-0 items-center justify-center rounded font-display text-xs font-bold text-white",
-        result === "W" ? "bg-turf" : "bg-loss",
+        "inline-flex size-5 shrink-0 items-center justify-center rounded-[5px] font-display text-xs font-bold text-white",
+        result === "W" ? "bg-turf" : result === "T" ? "bg-slate-500" : "bg-loss",
         className,
       )}
     >
@@ -172,9 +251,16 @@ export function RangeBar({ low, median, high, color }: { low: number; median: nu
   const { min, max } = TRAIL_RANGE;
   const pos = (v: number) => `${((v - min) / (max - min)) * 100}%`;
   return (
-    <div className="relative h-3 rounded-full bg-slate-100" role="img" aria-label={`Low ${low.toFixed(1)}, median ${median.toFixed(1)}, high ${high.toFixed(1)}`}>
-      <span className="absolute inset-y-0 rounded-full opacity-30" style={{ left: pos(low), right: `calc(100% - ${pos(high)})`, background: color }} />
-      <span className="absolute -inset-y-0.5 w-1 -translate-x-1/2 rounded-full" style={{ left: pos(median), background: color }} />
+    <div
+      className="relative h-3 rounded-full bg-surface-muted ring-1 ring-line/70 ring-inset"
+      role="img"
+      aria-label={`Low ${low.toFixed(1)}, median ${median.toFixed(1)}, high ${high.toFixed(1)}`}
+    >
+      <span
+        className="absolute inset-y-0 rounded-full opacity-35"
+        style={{ left: pos(low), right: `calc(100% - ${pos(high)})`, background: color }}
+      />
+      <span className="absolute -inset-y-0.5 w-1.5 -translate-x-1/2 rounded-full ring-1 ring-white" style={{ left: pos(median), background: color }} />
     </div>
   );
 }
