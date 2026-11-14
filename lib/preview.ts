@@ -104,15 +104,15 @@ export function buildPreview(m: Matchup): Preview {
   });
   push(ls.last3, rs.last3, true, (w) => {
     const [a, b] = pick(w, ls.last3, rs.last3);
-    return { label: "Recent form", detail: `${f1(a)} avg over the last 3 vs ${f1(b)}` };
+      return { label: "Recent form", detail: `${f1(a)} vs ${f1(b)}` };
   });
   push(ls.high.pf, rs.high.pf, true, (w) => {
     const [a, b] = pick(w, ls.high, rs.high);
-    return { label: "Ceiling", detail: `Best week ${f1(a.pf)} (wk ${a.week}) vs ${f1(b.pf)}` };
+      return { label: "Ceiling", detail: `${f1(a.pf)} wk ${a.week} vs ${f1(b.pf)}` };
   });
   push(ls.stdDev, rs.stdDev, false, (w) => {
     const [a, b] = pick(w, ls.stdDev, rs.stdDev);
-    return { label: "Consistency", detail: `±${f1(a)} weekly swing vs ±${f1(b)}` };
+      return { label: "Consistency", detail: `±${f1(a)} vs ±${f1(b)}` };
   });
   const lap = allPlay(L.id);
   const rap = allPlay(R.id);
@@ -124,7 +124,7 @@ export function buildPreview(m: Matchup): Preview {
   const rf = R.roster.starters.filter(isFlagged).length;
   push(lf, rf, false, (w) => {
     const [a, b] = pick(w, lf, rf);
-    return { label: "Health", detail: `${a} starter${a === 1 ? "" : "s"} on the injury report vs ${b}` };
+      return { label: "Health", detail: `${a} vs ${b}` };
   });
 
   const stakes = [L, R].map(
