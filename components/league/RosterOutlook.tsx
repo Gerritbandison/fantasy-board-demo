@@ -1,5 +1,5 @@
 import { Card, TeamAvatar } from "@/components/league/ui";
-import { team } from "@/lib/league";
+import { LEAGUE, team } from "@/lib/league";
 import { formatPct } from "@/lib/playoff-sim";
 import { rosterOutlookFor } from "@/lib/ros";
 import { cn } from "@/lib/utils";
@@ -20,13 +20,13 @@ function weekSpan(weeks: { week: number }[]) {
   return `Weeks ${first}\u2013${last}`;
 }
 
-/** Rest-of-season team projection and remaining schedule for any franchise. */
+/** Rest-of-season projection, player rankings, and remaining schedule for any franchise. */
 export function RosterOutlook({ teamId }: { teamId: number }) {
   const report = rosterOutlookFor(teamId);
   if (!report) return null;
 
   return (
-    <Card title="Rest of season" action="Projection">
+    <Card title="Rest of season" action="Projection & rankings">
       <div className="flex items-center justify-between gap-4 rounded-xl bg-surface-subtle p-3.5 ring-1 ring-line/80">
         <div className="flex min-w-0 items-center gap-3">
           <span
@@ -53,6 +53,75 @@ export function RosterOutlook({ teamId }: { teamId: number }) {
           </div>
         ) : null}
       </div>
+
+      {report.positions.length > 0 && (
+        <div className="mt-4">
+          <div className="mb-2 flex items-center justify-between text-[11px] font-bold tracking-[0.08em] text-slate-500 uppercase">
+            <span>Player rankings</span>
+            <span>{report.sampleLabel}</span>
+          </div>
+          <ul className="divide-y divide-line">
+            {report.positions.map((row) => (
+              <li key={row.id} className="flex items-start gap-3 py-2.5 first:pt-1 last:pb-0">
+                <div className="flex w-20 shrink-0 items-center gap-2 pt-0.5">
+                  <span
+                    className={cn(
+                      "inline-flex h-6 w-9 shrink-0 items-center justify-center rounded-md font-display text-sm font-bold ring-1 ring-inset",
+                      gradeBadgeClass(row.letter),
+                    )}
+                  >
+                    {row.letter}
+                  </span>
+                  <span className="font-display text-xs font-bold tracking-wide text-navy uppercase">{row.label}</span>
+                </div>
+
+                <ul className="min-w-0 flex-1 grid gap-1.5">
+                  {row.players.map((player) => {
+                    const upcomingByes = player.byeWeeks.filter((week) => week >= LEAGUE.week);
+                    return (
+                      <li key={player.id} className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5 text-xs sm:text-sm">
+                        <span className="min-w-0 font-semibold text-navy">
+                          {player.name}
+                          {(row.id === "FLEX" || row.id === "BN") && (
+                            <span className="ml-1 text-xs font-normal text-slate-500">{player.pos}</span>
+                          )}
+                          {player.onByeBench && (
+                            <span className="ml-1.5 inline-flex rounded bg-surface-muted px-1.5 py-0.5 text-[10px] leading-none font-bold tracking-wide text-slate-600 uppercase ring-1 ring-line ring-inset">
+                              Bench · Bye
+                            </span>
+                          )}
+                          {upcomingByes.length > 0 && !player.onByeBench && (
+                            <span className="ml-1.5 text-[11px] font-medium text-slate-500">
+                              · Bye Wk {upcomingByes.join(", ")}
+                            </span>
+                          )}
+                        </span>
+
+                        <span className="shrink-0 text-xs text-slate-600 tabular-nums">
+                          {player.ppg != null ? (
+                            <span className="font-display text-base font-bold text-navy">{player.ppg.toFixed(1)}</span>
+                          ) : (
+                            "—"
+                          )}
+                          {player.ppg != null && <span className="text-slate-500"> ppg · {player.weeks}g</span>}
+                          {player.rank != null && player.field != null ? (
+                            <span className="ml-1.5 rounded bg-surface-subtle px-1.5 py-0.5 text-[11px] font-bold text-navy ring-1 ring-line">
+                              #{player.rank}/{player.field}
+                            </span>
+                          ) : null}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 text-xs leading-snug text-slate-600">
+            Ranked by points per game played in {report.sampleLabel}. A bye, an inactive week, or a zero-snap game is left out. A real zero stays in. Skill players need 2 games to be ranked, and kickers and defenses need 1. The letter splits that list into four groups: A, B, C, then D.
+          </p>
+        </div>
+      )}
 
       {report.weeks.length > 0 && (
         <>
