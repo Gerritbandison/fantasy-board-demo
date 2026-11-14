@@ -1,11 +1,20 @@
+import { minimumGames, splitScoringLines } from "./games-played.ts";
 import { focusWinProb, type SimGame, type SimModel } from "./playoff-sim.ts";
 
 /**
  * Rest-of-season grades for one franchise.
- * Counted rates come from the current roster and the scoring file.
+ * Counted rates come from the current roster and the games the player played.
+ * See games-played.ts for which zeros are left out.
  * Each slot is graded from whoever is in it. A bye, a benching, or a drop
  * removes that player from the starter board instead of throwing.
- * An empty slot or a missing sample omits the grade. No number is filled in.
+ * An empty slot or a player with no games played omits the grade. No number is filled in.
+ *
+ * Rank is points per game played. The tiebreak is total points, then name.
+ * Skill slots need 2 games. Kickers and defenses need 1.
+ * A letter is one quarter of that ranked list: A, then B, then C, then D.
+ * The cutoff rounds up, so a short list may not reach D.
+ * A unit letter is the average of its starters' letters, and a .5 rounds up.
+ * The team letter uses the same four groups on ESPN projected points per week.
  */
 
 export interface RosterPlayer {
@@ -16,6 +25,17 @@ export interface RosterPlayer {
   inj: string | null;
   own: number;
   gp: number | null;
+  /** NFL abbreviation. Used to resolve a stale bye after a trade. */
+  team?: string | null;
+  /** Resolved NFL bye. Set by the roster loader. Absent means the bye is unknown. */
+  byeWeek?: number | null;
+  /** Weeks the 2026 trade log marks out or zero-snap. */
+  didNotPlayWeeks?: number[];
+  /**
+   * Games missed against the NFL team's games.
+   * Undefined skips that inference and keeps unexplained zeros.
+   */
+  missedGames?: number;
 }
 
 export interface ByeFile {
@@ -31,6 +51,7 @@ export interface GradePlayer {
   field: number | null;
   ppg: number | null;
   total: number | null;
+  /** Games actually played inside the scoring sample. */
   weeks: number;
   byeWeeks: number[];
   onByeBench: boolean;
@@ -86,19 +107,7 @@ interface SlotGroup {
   plural: string;
 }
 
-const TEAM_GRADE = ["A+", "A", "B+", "B", "B-", "C+", "C", "C-", "D+", "D"];
-const LETTERS: [number, string][] = [
-  [0.1, "A+"],
-  [0.2, "A"],
-  [0.3, "A-"],
-  [0.4, "B+"],
-  [0.5, "B"],
-  [0.6, "B-"],
-  [0.7, "C+"],
-  [0.8, "C"],
-  [0.9, "C-"],
-  [1, "D"],
-];
+const LETTER_VALUE: { [letter: string]: number } = { A: 4, B: 3, C: 2, D: 1 };
 const SLOTS: SlotGroup[] = [
   { id: "QB", label: "QB", slot: "QB", plural: "quarterbacks" },
   { id: "RB", label: "RB", slot: "RB", plural: "running backs" },
@@ -120,26 +129,29 @@ function one(n: number) {
   return n.toFixed(1);
 }
 
-function letterForRatio(ratio: number) {
-  for (const [cut, letter] of LETTERS) if (ratio <= cut) return letter;
+/** One quarter of the ranked list, with the cutoff rounded up. */
+export function letterForRank(rank: number, field: number) {
+  if (field < 1 || rank < 1) return "—";
+  const quarter = Math.ceil(field * 0.25);
+  if (rank <= quarter) return "A";
+  if (rank <= quarter * 2) return "B";
+  if (rank <= quarter * 3) return "C";
   return "D";
 }
 
-function letterForRanks(ranks: { rank: number; field: number }[]) {
-  const comparable = ranks.filter((row) => row.field > 1);
-  if (!comparable.length) return "—";
-  const ratios = comparable.map((row) => (row.rank - 1) / (row.field - 1)).sort((a, b) => a - b);
-  const mid = Math.floor(ratios.length / 2);
-  const ratio = ratios.length % 2 === 1 ? ratios[mid] : (ratios[mid - 1] + ratios[mid]) / 2;
-  return letterForRatio(ratio);
+/** Average of the starters' letters. A half step rounds toward A. */
+export function unitLetter(ranks: { rank: number; field: number }[]) {
+  const values = ranks.map((row) => LETTER_VALUE[letterForRank(row.rank, row.field)]).filter((value) => value != null);
+  if (!values.length) return "—";
+  const rounded = Math.min(4, Math.max(1, Math.round(values.reduce((sum, value) => sum + value, 0) / values.length)));
+  return ["", "D", "C", "B", "A"][rounded] ?? "—";
 }
 
 function scoreAll(rosters: Record<string, RosterPlayer[]>, points: Record<string, Record<string, number>>): Scored[] {
   const rows: Scored[] = [];
   for (const [teamId, players] of Object.entries(rosters)) {
     for (const player of players) {
-      const vals = Object.values(points[player.id] ?? {}).map(Number);
-      const total = vals.reduce((sum, value) => sum + value, 0);
+      const sample = splitScoringLines(points[player.id], player);
       rows.push({
         id: player.id,
         name: player.name,
@@ -147,9 +159,9 @@ function scoreAll(rosters: Record<string, RosterPlayer[]>, points: Record<string
         slot: player.slot,
         teamId,
         inj: player.inj,
-        total,
-        weeks: vals.length,
-        ppg: vals.length ? total / vals.length : 0,
+        total: sample.total,
+        weeks: sample.games,
+        ppg: sample.ppg,
       });
     }
   }
@@ -173,10 +185,8 @@ function sampleLabel(weeks: number[]) {
   return `Weeks ${weeks[0]}\u2013${weeks[weeks.length - 1]}`;
 }
 
-function minimumWeeks(slot: string, sampleSize: number) {
-  if (sampleSize === 0) return Number.POSITIVE_INFINITY;
-  if (slot === "D/ST" || slot === "K") return 1;
-  return sampleSize;
+function gamesPhrase(games: number) {
+  return games === 1 ? "1 game played" : `${games} games played`;
 }
 
 function board(rows: Scored[], slot: string, minWeeks: number) {
@@ -241,18 +251,19 @@ function shownByes(weeks: number[], currentWeek: number | null) {
   return weeks.filter((week) => week >= currentWeek);
 }
 
+function underMinimum(row: Scored, fact: GradePlayer, label: string, injury: string, slot: string) {
+  return `${row.name} scored ${one(fact.ppg ?? 0)} points per game over ${gamesPhrase(fact.weeks)} in ${label} (${one(fact.total ?? 0)} points)${injury}. Fewer than ${minimumGames(slot)} games, so there is no rank.`;
+}
+
 function starterSentence(row: Scored, fact: GradePlayer, group: SlotGroup, label: string, currentWeek: number | null) {
   const injury = row.inj ? `, ${row.inj}` : "";
   const byeWeeks = shownByes(fact.byeWeeks, currentWeek);
   const bye = byeWeeks.length ? ` On bye in ${weekList(byeWeeks)}.` : "";
   if (fact.rank == null || fact.field == null || fact.ppg == null || fact.total == null) {
-    if (fact.weeks > 0 && fact.ppg != null && fact.total != null) {
-      const lines = fact.weeks === 1 ? "1 scoring line" : `${fact.weeks} scoring lines`;
-      return `${row.name} scored ${one(fact.ppg)} points per game over ${lines} in this file (${one(fact.total)} points)${injury}. The full ${label} sample is missing, so there is no rank.`;
-    }
-    return `${row.name} has no ${label} scoring line in this file${injury}.`;
+    if (fact.weeks > 0 && fact.ppg != null && fact.total != null) return underMinimum(row, fact, label, injury, row.slot);
+    return `${row.name} has no games played in ${label}${injury}.`;
   }
-  return `${row.name} is ${rankPhrase(fact.rank, fact.field, group)} at ${one(fact.ppg)} points per game over ${label} (${one(fact.total)} points)${injury}.${bye}`;
+  return `${row.name} is ${rankPhrase(fact.rank, fact.field, group)} at ${one(fact.ppg)} points per game over ${label} (${one(fact.total)} points, ${gamesPhrase(fact.weeks)})${injury}.${bye}`;
 }
 
 function benchSentence(row: Scored, fact: GradePlayer, group: SlotGroup, label: string, currentWeek: number | null) {
@@ -260,12 +271,9 @@ function benchSentence(row: Scored, fact: GradePlayer, group: SlotGroup, label: 
     fact.onByeBench && currentWeek != null
       ? `${row.name} is on the bench and on bye in Week ${currentWeek}. `
       : `${row.name} is on the bench. `;
-  if (fact.ppg == null || fact.total == null) return `${byeLead.trim()} No ${label} scoring line is in this file.`;
-  if (fact.rank == null || fact.field == null) {
-    const lines = fact.weeks === 1 ? "1 scoring line" : `${fact.weeks} scoring lines`;
-    return `${byeLead}${row.name} scored ${one(fact.ppg)} points per game over ${lines} in this file (${one(fact.total)} points). The full ${label} sample is missing, so there is no rank.`;
-  }
-  return `${byeLead}${row.name} scored ${one(fact.ppg)} points per game over ${label} (${one(fact.total)} points), which would rank ${rankPhrase(fact.rank, fact.field, group)}.`;
+  if (fact.ppg == null || fact.total == null) return `${byeLead.trim()} No games played in ${label}.`;
+  if (fact.rank == null || fact.field == null) return `${byeLead}${underMinimum(row, fact, label, "", row.pos)}`;
+  return `${byeLead}${row.name} scored ${one(fact.ppg)} points per game over ${label} (${one(fact.total)} points, ${gamesPhrase(fact.weeks)}), which would rank ${rankPhrase(fact.rank, fact.field, group)}.`;
 }
 
 function rosterByeNames(byes: ByeFile, week: string, names: Set<string>) {
@@ -292,7 +300,7 @@ export function buildRosterGrade(
   const byeBenchIds = new Set<string>();
 
   for (const group of SLOTS) {
-    const minWeeks = minimumWeeks(group.slot, weeks.length);
+    const minWeeks = minimumGames(group.slot);
     const comparison = board(scored, group.slot, minWeeks);
     const starters = focus.filter((row) => row.slot === group.slot);
     const byeBench = group.slot === "FLEX" ? [] : focus.filter((row) => row.pos === group.slot && row.slot !== group.slot && currentBye.has(row.name));
@@ -314,7 +322,7 @@ export function buildRosterGrade(
     positions.push({
       id: group.id,
       label: group.label,
-      letter: letterForRanks(ranked.map((player) => ({ rank: player.rank ?? 0, field: player.field ?? 0 }))),
+      letter: unitLetter(ranked.map((player) => ({ rank: player.rank ?? 0, field: player.field ?? 0 }))),
       reason: sentences.join(" "),
       players,
     });
@@ -327,7 +335,7 @@ export function buildRosterGrade(
   if (benched.length) {
     const players = benched.map((row) => {
       const group = SLOTS.find((item) => item.slot === row.pos);
-      const minWeeks = minimumWeeks(row.pos, weeks.length);
+      const minWeeks = minimumGames(row.pos);
       const comparison = group ? board(scored, group.slot, minWeeks) : [];
       return factFor(row, comparison, minWeeks, byes, false);
     });
@@ -339,7 +347,7 @@ export function buildRosterGrade(
     positions.push({
       id: "BN",
       label: "Bench",
-      letter: letterForRanks(ranked.map((player) => ({ rank: player.rank ?? 0, field: player.field ?? 0 }))),
+      letter: unitLetter(ranked.map((player) => ({ rank: player.rank ?? 0, field: player.field ?? 0 }))),
       reason: sentences.join(" "),
       players,
     });
@@ -365,7 +373,7 @@ export function buildRosterGrade(
   const rosIndex = rosRows.findIndex((row) => row.id === scopedModel.focusId);
   const rosRank = rosIndex + 1;
   const rosPpg = rosIndex >= 0 ? Math.round(rosRows[rosIndex].ppg * 10) / 10 : null;
-  const letter = rosIndex >= 0 ? (TEAM_GRADE[rosIndex] ?? "D") : "—";
+  const letter = rosIndex >= 0 ? letterForRank(rosRank, rosRows.length) : "—";
 
   const outlook = scopedModel.games
     .filter((game) => game.week >= firstOpen && (game.homeId === scopedModel.focusId || game.awayId === scopedModel.focusId))
@@ -401,7 +409,7 @@ export function buildRosterGrade(
     summary:
       rosPpg == null
         ? "No rest-of-season team projection is in the playoff model."
-        : `${ordinal(rosRank)} of ${rosRows.length} on ${span} team projections, ${one(rosPpg)} points per week. Projection from the ESPN weekly totals in the playoff model. The record is a separate argument.`,
+        : `${ordinal(rosRank)} of ${rosRows.length} on ${span} team projections, ${one(rosPpg)} points per week. The letter splits that ranking into four groups. Projection from the ESPN weekly totals in the playoff model. The record is a separate argument.`,
     positions,
     weeks: outlook,
     suggestions,

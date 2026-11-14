@@ -32,7 +32,7 @@ Every one of those refreshes updates the files below **together**. A page that r
 3. `data/league-trades.json` — player lines on processed trades: `pointsForNewTeam`, `whoWonIt.bySide` week rows, side `pointsReceived` / `pointsGained`, and `meta.pointsThrough`. Recompute `pointsGained` from the two sides' `totalPointsForNewTeam` in the same refresh. Do not leave a `spanNote` or `week8Take` that describes a partial week after that week's rows are in the file. The app grades who won from `whoWonIt.bySide` totals (even inside 10 points) and ignores a stale `pointsGained`. Offers, declines, and vetoes stay counts only. Only `accepted`, `processed`, and `upheld` rows are completed trades.
 
 4. `data/league-rosters.json`, `data/player-points-w4-7.json`, and `data/maye-byes.json` — the roster outlook, together with each team's `roster` in `data/league-all-teams.json`.
-   - The grade follows whoever is in the current lineup. An empty slot, including D/ST, is valid. A player with no row in the points file is left out of that grade. Do not invent a rate.
+   - The team page does not show a Weeks 4–7 player grade or points-per-game list. Do not put that sample back on the roster outlook. The rest-of-season letter is the ESPN team projection, not that file.
    - For every team, `league-rosters.json` and `roster` (starters, bench, and IR) list the same players for `meta.currentWeek`: the same name, position, and lineup slot.
    - Every name in `maye-byes.json` is still on the focus roster (team 7). Remove a name when that player is dropped.
 

@@ -3,39 +3,13 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
+import { minimumGames, splitScoringLines } from "./games-played.ts";
 import type { SimModel } from "./playoff-sim.ts";
-import { buildRosterGrade, type ByeFile, type GradePlayer, type RosterPlayer, type RosterReport } from "./ros-grade.ts";
-import { rosterOutlookFor } from "./ros.ts";
+import { buildRosterGrade, unitLetter, type ByeFile, type GradePlayer, type RosterPlayer, type RosterReport } from "./ros-grade.ts";
+import { rosterOutlookFor, withPlayContext } from "./ros.ts";
 
 const dir = dirname(fileURLToPath(import.meta.url));
 const read = (name: string) => JSON.parse(readFileSync(join(dir, "../data", name), "utf8"));
-
-const LETTERS: [number, string][] = [
-  [0.1, "A+"],
-  [0.2, "A"],
-  [0.3, "A-"],
-  [0.4, "B+"],
-  [0.5, "B"],
-  [0.6, "B-"],
-  [0.7, "C+"],
-  [0.8, "C"],
-  [0.9, "C-"],
-  [1, "D"],
-];
-
-function letterForRatio(ratio: number) {
-  for (const [cut, letter] of LETTERS) if (ratio <= cut) return letter;
-  return "D";
-}
-
-function letterForRanks(ranks: { rank: number; field: number }[]) {
-  const comparable = ranks.filter((row) => row.field > 1);
-  if (!comparable.length) return "—";
-  const ratios = comparable.map((row) => (row.rank - 1) / (row.field - 1)).sort((a, b) => a - b);
-  const mid = Math.floor(ratios.length / 2);
-  const ratio = ratios.length % 2 ? ratios[mid] : (ratios[mid - 1] + ratios[mid]) / 2;
-  return letterForRatio(ratio);
-}
 
 function player(id: string, name: string, pos: string, slot: string): RosterPlayer {
   return { id, name, pos, slot, inj: null, own: 50, gp: 4 };
@@ -143,7 +117,7 @@ test("a benched bye player keeps a real sample rank and is not required to be st
   assert.equal(charlie.field, 3);
   assert.equal(charlie.ppg, 20);
   assert.equal(charlie.total, 80);
-  assert.equal(rb.letter, "D");
+  assert.equal(rb.letter, "B");
   assert.match(rb.reason, /Charlie is on the bench and on bye in Week 9/);
   assert.match(rb.reason, /20\.0 points per game/);
   assert.match(rb.reason, /2nd of 3 starting running backs/);
@@ -157,7 +131,7 @@ test("a benched bye player keeps a real sample rank and is not required to be st
   assert.equal(delta.rank, 2);
   assert.equal(delta.field, 2);
   assert.equal(delta.ppg, 6);
-  assert.equal(bench.letter, letterForRanks([{ rank: 2, field: 2 }]));
+  assert.equal(bench.letter, unitLetter([{ rank: 2, field: 2 }]));
 
   assert.ok(report.suggestions.includes("Charlie is on bye in Week 9 and is not starting."));
   assert.equal(report.suggestions.some((line) => line.includes("Ghost")), false);
@@ -227,8 +201,45 @@ test("a missing rest-of-season model does not invent a team rate", () => {
   assert.doesNotMatch(report.summary, /\d+\.\d+/);
 });
 
-test("the checked-in roster grades use lineup slots, the scoring file, and the playoff model", () => {
-  const rosters = read("league-rosters.json") as Record<string, RosterPlayer[]>;
+test("missed games drop out of the average and can pass a player who played every week", () => {
+  const rosters: Record<string, RosterPlayer[]> = {
+    "7": [{ ...player("a", "Ace", "WR", "WR"), missedGames: 2 }],
+    "1": [{ ...player("c", "Cy", "WR", "WR"), missedGames: 0 }],
+  };
+  const points = lines({
+    a: [0, 0, 18, 18],
+    c: [12, 12, 12, 12],
+  });
+  const report = buildRosterGrade(rosters, points, toyModel(), { byes: {} });
+  const ace = report.positions.find((row) => row.id === "WR")?.players.find((row) => row.name === "Ace");
+  assert.ok(ace);
+  assert.equal(ace.weeks, 2);
+  assert.equal(ace.total, 36);
+  assert.equal(ace.ppg, 18);
+  assert.equal(ace.rank, 1);
+  assert.equal(ace.field, 2);
+});
+
+test("a zero stays in the average when missed games cannot explain every zero", () => {
+  const rosters: Record<string, RosterPlayer[]> = {
+    "7": [{ ...player("d", "Diggs", "WR", "WR"), byeWeek: 7, missedGames: 0 }],
+    "1": [player("e", "Other", "WR", "WR")],
+  };
+  const points = lines({
+    d: [8.5, 0, 16.4, 0],
+    e: [10, 10, 10, 10],
+  });
+  const report = buildRosterGrade(rosters, points, toyModel(), { byes: {} });
+  const diggs = report.positions.find((row) => row.id === "WR")?.players.find((row) => row.name === "Diggs");
+  assert.ok(diggs);
+  assert.equal(diggs.weeks, 3);
+  assert.ok(diggs.total != null && Math.abs(diggs.total - 24.9) < 1e-9);
+  assert.ok(diggs.ppg != null && Math.abs(diggs.ppg - 8.3) < 1e-9);
+  assert.equal(diggs.rank, 2);
+});
+
+test("the checked-in roster grades use lineup slots, games played, and the playoff model", () => {
+  const rosters = withPlayContext(read("league-rosters.json") as Record<string, RosterPlayer[]>);
   const points = read("player-points-w4-7.json") as Record<string, Record<string, number>>;
   const model = read("playoff-model.json") as SimModel;
   const byes = read("maye-byes.json") as ByeFile;
@@ -246,11 +257,11 @@ test("the checked-in roster grades use lineup slots, the scoring file, and the p
   const sampleLabel =
     sampleWeeks.length === 0 ? "the scoring file" : sampleWeeks.length === 1 ? `Week ${sampleWeeks[0]}` : `Weeks ${sampleWeeks[0]}\u2013${sampleWeeks[sampleWeeks.length - 1]}`;
 
+  const playedFor = (row: RosterPlayer) => splitScoringLines(points[row.id], row);
   const all = Object.entries(rosters).flatMap(([teamId, rows]) =>
     rows.map((row) => {
-      const vals = Object.values(points[row.id] ?? {}).map(Number);
-      const total = vals.reduce((sum, value) => sum + value, 0);
-      return { ...row, teamId, weeks: vals.length, total, ppg: vals.length ? total / vals.length : 0 };
+      const sample = playedFor(row);
+      return { ...row, teamId, weeks: sample.games, total: sample.total, ppg: sample.ppg };
     }),
   );
   const ahead = (left: { ppg: number; total: number; name: string }, right: { ppg: number; total: number; name: string }) =>
@@ -264,27 +275,26 @@ test("the checked-in roster grades use lineup slots, the scoring file, and the p
     const ranked = rankedStarters.length
       ? rankedStarters
       : row.players.filter((playerRow) => playerRow.rank != null && playerRow.field != null);
-    assert.equal(row.letter, letterForRanks(ranked.map((playerRow) => ({ rank: playerRow.rank ?? 0, field: playerRow.field ?? 0 }))));
+    assert.equal(row.letter, unitLetter(ranked.map((playerRow) => ({ rank: playerRow.rank ?? 0, field: playerRow.field ?? 0 }))));
     for (const playerRow of row.players) {
       assert.ok(names.has(playerRow.name), playerRow.name);
       const rostered = focus.find((item) => item.id === playerRow.id);
       assert.ok(rostered);
-      const vals = Object.values(points[playerRow.id] ?? {}).map(Number);
-      const total = vals.reduce((sum, value) => sum + value, 0);
-      assert.equal(playerRow.weeks, vals.length);
-      if (!vals.length) {
+      const sample = playedFor(rostered);
+      assert.equal(playerRow.weeks, sample.games);
+      if (!sample.games) {
         assert.equal(playerRow.ppg, null);
         assert.equal(playerRow.rank, null);
       } else {
         assert.ok(playerRow.ppg != null);
-        assert.ok(Math.abs(playerRow.ppg - total / vals.length) < 1e-9);
+        assert.ok(Math.abs(playerRow.ppg - sample.ppg) < 1e-9);
         assert.ok(playerRow.total != null);
-        assert.ok(Math.abs(playerRow.total - total) < 1e-9);
+        assert.ok(Math.abs(playerRow.total - sample.total) < 1e-9);
         assert.match(row.reason, new RegExp(playerRow.ppg.toFixed(1).replace(".", "\\.")));
       }
       if (playerRow.rank != null && playerRow.field != null && playerRow.ppg != null && playerRow.total != null) {
         const boardSlot = playerRow.onByeBench || playerRow.slot === "Bench" || playerRow.slot === "IR" ? playerRow.pos : playerRow.slot;
-        const min = boardSlot === "D/ST" || boardSlot === "K" ? 1 : sampleWeeks.length;
+        const min = minimumGames(boardSlot);
         const comparison = all
           .filter((item) => item.slot === boardSlot && item.weeks >= min)
           .sort((a, b) => b.ppg - a.ppg || b.total - a.total || a.name.localeCompare(b.name));
@@ -301,11 +311,10 @@ test("the checked-in roster grades use lineup slots, the scoring file, and the p
     }
   }
 
-  const minFor = (slot: string) => (sampleWeeks.length === 0 ? Number.POSITIVE_INFINITY : slot === "D/ST" || slot === "K" ? 1 : sampleWeeks.length);
+  const minFor = (slot: string) => minimumGames(slot);
   const scored = focus.map((row) => {
-    const vals = Object.values(points[row.id] ?? {}).map(Number);
-    const total = vals.reduce((sum, value) => sum + value, 0);
-    return { ...row, weeks: vals.length, total, ppg: vals.length ? total / vals.length : 0 };
+    const sample = playedFor(row);
+    return { ...row, weeks: sample.games, total: sample.total, ppg: sample.ppg };
   });
   for (const slot of ["QB", "RB", "WR", "TE", "FLEX", "D/ST", "K"]) {
     const starters = scored.filter((row) => row.slot === slot && row.weeks >= minFor(slot));
@@ -373,7 +382,7 @@ test("the checked-in roster grades use lineup slots, the scoring file, and the p
 });
 
 test("moving a starter to the bench and dropping the defense still grades the remaining lineup", () => {
-  const rosters = structuredClone(read("league-rosters.json")) as Record<string, RosterPlayer[]>;
+  const rosters = withPlayContext(structuredClone(read("league-rosters.json")) as Record<string, RosterPlayer[]>);
   const points = read("player-points-w4-7.json") as Record<string, Record<string, number>>;
   const model = read("playoff-model.json") as SimModel;
   const byes = structuredClone(read("maye-byes.json")) as ByeFile;
@@ -403,9 +412,9 @@ test("moving a starter to the bench and dropping the defense still grades the re
   assert.ok(moved);
   assert.equal(moved.onByeBench, true);
   assert.ok(moved.ppg != null);
-  const vals = Object.values(points[starter.id] ?? {}).map(Number);
-  const total = vals.reduce((sum, value) => sum + value, 0);
-  assert.ok(Math.abs((moved.ppg ?? 0) - total / vals.length) < 1e-9);
+  const sample = splitScoringLines(points[starter.id], starter);
+  assert.ok(sample.games > 0);
+  assert.ok(Math.abs((moved.ppg ?? 0) - sample.ppg) < 1e-9);
   assert.match(rb.reason, new RegExp(`on bye in Week ${model.currentWeek}`));
   assert.ok(report.suggestions.some((line) => line.includes(starter.name) && line.includes(`Week ${model.currentWeek}`)));
 });
