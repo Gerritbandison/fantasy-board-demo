@@ -11,7 +11,9 @@ import {
   ordinal,
   team,
   teamPath,
+  winnerSide,
   WEEKS_PLAYED,
+  type Game,
   type Matchup,
   type Player,
   type Team,
@@ -20,7 +22,7 @@ import { sumDefined } from "@/lib/roster-board";
 import { recordBookLabel } from "@/lib/week-state";
 import { resultCallout } from "@/lib/commentary";
 import { buildPreview, matchupFacts, type Edge } from "@/lib/preview";
-import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
+import { allPlay, CLOSE_GAME_MARGIN, closeGameRecord, meetings, pfRank, powerRank, schedule, teamStats } from "@/lib/stats";
 import { ByeChip, ScoreReadout, SlotChip, StateBadge, StatusChip } from "./bits";
 import { MatchupSeries } from "./h2h";
 import { PlayerHeadshot } from "./PlayerHeadshot";
@@ -84,24 +86,7 @@ export function MatchupBoard({ matchup }: { matchup: Matchup }) {
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div className="grid content-start gap-6">
           <Card title="Matchup preview" accent={L.color}>
-            <div className="grid gap-2.5 text-[15px] leading-relaxed text-slate-700">
-              {preview.story.map((s) => (
-                <p key={s}>{s}</p>
-              ))}
-            </div>
-            <h3 className="mt-5 text-[11px] font-bold tracking-[0.1em] text-slate-600 uppercase">Statistical edges</h3>
-            <div className="mt-2.5 grid gap-3 sm:grid-cols-2">
-              <EdgeList t={L} edges={preview.edges.left} />
-              <EdgeList t={R} edges={preview.edges.right} />
-            </div>
-            <div className="mt-4 rounded-xl border-l-4 border-gold bg-gold-light/65 px-4 py-3 ring-1 ring-gold-border/70">
-              <p className="text-xs font-bold tracking-wider text-gold-ink uppercase">What&apos;s at stake</p>
-              {preview.stakes.map((s) => (
-                <p key={s} className="mt-1 text-sm leading-snug text-slate-800">
-                  {s}
-                </p>
-              ))}
-            </div>
+            <PreviewSheet matchup={matchup} L={L} R={R} preview={preview} />
           </Card>
           <MatchupSeries leftId={L.id} rightId={R.id} />
           <TaleOfTheTape L={L} R={R} matchup={matchup} />
@@ -316,6 +301,174 @@ function DesktopScoreSide({
   );
 }
 
+const FIGURE = /(?<![A-Za-z])[±]?\d+(?:\.\d+)?(?:[–-]\d+(?:\.\d+)?)?(?![A-Za-z])/g;
+
+function BoldFigures({ text }: { text: string }) {
+  const nodes: React.ReactNode[] = [];
+  let last = 0;
+  for (const match of text.matchAll(FIGURE)) {
+    const index = match.index ?? 0;
+    if (index > last) nodes.push(text.slice(last, index));
+    nodes.push(
+      <span key={index} className="font-display text-base font-extrabold text-navy tabular-nums">
+        {match[0]}
+      </span>,
+    );
+    last = index + match[0].length;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return <>{nodes}</>;
+}
+
+function ScoreFigure({ value, hot, hero }: { value: string; hot?: boolean; hero?: boolean }) {
+  return (
+    <span
+      className={cn(
+        "font-display leading-none font-extrabold tabular-nums",
+        hero ? "text-3xl" : "text-xl",
+        hot ? "text-turf-dark" : "text-navy",
+      )}
+    >
+      {value}
+    </span>
+  );
+}
+
+function PreviewSheet({
+  matchup,
+  L,
+  R,
+  preview,
+}: {
+  matchup: Matchup;
+  L: Team;
+  R: Team;
+  preview: ReturnType<typeof buildPreview>;
+}) {
+  const live = matchup.state !== "projected";
+  const lScore = live ? matchup.left.points : undefined;
+  const rScore = live ? matchup.right.points : undefined;
+  const lp = matchup.left.projected;
+  const rp = matchup.right.projected;
+  const ls = teamStats(L);
+  const rs = teamStats(R);
+  const favored = lp != null && rp != null ? (lp >= rp ? L : R) : null;
+  const spread = lp != null && rp != null ? Math.abs(lp - rp) : null;
+  const met = meetings(L.id, R.id);
+  const lLeads = lScore != null && rScore != null && lScore > rScore;
+  const rLeads = lScore != null && rScore != null && rScore > lScore;
+
+  const rows: { label: string; l: string; r: string; lHot?: boolean; rHot?: boolean; hero?: boolean }[] = [
+    ...(lScore != null && rScore != null
+      ? [{ label: matchup.state === "final" ? "Final" : "So far", l: formatPoints(lScore), r: formatPoints(rScore), lHot: lLeads, rHot: rLeads, hero: true }]
+      : []),
+    ...(lp != null && rp != null
+      ? [{ label: "Projection", l: formatPoints(lp), r: formatPoints(rp), lHot: lp > rp, rHot: rp > lp }]
+      : []),
+    { label: "Record", l: formatRecord(L), r: formatRecord(R) },
+    { label: "Standings", l: ordinal(L.rank), r: ordinal(R.rank), lHot: L.rank < R.rank, rHot: R.rank < L.rank },
+    { label: "Points rank", l: ordinal(pfRank(L.id)), r: ordinal(pfRank(R.id)), lHot: pfRank(L.id) < pfRank(R.id), rHot: pfRank(R.id) < pfRank(L.id) },
+    { label: "Last 3 weeks", l: ls.last3.toFixed(1), r: rs.last3.toFixed(1), lHot: ls.last3 > rs.last3, rHot: rs.last3 > ls.last3 },
+  ];
+
+  return (
+    <div>
+      {favored && spread != null && (
+        <p className="mb-3 text-sm text-slate-600">
+          <span className="font-semibold text-navy">{favored.name}</span> favored by{" "}
+          <span className="font-display text-2xl leading-none font-extrabold text-navy tabular-nums">{spread.toFixed(1)}</span>
+        </p>
+      )}
+
+      <div className="overflow-hidden rounded-xl ring-1 ring-line">
+        <div className="grid grid-cols-[minmax(0,1fr)_5.5rem_5.5rem] items-center gap-2 bg-surface-subtle px-3 py-2.5 sm:grid-cols-[minmax(0,1fr)_7rem_7rem] sm:px-4">
+          <span className="text-[11px] font-bold tracking-[0.08em] text-slate-500 uppercase"> </span>
+          <span className="flex items-center justify-end gap-1.5 text-xs font-bold text-navy">
+            <span className="truncate">{L.abbrev}</span>
+            <TeamAvatar teamId={L.id} size="xs" />
+          </span>
+          <span className="flex items-center justify-end gap-1.5 text-xs font-bold text-navy">
+            <span className="truncate">{R.abbrev}</span>
+            <TeamAvatar teamId={R.id} size="xs" />
+          </span>
+        </div>
+        <dl className="divide-y divide-line">
+          {rows.map((row) => (
+            <div key={row.label} className="grid grid-cols-[minmax(0,1fr)_5.5rem_5.5rem] items-center gap-2 px-3 py-2.5 sm:grid-cols-[minmax(0,1fr)_7rem_7rem] sm:px-4">
+              <dt className="text-xs font-semibold text-slate-600 sm:text-sm">{row.label}</dt>
+              <dd className="text-right">
+                <ScoreFigure value={row.l} hot={row.lHot} hero={row.hero} />
+              </dd>
+              <dd className="text-right">
+                <ScoreFigure value={row.r} hot={row.rHot} hero={row.hero} />
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <div className="mt-3 rounded-xl bg-surface-subtle px-3 py-2.5 ring-1 ring-line/80 sm:px-4">
+        <p className="text-[11px] font-bold tracking-[0.08em] text-slate-500 uppercase">Season series</p>
+        {met.length ? (
+          <ul className="mt-1.5 grid gap-1.5">
+            {met.map((game) => (
+              <SeriesScore key={game.week} game={game} />
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-1 text-sm font-semibold text-navy">First meeting this season.</p>
+        )}
+      </div>
+
+      <h3 className="mt-5 text-[11px] font-bold tracking-[0.1em] text-slate-600 uppercase">Statistical edges</h3>
+      <div className="mt-2.5 grid gap-3 sm:grid-cols-2">
+        <EdgeList t={L} edges={preview.edges.left} />
+        <EdgeList t={R} edges={preview.edges.right} />
+      </div>
+
+      <div className="mt-4 rounded-xl border-l-4 border-gold bg-gold-light/65 px-4 py-3 ring-1 ring-gold-border/70">
+        <p className="text-xs font-bold tracking-wider text-gold-ink uppercase">What&apos;s at stake</p>
+        <div className="mt-2 grid gap-3 sm:grid-cols-2">
+          {[L, R].map((t) => (
+            <div key={t.id} className="min-w-0">
+              <p className="truncate text-sm font-semibold text-navy">{t.name}</p>
+              <div className="mt-1.5 flex gap-4">
+                <Stake label="Win" record={formatRecord({ ...t, wins: t.wins + 1 })} />
+                <Stake label="Loss" record={formatRecord({ ...t, losses: t.losses + 1 })} muted />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SeriesScore({ game }: { game: Game }) {
+  const winner = winnerSide(game);
+  const loser = winner === game.home ? game.away : game.home;
+  return (
+    <li className="flex items-baseline justify-between gap-3">
+      <span className="min-w-0 text-sm text-slate-600">
+        <span className="font-semibold text-slate-500">Wk {game.week}</span>
+        <span className="ml-2 font-semibold text-navy">{team(winner.teamId).abbrev}</span>
+      </span>
+      <span className="shrink-0 font-display text-lg leading-none font-extrabold text-navy tabular-nums">
+        {formatPoints(winner.score)}–{formatPoints(loser.score)}
+      </span>
+    </li>
+  );
+}
+
+function Stake({ label, record, muted }: { label: string; record: string; muted?: boolean }) {
+  return (
+    <div>
+      <p className="text-[10px] font-bold tracking-wider text-slate-500 uppercase">{label}</p>
+      <p className={cn("font-display text-2xl leading-none font-extrabold tabular-nums", muted ? "text-slate-500" : "text-navy")}>{record}</p>
+    </div>
+  );
+}
+
 function EdgeList({ t, edges }: { t: Team; edges: Edge[] }) {
   return (
     <div className="min-w-0 rounded-xl bg-surface-subtle p-3 ring-1 ring-line/80">
@@ -324,11 +477,13 @@ function EdgeList({ t, edges }: { t: Team; edges: Edge[] }) {
         <span className="min-w-0 break-words">{t.name}</span>
       </p>
       {edges.length ? (
-        <ul className="mt-2 grid gap-1.5">
+        <ul className="mt-2.5 grid gap-2">
           {edges.map((e) => (
-            <li key={e.label} className="text-xs leading-snug text-slate-700 sm:text-sm">
-              <span className="font-bold text-turf-dark">{e.label}: </span>
-              {e.detail}
+            <li key={e.label} className="flex items-baseline justify-between gap-3">
+              <span className="text-[11px] font-bold tracking-wide text-slate-500 uppercase">{e.label}</span>
+              <span className="text-right text-xs text-slate-500">
+                <BoldFigures text={e.detail} />
+              </span>
             </li>
           ))}
         </ul>
