@@ -41,7 +41,7 @@ export function RosterOutlook({ teamId }: { teamId: number }) {
             <p className="text-[11px] font-bold tracking-[0.08em] text-slate-600 uppercase">Rest-of-season projection</p>
             <p className="mt-0.5 text-xs leading-snug text-slate-600 sm:text-sm">
               {report.ppg != null && report.field > 0
-                ? `Ranked #${report.rank} of ${report.field} in ESPN projected team scoring (${weekSpan(report.weeks)}).`
+                ? `Ranked #${report.rank} of ${report.field} in ESPN projected team scoring (${weekSpan(report.weeks)}). The letter splits that list into four groups.`
                 : report.summary}
             </p>
           </div>
@@ -99,13 +99,11 @@ export function RosterOutlook({ teamId }: { teamId: number }) {
 
                         <span className="shrink-0 text-xs text-slate-600 tabular-nums">
                           {p.ppg != null ? <span className="font-semibold text-navy">{p.ppg.toFixed(1)}</span> : "—"}
-                          {p.ppg != null && <span className="text-slate-500"> ppg</span>}
+                          {p.ppg != null && <span className="text-slate-500"> ppg · {p.weeks}g</span>}
                           {p.rank != null && p.field != null ? (
                             <span className="ml-1.5 rounded bg-surface-subtle px-1.5 py-0.5 text-[11px] font-semibold text-slate-600 ring-1 ring-line">
                               #{p.rank}/{p.field}
                             </span>
-                          ) : p.weeks > 0 ? (
-                            <span className="ml-1.5 text-[11px] text-slate-400">({p.weeks}g)</span>
                           ) : null}
                         </span>
                       </li>
@@ -115,6 +113,9 @@ export function RosterOutlook({ teamId }: { teamId: number }) {
               </li>
             ))}
           </ul>
+          <p className="mt-2 text-xs leading-snug text-slate-600">
+            Points per game count only games played. A bye, an inactive week, or a zero-snap game is left out. A real zero stays in. Skill players need 2 games to be ranked, and kickers and defenses need 1. Grades split that list into four groups: A, B, C, then D.
+          </p>
         </div>
       )}
 
