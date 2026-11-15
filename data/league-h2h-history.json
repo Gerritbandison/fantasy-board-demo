@@ -6,7 +6,7 @@
   "leagueName": "Chicken",
   "scope": "all-time (2020–2026)",
   "scopeLabel": "All-time: 2020 through 2026 week 9. Week 10 is in progress and is not in this file.",
-  "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json; 2026 week 8 finals from matchups-w8 on 2026-11-04; 2026 week 9 finals from matchups-w9 on 2026-11-10; 2026 week 10 was live on 2026-11-13 and is not included",
+  "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json; 2026 week 8 finals from matchups-w8 on 2026-11-04; 2026 week 9 finals from matchups-w9 on 2026-11-10; 2026 week 10 was live on 2026-11-15 and is not included",
   "seasonsCovered": [
    2020,
    2021,
@@ -46,7 +46,8 @@
    "2026 week 8 finals from matchups-w8 (2026-11-04) are included.",
    "No ties occurred in any game.",
    "2026-11-05: Week 9 is in progress (Thursday scores only). Finals in this file still stop at week 8.",
-   "2026-11-13: Week 10 is in progress (Thursday scores only). Finals in this file still stop at week 9."
+   "2026-11-13: Week 10 is in progress (Thursday scores only). Finals in this file still stop at week 9.",
+   "2026-11-15: Week 10 is in progress (Sunday afternoon). Finals in this file still stop at week 9."
   ],
   "championshipCheck": [
    {

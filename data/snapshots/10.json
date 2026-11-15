@@ -1,6 +1,6 @@
 {
   "week": 10,
-  "asOf": "2026-11-13T00:10:00-05:00",
+  "asOf": "2026-11-15T15:28:00-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,49 +11,49 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.9771,
+      "playoffOdds": 0.9849,
       "powerRank": 2
     },
     {
-      "teamId": 7,
+      "teamId": 2,
       "projectedRank": 3,
-      "playoffOdds": 0.5436,
+      "playoffOdds": 0.547,
+      "powerRank": 4
+    },
+    {
+      "teamId": 7,
+      "projectedRank": 4,
+      "playoffOdds": 0.526,
       "powerRank": 5
     },
     {
       "teamId": 5,
-      "projectedRank": 4,
-      "playoffOdds": 0.4309,
+      "projectedRank": 5,
+      "playoffOdds": 0.4904,
       "powerRank": 3
     },
     {
       "teamId": 8,
-      "projectedRank": 5,
-      "playoffOdds": 0.3858,
-      "powerRank": 10
-    },
-    {
-      "teamId": 2,
       "projectedRank": 6,
-      "playoffOdds": 0.4041,
-      "powerRank": 4
+      "playoffOdds": 0.2999,
+      "powerRank": 10
     },
     {
       "teamId": 4,
       "projectedRank": 7,
-      "playoffOdds": 0.1246,
+      "playoffOdds": 0.1036,
       "powerRank": 7
     },
     {
       "teamId": 10,
       "projectedRank": 8,
-      "playoffOdds": 0.128,
+      "playoffOdds": 0.0441,
       "powerRank": 6
     },
     {
       "teamId": 11,
       "projectedRank": 9,
-      "playoffOdds": 0.0059,
+      "playoffOdds": 0.0041,
       "powerRank": 9
     },
     {
@@ -336,6 +336,35 @@
     }
   ],
   "adds": [
+    {
+      "teamId": 4,
+      "date": "2026-11-15",
+      "type": "add",
+      "added": [
+        "Konata Mumpfield (WR, LAR)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 6,
+      "date": "2026-11-15",
+      "type": "add",
+      "added": [
+        "Colts D/ST (D/ST, IND)"
+      ],
+      "dropped": [
+        "Panthers D/ST (D/ST, CAR)"
+      ]
+    },
+    {
+      "teamId": 1,
+      "date": "2026-11-14",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Bears D/ST (D/ST, CHI)"
+      ]
+    },
     {
       "teamId": 1,
       "date": "2026-11-11",
