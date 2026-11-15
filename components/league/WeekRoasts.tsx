@@ -41,9 +41,8 @@ export function RoastCopy({ roast }: { roast: RoastMatchup }) {
   return (
     <div className="mt-3.5 border-t border-line pt-3.5">
       <h3 className="font-display text-lg leading-snug font-bold text-navy sm:text-xl">{roast.headline}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-slate-700">{roast.roast}</p>
+      <p className="mt-1.5 text-sm leading-relaxed whitespace-pre-line text-slate-700">{roast.roast}</p>
       <div className="mt-3 flex flex-col gap-2 rounded-xl bg-surface-subtle px-3 py-2.5 ring-1 ring-line/80">
-        <p className="text-xs leading-snug font-semibold text-navy tabular-nums">{roast.projectionLine}</p>
         <TagBadge tag={roast.tag} />
       </div>
     </div>
