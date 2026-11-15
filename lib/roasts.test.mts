@@ -82,9 +82,9 @@ test("week 8 roast cards stay on the app's names", () => {
   const league = JSON.parse(readFileSync(join(root, "data/league-all-teams.json"), "utf8")) as LeagueFile;
   const completed = latestCompletedWeek(league);
   assert.ok(completed != null);
-  assert.equal(roasts.week, completed);
-  if (league.meta.weekInProgress?.final === true) assert.equal(roasts.week, league.meta.currentWeek);
-  else assert.ok(roasts.week < league.meta.currentWeek);
+  const inProgress = league.meta.weekInProgress?.final !== true;
+  if (inProgress) assert.ok(roasts.week === completed || roasts.week === league.meta.currentWeek);
+  else assert.equal(roasts.week, league.meta.currentWeek);
   assert.equal(roasts.matchups.length, 5);
   const byId = new Map(league.teams.map((t) => [t.teamId, t]));
   for (const m of roasts.matchups) {
@@ -128,7 +128,6 @@ test("week 8 roast cards stay on the app's names", () => {
     assert.equal(row.projection.away, expected.awayProj);
     const blob = `${row.headline}\n${row.roast}\n${row.tag}`;
     assert.equal(/still going|in progress|UNDECIDED|Scored 0/.test(blob), false, blob);
-    assert.match(blob, new RegExp(expected.homePoints.toString()));
-    assert.match(blob, new RegExp(expected.awayPoints.toString()));
+    assert.equal(/\d+\.\d+/.test(blob), false, blob);
   }
 });

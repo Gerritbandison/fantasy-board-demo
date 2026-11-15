@@ -357,8 +357,12 @@ export function validateFiles(files: DataFiles): string[] {
   if (present.has("week-roasts.json") && !roasts) errors.push("data/week-roasts.json must be a JSON object");
   if (roasts) {
     const roastWeek = num(roasts.week);
-    if (latest != null && roastWeek !== latest) {
-      errors.push(`data/week-roasts.json week is ${String(roasts.week)} but the latest completed week is ${latest}`);
+    const onCurrentWeek = currentWeek != null && roastWeek === currentWeek;
+    const onCompletedWeek = latest != null && roastWeek === latest;
+    if (!onCurrentWeek && !onCompletedWeek) {
+      errors.push(
+        `data/week-roasts.json week is ${String(roasts.week)} but it must be the current week (${String(currentWeek)}) or the latest completed week (${String(latest)})`,
+      );
     }
     for (const row of asArray(roasts.matchups) ?? []) {
       const matchup = asRecord(row);

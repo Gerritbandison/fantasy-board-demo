@@ -46,7 +46,7 @@ Every one of those refreshes updates the files below **together**. A page that r
 
 9. `data/snapshots/<week>.json` — written at the **end** of the refresh, after the files above match the scoreboard. See below. The next refresh diffs against the newest numbered file. Until one exists, Scores, Playoffs, and power rankings say there is no earlier snapshot.
 
-10. `data/week-roasts.json` — Tuesday, when the week closes and the roast is approved. Set `week` to that completed week and include every matchup. Other nights leave the file. Its `week` stays the latest completed week, which is behind `meta.currentWeek` until `weekInProgress.final` is `true`. The scores page hides a roast whose `week` is not `meta.currentWeek`.
+10. `data/week-roasts.json` — the scores page. Set `week` to `meta.currentWeek` when the roast is approved for the live week, and include every matchup. The point fields have to match the scoreboard or the card is hidden. A week that is not final can still carry the current week's copy. The scores page hides a roast whose `week` is not `meta.currentWeek`.
 
 Team names in prose come from `lib/names.ts`. Team 7 stays `Maye i give you a blowj0b`. Do not put another franchise's raw ESPN name in a roast or a snapshot. Snapshots store team ids, not names.
 
@@ -64,7 +64,7 @@ While `final` is `false`:
 
 - `schedule.week{currentWeek}` is that week's slate. A game that is not over keeps `winner` as `UNDECIDED`.
 - No team has a completed `weekly` row for `currentWeek`. A `provisional: true` row is allowed while the week is live.
-- `week-roasts.json` stays on the latest completed week.
+- `week-roasts.json` may stay on the latest completed week, or move to `currentWeek` once that week's roast is approved. The point fields still have to match the live scoreboard.
 
 When `final` is `true`:
 

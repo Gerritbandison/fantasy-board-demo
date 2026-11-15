@@ -1,77 +1,77 @@
 {
-  "week": 9,
-  "dataPulledAt": "2026-11-10T08:50:00-05:00",
-  "note": "Week 9 roasts from the final scoreboard. Numbers match schedule.week9. Drafted with lib/commentary.ts.",
+  "week": 10,
+  "dataPulledAt": "2026-11-15T15:28:00-05:00",
+  "note": "Week 10 manager roasts from the Sunday afternoon board. The point fields match schedule.week10 so the cards stay attached. The copy is about the manager, and it does not repeat the score.",
   "matchups": [
     {
-      "matchupId": "2026-mp09-7v6",
-      "homeTeamId": 7,
-      "awayTeamId": 6,
-      "homePoints": 129.06,
-      "awayPoints": 93.6,
-      "headline": "Maye i give you a blowj0b 129.06 – Smert Fellas 93.6",
-      "roast": "Smert Fellas was favored by 0.6, 129.59 to 129.01. They scored 93.6.\nMaye i give you a blowj0b won 129.06–93.6. The number said Smert Fellas. The score said otherwise.",
-      "projection": {
-        "home": 129.01,
-        "away": 129.59
-      },
-      "tag": "UPSET ALERT: Smert Fellas was favored by 0.6 and lost by 35.5."
-    },
-    {
-      "matchupId": "2026-mp09-8v5",
-      "homeTeamId": 8,
-      "awayTeamId": 5,
-      "homePoints": 100.8,
-      "awayPoints": 120.44,
-      "headline": "Dimes McSorley 100.8 – Easy Peasy Lemon Squeezy 120.44",
-      "roast": "120.44–100.8.\nEasy Peasy Lemon Squeezy was favored by 20.2. The margin was 19.6.",
-      "projection": {
-        "home": 104.09,
-        "away": 124.33
-      },
-      "tag": "NOTE: Easy Peasy Lemon Squeezy was favored by 20.2 and won by 19.6."
-    },
-    {
-      "matchupId": "2026-mp09-3v11",
-      "homeTeamId": 3,
-      "awayTeamId": 11,
-      "homePoints": 110.32,
-      "awayPoints": 101.28,
-      "headline": "Chewy's Warriors 110.32 – Kabul FC 101.28",
-      "roast": "110.32–101.28.\nChewy's Warriors was favored by 0.3. The margin was 9.0.",
-      "projection": {
-        "home": 125.26,
-        "away": 124.94
-      },
-      "tag": "NOTE: Chewy's Warriors was favored by 0.3 and won by 9.0."
-    },
-    {
-      "matchupId": "2026-mp09-1v2",
-      "homeTeamId": 1,
+      "matchupId": "2026-mp10-10v2",
+      "homeTeamId": 10,
       "awayTeamId": 2,
-      "homePoints": 151.38,
-      "awayPoints": 104.32,
-      "headline": "Bibi's Boys 151.38 – Jahmyr I Go Again 104.32",
-      "roast": "151.38 to 104.32.\nJahmyr I Go Again lost by 47.1. Bibi's Boys was favored by 8.5 and did not need a close game.",
+      "homePoints": 38.0,
+      "awayPoints": 92.2,
+      "headline": "Jahmyr vs Sandusky",
+      "roast": "Jahmyr, the whole bit is Gibbs, and for once the bit showed up. His day is over. You still get to sit there and watch Sandusky deal with it.\nSandusky, you started Jefferson, Taylor, and Cook. That was the plan. They have spent the afternoon losing to one running back whose game already ended. Burrow tonight is you asking the night game to cover for a bad roster.",
       "projection": {
-        "home": 139.93,
-        "away": 131.45
+        "home": 94.78,
+        "away": 157.34
       },
-      "tag": "LOCK: Bibi's Boys was favored by 8.5 and won by 47.1."
+      "tag": "Jahmyr's whole bit is Gibbs, and Gibbs is already done."
     },
     {
-      "matchupId": "2026-mp09-4v10",
-      "homeTeamId": 4,
-      "awayTeamId": 10,
-      "homePoints": 126.88,
-      "awayPoints": 120.44,
-      "headline": "All Heart 126.88 – Sandusky's Soldiers 120.44",
-      "roast": "All Heart 126.88, Sandusky's Soldiers 120.44.\nSandusky's Soldiers was favored by 6.7 and lost. They finished 13.0 below the projection. The lower projection won.",
+      "matchupId": "2026-mp10-1v11",
+      "homeTeamId": 1,
+      "awayTeamId": 11,
+      "homePoints": 61.68,
+      "awayPoints": 54.9,
+      "headline": "Kyle vs Kabul FC",
+      "roast": "Kyle, you are in first, and you still sat Jayden Daniels. His game ended Thursday. You went with Lawrence. You will probably survive it. That is the part that should bother you.\nKabul FC, you are only hanging around because Kyle did that. Your own quarterback has not played. Enjoy the scoreboard while it is lying to you.",
       "projection": {
-        "home": 126.71,
-        "away": 133.41
+        "home": 132.45,
+        "away": 117.63
       },
-      "tag": "UPSET ALERT: Sandusky's Soldiers was favored by 6.7 and lost by 6.4."
+      "tag": "Kyle sat the quarterback whose game ended Thursday."
+    },
+    {
+      "matchupId": "2026-mp10-6v5",
+      "homeTeamId": 6,
+      "awayTeamId": 5,
+      "homePoints": 49.9,
+      "awayPoints": 82.92,
+      "headline": "Smert vs Easy Peasy",
+      "roast": "Smert, you are in last, and you started a running back who is Out. The defense you grabbed this morning is the best thing on your roster. Dak and CeeDee have not played, so you still have a rescue plan. The lineup you locked in did not deserve one.\nEasy Peasy, you left Diggs on the bench. His Thursday game is over, and he was better than the receivers you trusted. You won the lineup argument against yourself.",
+      "projection": {
+        "home": 100.36,
+        "away": 147.3
+      },
+      "tag": "Smert started a running back who is Out."
+    },
+    {
+      "matchupId": "2026-mp10-7v4",
+      "homeTeamId": 7,
+      "awayTeamId": 4,
+      "homePoints": 114.92,
+      "awayPoints": 44.94,
+      "headline": "Gerrit vs All Heart",
+      "roast": "Gerrit, you built the week around Drake Maye. His game is over, and he spent it watching a blowout. Thursday already did your job. You are winning because Likely and Skattebo showed up, not because you did.\nAll Heart, Mahomes did his part. You filled the rest of the lineup with guys who have been invisible, and you are the one getting walked. CMC has not even played yet, so this is the roster you chose to fall behind with.",
+      "projection": {
+        "home": 134.03,
+        "away": 110.71
+      },
+      "tag": "Gerrit is winning without the quarterback he built the week around."
+    },
+    {
+      "matchupId": "2026-mp10-3v8",
+      "homeTeamId": 3,
+      "awayTeamId": 8,
+      "homePoints": 84.32,
+      "awayPoints": 36.64,
+      "headline": "Chewy vs Dimes",
+      "roast": "Dimes, you sat Goff for Bryce Young. Goff is done. Young is stuck in a rock fight. You picked the wrong quarterback, and the one you benched cannot bail you out anymore.\nChewy, you are mostly just watching Dimes do this to himself. The one sharp thing you did was throw the Vikings defense in.",
+      "projection": {
+        "home": 132.79,
+        "away": 102.58
+      },
+      "tag": "Dimes sat the quarterback whose game is already over."
     }
   ]
 }
