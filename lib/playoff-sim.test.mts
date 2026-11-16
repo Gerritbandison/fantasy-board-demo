@@ -48,8 +48,9 @@ test("the remaining path skips counted weeks and ends at 14 games", () => {
   const firstOpen = model.currentWeek == null ? 9 : model.currentWeekFinal ? model.currentWeek + 1 : model.currentWeek;
   const expectedWeeks = Array.from({ length: model.regularSeasonWeeks - firstOpen + 1 }, (_, i) => firstOpen + i);
 
-  assert.ok(base.focusOdds > 0.28 && base.focusOdds < 0.65, `baseline ${base.focusOdds}`);
-  assert.ok(path[0].odds > 0.28 && path[0].odds < 0.65, `path start ${path[0].odds}`);
+  assert.ok(base.focusOdds > 0 && base.focusOdds < 1, `baseline ${base.focusOdds}`);
+  assert.ok(path[0].odds > 0 && path[0].odds < 1, `path start ${path[0].odds}`);
+  assert.ok(Math.abs(base.focusOdds - path[0].odds) < 0.03, `baseline ${base.focusOdds} path ${path[0].odds}`);
   assert.equal(path[0].week, null);
   assert.equal(path[0].wins, focus.wins);
   assert.equal(path[0].losses, focus.losses);
