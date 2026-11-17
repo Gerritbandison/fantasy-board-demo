@@ -1,7 +1,7 @@
 {
   "week": 10,
-  "dataPulledAt": "2026-11-16T23:58:00-05:00",
-  "note": "Week 10 manager roasts from the Sunday afternoon board. The point fields were updated to the Nov 16 11:58 PM ET scoreboard so the cards stay attached. Lines that described a starter who had not played, including Monday, were corrected. The week is not final, so this is not a new closed-week roast.",
+  "dataPulledAt": "2026-11-17T09:15:00-05:00",
+  "note": "Week 10 roasts from the final scoreboard. Numbers match schedule.week10. Written in the commentary voice. Week 11 has not started.",
   "matchups": [
     {
       "matchupId": "2026-mp10-10v2",
@@ -9,13 +9,13 @@
       "awayTeamId": 2,
       "homePoints": 112.16,
       "awayPoints": 149.96,
-      "headline": "Jahmyr vs Sandusky",
-      "roast": "Jahmyr, the whole bit is Gibbs, and Gibbs had the day. His game is over. So is the rest of your lineup. You carry that lead with nobody left to play.\nSandusky, Burrow's night is over. Jefferson, Taylor, and Cook were the plan, and the night game did not cover them. Your lineup is done, and you are still the one behind.",
+      "headline": "Sandusky's Soldiers 112.16 – Jahmyr I Go Again 149.96",
+      "roast": "149.96 to 112.16.\n4-6 and 112.16 points. Sandusky's Soldiers lost by 37.8. Jahmyr Gibbs scored 44.2 against a 23.86 projection, and Jahmyr I Go Again was favored by 7.38.",
       "projection": {
-        "home": 112.16,
-        "away": 149.96
+        "home": 124.25,
+        "away": 131.63
       },
-      "tag": "Gibbs had the day, and both lineups are done."
+      "tag": "LOCK: Jahmyr I Go Again was favored by 7.38 and won by 37.8."
     },
     {
       "matchupId": "2026-mp10-1v11",
@@ -23,13 +23,13 @@
       "awayTeamId": 11,
       "homePoints": 116.38,
       "awayPoints": 131.86,
-      "headline": "Kyle vs Kabul FC",
-      "roast": "Kyle, you are in first, and you still sat Jayden Daniels. His game ended Thursday. You went with Lawrence. Ja'Marr Chase had the night game. Both lineups are done, and you are the one behind.\nKabul FC, Purdy already played. The week is not final, and you are ahead of the team in first.",
+      "headline": "Bibi's Boys 116.38 – Kabul FC 131.86",
+      "roast": "Kabul FC 131.86, Bibi's Boys 116.38.\nBibi's Boys was favored by 7.2, 130.25 to 123.05, and lost by 15.48. They finished 13.87 below the projection. Brock Bowers scored 3.8, and Steelers D/ST scored -7.",
       "projection": {
-        "home": 116.38,
-        "away": 131.86
+        "home": 130.25,
+        "away": 123.05
       },
-      "tag": "Kyle sat the quarterback whose game ended Thursday."
+      "tag": "UPSET ALERT: Bibi's Boys was favored by 7.2 and lost by 15.48."
     },
     {
       "matchupId": "2026-mp10-6v5",
@@ -37,13 +37,13 @@
       "awayTeamId": 5,
       "homePoints": 120.32,
       "awayPoints": 121.54,
-      "headline": "Smert vs Easy Peasy",
-      "roast": "Smert, you are in last, and you started Woody Marks, who is Doubtful. He got you a little. Dak and CeeDee carried the week, and the defense you grabbed Sunday showed up. Your lineup is done. Henry played Monday, and Easy Peasy edged you.\nEasy Peasy, you left Diggs on the bench. His Thursday game is over. Parker Washington outscored him. Henry played, and both lineups are done.",
+      "headline": "Smert Fellas 120.32 – Easy Peasy Lemon Squeezy 121.54",
+      "roast": "2-8 and 120.32 points.\nSmert Fellas has lost 3 straight. They scored 5.72 over 114.6 and lost by 1.22. Easy Peasy Lemon Squeezy was favored by 12.51 and scored 121.54.",
       "projection": {
-        "home": 120.32,
-        "away": 121.54
+        "home": 114.6,
+        "away": 127.11
       },
-      "tag": "Henry played, and Easy Peasy edged Smert."
+      "tag": "LOCK: Easy Peasy Lemon Squeezy was favored by 12.51 and won by 1.22."
     },
     {
       "matchupId": "2026-mp10-7v4",
@@ -51,13 +51,13 @@
       "awayTeamId": 4,
       "homePoints": 127.52,
       "awayPoints": 149.92,
-      "headline": "Gerrit vs All Heart",
-      "roast": "Gerrit, you built the week around Drake Maye. His game is over, and he spent it watching a blowout. Thursday already did your job. Your lineup is done, and you are the one behind.\nAll Heart, CMC had the day, and Chase Brown had one too. Mahomes did his part. Ravens D/ST played, and your lineup is done. You are the one ahead.",
+      "headline": "Maye i give you a blowj0b 127.52 – All Heart 149.92",
+      "roast": "149.92–127.52.\nAll Heart was favored by 6.91. The margin was 22.4. Christian McCaffrey scored 46.3 against a 21.76 projection. Drake Maye scored 3.02 against a 21.97 projection. Maye i give you a blowj0b is 4-6.",
       "projection": {
-        "home": 127.52,
-        "away": 149.92
+        "home": 118.99,
+        "away": 125.9
       },
-      "tag": "Gerrit is done, and the quarterback he built the week around did not show up."
+      "tag": "NOTE: All Heart was favored by 6.91 and won by 22.4."
     },
     {
       "matchupId": "2026-mp10-3v8",
@@ -65,13 +65,13 @@
       "awayTeamId": 8,
       "homePoints": 151.84,
       "awayPoints": 121.1,
-      "headline": "Chewy vs Dimes",
-      "roast": "Dimes, you sat Goff for Bryce Young. Goff is done. Young did not bail you out. George Pickens had the day on your bench. Zay Flowers played, and your lineup is done.\nChewy, your lineup is done. Jaxon Smith-Njigba and Emmett Johnson showed up, and the Vikings defense came with them.",
+      "headline": "Chewy's Warriors 151.84 – Dimes McSorley 121.1",
+      "roast": "151.84 to 121.1.\nDimes McSorley lost by 30.74. Chewy's Warriors was favored by 10.53 and scored 26.48 over 125.36. George Pickens scored 43.5 on the Dimes McSorley bench, and Bryce Young scored 8.1 against an 18.8 projection.",
       "projection": {
-        "home": 151.84,
-        "away": 121.1
+        "home": 125.36,
+        "away": 114.83
       },
-      "tag": "Dimes sat the quarterback whose game is already over."
+      "tag": "LOCK: Chewy's Warriors was favored by 10.53 and won by 30.74."
     }
   ]
 }

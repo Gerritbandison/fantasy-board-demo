@@ -5,8 +5,8 @@
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "scope": "all-time (2020–2026)",
-  "scopeLabel": "All-time: 2020 through 2026 week 9. Week 10 is in progress as of 2026-11-16 11:58 PM ET and is not in this file.",
-  "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json; 2026 week 8 finals from matchups-w8 on 2026-11-04; 2026 week 9 finals from matchups-w9 on 2026-11-10; 2026 week 10 was still live on 2026-11-16 at 11:58 PM ET and is not included",
+  "scopeLabel": "All-time: 2020 through 2026 week 10. Week 11 has not started as of 2026-11-17 9:15 AM ET and is not in this file.",
+  "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json; 2026 week 8 finals from matchups-w8 on 2026-11-04; 2026 week 9 finals from matchups-w9 on 2026-11-10; 2026 week 10 finals from the Flaim ESPN digest on 2026-11-17. Week 11 has not started and is not included.",
   "seasonsCovered": [
    2020,
    2021,
@@ -23,17 +23,17 @@
    "2023": 80,
    "2024": 80,
    "2025": 80,
-   "2026": 45
+   "2026": 50
   },
-  "totalGames": 520,
+  "totalGames": 525,
   "earliestSeasonAvailable": 2020,
   "minGamesForEasiestOrNemesis": 3,
   "format": {
    "teams": 10,
    "regularSeasonWeeks": {
     "2020": 13,
-    "2021-2025": 14,
-    "2026": "weeks 1-9 final in this file; week 10 still in progress at 11:58 PM ET on 2026-11-16, not included"
+    "2026": "weeks 1-10 final in this file; week 11 has not started as of 9:15 AM ET on 2026-11-17, not included",
+    "2021-2025": 14
    },
    "playoffs": "4-team winners bracket, two rounds. Semifinals are always two-week matchups (totals = sum of two weeks). Finals were two-week in 2020-2023 and single-week (week 17) in 2024-2025. Consolation ladders follow the same format. See each game scoringPeriods/twoWeekMatchup."
   },
@@ -49,7 +49,8 @@
    "2026-11-13: Week 10 is in progress (Thursday scores only). Finals in this file still stop at week 9.",
    "2026-11-15: Week 10 is in progress (Sunday afternoon). Finals in this file still stop at week 9.",
    "2026-11-15: Week 10 was still in progress at 5:06 PM ET. Finals in this file still stop at week 9.",
-   "2026-11-16: Week 10 was still in progress at 11:58 PM ET, after Monday night. Every lineup is done and every winner is still UNDECIDED. Finals in this file still stop at week 9."
+   "2026-11-16: Week 10 was still in progress at 11:58 PM ET, after Monday night. Every lineup is done and every winner is still UNDECIDED. Finals in this file still stop at week 9.",
+   "2026-11-17: Week 10 is final. Those five games are in this file. Week 11 has not started."
   ],
   "championshipCheck": [
    {
@@ -17467,7 +17468,173 @@
    "awayEspnName": "Sandusky's Soldiers ",
    "awayDisplayName": "Sandusky's Soldiers",
    "gameId": "2026-mp09-4v10"
-  } ],
+  },
+  {
+   "season": 2026,
+   "matchupPeriod": 10,
+   "scoringPeriods": [
+    10
+   ],
+   "isPlayoff": false,
+   "playoffTier": "NONE",
+   "isWinnersBracket": false,
+   "isChampionship": false,
+   "twoWeekMatchup": false,
+   "homeTeamId": 10,
+   "awayTeamId": 2,
+   "homeScore": 112.16,
+   "awayScore": 149.96,
+   "homeWeekly": {
+    "10": 112.16
+   },
+   "awayWeekly": {
+    "10": 149.96
+   },
+   "winner": "AWAY",
+   "source": "Flaim ESPN digest 2026-11-17 (Week 10 final)",
+   "winnerTeamId": 2,
+   "loserTeamId": 10,
+   "isTie": false,
+   "margin": 37.8,
+   "homeEspnName": "Sandusky's Soldiers ",
+   "homeDisplayName": "Sandusky's Soldiers",
+   "awayEspnName": "Jahmyr I Go Again",
+   "awayDisplayName": "Jahmyr I Go Again",
+   "gameId": "2026-mp10-2v10"
+  },
+  {
+   "season": 2026,
+   "matchupPeriod": 10,
+   "scoringPeriods": [
+    10
+   ],
+   "isPlayoff": false,
+   "playoffTier": "NONE",
+   "isWinnersBracket": false,
+   "isChampionship": false,
+   "twoWeekMatchup": false,
+   "homeTeamId": 1,
+   "awayTeamId": 11,
+   "homeScore": 116.38,
+   "awayScore": 131.86,
+   "homeWeekly": {
+    "10": 116.38
+   },
+   "awayWeekly": {
+    "10": 131.86
+   },
+   "winner": "AWAY",
+   "source": "Flaim ESPN digest 2026-11-17 (Week 10 final)",
+   "winnerTeamId": 11,
+   "loserTeamId": 1,
+   "isTie": false,
+   "margin": 15.48,
+   "homeEspnName": "Bibi's Boys X KASE Capital",
+   "homeDisplayName": "Bibi's Boys",
+   "awayEspnName": "Kabul FC",
+   "awayDisplayName": "Kabul FC",
+   "gameId": "2026-mp10-1v11"
+  },
+  {
+   "season": 2026,
+   "matchupPeriod": 10,
+   "scoringPeriods": [
+    10
+   ],
+   "isPlayoff": false,
+   "playoffTier": "NONE",
+   "isWinnersBracket": false,
+   "isChampionship": false,
+   "twoWeekMatchup": false,
+   "homeTeamId": 6,
+   "awayTeamId": 5,
+   "homeScore": 120.32,
+   "awayScore": 121.54,
+   "homeWeekly": {
+    "10": 120.32
+   },
+   "awayWeekly": {
+    "10": 121.54
+   },
+   "winner": "AWAY",
+   "source": "Flaim ESPN digest 2026-11-17 (Week 10 final)",
+   "winnerTeamId": 5,
+   "loserTeamId": 6,
+   "isTie": false,
+   "margin": 1.22,
+   "homeEspnName": "Smert Fellas",
+   "homeDisplayName": "Smert Fellas",
+   "awayEspnName": "Easy Peasy Lemon Squeezy",
+   "awayDisplayName": "Easy Peasy Lemon Squeezy",
+   "gameId": "2026-mp10-5v6"
+  },
+  {
+   "season": 2026,
+   "matchupPeriod": 10,
+   "scoringPeriods": [
+    10
+   ],
+   "isPlayoff": false,
+   "playoffTier": "NONE",
+   "isWinnersBracket": false,
+   "isChampionship": false,
+   "twoWeekMatchup": false,
+   "homeTeamId": 7,
+   "awayTeamId": 4,
+   "homeScore": 127.52,
+   "awayScore": 149.92,
+   "homeWeekly": {
+    "10": 127.52
+   },
+   "awayWeekly": {
+    "10": 149.92
+   },
+   "winner": "AWAY",
+   "source": "Flaim ESPN digest 2026-11-17 (Week 10 final)",
+   "winnerTeamId": 4,
+   "loserTeamId": 7,
+   "isTie": false,
+   "margin": 22.4,
+   "homeEspnName": "Maye i give you a blowj0b",
+   "homeDisplayName": "Maye i give you a blowj0b",
+   "awayEspnName": "All Heart",
+   "awayDisplayName": "All Heart",
+   "gameId": "2026-mp10-4v7"
+  },
+  {
+   "season": 2026,
+   "matchupPeriod": 10,
+   "scoringPeriods": [
+    10
+   ],
+   "isPlayoff": false,
+   "playoffTier": "NONE",
+   "isWinnersBracket": false,
+   "isChampionship": false,
+   "twoWeekMatchup": false,
+   "homeTeamId": 3,
+   "awayTeamId": 8,
+   "homeScore": 151.84,
+   "awayScore": 121.1,
+   "homeWeekly": {
+    "10": 151.84
+   },
+   "awayWeekly": {
+    "10": 121.1
+   },
+   "winner": "HOME",
+   "source": "Flaim ESPN digest 2026-11-17 (Week 10 final)",
+   "winnerTeamId": 3,
+   "loserTeamId": 8,
+   "isTie": false,
+   "margin": 30.74,
+   "homeEspnName": "Chewy's Warriors",
+   "homeDisplayName": "Chewy's Warriors",
+   "awayEspnName": "Dimes McSorley",
+   "awayDisplayName": "Dimes McSorley",
+   "gameId": "2026-mp10-3v8"
+  }
+ ],
  "franchises": {
   "1": {
    "teamId": 1,
@@ -17511,17 +17678,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "61-43-0",
+    "games": 105,
+    "record": "61-44-0",
     "wins": 61,
-    "losses": 43,
+    "losses": 44,
     "ties": 0,
-    "regularSeasonRecord": "54-38-0",
-    "pointsFor": 13665.06,
-    "pointsAgainst": 13151.82,
-    "pointsPerWeek": 119.87,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 122.01,
+    "regularSeasonRecord": "54-39-0",
+    "pointsFor": 13781.44,
+    "pointsAgainst": 13283.68,
+    "pointsPerWeek": 119.84,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 121.95,
     "longestWinStreak": 7,
     "longestWinStreakRange": {
      "fromGameId": "2020-mp12-1v3",
@@ -17532,7 +17699,7 @@
      "fromGameId": "2023-mp06-1v6",
      "toGameId": "2023-mp11-1v4"
     },
-    "currentStreak": "W7"
+    "currentStreak": "L1"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -17998,27 +18165,27 @@
      "opponentTeamId": 11,
      "opponentEspnName": "Kabul FC",
      "opponentDisplayName": "Kabul FC",
-     "games": 15,
+     "games": 16,
      "wins": 9,
-     "losses": 6,
+     "losses": 7,
      "ties": 0,
-     "record": "9-6-0",
-     "winPct": 0.6,
-     "pointsFor": 1884.72,
-     "pointsAgainst": 1749.86,
-     "avgMargin": 8.99,
+     "record": "9-7-0",
+     "winPct": 0.563,
+     "pointsFor": 2001.1,
+     "pointsAgainst": 1881.72,
+     "avgMargin": 7.46,
      "longestWinStreak": 4,
      "longestLosingStreak": 3,
-     "currentStreak": "W1",
-     "regularSeasonRecord": "9-4",
+     "currentStreak": "L1",
+     "regularSeasonRecord": "9-5",
      "playoffMeetings": 2,
      "lastMeeting": {
-      "gameId": "2026-mp01-1v11",
+      "gameId": "2026-mp10-1v11",
       "season": 2026,
-      "matchupPeriod": 1,
-      "result": "W",
-      "pointsFor": 122.2,
-      "pointsAgainst": 118.7,
+      "matchupPeriod": 10,
+      "result": "L",
+      "pointsFor": 116.38,
+      "pointsAgainst": 131.86,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -18080,17 +18247,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "48-56-0",
-    "wins": 48,
+    "games": 105,
+    "record": "49-56-0",
+    "wins": 49,
     "losses": 56,
     "ties": 0,
-    "regularSeasonRecord": "42-50-0",
-    "pointsFor": 13634.38,
-    "pointsAgainst": 13837.82,
-    "pointsPerWeek": 119.6,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 120.92,
+    "regularSeasonRecord": "43-50-0",
+    "pointsFor": 13784.34,
+    "pointsAgainst": 13949.98,
+    "pointsPerWeek": 119.86,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 121.24,
     "longestWinStreak": 5,
     "longestWinStreakRange": {
      "fromGameId": "2020-mp07-2v7",
@@ -18101,7 +18268,7 @@
      "fromGameId": "2021-mp16-2v11",
      "toGameId": "2022-mp06-2v3"
     },
-    "currentStreak": "L4"
+    "currentStreak": "W1"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -18136,21 +18303,21 @@
    "nemesis": {
     "opponentTeamId": 10,
     "opponentDisplayName": "Sandusky's Soldiers",
-    "record": "3-11-0",
-    "games": 14,
-    "winPct": 0.214,
-    "avgMargin": -6.88,
-    "pointsFor": 1792.7,
-    "pointsAgainst": 1889.04,
-    "longestWinStreak": 2,
+    "record": "4-11-0",
+    "games": 15,
+    "winPct": 0.267,
+    "avgMargin": -3.9,
+    "pointsFor": 1942.66,
+    "pointsAgainst": 2001.2,
+    "longestWinStreak": 3,
     "longestLosingStreak": 10,
     "lastMeeting": {
-     "gameId": "2026-mp01-2v10",
+     "gameId": "2026-mp10-2v10",
      "season": 2026,
-     "matchupPeriod": 1,
+     "matchupPeriod": 10,
      "result": "W",
-     "pointsFor": 155.2,
-     "pointsAgainst": 96.76,
+     "pointsFor": 149.96,
+     "pointsAgainst": 112.16,
      "playoffTier": "NONE"
     }
    },
@@ -18525,27 +18692,27 @@
      "opponentTeamId": 10,
      "opponentEspnName": "Sandusky's Soldiers ",
      "opponentDisplayName": "Sandusky's Soldiers",
-     "games": 14,
-     "wins": 3,
+     "games": 15,
+     "wins": 4,
      "losses": 11,
      "ties": 0,
-     "record": "3-11-0",
-     "winPct": 0.214,
-     "pointsFor": 1792.7,
-     "pointsAgainst": 1889.04,
-     "avgMargin": -6.88,
-     "longestWinStreak": 2,
+     "record": "4-11-0",
+     "winPct": 0.267,
+     "pointsFor": 1942.66,
+     "pointsAgainst": 2001.2,
+     "avgMargin": -3.9,
+     "longestWinStreak": 3,
      "longestLosingStreak": 10,
-     "currentStreak": "W2",
-     "regularSeasonRecord": "2-11",
+     "currentStreak": "W3",
+     "regularSeasonRecord": "3-11",
      "playoffMeetings": 1,
      "lastMeeting": {
-      "gameId": "2026-mp01-2v10",
+      "gameId": "2026-mp10-2v10",
       "season": 2026,
-      "matchupPeriod": 1,
+      "matchupPeriod": 10,
       "result": "W",
-      "pointsFor": 155.2,
-      "pointsAgainst": 96.76,
+      "pointsFor": 149.96,
+      "pointsAgainst": 112.16,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -18649,17 +18816,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "54-50-0",
-    "wins": 54,
+    "games": 105,
+    "record": "55-50-0",
+    "wins": 55,
     "losses": 50,
     "ties": 0,
-    "regularSeasonRecord": "49-43-0",
-    "pointsFor": 14158.98,
-    "pointsAgainst": 13831.94,
-    "pointsPerWeek": 124.2,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 125.53,
+    "regularSeasonRecord": "50-43-0",
+    "pointsFor": 14310.82,
+    "pointsAgainst": 13953.04,
+    "pointsPerWeek": 124.44,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 125.81,
     "longestWinStreak": 6,
     "longestWinStreakRange": {
      "fromGameId": "2025-mp10-3v5",
@@ -18670,7 +18837,7 @@
      "fromGameId": "2020-mp02-3v11",
      "toGameId": "2020-mp04-3v7"
     },
-    "currentStreak": "W1"
+    "currentStreak": "W2"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -19052,27 +19219,27 @@
      "opponentTeamId": 8,
      "opponentEspnName": "Dimes McSorley",
      "opponentDisplayName": "Dimes McSorley",
-     "games": 8,
-     "wins": 4,
+     "games": 9,
+     "wins": 5,
      "losses": 4,
      "ties": 0,
-     "record": "4-4-0",
-     "winPct": 0.5,
-     "pointsFor": 1071.44,
-     "pointsAgainst": 1058.56,
-     "avgMargin": 1.61,
-     "longestWinStreak": 2,
+     "record": "5-4-0",
+     "winPct": 0.556,
+     "pointsFor": 1223.28,
+     "pointsAgainst": 1179.66,
+     "avgMargin": 4.85,
+     "longestWinStreak": 3,
      "longestLosingStreak": 2,
-     "currentStreak": "W2",
-     "regularSeasonRecord": "3-4",
+     "currentStreak": "W3",
+     "regularSeasonRecord": "4-4",
      "playoffMeetings": 1,
      "lastMeeting": {
-      "gameId": "2026-mp01-3v8",
+      "gameId": "2026-mp10-3v8",
       "season": 2026,
-      "matchupPeriod": 1,
+      "matchupPeriod": 10,
       "result": "W",
-      "pointsFor": 141.46,
-      "pointsAgainst": 99.74,
+      "pointsFor": 151.84,
+      "pointsAgainst": 121.1,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -19218,17 +19385,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "54-50-0",
-    "wins": 54,
+    "games": 105,
+    "record": "55-50-0",
+    "wins": 55,
     "losses": 50,
     "ties": 0,
-    "regularSeasonRecord": "49-43-0",
-    "pointsFor": 13816.96,
-    "pointsAgainst": 13679.44,
-    "pointsPerWeek": 121.2,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 121.85,
+    "regularSeasonRecord": "50-43-0",
+    "pointsFor": 13966.88,
+    "pointsAgainst": 13806.96,
+    "pointsPerWeek": 121.45,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 122.16,
     "longestWinStreak": 5,
     "longestWinStreakRange": {
      "fromGameId": "2024-mp01-4v8",
@@ -19239,7 +19406,7 @@
      "fromGameId": "2021-mp09-4v8",
      "toGameId": "2021-mp14-3v4"
     },
-    "currentStreak": "W2"
+    "currentStreak": "W3"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -19579,27 +19746,27 @@
      "opponentTeamId": 7,
      "opponentEspnName": "Maye i give you a blowj0b",
      "opponentDisplayName": "Maye i give you a blowj0b",
-     "games": 10,
-     "wins": 5,
+     "games": 11,
+     "wins": 6,
      "losses": 5,
      "ties": 0,
-     "record": "5-5-0",
-     "winPct": 0.5,
-     "pointsFor": 1370.58,
-     "pointsAgainst": 1350.7,
-     "avgMargin": 1.99,
-     "longestWinStreak": 3,
+     "record": "6-5-0",
+     "winPct": 0.545,
+     "pointsFor": 1520.5,
+     "pointsAgainst": 1478.22,
+     "avgMargin": 3.84,
+     "longestWinStreak": 4,
      "longestLosingStreak": 3,
-     "currentStreak": "W3",
-     "regularSeasonRecord": "5-4",
+     "currentStreak": "W4",
+     "regularSeasonRecord": "6-4",
      "playoffMeetings": 1,
      "lastMeeting": {
-      "gameId": "2026-mp01-4v7",
+      "gameId": "2026-mp10-4v7",
       "season": 2026,
-      "matchupPeriod": 1,
+      "matchupPeriod": 10,
       "result": "W",
-      "pointsFor": 121.52,
-      "pointsAgainst": 87.82,
+      "pointsFor": 149.92,
+      "pointsAgainst": 127.52,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -19787,17 +19954,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "51-53-0",
-    "wins": 51,
+    "games": 105,
+    "record": "52-53-0",
+    "wins": 52,
     "losses": 53,
     "ties": 0,
-    "regularSeasonRecord": "42-50-0",
-    "pointsFor": 13722.72,
-    "pointsAgainst": 14182.6,
-    "pointsPerWeek": 120.37,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 119.55,
+    "regularSeasonRecord": "43-50-0",
+    "pointsFor": 13844.26,
+    "pointsAgainst": 14302.92,
+    "pointsPerWeek": 120.38,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 119.58,
     "longestWinStreak": 5,
     "longestWinStreakRange": {
      "fromGameId": "2021-mp04-5v8",
@@ -19808,7 +19975,7 @@
      "fromGameId": "2022-mp07-2v5",
      "toGameId": "2022-mp12-1v5"
     },
-    "currentStreak": "W1"
+    "currentStreak": "W2"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -20106,27 +20273,27 @@
      "opponentTeamId": 6,
      "opponentEspnName": "Smert Fellas",
      "opponentDisplayName": "Smert Fellas",
-     "games": 9,
-     "wins": 6,
+     "games": 10,
+     "wins": 7,
      "losses": 3,
      "ties": 0,
-     "record": "6-3-0",
-     "winPct": 0.667,
-     "pointsFor": 1196.12,
-     "pointsAgainst": 1088.94,
-     "avgMargin": 11.91,
-     "longestWinStreak": 2,
+     "record": "7-3-0",
+     "winPct": 0.7,
+     "pointsFor": 1317.66,
+     "pointsAgainst": 1209.26,
+     "avgMargin": 10.84,
+     "longestWinStreak": 3,
      "longestLosingStreak": 1,
-     "currentStreak": "W2",
-     "regularSeasonRecord": "4-3",
+     "currentStreak": "W3",
+     "regularSeasonRecord": "5-3",
      "playoffMeetings": 2,
      "lastMeeting": {
-      "gameId": "2026-mp01-5v6",
+      "gameId": "2026-mp10-5v6",
       "season": 2026,
-      "matchupPeriod": 1,
+      "matchupPeriod": 10,
       "result": "W",
-      "pointsFor": 143.66,
-      "pointsAgainst": 99.2,
+      "pointsFor": 121.54,
+      "pointsAgainst": 120.32,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -20356,17 +20523,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "58-46-0",
+    "games": 105,
+    "record": "58-47-0",
     "wins": 58,
-    "losses": 46,
+    "losses": 47,
     "ties": 0,
-    "regularSeasonRecord": "51-41-0",
-    "pointsFor": 13737.52,
-    "pointsAgainst": 13270.66,
+    "regularSeasonRecord": "51-42-0",
+    "pointsFor": 13857.84,
+    "pointsAgainst": 13392.2,
     "pointsPerWeek": 120.5,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 119.93,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 119.94,
     "longestWinStreak": 6,
     "longestWinStreakRange": {
      "fromGameId": "2020-mp13-4v6",
@@ -20377,7 +20544,7 @@
      "fromGameId": "2025-mp02-4v6",
      "toGameId": "2025-mp07-3v6"
     },
-    "currentStreak": "L2"
+    "currentStreak": "L3"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -20412,21 +20579,21 @@
    "nemesis": {
     "opponentTeamId": 5,
     "opponentDisplayName": "Easy Peasy Lemon Squeezy",
-    "record": "3-6-0",
-    "games": 9,
-    "winPct": 0.333,
-    "avgMargin": -11.91,
-    "pointsFor": 1088.94,
-    "pointsAgainst": 1196.12,
+    "record": "3-7-0",
+    "games": 10,
+    "winPct": 0.3,
+    "avgMargin": -10.84,
+    "pointsFor": 1209.26,
+    "pointsAgainst": 1317.66,
     "longestWinStreak": 1,
-    "longestLosingStreak": 2,
+    "longestLosingStreak": 3,
     "lastMeeting": {
-     "gameId": "2026-mp01-5v6",
+     "gameId": "2026-mp10-5v6",
      "season": 2026,
-     "matchupPeriod": 1,
+     "matchupPeriod": 10,
      "result": "L",
-     "pointsFor": 99.2,
-     "pointsAgainst": 143.66,
+     "pointsFor": 120.32,
+     "pointsAgainst": 121.54,
      "playoffTier": "NONE"
     }
    },
@@ -20470,15 +20637,15 @@
     "twoWeekMatchup": false
    },
    "closestLoss": {
-    "gameId": "2023-mp08-5v6",
-    "season": 2023,
-    "matchupPeriod": 8,
+    "gameId": "2026-mp10-5v6",
+    "season": 2026,
+    "matchupPeriod": 10,
     "opponentTeamId": 5,
     "opponentDisplayName": "Easy Peasy Lemon Squeezy",
-    "opponentSeasonDisplayName": "Lockheed Martin F-35 Lightning",
-    "pointsFor": 140.6,
-    "pointsAgainst": 143.36,
-    "margin": -2.76,
+    "opponentSeasonDisplayName": "Easy Peasy Lemon Squeezy",
+    "pointsFor": 120.32,
+    "pointsAgainst": 121.54,
+    "margin": -1.22,
     "playoffTier": "NONE",
     "twoWeekMatchup": false
    },
@@ -20675,27 +20842,27 @@
      "opponentTeamId": 5,
      "opponentEspnName": "Easy Peasy Lemon Squeezy",
      "opponentDisplayName": "Easy Peasy Lemon Squeezy",
-     "games": 9,
+     "games": 10,
      "wins": 3,
-     "losses": 6,
+     "losses": 7,
      "ties": 0,
-     "record": "3-6-0",
-     "winPct": 0.333,
-     "pointsFor": 1088.94,
-     "pointsAgainst": 1196.12,
-     "avgMargin": -11.91,
+     "record": "3-7-0",
+     "winPct": 0.3,
+     "pointsFor": 1209.26,
+     "pointsAgainst": 1317.66,
+     "avgMargin": -10.84,
      "longestWinStreak": 1,
-     "longestLosingStreak": 2,
-     "currentStreak": "L2",
-     "regularSeasonRecord": "3-4",
+     "longestLosingStreak": 3,
+     "currentStreak": "L3",
+     "regularSeasonRecord": "3-5",
      "playoffMeetings": 2,
      "lastMeeting": {
-      "gameId": "2026-mp01-5v6",
+      "gameId": "2026-mp10-5v6",
       "season": 2026,
-      "matchupPeriod": 1,
+      "matchupPeriod": 10,
       "result": "L",
-      "pointsFor": 99.2,
-      "pointsAgainst": 143.66,
+      "pointsFor": 120.32,
+      "pointsAgainst": 121.54,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -20925,17 +21092,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "58-46-0",
+    "games": 105,
+    "record": "58-47-0",
     "wins": 58,
-    "losses": 46,
+    "losses": 47,
     "ties": 0,
-    "regularSeasonRecord": "52-40-0",
-    "pointsFor": 14281.2,
-    "pointsAgainst": 13690.32,
-    "pointsPerWeek": 125.27,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 124.99,
+    "regularSeasonRecord": "52-41-0",
+    "pointsFor": 14408.72,
+    "pointsAgainst": 13840.24,
+    "pointsPerWeek": 125.29,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 125.01,
     "longestWinStreak": 8,
     "longestWinStreakRange": {
      "fromGameId": "2023-mp05-7v10",
@@ -20946,7 +21113,7 @@
      "fromGameId": "2022-mp05-7v10",
      "toGameId": "2022-mp10-1v7"
     },
-    "currentStreak": "W3"
+    "currentStreak": "L1"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -21202,27 +21369,27 @@
      "opponentTeamId": 4,
      "opponentEspnName": "All Heart",
      "opponentDisplayName": "All Heart",
-     "games": 10,
+     "games": 11,
      "wins": 5,
-     "losses": 5,
+     "losses": 6,
      "ties": 0,
-     "record": "5-5-0",
-     "winPct": 0.5,
-     "pointsFor": 1350.7,
-     "pointsAgainst": 1370.58,
-     "avgMargin": -1.99,
+     "record": "5-6-0",
+     "winPct": 0.455,
+     "pointsFor": 1478.22,
+     "pointsAgainst": 1520.5,
+     "avgMargin": -3.84,
      "longestWinStreak": 3,
-     "longestLosingStreak": 3,
-     "currentStreak": "L3",
-     "regularSeasonRecord": "4-5",
+     "longestLosingStreak": 4,
+     "currentStreak": "L4",
+     "regularSeasonRecord": "4-6",
      "playoffMeetings": 1,
      "lastMeeting": {
-      "gameId": "2026-mp01-4v7",
+      "gameId": "2026-mp10-4v7",
       "season": 2026,
-      "matchupPeriod": 1,
+      "matchupPeriod": 10,
       "result": "L",
-      "pointsFor": 87.82,
-      "pointsAgainst": 121.52,
+      "pointsFor": 127.52,
+      "pointsAgainst": 149.92,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -21494,17 +21661,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "46-58-0",
+    "games": 105,
+    "record": "46-59-0",
     "wins": 46,
-    "losses": 58,
+    "losses": 59,
     "ties": 0,
-    "regularSeasonRecord": "43-49-0",
-    "pointsFor": 13509.68,
-    "pointsAgainst": 13607.22,
-    "pointsPerWeek": 118.51,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 120.12,
+    "regularSeasonRecord": "43-50-0",
+    "pointsFor": 13630.78,
+    "pointsAgainst": 13759.06,
+    "pointsPerWeek": 118.53,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 120.13,
     "longestWinStreak": 9,
     "longestWinStreakRange": {
      "fromGameId": "2024-mp09-4v8",
@@ -21515,7 +21682,7 @@
      "fromGameId": "2020-mp14-6v8",
      "toGameId": "2021-mp05-6v8"
     },
-    "currentStreak": "L2"
+    "currentStreak": "L3"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -21729,27 +21896,27 @@
      "opponentTeamId": 3,
      "opponentEspnName": "Chewy's Warriors",
      "opponentDisplayName": "Chewy's Warriors",
-     "games": 8,
+     "games": 9,
      "wins": 4,
-     "losses": 4,
+     "losses": 5,
      "ties": 0,
-     "record": "4-4-0",
-     "winPct": 0.5,
-     "pointsFor": 1058.56,
-     "pointsAgainst": 1071.44,
-     "avgMargin": -1.61,
+     "record": "4-5-0",
+     "winPct": 0.444,
+     "pointsFor": 1179.66,
+     "pointsAgainst": 1223.28,
+     "avgMargin": -4.85,
      "longestWinStreak": 2,
-     "longestLosingStreak": 2,
-     "currentStreak": "L2",
-     "regularSeasonRecord": "4-3",
+     "longestLosingStreak": 3,
+     "currentStreak": "L3",
+     "regularSeasonRecord": "4-4",
      "playoffMeetings": 1,
      "lastMeeting": {
-      "gameId": "2026-mp01-3v8",
+      "gameId": "2026-mp10-3v8",
       "season": 2026,
-      "matchupPeriod": 1,
+      "matchupPeriod": 10,
       "result": "L",
-      "pointsFor": 99.74,
-      "pointsAgainst": 141.46,
+      "pointsFor": 121.1,
+      "pointsAgainst": 151.84,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -22063,17 +22230,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "55-49-0",
+    "games": 105,
+    "record": "55-50-0",
     "wins": 55,
-    "losses": 49,
+    "losses": 50,
     "ties": 0,
-    "regularSeasonRecord": "48-44-0",
-    "pointsFor": 13671.86,
-    "pointsAgainst": 13507.26,
-    "pointsPerWeek": 119.93,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 118.87,
+    "regularSeasonRecord": "48-45-0",
+    "pointsFor": 13784.02,
+    "pointsAgainst": 13657.22,
+    "pointsPerWeek": 119.86,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 118.8,
     "longestWinStreak": 6,
     "longestWinStreakRange": {
      "fromGameId": "2024-mp15-10v11",
@@ -22084,7 +22251,7 @@
      "fromGameId": "2024-mp10-8v10",
      "toGameId": "2024-mp14-5v10"
     },
-    "currentStreak": "L1"
+    "currentStreak": "L2"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -22096,23 +22263,23 @@
     "consolationRecord": "5-3"
    },
    "easiestOpponent": {
-    "opponentTeamId": 2,
-    "opponentDisplayName": "Jahmyr I Go Again",
-    "record": "11-3-0",
-    "games": 14,
-    "winPct": 0.786,
-    "avgMargin": 6.88,
-    "pointsFor": 1889.04,
-    "pointsAgainst": 1792.7,
-    "longestWinStreak": 10,
-    "longestLosingStreak": 2,
+    "opponentTeamId": 11,
+    "opponentDisplayName": "Kabul FC",
+    "record": "7-2-0",
+    "games": 9,
+    "winPct": 0.778,
+    "avgMargin": 28.84,
+    "pointsFor": 1485,
+    "pointsAgainst": 1225.42,
+    "longestWinStreak": 5,
+    "longestLosingStreak": 1,
     "lastMeeting": {
-     "gameId": "2026-mp01-2v10",
+     "gameId": "2026-mp06-10v11",
      "season": 2026,
-     "matchupPeriod": 1,
+     "matchupPeriod": 6,
      "result": "L",
-     "pointsFor": 96.76,
-     "pointsAgainst": 155.2,
+     "pointsFor": 115.4,
+     "pointsAgainst": 124.06,
      "playoffTier": "NONE"
     }
    },
@@ -22256,27 +22423,27 @@
      "opponentTeamId": 2,
      "opponentEspnName": "Jahmyr I Go Again",
      "opponentDisplayName": "Jahmyr I Go Again",
-     "games": 14,
+     "games": 15,
      "wins": 11,
-     "losses": 3,
+     "losses": 4,
      "ties": 0,
-     "record": "11-3-0",
-     "winPct": 0.786,
-     "pointsFor": 1889.04,
-     "pointsAgainst": 1792.7,
-     "avgMargin": 6.88,
+     "record": "11-4-0",
+     "winPct": 0.733,
+     "pointsFor": 2001.2,
+     "pointsAgainst": 1942.66,
+     "avgMargin": 3.9,
      "longestWinStreak": 10,
-     "longestLosingStreak": 2,
-     "currentStreak": "L2",
-     "regularSeasonRecord": "11-2",
+     "longestLosingStreak": 3,
+     "currentStreak": "L3",
+     "regularSeasonRecord": "11-3",
      "playoffMeetings": 1,
      "lastMeeting": {
-      "gameId": "2026-mp01-2v10",
+      "gameId": "2026-mp10-2v10",
       "season": 2026,
-      "matchupPeriod": 1,
+      "matchupPeriod": 10,
       "result": "L",
-      "pointsFor": 96.76,
-      "pointsAgainst": 155.2,
+      "pointsFor": 112.16,
+      "pointsAgainst": 149.96,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -22632,17 +22799,17 @@
     }
    ],
    "allTime": {
-    "games": 104,
-    "record": "35-69-0",
-    "wins": 35,
+    "games": 105,
+    "record": "36-69-0",
+    "wins": 36,
     "losses": 69,
     "ties": 0,
-    "regularSeasonRecord": "30-62-0",
-    "pointsFor": 12417.46,
-    "pointsAgainst": 13856.74,
-    "pointsPerWeek": 108.93,
-    "weeksPlayed": 114,
-    "regularSeasonPointsPerGame": 110.61,
+    "regularSeasonRecord": "31-62-0",
+    "pointsFor": 12549.32,
+    "pointsAgainst": 13973.12,
+    "pointsPerWeek": 109.12,
+    "weeksPlayed": 115,
+    "regularSeasonPointsPerGame": 110.84,
     "longestWinStreak": 2,
     "longestWinStreakRange": {
      "fromGameId": "2020-mp02-3v11",
@@ -22653,7 +22820,7 @@
      "fromGameId": "2022-mp10-2v11",
      "toGameId": "2023-mp06-10v11"
     },
-    "currentStreak": "L1"
+    "currentStreak": "W1"
    },
    "playoffRecord": {
     "note": "Winners-bracket games only (two-week rounds count as one game). Consolation-ladder games excluded.",
@@ -22783,27 +22950,27 @@
      "opponentTeamId": 1,
      "opponentEspnName": "Bibi's Boys X KASE Capital",
      "opponentDisplayName": "Bibi's Boys",
-     "games": 15,
-     "wins": 6,
+     "games": 16,
+     "wins": 7,
      "losses": 9,
      "ties": 0,
-     "record": "6-9-0",
-     "winPct": 0.4,
-     "pointsFor": 1749.86,
-     "pointsAgainst": 1884.72,
-     "avgMargin": -8.99,
+     "record": "7-9-0",
+     "winPct": 0.438,
+     "pointsFor": 1881.72,
+     "pointsAgainst": 2001.1,
+     "avgMargin": -7.46,
      "longestWinStreak": 3,
      "longestLosingStreak": 4,
-     "currentStreak": "L1",
-     "regularSeasonRecord": "4-9",
+     "currentStreak": "W1",
+     "regularSeasonRecord": "5-9",
      "playoffMeetings": 2,
      "lastMeeting": {
-      "gameId": "2026-mp01-1v11",
+      "gameId": "2026-mp10-1v11",
       "season": 2026,
-      "matchupPeriod": 1,
-      "result": "L",
-      "pointsFor": 118.7,
-      "pointsAgainst": 122.2,
+      "matchupPeriod": 10,
+      "result": "W",
+      "pointsFor": 131.86,
+      "pointsAgainst": 116.38,
       "playoffTier": "NONE"
      },
      "biggestWin": {
@@ -23862,7 +24029,7 @@
     }
    }
   ],
-  "streakNote": "Streaks run chronologically across seasons (2020 through 2026 week 9), including playoff and consolation games. Week 10 has not started.",
+  "streakNote": "Streaks run chronologically across seasons (2020 through 2026 week 10), including playoff and consolation games. Week 11 has not started.",
   "mostPlayedRivalry": [
    {
     "teamA": 1,
@@ -23887,48 +24054,16 @@
     "teamADisplayName": "Chewy's Warriors",
     "teamB": 11,
     "teamBDisplayName": "Kabul FC",
-    "games": 12,
-    "recordForA": "10-2-0",
-    "teamAWins": 10,
+    "games": 13,
+    "recordForA": "11-2-0",
+    "teamAWins": 11,
     "teamBWins": 2,
     "ties": 0,
-    "pointsA": 1545.16,
-    "pointsB": 1351.98,
-    "avgMarginForA": 16.1,
+    "pointsA": 1655.48,
+    "pointsB": 1453.26,
+    "avgMarginForA": 15.56,
     "playoffMeetings": 0,
-    "lopsidedness": 0.67
-   },
-   {
-    "teamA": 2,
-    "teamADisplayName": "Jahmyr I Go Again",
-    "teamB": 10,
-    "teamBDisplayName": "Sandusky's Soldiers",
-    "games": 14,
-    "recordForA": "3-11-0",
-    "teamAWins": 3,
-    "teamBWins": 11,
-    "ties": 0,
-    "pointsA": 1792.7,
-    "pointsB": 1889.04,
-    "avgMarginForA": -6.88,
-    "playoffMeetings": 1,
-    "lopsidedness": 0.57
-   },
-   {
-    "teamA": 10,
-    "teamADisplayName": "Sandusky's Soldiers",
-    "teamB": 11,
-    "teamBDisplayName": "Kabul FC",
-    "games": 9,
-    "recordForA": "7-2-0",
-    "teamAWins": 7,
-    "teamBWins": 2,
-    "ties": 0,
-    "pointsA": 1485.0,
-    "pointsB": 1225.42,
-    "avgMarginForA": 28.84,
-    "playoffMeetings": 2,
-    "lopsidedness": 0.56
+    "lopsidedness": 0.69
    },
    {
     "teamA": 2,
@@ -23961,6 +24096,38 @@
     "avgMarginForA": -7.84,
     "playoffMeetings": 2,
     "lopsidedness": 0.56
+   },
+   {
+    "teamA": 10,
+    "teamADisplayName": "Sandusky's Soldiers",
+    "teamB": 11,
+    "teamBDisplayName": "Kabul FC",
+    "games": 9,
+    "recordForA": "7-2-0",
+    "teamAWins": 7,
+    "teamBWins": 2,
+    "ties": 0,
+    "pointsA": 1485.0,
+    "pointsB": 1225.42,
+    "avgMarginForA": 28.84,
+    "playoffMeetings": 2,
+    "lopsidedness": 0.56
+   },
+   {
+    "teamA": 3,
+    "teamADisplayName": "Chewy's Warriors",
+    "teamB": 10,
+    "teamBDisplayName": "Sandusky's Soldiers",
+    "games": 8,
+    "recordForA": "6-2-0",
+    "teamAWins": 6,
+    "teamBWins": 2,
+    "ties": 0,
+    "pointsA": 1219.1,
+    "pointsB": 1146.92,
+    "avgMarginForA": 9.02,
+    "playoffMeetings": 1,
+    "lopsidedness": 0.5
    }
   ],
   "twoWeekPlayoffRecords": {
@@ -24121,13 +24288,13 @@
      17
     ],
     "weekly": {
-     "7": {
-      "16": 140.42,
-      "17": 139.92
-     },
      "6": {
       "16": 181.1,
       "17": 136.24
+     },
+     "7": {
+      "16": 140.42,
+      "17": 139.92
      }
     },
     "gameId": "2020-mp15-6v7"
@@ -24171,13 +24338,13 @@
      18
     ],
     "weekly": {
-     "6": {
-      "17": 157.92,
-      "18": 89.28
-     },
      "4": {
       "17": 70.4,
       "18": 115
+     },
+     "6": {
+      "17": 157.92,
+      "18": 89.28
      }
     },
     "gameId": "2022-mp16-4v6"
@@ -24220,11 +24387,11 @@
      17
     ],
     "weekly": {
-     "3": {
-      "17": 90.36
-     },
      "1": {
       "17": 140.52
+     },
+     "3": {
+      "17": 90.36
      }
     },
     "gameId": "2024-mp16-1v3"
@@ -24242,11 +24409,11 @@
      17
     ],
     "weekly": {
-     "3": {
-      "17": 108.58
-     },
      "2": {
       "17": 142.62
+     },
+     "3": {
+      "17": 108.58
      }
     },
     "gameId": "2025-mp16-2v3"
