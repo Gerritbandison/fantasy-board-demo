@@ -44,21 +44,11 @@
       "id": "4685278",
       "name": "Luther Burden III",
       "pos": "WR",
-      "slot": "Bench",
+      "slot": "FLEX",
       "team": "CHI",
       "inj": "Questionable",
       "own": 93.19,
       "gp": 9
-    },
-    {
-      "id": "4426348",
-      "name": "Jayden Daniels",
-      "pos": "QB",
-      "slot": "Bench",
-      "team": "WSH",
-      "inj": null,
-      "own": 94.87,
-      "gp": 7
     },
     {
       "id": "4360310",
@@ -69,16 +59,6 @@
       "inj": null,
       "own": 94.81,
       "gp": 9
-    },
-    {
-      "id": "4426385",
-      "name": "Zach Charbonnet",
-      "pos": "RB",
-      "slot": "RB",
-      "team": "SEA",
-      "inj": null,
-      "own": 85.28,
-      "gp": 3
     },
     {
       "id": "-16023",
@@ -101,6 +81,36 @@
       "gp": 9
     },
     {
+      "id": "4702555",
+      "name": "Jonah Coleman",
+      "pos": "RB",
+      "slot": "RB",
+      "team": "DEN",
+      "inj": null,
+      "own": 81.29,
+      "gp": 5
+    },
+    {
+      "id": "4426348",
+      "name": "Jayden Daniels",
+      "pos": "QB",
+      "slot": "Bench",
+      "team": "WSH",
+      "inj": null,
+      "own": 94.87,
+      "gp": 7
+    },
+    {
+      "id": "4426385",
+      "name": "Zach Charbonnet",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "SEA",
+      "inj": null,
+      "own": 85.28,
+      "gp": 3
+    },
+    {
       "id": "3054850",
       "name": "Alvin Kamara",
       "pos": "RB",
@@ -109,16 +119,6 @@
       "inj": null,
       "own": 62.57,
       "gp": 8
-    },
-    {
-      "id": "4702555",
-      "name": "Jonah Coleman",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "DEN",
-      "inj": null,
-      "own": 81.29,
-      "gp": 5
     },
     {
       "id": "15818",
@@ -144,7 +144,7 @@
       "id": "4366031",
       "name": "Tank Dell",
       "pos": "WR",
-      "slot": "FLEX",
+      "slot": "Bench",
       "team": "HOU",
       "inj": null,
       "own": 61.38,
@@ -203,26 +203,6 @@
       "gp": 10
     },
     {
-      "id": "4612826",
-      "name": "Ladd McConkey",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "LAC",
-      "inj": "Out",
-      "own": 81.2,
-      "gp": 6
-    },
-    {
-      "id": "4431299",
-      "name": "Rome Odunze",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "CHI",
-      "inj": null,
-      "own": 83.84,
-      "gp": 9
-    },
-    {
       "id": "4431459",
       "name": "Tyler Warren",
       "pos": "TE",
@@ -241,36 +221,6 @@
       "inj": null,
       "own": 87.73,
       "gp": 10
-    },
-    {
-      "id": "4360078",
-      "name": "Alec Pierce",
-      "pos": "WR",
-      "slot": "IR",
-      "team": "IND",
-      "inj": "IR",
-      "own": 43.88,
-      "gp": 2
-    },
-    {
-      "id": "4241985",
-      "name": "J.K. Dobbins",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "DEN",
-      "inj": null,
-      "own": 61.08,
-      "gp": 9
-    },
-    {
-      "id": "4360689",
-      "name": "Tyler Shough",
-      "pos": "QB",
-      "slot": "Bench",
-      "team": "NO",
-      "inj": null,
-      "own": 70.26,
-      "gp": 9
     },
     {
       "id": "-16014",
@@ -293,12 +243,62 @@
       "gp": 10
     },
     {
+      "id": "17372",
+      "name": "Chris Boswell",
+      "pos": "K",
+      "slot": "K",
+      "team": "PIT",
+      "inj": null,
+      "own": 60.36,
+      "gp": 8
+    },
+    {
+      "id": "4612826",
+      "name": "Ladd McConkey",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "LAC",
+      "inj": "Questionable",
+      "own": 81.2,
+      "gp": 6
+    },
+    {
+      "id": "4431299",
+      "name": "Rome Odunze",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "CHI",
+      "inj": null,
+      "own": 83.84,
+      "gp": 9
+    },
+    {
+      "id": "4241985",
+      "name": "J.K. Dobbins",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "DEN",
+      "inj": null,
+      "own": 61.08,
+      "gp": 9
+    },
+    {
+      "id": "4360689",
+      "name": "Tyler Shough",
+      "pos": "QB",
+      "slot": "Bench",
+      "team": "NO",
+      "inj": null,
+      "own": 70.26,
+      "gp": 9
+    },
+    {
       "id": "4432708",
       "name": "Marvin Harrison Jr.",
       "pos": "WR",
       "slot": "Bench",
       "team": "HOU",
-      "inj": "Out",
+      "inj": "Questionable",
       "own": 54.35,
       "gp": 7
     },
@@ -322,44 +322,24 @@
       "own": 8.52
     },
     {
-      "id": "17372",
-      "name": "Chris Boswell",
-      "pos": "K",
-      "slot": "K",
-      "team": "PIT",
-      "inj": null,
-      "own": 60.36,
-      "gp": 8
+      "id": "4360078",
+      "name": "Alec Pierce",
+      "pos": "WR",
+      "slot": "IR",
+      "team": "IND",
+      "inj": "IR",
+      "own": 43.88,
+      "gp": 2
     }
   ],
   "3": [
     {
-      "id": "4429160",
-      "name": "De'Von Achane",
-      "pos": "RB",
-      "slot": "IR",
-      "team": "MIA",
-      "inj": "IR",
-      "own": 27.2,
-      "gp": 3
-    },
-    {
-      "id": "4430878",
-      "name": "Jaxon Smith-Njigba",
-      "pos": "WR",
-      "slot": "WR",
-      "team": "SEA",
-      "inj": null,
-      "own": 99.93,
-      "gp": 10
-    },
-    {
       "id": "4567048",
       "name": "Kenneth Walker III",
       "pos": "RB",
-      "slot": "Bench",
+      "slot": "RB",
       "team": "KC",
-      "inj": "Out",
+      "inj": "Questionable",
       "own": 99.87,
       "gp": 8
     },
@@ -367,7 +347,7 @@
       "id": "4567750",
       "name": "Emeka Egbuka",
       "pos": "WR",
-      "slot": "Bench",
+      "slot": "FLEX",
       "team": "TB",
       "inj": null,
       "own": 92.29,
@@ -394,26 +374,6 @@
       "gp": 9
     },
     {
-      "id": "4608686",
-      "name": "Kyle Monangai",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "CHI",
-      "inj": "Out",
-      "own": 70.63,
-      "gp": 4
-    },
-    {
-      "id": "3121023",
-      "name": "Dallas Goedert",
-      "pos": "TE",
-      "slot": "Bench",
-      "team": "PHI",
-      "inj": null,
-      "own": 73.66,
-      "gp": 7
-    },
-    {
       "id": "2971573",
       "name": "Ka'imi Fairbairn",
       "pos": "K",
@@ -421,16 +381,6 @@
       "team": "HOU",
       "inj": null,
       "own": 87.37,
-      "gp": 9
-    },
-    {
-      "id": "4832955",
-      "name": "Emmett Johnson",
-      "pos": "RB",
-      "slot": "RB",
-      "team": "KC",
-      "inj": null,
-      "own": 75.04,
       "gp": 9
     },
     {
@@ -444,30 +394,10 @@
       "gp": 8
     },
     {
-      "id": "-16016",
-      "name": "Vikings D/ST",
-      "pos": "D/ST",
-      "slot": "D/ST",
-      "team": "MIN",
-      "inj": null,
-      "own": 84.97,
-      "gp": 9
-    },
-    {
-      "id": "4685247",
-      "name": "Braelon Allen",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "NYJ",
-      "inj": null,
-      "own": 74.27,
-      "gp": 10
-    },
-    {
       "id": "4880281",
       "name": "Jordyn Tyson",
       "pos": "WR",
-      "slot": "FLEX",
+      "slot": "WR",
       "team": "NO",
       "inj": null,
       "own": 42.24,
@@ -487,21 +417,81 @@
       "id": "-16007",
       "name": "Broncos D/ST",
       "pos": "D/ST",
-      "slot": "Bench",
+      "slot": "D/ST",
       "team": "DEN",
       "inj": null,
       "own": 71.35,
       "gp": 9
     },
     {
-      "id": "4431431",
-      "name": "Corey Kiner",
+      "id": "4430878",
+      "name": "Jaxon Smith-Njigba",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "SEA",
+      "inj": null,
+      "own": 99.93,
+      "gp": 10
+    },
+    {
+      "id": "4608686",
+      "name": "Kyle Monangai",
       "pos": "RB",
       "slot": "Bench",
-      "team": "NE",
+      "team": "CHI",
+      "inj": "Questionable",
+      "own": 70.63,
+      "gp": 4
+    },
+    {
+      "id": "3121023",
+      "name": "Dallas Goedert",
+      "pos": "TE",
+      "slot": "Bench",
+      "team": "PHI",
       "inj": null,
-      "own": 42.57,
+      "own": 73.66,
+      "gp": 7
+    },
+    {
+      "id": "4832955",
+      "name": "Emmett Johnson",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "KC",
+      "inj": null,
+      "own": 75.04,
+      "gp": 9
+    },
+    {
+      "id": "-16016",
+      "name": "Vikings D/ST",
+      "pos": "D/ST",
+      "slot": "Bench",
+      "team": "MIN",
+      "inj": null,
+      "own": 84.97,
+      "gp": 9
+    },
+    {
+      "id": "4685247",
+      "name": "Braelon Allen",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "NYJ",
+      "inj": null,
+      "own": 74.27,
       "gp": 10
+    },
+    {
+      "id": "4429160",
+      "name": "De'Von Achane",
+      "pos": "RB",
+      "slot": "IR",
+      "team": "MIA",
+      "inj": "IR",
+      "own": 27.2,
+      "gp": 3
     }
   ],
   "4": [
@@ -546,16 +536,6 @@
       "gp": 10
     },
     {
-      "id": "4429205",
-      "name": "Jordan Addison",
-      "pos": "WR",
-      "slot": "IR",
-      "team": "MIN",
-      "inj": "Out",
-      "own": 74.73,
-      "gp": 7
-    },
-    {
       "id": "3139477",
       "name": "Patrick Mahomes",
       "pos": "QB",
@@ -569,17 +549,47 @@
       "id": "4426388",
       "name": "Jameson Williams",
       "pos": "WR",
-      "slot": "Bench",
+      "slot": "FLEX",
       "team": "DET",
       "inj": null,
       "own": 93.82,
       "gp": 9
     },
     {
+      "id": "4047650",
+      "name": "DK Metcalf",
+      "pos": "WR",
+      "slot": "WR",
+      "team": "PIT",
+      "inj": null,
+      "own": 88,
+      "gp": 8
+    },
+    {
+      "id": "4362238",
+      "name": "Chase Brown",
+      "pos": "RB",
+      "slot": "RB",
+      "team": "CIN",
+      "inj": null,
+      "own": 98.59,
+      "gp": 8
+    },
+    {
+      "id": "-16033",
+      "name": "Ravens D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "team": "BAL",
+      "inj": null,
+      "own": 83.88,
+      "gp": 9
+    },
+    {
       "id": "4248528",
       "name": "Christian Watson",
       "pos": "WR",
-      "slot": "WR",
+      "slot": "Bench",
       "team": "GB",
       "inj": null,
       "own": 97.71,
@@ -591,35 +601,15 @@
       "pos": "TE",
       "slot": "Bench",
       "team": "MIN",
-      "inj": "Out",
+      "inj": "Questionable",
       "own": 77.07,
-      "gp": 8
-    },
-    {
-      "id": "4047650",
-      "name": "DK Metcalf",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "PIT",
-      "inj": null,
-      "own": 88,
-      "gp": 8
-    },
-    {
-      "id": "4362238",
-      "name": "Chase Brown",
-      "pos": "RB",
-      "slot": "FLEX",
-      "team": "CIN",
-      "inj": null,
-      "own": 98.59,
       "gp": 8
     },
     {
       "id": "4697815",
       "name": "Rachaad White",
       "pos": "RB",
-      "slot": "RB",
+      "slot": "Bench",
       "team": "WSH",
       "inj": null,
       "own": 76.33,
@@ -646,16 +636,6 @@
       "gp": 8
     },
     {
-      "id": "-16033",
-      "name": "Ravens D/ST",
-      "pos": "D/ST",
-      "slot": "D/ST",
-      "team": "BAL",
-      "inj": null,
-      "own": 83.88,
-      "gp": 9
-    },
-    {
       "id": "14880",
       "name": "Kirk Cousins",
       "pos": "QB",
@@ -674,6 +654,16 @@
       "inj": null,
       "own": 12.66,
       "gp": 10
+    },
+    {
+      "id": "4429205",
+      "name": "Jordan Addison",
+      "pos": "WR",
+      "slot": "IR",
+      "team": "MIN",
+      "inj": "Out",
+      "own": 74.73,
+      "gp": 7
     }
   ],
   "5": [
@@ -686,16 +676,6 @@
       "inj": null,
       "own": 99.92,
       "gp": 9
-    },
-    {
-      "id": "4426502",
-      "name": "Drake London",
-      "pos": "WR",
-      "slot": "WR",
-      "team": "ATL",
-      "inj": null,
-      "own": 99.52,
-      "gp": 10
     },
     {
       "id": "3043078",
@@ -721,31 +701,11 @@
       "id": "4239993",
       "name": "Tee Higgins",
       "pos": "WR",
-      "slot": "FLEX",
+      "slot": "WR",
       "team": "CIN",
       "inj": null,
       "own": 98.72,
       "gp": 8
-    },
-    {
-      "id": "3128429",
-      "name": "Courtland Sutton",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "DEN",
-      "inj": null,
-      "own": 57.11,
-      "gp": 9
-    },
-    {
-      "id": "4569173",
-      "name": "Rhamondre Stevenson",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "NE",
-      "inj": null,
-      "own": 90.68,
-      "gp": 10
     },
     {
       "id": "4432620",
@@ -761,21 +721,11 @@
       "id": "2976212",
       "name": "Stefon Diggs",
       "pos": "WR",
-      "slot": "Bench",
+      "slot": "FLEX",
       "team": "WSH",
       "inj": null,
       "own": 86.23,
       "gp": 8
-    },
-    {
-      "id": "4870795",
-      "name": "Makai Lemon",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "PHI",
-      "inj": null,
-      "own": 49.71,
-      "gp": 9
     },
     {
       "id": "4385690",
@@ -785,26 +735,6 @@
       "team": "BUF",
       "inj": null,
       "own": 78.72,
-      "gp": 9
-    },
-    {
-      "id": "3046439",
-      "name": "Hunter Henry",
-      "pos": "TE",
-      "slot": "Bench",
-      "team": "NE",
-      "inj": null,
-      "own": 62.58,
-      "gp": 10
-    },
-    {
-      "id": "4428718",
-      "name": "Tre Tucker",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "LV",
-      "inj": null,
-      "own": 60.05,
       "gp": 9
     },
     {
@@ -828,6 +758,66 @@
       "gp": 9
     },
     {
+      "id": "4426502",
+      "name": "Drake London",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "ATL",
+      "inj": null,
+      "own": 99.52,
+      "gp": 10
+    },
+    {
+      "id": "3128429",
+      "name": "Courtland Sutton",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "DEN",
+      "inj": null,
+      "own": 57.11,
+      "gp": 9
+    },
+    {
+      "id": "4569173",
+      "name": "Rhamondre Stevenson",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "NE",
+      "inj": null,
+      "own": 90.68,
+      "gp": 10
+    },
+    {
+      "id": "4870795",
+      "name": "Makai Lemon",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "PHI",
+      "inj": null,
+      "own": 49.71,
+      "gp": 9
+    },
+    {
+      "id": "3046439",
+      "name": "Hunter Henry",
+      "pos": "TE",
+      "slot": "Bench",
+      "team": "NE",
+      "inj": null,
+      "own": 62.58,
+      "gp": 10
+    },
+    {
+      "id": "4428718",
+      "name": "Tre Tucker",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "LV",
+      "inj": null,
+      "own": 60.05,
+      "gp": 9
+    },
+    {
       "id": "4373626",
       "name": "Tyler Allgeier",
       "pos": "RB",
@@ -840,16 +830,6 @@
   ],
   "6": [
     {
-      "id": "4685382",
-      "name": "Omarion Hampton",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "LAC",
-      "inj": null,
-      "own": 81.74,
-      "gp": 8
-    },
-    {
       "id": "4241389",
       "name": "CeeDee Lamb",
       "pos": "WR",
@@ -858,26 +838,6 @@
       "inj": null,
       "own": 99.92,
       "gp": 10
-    },
-    {
-      "id": "4259545",
-      "name": "D'Andre Swift",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "CHI",
-      "inj": null,
-      "own": 97.51,
-      "gp": 9
-    },
-    {
-      "id": "4035538",
-      "name": "David Montgomery",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "HOU",
-      "inj": null,
-      "own": 73.53,
-      "gp": 5
     },
     {
       "id": "2577417",
@@ -898,16 +858,6 @@
       "inj": null,
       "own": 82.25,
       "gp": 10
-    },
-    {
-      "id": "3116365",
-      "name": "Mark Andrews",
-      "pos": "TE",
-      "slot": "Bench",
-      "team": "BAL",
-      "inj": null,
-      "own": 53.87,
-      "gp": 9
     },
     {
       "id": "4429059",
@@ -950,16 +900,6 @@
       "gp": 9
     },
     {
-      "id": "4241478",
-      "name": "DeVonta Smith",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "PHI",
-      "inj": "Out",
-      "own": 93.62,
-      "gp": 4
-    },
-    {
       "id": "4870653",
       "name": "KC Concepcion",
       "pos": "WR",
@@ -968,6 +908,66 @@
       "inj": null,
       "own": 69.04,
       "gp": 10
+    },
+    {
+      "id": "-16011",
+      "name": "Colts D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "team": "IND",
+      "inj": null,
+      "own": 22.68,
+      "gp": 10
+    },
+    {
+      "id": "4685382",
+      "name": "Omarion Hampton",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "LAC",
+      "inj": null,
+      "own": 81.74,
+      "gp": 8
+    },
+    {
+      "id": "4259545",
+      "name": "D'Andre Swift",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "CHI",
+      "inj": null,
+      "own": 97.51,
+      "gp": 9
+    },
+    {
+      "id": "4035538",
+      "name": "David Montgomery",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "HOU",
+      "inj": null,
+      "own": 73.53,
+      "gp": 5
+    },
+    {
+      "id": "3116365",
+      "name": "Mark Andrews",
+      "pos": "TE",
+      "slot": "Bench",
+      "team": "BAL",
+      "inj": null,
+      "own": 53.87,
+      "gp": 9
+    },
+    {
+      "id": "4241478",
+      "name": "DeVonta Smith",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "PHI",
+      "inj": "Questionable",
+      "own": 93.62,
+      "gp": 4
     },
     {
       "id": "3116165",
@@ -988,74 +988,14 @@
       "inj": null,
       "own": 63.92,
       "gp": 9
-    },
-    {
-      "id": "-16011",
-      "name": "Colts D/ST",
-      "pos": "D/ST",
-      "slot": "D/ST",
-      "team": "IND",
-      "inj": null,
-      "own": 22.68,
-      "gp": 10
     }
   ],
   "7": [
     {
-      "id": "4426515",
-      "name": "Puka Nacua",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "LAR",
-      "inj": "IR",
-      "own": 98.85,
-      "gp": 7
-    },
-    {
-      "id": "4047646",
-      "name": "A.J. Brown",
-      "pos": "WR",
-      "slot": "FLEX",
-      "team": "NE",
-      "inj": "Questionable",
-      "own": 92.78,
-      "gp": 4
-    },
-    {
-      "id": "4685512",
-      "name": "Jadarian Price",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "SEA",
-      "inj": null,
-      "own": 81.37,
-      "gp": 7
-    },
-    {
-      "id": "4431452",
-      "name": "Drake Maye",
-      "pos": "QB",
-      "slot": "QB",
-      "team": "NE",
-      "inj": "Doubtful",
-      "own": 99,
-      "gp": 10
-    },
-    {
-      "id": "5083076",
-      "name": "Harold Fannin Jr.",
-      "pos": "TE",
-      "slot": "Bench",
-      "team": "CLE",
-      "inj": null,
-      "own": 90.83,
-      "gp": 10
-    },
-    {
       "id": "3916148",
       "name": "Tony Pollard",
       "pos": "RB",
-      "slot": "Bench",
+      "slot": "RB",
       "team": "TEN",
       "inj": null,
       "own": 90.97,
@@ -1072,26 +1012,6 @@
       "gp": 9
     },
     {
-      "id": "4701936",
-      "name": "Matthew Golden",
-      "pos": "WR",
-      "slot": "WR",
-      "team": "GB",
-      "inj": null,
-      "own": 97.36,
-      "gp": 10
-    },
-    {
-      "id": "4832800",
-      "name": "Denzel Boston",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "CLE",
-      "inj": null,
-      "own": 81.71,
-      "gp": 10
-    },
-    {
       "id": "4711533",
       "name": "Ollie Gordon II",
       "pos": "RB",
@@ -1102,34 +1022,14 @@
       "gp": 9
     },
     {
-      "id": "4569603",
-      "name": "Malik Washington",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "MIA",
-      "inj": null,
-      "own": 33.46,
-      "gp": 9
-    },
-    {
       "id": "4696981",
       "name": "Cam Skattebo",
       "pos": "RB",
-      "slot": "RB",
+      "slot": "FLEX",
       "team": "NYG",
       "inj": null,
       "own": 92.09,
       "gp": 8
-    },
-    {
-      "id": "4047365",
-      "name": "Josh Jacobs",
-      "pos": "RB",
-      "slot": "IR",
-      "team": "GB",
-      "inj": "Out",
-      "own": 91.8,
-      "gp": 3
     },
     {
       "id": "3915416",
@@ -1165,29 +1065,109 @@
       "id": "4569587",
       "name": "Wan'Dale Robinson",
       "pos": "WR",
-      "slot": "Bench",
+      "slot": "WR",
       "team": "TEN",
       "inj": "Questionable",
       "own": 55.85,
       "gp": 9
+    },
+    {
+      "id": "4426515",
+      "name": "Puka Nacua",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "LAR",
+      "inj": "IR",
+      "own": 98.85,
+      "gp": 7
+    },
+    {
+      "id": "4047646",
+      "name": "A.J. Brown",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "NE",
+      "inj": "Questionable",
+      "own": 92.78,
+      "gp": 4
+    },
+    {
+      "id": "4685512",
+      "name": "Jadarian Price",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "SEA",
+      "inj": null,
+      "own": 81.37,
+      "gp": 7
+    },
+    {
+      "id": "4431452",
+      "name": "Drake Maye",
+      "pos": "QB",
+      "slot": "Bench",
+      "team": "NE",
+      "inj": "Doubtful",
+      "own": 99,
+      "gp": 10
+    },
+    {
+      "id": "5083076",
+      "name": "Harold Fannin Jr.",
+      "pos": "TE",
+      "slot": "Bench",
+      "team": "CLE",
+      "inj": null,
+      "own": 90.83,
+      "gp": 10
+    },
+    {
+      "id": "4701936",
+      "name": "Matthew Golden",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "GB",
+      "inj": null,
+      "own": 97.36,
+      "gp": 10
+    },
+    {
+      "id": "4832800",
+      "name": "Denzel Boston",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "CLE",
+      "inj": null,
+      "own": 81.71,
+      "gp": 10
+    },
+    {
+      "id": "4569603",
+      "name": "Malik Washington",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "MIA",
+      "inj": null,
+      "own": 33.46,
+      "gp": 9
+    },
+    {
+      "id": "4047365",
+      "name": "Josh Jacobs",
+      "pos": "RB",
+      "slot": "IR",
+      "team": "GB",
+      "inj": "Out",
+      "own": 91.8,
+      "gp": 3
     }
   ],
   "8": [
     {
-      "id": "3929630",
-      "name": "Saquon Barkley",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "PHI",
-      "inj": null,
-      "own": 96.89,
-      "gp": 7
-    },
-    {
       "id": "4429615",
       "name": "Zay Flowers",
       "pos": "WR",
-      "slot": "WR",
+      "slot": "FLEX",
       "team": "BAL",
       "inj": null,
       "own": 99.05,
@@ -1207,7 +1187,7 @@
       "id": "4596448",
       "name": "Bucky Irving",
       "pos": "RB",
-      "slot": "Bench",
+      "slot": "RB",
       "team": "TB",
       "inj": null,
       "own": 97.83,
@@ -1224,43 +1204,13 @@
       "gp": 9
     },
     {
-      "id": "3042519",
-      "name": "Aaron Jones Sr.",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "MIN",
-      "inj": null,
-      "own": 81.71,
-      "gp": 9
-    },
-    {
-      "id": "3126486",
-      "name": "Deebo Samuel Sr.",
-      "pos": "WR",
-      "slot": "FLEX",
-      "team": "SF",
-      "inj": null,
-      "own": 80.12,
-      "gp": 6
-    },
-    {
       "id": "-16025",
       "name": "49ers D/ST",
       "pos": "D/ST",
-      "slot": "Bench",
+      "slot": "D/ST",
       "team": "SF",
       "inj": null,
       "own": 42.48,
-      "gp": 9
-    },
-    {
-      "id": "3046779",
-      "name": "Jared Goff",
-      "pos": "QB",
-      "slot": "Bench",
-      "team": "DET",
-      "inj": null,
-      "own": 89.8,
       "gp": 9
     },
     {
@@ -1274,29 +1224,10 @@
       "gp": 9
     },
     {
-      "id": "3116406",
-      "name": "Tyreek Hill",
-      "pos": "WR",
-      "slot": "IR",
-      "team": "FA",
-      "inj": "Questionable",
-      "own": 15.89
-    },
-    {
-      "id": "4429096",
-      "name": "Blake Corum",
-      "pos": "RB",
-      "slot": "RB",
-      "team": "LAR",
-      "inj": null,
-      "own": 83.37,
-      "gp": 10
-    },
-    {
       "id": "4426354",
       "name": "George Pickens",
       "pos": "WR",
-      "slot": "Bench",
+      "slot": "WR",
       "team": "DAL",
       "inj": null,
       "own": 98.12,
@@ -1313,6 +1244,66 @@
       "gp": 9
     },
     {
+      "id": "3917232",
+      "name": "Tyler Bass",
+      "pos": "K",
+      "slot": "K",
+      "team": "BUF",
+      "inj": null,
+      "own": 83.21,
+      "gp": 9
+    },
+    {
+      "id": "3929630",
+      "name": "Saquon Barkley",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "PHI",
+      "inj": null,
+      "own": 96.89,
+      "gp": 7
+    },
+    {
+      "id": "3042519",
+      "name": "Aaron Jones Sr.",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "MIN",
+      "inj": null,
+      "own": 81.71,
+      "gp": 9
+    },
+    {
+      "id": "3126486",
+      "name": "Deebo Samuel Sr.",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "SF",
+      "inj": null,
+      "own": 80.12,
+      "gp": 6
+    },
+    {
+      "id": "3046779",
+      "name": "Jared Goff",
+      "pos": "QB",
+      "slot": "Bench",
+      "team": "DET",
+      "inj": null,
+      "own": 89.8,
+      "gp": 9
+    },
+    {
+      "id": "4429096",
+      "name": "Blake Corum",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "LAR",
+      "inj": null,
+      "own": 83.37,
+      "gp": 10
+    },
+    {
       "id": "4430539",
       "name": "Brenton Strange",
       "pos": "TE",
@@ -1326,21 +1317,20 @@
       "id": "-16028",
       "name": "Commanders D/ST",
       "pos": "D/ST",
-      "slot": "D/ST",
+      "slot": "Bench",
       "team": "WSH",
       "inj": null,
       "own": 28.32,
       "gp": 9
     },
     {
-      "id": "3917232",
-      "name": "Tyler Bass",
-      "pos": "K",
-      "slot": "K",
-      "team": "BUF",
-      "inj": null,
-      "own": 83.21,
-      "gp": 9
+      "id": "3116406",
+      "name": "Tyreek Hill",
+      "pos": "WR",
+      "slot": "IR",
+      "team": "FA",
+      "inj": "Questionable",
+      "own": 15.89
     }
   ],
   "10": [
@@ -1375,36 +1365,6 @@
       "gp": 10
     },
     {
-      "id": "4723086",
-      "name": "Colston Loveland",
-      "pos": "TE",
-      "slot": "Bench",
-      "team": "CHI",
-      "inj": null,
-      "own": 94.76,
-      "gp": 9
-    },
-    {
-      "id": "16800",
-      "name": "Davante Adams",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "LAR",
-      "inj": "IR",
-      "own": 90.17,
-      "gp": 6
-    },
-    {
-      "id": "4871023",
-      "name": "Carnell Tate",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "TEN",
-      "inj": "Out",
-      "own": 82.77,
-      "gp": 7
-    },
-    {
       "id": "3915511",
       "name": "Joe Burrow",
       "pos": "QB",
@@ -1413,16 +1373,6 @@
       "inj": null,
       "own": 99.29,
       "gp": 8
-    },
-    {
-      "id": "4360761",
-      "name": "Michael Wilson",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "ARI",
-      "inj": "IR",
-      "own": 46.56,
-      "gp": 9
     },
     {
       "id": "4038815",
@@ -1435,16 +1385,6 @@
       "gp": 5
     },
     {
-      "id": "4431611",
-      "name": "Caleb Williams",
-      "pos": "QB",
-      "slot": "Bench",
-      "team": "CHI",
-      "inj": null,
-      "own": 89.47,
-      "gp": 6
-    },
-    {
       "id": "4572680",
       "name": "Tucker Kraft",
       "pos": "TE",
@@ -1453,25 +1393,6 @@
       "inj": null,
       "own": 91.57,
       "gp": 10
-    },
-    {
-      "id": "-16034",
-      "name": "Texans D/ST",
-      "pos": "D/ST",
-      "slot": "Bench",
-      "team": "HOU",
-      "inj": null,
-      "own": 93.23,
-      "gp": 9
-    },
-    {
-      "id": "4361529",
-      "name": "Isiah Pacheco",
-      "pos": "RB",
-      "slot": "IR",
-      "team": "DET",
-      "inj": "IR",
-      "own": 13.33
     },
     {
       "id": "4695883",
@@ -1504,6 +1425,66 @@
       "gp": 10
     },
     {
+      "id": "4723086",
+      "name": "Colston Loveland",
+      "pos": "TE",
+      "slot": "Bench",
+      "team": "CHI",
+      "inj": null,
+      "own": 94.76,
+      "gp": 9
+    },
+    {
+      "id": "16800",
+      "name": "Davante Adams",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "LAR",
+      "inj": "IR",
+      "own": 90.17,
+      "gp": 6
+    },
+    {
+      "id": "4871023",
+      "name": "Carnell Tate",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "TEN",
+      "inj": "Questionable",
+      "own": 82.77,
+      "gp": 7
+    },
+    {
+      "id": "4360761",
+      "name": "Michael Wilson",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "ARI",
+      "inj": "IR",
+      "own": 46.56,
+      "gp": 9
+    },
+    {
+      "id": "4431611",
+      "name": "Caleb Williams",
+      "pos": "QB",
+      "slot": "Bench",
+      "team": "CHI",
+      "inj": null,
+      "own": 89.47,
+      "gp": 6
+    },
+    {
+      "id": "-16034",
+      "name": "Texans D/ST",
+      "pos": "D/ST",
+      "slot": "Bench",
+      "team": "HOU",
+      "inj": null,
+      "own": 93.23,
+      "gp": 9
+    },
+    {
       "id": "4569682",
       "name": "Audric Estime",
       "pos": "RB",
@@ -1512,6 +1493,15 @@
       "inj": null,
       "own": 43.77,
       "gp": 3
+    },
+    {
+      "id": "4361529",
+      "name": "Isiah Pacheco",
+      "pos": "RB",
+      "slot": "IR",
+      "team": "DET",
+      "inj": "IR",
+      "own": 13.33
     }
   ],
   "11": [
@@ -1536,16 +1526,6 @@
       "gp": 10
     },
     {
-      "id": "4870808",
-      "name": "Jeremiyah Love",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "ARI",
-      "inj": "IR",
-      "own": 83.47,
-      "gp": 6
-    },
-    {
       "id": "4428331",
       "name": "Rashee Rice",
       "pos": "WR",
@@ -1556,16 +1536,6 @@
       "gp": 7
     },
     {
-      "id": "4372016",
-      "name": "Jaylen Waddle",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "DEN",
-      "inj": "Questionable",
-      "own": 82.27,
-      "gp": 9
-    },
-    {
       "id": "4882093",
       "name": "Bhayshul Tuten",
       "pos": "RB",
@@ -1573,36 +1543,6 @@
       "team": "JAX",
       "inj": null,
       "own": 95.91,
-      "gp": 9
-    },
-    {
-      "id": "16737",
-      "name": "Mike Evans",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "SF",
-      "inj": "Out",
-      "own": 91.91,
-      "gp": 6
-    },
-    {
-      "id": "4689114",
-      "name": "Jaxson Dart",
-      "pos": "QB",
-      "slot": "IR",
-      "team": "NYG",
-      "inj": "IR",
-      "own": 20.63,
-      "gp": 2
-    },
-    {
-      "id": "4371733",
-      "name": "Kenny Gainwell",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "TB",
-      "inj": null,
-      "own": 49.42,
       "gp": 9
     },
     {
@@ -1626,16 +1566,6 @@
       "gp": 9
     },
     {
-      "id": "4362081",
-      "name": "Cameron Dicker",
-      "pos": "K",
-      "slot": "Bench",
-      "team": "LAC",
-      "inj": null,
-      "own": 41.57,
-      "gp": 8
-    },
-    {
       "id": "4361741",
       "name": "Brock Purdy",
       "pos": "QB",
@@ -1654,6 +1584,66 @@
       "inj": null,
       "own": 42.53,
       "gp": 10
+    },
+    {
+      "id": "5082424",
+      "name": "Dominic Zvada",
+      "pos": "K",
+      "slot": "K",
+      "team": "NYG",
+      "inj": null,
+      "own": 45.99,
+      "gp": 9
+    },
+    {
+      "id": "4870808",
+      "name": "Jeremiyah Love",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "ARI",
+      "inj": "IR",
+      "own": 83.47,
+      "gp": 6
+    },
+    {
+      "id": "4372016",
+      "name": "Jaylen Waddle",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "DEN",
+      "inj": "Questionable",
+      "own": 82.27,
+      "gp": 9
+    },
+    {
+      "id": "16737",
+      "name": "Mike Evans",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "SF",
+      "inj": "Questionable",
+      "own": 91.91,
+      "gp": 6
+    },
+    {
+      "id": "4371733",
+      "name": "Kenny Gainwell",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "TB",
+      "inj": null,
+      "own": 49.42,
+      "gp": 9
+    },
+    {
+      "id": "4362081",
+      "name": "Cameron Dicker",
+      "pos": "K",
+      "slot": "Bench",
+      "team": "LAC",
+      "inj": null,
+      "own": 41.57,
+      "gp": 8
     },
     {
       "id": "4036378",
@@ -1676,14 +1666,14 @@
       "gp": 9
     },
     {
-      "id": "5082424",
-      "name": "Dominic Zvada",
-      "pos": "K",
-      "slot": "K",
+      "id": "4689114",
+      "name": "Jaxson Dart",
+      "pos": "QB",
+      "slot": "IR",
       "team": "NYG",
-      "inj": null,
-      "own": 45.99,
-      "gp": 9
+      "inj": "IR",
+      "own": 20.63,
+      "gp": 2
     }
   ]
 }

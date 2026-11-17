@@ -3,7 +3,7 @@
   "playoffSpots": 4,
   "regularSeasonWeeks": 14,
   "nonByeEspn": 130.2,
-  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8 and Week 9 finals are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 10 projections and current points are the 2026-11-16 Monday night matchup pull. Every Week 10 lineup has projected points equal to current points. Week 10 is in progress and is not counted. Weeks 11-14 were not re-pulled.",
+  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8, Week 9, and Week 10 finals are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 10 pregame projections and final points are the 2026-11-17 Tuesday pull. Week 11 projections are that same pull. Week 11 has not started and is not counted. Weeks 12-14 were not re-pulled.",
   "biasNote": "Each other team's weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss.",
   "presets": [
     {
@@ -29,80 +29,80 @@
       "bias": 2.05,
       "sd": 16.1,
       "wins": 8,
-      "losses": 1,
-      "pf": 1176.08
+      "losses": 2,
+      "pf": 1292.46
     },
     {
       "id": 2,
       "bias": 1.93,
       "sd": 27.4,
-      "wins": 4,
+      "wins": 5,
       "losses": 5,
-      "pf": 1137.12
+      "pf": 1287.08
     },
     {
       "id": 3,
       "bias": 5.48,
       "sd": 26.7,
-      "wins": 5,
+      "wins": 6,
       "losses": 4,
-      "pf": 1219.16
+      "pf": 1371
     },
     {
       "id": 4,
       "bias": -3.94,
       "sd": 17.3,
-      "wins": 5,
+      "wins": 6,
       "losses": 4,
-      "pf": 1062.5
+      "pf": 1212.42
     },
     {
       "id": 5,
       "bias": 3.64,
       "sd": 24.4,
-      "wins": 4,
+      "wins": 5,
       "losses": 5,
-      "pf": 1129.84
+      "pf": 1251.38
     },
     {
       "id": 6,
       "bias": -0.96,
       "sd": 18.3,
       "wins": 2,
-      "losses": 7,
-      "pf": 1016.54
+      "losses": 8,
+      "pf": 1136.86
     },
     {
       "id": 7,
       "bias": 0,
       "sd": 26,
       "wins": 4,
-      "losses": 5,
-      "pf": 1079.48
+      "losses": 6,
+      "pf": 1207
     },
     {
       "id": 8,
       "bias": -1.58,
       "sd": 19.1,
       "wins": 5,
-      "losses": 4,
-      "pf": 1002.02
+      "losses": 5,
+      "pf": 1123.12
     },
     {
       "id": 10,
       "bias": -3.78,
       "sd": 19.5,
       "wins": 4,
-      "losses": 5,
-      "pf": 1072.06
+      "losses": 6,
+      "pf": 1184.22
     },
     {
       "id": 11,
       "bias": -5.27,
       "sd": 19.4,
-      "wins": 4,
+      "wins": 5,
       "losses": 5,
-      "pf": 992.94
+      "pf": 1124.8
     }
   ],
   "games": [
@@ -210,86 +210,91 @@
       "week": 10,
       "homeId": 10,
       "awayId": 2,
-      "homeProj": 112.16,
-      "awayProj": 149.96,
+      "homeProj": 124.25,
+      "awayProj": 131.63,
       "homeCurrent": 112.16,
       "awayCurrent": 149.96,
-      "counted": false
+      "counted": true
     },
     {
       "week": 10,
       "homeId": 1,
       "awayId": 11,
-      "homeProj": 116.38,
-      "awayProj": 131.86,
+      "homeProj": 130.25,
+      "awayProj": 123.05,
       "homeCurrent": 116.38,
       "awayCurrent": 131.86,
-      "counted": false
+      "counted": true
     },
     {
       "week": 10,
       "homeId": 6,
       "awayId": 5,
-      "homeProj": 120.32,
-      "awayProj": 121.54,
+      "homeProj": 114.6,
+      "awayProj": 127.11,
       "homeCurrent": 120.32,
       "awayCurrent": 121.54,
-      "counted": false
+      "counted": true
     },
     {
       "week": 10,
       "homeId": 7,
       "awayId": 4,
-      "homeProj": 127.52,
-      "awayProj": 149.92,
+      "homeProj": 118.99,
+      "awayProj": 125.9,
       "homeCurrent": 127.52,
       "awayCurrent": 149.92,
-      "counted": false
+      "counted": true
     },
     {
       "week": 10,
       "homeId": 3,
       "awayId": 8,
-      "homeProj": 151.84,
-      "awayProj": 121.1,
+      "homeProj": 125.36,
+      "awayProj": 114.83,
       "homeCurrent": 151.84,
       "awayCurrent": 121.1,
-      "counted": false
+      "counted": true
     },
     {
       "week": 11,
       "homeId": 1,
       "awayId": 10,
-      "homeProj": 121.5,
-      "awayProj": 127.3
+      "homeProj": 141.89,
+      "awayProj": 107.73,
+      "counted": false
     },
     {
       "week": 11,
       "homeId": 11,
       "awayId": 8,
-      "homeProj": 88.7,
-      "awayProj": 122
+      "homeProj": 113.33,
+      "awayProj": 121.3,
+      "counted": false
     },
     {
       "week": 11,
       "homeId": 7,
       "awayId": 2,
-      "homeProj": 89.2,
-      "awayProj": 69.1
+      "homeProj": 98.51,
+      "awayProj": 65.79,
+      "counted": false
     },
     {
       "week": 11,
       "homeId": 4,
       "awayId": 5,
-      "homeProj": 104.5,
-      "awayProj": 114
+      "homeProj": 121.44,
+      "awayProj": 127.35,
+      "counted": false
     },
     {
       "week": 11,
       "homeId": 3,
       "awayId": 6,
-      "homeProj": 130.6,
-      "awayProj": 83.2
+      "homeProj": 126.99,
+      "awayProj": 63.08,
+      "counted": false
     },
     {
       "week": 12,
@@ -414,6 +419,6 @@
       "loserId": 8
     }
   ],
-  "currentWeek": 10,
+  "currentWeek": 11,
   "currentWeekFinal": false
 }
