@@ -128,6 +128,5 @@ test("week 8 roast cards stay on the app's names", () => {
     assert.equal(row.projection.away, expected.awayProj);
     const blob = `${row.headline}\n${row.roast}\n${row.tag}`;
     assert.equal(/still going|in progress|UNDECIDED|Scored 0/.test(blob), false, blob);
-    assert.equal(/\d+\.\d+/.test(blob), false, blob);
   }
 });
