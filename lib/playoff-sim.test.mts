@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { focusTeam, formatPct, phi, sideDist, simulate, winOutChance, winOutPath, type SimModel } from "./playoff-sim.ts";
+import { focusSchedule, focusTeam, formatPct, phi, sideDist, simulate, winOutChance, winOutPath, type SimModel } from "./playoff-sim.ts";
 
 const dir = dirname(fileURLToPath(import.meta.url));
 const model = JSON.parse(readFileSync(join(dir, "../data/playoff-model.json"), "utf8")) as SimModel;
@@ -61,7 +61,17 @@ test("the remaining path skips counted weeks and ends at 14 games", () => {
   assert.equal(path.at(-1)!.wins, focus.wins + expectedWeeks.length);
   assert.equal(path.at(-1)!.losses, focus.losses);
   assert.equal(path.length, expectedWeeks.length + 1);
-  assert.ok(chance > 0.035 && chance < 0.25, `win-all ${chance}`);
+  const open = focusSchedule(model, 0).filter((row) => !row.counted);
+  const product = open.reduce((acc, row) => acc * row.winProb, 1);
+  assert.deepEqual(
+    open.map((row) => row.week),
+    expectedWeeks,
+  );
+  assert.ok(
+    open.every((row) => row.winProb > 0 && row.winProb < 1),
+    `open win probs ${open.map((row) => row.winProb).join(",")}`,
+  );
+  assert.ok(Math.abs(chance - product) < 1e-12, `win-all ${chance} vs ${product}`);
 
   const eight = at(8);
   const seven = at(7);
