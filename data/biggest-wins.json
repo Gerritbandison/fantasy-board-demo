@@ -1,8 +1,8 @@
 {
   "title": "Biggest regular-season wins (single week), all time",
   "league": "Chicken (ESPN 12115010)",
-  "generatedAt": "2026-11-15T17:06:00-05:00",
-  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-9. The 89.90 Week 8 margin is the final score from the Nov 3 production scoreboard. Week 9 finals are in the Nov 10 pull. The largest Week 9 margin is 47.06 (Bibi's Boys 151.38, Jahmyr I Go Again 104.32), below the 80.30 cutoff, so the top 10 is unchanged and pending stays empty. Week 10 is in progress as of 2026-11-15 (5:06 PM ET). The largest live margin is 57.30 (Maye i give you a blowj0b 123.52, All Heart 66.22), below the 80.30 cutoff, so pending stays empty and the ranking is unchanged.",
+  "generatedAt": "2026-11-16T23:58:00-05:00",
+  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-9. The 89.90 Week 8 margin is the final score from the Nov 3 production scoreboard. Week 9 finals are in the Nov 10 pull. The largest Week 9 margin is 47.06 (Bibi's Boys 151.38, Jahmyr I Go Again 104.32), below the 80.30 cutoff, so the top 10 is unchanged and pending stays empty. Week 10 is in progress as of 2026-11-16 (11:58 PM ET). The largest live margin is 37.80 (Jahmyr I Go Again 149.96, Sandusky's Soldiers 112.16), below the 80.30 cutoff, so pending stays empty and the ranking is unchanged.",
   "regularSeasonWeeks": {
     "2020": 13,
     "2021": 14,
@@ -41,7 +41,8 @@
     "2026-11-10: Week 9 is final. No Week 9 margin reaches the 80.30 cutoff. The largest is 47.06. Pending stays empty and the ranking is unchanged.",
     "2026-11-13: Week 10 is in progress (Thursday scores only). The largest live margin is 48.7. No live margin is near the top 10, so pending stays empty and the ranking is unchanged.",
     "2026-11-15: Week 10 is in progress (Sunday afternoon). The largest live margin is 69.98, below the 80.30 cutoff, so pending stays empty and the ranking is unchanged.",
-    "2026-11-15: Week 10 is still in progress at 5:06 PM ET. The largest live margin is 57.30, below the 80.30 cutoff, so pending stays empty and the ranking is unchanged."
+    "2026-11-15: Week 10 is still in progress at 5:06 PM ET. The largest live margin is 57.30, below the 80.30 cutoff, so pending stays empty and the ranking is unchanged.",
+    "2026-11-16: Week 10 is still in progress at 11:58 PM ET, after Monday night. Every lineup is done. The largest live margin is 37.80, below the 80.30 cutoff, so pending stays empty and the ranking is unchanged."
   ],
   "top10": [
     {

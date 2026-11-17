@@ -693,7 +693,7 @@
       "pos": "WR",
       "slot": "WR",
       "team": "ATL",
-      "inj": "Questionable",
+      "inj": null,
       "own": 99.52,
       "gp": 10
     },
@@ -875,7 +875,7 @@
       "pos": "RB",
       "slot": "Bench",
       "team": "HOU",
-      "inj": "Out",
+      "inj": null,
       "own": 73.53,
       "gp": 5
     },
@@ -915,7 +915,7 @@
       "pos": "RB",
       "slot": "RB",
       "team": "HOU",
-      "inj": "Questionable",
+      "inj": "Doubtful",
       "own": 80.56,
       "gp": 9
     },
@@ -1037,7 +1037,7 @@
       "pos": "QB",
       "slot": "QB",
       "team": "NE",
-      "inj": "Questionable",
+      "inj": "Doubtful",
       "own": 99,
       "gp": 10
     },

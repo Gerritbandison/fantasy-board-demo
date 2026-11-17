@@ -1,33 +1,33 @@
 {
   "week": 10,
-  "dataPulledAt": "2026-11-15T17:06:00-05:00",
-  "note": "Week 10 manager roasts from the Sunday afternoon board. The point fields were updated to the late Sunday scoreboard so the cards stay attached. The copy is about the manager, and it does not repeat the score.",
+  "dataPulledAt": "2026-11-16T23:58:00-05:00",
+  "note": "Week 10 manager roasts from the Sunday afternoon board. The point fields were updated to the Nov 16 11:58 PM ET scoreboard so the cards stay attached. Lines that described a starter who had not played, including Monday, were corrected. The week is not final, so this is not a new closed-week roast.",
   "matchups": [
     {
       "matchupId": "2026-mp10-10v2",
       "homeTeamId": 10,
       "awayTeamId": 2,
-      "homePoints": 68.6,
-      "awayPoints": 121.24,
+      "homePoints": 112.16,
+      "awayPoints": 149.96,
       "headline": "Jahmyr vs Sandusky",
-      "roast": "Jahmyr, the whole bit is Gibbs, and for once the bit showed up. His day is over. You still get to sit there and watch Sandusky deal with it.\nSandusky, you started Jefferson, Taylor, and Cook. That was the plan. They have spent the afternoon losing to one running back whose game already ended. Burrow tonight is you asking the night game to cover for a bad roster.",
+      "roast": "Jahmyr, the whole bit is Gibbs, and Gibbs had the day. His game is over. So is the rest of your lineup. You carry that lead with nobody left to play.\nSandusky, Burrow's night is over. Jefferson, Taylor, and Cook were the plan, and the night game did not cover them. Your lineup is done, and you are still the one behind.",
       "projection": {
-        "home": 97.39,
-        "away": 152.07
+        "home": 112.16,
+        "away": 149.96
       },
-      "tag": "Jahmyr's whole bit is Gibbs, and Gibbs is already done."
+      "tag": "Gibbs had the day, and both lineups are done."
     },
     {
       "matchupId": "2026-mp10-1v11",
       "homeTeamId": 1,
       "awayTeamId": 11,
-      "homePoints": 83.78,
-      "awayPoints": 93.76,
+      "homePoints": 116.38,
+      "awayPoints": 131.86,
       "headline": "Kyle vs Kabul FC",
-      "roast": "Kyle, you are in first, and you still sat Jayden Daniels. His game ended Thursday. You went with Lawrence. You will probably survive it. That is the part that should bother you.\nKabul FC, you are only hanging around because Kyle did that. Your own quarterback has not played. Enjoy the scoreboard while it is lying to you.",
+      "roast": "Kyle, you are in first, and you still sat Jayden Daniels. His game ended Thursday. You went with Lawrence. Ja'Marr Chase had the night game. Both lineups are done, and you are the one behind.\nKabul FC, Purdy already played. The week is not final, and you are ahead of the team in first.",
       "projection": {
-        "home": 129.11,
-        "away": 125.73
+        "home": 116.38,
+        "away": 131.86
       },
       "tag": "Kyle sat the quarterback whose game ended Thursday."
     },
@@ -35,41 +35,41 @@
       "matchupId": "2026-mp10-6v5",
       "homeTeamId": 6,
       "awayTeamId": 5,
-      "homePoints": 70.94,
-      "awayPoints": 86.54,
+      "homePoints": 120.32,
+      "awayPoints": 121.54,
       "headline": "Smert vs Easy Peasy",
-      "roast": "Smert, you are in last, and you started a running back who is Out. The defense you grabbed this morning is the best thing on your roster. Dak and CeeDee have not played, so you still have a rescue plan. The lineup you locked in did not deserve one.\nEasy Peasy, you left Diggs on the bench. His Thursday game is over, and he was better than the receivers you trusted. You won the lineup argument against yourself.",
+      "roast": "Smert, you are in last, and you started Woody Marks, who is Doubtful. He got you a little. Dak and CeeDee carried the week, and the defense you grabbed Sunday showed up. Your lineup is done. Henry played Monday, and Easy Peasy edged you.\nEasy Peasy, you left Diggs on the bench. His Thursday game is over. Parker Washington outscored him. Henry played, and both lineups are done.",
       "projection": {
-        "home": 104.12,
-        "away": 132.01
+        "home": 120.32,
+        "away": 121.54
       },
-      "tag": "Smert started a running back who is Out."
+      "tag": "Henry played, and Easy Peasy edged Smert."
     },
     {
       "matchupId": "2026-mp10-7v4",
       "homeTeamId": 7,
       "awayTeamId": 4,
-      "homePoints": 123.52,
-      "awayPoints": 66.22,
+      "homePoints": 127.52,
+      "awayPoints": 149.92,
       "headline": "Gerrit vs All Heart",
-      "roast": "Gerrit, you built the week around Drake Maye. His game is over, and he spent it watching a blowout. Thursday already did your job. You are winning because Likely and Skattebo showed up, not because you did.\nAll Heart, Mahomes did his part. You filled the rest of the lineup with guys who have been invisible, and you are the one getting walked. CMC has not even played yet, so this is the roster you chose to fall behind with.",
+      "roast": "Gerrit, you built the week around Drake Maye. His game is over, and he spent it watching a blowout. Thursday already did your job. Your lineup is done, and you are the one behind.\nAll Heart, CMC had the day, and Chase Brown had one too. Mahomes did his part. Ravens D/ST played, and your lineup is done. You are the one ahead.",
       "projection": {
-        "home": 128.24,
-        "away": 111.69
+        "home": 127.52,
+        "away": 149.92
       },
-      "tag": "Gerrit is winning without the quarterback he built the week around."
+      "tag": "Gerrit is done, and the quarterback he built the week around did not show up."
     },
     {
       "matchupId": "2026-mp10-3v8",
       "homeTeamId": 3,
       "awayTeamId": 8,
-      "homePoints": 113.74,
-      "awayPoints": 66.5,
+      "homePoints": 151.84,
+      "awayPoints": 121.1,
       "headline": "Chewy vs Dimes",
-      "roast": "Dimes, you sat Goff for Bryce Young. Goff is done. Young is stuck in a rock fight. You picked the wrong quarterback, and the one you benched cannot bail you out anymore.\nChewy, you are mostly just watching Dimes do this to himself. The one sharp thing you did was throw the Vikings defense in.",
+      "roast": "Dimes, you sat Goff for Bryce Young. Goff is done. Young did not bail you out. George Pickens had the day on your bench. Zay Flowers played, and your lineup is done.\nChewy, your lineup is done. Jaxon Smith-Njigba and Emmett Johnson showed up, and the Vikings defense came with them.",
       "projection": {
-        "home": 141.9,
-        "away": 108.55
+        "home": 151.84,
+        "away": 121.1
       },
       "tag": "Dimes sat the quarterback whose game is already over."
     }
