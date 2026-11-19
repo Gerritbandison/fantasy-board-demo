@@ -1,6 +1,6 @@
 {
   "week": 11,
-  "asOf": "2026-11-17T09:15:00-05:00",
+  "asOf": "2026-11-18T10:07:00-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,49 +11,49 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.9918,
+      "playoffOdds": 0.992,
       "powerRank": 1
     },
     {
       "teamId": 2,
       "projectedRank": 3,
-      "playoffOdds": 0.5214,
+      "playoffOdds": 0.468,
       "powerRank": 4
     },
     {
-      "teamId": 5,
+      "teamId": 4,
       "projectedRank": 4,
-      "playoffOdds": 0.496,
-      "powerRank": 3
+      "playoffOdds": 0.4411,
+      "powerRank": 6
     },
     {
-      "teamId": 4,
+      "teamId": 5,
       "projectedRank": 5,
-      "playoffOdds": 0.4236,
-      "powerRank": 6
+      "playoffOdds": 0.4659,
+      "powerRank": 3
     },
     {
       "teamId": 7,
       "projectedRank": 6,
-      "playoffOdds": 0.2735,
+      "playoffOdds": 0.321,
       "powerRank": 5
     },
     {
       "teamId": 8,
       "projectedRank": 7,
-      "playoffOdds": 0.2109,
+      "playoffOdds": 0.2124,
       "powerRank": 10
     },
     {
       "teamId": 11,
       "projectedRank": 8,
-      "playoffOdds": 0.0654,
+      "playoffOdds": 0.0674,
       "powerRank": 8
     },
     {
       "teamId": 10,
       "projectedRank": 9,
-      "playoffOdds": 0.0175,
+      "playoffOdds": 0.0323,
       "powerRank": 7
     },
     {
@@ -366,6 +366,70 @@
     }
   ],
   "adds": [
+    {
+      "teamId": 1,
+      "date": "2026-11-18",
+      "type": "waiver",
+      "added": [
+        "Caleb Douglas (WR, MIA)"
+      ],
+      "dropped": [
+        "Devin Singletary (RB, NYG)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-18",
+      "type": "waiver",
+      "added": [
+        "Chig Okonkwo (TE, WSH)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-18",
+      "type": "waiver",
+      "added": [
+        "Buccaneers D/ST (D/ST, TB)"
+      ],
+      "dropped": [
+        "DeMario Douglas (WR, NE)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-18",
+      "type": "waiver",
+      "added": [
+        "Chiefs D/ST (D/ST, KC)"
+      ],
+      "dropped": [
+        "Ravens D/ST (D/ST, BAL)"
+      ]
+    },
+    {
+      "teamId": 7,
+      "date": "2026-11-18",
+      "type": "waiver",
+      "added": [
+        "Ryan Flournoy (WR, DAL)"
+      ],
+      "dropped": [
+        "Wan'Dale Robinson (WR, TEN)"
+      ]
+    },
+    {
+      "teamId": 7,
+      "date": "2026-11-18",
+      "type": "waiver",
+      "added": [
+        "Bo Nix (QB, DEN)"
+      ],
+      "dropped": [
+        "Malik Washington (WR, MIA)"
+      ]
+    },
     {
       "teamId": 3,
       "date": "2026-11-17",

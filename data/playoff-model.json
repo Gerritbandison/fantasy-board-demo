@@ -3,7 +3,7 @@
   "playoffSpots": 4,
   "regularSeasonWeeks": 14,
   "nonByeEspn": 130.2,
-  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8, Week 9, and Week 10 finals are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 10 pregame projections and final points are the 2026-11-17 Tuesday pull. Week 11 projections are that same pull. Week 11 has not started and is not counted. Weeks 12-14 were not re-pulled.",
+  "source": "ESPN via Flaim. Weekly mean is the ESPN projection plus each team's bias (half of its Weeks 1-7 miss). The focus team's bias is 0; the page slider shifts that team instead. Week 8, Week 9, and Week 10 finals are included in wins, losses, and pf. Those games are marked counted and are not simulated again. Week 10 pregame projections and final points are the 2026-11-17 Tuesday pull. Week 11 projections are the 2026-11-18 Wednesday pull. Week 11 has not started and is not counted. Weeks 12-14 were not re-pulled.",
   "biasNote": "Each other team's weekly mean is its ESPN projection plus half of its average Weeks 1–7 miss.",
   "presets": [
     {
@@ -260,40 +260,40 @@
       "week": 11,
       "homeId": 1,
       "awayId": 10,
-      "homeProj": 141.89,
-      "awayProj": 107.73,
+      "homeProj": 142.17,
+      "awayProj": 126.92,
       "counted": false
     },
     {
       "week": 11,
       "homeId": 11,
       "awayId": 8,
-      "homeProj": 113.33,
-      "awayProj": 121.3,
+      "homeProj": 113.77,
+      "awayProj": 120.45,
       "counted": false
     },
     {
       "week": 11,
       "homeId": 7,
       "awayId": 2,
-      "homeProj": 98.51,
-      "awayProj": 65.79,
+      "homeProj": 119.03,
+      "awayProj": 65.83,
       "counted": false
     },
     {
       "week": 11,
       "homeId": 4,
       "awayId": 5,
-      "homeProj": 121.44,
-      "awayProj": 127.35,
+      "homeProj": 124.6,
+      "awayProj": 127.19,
       "counted": false
     },
     {
       "week": 11,
       "homeId": 3,
       "awayId": 6,
-      "homeProj": 126.99,
-      "awayProj": 63.08,
+      "homeProj": 127.09,
+      "awayProj": 63.16,
       "counted": false
     },
     {
