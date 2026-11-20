@@ -2,13 +2,13 @@
  "scope": "2020-2026. 2026 from ESPN transactions; 2020-2025 rebuilt from weekly roster snapshots (player-for-player trades only).",
  "meta": {
   "generatedAt": "2026-10-29T02:18:23-04:00",
-  "pointsThrough": "Player points on 2026 accepted trades run through Week 10 box scores (full week). Week 11 has not started as of 2026-11-17 (9:15 AM ET), so no Week 11 points are in these rows. Per-game rates, FantasyCalc values, and value verdicts were not recomputed. pointsGained was recomputed from the two sides' totalPointsForNewTeam on 2026-11-17.",
+  "pointsThrough": "Player points on 2026 accepted trades run through Week 10 box scores (full week). Week 11 is in progress as of 2026-11-19 (11:50 PM ET), so Thursday points are not in these rows. Per-game rates, FantasyCalc values, and value verdicts were not recomputed. pointsGained was left as recomputed on 2026-11-17.",
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "timezone": "America/New_York",
   "source": "Flaim Fantasy (ESPN): get_transactions (trade, trade_proposal, trade_decline, trade_veto, trade_uphold), get_roster week snapshots, get_draft 2026, get_matchups player detail weeks 4-7",
   "coverage": {
-   "2026": "accepted trades through week 8; week 9 and week 10 box scores are on those rows. The Nov 5 proposal between teams 7 and 11 was canceled on Nov 7 and is not a completed trade. No accepted trade was added on 2026-11-17. The Nov 15 trade declines stay counts only.",
+   "2026": "accepted trades through week 8; week 9 and week 10 box scores are on those rows. The Nov 5 proposal between teams 7 and 11 was canceled on Nov 7 and is not a completed trade. No accepted trade was added on 2026-11-17. The Nov 15 trade declines stay counts only. No accepted trade was added on 2026-11-19. One trade decline on Nov 18 is a count only.",
    "2020-2025": "player trades rebuilt from weekly roster snapshots; see league-trades-history.json meta.method"
   },
   "method": [
@@ -25,13 +25,14 @@
    "2026-11-15: Week 10 is in progress (Sunday afternoon), so Sunday points were not added to accepted trades. No new trade was in the week-10 pull. pointsGained was left as recomputed on Nov 10.",
    "2026-11-15: Week 10 was still in progress at 5:06 PM ET, so late Sunday points were not added to accepted trades. The week-10 pull still has no accepted trade. Two trade declines remain counts only. pointsGained was left as recomputed on Nov 10.",
    "2026-11-16: Week 10 was still in progress at 11:58 PM ET, after Monday night, so those points were not added to accepted trades. No new completed trade since the Sunday night pull. Two trade declines remain counts only. pointsGained was left as recomputed on Nov 10.",
-   "2026-11-17: Week 10 player points from the five final box scores were added to 2026 accepted trades where the received player was on the new team's week 10 roster. pointsGained was recomputed from the two sides' totalPointsForNewTeam. Per-game rates and FantasyCalc values were not recomputed. No completed trade was added. The Nov 15 trade declines stay counts only."
+   "2026-11-17: Week 10 player points from the five final box scores were added to 2026 accepted trades where the received player was on the new team's week 10 roster. pointsGained was recomputed from the two sides' totalPointsForNewTeam. Per-game rates and FantasyCalc values were not recomputed. No completed trade was added. The Nov 15 trade declines stay counts only.",
+   "2026-11-19: Week 11 is in progress (Thursday night only), so Thursday points were not added to accepted trades. No new completed trade. One trade decline on Nov 18 is a count only. pointsGained was left as recomputed on Nov 17."
   ],
   "counts": {
    "acceptedTrades": 7,
    "uniqueProposals": 94,
    "rawProposalRows": 124,
-   "declines": 61,
+   "declines": 62,
    "vetoVoteRows": 13,
    "unmatchedAcceptRows": 1
   },

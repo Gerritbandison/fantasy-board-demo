@@ -1,6 +1,6 @@
 {
   "week": 11,
-  "asOf": "2026-11-18T10:07:00-05:00",
+  "asOf": "2026-11-19T23:50:00-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,49 +11,49 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.992,
+      "playoffOdds": 0.97,
       "powerRank": 1
     },
     {
       "teamId": 2,
       "projectedRank": 3,
-      "playoffOdds": 0.468,
+      "playoffOdds": 0.5706,
       "powerRank": 4
     },
     {
-      "teamId": 4,
+      "teamId": 5,
       "projectedRank": 4,
-      "playoffOdds": 0.4411,
-      "powerRank": 6
+      "playoffOdds": 0.4888,
+      "powerRank": 3
     },
     {
-      "teamId": 5,
+      "teamId": 4,
       "projectedRank": 5,
-      "playoffOdds": 0.4659,
-      "powerRank": 3
+      "playoffOdds": 0.3876,
+      "powerRank": 6
     },
     {
       "teamId": 7,
       "projectedRank": 6,
-      "playoffOdds": 0.321,
+      "playoffOdds": 0.2699,
       "powerRank": 5
     },
     {
       "teamId": 8,
       "projectedRank": 7,
-      "playoffOdds": 0.2124,
+      "playoffOdds": 0.2331,
       "powerRank": 10
     },
     {
       "teamId": 11,
       "projectedRank": 8,
-      "playoffOdds": 0.0674,
+      "playoffOdds": 0.0598,
       "powerRank": 8
     },
     {
       "teamId": 10,
       "projectedRank": 9,
-      "playoffOdds": 0.0323,
+      "playoffOdds": 0.0203,
       "powerRank": 7
     },
     {
@@ -367,6 +367,39 @@
   ],
   "adds": [
     {
+      "teamId": 3,
+      "date": "2026-11-19",
+      "type": "add",
+      "added": [
+        "Adonai Mitchell (WR, NYJ)"
+      ],
+      "dropped": [
+        "Braelon Allen (RB, NYJ)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-19",
+      "type": "add",
+      "added": [
+        "Dalton Schultz (TE, HOU)"
+      ],
+      "dropped": [
+        "Rachaad White (RB, WSH)"
+      ]
+    },
+    {
+      "teamId": 1,
+      "date": "2026-11-18",
+      "type": "add",
+      "added": [
+        "Michael Mayer (TE, LV)"
+      ],
+      "dropped": [
+        "Caleb Douglas (WR, MIA)"
+      ]
+    },
+    {
       "teamId": 1,
       "date": "2026-11-18",
       "type": "waiver",
@@ -375,6 +408,39 @@
       ],
       "dropped": [
         "Devin Singletary (RB, NYG)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-18",
+      "type": "add",
+      "added": [
+        "Emari Demercado (RB, HOU)"
+      ],
+      "dropped": [
+        "Treylon Burks (WR, WSH)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-18",
+      "type": "add",
+      "added": [
+        "Bears D/ST (D/ST, CHI)"
+      ],
+      "dropped": [
+        "Alec Pierce (WR, IND)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-18",
+      "type": "add",
+      "added": [
+        "Fernando Mendoza (QB, LV)"
+      ],
+      "dropped": [
+        "Tyler Shough (QB, NO)"
       ]
     },
     {
@@ -428,6 +494,28 @@
       ],
       "dropped": [
         "Malik Washington (WR, MIA)"
+      ]
+    },
+    {
+      "teamId": 10,
+      "date": "2026-11-18",
+      "type": "add",
+      "added": [
+        "Xavier Hutchinson (WR, HOU)"
+      ],
+      "dropped": [
+        "Audric Estime (RB, NO)"
+      ]
+    },
+    {
+      "teamId": 11,
+      "date": "2026-11-18",
+      "type": "add",
+      "added": [
+        "Lions D/ST (D/ST, DET)"
+      ],
+      "dropped": [
+        "Browns D/ST (D/ST, CLE)"
       ]
     },
     {
