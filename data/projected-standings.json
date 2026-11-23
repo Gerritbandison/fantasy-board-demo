@@ -1,10 +1,10 @@
 {
-  "asOf": "Nov 22, 2026, 8:00 PM EST. Records through Week 10 final. Week 11 in progress.",
+  "asOf": "Nov 23, 2026, 12:05 AM EST. Records through Week 10 final. Week 11 in progress.",
   "playoffSpots": 4,
   "regularSeasonWeeks": 14,
   "tiebreak": "Wins, then total points for. A tie adds no win.",
   "week8Treatment": "Week 10 is final and already in the record. Week 11 is in progress, so the simulator uses the live score and updated ESPN projection without double-counting the game. Baseline: ESPN setting, nothing locked, 8,000 runs, seed 7.",
-  "method": "Same model as the playoff simulator (data/playoff-model.json): ESPN projection plus each team's bias, normal noise, 8,000 seeded runs. Counted games, including final Weeks 8 through 10, are not simulated again. Week 10 finals are the Nov 17 Tuesday pull. Week 11 projections and live scores are the Nov 22 Sunday 8:00 PM ET pull. Week 11 is in progress and is not counted. A game with a live score uses that score to shrink the remaining noise. Weeks 12-14 were not re-pulled. A tie adds no win. Rank is average finish. The simulator changes when the strength slider moves or a game is locked.",
+  "method": "Same model as the playoff simulator (data/playoff-model.json): ESPN projection plus each team's bias, normal noise, 8,000 seeded runs. Counted games, including final Weeks 8 through 10, are not simulated again. Week 10 finals are the Nov 17 Tuesday pull. Week 11 projections and live scores are the Nov 23 12:05 AM ET pull, after Sunday night. Week 11 is in progress and is not counted. A game with a live score uses that score to shrink the remaining noise. Weeks 12-14 were not re-pulled. A tie adds no win. Rank is average finish. The simulator changes when the strength slider moves or a game is locked.",
   "standings": [
     {
       "teamId": 1,
@@ -12,9 +12,9 @@
       "pf_thru_wk8": 1292.46,
       "exp_final_wins": 10.83,
       "exp_final_losses": 3.17,
-      "exp_final_pf": 1810.1,
+      "exp_final_pf": 1802.9,
       "playoff_odds": 1,
-      "top_seed_odds": 0.9688,
+      "top_seed_odds": 0.968,
       "avg_seed": 1.03,
       "projected_rank": 1
     },
@@ -25,9 +25,9 @@
       "exp_final_wins": 8.2,
       "exp_final_losses": 5.8,
       "exp_final_pf": 1887.7,
-      "playoff_odds": 0.9351,
-      "top_seed_odds": 0.0203,
-      "avg_seed": 2.62,
+      "playoff_odds": 0.9303,
+      "top_seed_odds": 0.0204,
+      "avg_seed": 2.63,
       "projected_rank": 2
     },
     {
@@ -37,8 +37,8 @@
       "exp_final_wins": 7.84,
       "exp_final_losses": 6.16,
       "exp_final_pf": 1786.9,
-      "playoff_odds": 0.8449,
-      "top_seed_odds": 0.009,
+      "playoff_odds": 0.84,
+      "top_seed_odds": 0.0096,
       "avg_seed": 3.35,
       "projected_rank": 3
     },
@@ -46,36 +46,36 @@
       "teamId": 4,
       "record_thru_wk8": "6-4",
       "pf_thru_wk8": 1212.42,
-      "exp_final_wins": 7.61,
-      "exp_final_losses": 6.39,
-      "exp_final_pf": 1642.2,
-      "playoff_odds": 0.551,
-      "top_seed_odds": 0.0014,
-      "avg_seed": 4.48,
+      "exp_final_wins": 7.5,
+      "exp_final_losses": 6.5,
+      "exp_final_pf": 1637.2,
+      "playoff_odds": 0.4794,
+      "top_seed_odds": 0.0013,
+      "avg_seed": 4.72,
       "projected_rank": 4
     },
     {
       "teamId": 5,
       "record_thru_wk8": "5-5",
       "pf_thru_wk8": 1251.38,
-      "exp_final_wins": 6.76,
-      "exp_final_losses": 7.24,
+      "exp_final_wins": 6.87,
+      "exp_final_losses": 7.13,
       "exp_final_pf": 1714.7,
-      "playoff_odds": 0.3346,
-      "top_seed_odds": 0.0006,
-      "avg_seed": 5.36,
+      "playoff_odds": 0.3792,
+      "top_seed_odds": 0.0008,
+      "avg_seed": 5.18,
       "projected_rank": 5
     },
     {
       "teamId": 8,
       "record_thru_wk8": "5-5",
       "pf_thru_wk8": 1123.12,
-      "exp_final_wins": 7.07,
-      "exp_final_losses": 6.93,
-      "exp_final_pf": 1581,
-      "playoff_odds": 0.223,
+      "exp_final_wins": 7.28,
+      "exp_final_losses": 6.72,
+      "exp_final_pf": 1595.2,
+      "playoff_odds": 0.2881,
       "top_seed_odds": 0,
-      "avg_seed": 5.73,
+      "avg_seed": 5.3,
       "projected_rank": 6
     },
     {
@@ -85,22 +85,10 @@
       "exp_final_wins": 5.71,
       "exp_final_losses": 8.29,
       "exp_final_pf": 1675.9,
-      "playoff_odds": 0.0389,
+      "playoff_odds": 0.0408,
       "top_seed_odds": 0,
-      "avg_seed": 7.24,
+      "avg_seed": 7.22,
       "projected_rank": 7
-    },
-    {
-      "teamId": 11,
-      "record_thru_wk8": "5-5",
-      "pf_thru_wk8": 1124.8,
-      "exp_final_wins": 6.06,
-      "exp_final_losses": 7.94,
-      "exp_final_pf": 1534.7,
-      "playoff_odds": 0.0446,
-      "top_seed_odds": 0,
-      "avg_seed": 7.74,
-      "projected_rank": 8
     },
     {
       "teamId": 10,
@@ -108,10 +96,22 @@
       "pf_thru_wk8": 1184.22,
       "exp_final_wins": 5.42,
       "exp_final_losses": 8.58,
-      "exp_final_pf": 1634.3,
-      "playoff_odds": 0.0279,
+      "exp_final_pf": 1628.7,
+      "playoff_odds": 0.0288,
       "top_seed_odds": 0,
-      "avg_seed": 7.92,
+      "avg_seed": 7.94,
+      "projected_rank": 8
+    },
+    {
+      "teamId": 11,
+      "record_thru_wk8": "5-5",
+      "pf_thru_wk8": 1124.8,
+      "exp_final_wins": 5.85,
+      "exp_final_losses": 8.15,
+      "exp_final_pf": 1539.7,
+      "playoff_odds": 0.0135,
+      "top_seed_odds": 0,
+      "avg_seed": 8.15,
       "projected_rank": 9
     },
     {
@@ -123,7 +123,7 @@
       "exp_final_pf": 1583.9,
       "playoff_odds": 0,
       "top_seed_odds": 0,
-      "avg_seed": 9.52,
+      "avg_seed": 9.47,
       "projected_rank": 10
     }
   ]
