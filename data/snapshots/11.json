@@ -1,6 +1,6 @@
 {
   "week": 11,
-  "asOf": "2026-11-19T23:50:00-05:00",
+  "asOf": "2026-11-22T20:00:00-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,49 +11,49 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.97,
+      "playoffOdds": 0.9351,
       "powerRank": 1
     },
     {
       "teamId": 2,
       "projectedRank": 3,
-      "playoffOdds": 0.5706,
+      "playoffOdds": 0.8449,
       "powerRank": 4
     },
     {
-      "teamId": 5,
-      "projectedRank": 4,
-      "playoffOdds": 0.4888,
-      "powerRank": 3
-    },
-    {
       "teamId": 4,
-      "projectedRank": 5,
-      "playoffOdds": 0.3876,
+      "projectedRank": 4,
+      "playoffOdds": 0.551,
       "powerRank": 6
     },
     {
-      "teamId": 7,
-      "projectedRank": 6,
-      "playoffOdds": 0.2699,
-      "powerRank": 5
+      "teamId": 5,
+      "projectedRank": 5,
+      "playoffOdds": 0.3346,
+      "powerRank": 3
     },
     {
       "teamId": 8,
-      "projectedRank": 7,
-      "playoffOdds": 0.2331,
+      "projectedRank": 6,
+      "playoffOdds": 0.223,
       "powerRank": 10
+    },
+    {
+      "teamId": 7,
+      "projectedRank": 7,
+      "playoffOdds": 0.0389,
+      "powerRank": 5
     },
     {
       "teamId": 11,
       "projectedRank": 8,
-      "playoffOdds": 0.0598,
+      "playoffOdds": 0.0446,
       "powerRank": 8
     },
     {
       "teamId": 10,
       "projectedRank": 9,
-      "playoffOdds": 0.0203,
+      "playoffOdds": 0.0279,
       "powerRank": 7
     },
     {
@@ -366,6 +366,39 @@
     }
   ],
   "adds": [
+    {
+      "teamId": 5,
+      "date": "2026-11-22",
+      "type": "add",
+      "added": [
+        "Mike Gesicki (TE, CIN)"
+      ],
+      "dropped": [
+        "Hunter Henry (TE, NE)"
+      ]
+    },
+    {
+      "teamId": 6,
+      "date": "2026-11-20",
+      "type": "waiver",
+      "added": [
+        "Braelon Allen (RB, NYJ)"
+      ],
+      "dropped": [
+        "Chris Godwin Jr. (WR, TB)"
+      ]
+    },
+    {
+      "teamId": 6,
+      "date": "2026-11-20",
+      "type": "add",
+      "added": [
+        "Cam Little (K, JAX)"
+      ],
+      "dropped": [
+        "Jason Myers (K, SEA)"
+      ]
+    },
     {
       "teamId": 3,
       "date": "2026-11-19",
