@@ -58,7 +58,10 @@ test("the remaining path skips counted weeks and ends at 14 games", () => {
     path.slice(1).map((step) => step.week),
     expectedWeeks,
   );
-  assert.ok(path.at(-1)!.odds > 0.97, `win out ${path.at(-1)!.odds}`);
+  const last = path.at(-1)!;
+  // Winning out is a near-lock only when that path still reaches 8 wins. A 7-win ceiling does not clear a 4-team bracket, so the check there is that the forced path beats the unforced baseline.
+  if (last.wins >= 8) assert.ok(last.odds > 0.97, `win out ${last.odds}`);
+  else assert.ok(last.odds > path[0].odds, `win out ${last.odds} vs baseline ${path[0].odds}`);
   assert.equal(path.at(-1)!.wins, focus.wins + expectedWeeks.length);
   assert.equal(path.at(-1)!.losses, focus.losses);
   assert.equal(path.length, expectedWeeks.length + 1);
