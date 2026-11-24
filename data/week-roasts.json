@@ -1,77 +1,77 @@
 {
-  "week": 10,
-  "dataPulledAt": "2026-11-17T09:15:00-05:00",
-  "note": "Week 10 roasts from the final scoreboard. Numbers match schedule.week10. Written in the commentary voice. Week 11 is still in progress after Monday night (11:58 PM ET). Every team projection equals its current points and every winner is still UNDECIDED, so these roasts stay on Week 10.",
+  "week": 11,
+  "dataPulledAt": "2026-11-24T09:15:00-05:00",
+  "note": "Week 11 roasts from the final scoreboard. Numbers match schedule.week11. Written in the commentary voice. Week 12 has not started.",
   "matchups": [
     {
-      "matchupId": "2026-mp10-10v2",
-      "homeTeamId": 10,
-      "awayTeamId": 2,
-      "homePoints": 112.16,
-      "awayPoints": 149.96,
-      "headline": "Sandusky's Soldiers 112.16 – Jahmyr I Go Again 149.96",
-      "roast": "149.96 to 112.16.\n4-6 and 112.16 points. Sandusky's Soldiers lost by 37.8. Jahmyr Gibbs scored 44.2 against a 23.86 projection, and Jahmyr I Go Again was favored by 7.38.",
-      "projection": {
-        "home": 124.25,
-        "away": 131.63
-      },
-      "tag": "LOCK: Jahmyr I Go Again was favored by 7.38 and won by 37.8."
-    },
-    {
-      "matchupId": "2026-mp10-1v11",
+      "matchupId": "2026-mp11-1v10",
       "homeTeamId": 1,
-      "awayTeamId": 11,
-      "homePoints": 116.38,
-      "awayPoints": 131.86,
-      "headline": "Bibi's Boys 116.38 – Kabul FC 131.86",
-      "roast": "Kabul FC 131.86, Bibi's Boys 116.38.\nBibi's Boys was favored by 7.2, 130.25 to 123.05, and lost by 15.48. They finished 13.87 below the projection. Brock Bowers scored 3.8, and Steelers D/ST scored -7.",
+      "awayTeamId": 10,
+      "homePoints": 92.74,
+      "awayPoints": 102.5,
+      "headline": "Bibi's Boys 92.74 – Sandusky's Soldiers 102.5",
+      "roast": "8-3 and 92.74 points.\nBibi's Boys was favored by 3.34, 136.2 to 132.86. They scored 92.74, 43.46 under the projection, and lost by 9.76. Ja'Marr Chase scored 8.1 against a 25.37 projection. Jayden Daniels scored 17.06 on the bench. 92.74 is the Bibi's Boys season low.",
       "projection": {
-        "home": 130.25,
-        "away": 123.05
+        "home": 136.2,
+        "away": 132.86
       },
-      "tag": "UPSET ALERT: Bibi's Boys was favored by 7.2 and lost by 15.48."
+      "tag": "UPSET ALERT: Bibi's Boys was favored by 3.34 and lost by 9.76."
     },
     {
-      "matchupId": "2026-mp10-6v5",
-      "homeTeamId": 6,
-      "awayTeamId": 5,
-      "homePoints": 120.32,
-      "awayPoints": 121.54,
-      "headline": "Smert Fellas 120.32 – Easy Peasy Lemon Squeezy 121.54",
-      "roast": "2-8 and 120.32 points.\nSmert Fellas has lost 3 straight. They scored 5.72 over 114.6 and lost by 1.22. Easy Peasy Lemon Squeezy was favored by 12.51 and scored 121.54.",
+      "matchupId": "2026-mp11-11v8",
+      "homeTeamId": 11,
+      "awayTeamId": 8,
+      "homePoints": 133.6,
+      "awayPoints": 150.46,
+      "headline": "Kabul FC 133.6 – Dimes McSorley 150.46",
+      "roast": "Dimes McSorley 150.46, Kabul FC 133.6.\nKabul FC was favored by 2.44, 123.61 to 121.17, and lost by 16.86. Kabul FC scored 9.99 over 123.61. Dimes McSorley scored 29.29 over 121.17. George Pickens scored 23.8 against a 15.65 projection, and 49ers D/ST scored 14 against a 5.39 projection. Mike Evans scored 22.9 on the Kabul FC bench. 150.46 is the Dimes McSorley season high.",
       "projection": {
-        "home": 114.6,
-        "away": 127.11
+        "home": 123.61,
+        "away": 121.17
       },
-      "tag": "LOCK: Easy Peasy Lemon Squeezy was favored by 12.51 and won by 1.22."
+      "tag": "UPSET ALERT: Kabul FC was favored by 2.44 and lost by 16.86."
     },
     {
-      "matchupId": "2026-mp10-7v4",
+      "matchupId": "2026-mp11-7v2",
       "homeTeamId": 7,
-      "awayTeamId": 4,
-      "homePoints": 127.52,
-      "awayPoints": 149.92,
-      "headline": "Maye i give you a blowj0b 127.52 – All Heart 149.92",
-      "roast": "149.92–127.52.\nAll Heart was favored by 6.91. The margin was 22.4. Christian McCaffrey scored 46.3 against a 21.76 projection. Drake Maye scored 3.02 against a 21.97 projection. Maye i give you a blowj0b is 4-6.",
+      "awayTeamId": 2,
+      "homePoints": 82.7,
+      "awayPoints": 119.98,
+      "headline": "Maye i give you a blowj0b 82.7 – Jahmyr I Go Again 119.98",
+      "roast": "4-7 and 82.7 points.\nMaye i give you a blowj0b was favored by 15.75, 121.44 to 105.69. They scored 82.7, 38.74 under the projection, and lost by 37.28. Bo Nix scored 11.5 against a 20.78 projection. Tony Pollard scored 11 against a 20.81 projection. Drake Maye and Josh Jacobs were on bye. Jahmyr Gibbs scored 27.8 against a 21.94 projection.",
       "projection": {
-        "home": 118.99,
+        "home": 121.44,
+        "away": 105.69
+      },
+      "tag": "UPSET ALERT: Maye i give you a blowj0b was favored by 15.75 and lost by 37.28."
+    },
+    {
+      "matchupId": "2026-mp11-4v5",
+      "homeTeamId": 4,
+      "awayTeamId": 5,
+      "homePoints": 117.86,
+      "awayPoints": 120.16,
+      "headline": "All Heart 117.86 – Easy Peasy Lemon Squeezy 120.16",
+      "roast": "120.16–117.86, a margin of 2.3.\nEasy Peasy Lemon Squeezy was favored by 4.83, 125.9 to 121.07, and won by 2.3. Josh Allen scored 12.16 against a 23.38 projection. Mike Gesicki scored 12.7 against a 7.37 projection. Travis Kelce scored 25.4 on the All Heart bench. Both teams are 6-5.",
+      "projection": {
+        "home": 121.07,
         "away": 125.9
       },
-      "tag": "NOTE: All Heart was favored by 6.91 and won by 22.4."
+      "tag": "TOSS-UP: Easy Peasy Lemon Squeezy was favored by 4.83 and won by 2.3."
     },
     {
-      "matchupId": "2026-mp10-3v8",
+      "matchupId": "2026-mp11-3v6",
       "homeTeamId": 3,
-      "awayTeamId": 8,
-      "homePoints": 151.84,
-      "awayPoints": 121.1,
-      "headline": "Chewy's Warriors 151.84 – Dimes McSorley 121.1",
-      "roast": "151.84 to 121.1.\nDimes McSorley lost by 30.74. Chewy's Warriors was favored by 10.53 and scored 26.48 over 125.36. George Pickens scored 43.5 on the Dimes McSorley bench, and Bryce Young scored 8.1 against an 18.8 projection.",
+      "awayTeamId": 6,
+      "homePoints": 101.76,
+      "awayPoints": 139.4,
+      "headline": "Chewy's Warriors 101.76 – Smert Fellas 139.4",
+      "roast": "139.4 to 101.76.\n3-8 and 139.4 points. Smert Fellas had lost three straight and won by 37.64. Dak Prescott scored 35.9 against a 21.89 projection, and CeeDee Lamb scored 30.2 against a 22.42 projection. Smert Fellas was favored by 4.71 and scored 13.84 over 125.56.",
       "projection": {
-        "home": 125.36,
-        "away": 114.83
+        "home": 120.85,
+        "away": 125.56
       },
-      "tag": "LOCK: Chewy's Warriors was favored by 10.53 and won by 30.74."
+      "tag": "LOCK: Smert Fellas was favored by 4.71 and won by 37.64."
     }
   ]
 }
