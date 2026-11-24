@@ -1,6 +1,6 @@
 {
   "week": 11,
-  "asOf": "2026-11-23T00:05:00-05:00",
+  "asOf": "2026-11-23T23:58:00-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,49 +11,49 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.9303,
+      "playoffOdds": 0.9239,
       "powerRank": 1
     },
     {
       "teamId": 2,
       "projectedRank": 3,
-      "playoffOdds": 0.84,
+      "playoffOdds": 0.8369,
       "powerRank": 4
     },
     {
-      "teamId": 4,
+      "teamId": 5,
       "projectedRank": 4,
-      "playoffOdds": 0.4794,
-      "powerRank": 6
+      "playoffOdds": 0.4335,
+      "powerRank": 3
     },
     {
-      "teamId": 5,
+      "teamId": 4,
       "projectedRank": 5,
-      "playoffOdds": 0.3792,
-      "powerRank": 3
+      "playoffOdds": 0.3944,
+      "powerRank": 6
     },
     {
       "teamId": 8,
       "projectedRank": 6,
-      "playoffOdds": 0.2881,
+      "playoffOdds": 0.2865,
       "powerRank": 10
     },
     {
-      "teamId": 7,
+      "teamId": 10,
       "projectedRank": 7,
-      "playoffOdds": 0.0408,
-      "powerRank": 5
+      "playoffOdds": 0.0683,
+      "powerRank": 7
     },
     {
-      "teamId": 10,
+      "teamId": 7,
       "projectedRank": 8,
-      "playoffOdds": 0.0288,
-      "powerRank": 7
+      "playoffOdds": 0.0448,
+      "powerRank": 5
     },
     {
       "teamId": 11,
       "projectedRank": 9,
-      "playoffOdds": 0.0135,
+      "playoffOdds": 0.0119,
       "powerRank": 8
     },
     {
