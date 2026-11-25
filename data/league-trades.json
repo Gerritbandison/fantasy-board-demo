@@ -2,13 +2,13 @@
  "scope": "2020-2026. 2026 from ESPN transactions; 2020-2025 rebuilt from weekly roster snapshots (player-for-player trades only).",
  "meta": {
   "generatedAt": "2026-10-29T02:18:23-04:00",
-  "pointsThrough": "Player points on 2026 accepted trades run through Week 10 box scores (full week). Week 11 is in progress as of 2026-11-23 (11:58 PM ET), after Monday night, so live points are not in these rows. Per-game rates, FantasyCalc values, and value verdicts were not recomputed. pointsGained was left as recomputed on 2026-11-17.",
+  "pointsThrough": "Player points on 2026 accepted trades run through Week 11 box scores (full week). Week 12 has not started as of 2026-11-24 (9:15 AM ET), so there are no Week 12 points in these rows. Per-game rates, FantasyCalc values, and value verdicts were not recomputed. pointsGained was recomputed from the two sides' totalPointsForNewTeam.",
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "timezone": "America/New_York",
   "source": "Flaim Fantasy (ESPN): get_transactions (trade, trade_proposal, trade_decline, trade_veto, trade_uphold), get_roster week snapshots, get_draft 2026, get_matchups player detail weeks 4-7",
   "coverage": {
-   "2026": "accepted trades through week 8; week 9 and week 10 box scores are on those rows. The Nov 5 proposal between teams 7 and 11 was canceled on Nov 7 and is not a completed trade. No accepted trade was added on 2026-11-17. The Nov 15 trade declines stay counts only. No accepted trade was added on 2026-11-19. One trade decline on Nov 18 is a count only. No accepted trade was added on 2026-11-22. No accepted trade was added on 2026-11-23, including the Monday night pull. Week 11 live points are not on these rows.",
+   "2026": "accepted trades through week 8; week 9 and week 10 box scores are on those rows. The Nov 5 proposal between teams 7 and 11 was canceled on Nov 7 and is not a completed trade. No accepted trade was added on 2026-11-17. The Nov 15 trade declines stay counts only. No accepted trade was added on 2026-11-19. One trade decline on Nov 18 is a count only. No accepted trade was added on 2026-11-22. No accepted trade was added on 2026-11-23, including the Monday night pull. Week 11 live points are not on these rows. Week 11 box-score points from the 2026-11-24 pull are on those rows. No accepted trade was added. The Nov 15 and Nov 18 trade declines stay counts only.",
    "2020-2025": "player trades rebuilt from weekly roster snapshots; see league-trades-history.json meta.method"
   },
   "method": [
@@ -29,7 +29,8 @@
    "2026-11-19: Week 11 is in progress (Thursday night only), so Thursday points were not added to accepted trades. No new completed trade. One trade decline on Nov 18 is a count only. pointsGained was left as recomputed on Nov 17.",
    "2026-11-22: Week 11 is in progress (Sunday late slate; Sunday night and Monday night have not been played), so live points were not added to accepted trades. No new completed trade. The Nov 15 and Nov 18 trade declines stay counts only. pointsGained was left as recomputed on Nov 17.",
    "2026-11-23: Week 11 is in progress after Sunday night (Monday night still to play), so live points were not added to accepted trades. No new completed trade. The Nov 15 and Nov 18 trade declines stay counts only. pointsGained was left as recomputed on Nov 17.",
-   "2026-11-23: Week 11 is still in progress at 11:58 PM ET, after Monday night, so those points were not added to accepted trades. No new completed trade. The Nov 15 and Nov 18 trade declines stay counts only. pointsGained was left as recomputed on Nov 17."
+   "2026-11-23: Week 11 is still in progress at 11:58 PM ET, after Monday night, so those points were not added to accepted trades. No new completed trade. The Nov 15 and Nov 18 trade declines stay counts only. pointsGained was left as recomputed on Nov 17.",
+   "2026-11-24: Week 11 player points from the five final box scores were added to 2026 accepted trades where the received player was still on the new team's week 11 roster. pointsGained was recomputed from the two sides' totalPointsForNewTeam. Per-game rates and FantasyCalc values were not recomputed. No completed trade was added. The Nov 15 and Nov 18 trade declines stay counts only."
   ],
   "counts": {
    "acceptedTrades": 7,
@@ -39,7 +40,7 @@
    "vetoVoteRows": 13,
    "unmatchedAcceptRows": 1
   },
-  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 10. Week 9 and week 10 box-score points are in whoWonIt and on each received player's weeksAfter. Per-game rates, FantasyCalc values, and the value verdict were not recomputed from those week 9 points. pointsGained was recomputed from the two sides' totalPointsForNewTeam. We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (±10% band) and the points gained (±10 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
+  "gradingMethod": "Trades are graded on long-term value, not starters. For each player we count every point he scored for his new fantasy team after the trade, benched or started, through week 11. Week 9, week 10, and week 11 box-score points are in whoWonIt and on each received player's weeksAfter. Per-game rates, FantasyCalc values, and the value verdict were not recomputed from those week 9 points. pointsGained was recomputed from the two sides' totalPointsForNewTeam. We compare his points per game in games actually played before the trade with after it, using ESPN game logs and schedules so byes and injury absences are labelled and kept out of per-game rates. Rest-of-season value comes from FantasyCalc redraft values (10 teams, 1QB, full PPR to match the league). FantasyCalc publishes only current values, so value at the trade date is approximated from its 30-day trend only for the Sep 28 trades. The later trades use the per-game trend instead. Each side gets paying off, even or backfiring from the current value edge (±10% band) and the points gained (±10 band). When the two conflict, value wins. Confidence scales with the weeks of post-trade data.",
   "pastSeasons": {
    "source": "Flaim Fantasy (ESPN) get_matchups detail=players for each matchup in weeks 1-13 (2020) / 1-14 (2021-2025); ESPN public players_wl for positions.",
    "whyNotTransactions": "ESPN transactions for past seasons are unavailable: Flaim get_transactions returns ESPN_SEASON_NOT_SUPPORTED, and ESPN direct API returns 401 AUTH_LEAGUE_NOT_VISIBLE (private league, needs login cookies, which were not used).",
@@ -54,7 +55,7 @@
    "evenUnder": 10,
    "lopsidedFrom": 75
   },
-  "updatedAt": "2026-11-23T23:58:00-05:00"
+  "updatedAt": "2026-11-24T09:15:00-05:00"
  },
  "tradesPerSeason": {
   "2020": 27,
@@ -17623,15 +17624,15 @@
    ],
    "note": "Accepted Sep 28 and processed by Sep 29. All Heart cut Dalton Schultz to make room.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 10. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 11. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. Week 11 points are the full box score from the 2026-11-24 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
     "weeksCounted": [
      4,
-     10
+     11
     ],
     "bySide": {
      "3": {
-      "totalPointsForNewTeam": 109.3,
-      "startedPointsForNewTeam": 109.3,
+      "totalPointsForNewTeam": 114.2,
+      "startedPointsForNewTeam": 114.2,
       "weeks": [
        {
         "player": "Jaylen Warren",
@@ -17674,12 +17675,18 @@
         "week": 10,
         "points": 9.1,
         "started": true
+       },
+       {
+        "player": "Jaylen Warren",
+        "week": 11,
+        "points": 4.9,
+        "started": true
        }
       ]
      },
      "4": {
-      "totalPointsForNewTeam": 94.7,
-      "startedPointsForNewTeam": 44.8,
+      "totalPointsForNewTeam": 114,
+      "startedPointsForNewTeam": 64.1,
       "weeks": [
        {
         "player": "DJ Moore",
@@ -17734,18 +17741,24 @@
         "week": 10,
         "points": 9,
         "started": false
+       },
+       {
+        "player": "Jameson Williams",
+        "week": 11,
+        "points": 19.3,
+        "started": true
        }
       ]
      }
     },
     "edgeTeamId": 3,
-    "edgePoints": 14.6,
+    "edgePoints": 0.2,
     "verdict": "leaning"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 10,
-    "week8": "Week 8, week 9, and week 10 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
+    "lastFinalWeek": 11,
+    "week8": "Week 8, week 9, week 10, and week 11 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
     "weeksAfterTrade": [
      4,
      5,
@@ -17753,7 +17766,8 @@
      7,
      8,
      9,
-     10
+     10,
+     11
     ],
     "sides": {
      "3": {
@@ -17770,9 +17784,9 @@
        "net": 1424,
        "note": null
       },
-      "pointsReceived": 109.3,
-      "pointsSentAway": 94.7,
-      "pointsGained": 14.6,
+      "pointsReceived": 114.2,
+      "pointsSentAway": 114,
+      "pointsGained": 0.2,
       "ppgTrendReceived": 6.19,
       "ppgTrendSent": 4.26,
       "received": [
@@ -17780,7 +17794,7 @@
         "name": "Jaylen Warren",
         "position": "RB",
         "nflTeam": "PIT",
-        "pointsForNewTeam": 109.3,
+        "pointsForNewTeam": 114.2,
         "startedPointsForNewTeam_reference": 109.3,
         "ppgBefore": 13.53,
         "gamesBefore": 3,
@@ -17847,6 +17861,12 @@
          {
           "week": 10,
           "points": 9.1,
+          "status": "played",
+          "fantasyTeamId": 3
+         },
+         {
+          "week": 11,
+          "points": 4.9,
           "status": "played",
           "fantasyTeamId": 3
          }
@@ -18071,9 +18091,9 @@
        "net": -1424,
        "note": null
       },
-      "pointsReceived": 94.7,
-      "pointsSentAway": 109.3,
-      "pointsGained": -14.6,
+      "pointsReceived": 114,
+      "pointsSentAway": 114.2,
+      "pointsGained": -0.2,
       "ppgTrendReceived": 4.26,
       "ppgTrendSent": 6.19,
       "received": [
@@ -18171,7 +18191,7 @@
         "name": "Jameson Williams",
         "position": "WR",
         "nflTeam": "DET",
-        "pointsForNewTeam": 92,
+        "pointsForNewTeam": 111.3,
         "startedPointsForNewTeam_reference": 44.8,
         "ppgBefore": 7.57,
         "gamesBefore": 3,
@@ -18238,6 +18258,12 @@
          {
           "week": 10,
           "points": 9,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 11,
+          "points": 19.3,
           "status": "played",
           "fantasyTeamId": 4
          }
@@ -18445,10 +18471,10 @@
    ],
    "note": "Players moved between the week 3 and week 4 roster snapshots. The ESPN accept row maps to this trade by elimination.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 10. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 11. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. Week 11 points are the full box score from the 2026-11-24 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
     "weeksCounted": [
      4,
-     10
+     11
     ],
     "bySide": {
      "4": {
@@ -18502,12 +18528,18 @@
         "week": 10,
         "points": 6.7,
         "started": true
+       },
+       {
+        "player": "Christian Watson",
+        "week": 11,
+        "points": 0,
+        "started": false
        }
       ]
      },
      "6": {
-      "totalPointsForNewTeam": 115.6,
-      "startedPointsForNewTeam": 63.3,
+      "totalPointsForNewTeam": 134.1,
+      "startedPointsForNewTeam": 81.8,
       "weeks": [
        {
         "player": "Malik Nabers",
@@ -18550,18 +18582,24 @@
         "week": 10,
         "points": 7.4,
         "started": true
+       },
+       {
+        "player": "Malik Nabers",
+        "week": 11,
+        "points": 18.5,
+        "started": true
        }
       ]
      }
     },
-    "edgeTeamId": 4,
-    "edgePoints": 1.7,
+    "edgeTeamId": 6,
+    "edgePoints": 16.8,
     "verdict": "leaning"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 10,
-    "week8": "Week 8, week 9, and week 10 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
+    "lastFinalWeek": 11,
+    "week8": "Week 8, week 9, week 10, and week 11 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
     "weeksAfterTrade": [
      4,
      5,
@@ -18569,7 +18607,8 @@
      7,
      8,
      9,
-     10
+     10,
+     11
     ],
     "sides": {
      "4": {
@@ -18587,8 +18626,8 @@
        "note": null
       },
       "pointsReceived": 117.3,
-      "pointsSentAway": 115.6,
-      "pointsGained": 1.7,
+      "pointsSentAway": 134.1,
+      "pointsGained": -16.8,
       "ppgTrendReceived": -1.88,
       "ppgTrendSent": 17.53,
       "received": [
@@ -18755,6 +18794,12 @@
           "points": 6.7,
           "status": "played",
           "fantasyTeamId": 4
+         },
+         {
+          "week": 11,
+          "points": 0,
+          "status": "played",
+          "fantasyTeamId": 4
          }
         ],
         "zeroOrMissingWeeksAfter": [],
@@ -18881,9 +18926,9 @@
        "net": 2173,
        "note": null
       },
-      "pointsReceived": 115.6,
+      "pointsReceived": 134.1,
       "pointsSentAway": 117.3,
-      "pointsGained": -1.7,
+      "pointsGained": 16.8,
       "ppgTrendReceived": 17.53,
       "ppgTrendSent": -1.88,
       "received": [
@@ -18891,7 +18936,7 @@
         "name": "Malik Nabers",
         "position": "WR",
         "nflTeam": "NYG",
-        "pointsForNewTeam": 115.6,
+        "pointsForNewTeam": 134.1,
         "startedPointsForNewTeam_reference": 54,
         "ppgBefore": 7.2,
         "gamesBefore": 3,
@@ -18958,6 +19003,12 @@
          {
           "week": 10,
           "points": 7.4,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 11,
+          "points": 18.5,
           "status": "played",
           "fantasyTeamId": 6
          }
@@ -19239,10 +19290,10 @@
    ],
    "note": "All Heart dropped Joe Mixon on Oct 9, two days after the trade (add/drop log), so he never played a week for them.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 10. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 11. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. Week 11 points are the full box score from the 2026-11-24 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
     "weeksCounted": [
      5,
-     10
+     11
     ],
     "bySide": {
      "4": {
@@ -19289,6 +19340,12 @@
         "week": 10,
         "points": 20.9,
         "started": true
+       },
+       {
+        "player": "Blake Corum",
+        "week": 11,
+        "points": 0,
+        "started": false
        }
       ]
      }
@@ -19299,15 +19356,16 @@
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 10,
-    "week8": "Week 8, week 9, and week 10 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
+    "lastFinalWeek": 11,
+    "week8": "Week 8, week 9, week 10, and week 11 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
     "weeksAfterTrade": [
      5,
      6,
      7,
      8,
      9,
-     10
+     10,
+     11
     ],
     "sides": {
      "4": {
@@ -19600,6 +19658,12 @@
           "points": 20.9,
           "status": "played",
           "fantasyTeamId": 8
+         },
+         {
+          "week": 11,
+          "points": 0,
+          "status": "played",
+          "fantasyTeamId": 8
          }
         ],
         "zeroOrMissingWeeksAfter": [],
@@ -19836,15 +19900,15 @@
    ],
    "note": "Accepted Oct 14 and processed Oct 15, 2026 (week 6). Maye dropped KC Concepcion in the deal. He is not counted for either side.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 10. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 11. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. Week 11 points are the full box score from the 2026-11-24 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
     "weeksCounted": [
      6,
-     10
+     11
     ],
     "bySide": {
      "4": {
-      "totalPointsForNewTeam": 109.4,
-      "startedPointsForNewTeam": 86.4,
+      "totalPointsForNewTeam": 119.2,
+      "startedPointsForNewTeam": 95,
       "weeks": [
        {
         "player": "DK Metcalf",
@@ -19905,12 +19969,24 @@
         "week": 10,
         "points": 28.3,
         "started": true
+       },
+       {
+        "player": "DK Metcalf",
+        "week": 11,
+        "points": 1.2,
+        "started": false
+       },
+       {
+        "player": "Chase Brown",
+        "week": 11,
+        "points": 8.6,
+        "started": true
        }
       ]
      },
      "7": {
-      "totalPointsForNewTeam": 132.7,
-      "startedPointsForNewTeam": 107,
+      "totalPointsForNewTeam": 161.6,
+      "startedPointsForNewTeam": 135.9,
       "weeks": [
        {
         "player": "Josh Jacobs",
@@ -20001,24 +20077,43 @@
         "week": 10,
         "points": 19.4,
         "started": true
+       },
+       {
+        "player": "Josh Jacobs",
+        "week": 11,
+        "points": 0,
+        "started": false
+       },
+       {
+        "player": "Cam Skattebo",
+        "week": 11,
+        "points": 5.8,
+        "started": true
+       },
+       {
+        "player": "DJ Moore",
+        "week": 11,
+        "points": 23.1,
+        "started": true
        }
       ]
      }
     },
     "edgeTeamId": 7,
-    "edgePoints": 23.3,
+    "edgePoints": 42.4,
     "verdict": "leaning"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 10,
-    "week8": "Week 8, week 9, and week 10 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
+    "lastFinalWeek": 11,
+    "week8": "Week 8, week 9, week 10, and week 11 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
     "weeksAfterTrade": [
      6,
      7,
      8,
      9,
-     10
+     10,
+     11
     ],
     "sides": {
      "4": {
@@ -20035,9 +20130,9 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 109.4,
-      "pointsSentAway": 132.7,
-      "pointsGained": -23.3,
+      "pointsReceived": 119.2,
+      "pointsSentAway": 161.6,
+      "pointsGained": -42.4,
       "ppgTrendReceived": 10.22,
       "ppgTrendSent": 8.84,
       "received": [
@@ -20045,7 +20140,7 @@
         "name": "DK Metcalf",
         "position": "WR",
         "nflTeam": "PIT",
-        "pointsForNewTeam": 44.7,
+        "pointsForNewTeam": 45.9,
         "startedPointsForNewTeam_reference": 21.7,
         "ppgBefore": 9.72,
         "gamesBefore": 5,
@@ -20114,6 +20209,12 @@
           "points": 15.4,
           "status": "played",
           "fantasyTeamId": 4
+         },
+         {
+          "week": 11,
+          "points": 1.2,
+          "status": "played",
+          "fantasyTeamId": 4
          }
         ],
         "zeroOrMissingWeeksAfter": [],
@@ -20137,7 +20238,7 @@
         "name": "Chase Brown",
         "position": "RB",
         "nflTeam": "CIN",
-        "pointsForNewTeam": 64.7,
+        "pointsForNewTeam": 73.3,
         "startedPointsForNewTeam_reference": 54.2,
         "ppgBefore": 13.0,
         "gamesBefore": 5,
@@ -20204,6 +20305,12 @@
          {
           "week": 10,
           "points": 28.3,
+          "status": "played",
+          "fantasyTeamId": 4
+         },
+         {
+          "week": 11,
+          "points": 8.6,
           "status": "played",
           "fantasyTeamId": 4
          }
@@ -20594,9 +20701,9 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 132.7,
-      "pointsSentAway": 109.4,
-      "pointsGained": 23.3,
+      "pointsReceived": 161.6,
+      "pointsSentAway": 119.2,
+      "pointsGained": 42.4,
       "ppgTrendReceived": 8.84,
       "ppgTrendSent": 10.22,
       "received": [
@@ -20674,6 +20781,12 @@
           "points": 0,
           "status": "played",
           "fantasyTeamId": 7
+         },
+         {
+          "week": 11,
+          "points": 0,
+          "status": "played",
+          "fantasyTeamId": 7
          }
         ],
         "zeroOrMissingWeeksAfter": [
@@ -20703,7 +20816,7 @@
         "name": "Cam Skattebo",
         "position": "RB",
         "nflTeam": "NYG",
-        "pointsForNewTeam": 46.3,
+        "pointsForNewTeam": 52.1,
         "startedPointsForNewTeam_reference": 27.2,
         "ppgBefore": 10.26,
         "gamesBefore": 5,
@@ -20772,6 +20885,12 @@
           "points": 27.2,
           "status": "played",
           "fantasyTeamId": 7
+         },
+         {
+          "week": 11,
+          "points": 5.8,
+          "status": "played",
+          "fantasyTeamId": 7
          }
         ],
         "zeroOrMissingWeeksAfter": [
@@ -20801,7 +20920,7 @@
         "name": "DJ Moore",
         "position": "WR",
         "nflTeam": "BUF",
-        "pointsForNewTeam": 42.6,
+        "pointsForNewTeam": 65.7,
         "startedPointsForNewTeam_reference": 36,
         "ppgBefore": 9.07,
         "gamesBefore": 4,
@@ -20868,6 +20987,12 @@
          {
           "week": 10,
           "points": 19.4,
+          "status": "played",
+          "fantasyTeamId": 7
+         },
+         {
+          "week": 11,
+          "points": 23.1,
           "status": "played",
           "fantasyTeamId": 7
          }
@@ -21258,15 +21383,15 @@
    ],
    "note": "Accepted Oct 19. This is a counter version of Smert Fellas' Aaron Jones and DeVonta Smith offer. Chewy's logged a veto vote that day.",
    "whoWonIt": {
-    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 10. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
+    "basis": "All fantasy points (started or benched) that received players scored while rostered by the new team, from the first week after the trade through week 11. Week 9 points are the full box score from the 2026-11-10 pull. Week 10 points are the full box score from the 2026-11-17 pull. Week 11 points are the full box score from the 2026-11-24 pull. startedPointsForNewTeam is reference only and is not used for grading. Per-game rates and the long-term value verdict were not recomputed.",
     "weeksCounted": [
      7,
-     10
+     11
     ],
     "bySide": {
      "6": {
-      "totalPointsForNewTeam": 51.9,
-      "startedPointsForNewTeam": 51.9,
+      "totalPointsForNewTeam": 61,
+      "startedPointsForNewTeam": 61,
       "weeks": [
        {
         "player": "DeVonta Smith",
@@ -21315,12 +21440,24 @@
         "week": 10,
         "points": 16.1,
         "started": true
+       },
+       {
+        "player": "DeVonta Smith",
+        "week": 11,
+        "points": 9.1,
+        "started": true
+       },
+       {
+        "player": "Quinshon Judkins",
+        "week": 11,
+        "points": 0,
+        "started": false
        }
       ]
      },
      "8": {
-      "totalPointsForNewTeam": 100.5,
-      "startedPointsForNewTeam": 57,
+      "totalPointsForNewTeam": 131.2,
+      "startedPointsForNewTeam": 87.7,
       "weeks": [
        {
         "player": "George Pickens",
@@ -21369,23 +21506,36 @@
         "week": 10,
         "points": 15.6,
         "started": true
+       },
+       {
+        "player": "George Pickens",
+        "week": 11,
+        "points": 23.8,
+        "started": true
+       },
+       {
+        "player": "Garrett Wilson",
+        "week": 11,
+        "points": 6.9,
+        "started": true
        }
       ]
      }
     },
     "edgeTeamId": 8,
-    "edgePoints": 48.6,
+    "edgePoints": 70.2,
     "verdict": "too early"
    },
    "longTermGrade": {
     "asOf": "2026-10-29T02:14-04:00",
-    "lastFinalWeek": 10,
-    "week8": "Week 8, week 9, and week 10 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
+    "lastFinalWeek": 11,
+    "week8": "Week 8, week 9, week 10, and week 11 box-score points are on each received player's weeksAfter and on whoWonIt. Per-game rates, FantasyCalc values, and the value verdict were not recomputed. pointsGained was recomputed from the two sides' total points for the new team.",
     "weeksAfterTrade": [
      7,
      8,
      9,
-     10
+     10,
+     11
     ],
     "sides": {
      "6": {
@@ -21402,9 +21552,9 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 51.9,
-      "pointsSentAway": 100.5,
-      "pointsGained": -48.6,
+      "pointsReceived": 61,
+      "pointsSentAway": 131.2,
+      "pointsGained": -70.2,
       "ppgTrendReceived": 12.14,
       "ppgTrendSent": -9.13,
       "received": [
@@ -21412,7 +21562,7 @@
         "name": "DeVonta Smith",
         "position": "WR",
         "nflTeam": "PHI",
-        "pointsForNewTeam": 0.0,
+        "pointsForNewTeam": 9.1,
         "startedPointsForNewTeam_reference": 0,
         "ppgBefore": 17.25,
         "gamesBefore": 4,
@@ -21479,6 +21629,12 @@
          {
           "week": 10,
           "points": 0,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 11,
+          "points": 9.1,
           "status": "played",
           "fantasyTeamId": 6
          }
@@ -21577,6 +21733,12 @@
          {
           "week": 10,
           "points": 16.1,
+          "status": "played",
+          "fantasyTeamId": 6
+         },
+         {
+          "week": 11,
+          "points": 0,
           "status": "played",
           "fantasyTeamId": 6
          }
@@ -21779,9 +21941,9 @@
        "net": null,
        "note": "No FantasyCalc value at the trade date (see valueAtTradeBasis). ppgTrend is the trend signal instead."
       },
-      "pointsReceived": 100.5,
-      "pointsSentAway": 51.9,
-      "pointsGained": 48.6,
+      "pointsReceived": 131.2,
+      "pointsSentAway": 61,
+      "pointsGained": 70.2,
       "ppgTrendReceived": -9.13,
       "ppgTrendSent": 12.14,
       "received": [
@@ -21789,7 +21951,7 @@
         "name": "George Pickens",
         "position": "WR",
         "nflTeam": "DAL",
-        "pointsForNewTeam": 66,
+        "pointsForNewTeam": 89.8,
         "startedPointsForNewTeam_reference": 22.5,
         "ppgBefore": 13.63,
         "gamesBefore": 6,
@@ -21858,6 +22020,12 @@
           "points": 43.5,
           "status": "played",
           "fantasyTeamId": 8
+         },
+         {
+          "week": 11,
+          "points": 23.8,
+          "status": "played",
+          "fantasyTeamId": 8
          }
         ],
         "zeroOrMissingWeeksAfter": [],
@@ -21881,7 +22049,7 @@
         "name": "Garrett Wilson",
         "position": "WR",
         "nflTeam": "NYJ",
-        "pointsForNewTeam": 34.5,
+        "pointsForNewTeam": 41.4,
         "startedPointsForNewTeam_reference": 34.5,
         "ppgBefore": 15.8,
         "gamesBefore": 6,
@@ -21948,6 +22116,12 @@
          {
           "week": 10,
           "points": 15.6,
+          "status": "played",
+          "fantasyTeamId": 8
+         },
+         {
+          "week": 11,
+          "points": 6.9,
           "status": "played",
           "fantasyTeamId": 8
          }

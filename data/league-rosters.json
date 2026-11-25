@@ -7,17 +7,17 @@
       "slot": "WR",
       "team": "CIN",
       "inj": null,
-      "own": 99.93,
+      "own": 99.73,
       "gp": 10
     },
     {
       "id": "4432665",
       "name": "Brock Bowers",
       "pos": "TE",
-      "slot": "Bench",
+      "slot": "TE",
       "team": "LV",
-      "inj": "Out",
-      "own": 99.83,
+      "inj": "Questionable",
+      "own": 99.64,
       "gp": 8
     },
     {
@@ -27,18 +27,8 @@
       "slot": "WR",
       "team": "DET",
       "inj": null,
-      "own": 99.93,
+      "own": 99.8,
       "gp": 10
-    },
-    {
-      "id": "4239996",
-      "name": "Travis Etienne Jr.",
-      "pos": "RB",
-      "slot": "RB",
-      "team": "NO",
-      "inj": null,
-      "own": 85.62,
-      "gp": 5
     },
     {
       "id": "4685278",
@@ -47,7 +37,7 @@
       "slot": "FLEX",
       "team": "CHI",
       "inj": null,
-      "own": 94.69,
+      "own": 94.49,
       "gp": 10
     },
     {
@@ -57,8 +47,18 @@
       "slot": "QB",
       "team": "JAX",
       "inj": null,
-      "own": 94.76,
+      "own": 94.6,
       "gp": 10
+    },
+    {
+      "id": "4426385",
+      "name": "Zach Charbonnet",
+      "pos": "RB",
+      "slot": "RB",
+      "team": "SEA",
+      "inj": null,
+      "own": 80.2,
+      "gp": 3
     },
     {
       "id": "-16023",
@@ -67,7 +67,7 @@
       "slot": "D/ST",
       "team": "PIT",
       "inj": null,
-      "own": 95.05,
+      "own": 94.86,
       "gp": 10
     },
     {
@@ -77,7 +77,7 @@
       "slot": "K",
       "team": "MIN",
       "inj": null,
-      "own": 90.68,
+      "own": 90.51,
       "gp": 10
     },
     {
@@ -87,8 +87,18 @@
       "slot": "RB",
       "team": "DEN",
       "inj": null,
-      "own": 90.59,
+      "own": 90.56,
       "gp": 6
+    },
+    {
+      "id": "4239996",
+      "name": "Travis Etienne Jr.",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "NO",
+      "inj": null,
+      "own": 85.52,
+      "gp": 5
     },
     {
       "id": "4426348",
@@ -97,18 +107,8 @@
       "slot": "Bench",
       "team": "WSH",
       "inj": null,
-      "own": 94.87,
+      "own": 94.75,
       "gp": 8
-    },
-    {
-      "id": "4426385",
-      "name": "Zach Charbonnet",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "SEA",
-      "inj": null,
-      "own": 80.3,
-      "gp": 3
     },
     {
       "id": "3054850",
@@ -117,7 +117,7 @@
       "slot": "Bench",
       "team": "NO",
       "inj": null,
-      "own": 61.92,
+      "own": 61.8,
       "gp": 9
     },
     {
@@ -127,7 +127,7 @@
       "slot": "Bench",
       "team": "SF",
       "inj": null,
-      "own": 51.71,
+      "own": 51.61,
       "gp": 10
     },
     {
@@ -137,7 +137,7 @@
       "slot": "Bench",
       "team": "HOU",
       "inj": null,
-      "own": 60.63,
+      "own": 60.47,
       "gp": 4
     },
     {
@@ -147,17 +147,17 @@
       "slot": "Bench",
       "team": "MIN",
       "inj": null,
-      "own": 56.55,
+      "own": 56.48,
       "gp": 6
     },
     {
       "id": "4429086",
       "name": "Michael Mayer",
       "pos": "TE",
-      "slot": "TE",
+      "slot": "Bench",
       "team": "LV",
       "inj": null,
-      "own": 36.81,
+      "own": 36.36,
       "gp": 11
     }
   ],
@@ -169,7 +169,7 @@
       "slot": "RB",
       "team": "DET",
       "inj": null,
-      "own": 99.95,
+      "own": 99.89,
       "gp": 10
     },
     {
@@ -179,7 +179,7 @@
       "slot": "WR",
       "team": "HOU",
       "inj": null,
-      "own": 99.11,
+      "own": 98.99,
       "gp": 8
     },
     {
@@ -189,7 +189,7 @@
       "slot": "FLEX",
       "team": "CHI",
       "inj": null,
-      "own": 87.74,
+      "own": 87.62,
       "gp": 10
     },
     {
@@ -199,7 +199,7 @@
       "slot": "TE",
       "team": "IND",
       "inj": null,
-      "own": 94.45,
+      "own": 94.29,
       "gp": 9
     },
     {
@@ -209,7 +209,7 @@
       "slot": "WR",
       "team": "KC",
       "inj": null,
-      "own": 77.88,
+      "own": 77.78,
       "gp": 11
     },
     {
@@ -219,7 +219,7 @@
       "slot": "K",
       "team": "PIT",
       "inj": null,
-      "own": 63.46,
+      "own": 63.4,
       "gp": 10
     },
     {
@@ -229,7 +229,7 @@
       "slot": "QB",
       "team": "LV",
       "inj": null,
-      "own": 22.27,
+      "own": 22.28,
       "gp": 5
     },
     {
@@ -239,7 +239,7 @@
       "slot": "D/ST",
       "team": "CHI",
       "inj": null,
-      "own": 66.66,
+      "own": 66.49,
       "gp": 10
     },
     {
@@ -249,7 +249,7 @@
       "slot": "RB",
       "team": "HOU",
       "inj": null,
-      "own": 12.66,
+      "own": 12.39,
       "gp": 5
     },
     {
@@ -259,7 +259,7 @@
       "slot": "Bench",
       "team": "ATL",
       "inj": null,
-      "own": 99.87,
+      "own": 99.71,
       "gp": 10
     },
     {
@@ -269,7 +269,7 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": null,
-      "own": 98.46,
+      "own": 98.31,
       "gp": 10
     },
     {
@@ -279,7 +279,7 @@
       "slot": "Bench",
       "team": "LAC",
       "inj": null,
-      "own": 79.49,
+      "own": 79.45,
       "gp": 7
     },
     {
@@ -289,7 +289,7 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": null,
-      "own": 83.58,
+      "own": 83.48,
       "gp": 10
     },
     {
@@ -299,7 +299,7 @@
       "slot": "Bench",
       "team": "DEN",
       "inj": null,
-      "own": 63.46,
+      "own": 63.26,
       "gp": 10
     },
     {
@@ -309,7 +309,7 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": null,
-      "own": 71.47,
+      "own": 71.38,
       "gp": 10
     },
     {
@@ -318,8 +318,8 @@
       "pos": "WR",
       "slot": "Bench",
       "team": "HOU",
-      "inj": "Out",
-      "own": 48.73,
+      "inj": "Questionable",
+      "own": 48.68,
       "gp": 7
     },
     {
@@ -327,13 +327,32 @@
       "name": "Brandon Aiyuk",
       "pos": "WR",
       "slot": "IR",
-      "team": "SF",
+      "team": "FA",
       "inj": null,
-      "own": 6.82,
-      "gp": null
+      "own": 6.72
     }
   ],
   "3": [
+    {
+      "id": "4430878",
+      "name": "Jaxon Smith-Njigba",
+      "pos": "WR",
+      "slot": "WR",
+      "team": "SEA",
+      "inj": null,
+      "own": 99.71,
+      "gp": 10
+    },
+    {
+      "id": "4567048",
+      "name": "Kenneth Walker III",
+      "pos": "RB",
+      "slot": "RB",
+      "team": "KC",
+      "inj": "Questionable",
+      "own": 99.7,
+      "gp": 8
+    },
     {
       "id": "4685472",
       "name": "Tetairoa McMillan",
@@ -341,7 +360,17 @@
       "slot": "WR",
       "team": "CAR",
       "inj": null,
-      "own": 98.23,
+      "own": 98.14,
+      "gp": 10
+    },
+    {
+      "id": "4430027",
+      "name": "Sam LaPorta",
+      "pos": "TE",
+      "slot": "TE",
+      "team": "DET",
+      "inj": "Questionable",
+      "own": 95.25,
       "gp": 10
     },
     {
@@ -351,17 +380,7 @@
       "slot": "K",
       "team": "HOU",
       "inj": null,
-      "own": 89.14,
-      "gp": 10
-    },
-    {
-      "id": "4832955",
-      "name": "Emmett Johnson",
-      "pos": "RB",
-      "slot": "RB",
-      "team": "KC",
-      "inj": null,
-      "own": 91.06,
+      "own": 89,
       "gp": 10
     },
     {
@@ -371,17 +390,27 @@
       "slot": "RB",
       "team": "PIT",
       "inj": null,
-      "own": 96.29,
+      "own": 96.1,
+      "gp": 10
+    },
+    {
+      "id": "-16016",
+      "name": "Vikings D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "team": "MIN",
+      "inj": null,
+      "own": 86.95,
       "gp": 10
     },
     {
       "id": "4880281",
       "name": "Jordyn Tyson",
       "pos": "WR",
-      "slot": "WR",
+      "slot": "FLEX",
       "team": "NO",
       "inj": null,
-      "own": 72.38,
+      "own": 72.19,
       "gp": 3
     },
     {
@@ -391,78 +420,18 @@
       "slot": "QB",
       "team": "HOU",
       "inj": null,
-      "own": 86,
+      "own": 85.89,
       "gp": 10
-    },
-    {
-      "id": "-16007",
-      "name": "Broncos D/ST",
-      "pos": "D/ST",
-      "slot": "D/ST",
-      "team": "DEN",
-      "inj": null,
-      "own": 85.55,
-      "gp": 10
-    },
-    {
-      "id": "4360635",
-      "name": "Chig Okonkwo",
-      "pos": "TE",
-      "slot": "Bench",
-      "team": "WSH",
-      "inj": null,
-      "own": 61.07,
-      "gp": 8
-    },
-    {
-      "id": "4597500",
-      "name": "Adonai Mitchell",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "NYJ",
-      "inj": null,
-      "own": 48.25,
-      "gp": 7
-    },
-    {
-      "id": "4430878",
-      "name": "Jaxon Smith-Njigba",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "SEA",
-      "inj": null,
-      "own": 99.9,
-      "gp": 10
-    },
-    {
-      "id": "4567048",
-      "name": "Kenneth Walker III",
-      "pos": "RB",
-      "slot": "Bench",
-      "team": "KC",
-      "inj": "Out",
-      "own": 99.86,
-      "gp": 8
     },
     {
       "id": "4567750",
       "name": "Emeka Egbuka",
       "pos": "WR",
-      "slot": "FLEX",
+      "slot": "Bench",
       "team": "TB",
       "inj": null,
-      "own": 91.74,
+      "own": 91.62,
       "gp": 8
-    },
-    {
-      "id": "4430027",
-      "name": "Sam LaPorta",
-      "pos": "TE",
-      "slot": "TE",
-      "team": "DET",
-      "inj": "Questionable",
-      "own": 95.36,
-      "gp": 10
     },
     {
       "id": "4608686",
@@ -471,7 +440,7 @@
       "slot": "Bench",
       "team": "CHI",
       "inj": null,
-      "own": 76.56,
+      "own": 76.4,
       "gp": 5
     },
     {
@@ -481,18 +450,48 @@
       "slot": "Bench",
       "team": "PHI",
       "inj": "Questionable",
-      "own": 74.71,
+      "own": 74.59,
       "gp": 8
     },
     {
-      "id": "-16016",
-      "name": "Vikings D/ST",
+      "id": "4832955",
+      "name": "Emmett Johnson",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "KC",
+      "inj": null,
+      "own": 90.98,
+      "gp": 10
+    },
+    {
+      "id": "-16007",
+      "name": "Broncos D/ST",
       "pos": "D/ST",
       "slot": "Bench",
-      "team": "MIN",
+      "team": "DEN",
       "inj": null,
-      "own": 87.12,
+      "own": 85.46,
       "gp": 10
+    },
+    {
+      "id": "4360635",
+      "name": "Chig Okonkwo",
+      "pos": "TE",
+      "slot": "Bench",
+      "team": "WSH",
+      "inj": null,
+      "own": 60.96,
+      "gp": 8
+    },
+    {
+      "id": "4597500",
+      "name": "Adonai Mitchell",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "NYJ",
+      "inj": null,
+      "own": 48.13,
+      "gp": 7
     },
     {
       "id": "4429160",
@@ -501,7 +500,7 @@
       "slot": "IR",
       "team": "MIA",
       "inj": "IR",
-      "own": 26.39,
+      "own": 26.38,
       "gp": 3
     }
   ],
@@ -513,17 +512,27 @@
       "slot": "RB",
       "team": "SF",
       "inj": null,
-      "own": 99.93,
+      "own": 99.78,
       "gp": 10
     },
     {
       "id": "4361370",
       "name": "Chris Olave",
       "pos": "WR",
-      "slot": "WR",
+      "slot": "FLEX",
       "team": "NO",
       "inj": null,
-      "own": 99.23,
+      "own": 99.14,
+      "gp": 10
+    },
+    {
+      "id": "15847",
+      "name": "Travis Kelce",
+      "pos": "TE",
+      "slot": "TE",
+      "team": "KC",
+      "inj": null,
+      "own": 94.33,
       "gp": 10
     },
     {
@@ -533,7 +542,7 @@
       "slot": "K",
       "team": "DAL",
       "inj": null,
-      "own": 98.48,
+      "own": 98.37,
       "gp": 11
     },
     {
@@ -543,7 +552,7 @@
       "slot": "QB",
       "team": "KC",
       "inj": null,
-      "own": 95.47,
+      "own": 95.38,
       "gp": 10
     },
     {
@@ -553,18 +562,18 @@
       "slot": "WR",
       "team": "DET",
       "inj": null,
-      "own": 93.03,
+      "own": 92.94,
       "gp": 10
     },
     {
-      "id": "4036133",
-      "name": "T.J. Hockenson",
-      "pos": "TE",
-      "slot": "FLEX",
-      "team": "MIN",
+      "id": "4248528",
+      "name": "Christian Watson",
+      "pos": "WR",
+      "slot": "WR",
+      "team": "GB",
       "inj": null,
-      "own": 85.17,
-      "gp": 9
+      "own": 97.01,
+      "gp": 10
     },
     {
       "id": "4362238",
@@ -573,48 +582,28 @@
       "slot": "RB",
       "team": "CIN",
       "inj": null,
-      "own": 98.64,
+      "own": 98.47,
       "gp": 10
     },
     {
-      "id": "-16012",
-      "name": "Chiefs D/ST",
+      "id": "-16027",
+      "name": "Buccaneers D/ST",
       "pos": "D/ST",
       "slot": "D/ST",
-      "team": "KC",
+      "team": "TB",
       "inj": null,
-      "own": 86.5,
+      "own": 35.83,
       "gp": 10
     },
     {
-      "id": "3117256",
-      "name": "Dalton Schultz",
-      "pos": "TE",
-      "slot": "TE",
-      "team": "HOU",
-      "inj": null,
-      "own": 32.11,
-      "gp": 10
-    },
-    {
-      "id": "15847",
-      "name": "Travis Kelce",
+      "id": "4036133",
+      "name": "T.J. Hockenson",
       "pos": "TE",
       "slot": "Bench",
-      "team": "KC",
+      "team": "MIN",
       "inj": null,
-      "own": 94.38,
-      "gp": 10
-    },
-    {
-      "id": "4248528",
-      "name": "Christian Watson",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "GB",
-      "inj": null,
-      "own": 97.16,
-      "gp": 10
+      "own": 85.06,
+      "gp": 9
     },
     {
       "id": "4047650",
@@ -623,7 +612,7 @@
       "slot": "Bench",
       "team": "PIT",
       "inj": null,
-      "own": 88.44,
+      "own": 88.2,
       "gp": 10
     },
     {
@@ -633,7 +622,7 @@
       "slot": "Bench",
       "team": "SF",
       "inj": null,
-      "own": 37.97,
+      "own": 37.9,
       "gp": 10
     },
     {
@@ -643,7 +632,7 @@
       "slot": "Bench",
       "team": "MIN",
       "inj": null,
-      "own": 67.8,
+      "own": 67.71,
       "gp": 11
     },
     {
@@ -653,17 +642,27 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": null,
-      "own": 10.02,
+      "own": 10.06,
       "gp": 10
     },
     {
-      "id": "-16027",
-      "name": "Buccaneers D/ST",
+      "id": "-16012",
+      "name": "Chiefs D/ST",
       "pos": "D/ST",
       "slot": "Bench",
-      "team": "TB",
+      "team": "KC",
       "inj": null,
-      "own": 35.89,
+      "own": 86.16,
+      "gp": 10
+    },
+    {
+      "id": "3117256",
+      "name": "Dalton Schultz",
+      "pos": "TE",
+      "slot": "Bench",
+      "team": "HOU",
+      "inj": null,
+      "own": 31.99,
       "gp": 10
     },
     {
@@ -672,8 +671,8 @@
       "pos": "WR",
       "slot": "IR",
       "team": "MIN",
-      "inj": "Out",
-      "own": 63.65,
+      "inj": "Doubtful",
+      "own": 63.57,
       "gp": 7
     }
   ],
@@ -685,7 +684,17 @@
       "slot": "QB",
       "team": "BUF",
       "inj": null,
-      "own": 99.93,
+      "own": 99.73,
+      "gp": 10
+    },
+    {
+      "id": "4426502",
+      "name": "Drake London",
+      "pos": "WR",
+      "slot": "FLEX",
+      "team": "ATL",
+      "inj": null,
+      "own": 98.8,
       "gp": 10
     },
     {
@@ -695,7 +704,7 @@
       "slot": "RB",
       "team": "BAL",
       "inj": null,
-      "own": 99.58,
+      "own": 99.49,
       "gp": 11
     },
     {
@@ -705,7 +714,7 @@
       "slot": "RB",
       "team": "DAL",
       "inj": null,
-      "own": 99.46,
+      "own": 99.38,
       "gp": 11
     },
     {
@@ -715,7 +724,7 @@
       "slot": "WR",
       "team": "CIN",
       "inj": null,
-      "own": 99.04,
+      "own": 98.9,
       "gp": 10
     },
     {
@@ -725,28 +734,8 @@
       "slot": "WR",
       "team": "JAX",
       "inj": null,
-      "own": 97.03,
+      "own": 96.94,
       "gp": 10
-    },
-    {
-      "id": "2976212",
-      "name": "Stefon Diggs",
-      "pos": "WR",
-      "slot": "FLEX",
-      "team": "WSH",
-      "inj": null,
-      "own": 88.97,
-      "gp": 9
-    },
-    {
-      "id": "4385690",
-      "name": "Dalton Kincaid",
-      "pos": "TE",
-      "slot": "Bench",
-      "team": "BUF",
-      "inj": "Out",
-      "own": 74.37,
-      "gp": 9
     },
     {
       "id": "-16030",
@@ -755,7 +744,7 @@
       "slot": "D/ST",
       "team": "JAX",
       "inj": null,
-      "own": 89.51,
+      "own": 89.36,
       "gp": 10
     },
     {
@@ -765,17 +754,17 @@
       "slot": "K",
       "team": "DET",
       "inj": null,
-      "own": 53.16,
+      "own": 53.1,
       "gp": 10
     },
     {
-      "id": "4426502",
-      "name": "Drake London",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "ATL",
+      "id": "3116164",
+      "name": "Mike Gesicki",
+      "pos": "TE",
+      "slot": "TE",
+      "team": "CIN",
       "inj": null,
-      "own": 98.96,
+      "own": 30.77,
       "gp": 10
     },
     {
@@ -785,7 +774,7 @@
       "slot": "Bench",
       "team": "DEN",
       "inj": null,
-      "own": 67.44,
+      "own": 67.21,
       "gp": 10
     },
     {
@@ -795,8 +784,18 @@
       "slot": "Bench",
       "team": "NE",
       "inj": null,
-      "own": 87.87,
+      "own": 87.77,
       "gp": 10
+    },
+    {
+      "id": "2976212",
+      "name": "Stefon Diggs",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "WSH",
+      "inj": null,
+      "own": 88.83,
+      "gp": 9
     },
     {
       "id": "4870795",
@@ -805,8 +804,18 @@
       "slot": "Bench",
       "team": "PHI",
       "inj": null,
-      "own": 44.45,
+      "own": 44.36,
       "gp": 10
+    },
+    {
+      "id": "4385690",
+      "name": "Dalton Kincaid",
+      "pos": "TE",
+      "slot": "Bench",
+      "team": "BUF",
+      "inj": "Questionable",
+      "own": 74.26,
+      "gp": 9
     },
     {
       "id": "4428718",
@@ -815,7 +824,7 @@
       "slot": "Bench",
       "team": "LV",
       "inj": null,
-      "own": 51.51,
+      "own": 51.42,
       "gp": 11
     },
     {
@@ -825,18 +834,8 @@
       "slot": "Bench",
       "team": "ARI",
       "inj": null,
-      "own": 54.97,
+      "own": 54.86,
       "gp": 11
-    },
-    {
-      "id": "3116164",
-      "name": "Mike Gesicki",
-      "pos": "TE",
-      "slot": "TE",
-      "team": "CIN",
-      "inj": null,
-      "own": 30.82,
-      "gp": 10
     }
   ],
   "6": [
@@ -847,7 +846,7 @@
       "slot": "WR",
       "team": "DAL",
       "inj": null,
-      "own": 99.93,
+      "own": 99.88,
       "gp": 11
     },
     {
@@ -857,7 +856,7 @@
       "slot": "RB",
       "team": "CHI",
       "inj": null,
-      "own": 97.62,
+      "own": 97.49,
       "gp": 10
     },
     {
@@ -867,7 +866,7 @@
       "slot": "RB",
       "team": "HOU",
       "inj": null,
-      "own": 85.9,
+      "own": 85.82,
       "gp": 6
     },
     {
@@ -877,7 +876,7 @@
       "slot": "QB",
       "team": "DAL",
       "inj": null,
-      "own": 95.16,
+      "own": 95.1,
       "gp": 11
     },
     {
@@ -887,7 +886,7 @@
       "slot": "TE",
       "team": "BAL",
       "inj": null,
-      "own": 64.47,
+      "own": 64.22,
       "gp": 11
     },
     {
@@ -897,7 +896,7 @@
       "slot": "WR",
       "team": "NYG",
       "inj": null,
-      "own": 99.41,
+      "own": 99.32,
       "gp": 10
     },
     {
@@ -907,7 +906,7 @@
       "slot": "FLEX",
       "team": "PHI",
       "inj": null,
-      "own": 95.05,
+      "own": 94.93,
       "gp": 5
     },
     {
@@ -917,8 +916,18 @@
       "slot": "D/ST",
       "team": "IND",
       "inj": null,
-      "own": 11.37,
+      "own": 11.34,
       "gp": 11
+    },
+    {
+      "id": "4686361",
+      "name": "Cam Little",
+      "pos": "K",
+      "slot": "K",
+      "team": "JAX",
+      "inj": null,
+      "own": 87.37,
+      "gp": 10
     },
     {
       "id": "4685382",
@@ -927,7 +936,7 @@
       "slot": "Bench",
       "team": "LAC",
       "inj": null,
-      "own": 91.78,
+      "own": 91.65,
       "gp": 10
     },
     {
@@ -937,7 +946,7 @@
       "slot": "Bench",
       "team": "ATL",
       "inj": null,
-      "own": 72.71,
+      "own": 72.62,
       "gp": 10
     },
     {
@@ -946,8 +955,8 @@
       "pos": "RB",
       "slot": "Bench",
       "team": "HOU",
-      "inj": "Out",
-      "own": 68.39,
+      "inj": "Questionable",
+      "own": 68.26,
       "gp": 9
     },
     {
@@ -957,7 +966,7 @@
       "slot": "Bench",
       "team": "CLE",
       "inj": null,
-      "own": 91.98,
+      "own": 91.86,
       "gp": 9
     },
     {
@@ -967,7 +976,7 @@
       "slot": "Bench",
       "team": "CLE",
       "inj": null,
-      "own": 65.16,
+      "own": 65.07,
       "gp": 10
     },
     {
@@ -977,17 +986,7 @@
       "slot": "Bench",
       "team": "BUF",
       "inj": null,
-      "own": 63.3,
-      "gp": 10
-    },
-    {
-      "id": "4686361",
-      "name": "Cam Little",
-      "pos": "K",
-      "slot": "K",
-      "team": "JAX",
-      "inj": null,
-      "own": 87.46,
+      "own": 63.25,
       "gp": 10
     },
     {
@@ -997,21 +996,11 @@
       "slot": "Bench",
       "team": "NYJ",
       "inj": null,
-      "own": 67.65,
+      "own": 67.58,
       "gp": 11
     }
   ],
   "7": [
-    {
-      "id": "3916148",
-      "name": "Tony Pollard",
-      "pos": "RB",
-      "slot": "RB",
-      "team": "TEN",
-      "inj": null,
-      "own": 93.3,
-      "gp": 10
-    },
     {
       "id": "4361050",
       "name": "Isaiah Likely",
@@ -1019,7 +1008,27 @@
       "slot": "TE",
       "team": "NYG",
       "inj": null,
-      "own": 97.26,
+      "own": 97.07,
+      "gp": 10
+    },
+    {
+      "id": "4701936",
+      "name": "Matthew Golden",
+      "pos": "WR",
+      "slot": "WR",
+      "team": "GB",
+      "inj": null,
+      "own": 96.48,
+      "gp": 10
+    },
+    {
+      "id": "4832800",
+      "name": "Denzel Boston",
+      "pos": "WR",
+      "slot": "WR",
+      "team": "CLE",
+      "inj": null,
+      "own": 72.93,
       "gp": 10
     },
     {
@@ -1029,27 +1038,27 @@
       "slot": "RB",
       "team": "MIA",
       "inj": null,
-      "own": 89.75,
+      "own": 89.62,
       "gp": 10
     },
     {
       "id": "4696981",
       "name": "Cam Skattebo",
       "pos": "RB",
-      "slot": "FLEX",
+      "slot": "RB",
       "team": "NYG",
       "inj": null,
-      "own": 94.87,
+      "own": 94.72,
       "gp": 9
     },
     {
       "id": "3915416",
       "name": "DJ Moore",
       "pos": "WR",
-      "slot": "WR",
+      "slot": "FLEX",
       "team": "BUF",
       "inj": null,
-      "own": 93.84,
+      "own": 93.78,
       "gp": 8
     },
     {
@@ -1059,7 +1068,7 @@
       "slot": "K",
       "team": "LV",
       "inj": null,
-      "own": 34.19,
+      "own": 34.15,
       "gp": 11
     },
     {
@@ -1069,7 +1078,7 @@
       "slot": "D/ST",
       "team": "BUF",
       "inj": null,
-      "own": 81.22,
+      "own": 80.88,
       "gp": 10
     },
     {
@@ -1079,18 +1088,8 @@
       "slot": "QB",
       "team": "DEN",
       "inj": null,
-      "own": 79.71,
+      "own": 79.45,
       "gp": 10
-    },
-    {
-      "id": "5083754",
-      "name": "Ryan Flournoy",
-      "pos": "WR",
-      "slot": "WR",
-      "team": "DAL",
-      "inj": null,
-      "own": 44.29,
-      "gp": 11
     },
     {
       "id": "4047646",
@@ -1099,7 +1098,7 @@
       "slot": "Bench",
       "team": "NE",
       "inj": "Doubtful",
-      "own": 83.05,
+      "own": 82.92,
       "gp": 4
     },
     {
@@ -1109,7 +1108,7 @@
       "slot": "Bench",
       "team": "SEA",
       "inj": null,
-      "own": 76.4,
+      "own": 76.3,
       "gp": 7
     },
     {
@@ -1119,7 +1118,7 @@
       "slot": "Bench",
       "team": "NE",
       "inj": "Out",
-      "own": 80.34,
+      "own": 80.13,
       "gp": 10
     },
     {
@@ -1129,27 +1128,17 @@
       "slot": "Bench",
       "team": "CLE",
       "inj": null,
-      "own": 88.98,
+      "own": 88.86,
       "gp": 10
     },
     {
-      "id": "4701936",
-      "name": "Matthew Golden",
-      "pos": "WR",
+      "id": "3916148",
+      "name": "Tony Pollard",
+      "pos": "RB",
       "slot": "Bench",
-      "team": "GB",
+      "team": "TEN",
       "inj": null,
-      "own": 96.63,
-      "gp": 10
-    },
-    {
-      "id": "4832800",
-      "name": "Denzel Boston",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "CLE",
-      "inj": null,
-      "own": 73.02,
+      "own": 93.15,
       "gp": 10
     },
     {
@@ -1158,9 +1147,19 @@
       "pos": "RB",
       "slot": "Bench",
       "team": "GB",
-      "inj": "Out",
-      "own": 89.96,
+      "inj": "Questionable",
+      "own": 89.87,
       "gp": 3
+    },
+    {
+      "id": "5083754",
+      "name": "Ryan Flournoy",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "DAL",
+      "inj": null,
+      "own": 44.12,
+      "gp": 11
     },
     {
       "id": "4426515",
@@ -1169,30 +1168,30 @@
       "slot": "IR",
       "team": "LAR",
       "inj": "IR",
-      "own": 84.97,
+      "own": 84.41,
       "gp": 7
     }
   ],
   "8": [
     {
+      "id": "3929630",
+      "name": "Saquon Barkley",
+      "pos": "RB",
+      "slot": "RB",
+      "team": "PHI",
+      "inj": "Questionable",
+      "own": 96.53,
+      "gp": 8
+    },
+    {
       "id": "4429615",
       "name": "Zay Flowers",
       "pos": "WR",
-      "slot": "FLEX",
+      "slot": "WR",
       "team": "BAL",
       "inj": null,
-      "own": 98.68,
+      "own": 98.58,
       "gp": 10
-    },
-    {
-      "id": "4427366",
-      "name": "Breece Hall",
-      "pos": "RB",
-      "slot": "RB",
-      "team": "NYJ",
-      "inj": null,
-      "own": 95.64,
-      "gp": 6
     },
     {
       "id": "4596448",
@@ -1201,7 +1200,7 @@
       "slot": "RB",
       "team": "TB",
       "inj": null,
-      "own": 98.02,
+      "own": 97.93,
       "gp": 10
     },
     {
@@ -1211,27 +1210,17 @@
       "slot": "TE",
       "team": "SF",
       "inj": null,
-      "own": 98.87,
+      "own": 98.79,
       "gp": 10
     },
     {
-      "id": "-16025",
-      "name": "49ers D/ST",
-      "pos": "D/ST",
-      "slot": "D/ST",
-      "team": "SF",
-      "inj": null,
-      "own": 49.39,
-      "gp": 10
-    },
-    {
-      "id": "4685720",
-      "name": "Bryce Young",
+      "id": "3046779",
+      "name": "Jared Goff",
       "pos": "QB",
       "slot": "QB",
-      "team": "CAR",
+      "team": "DET",
       "inj": null,
-      "own": 76.92,
+      "own": 87.86,
       "gp": 10
     },
     {
@@ -1241,17 +1230,27 @@
       "slot": "WR",
       "team": "DAL",
       "inj": null,
-      "own": 99.09,
+      "own": 99.02,
       "gp": 10
     },
     {
       "id": "4569618",
       "name": "Garrett Wilson",
       "pos": "WR",
-      "slot": "WR",
+      "slot": "FLEX",
       "team": "NYJ",
       "inj": null,
-      "own": 97.88,
+      "own": 97.71,
+      "gp": 10
+    },
+    {
+      "id": "-16028",
+      "name": "Commanders D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "team": "WSH",
+      "inj": null,
+      "own": 15.72,
       "gp": 10
     },
     {
@@ -1261,18 +1260,18 @@
       "slot": "K",
       "team": "BUF",
       "inj": null,
-      "own": 86,
+      "own": 85.95,
       "gp": 10
     },
     {
-      "id": "3929630",
-      "name": "Saquon Barkley",
+      "id": "4427366",
+      "name": "Breece Hall",
       "pos": "RB",
       "slot": "Bench",
-      "team": "PHI",
-      "inj": "Questionable",
-      "own": 96.64,
-      "gp": 8
+      "team": "NYJ",
+      "inj": null,
+      "own": 95.56,
+      "gp": 6
     },
     {
       "id": "3042519",
@@ -1281,7 +1280,7 @@
       "slot": "Bench",
       "team": "MIN",
       "inj": null,
-      "own": 81.46,
+      "own": 81.38,
       "gp": 10
     },
     {
@@ -1291,17 +1290,27 @@
       "slot": "Bench",
       "team": "SF",
       "inj": null,
-      "own": 83.43,
+      "own": 83.32,
       "gp": 7
     },
     {
-      "id": "3046779",
-      "name": "Jared Goff",
+      "id": "-16025",
+      "name": "49ers D/ST",
+      "pos": "D/ST",
+      "slot": "Bench",
+      "team": "SF",
+      "inj": null,
+      "own": 49.37,
+      "gp": 10
+    },
+    {
+      "id": "4685720",
+      "name": "Bryce Young",
       "pos": "QB",
       "slot": "Bench",
-      "team": "DET",
+      "team": "CAR",
       "inj": null,
-      "own": 87.95,
+      "own": 76.81,
       "gp": 10
     },
     {
@@ -1311,7 +1320,7 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": null,
-      "own": 82.36,
+      "own": 82.24,
       "gp": 10
     },
     {
@@ -1321,17 +1330,7 @@
       "slot": "Bench",
       "team": "JAX",
       "inj": null,
-      "own": 54.7,
-      "gp": 10
-    },
-    {
-      "id": "-16028",
-      "name": "Commanders D/ST",
-      "pos": "D/ST",
-      "slot": "Bench",
-      "team": "WSH",
-      "inj": null,
-      "own": 15.68,
+      "own": 54.56,
       "gp": 10
     },
     {
@@ -1341,8 +1340,7 @@
       "slot": "IR",
       "team": "FA",
       "inj": "Questionable",
-      "own": 13.27,
-      "gp": null
+      "own": 13.24
     }
   ],
   "10": [
@@ -1353,7 +1351,7 @@
       "slot": "RB",
       "team": "BUF",
       "inj": null,
-      "own": 99.92,
+      "own": 99.81,
       "gp": 10
     },
     {
@@ -1363,7 +1361,7 @@
       "slot": "WR",
       "team": "MIN",
       "inj": null,
-      "own": 99.86,
+      "own": 99.73,
       "gp": 9
     },
     {
@@ -1373,7 +1371,7 @@
       "slot": "RB",
       "team": "IND",
       "inj": null,
-      "own": 99.85,
+      "own": 99.67,
       "gp": 11
     },
     {
@@ -1383,17 +1381,17 @@
       "slot": "TE",
       "team": "CHI",
       "inj": null,
-      "own": 96.77,
+      "own": 96.66,
       "gp": 10
     },
     {
       "id": "4871023",
       "name": "Carnell Tate",
       "pos": "WR",
-      "slot": "FLEX",
+      "slot": "WR",
       "team": "TEN",
       "inj": null,
-      "own": 85.78,
+      "own": 85.67,
       "gp": 8
     },
     {
@@ -1403,7 +1401,7 @@
       "slot": "QB",
       "team": "CIN",
       "inj": null,
-      "own": 99.53,
+      "own": 99.39,
       "gp": 10
     },
     {
@@ -1413,8 +1411,18 @@
       "slot": "D/ST",
       "team": "HOU",
       "inj": null,
-      "own": 91.45,
+      "own": 91.38,
       "gp": 10
+    },
+    {
+      "id": "4695883",
+      "name": "Jalen Coker",
+      "pos": "WR",
+      "slot": "FLEX",
+      "team": "CAR",
+      "inj": null,
+      "own": 76.92,
+      "gp": 9
     },
     {
       "id": "4571557",
@@ -1423,18 +1431,8 @@
       "slot": "K",
       "team": "IND",
       "inj": null,
-      "own": 84.85,
+      "own": 84.6,
       "gp": 11
-    },
-    {
-      "id": "4686422",
-      "name": "Xavier Hutchinson",
-      "pos": "WR",
-      "slot": "WR",
-      "team": "HOU",
-      "inj": null,
-      "own": 46.67,
-      "gp": 10
     },
     {
       "id": "16800",
@@ -1443,7 +1441,7 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": "IR",
-      "own": 90.37,
+      "own": 90.27,
       "gp": 6
     },
     {
@@ -1453,7 +1451,7 @@
       "slot": "Bench",
       "team": "ARI",
       "inj": "IR",
-      "own": 38.38,
+      "own": 38.3,
       "gp": 9
     },
     {
@@ -1463,7 +1461,7 @@
       "slot": "Bench",
       "team": "PIT",
       "inj": null,
-      "own": 69.33,
+      "own": 69.23,
       "gp": 7
     },
     {
@@ -1473,7 +1471,7 @@
       "slot": "Bench",
       "team": "CHI",
       "inj": null,
-      "own": 91.08,
+      "own": 90.95,
       "gp": 7
     },
     {
@@ -1483,18 +1481,8 @@
       "slot": "Bench",
       "team": "GB",
       "inj": null,
-      "own": 86.62,
+      "own": 86.52,
       "gp": 10
-    },
-    {
-      "id": "4695883",
-      "name": "Jalen Coker",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "CAR",
-      "inj": null,
-      "own": 77.04,
-      "gp": 9
     },
     {
       "id": "-16026",
@@ -1503,7 +1491,17 @@
       "slot": "Bench",
       "team": "SEA",
       "inj": null,
-      "own": 86.83,
+      "own": 86.71,
+      "gp": 10
+    },
+    {
+      "id": "4686422",
+      "name": "Xavier Hutchinson",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "HOU",
+      "inj": null,
+      "own": 46.4,
       "gp": 10
     },
     {
@@ -1513,8 +1511,7 @@
       "slot": "IR",
       "team": "DET",
       "inj": "IR",
-      "own": 12.55,
-      "gp": null
+      "own": 12.53
     }
   ],
   "11": [
@@ -1525,7 +1522,7 @@
       "slot": "FLEX",
       "team": "LV",
       "inj": null,
-      "own": 98.65,
+      "own": 98.59,
       "gp": 11
     },
     {
@@ -1535,7 +1532,7 @@
       "slot": "TE",
       "team": "ARI",
       "inj": null,
-      "own": 99.88,
+      "own": 99.76,
       "gp": 11
     },
     {
@@ -1545,8 +1542,18 @@
       "slot": "WR",
       "team": "KC",
       "inj": null,
-      "own": 96.1,
+      "own": 95.98,
       "gp": 8
+    },
+    {
+      "id": "4372016",
+      "name": "Jaylen Waddle",
+      "pos": "WR",
+      "slot": "WR",
+      "team": "DEN",
+      "inj": null,
+      "own": 85.6,
+      "gp": 10
     },
     {
       "id": "4882093",
@@ -1555,18 +1562,8 @@
       "slot": "RB",
       "team": "JAX",
       "inj": "Questionable",
-      "own": 95.7,
+      "own": 95.54,
       "gp": 10
-    },
-    {
-      "id": "16737",
-      "name": "Mike Evans",
-      "pos": "WR",
-      "slot": "Bench",
-      "team": "SF",
-      "inj": null,
-      "own": 91.56,
-      "gp": 7
     },
     {
       "id": "4241416",
@@ -1575,7 +1572,7 @@
       "slot": "RB",
       "team": "CAR",
       "inj": null,
-      "own": 98.08,
+      "own": 98.01,
       "gp": 10
     },
     {
@@ -1585,7 +1582,7 @@
       "slot": "K",
       "team": "LAC",
       "inj": null,
-      "own": 61.96,
+      "own": 61.9,
       "gp": 10
     },
     {
@@ -1595,7 +1592,7 @@
       "slot": "QB",
       "team": "SF",
       "inj": null,
-      "own": 98.62,
+      "own": 98.5,
       "gp": 10
     },
     {
@@ -1605,7 +1602,7 @@
       "slot": "D/ST",
       "team": "DET",
       "inj": null,
-      "own": 58.53,
+      "own": 58.36,
       "gp": 10
     },
     {
@@ -1615,18 +1612,18 @@
       "slot": "Bench",
       "team": "ARI",
       "inj": "IR",
-      "own": 80.82,
+      "own": 80.75,
       "gp": 6
     },
     {
-      "id": "4372016",
-      "name": "Jaylen Waddle",
+      "id": "16737",
+      "name": "Mike Evans",
       "pos": "WR",
-      "slot": "WR",
-      "team": "DEN",
+      "slot": "Bench",
+      "team": "SF",
       "inj": null,
-      "own": 85.7,
-      "gp": 10
+      "own": 91.48,
+      "gp": 7
     },
     {
       "id": "4371733",
@@ -1635,7 +1632,7 @@
       "slot": "Bench",
       "team": "TB",
       "inj": null,
-      "own": 59.83,
+      "own": 59.78,
       "gp": 10
     },
     {
@@ -1645,7 +1642,7 @@
       "slot": "Bench",
       "team": "JAX",
       "inj": null,
-      "own": 73.97,
+      "own": 73.91,
       "gp": 10
     },
     {
@@ -1655,7 +1652,7 @@
       "slot": "Bench",
       "team": "GB",
       "inj": null,
-      "own": 89.1,
+      "own": 88.97,
       "gp": 10
     },
     {
@@ -1665,7 +1662,7 @@
       "slot": "Bench",
       "team": "KC",
       "inj": null,
-      "own": 56.86,
+      "own": 56.81,
       "gp": 10
     },
     {
@@ -1675,7 +1672,7 @@
       "slot": "Bench",
       "team": "NYG",
       "inj": null,
-      "own": 32.06,
+      "own": 32.04,
       "gp": 10
     },
     {
@@ -1685,7 +1682,7 @@
       "slot": "IR",
       "team": "NYG",
       "inj": "IR",
-      "own": 19.82,
+      "own": 19.81,
       "gp": 2
     }
   ]
