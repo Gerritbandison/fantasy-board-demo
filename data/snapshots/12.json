@@ -1,6 +1,6 @@
 {
   "week": 12,
-  "asOf": "2026-11-24T09:15:00-05:00",
+  "asOf": "2026-11-25T03:52:17-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,49 +11,49 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.8963,
+      "playoffOdds": 0.908,
       "powerRank": 1
     },
     {
-      "teamId": 5,
+      "teamId": 2,
       "projectedRank": 3,
-      "playoffOdds": 0.7379,
-      "powerRank": 2
+      "playoffOdds": 0.8395,
+      "powerRank": 3
     },
     {
-      "teamId": 2,
+      "teamId": 5,
       "projectedRank": 4,
-      "playoffOdds": 0.715,
-      "powerRank": 3
+      "playoffOdds": 0.6024,
+      "powerRank": 2
     },
     {
       "teamId": 4,
       "projectedRank": 5,
-      "playoffOdds": 0.2799,
+      "playoffOdds": 0.2728,
       "powerRank": 6
     },
     {
       "teamId": 8,
       "projectedRank": 6,
-      "playoffOdds": 0.257,
+      "playoffOdds": 0.2544,
       "powerRank": 10
     },
     {
       "teamId": 10,
       "projectedRank": 7,
-      "playoffOdds": 0.069,
+      "playoffOdds": 0.0761,
       "powerRank": 9
     },
     {
       "teamId": 7,
       "projectedRank": 8,
-      "playoffOdds": 0.0329,
+      "playoffOdds": 0.0369,
       "powerRank": 5
     },
     {
       "teamId": 11,
       "projectedRank": 9,
-      "playoffOdds": 0.0121,
+      "playoffOdds": 0.01,
       "powerRank": 7
     },
     {
@@ -396,6 +396,84 @@
     }
   ],
   "adds": [
+    {
+      "teamId": 2,
+      "date": "2026-11-25",
+      "type": "waiver",
+      "added": [
+        "Antonio Williams (WR, WSH)"
+      ],
+      "dropped": [
+        "Marvin Harrison Jr. (WR, HOU)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-25",
+      "type": "waiver",
+      "added": [
+        "Caleb Douglas (WR, MIA)"
+      ],
+      "dropped": [
+        "Adonai Mitchell (WR, NYJ)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-25",
+      "type": "waiver",
+      "added": [
+        "Chase McLaughlin (K, TB)"
+      ],
+      "dropped": [
+        "DK Metcalf (WR, PIT)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-25",
+      "type": "waiver",
+      "added": [
+        "Jacory Croskey-Merritt (RB, WSH)"
+      ],
+      "dropped": []
+    },
+    {
+      "teamId": 1,
+      "date": "2026-11-24",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Alvin Kamara (RB, NO)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-24",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Emari Demercado (RB, HOU)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-24",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "J.K. Dobbins (RB, DEN)"
+      ]
+    },
+    {
+      "teamId": 4,
+      "date": "2026-11-24",
+      "type": "drop",
+      "added": [],
+      "dropped": [
+        "Dalton Schultz (TE, HOU)"
+      ]
+    },
     {
       "teamId": 5,
       "date": "2026-11-22",
