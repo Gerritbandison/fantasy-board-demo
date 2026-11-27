@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { shownWin, type DirectoryTeam } from "./biggest-win-rows.ts";
+import { shownPending, shownWin, type DirectoryTeam } from "./biggest-win-rows.ts";
 import { franchiseName, hasOtherRawName, USER_TEAM_ID } from "./names.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -101,8 +101,7 @@ test("top 10 is final regular-season games, ranked by margin, with names from th
   assert.equal(promoted?.margin, 89.9);
 });
 
-test("the final 2026 week 8 margin is in the ranking and nothing is still pending", () => {
-  assert.equal(wins.pending.length, 0);
+test("the final 2026 week 8 margin stays in the ranking", () => {
   const ranked = wins.top10.map((row) => shownWin(row, teamAt));
   const row = ranked.find((item) => item.season === 2026 && item.week === 8);
   assert.ok(row);
@@ -113,6 +112,36 @@ test("the final 2026 week 8 margin is in the ranking and nothing is still pendin
   assert.equal(row.winner.currentName, TEAM_7);
   assert.equal(hasOtherRawName(row.winner.seasonName), false);
   assert.equal(hasOtherRawName(row.loser.seasonName), false);
+});
+
+test("a live margin that would make the top 10 stays pending and out of the ranking", () => {
+  const rankedMargins = wins.top10.map((row) => row.margin);
+  for (const row of wins.pending) {
+    assert.equal(hasOtherRawName(row.winnerName), false, row.winnerName);
+    assert.equal(hasOtherRawName(row.loserName), false, row.loserName);
+    assert.equal(
+      wins.top10.some((final) => final.season === row.season && final.week === row.week),
+      false,
+      `week ${row.week} is already a final`,
+    );
+    const shown = shownPending(
+      {
+        season: row.season,
+        week: row.week,
+        margin: row.margin,
+        winner: { teamId: row.winnerTeamId, nameThatSeason: row.winnerName, score: row.winnerScore },
+        loser: { teamId: row.loserTeamId, nameThatSeason: row.loserName, score: row.loserScore },
+      },
+      rankedMargins,
+      teamAt,
+    );
+    assert.ok(shown.wouldRank >= 1 && shown.wouldRank <= wins.top10.length, `wouldRank ${shown.wouldRank}`);
+    assert.equal(shown.margin, row.margin);
+    for (const side of [shown.winner, shown.loser]) {
+      assert.equal(hasOtherRawName(side.seasonName), false, side.seasonName);
+      assert.equal(hasOtherRawName(side.currentName), false, side.currentName);
+    }
+  }
 });
 
 test("file owners match the nicknames the app already stores", () => {
