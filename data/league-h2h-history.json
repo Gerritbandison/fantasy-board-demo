@@ -5,8 +5,8 @@
   "leagueId": "12115010",
   "leagueName": "Chicken",
   "scope": "all-time (2020–2026)",
-  "scopeLabel": "All-time: 2020 through 2026 week 11. Week 12 has not started as of 2026-11-24 9:15 AM ET and is not in this file.",
-  "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json; 2026 week 8 finals from matchups-w8 on 2026-11-04; 2026 week 9 finals from matchups-w9 on 2026-11-10; 2026 week 10 finals from the Flaim ESPN digest on 2026-11-17. 2026 week 11 finals from the Flaim ESPN digest on 2026-11-24. Week 12 has not started as of 2026-11-24 9:15 AM ET and is not included.",
+  "scopeLabel": "All-time: 2020 through 2026 week 11. Week 12 is in progress (Thursday games only) as of 2026-11-26 11:55 PM ET and is not in this file.",
+  "source": "Flaim Fantasy (ESPN) get_matchups for 2020-2025 (every scoring week); 2026 weeks 1-7 from league-all-teams.json; 2026 week 8 finals from matchups-w8 on 2026-11-04; 2026 week 9 finals from matchups-w9 on 2026-11-10; 2026 week 10 finals from the Flaim ESPN digest on 2026-11-17. 2026 week 11 finals from the Flaim ESPN digest on 2026-11-24. Week 12 is in progress (Thursday games only) as of 2026-11-26 11:55 PM ET and is not included.",
   "seasonsCovered": [
    2020,
    2021,
@@ -32,7 +32,7 @@
    "teams": 10,
    "regularSeasonWeeks": {
     "2020": 13,
-    "2026": "weeks 1-11 final in this file; week 12 has not started as of 9:15 AM ET on 2026-11-24, not included",
+    "2026": "weeks 1-11 final in this file; week 12 is in progress (Thursday games only) as of 11:55 PM ET on 2026-11-26, not included",
     "2021-2025": 14
    },
    "playoffs": "4-team winners bracket, two rounds. Semifinals are always two-week matchups (totals = sum of two weeks). Finals were two-week in 2020-2023 and single-week (week 17) in 2024-2025. Consolation ladders follow the same format. See each game scoringPeriods/twoWeekMatchup."
@@ -55,7 +55,8 @@
    "2026-11-22: Week 11 is in progress (Sunday late slate; Sunday night and Monday night have not been played). Finals in this file still stop at week 10.",
    "2026-11-23: Week 11 is in progress after Sunday night. Monday night has not been played. Finals in this file still stop at week 10.",
    "2026-11-23: Week 11 is still in progress at 11:58 PM ET, after Monday night. Every team projection equals its current points, and every winner is still UNDECIDED. Finals in this file still stop at week 10.",
-   "2026-11-24: Week 11 is final. Those five games are in this file. Week 12 has not started."
+   "2026-11-24: Week 11 is final. Those five games are in this file. Week 12 has not started.",
+   "2026-11-26: Week 12 is in progress (Thursday / Thanksgiving games only). Finals in this file still stop at week 11."
   ],
   "championshipCheck": [
    {
@@ -24199,7 +24200,7 @@
     }
    }
   ],
-  "streakNote": "Streaks run chronologically across seasons (2020 through 2026 week 11), including playoff and consolation games. Week 12 has not started as of 9:15 AM ET on 2026-11-24 and is not in this file.",
+  "streakNote": "Streaks run chronologically across seasons (2020 through 2026 week 11), including playoff and consolation games. Week 12 is in progress (Thursday games only) as of 11:55 PM ET on 2026-11-26 and is not in this file.",
   "mostPlayedRivalry": [
    {
     "teamA": 1,
