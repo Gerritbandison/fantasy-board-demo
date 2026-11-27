@@ -1,6 +1,6 @@
 {
   "week": 12,
-  "asOf": "2026-11-25T03:52:17-05:00",
+  "asOf": "2026-11-26T23:55:00-05:00",
   "teams": [
     {
       "teamId": 1,
@@ -11,49 +11,49 @@
     {
       "teamId": 3,
       "projectedRank": 2,
-      "playoffOdds": 0.908,
+      "playoffOdds": 0.9513,
       "powerRank": 1
     },
     {
       "teamId": 2,
       "projectedRank": 3,
-      "playoffOdds": 0.8395,
+      "playoffOdds": 0.969,
       "powerRank": 3
     },
     {
       "teamId": 5,
       "projectedRank": 4,
-      "playoffOdds": 0.6024,
+      "playoffOdds": 0.5347,
       "powerRank": 2
     },
     {
       "teamId": 4,
       "projectedRank": 5,
-      "playoffOdds": 0.2728,
+      "playoffOdds": 0.2351,
       "powerRank": 6
     },
     {
       "teamId": 8,
       "projectedRank": 6,
-      "playoffOdds": 0.2544,
+      "playoffOdds": 0.157,
       "powerRank": 10
     },
     {
       "teamId": 10,
       "projectedRank": 7,
-      "playoffOdds": 0.0761,
+      "playoffOdds": 0.1035,
       "powerRank": 9
     },
     {
       "teamId": 7,
       "projectedRank": 8,
-      "playoffOdds": 0.0369,
+      "playoffOdds": 0.0488,
       "powerRank": 5
     },
     {
       "teamId": 11,
       "projectedRank": 9,
-      "playoffOdds": 0.01,
+      "playoffOdds": 0.0006,
       "powerRank": 7
     },
     {
@@ -396,6 +396,48 @@
     }
   ],
   "adds": [
+    {
+      "teamId": 2,
+      "date": "2026-11-26",
+      "type": "add",
+      "added": [
+        "DK Metcalf (WR, PIT)"
+      ],
+      "dropped": [
+        "Samaje Perine (RB, CIN)"
+      ]
+    },
+    {
+      "teamId": 3,
+      "date": "2026-11-26",
+      "type": "add",
+      "added": [
+        "Chris Rodriguez Jr. (RB, JAX)"
+      ],
+      "dropped": [
+        "Chig Okonkwo (TE, WSH)"
+      ]
+    },
+    {
+      "teamId": 6,
+      "date": "2026-11-26",
+      "type": "add",
+      "added": [
+        "Giants D/ST (D/ST, NYG)"
+      ],
+      "dropped": [
+        "Colts D/ST (D/ST, IND)"
+      ]
+    },
+    {
+      "teamId": 2,
+      "date": "2026-11-25",
+      "type": "add",
+      "added": [
+        "Samaje Perine (RB, CIN)"
+      ],
+      "dropped": []
+    },
     {
       "teamId": 2,
       "date": "2026-11-25",

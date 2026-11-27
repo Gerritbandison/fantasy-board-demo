@@ -7,7 +7,7 @@
       "slot": "WR",
       "team": "CIN",
       "inj": null,
-      "own": 99.91,
+      "own": 99.92,
       "gp": 10
     },
     {
@@ -17,7 +17,7 @@
       "slot": "TE",
       "team": "LV",
       "inj": "Questionable",
-      "own": 99.81,
+      "own": 99.84,
       "gp": 8
     },
     {
@@ -28,7 +28,7 @@
       "team": "DET",
       "inj": null,
       "own": 99.91,
-      "gp": 10
+      "gp": 11
     },
     {
       "id": "4239996",
@@ -37,7 +37,7 @@
       "slot": "Bench",
       "team": "NO",
       "inj": null,
-      "own": 85.43,
+      "own": 85.62,
       "gp": 5
     },
     {
@@ -47,8 +47,8 @@
       "slot": "FLEX",
       "team": "CHI",
       "inj": null,
-      "own": 94.48,
-      "gp": 10
+      "own": 94.41,
+      "gp": 11
     },
     {
       "id": "4426348",
@@ -57,7 +57,7 @@
       "slot": "Bench",
       "team": "WSH",
       "inj": null,
-      "own": 95.1,
+      "own": 95.74,
       "gp": 8
     },
     {
@@ -67,7 +67,7 @@
       "slot": "QB",
       "team": "JAX",
       "inj": null,
-      "own": 95.01,
+      "own": 95.75,
       "gp": 10
     },
     {
@@ -77,7 +77,7 @@
       "slot": "RB",
       "team": "SEA",
       "inj": null,
-      "own": 80.34,
+      "own": 80.61,
       "gp": 3
     },
     {
@@ -87,7 +87,7 @@
       "slot": "D/ST",
       "team": "PIT",
       "inj": null,
-      "own": 90.73,
+      "own": 85.79,
       "gp": 10
     },
     {
@@ -97,7 +97,7 @@
       "slot": "K",
       "team": "MIN",
       "inj": null,
-      "own": 90.27,
+      "own": 90.31,
       "gp": 10
     },
     {
@@ -107,7 +107,7 @@
       "slot": "RB",
       "team": "DEN",
       "inj": null,
-      "own": 91.61,
+      "own": 92.48,
       "gp": 6
     },
     {
@@ -117,7 +117,7 @@
       "slot": "Bench",
       "team": "SF",
       "inj": null,
-      "own": 50.04,
+      "own": 48.59,
       "gp": 10
     },
     {
@@ -127,7 +127,7 @@
       "slot": "Bench",
       "team": "HOU",
       "inj": null,
-      "own": 57.4,
+      "own": 54.89,
       "gp": 4
     },
     {
@@ -137,7 +137,7 @@
       "slot": "Bench",
       "team": "MIN",
       "inj": null,
-      "own": 57.24,
+      "own": 59.5,
       "gp": 6
     },
     {
@@ -147,7 +147,7 @@
       "slot": "Bench",
       "team": "LV",
       "inj": null,
-      "own": 30.77,
+      "own": 27.11,
       "gp": 11
     }
   ],
@@ -160,7 +160,7 @@
       "team": "DET",
       "inj": null,
       "own": 99.94,
-      "gp": 10
+      "gp": 11
     },
     {
       "id": "4430807",
@@ -169,7 +169,7 @@
       "slot": "RB",
       "team": "ATL",
       "inj": null,
-      "own": 99.87,
+      "own": 99.88,
       "gp": 10
     },
     {
@@ -179,7 +179,7 @@
       "slot": "WR",
       "team": "HOU",
       "inj": null,
-      "own": 99.1,
+      "own": 99.12,
       "gp": 8
     },
     {
@@ -189,8 +189,8 @@
       "slot": "FLEX",
       "team": "LAR",
       "inj": null,
-      "own": 98.54,
-      "gp": 10
+      "own": 98.63,
+      "gp": 11
     },
     {
       "id": "4612826",
@@ -199,7 +199,7 @@
       "slot": "WR",
       "team": "LAC",
       "inj": null,
-      "own": 82.97,
+      "own": 85.22,
       "gp": 7
     },
     {
@@ -209,8 +209,8 @@
       "slot": "Bench",
       "team": "CHI",
       "inj": null,
-      "own": 87.41,
-      "gp": 10
+      "own": 87.25,
+      "gp": 11
     },
     {
       "id": "4431459",
@@ -219,7 +219,7 @@
       "slot": "TE",
       "team": "IND",
       "inj": null,
-      "own": 92.93,
+      "own": 91.45,
       "gp": 9
     },
     {
@@ -229,8 +229,8 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": null,
-      "own": 83.2,
-      "gp": 10
+      "own": 82.99,
+      "gp": 11
     },
     {
       "id": "-16014",
@@ -239,8 +239,8 @@
       "slot": "D/ST",
       "team": "LAR",
       "inj": null,
-      "own": 73.9,
-      "gp": 10
+      "own": 76.57,
+      "gp": 11
     },
     {
       "id": "4688813",
@@ -249,8 +249,8 @@
       "slot": "Bench",
       "team": "KC",
       "inj": null,
-      "own": 77.45,
-      "gp": 11
+      "own": 77.06,
+      "gp": 12
     },
     {
       "id": "4360438",
@@ -259,7 +259,7 @@
       "slot": "Bench",
       "team": "FA",
       "inj": null,
-      "own": 7.85
+      "own": 20.51
     },
     {
       "id": "17372",
@@ -268,7 +268,7 @@
       "slot": "K",
       "team": "PIT",
       "inj": null,
-      "own": 62.92,
+      "own": 61.39,
       "gp": 10
     },
     {
@@ -278,7 +278,7 @@
       "slot": "QB",
       "team": "LV",
       "inj": null,
-      "own": 27.13,
+      "own": 32.46,
       "gp": 5
     },
     {
@@ -288,8 +288,8 @@
       "slot": "Bench",
       "team": "CHI",
       "inj": null,
-      "own": 60.59,
-      "gp": 10
+      "own": 55.21,
+      "gp": 11
     },
     {
       "id": "5081432",
@@ -298,7 +298,17 @@
       "slot": "Bench",
       "team": "WSH",
       "inj": null,
-      "own": 42.41,
+      "own": 55.33,
+      "gp": 10
+    },
+    {
+      "id": "4047650",
+      "name": "DK Metcalf",
+      "pos": "WR",
+      "slot": "Bench",
+      "team": "PIT",
+      "inj": null,
+      "own": 84.25,
       "gp": 10
     }
   ],
@@ -310,7 +320,7 @@
       "slot": "IR",
       "team": "MIA",
       "inj": "IR",
-      "own": 26.26,
+      "own": 26.07,
       "gp": 3
     },
     {
@@ -319,18 +329,18 @@
       "pos": "WR",
       "slot": "WR",
       "team": "SEA",
-      "inj": null,
-      "own": 99.9,
+      "inj": "Questionable",
+      "own": 99.91,
       "gp": 10
     },
     {
       "id": "4567048",
       "name": "Kenneth Walker III",
       "pos": "RB",
-      "slot": "RB",
+      "slot": "Bench",
       "team": "KC",
-      "inj": "Questionable",
-      "own": 99.85,
+      "inj": "Out",
+      "own": 99.83,
       "gp": 8
     },
     {
@@ -340,7 +350,7 @@
       "slot": "Bench",
       "team": "TB",
       "inj": null,
-      "own": 90.92,
+      "own": 90.52,
       "gp": 8
     },
     {
@@ -349,8 +359,8 @@
       "pos": "WR",
       "slot": "WR",
       "team": "CAR",
-      "inj": null,
-      "own": 98.16,
+      "inj": "Questionable",
+      "own": 97.99,
       "gp": 10
     },
     {
@@ -360,8 +370,8 @@
       "slot": "TE",
       "team": "DET",
       "inj": null,
-      "own": 95.17,
-      "gp": 10
+      "own": 95.18,
+      "gp": 11
     },
     {
       "id": "4608686",
@@ -370,8 +380,8 @@
       "slot": "Bench",
       "team": "CHI",
       "inj": null,
-      "own": 75.28,
-      "gp": 5
+      "own": 74.34,
+      "gp": 6
     },
     {
       "id": "3121023",
@@ -379,9 +389,9 @@
       "pos": "TE",
       "slot": "Bench",
       "team": "PHI",
-      "inj": null,
-      "own": 73.69,
-      "gp": 8
+      "inj": "Questionable",
+      "own": 73.37,
+      "gp": 9
     },
     {
       "id": "2971573",
@@ -390,18 +400,18 @@
       "slot": "K",
       "team": "HOU",
       "inj": null,
-      "own": 88.72,
+      "own": 88.21,
       "gp": 10
     },
     {
       "id": "4832955",
       "name": "Emmett Johnson",
       "pos": "RB",
-      "slot": "Bench",
+      "slot": "RB",
       "team": "KC",
       "inj": null,
-      "own": 90.83,
-      "gp": 10
+      "own": 92.73,
+      "gp": 11
     },
     {
       "id": "4569987",
@@ -410,7 +420,7 @@
       "slot": "RB",
       "team": "PIT",
       "inj": null,
-      "own": 96.08,
+      "own": 95.86,
       "gp": 10
     },
     {
@@ -420,7 +430,7 @@
       "slot": "D/ST",
       "team": "MIN",
       "inj": null,
-      "own": 87.97,
+      "own": 88.77,
       "gp": 10
     },
     {
@@ -430,7 +440,7 @@
       "slot": "FLEX",
       "team": "NO",
       "inj": null,
-      "own": 69.74,
+      "own": 68.16,
       "gp": 3
     },
     {
@@ -440,7 +450,7 @@
       "slot": "QB",
       "team": "HOU",
       "inj": null,
-      "own": 87.17,
+      "own": 88.59,
       "gp": 10
     },
     {
@@ -450,18 +460,8 @@
       "slot": "Bench",
       "team": "DEN",
       "inj": null,
-      "own": 84.82,
+      "own": 84.11,
       "gp": 10
-    },
-    {
-      "id": "4360635",
-      "name": "Chig Okonkwo",
-      "pos": "TE",
-      "slot": "Bench",
-      "team": "WSH",
-      "inj": null,
-      "own": 61.49,
-      "gp": 8
     },
     {
       "id": "4869645",
@@ -470,8 +470,18 @@
       "slot": "Bench",
       "team": "MIA",
       "inj": null,
-      "own": 36.46,
+      "own": 37.84,
       "gp": 7
+    },
+    {
+      "id": "4362619",
+      "name": "Chris Rodriguez Jr.",
+      "pos": "RB",
+      "slot": "Bench",
+      "team": "JAX",
+      "inj": null,
+      "own": 26.88,
+      "gp": 10
     }
   ],
   "4": [
@@ -482,7 +492,7 @@
       "slot": "RB",
       "team": "SF",
       "inj": null,
-      "own": 99.9,
+      "own": 99.91,
       "gp": 10
     },
     {
@@ -492,7 +502,7 @@
       "slot": "FLEX",
       "team": "NO",
       "inj": null,
-      "own": 99.2,
+      "own": 99.18,
       "gp": 10
     },
     {
@@ -502,8 +512,8 @@
       "slot": "TE",
       "team": "KC",
       "inj": null,
-      "own": 94.66,
-      "gp": 10
+      "own": 94.99,
+      "gp": 11
     },
     {
       "id": "3953687",
@@ -512,8 +522,8 @@
       "slot": "K",
       "team": "DAL",
       "inj": null,
-      "own": 98.36,
-      "gp": 11
+      "own": 98.3,
+      "gp": 12
     },
     {
       "id": "4429205",
@@ -522,7 +532,7 @@
       "slot": "IR",
       "team": "MIN",
       "inj": "Doubtful",
-      "own": 62.92,
+      "own": 61.9,
       "gp": 7
     },
     {
@@ -532,8 +542,8 @@
       "slot": "QB",
       "team": "KC",
       "inj": null,
-      "own": 95.48,
-      "gp": 10
+      "own": 95.46,
+      "gp": 11
     },
     {
       "id": "4426388",
@@ -542,8 +552,8 @@
       "slot": "WR",
       "team": "DET",
       "inj": null,
-      "own": 93.08,
-      "gp": 10
+      "own": 93.15,
+      "gp": 11
     },
     {
       "id": "4248528",
@@ -551,9 +561,9 @@
       "pos": "WR",
       "slot": "WR",
       "team": "GB",
-      "inj": null,
-      "own": 97.24,
-      "gp": 10
+      "inj": "Questionable",
+      "own": 97.26,
+      "gp": 11
     },
     {
       "id": "4036133",
@@ -562,7 +572,7 @@
       "slot": "Bench",
       "team": "MIN",
       "inj": null,
-      "own": 85.6,
+      "own": 86.49,
       "gp": 9
     },
     {
@@ -572,7 +582,7 @@
       "slot": "RB",
       "team": "CIN",
       "inj": null,
-      "own": 98.54,
+      "own": 98.56,
       "gp": 10
     },
     {
@@ -582,7 +592,7 @@
       "slot": "Bench",
       "team": "SF",
       "inj": null,
-      "own": 37.11,
+      "own": 36.28,
       "gp": 10
     },
     {
@@ -592,7 +602,7 @@
       "slot": "Bench",
       "team": "MIN",
       "inj": null,
-      "own": 68.68,
+      "own": 71.06,
       "gp": 11
     },
     {
@@ -602,8 +612,8 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": null,
-      "own": 14.47,
-      "gp": 10
+      "own": 16.46,
+      "gp": 11
     },
     {
       "id": "-16012",
@@ -612,8 +622,8 @@
       "slot": "Bench",
       "team": "KC",
       "inj": null,
-      "own": 75.2,
-      "gp": 10
+      "own": 65.51,
+      "gp": 11
     },
     {
       "id": "-16027",
@@ -622,7 +632,7 @@
       "slot": "D/ST",
       "team": "TB",
       "inj": null,
-      "own": 38.85,
+      "own": 41.8,
       "gp": 10
     },
     {
@@ -632,7 +642,7 @@
       "slot": "Bench",
       "team": "WSH",
       "inj": null,
-      "own": 55.82,
+      "own": 64.06,
       "gp": 6
     },
     {
@@ -642,7 +652,7 @@
       "slot": "Bench",
       "team": "TB",
       "inj": null,
-      "own": 34.59,
+      "own": 34.26,
       "gp": 10
     }
   ],
@@ -654,8 +664,8 @@
       "slot": "QB",
       "team": "BUF",
       "inj": null,
-      "own": 99.88,
-      "gp": 10
+      "own": 99.9,
+      "gp": 11
     },
     {
       "id": "4426502",
@@ -664,7 +674,7 @@
       "slot": "FLEX",
       "team": "ATL",
       "inj": null,
-      "own": 98.93,
+      "own": 98.99,
       "gp": 10
     },
     {
@@ -673,8 +683,8 @@
       "pos": "RB",
       "slot": "RB",
       "team": "BAL",
-      "inj": null,
-      "own": 99.53,
+      "inj": "Questionable",
+      "own": 99.39,
       "gp": 11
     },
     {
@@ -684,8 +694,8 @@
       "slot": "RB",
       "team": "DAL",
       "inj": null,
-      "own": 99.45,
-      "gp": 11
+      "own": 99.44,
+      "gp": 12
     },
     {
       "id": "4239993",
@@ -694,7 +704,7 @@
       "slot": "WR",
       "team": "CIN",
       "inj": null,
-      "own": 99.03,
+      "own": 99.04,
       "gp": 10
     },
     {
@@ -704,7 +714,7 @@
       "slot": "Bench",
       "team": "DEN",
       "inj": null,
-      "own": 64.58,
+      "own": 62.49,
       "gp": 10
     },
     {
@@ -714,7 +724,7 @@
       "slot": "Bench",
       "team": "NE",
       "inj": null,
-      "own": 88.48,
+      "own": 89.1,
       "gp": 10
     },
     {
@@ -723,8 +733,8 @@
       "pos": "WR",
       "slot": "WR",
       "team": "JAX",
-      "inj": null,
-      "own": 97.23,
+      "inj": "Questionable",
+      "own": 97.46,
       "gp": 10
     },
     {
@@ -734,7 +744,7 @@
       "slot": "Bench",
       "team": "WSH",
       "inj": null,
-      "own": 88.72,
+      "own": 88.52,
       "gp": 9
     },
     {
@@ -744,8 +754,8 @@
       "slot": "Bench",
       "team": "PHI",
       "inj": null,
-      "own": 42.9,
-      "gp": 10
+      "own": 41.78,
+      "gp": 11
     },
     {
       "id": "4385690",
@@ -753,9 +763,9 @@
       "pos": "TE",
       "slot": "TE",
       "team": "BUF",
-      "inj": "Questionable",
-      "own": 74.57,
-      "gp": 9
+      "inj": null,
+      "own": 74.56,
+      "gp": 10
     },
     {
       "id": "4428718",
@@ -764,7 +774,7 @@
       "slot": "Bench",
       "team": "LV",
       "inj": null,
-      "own": 50.47,
+      "own": 49.22,
       "gp": 11
     },
     {
@@ -774,7 +784,7 @@
       "slot": "D/ST",
       "team": "JAX",
       "inj": null,
-      "own": 87.2,
+      "own": 85.41,
       "gp": 10
     },
     {
@@ -784,8 +794,8 @@
       "slot": "K",
       "team": "DET",
       "inj": null,
-      "own": 52.94,
-      "gp": 10
+      "own": 52.66,
+      "gp": 11
     },
     {
       "id": "4373626",
@@ -794,7 +804,7 @@
       "slot": "Bench",
       "team": "ARI",
       "inj": null,
-      "own": 53.17,
+      "own": 51.51,
       "gp": 11
     },
     {
@@ -804,7 +814,7 @@
       "slot": "Bench",
       "team": "CIN",
       "inj": null,
-      "own": 32.57,
+      "own": 35.45,
       "gp": 10
     }
   ],
@@ -816,7 +826,7 @@
       "slot": "Bench",
       "team": "LAC",
       "inj": null,
-      "own": 91.71,
+      "own": 91.93,
       "gp": 10
     },
     {
@@ -827,7 +837,7 @@
       "team": "DAL",
       "inj": null,
       "own": 99.92,
-      "gp": 11
+      "gp": 12
     },
     {
       "id": "4259545",
@@ -836,8 +846,8 @@
       "slot": "RB",
       "team": "CHI",
       "inj": null,
-      "own": 97.54,
-      "gp": 10
+      "own": 97.48,
+      "gp": 11
     },
     {
       "id": "4035538",
@@ -846,7 +856,7 @@
       "slot": "Bench",
       "team": "HOU",
       "inj": null,
-      "own": 86.5,
+      "own": 86.57,
       "gp": 6
     },
     {
@@ -856,8 +866,8 @@
       "slot": "QB",
       "team": "DAL",
       "inj": null,
-      "own": 95.48,
-      "gp": 11
+      "own": 95.68,
+      "gp": 12
     },
     {
       "id": "4360248",
@@ -866,7 +876,7 @@
       "slot": "TE",
       "team": "ATL",
       "inj": null,
-      "own": 72.81,
+      "own": 73.22,
       "gp": 10
     },
     {
@@ -876,7 +886,7 @@
       "slot": "Bench",
       "team": "BAL",
       "inj": null,
-      "own": 60.84,
+      "own": 58.47,
       "gp": 11
     },
     {
@@ -886,7 +896,7 @@
       "slot": "Bench",
       "team": "HOU",
       "inj": "Questionable",
-      "own": 66.88,
+      "own": 65.08,
       "gp": 9
     },
     {
@@ -896,7 +906,7 @@
       "slot": "WR",
       "team": "NYG",
       "inj": null,
-      "own": 99.4,
+      "own": 99.42,
       "gp": 10
     },
     {
@@ -906,7 +916,7 @@
       "slot": "RB",
       "team": "CLE",
       "inj": null,
-      "own": 92.48,
+      "own": 93.1,
       "gp": 9
     },
     {
@@ -915,9 +925,9 @@
       "pos": "WR",
       "slot": "FLEX",
       "team": "PHI",
-      "inj": null,
-      "own": 95.17,
-      "gp": 5
+      "inj": "Questionable",
+      "own": 95.54,
+      "gp": 6
     },
     {
       "id": "4870653",
@@ -926,7 +936,7 @@
       "slot": "Bench",
       "team": "CLE",
       "inj": null,
-      "own": 67.01,
+      "own": 69.55,
       "gp": 10
     },
     {
@@ -936,17 +946,7 @@
       "slot": "Bench",
       "team": "BUF",
       "inj": null,
-      "own": 63.86,
-      "gp": 10
-    },
-    {
-      "id": "-16011",
-      "name": "Colts D/ST",
-      "pos": "D/ST",
-      "slot": "D/ST",
-      "team": "IND",
-      "inj": null,
-      "own": 10.57,
+      "own": 64.08,
       "gp": 11
     },
     {
@@ -956,7 +956,7 @@
       "slot": "K",
       "team": "JAX",
       "inj": null,
-      "own": 89.13,
+      "own": 90.96,
       "gp": 10
     },
     {
@@ -966,8 +966,18 @@
       "slot": "Bench",
       "team": "NYJ",
       "inj": null,
-      "own": 67.19,
+      "own": 66.46,
       "gp": 11
+    },
+    {
+      "id": "-16019",
+      "name": "Giants D/ST",
+      "pos": "D/ST",
+      "slot": "D/ST",
+      "team": "NYG",
+      "inj": null,
+      "own": 41.52,
+      "gp": 10
     }
   ],
   "7": [
@@ -978,7 +988,7 @@
       "slot": "IR",
       "team": "LAR",
       "inj": "IR",
-      "own": 80.14,
+      "own": 77.65,
       "gp": 7
     },
     {
@@ -988,7 +998,7 @@
       "slot": "Bench",
       "team": "NE",
       "inj": "Doubtful",
-      "own": 81.63,
+      "own": 80.44,
       "gp": 4
     },
     {
@@ -998,7 +1008,7 @@
       "slot": "Bench",
       "team": "SEA",
       "inj": null,
-      "own": 75.37,
+      "own": 74.38,
       "gp": 7
     },
     {
@@ -1008,7 +1018,7 @@
       "slot": "Bench",
       "team": "NE",
       "inj": "Out",
-      "own": 77,
+      "own": 73.23,
       "gp": 10
     },
     {
@@ -1018,17 +1028,17 @@
       "slot": "Bench",
       "team": "CLE",
       "inj": null,
-      "own": 90.15,
+      "own": 91.05,
       "gp": 10
     },
     {
       "id": "3916148",
       "name": "Tony Pollard",
       "pos": "RB",
-      "slot": "Bench",
+      "slot": "FLEX",
       "team": "TEN",
       "inj": null,
-      "own": 93.18,
+      "own": 92.97,
       "gp": 10
     },
     {
@@ -1037,8 +1047,8 @@
       "pos": "TE",
       "slot": "TE",
       "team": "NYG",
-      "inj": null,
-      "own": 97.27,
+      "inj": "Questionable",
+      "own": 97.17,
       "gp": 10
     },
     {
@@ -1048,8 +1058,8 @@
       "slot": "WR",
       "team": "GB",
       "inj": null,
-      "own": 96.86,
-      "gp": 10
+      "own": 96.96,
+      "gp": 11
     },
     {
       "id": "4832800",
@@ -1058,7 +1068,7 @@
       "slot": "WR",
       "team": "CLE",
       "inj": "Questionable",
-      "own": 74.57,
+      "own": 75.64,
       "gp": 10
     },
     {
@@ -1068,7 +1078,7 @@
       "slot": "RB",
       "team": "MIA",
       "inj": null,
-      "own": 89.43,
+      "own": 89.19,
       "gp": 10
     },
     {
@@ -1078,7 +1088,7 @@
       "slot": "RB",
       "team": "NYG",
       "inj": null,
-      "own": 95.12,
+      "own": 95.7,
       "gp": 9
     },
     {
@@ -1087,19 +1097,19 @@
       "pos": "RB",
       "slot": "Bench",
       "team": "GB",
-      "inj": "Questionable",
-      "own": 89.84,
+      "inj": "Out",
+      "own": 89.72,
       "gp": 3
     },
     {
       "id": "3915416",
       "name": "DJ Moore",
       "pos": "WR",
-      "slot": "FLEX",
+      "slot": "Bench",
       "team": "BUF",
       "inj": null,
-      "own": 93.92,
-      "gp": 8
+      "own": 93.96,
+      "gp": 9
     },
     {
       "id": "4249087",
@@ -1108,7 +1118,7 @@
       "slot": "K",
       "team": "LV",
       "inj": null,
-      "own": 33.47,
+      "own": 32.3,
       "gp": 11
     },
     {
@@ -1118,8 +1128,8 @@
       "slot": "D/ST",
       "team": "BUF",
       "inj": null,
-      "own": 69.17,
-      "gp": 10
+      "own": 55.67,
+      "gp": 11
     },
     {
       "id": "4426338",
@@ -1128,7 +1138,7 @@
       "slot": "QB",
       "team": "DEN",
       "inj": null,
-      "own": 75.49,
+      "own": 72.24,
       "gp": 10
     },
     {
@@ -1138,8 +1148,8 @@
       "slot": "Bench",
       "team": "DAL",
       "inj": null,
-      "own": 41.28,
-      "gp": 11
+      "own": 39.29,
+      "gp": 12
     }
   ],
   "8": [
@@ -1149,9 +1159,9 @@
       "pos": "RB",
       "slot": "RB",
       "team": "PHI",
-      "inj": null,
-      "own": 96.65,
-      "gp": 8
+      "inj": "Questionable",
+      "own": 96.84,
+      "gp": 9
     },
     {
       "id": "4429615",
@@ -1160,7 +1170,7 @@
       "slot": "WR",
       "team": "BAL",
       "inj": null,
-      "own": 98.64,
+      "own": 98.56,
       "gp": 10
     },
     {
@@ -1170,7 +1180,7 @@
       "slot": "Bench",
       "team": "NYJ",
       "inj": null,
-      "own": 95.65,
+      "own": 95.69,
       "gp": 6
     },
     {
@@ -1180,7 +1190,7 @@
       "slot": "RB",
       "team": "TB",
       "inj": null,
-      "own": 98.22,
+      "own": 98.56,
       "gp": 10
     },
     {
@@ -1190,7 +1200,7 @@
       "slot": "TE",
       "team": "SF",
       "inj": null,
-      "own": 98.89,
+      "own": 98.93,
       "gp": 10
     },
     {
@@ -1200,7 +1210,7 @@
       "slot": "Bench",
       "team": "MIN",
       "inj": null,
-      "own": 81.81,
+      "own": 82.13,
       "gp": 10
     },
     {
@@ -1210,7 +1220,7 @@
       "slot": "Bench",
       "team": "SF",
       "inj": null,
-      "own": 83.13,
+      "own": 83.01,
       "gp": 7
     },
     {
@@ -1220,7 +1230,7 @@
       "slot": "Bench",
       "team": "SF",
       "inj": null,
-      "own": 56.92,
+      "own": 66.03,
       "gp": 10
     },
     {
@@ -1230,8 +1240,8 @@
       "slot": "QB",
       "team": "DET",
       "inj": null,
-      "own": 88.24,
-      "gp": 10
+      "own": 88.49,
+      "gp": 11
     },
     {
       "id": "4685720",
@@ -1240,7 +1250,7 @@
       "slot": "Bench",
       "team": "CAR",
       "inj": null,
-      "own": 74.91,
+      "own": 72.53,
       "gp": 10
     },
     {
@@ -1250,7 +1260,7 @@
       "slot": "IR",
       "team": "FA",
       "inj": "Questionable",
-      "own": 12.93
+      "own": 12.52
     },
     {
       "id": "4429096",
@@ -1259,8 +1269,8 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": null,
-      "own": 83.44,
-      "gp": 10
+      "own": 84.1,
+      "gp": 11
     },
     {
       "id": "4426354",
@@ -1269,8 +1279,8 @@
       "slot": "WR",
       "team": "DAL",
       "inj": null,
-      "own": 99.13,
-      "gp": 10
+      "own": 99.18,
+      "gp": 11
     },
     {
       "id": "4569618",
@@ -1279,7 +1289,7 @@
       "slot": "FLEX",
       "team": "NYJ",
       "inj": null,
-      "own": 97.66,
+      "own": 97.63,
       "gp": 10
     },
     {
@@ -1289,7 +1299,7 @@
       "slot": "Bench",
       "team": "JAX",
       "inj": null,
-      "own": 53.44,
+      "own": 53.26,
       "gp": 10
     },
     {
@@ -1299,7 +1309,7 @@
       "slot": "D/ST",
       "team": "WSH",
       "inj": null,
-      "own": 40.53,
+      "own": 60.86,
       "gp": 10
     },
     {
@@ -1309,8 +1319,8 @@
       "slot": "K",
       "team": "BUF",
       "inj": null,
-      "own": 86.62,
-      "gp": 10
+      "own": 86.51,
+      "gp": 11
     }
   ],
   "10": [
@@ -1322,7 +1332,7 @@
       "team": "BUF",
       "inj": null,
       "own": 99.89,
-      "gp": 10
+      "gp": 11
     },
     {
       "id": "4262921",
@@ -1341,7 +1351,7 @@
       "slot": "RB",
       "team": "IND",
       "inj": null,
-      "own": 99.58,
+      "own": 99.43,
       "gp": 11
     },
     {
@@ -1350,9 +1360,9 @@
       "pos": "TE",
       "slot": "TE",
       "team": "CHI",
-      "inj": null,
-      "own": 96.69,
-      "gp": 10
+      "inj": "Questionable",
+      "own": 96.7,
+      "gp": 11
     },
     {
       "id": "16800",
@@ -1361,7 +1371,7 @@
       "slot": "Bench",
       "team": "LAR",
       "inj": "IR",
-      "own": 90.34,
+      "own": 90.3,
       "gp": 6
     },
     {
@@ -1371,7 +1381,7 @@
       "slot": "WR",
       "team": "TEN",
       "inj": null,
-      "own": 85.76,
+      "own": 85.84,
       "gp": 8
     },
     {
@@ -1381,7 +1391,7 @@
       "slot": "QB",
       "team": "CIN",
       "inj": null,
-      "own": 99.53,
+      "own": 99.59,
       "gp": 10
     },
     {
@@ -1391,7 +1401,7 @@
       "slot": "Bench",
       "team": "ARI",
       "inj": "IR",
-      "own": 37.7,
+      "own": 36.45,
       "gp": 9
     },
     {
@@ -1401,7 +1411,7 @@
       "slot": "Bench",
       "team": "PIT",
       "inj": null,
-      "own": 68.12,
+      "own": 66.81,
       "gp": 7
     },
     {
@@ -1410,9 +1420,9 @@
       "pos": "QB",
       "slot": "Bench",
       "team": "CHI",
-      "inj": null,
-      "own": 90.81,
-      "gp": 7
+      "inj": "Questionable",
+      "own": 90.7,
+      "gp": 8
     },
     {
       "id": "4572680",
@@ -1421,8 +1431,8 @@
       "slot": "Bench",
       "team": "GB",
       "inj": null,
-      "own": 87.04,
-      "gp": 10
+      "own": 87.22,
+      "gp": 11
     },
     {
       "id": "-16034",
@@ -1431,7 +1441,7 @@
       "slot": "D/ST",
       "team": "HOU",
       "inj": null,
-      "own": 90.8,
+      "own": 90.45,
       "gp": 10
     },
     {
@@ -1441,7 +1451,7 @@
       "slot": "IR",
       "team": "DET",
       "inj": "IR",
-      "own": 12.48
+      "own": 12.39
     },
     {
       "id": "4695883",
@@ -1450,7 +1460,7 @@
       "slot": "FLEX",
       "team": "CAR",
       "inj": null,
-      "own": 75.77,
+      "own": 74.85,
       "gp": 9
     },
     {
@@ -1460,7 +1470,7 @@
       "slot": "K",
       "team": "IND",
       "inj": null,
-      "own": 77.66,
+      "own": 71.67,
       "gp": 11
     },
     {
@@ -1470,7 +1480,7 @@
       "slot": "Bench",
       "team": "SEA",
       "inj": null,
-      "own": 86.42,
+      "own": 85.75,
       "gp": 10
     },
     {
@@ -1480,7 +1490,7 @@
       "slot": "Bench",
       "team": "HOU",
       "inj": null,
-      "own": 41.47,
+      "own": 37.87,
       "gp": 10
     }
   ],
@@ -1492,7 +1502,7 @@
       "slot": "FLEX",
       "team": "LV",
       "inj": null,
-      "own": 98.76,
+      "own": 98.83,
       "gp": 11
     },
     {
@@ -1502,7 +1512,7 @@
       "slot": "TE",
       "team": "ARI",
       "inj": null,
-      "own": 99.86,
+      "own": 99.87,
       "gp": 11
     },
     {
@@ -1512,7 +1522,7 @@
       "slot": "Bench",
       "team": "ARI",
       "inj": "IR",
-      "own": 80.72,
+      "own": 80.4,
       "gp": 6
     },
     {
@@ -1522,8 +1532,8 @@
       "slot": "WR",
       "team": "KC",
       "inj": null,
-      "own": 95.78,
-      "gp": 8
+      "own": 95.61,
+      "gp": 9
     },
     {
       "id": "4372016",
@@ -1532,7 +1542,7 @@
       "slot": "WR",
       "team": "DEN",
       "inj": null,
-      "own": 85.17,
+      "own": 84.75,
       "gp": 10
     },
     {
@@ -1542,7 +1552,7 @@
       "slot": "RB",
       "team": "JAX",
       "inj": "Questionable",
-      "own": 95.75,
+      "own": 95.87,
       "gp": 10
     },
     {
@@ -1551,8 +1561,8 @@
       "pos": "WR",
       "slot": "Bench",
       "team": "SF",
-      "inj": null,
-      "own": 92.58,
+      "inj": "Questionable",
+      "own": 93.09,
       "gp": 7
     },
     {
@@ -1562,7 +1572,7 @@
       "slot": "IR",
       "team": "NYG",
       "inj": "IR",
-      "own": 19.73,
+      "own": 19.57,
       "gp": 2
     },
     {
@@ -1572,7 +1582,7 @@
       "slot": "Bench",
       "team": "TB",
       "inj": null,
-      "own": 59.68,
+      "own": 59.72,
       "gp": 10
     },
     {
@@ -1582,7 +1592,7 @@
       "slot": "RB",
       "team": "CAR",
       "inj": null,
-      "own": 98.16,
+      "own": 98.17,
       "gp": 10
     },
     {
@@ -1591,8 +1601,8 @@
       "pos": "WR",
       "slot": "Bench",
       "team": "JAX",
-      "inj": null,
-      "own": 75.35,
+      "inj": "Questionable",
+      "own": 76.26,
       "gp": 10
     },
     {
@@ -1602,7 +1612,7 @@
       "slot": "K",
       "team": "LAC",
       "inj": null,
-      "own": 60.97,
+      "own": 59.73,
       "gp": 10
     },
     {
@@ -1611,8 +1621,8 @@
       "pos": "QB",
       "slot": "QB",
       "team": "SF",
-      "inj": null,
-      "own": 98.61,
+      "inj": "Questionable",
+      "own": 98.5,
       "gp": 10
     },
     {
@@ -1622,8 +1632,8 @@
       "slot": "Bench",
       "team": "GB",
       "inj": null,
-      "own": 88.73,
-      "gp": 10
+      "own": 88.45,
+      "gp": 11
     },
     {
       "id": "4683062",
@@ -1632,8 +1642,8 @@
       "slot": "Bench",
       "team": "KC",
       "inj": null,
-      "own": 56.47,
-      "gp": 10
+      "own": 55.73,
+      "gp": 11
     },
     {
       "id": "5082424",
@@ -1642,7 +1652,7 @@
       "slot": "Bench",
       "team": "NYG",
       "inj": null,
-      "own": 34.04,
+      "own": 36.54,
       "gp": 10
     },
     {
@@ -1652,8 +1662,8 @@
       "slot": "D/ST",
       "team": "DET",
       "inj": null,
-      "own": 53.16,
-      "gp": 10
+      "own": 47.07,
+      "gp": 11
     }
   ]
 }

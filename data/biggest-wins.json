@@ -1,8 +1,8 @@
 {
   "title": "Biggest regular-season wins (single week), all time",
   "league": "Chicken (ESPN 12115010)",
-  "generatedAt": "2026-11-24T09:15:00-05:00",
-  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-11. The 89.90 Week 8 margin is the final score from the Nov 3 production scoreboard. Week 9 finals are in the Nov 10 pull. Week 10 is final as of 2026-11-17 (9:15 AM ET). The largest Week 10 margin is 37.8 (Jahmyr I Go Again 149.96, Sandusky's Soldiers 112.16), below the 80.30 cutoff, so the top 10 is unchanged and pending stays empty. Week 11 is final as of 2026-11-24 (9:15 AM ET). The largest Week 11 margin is 37.64 (Smert Fellas 139.4, Chewy's Warriors 101.76), below the 80.30 cutoff, so the top 10 is unchanged and pending stays empty.",
+  "generatedAt": "2026-11-26T23:55:00-05:00",
+  "method": "Largest margin of victory in a single regular-season matchup. Playoffs and consolation excluded (ESPN playoffTierType != NONE). Regular season = weeks 1-13 in 2020, 1-14 in 2021-2025; 2026 counts final weeks 1-11. The 89.90 Week 8 margin is the final score from the Nov 3 production scoreboard. Week 9 finals are in the Nov 10 pull. Week 10 is final as of 2026-11-17 (9:15 AM ET). The largest Week 10 margin is 37.8 (Jahmyr I Go Again 149.96, Sandusky's Soldiers 112.16), below the 80.30 cutoff, so the top 10 is unchanged and pending stays empty. Week 11 is final as of 2026-11-24 (9:15 AM ET). The largest Week 11 margin is 37.64 (Smert Fellas 139.4, Chewy's Warriors 101.76), below the 80.30 cutoff, so the top 10 is unchanged and pending stays empty. 2026-11-26: Week 12 is in progress (Thursday / Thanksgiving games only). The largest live margin is 114.24 (Smert Fellas 118.14, Kabul FC 3.9), above the 80.30 cutoff, so that game is pending and is not in the top 10. The other four live margins are below the cutoff.",
   "regularSeasonWeeks": {
     "2020": 13,
     "2021": 14,
@@ -31,7 +31,19 @@
     },
     "tieAtBoundary": false
   },
-  "pending": [],
+  "pending": [
+    {
+      "season": 2026,
+      "week": 12,
+      "winnerTeamId": 6,
+      "winnerName": "Smert Fellas",
+      "loserTeamId": 11,
+      "loserName": "Kabul FC",
+      "winnerScore": 118.14,
+      "loserScore": 3.9,
+      "margin": 114.24
+    }
+  ],
   "notes": [
     "Owner names: Flaim/ESPN returns no owner names; owner filled only for the 4 slots the app already labels (1 Kyle/KASE, 3 Chewy, 7 Gerrit, 8 Dimes). Franchises tracked by ESPN team slot; owners may have changed.",
     "Names: per-season names run through the app's lib/names.ts clean-name rules; the retired 2020 name for team 2 is shown as current franchise name + (2020).",
@@ -48,7 +60,8 @@
     "2026-11-22: Week 11 is in progress (Sunday late slate). The largest live margin is 37.64 (Smert Fellas 139.4, Chewy's Warriors 101.76). No live margin is near the 80.30 cutoff, so pending stays empty and the ranking is unchanged.",
     "2026-11-23: Week 11 is in progress after Sunday night (Monday night still to play). The largest live score is 150.46 (Dimes McSorley 150.46, Kabul FC 133.6). The largest live margin is 37.64 (Smert Fellas 139.4, Chewy's Warriors 101.76). Neither reaches the 80.30 cutoff, so pending stays empty and the ranking is unchanged.",
     "2026-11-23: Week 11 is still in progress at 11:58 PM ET, after Monday night. Every lineup is done. The largest live margin is 37.64 (Smert Fellas 139.4, Chewy's Warriors 101.76) and the largest live score is 150.46 (Dimes McSorley), both below the cutoffs, so pending stays empty and the ranking is unchanged.",
-    "2026-11-24: Week 11 is final. The largest margin is 37.64 (Smert Fellas 139.4, Chewy's Warriors 101.76) and the largest score is 150.46 (Dimes McSorley), both below the cutoffs, so pending stays empty and the ranking is unchanged."
+    "2026-11-24: Week 11 is final. The largest margin is 37.64 (Smert Fellas 139.4, Chewy's Warriors 101.76) and the largest score is 150.46 (Dimes McSorley), both below the cutoffs, so pending stays empty and the ranking is unchanged.",
+    "2026-11-26: Week 12 is in progress (Thursday scores only). The largest live margin is 114.24 (Smert Fellas 118.14, Kabul FC 3.9), above the 80.30 cutoff, so that game is pending and the ranking is unchanged."
   ],
   "top10": [
     {
